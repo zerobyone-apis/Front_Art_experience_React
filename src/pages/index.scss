@@ -1,0 +1,40 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+.background-page {
+  background: linear-gradient(rgb(114, 114, 114), rgb(0, 0, 0));
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.account-box {
+  position: relative;
+  width: 200px;
+  height: 430px;
+  top: 20%;
+  margin: auto;
+  border-radius: 10px;
+  background-color: rgba(230, 230, 230, 0.479);
+  padding-bottom: 5px;
+  padding: 40px;
+  .info-label {
+    font-size: 14px;
+    color: rgb(34, 34, 34);
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+  }
+  .account-footer {
+    position: absolute;
+    width: 100%;
+    left: 0px;
+    bottom: 0px;
+  }
+  &__title {
+    position: relative;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    font-family: "Trebuchet MS";
+    font-size: 40px;
+  }
+}

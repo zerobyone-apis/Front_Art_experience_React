@@ -1,0 +1,20 @@
+.toolbar {
+    position: relative;
+    width: 100%;
+    height: 60px;
+    background-color: rgb(34, 34, 34);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: rgb(212, 212, 212);
+    .title {
+      position: absolute;
+      font-family: Arial, Helvetica, sans-serif;
+      opacity: 0.8;
+      left: 45px;
+      top: -10px;
+      font-size: calc(1em + 0.4vw);
+      color: rgb(235, 235, 235);
+    }
+  }
+  
+  

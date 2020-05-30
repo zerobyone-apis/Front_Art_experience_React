@@ -1,0 +1,43 @@
+    // User account component
+    .user-box {
+      position: absolute;
+      right: 45px;
+      top: 10px;
+      .user-icon {
+        border-radius: 50%;
+        width: 40px; 
+        height: 40px;
+        cursor: pointer;
+      }
+    }
+    .user-menu {
+      position: absolute;
+      right: 0px;
+      top: 60px;
+      width: 200px;
+      height: 140px;
+      border-style: solid;
+      border-width: 1px;
+      border-radius: 4px;
+      border-color: rgb(206, 206, 206);
+      background-color: white;
+      z-index: 9999;
+  
+      .item-text {
+        position: relative;
+        margin: 14px;
+        font-size: 12px;
+      }
+      .user-name {
+        font-weight: bold;
+        font-size: 14px;
+      }
+      
+      .item-list_btn {
+        text-align: center;
+        button {
+          width: 95%;
+          border: none;
+        }
+      }
+    }

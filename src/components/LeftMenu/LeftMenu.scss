@@ -1,0 +1,27 @@
+.left-menu {
+    position: relative;
+    left: 0px;
+    width: 200px;
+    height: calc(100% - 60px);
+    background-color: rgb(255, 255, 255);
+    .new-event_btn {
+      text-align: center;
+      padding-top: 20px !important;
+      margin-bottom: 10px;
+      button {
+        width: 80%;
+        height: 60px;
+        border-radius: 40px;
+      }
+    }
+    .item-list_btn {
+      text-align: center;
+      button {
+        width: 100%;
+        border-top-right-radius: 15px;
+        border-bottom-right-radius: 15px;
+        border: none;
+        padding-right: 80px;
+      }
+    }
+  }
