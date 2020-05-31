@@ -62,7 +62,7 @@ export const ReservationModal = () => {
     <Fragment>
       <div className="notification-btn" onClick={() => { setShowMenu(!showMenu) }}>
         <Button
-          className="btn-reservation"
+          classes={{ root: 'reservation-btn', label: 'btn-label' }}
           color="primary"
           variant="contained"
           size="large"
