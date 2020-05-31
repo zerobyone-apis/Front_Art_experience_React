@@ -12,7 +12,6 @@ export const useOutsideAlerter = (ref, showMenu) => {
          */
         function handleClickOutside(event) {
             if (ref.current && !ref.current.contains(event.target)) {
-                console.log('actiove')
                 showMenu(false);
             }
         }

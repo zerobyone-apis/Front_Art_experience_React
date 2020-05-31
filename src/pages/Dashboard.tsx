@@ -3,8 +3,6 @@ import { LeftMenu } from '../components/LeftMenu';
 import { Toolbar } from '../components/Toolbar';
 import './Dashboard.scss';
 
-const logo = require('../assets/logo.jpeg');
-
 const DashboardPage = () => {
   return (
     <Fragment>
@@ -12,7 +10,6 @@ const DashboardPage = () => {
       <div className="page-box">
         <LeftMenu />
         <div className="dashboard">
-          <img src={logo} alt="" />
         </div>
       </div>
     </Fragment>
