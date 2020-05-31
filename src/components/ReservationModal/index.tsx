@@ -3,7 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendar } from '@fortawesome/free-solid-svg-icons';
 import React, { useState, Fragment, useEffect, useRef } from 'react';
 import { useOutsideAlerter } from '../../hooks/useOutsideAlerter';
-import { Button } from '../Button';
+// import { Button } from '../Button';
+import { Button } from '@material-ui/core';
 import './ReservationModal.scss';
 
 export const USER_ACTIONS = {
@@ -20,8 +21,6 @@ export const ReservationModal = () => {
     { id: 3, name: 'Evento Party 23', date: '12/12/20 12:00', userAction: USER_ACTIONS.NONE },
     { id: 4, name: 'Festival de cine London', date: '15/01/21 12:00', userAction: USER_ACTIONS.NONE }
   ];
-
-  // let cancelEventMode: boolean = false;
 
   const [notifications, setNotifications] = useState(data_test);
   const [showMenu, setShowMenu] = useState(false);
@@ -62,81 +61,19 @@ export const ReservationModal = () => {
   return (
     <Fragment>
       <div className="notification-btn" onClick={() => { setShowMenu(!showMenu) }}>
-        <FontAwesomeIcon
-          color="white"
-          icon={faCalendar}
-          className="notification-bell" />
-        <p>Reservar</p>
+        <Button
+          className="btn-reservation"
+          color="primary"
+          variant="contained"
+          size="large"
+        >
+          Reservar
+        </Button>
+
       </div>
 
-      {/* getNotificationsAvailable() != 0 ? 'red' : 'white' */}
-
       <div className="notifications-menu" ref={wrapperRef} style={{ visibility: (showMenu ? "visible" : "hidden") }}>
-        <p className="notifications-title">Notificaciones</p>
-        {!getNotificationsAvailable() && (
-          <div className="no-notifications">
-            <p>No tiene notificaciones</p>
-          </div>
-        )
-        }
-        {notifications.map(item => {
-          if (item.userAction === USER_ACTIONS.NONE) {
-            return (
-              <Fragment>
-                <div className={`${(cancelEventMode && selectedNotification === item) ? 'selected' : ''} notification`}>
-                  <div className="notification-info">
-                    <p className="event-name">{item.name}</p>
-                    <p className="event-date">{item.date}</p>
-                  </div>
-                  <div className="buttons-box">
-                    {!cancelEventMode && (
-                      <Fragment>
-                        <Button
-                          label="Aceptar"
-                          color='white'
-                          className="item-list_btn"
-                          onClick={() => { acceptEvent(item) }}
-                        />
-                        <Button
-                          label="Cancelar"
-                          color='white'
-                          className="item-list_btn"
-                          onClick={() => {
-                            setCancelEventMode(true);
-                            setSelectedNotification(item);
-                          }}
-                        />
-                      </Fragment>
-                    )}
-                    {
-                      (cancelEventMode && selectedNotification === item) && (
-                        <Fragment>
-                          <p className="cancel-text">Seguro que desea cancelar la invitacion?</p>
-                          <Button
-                            label="Si"
-                            color='white'
-                            className="item-list_btn"
-                            onClick={() => { discardEvent(item) }}
-                          />
-                          <Button
-                            label="No"
-                            color='white'
-                            className="item-list_btn"
-                            onClick={() => {
-                              setCancelEventMode(false);
-                              setSelectedNotification(item);
-                            }}
-                          />
-                        </Fragment>
-                      )
-                    }
-                  </div>
-                </div>
-              </Fragment>
-            );
-          }
-        }
-        )}
+        <p>hola</p>
       </div>
     </Fragment>
   );
