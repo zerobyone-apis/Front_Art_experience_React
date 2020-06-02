@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useState, ChangeEvent } from 'react';
+// eslint-disable-next-line no-unused-vars
+import React, { useState, ChangeEvent } from 'react';
 import './LoginForm.scss';
 import { TextField } from '../Textfield';
-import { FormContext } from '../../contexts/FormContext';
 import { Button } from '../../components/Button';
 
-export const LoginForm = (props: { className?: string }) => {
+export const LoginForm = () => {
 
   const initialValues = {
     username: { value: '', error: '', required: true },
@@ -21,15 +21,15 @@ export const LoginForm = (props: { className?: string }) => {
     setFields({ ...fields, [name]: { ...fields[name], value: value } });
   };
 
-  const validationFields = (fields: any) => {
-    Object.keys(fields).forEach((fieldName: string) => {
-      if (!fields[fieldName].value && fields[fieldName].required) {
-        setFields({ ...fields, [fieldName]: { ...fields[fieldName], error: "El campo es requerido!" } })
-      } else {
-        setFields({ ...fields, [fieldName]: { ...fields[fieldName], error: "" } })
-      }
-    })
-  }
+  // const validationFields = (fields: any) => {
+  //   Object.keys(fields).forEach((fieldName: string) => {
+  //     if (!fields[fieldName].value && fields[fieldName].required) {
+  //       setFields({ ...fields, [fieldName]: { ...fields[fieldName], error: "El campo es requerido!" } })
+  //     } else {
+  //       setFields({ ...fields, [fieldName]: { ...fields[fieldName], error: "" } })
+  //     }
+  //   })
+  // }
 
   const login = () => {
     // validationFields(fields)

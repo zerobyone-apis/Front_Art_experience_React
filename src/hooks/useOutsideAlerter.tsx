@@ -3,8 +3,6 @@ import { useEffect } from 'react';
 * Hook that alerts clicks outside of the passed ref
 */
 
-let coso = "x";
-
 export const useOutsideAlerter = (ref, showMenu) => {
     useEffect(() => {
         /**

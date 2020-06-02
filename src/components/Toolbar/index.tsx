@@ -1,5 +1,5 @@
+import React from 'react';
 import { AccountMenu } from '../AccountMenu';
-import { NotificationMenu } from '../NotificationMenu';
 import { ReservationModal } from '../ReservationModal';
 import './Toolbar.scss';
 

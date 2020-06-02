@@ -1,8 +1,8 @@
 // eslint-disable-next-line no-unused-vars
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
-import React, { useState, Fragment, useEffect, useRef } from 'react';
-import { useOutsideAlerter } from '../../hooks/useOutsideAlerter';
+import React, { useState, Fragment } from 'react';
+// import { useOutsideAlerter } from '../../hooks/useOutsideAlerter';
 import { Button } from '../Button';
 import './NotificationMenu.scss';
 
@@ -14,7 +14,7 @@ export const USER_ACTIONS = {
 
 export const NotificationMenu = () => {
 
-  let data_test = [
+  const data_test = [
     { id: 1, name: 'Fest X', date: '12/12/20 12:00', userAction: USER_ACTIONS.ACCEPTED },
     { id: 2, name: 'Evento de fin de anio', date: '10/05/21 15:00', userAction: USER_ACTIONS.CANCELLED },
     { id: 3, name: 'Evento Party 23', date: '12/12/20 12:00', userAction: USER_ACTIONS.NONE },
@@ -28,12 +28,12 @@ export const NotificationMenu = () => {
   const [cancelEventMode, setCancelEventMode] = useState(false);
   const [selectedNotification, setSelectedNotification] = useState({});
 
-  const wrapperRef = useRef(null);
+  // const wrapperRef = useRef(null);
 
-  useOutsideAlerter(wrapperRef, setShowMenu);
+  // useOutsideAlerter(wrapperRef, setShowMenu);
 
   const acceptEvent = (event) => {
-    let copyNotifications = notifications;
+    const copyNotifications = notifications;
     copyNotifications.map(item => {
       if (item === event) {
         item.userAction = USER_ACTIONS.ACCEPTED;
@@ -43,7 +43,7 @@ export const NotificationMenu = () => {
   }
 
   const discardEvent = (event) => {
-    let copyNotifications = notifications;
+    const copyNotifications = notifications;
     copyNotifications.map(item => {
       if (item === event) {
         item.userAction = USER_ACTIONS.CANCELLED;
@@ -75,7 +75,7 @@ export const NotificationMenu = () => {
 
       {/* getNotificationsAvailable() != 0 ? 'red' : 'white' */}
 
-      <div className="notifications-menu" ref={wrapperRef} style={{ visibility: (showMenu ? "visible" : "hidden") }}>
+      <div className="notifications-menu" style={{ visibility: (showMenu ? "visible" : "hidden") }}>
         <p className="notifications-title">Notificaciones</p>
         {!getNotificationsAvailable() && (
           <div className="no-notifications">

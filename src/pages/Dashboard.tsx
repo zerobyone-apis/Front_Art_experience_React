@@ -6,6 +6,7 @@ import './Dashboard.scss';
 const DashboardPage = () => {
   return (
     <Fragment>
+      <p>hola</p>
       <Toolbar />
       <div className="page-box">
         <LeftMenu />
