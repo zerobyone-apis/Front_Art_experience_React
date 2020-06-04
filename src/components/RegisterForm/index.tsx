@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './RegisterForm.scss';
 import { FormContext } from '../../contexts/FormContext';
-import { TextField } from '../Textfield';
+import { TextField } from '../TextField';
 import { Button } from '../Button';
 export const RegisterForm = (props: { className?: string }) => {
   const initialValues = { username: '', email: '', password: '' };
