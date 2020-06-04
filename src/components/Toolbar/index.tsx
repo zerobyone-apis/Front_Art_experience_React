@@ -7,9 +7,10 @@ export const Toolbar = () => {
     return (
         <div className="toolbar">
             <p className="title">ArtExperience</p>
-            <ReservationModal />
-            <AccountMenu />
-            {/* <NotificationMenu /> */}
+            <div className="right-box">
+                <ReservationModal />
+                <AccountMenu />
+            </div>
         </div>
     );
 }
