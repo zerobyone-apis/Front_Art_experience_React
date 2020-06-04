@@ -10,6 +10,7 @@ export const TextField = (props: {
   value?: any;
   result?: string;
   required?: boolean;
+  className?: string;
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
 }) => {
 
@@ -20,7 +21,7 @@ export const TextField = (props: {
   }, [props.error])
 
   return (
-    <div className="text-field">
+    <div className={`${props.className} text-field`}>
       <label>{props.label}</label>
       <input
         autoFocus
