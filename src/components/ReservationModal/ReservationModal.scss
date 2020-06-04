@@ -1,95 +1,68 @@
-.reservation-btn {
-  position: absolute;
-  height: 30px;
-  bottom: 10px;
-  right: 50px;
-  padding: 10px 30px;
-  
-  .btn-label {
-    color: black;
-    font-size: 10px;
+.reservation-modal {
+  // Button Activator
+  .reservation-btn {
+    background: black;
+    color: white;
+    box-shadow: 0 0 1px 0px white;
+    font-size: 13px;
+  }
+  button:before {
+    content:'';
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 0px;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.377);
+    border-radius: 8px;
+    border-style: none;
+    border-radius: 5px;
+    transition: all 0.2s ease;
+  } 
+  button:hover:before {
+    width: 100%;
+  }
+  // Content of Dialog 
+  .reservation-step {
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    // height: 600px;
+    .search-field {
+      position: relative;
+    }
+    .subtitle {
+      // margin: 20px;
+      font-size: 14px;
+      color: rgb(56, 56, 56) !important;
+    }
+    .services-box {
+      position: relative;
+      width: 100%;
+      // height: 100%;
+      // background-color: blue;
+      margin: auto;
+      // display: flex;
+      // overflow-x: scroll;
+      .service {
+        text-align: center;
+        margin: 10px;
+        font-size: 12px;
+        width: 100px;
+        height: 200px;
+        // background-color: green;
+        .service-img {
+          position: relative;
+          width: 100px;
+          height: 100px;
+          // margin: 10px;
+          box-shadow: 0 0 1px 0 black;
+          cursor: pointer;
+        }
+        .service-img:hover {
+          box-shadow: 0 0 4px 0 black;
+        }
+      }
+    }
   }
 }
-  .notification-btn {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    right: 120px;
-    padding: 0px 0px 5px 5px;
-    top: 20px;
-    display: flex;
-    cursor: pointer;
-    .notification-bell {
-      margin: auto;
-      width: 24px;
-      height: 24px;
-    }
-    .notification-circle {
-      position: absolute;
-      height: 15px;
-      width: 15px;
-      top: -10px;
-      left: 25px;
-      background-color: red;
-      border-radius: 50%;
-      .notification-number {
-        position: absolute;
-        top: -8px;
-        left: 4px;
-        color: white;
-        font-size: 10px;
-      }
-    }
-  }
-  .notifications-menu {
-    position: absolute;
-    right: 80px;
-    top: 60px;
-    width: max-content;
-    height: max-content;
-    background-color: white;
-    z-index: 9999;
-
-    .notifications-title {
-      font-weight: bold;
-      font-size: 14px;
-      margin: 20px;
-      color: rgb(36, 36, 36);
-    }
-    .no-notifications {
-      width: 200px;
-      height: 50px;
-      padding: 10px;
-      text-align: center;
-    }
-    .notification {
-      display: flex;
-      padding-right: 10px;
-      .notification-info {
-        // background-color: Red;
-        width: 120px;
-        margin-left: 10px;
-        .event-name {
-          font-size: 14px;
-          font-weight: bold;
-        }
-        .event-date {
-          font-size: 12px;
-        }
-      }
-      .buttons-box {
-        display: flex;
-        right: 0px;
-        padding: 5px;
-        .item-list_btn {
-          margin-left: 10px;
-        }
-        .cancel-text {
-          font-size: 14px;
-        }
-      }
-    }
-    .notification.selected {
-      background-color: #E8F0FE;
-    }
-  }
