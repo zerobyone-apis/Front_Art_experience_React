@@ -1,0 +1,54 @@
+.dialog_activator-box {
+  position: relative;
+  width: max-content;
+  margin: 0px 0px 0px 20px;
+}
+.dialog-box {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.253);
+  z-index: 100;
+  .dialog-modal {
+    position: relative;
+    width: 80%;
+    top: calc(50% - 35vh);
+    height: max-content;
+    margin:auto !important;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: 0 4px 0 0 rgba(0, 0, 0, 0.123);
+    .header {
+      position: relative;
+      width: 100%;
+      height: 40px;
+      border-radius: 8px 8px 0 0;
+      border-bottom-style: solid;
+      border-color: rgba(128, 128, 128, 0.198);
+      border-width: 2px;
+      .header-title {
+        .title {
+          top: 0px !important;
+          left: 30px;
+          color: rgb(56, 56, 56) !important;
+          font-size: 14px;
+        }
+      }
+    }
+    .content {
+      position: relative;
+    }
+    .footer {
+      position: relative;
+      width: 100%;
+      height: 40px;
+      bottom: 0;
+      border-radius: 0 0 8px 8px;
+      border-top-style: solid;
+      border-color: rgba(128, 128, 128, 0.198);
+      border-width: 2px;
+    }
+  }  
+}
