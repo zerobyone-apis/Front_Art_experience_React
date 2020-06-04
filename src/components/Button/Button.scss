@@ -1,10 +1,12 @@
 .button-holder {
   text-align: center;
   button {
+    outline:none;
     font-size: 14px;
-    padding: 12px 25px 12px 25px;
+    padding: 10px 20px 10px 20px;
     transition: box-shadow .3s;
-    border: 1px solid rgb(212, 212, 212);
+    border-radius: 8px;
+    border-style: none;
   }
   button:hover {
     box-shadow: 0 0 11px rgba(33,33,33,.2);

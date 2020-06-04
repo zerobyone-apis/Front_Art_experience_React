@@ -11,8 +11,9 @@ export const Button = (props: {
   type?: 'button' | 'submit' | 'reset';
 }) => {
   return (
-    <div className={`${props.className} button-holder`}>
+    <div className='button-holder'>
       <button
+        className={`${props.className}`}
         style={{
           'width': props.width,
           background: props.color,
