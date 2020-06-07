@@ -13,3 +13,20 @@
     cursor: pointer;
   }
 }
+
+// button:before {
+//   content:'';
+//   position: absolute;
+//   top: 0px;
+//   left: 0px;
+//   width: 0px;
+//   height: 36px;
+//   background: rgba(255, 255, 255, 0.377);
+//   border-radius: 8px;
+//   border-style: none;
+//   border-radius: 5px;
+//   transition: all 0.2s ease;
+// } 
+// button:hover:before {
+//   width: 100%;
+// }
