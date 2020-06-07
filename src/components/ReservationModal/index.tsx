@@ -2,7 +2,7 @@
 import React, { useState, Fragment, useEffect } from 'react';
 import { DialogModal } from '../DialogModal';
 import { SearchField } from '../SearchField';
-import { faShoppingCart, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faShoppingCart, faTrash, faCircle } from '@fortawesome/free-solid-svg-icons'
 import { Button } from '../Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './ReservationModal.scss';
@@ -252,6 +252,7 @@ export const ReservationModal = () => {
         return (
           // Step 0: select service
           <div className="reservation-step">
+            <p className='subtitle'>Seleccione el servicio que se desea realizar</p>
             <div className="top-box">
               <div className="left-box">
                 <SearchField
@@ -264,14 +265,13 @@ export const ReservationModal = () => {
               </div>
               <div className="right-box">
                 <FontAwesomeIcon
-                  color="pink"
+                  color="#69f0ae"
                   icon={faShoppingCart}
                   className="shopping_cart-icon" />
                 <p className="total-price">{getTotalCost()}</p>
               </div>
             </div>
 
-            <p className='subtitle'>Seleccione el servicio que se desea realizar</p>
             <div className="services-box">
               <div className="list_services-box">
                 {
@@ -283,6 +283,10 @@ export const ReservationModal = () => {
                           selectService(item);
                         }}
                         className="service">
+                        <FontAwesomeIcon
+                          color="silver"
+                          icon={faCircle}
+                          className="circle-icon" />
                         <p className="name">
                           {item.name}
                         </p>
@@ -306,15 +310,18 @@ export const ReservationModal = () => {
                             unselectService(item);
                           }}
                         >
+                          <FontAwesomeIcon
+                            color="#69f0ae"
+                            icon={faCircle}
+                            className="circle-icon" />
                           <p className="name">{item.name}</p>
                           <p className="price">$ {item.cost}</p>
                           <FontAwesomeIcon
-                            color="pink"
+                            color="#f44336"
                             icon={faTrash}
                             className="trash-icon" />
                         </div>
                       </div>
-
                     )
                   })
                 }
@@ -361,7 +368,7 @@ export const ReservationModal = () => {
         );
         break;
       case 2:
-        // Step 3: select date and hour
+        // Step 2: select date and hour
         <div className="reservation-step">
           <p className='subtitle'>Seleccione el fecha y hora</p>
           <div className="barbers-box">
@@ -378,6 +385,7 @@ export const ReservationModal = () => {
         title="Reservacion"
         buttonLabel="Reservar"
         buttonClassName="reservation-btn"
+        width={'640px'}
         // header={null}
         footer={
           <div className="footer_right-box">

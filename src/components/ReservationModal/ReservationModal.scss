@@ -20,77 +20,78 @@
   .reservation-step {
     position: relative;
     width: 100%;
-    height: 400px; /////////////////////////
+    height: 400px;
     padding-bottom: 20px;
-
-
+    .subtitle {
+      position: relative;
+      padding-left: 20px;
+      font-size: 16px;
+      color: rgb(56, 56, 56) !important;
+    }
     .top-box {
       display: flex;
       position: relative;
       width: 100%;
+      margin-bottom: 20px;
       .left-box {
         position: relative;
         width: 50%;
-        // background-color: red;
         .search-field {
           position: relative;
-          padding: 20px;
+          padding-left: 20px;
         }
       }
       .right-box {
         position: relative;
         width: 50%;
-        // background-color: green;
         .shopping_cart-icon {
-          padding: 20px;
           position: relative;
-          width: 6vw;
-          height: 6vh;
+          font-size: 18px;
+          top: 15px;
+          left: 40px;
         }
         .total-price {
-          padding:20px;
-          font-size: calc(8px + 1vw);
+          position: relative;
+          bottom: 2px;
+          left: 60px;
+          padding-left:20px;
+          font-size: 18px;
+          color: green;
         }
       }
     }
-    
-    
     // can be a other div aligned right
-    .subtitle {
-      position: relative;
-      padding-left: 20px;
-      font-size: 14px;
-      color: rgb(56, 56, 56) !important;
-    }
     .services-box {
       width: 100%;
       display: flex;
+      // box-shadow: 0 0 3px 0px rgb(235, 117, 117);
+      // background-color: rgb(236, 236, 236);
+      // box-shadow: 0 0 3px 0px rgb(92, 91, 91);
     .list_services-box {
       position: relative;
       width: 50%;
-      height: 200px;
+      height: 270px;
       overflow-y: scroll;
-      .service-btn {
-        width: 90%;
-        margin-bottom:20px;
-      }
+      overflow-x: hidden;
       .service {
         position: relative;
-        width: 60%;
-        height: max-content;
-        margin: auto;
-        padding: 6px;
-        text-align: center;
-        border-radius: 6px;
-        // box-shadow: 0 0 1px 0px black;;
-        margin-top: 20px;
-        background-color: rgb(221, 221, 221);
+        padding-left: 60px;
         cursor: pointer;
+        // box-shadow: 0 0 3px 0px rgb(105, 105, 105);
+        // background-color: rgb(214, 214, 214);
+        // border-top-right-radius: 20px;
+        // border-bottom-right-radius: 20px;
+        // margin-right: 20px;
+        .circle-icon {
+          position: absolute;
+          left: 20px;
+          top: 35%;
+        }
         .name {
-          font-size: calc(2px + 1vw);
+          font-size: 14px;
         }
         .price {
-          font-size: calc(2px + 1vw);
+          font-size: 14px;
         }
         .service-text {
           font-family: 'Courier New', Courier, monospace;
@@ -101,61 +102,51 @@
         box-shadow: 0 0 3px 0px rgb(0, 0, 0);
       }
     }
+
     .selected_services-box {
       position: relative;
       width: 50%;
-      height: 200px;
+      height: 270px;
       overflow-y: scroll;
-
       .selected_service {
-        // display: flex;
         width: 100%;
-        // background-color: green;
-        // text-align: center;
         .service {
           position: relative;
-          width: 300px;
-          height: max-content;
-          padding: 5px;
-          border-radius: 30px;
-          margin: auto;
-          margin-bottom:10px;
-          background-color: rgb(209, 209, 209);
-          text-align: center;
+          padding-left: 60px;
+          cursor: pointer;
         }
         .service:hover {
-          background-color: rgb(255, 112, 112);
+          box-shadow: 0 0 3px 0px rgb(0, 0, 0);
+          .circle-icon {
+            visibility: hidden;
+          }
           .trash-icon {
             visibility: visible;
           }
         }
+        .circle-icon {
+          position: absolute;
+          left: 20px;
+          top: 35%;
+        }
         .name {
-          margin: 0;
+          // margin: 0;
+          font-size: 14px;
         }
         .price {
-          margin: 0;
-          // position: absolute;
+          font-size: 14px;
         }
         .trash-icon {
           position: absolute;
           visibility: hidden;
-          right: 10px;
-          top: 15px;
+          // right: 10px;
+          // top: 15px;
+
+          // position: absolute;
+          left: 20px;
+          top: 35%;
         }
       }
-      
-      // .service {
-      //   padding: 2px;
-      //   width: max-content;
-      //   margin:auto;
-      //   margin-top: 30px;
-      //   border-radius: 30px;
-      //   cursor: pointer;
-      //   .service-text {
-      //     font-family: 'Courier New', Courier, monospace;
-      //     font-size: 18px;
-      //   }
-      // }
       .service:hover {
         box-shadow: 0 0 1px 0px black;
       }
@@ -173,7 +164,6 @@
         margin-top: 30px;
         margin-bottom: 60px;
         cursor: pointer;
-        // background-color: green;
         text-align: center;
         .img {
           width: 100%;

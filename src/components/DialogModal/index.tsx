@@ -8,6 +8,7 @@ export const DialogModal = (props: {
   header?: any,
   content?: any,
   footer?: any,
+  width?: string,
   buttonLabel?: string,
   buttonClassName?: string
 }) => {
@@ -18,7 +19,7 @@ export const DialogModal = (props: {
         <Button className={`dialog_activator-btn ${props.buttonClassName}`} label={props.buttonLabel} />
       </div>
       <div className="dialog-box" style={{ visibility: (showMenu ? "visible" : "hidden") }}>
-        <div className="dialog-modal">
+        <div className="dialog-modal" style={{ width: props.width }}>
           <div className="header">
             <div className="header-title">
               {props.header ||
