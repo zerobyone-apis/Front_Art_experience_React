@@ -17,9 +17,12 @@ export const SearchField = (props: {
   const [filtredItems, setFiltredItems] = useState([]);
 
   useEffect(() => {
-    console.log(filtredItems)
-  }, [filtredItems])
+    setFiltredItems(props.items);
+  }, []);
 
+  useEffect(() => {
+    props.onChangeResults(filtredItems);
+  }, [filtredItems]);
 
   const filterItems = () => {
     setFiltredItems(
@@ -27,7 +30,6 @@ export const SearchField = (props: {
         return (item[props.itemFilter] || '').toLowerCase().indexOf(fieldValue) != -1;
       })
     );
-    props.onChangeResults(filtredItems);
   }
 
   // CallBack of the textfield
@@ -35,6 +37,7 @@ export const SearchField = (props: {
     target: { value },
   }: ChangeEvent<HTMLInputElement>) => {
     setFieldValue(value);
+    filterItems();
   };
 
   return (
