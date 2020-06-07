@@ -2,6 +2,7 @@
 import React, { useState, Fragment, useEffect } from 'react';
 import { DialogModal } from '../DialogModal';
 import { SearchField } from '../SearchField';
+import { Button } from '../Button';
 import './ReservationModal.scss';
 
 export const ReservationModal = () => {
@@ -140,14 +141,199 @@ export const ReservationModal = () => {
         "https://cdn.shopify.com/s/files/1/0162/2116/files/smart_haircuts_for_men_7.jpg?v=1506147407"
     }
   ];
+  const data_barbers = [
+    {
+      barberId: 1,
+      userId: 1,
+      name: "Maximiliano Olivera",
+      job: "Barbero",
+      amountCuts: 2,
+      clientsBarber: 5,
+      rateOfBarber: 0,
+      amountOfReservesByDay: 10,
+      img:
+        "https://instagram.fmvd1-1.fna.fbcdn.net/v/t51.2885-19/s150x150/51832663_382908072507752_2052880357581127680_n.jpg?_nc_ht=instagram.fmvd1-1.fna.fbcdn.net&_nc_ohc=7ydmF-QY_OkAX_AVJo7&oh=c1bfde98b1e10ce06cee75b55d20b112&oe=5F072FAB",
+      instagram: "https://www.instagram.com/damianezetiel/",
+      facebook: "https://www.facebook.com/TheUniqueDesign"
+    },
+    {
+      barberId: 2,
+      userId: 2,
+      name: "Damian Rodriguez",
+      job: "Peluquero",
+      amountCuts: 2,
+      clientsBarber: 5,
+      rateOfBarber: 0,
+      amountOfReservesByDay: 10,
+      img: "https://instagram.fmvd1-1.fna.fbcdn.net/v/t51.2885-19/s150x150/101334228_246173533338982_6815021257935814656_n.jpg?_nc_ht=instagram.fmvd1-1.fna.fbcdn.net&_nc_ohc=rJtpc6mj9ksAX8YaeCv&oh=f3b1f238e0da8efcc806201a8862cfe9&oe=5F06DA28",
+      instagram: "https://www.instagram.com/damianezetiel/",
+      facebook: "https://www.facebook.com/TheUniqueDesign"
+    },
+    {
+      barberId: 2,
+      userId: 2,
+      name: "Damian Rodriguez",
+      job: "Peluquero",
+      amountCuts: 2,
+      clientsBarber: 5,
+      rateOfBarber: 0,
+      amountOfReservesByDay: 10,
+      img: "https://instagram.fmvd1-1.fna.fbcdn.net/v/t51.2885-19/s150x150/101334228_246173533338982_6815021257935814656_n.jpg?_nc_ht=instagram.fmvd1-1.fna.fbcdn.net&_nc_ohc=rJtpc6mj9ksAX8YaeCv&oh=f3b1f238e0da8efcc806201a8862cfe9&oe=5F06DA28",
+      instagram: "https://www.instagram.com/damianezetiel/",
+      facebook: "https://www.facebook.com/TheUniqueDesign"
+    },
+    {
+      barberId: 2,
+      userId: 2,
+      name: "Damian Rodriguez",
+      job: "Peluquero",
+      amountCuts: 2,
+      clientsBarber: 5,
+      rateOfBarber: 0,
+      amountOfReservesByDay: 10,
+      img: "https://instagram.fmvd1-1.fna.fbcdn.net/v/t51.2885-19/s150x150/101334228_246173533338982_6815021257935814656_n.jpg?_nc_ht=instagram.fmvd1-1.fna.fbcdn.net&_nc_ohc=rJtpc6mj9ksAX8YaeCv&oh=f3b1f238e0da8efcc806201a8862cfe9&oe=5F06DA28",
+      instagram: "https://www.instagram.com/damianezetiel/",
+      facebook: "https://www.facebook.com/TheUniqueDesign"
+    }
+  ];
 
   const [showMenu, setShowMenu] = useState(false);
   const [services, setServices] = useState(data_services);
+  const [barbers, setBarber] = useState(data_barbers);
+  const [selectedBarbers, setSelectedBarbers] = useState([]);
+  const [selectedServices, setSelectedServices] = useState([]);
   const [searchResult, setSearchResult] = useState([]);
+  const [wizard, setWizard] = useState(0);
 
   const onChangeSearchResult = (value: any) => {
     setSearchResult(value);
-    console.log('llefa')
+  }
+
+  const selectService = (selectedService: any) => {
+    setSelectedServices([...selectedServices, selectedService])
+    console.log(selectedServices)
+  }
+
+  const unselectService = (selectedItem: any) => {
+    console.log('//////////////')
+    console.log(selectedServices)
+    let copy = selectedServices;
+    setSelectedServices(copy.splice(copy.indexOf(selectedItem), 1));
+    console.log(selectedServices)
+  }
+
+
+  const selectBarber = (barber: any) => {
+    setSelectedBarbers([...selectedBarbers, barber])
+    console.log(selectedBarbers)
+  }
+
+  const unselectBarber = (barber: any) => {
+    console.log('//////////////')
+    console.log(selectedBarbers)
+    let copy = selectedBarbers;
+    setSelectedBarbers(copy.splice(copy.indexOf(barber), 1));
+    console.log(selectedBarbers)
+  }
+
+  const stepper = () => {
+    switch (wizard) {
+      case 0:
+        return (
+          // Step 1: select service
+          <div className="reservation-step">
+            <SearchField
+              items={services}
+              itemFilter="name"
+              buttonLabel="Buscar"
+              fieldLabel="Buscar Servicio"
+              className="search-field"
+              onChangeResults={onChangeSearchResult} />
+            <p className='subtitle'>Seleccione el servicio que se desea realizar</p>
+            <div className="services-box">
+              <div className="list_services-box">
+                {
+                  searchResult.map(item => {
+                    return (
+                      <Button
+                        className="service-btn"
+                        key={`service_${searchResult.indexOf(item)}`}
+                        onClick={() => {
+                          selectService(item);
+                        }}
+                        label={item.name}
+                      />
+                    )
+                  })
+                }
+              </div>
+              <div className="selected_services-box">
+                {
+                  selectedServices.map(item => {
+                    return (
+                      <Button
+                        className="service-btn"
+                        key={`selected_service_${selectedServices.indexOf(item)}`}
+                        onClick={() => {
+                          unselectService(item);
+                        }}
+                        label={item.name}
+                      />
+                    )
+                  })
+                }
+              </div>
+            </div>
+          </div>
+        );
+        break;
+      case 1:
+        return (
+          // Step 2: select barber
+          <div className="reservation-step">
+            <p className='subtitle'>Seleccione el barbero</p>
+            <div className="barbers-box">
+              <div className="list_barbers-box">
+                {
+                  barbers.map(barber => {
+                    return (
+                      <div className="barber">
+                        <img onClick={() => {
+                          selectBarber(barber);
+                        }} src={barber.img} className="img" />
+                        <p className="barber-name">{barber.name}</p>
+                      </div>
+                    )
+                  })
+                }
+              </div>
+              <div className="selected_barber-box">
+                {
+                  selectedBarbers.map(barber => {
+                    return (
+                      <div className="barber">
+                        <img onClick={() => {
+                          unselectBarber(barber);
+                        }} src={barber.img} className="img" />
+                      </div>
+                    )
+                  })
+                }
+              </div>
+            </div>
+          </div>
+        );
+        break;
+      case 2:
+        // Step 3: select date and hour
+        <div className="reservation-step">
+          <p className='subtitle'>Seleccione el fecha y hora</p>
+          <div className="barbers-box">
+
+          </div>
+        </div>
+        break;
+    }
   }
 
   return (
@@ -157,41 +343,30 @@ export const ReservationModal = () => {
         buttonLabel="Reservar"
         buttonClassName="reservation-btn"
         // header={null}
-        // footer={null}
-        content={
-          // Step 1: select service
-          <div className="reservation-step">
-
-            <SearchField
-              items={services}
-              itemFilter="name"
-              buttonLabel="Buscar"
-              fieldLabel="Buscar Servicio"
-              className="search-field"
-              onChangeResults={onChangeSearchResult} />
-
-            <p className='subtitle'>Seleccione el servicio que se desea realizar</p>
-            <div className="services-box">
-              {
-                searchResult.map(item => {
-                  return (<p>{item.name}</p>)
-                })
-              }
-
-              {/* {
-                searchResult.map(item => {
-                  return (
-                    <div id={item.id} className="service">
-                      <p>{item.name}</p>
-                      <div className="service-img">
-                      </div>
-                      <p>${item.cost}</p>
-                    </div>
-                  )
-                })
-              } */}
-            </div>
+        footer={
+          <div className="footer_right-box">
+            {
+              wizard ? (
+                <Button
+                  className="footer-button"
+                  label="Volver"
+                  onClick={() => {
+                    setWizard(wizard - 1);
+                  }}
+                />
+              ) : null
+            }
+            <Button
+              className="footer-button"
+              label={wizard < 2 ? 'Siguiente' : 'Realizar Reserva'}
+              onClick={() => {
+                setWizard(wizard + 1);
+              }}
+            />
           </div>
+        }
+        content={
+          stepper()
         }
       />
     </div>
