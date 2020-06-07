@@ -9,20 +9,20 @@ export const LeftMenu = () => {
     return (
         <div className="left-menu">
             <Button
-                label="Nuevo Evento"
+                label="Acerca de Nosotros"
                 color="white"
                 className="new-event_btn"
                 onClick={() => { setDashboardStep(1) }}
             />
             <Button
-                label="Mis Eventos"
+                label="Mis Reservas"
                 color={dashboardStep == 1 ? '#E8F0FE' : 'white'}
                 fontColor={dashboardStep == 1 ? '#1967D2' : ''}
                 className="item-list_btn"
                 onClick={() => { setDashboardStep(1) }}
             />
             <Button
-                label="Participacion"
+                label="Registro"
                 color={dashboardStep == 2 ? '#E8F0FE' : 'white'}
                 fontColor={dashboardStep == 2 ? '#1967D2' : ''}
                 className="item-list_btn"
