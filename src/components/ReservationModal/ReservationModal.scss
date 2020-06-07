@@ -18,15 +18,44 @@
   }
   // Content of Dialog 
   .reservation-step {
-    // background-color: grey;
     position: relative;
     width: 100%;
     height: 400px; /////////////////////////
     padding-bottom: 20px;
-    .search-field {
+
+
+    .top-box {
+      display: flex;
       position: relative;
-      padding: 20px;
+      width: 100%;
+      .left-box {
+        position: relative;
+        width: 50%;
+        // background-color: red;
+        .search-field {
+          position: relative;
+          padding: 20px;
+        }
+      }
+      .right-box {
+        position: relative;
+        width: 50%;
+        // background-color: green;
+        .shopping_cart-icon {
+          padding: 20px;
+          position: relative;
+          width: 6vw;
+          height: 6vh;
+        }
+        .total-price {
+          padding:20px;
+          font-size: calc(8px + 1vw);
+        }
+      }
     }
+    
+    
+    // can be a other div aligned right
     .subtitle {
       position: relative;
       padding-left: 20px;
@@ -46,18 +75,30 @@
         margin-bottom:20px;
       }
       .service {
-        padding: 2px;
-        width: max-content;
-        margin:auto;
-        margin-top: 30px;
+        position: relative;
+        width: 60%;
+        height: max-content;
+        margin: auto;
+        padding: 6px;
+        text-align: center;
+        border-radius: 6px;
+        // box-shadow: 0 0 1px 0px black;;
+        margin-top: 20px;
+        background-color: rgb(221, 221, 221);
         cursor: pointer;
+        .name {
+          font-size: calc(2px + 1vw);
+        }
+        .price {
+          font-size: calc(2px + 1vw);
+        }
         .service-text {
           font-family: 'Courier New', Courier, monospace;
           font-size: 18px;
         }
       }
       .service:hover {
-        box-shadow: 0 0 1px 0px black;
+        box-shadow: 0 0 3px 0px rgb(0, 0, 0);
       }
     }
     .selected_services-box {
@@ -65,21 +106,56 @@
       width: 50%;
       height: 200px;
       overflow-y: scroll;
-      .service-btn {
-        width: 90%;
-        margin-bottom:20px;
-      }
-      .service {
-        padding: 2px;
-        width: max-content;
-        margin:auto;
-        margin-top: 30px;
-        cursor: pointer;
-        .service-text {
-          font-family: 'Courier New', Courier, monospace;
-          font-size: 18px;
+
+      .selected_service {
+        // display: flex;
+        width: 100%;
+        // background-color: green;
+        // text-align: center;
+        .service {
+          position: relative;
+          width: 300px;
+          height: max-content;
+          padding: 5px;
+          border-radius: 30px;
+          margin: auto;
+          margin-bottom:10px;
+          background-color: rgb(209, 209, 209);
+          text-align: center;
+        }
+        .service:hover {
+          background-color: rgb(255, 112, 112);
+          .trash-icon {
+            visibility: visible;
+          }
+        }
+        .name {
+          margin: 0;
+        }
+        .price {
+          margin: 0;
+          // position: absolute;
+        }
+        .trash-icon {
+          position: absolute;
+          visibility: hidden;
+          right: 10px;
+          top: 15px;
         }
       }
+      
+      // .service {
+      //   padding: 2px;
+      //   width: max-content;
+      //   margin:auto;
+      //   margin-top: 30px;
+      //   border-radius: 30px;
+      //   cursor: pointer;
+      //   .service-text {
+      //     font-family: 'Courier New', Courier, monospace;
+      //     font-size: 18px;
+      //   }
+      // }
       .service:hover {
         box-shadow: 0 0 1px 0px black;
       }

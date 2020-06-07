@@ -2,8 +2,11 @@
 import React, { useState, Fragment, useEffect } from 'react';
 import { DialogModal } from '../DialogModal';
 import { SearchField } from '../SearchField';
+import { faShoppingCart, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { Button } from '../Button';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './ReservationModal.scss';
+import '../../styles/theme.scss';
 
 export const ReservationModal = () => {
   const data_services = [
@@ -222,7 +225,6 @@ export const ReservationModal = () => {
     console.log(selectedServices)
   }
 
-
   const selectBarber = (barber: any) => {
     setSelectedBarbers([...selectedBarbers, barber])
     console.log(selectedBarbers)
@@ -236,33 +238,58 @@ export const ReservationModal = () => {
     console.log(selectedBarbers)
   }
 
+  const getTotalCost = () => {
+    let total: number = 0;
+    selectedServices.forEach(service => {
+      total += service.cost;
+    })
+    return `$ ${total}`;
+  }
+
   const stepper = () => {
     switch (wizard) {
       case 0:
         return (
-          // Step 1: select service
+          // Step 0: select service
           <div className="reservation-step">
-            <SearchField
-              items={services}
-              itemFilter="name"
-              buttonLabel="Buscar"
-              fieldLabel="Buscar Servicio"
-              className="search-field"
-              onChangeResults={onChangeSearchResult} />
+            <div className="top-box">
+              <div className="left-box">
+                <SearchField
+                  items={services}
+                  itemFilter="name"
+                  buttonLabel="Buscar"
+                  fieldLabel="Buscar Servicio"
+                  className="search-field"
+                  onChangeResults={onChangeSearchResult} />
+              </div>
+              <div className="right-box">
+                <FontAwesomeIcon
+                  color="pink"
+                  icon={faShoppingCart}
+                  className="shopping_cart-icon" />
+                <p className="total-price">{getTotalCost()}</p>
+              </div>
+            </div>
+
             <p className='subtitle'>Seleccione el servicio que se desea realizar</p>
             <div className="services-box">
               <div className="list_services-box">
                 {
                   searchResult.map(item => {
                     return (
-                      <Button
-                        className="service-btn"
+                      <div
                         key={`service_${searchResult.indexOf(item)}`}
                         onClick={() => {
                           selectService(item);
                         }}
-                        label={item.name}
-                      />
+                        className="service">
+                        <p className="name">
+                          {item.name}
+                        </p>
+                        <p className="price">
+                          ${item.cost}
+                        </p>
+                      </div>
                     )
                   })
                 }
@@ -271,14 +298,23 @@ export const ReservationModal = () => {
                 {
                   selectedServices.map(item => {
                     return (
-                      <Button
-                        className="service-btn"
-                        key={`selected_service_${selectedServices.indexOf(item)}`}
-                        onClick={() => {
-                          unselectService(item);
-                        }}
-                        label={item.name}
-                      />
+                      <div className="selected_service">
+                        <div
+                          className="service"
+                          key={`selected_service_${selectedServices.indexOf(item)}`}
+                          onClick={() => {
+                            unselectService(item);
+                          }}
+                        >
+                          <p className="name">{item.name}</p>
+                          <p className="price">$ {item.cost}</p>
+                          <FontAwesomeIcon
+                            color="pink"
+                            icon={faTrash}
+                            className="trash-icon" />
+                        </div>
+                      </div>
+
                     )
                   })
                 }
@@ -289,7 +325,7 @@ export const ReservationModal = () => {
         break;
       case 1:
         return (
-          // Step 2: select barber
+          // Step 1: select barber
           <div className="reservation-step">
             <p className='subtitle'>Seleccione el barbero</p>
             <div className="barbers-box">
