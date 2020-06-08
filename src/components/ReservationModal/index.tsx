@@ -2,7 +2,7 @@
 import React, { useState, Fragment, useEffect } from 'react';
 import { DialogModal } from '../DialogModal';
 import { SearchField } from '../SearchField';
-import { faShoppingCart, faTrash, faCircle } from '@fortawesome/free-solid-svg-icons'
+import { faShoppingCart, faCircle, faCheck, faArrowLeft, faCartPlus, faCartArrowDown } from '@fortawesome/free-solid-svg-icons'
 import { Button } from '../Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './ReservationModal.scss';
@@ -212,12 +212,14 @@ export const ReservationModal = () => {
     setSearchResult(value);
   }
 
-
-
   // SERVICE
-
   const selectService = (selectedService: any) => {
-    setSelectedServices([...selectedServices, selectedService])
+    let existsItem = selectedServices.filter(item => {
+      return item === selectedService;
+    });
+    if (existsItem.length == 0) {
+      setSelectedServices([...selectedServices, selectedService]);
+    }
   }
 
   const unselectService = (selectedItem: any) => {
@@ -228,7 +230,6 @@ export const ReservationModal = () => {
   }
 
   // BARBER
-
   const selectBarber = (barber: any) => {
     setSelectedBarbers([...selectedBarbers, barber])
   }
@@ -287,7 +288,7 @@ export const ReservationModal = () => {
                         className="service">
                         <FontAwesomeIcon
                           color="silver"
-                          icon={faCircle}
+                          icon={faCartPlus}
                           className="circle-icon" />
                         <p className="name">
                           {item.name}
@@ -313,13 +314,13 @@ export const ReservationModal = () => {
                         >
                           <FontAwesomeIcon
                             color="#69f0ae"
-                            icon={faCircle}
+                            icon={faCartArrowDown}
                             className="circle-icon" />
                           <p className="name">{item.name}</p>
                           <p className="price">$ {item.cost}</p>
                           <FontAwesomeIcon
-                            color="#f44336"
-                            icon={faTrash}
+                            color="pink"
+                            icon={faArrowLeft}
                             className="trash-icon" />
                         </div>
                       </div>
