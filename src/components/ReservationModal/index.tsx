@@ -12,9 +12,9 @@ export const ReservationModal = () => {
   const data_services = [
     {
       workId: 1,
+      name: "Corte",
       img:
         "https://cdn.shopify.com/s/files/1/0162/2116/files/smart_haircuts_for_men_7.jpg?v=1506147407",
-      name: "Corte",
       cost: 250
     },
     {
@@ -212,30 +212,32 @@ export const ReservationModal = () => {
     setSearchResult(value);
   }
 
+
+
+  // SERVICE
+
   const selectService = (selectedService: any) => {
     setSelectedServices([...selectedServices, selectedService])
-    console.log(selectedServices)
   }
 
   const unselectService = (selectedItem: any) => {
-    console.log('//////////////')
-    console.log(selectedServices)
-    let copy = selectedServices;
-    setSelectedServices(copy.splice(copy.indexOf(selectedItem), 1));
-    console.log(selectedServices)
+    let removedItem = selectedServices.filter(item => {
+      return (item != selectedItem);
+    });
+    setSelectedServices(removedItem);
   }
+
+  // BARBER
 
   const selectBarber = (barber: any) => {
     setSelectedBarbers([...selectedBarbers, barber])
-    console.log(selectedBarbers)
   }
 
-  const unselectBarber = (barber: any) => {
-    console.log('//////////////')
-    console.log(selectedBarbers)
-    let copy = selectedBarbers;
-    setSelectedBarbers(copy.splice(copy.indexOf(barber), 1));
-    console.log(selectedBarbers)
+  const unselectBarber = (selectedItem: any) => {
+    let removedItem = selectedBarbers.filter(item => {
+      return (item != selectedItem);
+    });
+    setSelectedBarbers(removedItem);
   }
 
   const getTotalCost = () => {
@@ -302,10 +304,9 @@ export const ReservationModal = () => {
                 {
                   selectedServices.map(item => {
                     return (
-                      <div className="selected_service">
+                      <div key={`selected_service_${selectedServices.indexOf(item)}`} className="selected_service">
                         <div
                           className="service"
-                          key={`selected_service_${selectedServices.indexOf(item)}`}
                           onClick={() => {
                             unselectService(item);
                           }}
@@ -340,7 +341,7 @@ export const ReservationModal = () => {
                 {
                   barbers.map(barber => {
                     return (
-                      <div className="barber">
+                      <div key={`barber_${barbers.indexOf(barber)}`} className="barber">
                         <img onClick={() => {
                           selectBarber(barber);
                         }} src={barber.img} className="img" />
@@ -354,7 +355,7 @@ export const ReservationModal = () => {
                 {
                   selectedBarbers.map(barber => {
                     return (
-                      <div className="barber">
+                      <div key={`selected_barber_${barbers.indexOf(barber)}`} className="barber">
                         <img onClick={() => {
                           unselectBarber(barber);
                         }} src={barber.img} className="img" />
