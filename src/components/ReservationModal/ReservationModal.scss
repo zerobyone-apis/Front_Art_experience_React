@@ -79,7 +79,7 @@
         padding-left: 60px;
         padding-bottom: 1px;
         cursor: pointer;
-        animation-name: slide_top;
+        animation-name: slide_left;
         animation-duration: 1s;
         .circle-icon {
           position: absolute;
@@ -190,7 +190,7 @@
         border-top-left-radius: 80px;
         border-bottom-left-radius: 80px;
         animation-name: slide_top;
-        animation-duration: 2s;
+        animation-duration: 1s;
         .img {
           position: relative;
           width: 70px;
