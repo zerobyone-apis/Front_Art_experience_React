@@ -94,7 +94,7 @@
         }
       }
       .service:hover {
-        box-shadow: 0 0 3px 0px rgb(138, 138, 138);
+        // box-shadow: 0 0 3px 0px rgb(138, 138, 138);
         background-color: rgb(222, 255, 203);
       }
     }
@@ -113,7 +113,7 @@
           padding-bottom: 1px;
         }
         .service:hover {
-          box-shadow: 0 0 3px 0px rgb(0, 0, 0);
+          // box-shadow: 0 0 3px 0px rgb(0, 0, 0);
           .circle-icon {
             visibility: hidden;
           }
@@ -143,8 +143,8 @@
         }
       }
       .service:hover {
-        box-shadow: 0 0 3px 0px rgb(138, 138, 138);
-        background-color: rgba(248, 223, 223, 0.637);
+        // box-shadow: 0 0 3px 0px rgb(138, 138, 138);
+        background-color: rgba(255, 218, 218, 0.329);
       }
     }
     }
