@@ -62,6 +62,10 @@
     .services-box {
       width: 100%;
       display: flex;
+      border-top-style: solid;
+      border-bottom-style: solid;
+    border-color: rgb(231, 231, 231);
+
     .list_services-box {
       position: relative;
       width: 50%;
