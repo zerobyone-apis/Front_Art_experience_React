@@ -168,33 +168,33 @@ export const ReservationModal = () => {
       clientsBarber: 5,
       rateOfBarber: 0,
       amountOfReservesByDay: 10,
-      img: "https://instagram.fmvd1-1.fna.fbcdn.net/v/t51.2885-19/s150x150/101334228_246173533338982_6815021257935814656_n.jpg?_nc_ht=instagram.fmvd1-1.fna.fbcdn.net&_nc_ohc=rJtpc6mj9ksAX8YaeCv&oh=f3b1f238e0da8efcc806201a8862cfe9&oe=5F06DA28",
+      img: "https://scontent.fmvd4-1.fna.fbcdn.net/v/t1.0-9/101099602_1279890275735698_3012316497491001344_n.jpg?_nc_cat=104&_nc_sid=85a577&_nc_ohc=xFiEkzwl8RIAX-z3lmK&_nc_ht=scontent.fmvd4-1.fna&oh=ff5c2cb3b4272e965b6643c87618160d&oe=5F04BBAF",
       instagram: "https://www.instagram.com/damianezetiel/",
       facebook: "https://www.facebook.com/TheUniqueDesign"
     },
     {
       barberId: 2,
       userId: 2,
-      name: "Damian Rodriguez",
+      name: "JorgeXD",
       job: "Peluquero",
       amountCuts: 2,
       clientsBarber: 5,
       rateOfBarber: 0,
       amountOfReservesByDay: 10,
-      img: "https://instagram.fmvd1-1.fna.fbcdn.net/v/t51.2885-19/s150x150/101334228_246173533338982_6815021257935814656_n.jpg?_nc_ht=instagram.fmvd1-1.fna.fbcdn.net&_nc_ohc=rJtpc6mj9ksAX8YaeCv&oh=f3b1f238e0da8efcc806201a8862cfe9&oe=5F06DA28",
+      img: "https://scontent.fmvd4-1.fna.fbcdn.net/v/t31.0-8/12240880_162684954085327_8170328642351335943_o.jpg?_nc_cat=111&_nc_sid=7aed08&_nc_ohc=Wb6hzMQ-6HoAX9kfGgI&_nc_ht=scontent.fmvd4-1.fna&oh=6b2a6f34ca8edd58546e3a7ccf2cf109&oe=5F042709",
       instagram: "https://www.instagram.com/damianezetiel/",
       facebook: "https://www.facebook.com/TheUniqueDesign"
     },
     {
       barberId: 2,
       userId: 2,
-      name: "Damian Rodriguez",
+      name: "Mariano Moreno",
       job: "Peluquero",
       amountCuts: 2,
       clientsBarber: 5,
       rateOfBarber: 0,
       amountOfReservesByDay: 10,
-      img: "https://instagram.fmvd1-1.fna.fbcdn.net/v/t51.2885-19/s150x150/101334228_246173533338982_6815021257935814656_n.jpg?_nc_ht=instagram.fmvd1-1.fna.fbcdn.net&_nc_ohc=rJtpc6mj9ksAX8YaeCv&oh=f3b1f238e0da8efcc806201a8862cfe9&oe=5F06DA28",
+      img: "https://scontent.fmvd4-1.fna.fbcdn.net/v/t31.0-8/26172137_2286283258264781_8470637382988249565_o.jpg?_nc_cat=110&_nc_sid=dd7718&_nc_ohc=wvzUR0SOwY8AX_TpgRV&_nc_ht=scontent.fmvd4-1.fna&oh=4c5e24e9d9432cd46331f46fa82c892b&oe=5F029CDD",
       instagram: "https://www.instagram.com/damianezetiel/",
       facebook: "https://www.facebook.com/TheUniqueDesign"
     }
@@ -221,7 +221,6 @@ export const ReservationModal = () => {
       setSelectedServices([...selectedServices, selectedService]);
     }
   }
-
   const unselectService = (selectedItem: any) => {
     let removedItem = selectedServices.filter(item => {
       return (item != selectedItem);
@@ -230,16 +229,23 @@ export const ReservationModal = () => {
   }
 
   // BARBER
-  const selectBarber = (barber: any) => {
-    setSelectedBarbers([...selectedBarbers, barber])
+  const selectBarber = (selectedItem: any) => {
+    let existsItem = selectedBarbers.filter(item => {
+      return item === selectedItem;
+    });
+    if (existsItem.length == 0) {
+      setSelectedBarbers([...selectedBarbers, selectedItem]);
+    }
   }
-
   const unselectBarber = (selectedItem: any) => {
     let removedItem = selectedBarbers.filter(item => {
       return (item != selectedItem);
     });
     setSelectedBarbers(removedItem);
   }
+
+
+
 
   const getTotalCost = () => {
     let total: number = 0;
@@ -342,10 +348,10 @@ export const ReservationModal = () => {
                 {
                   barbers.map(barber => {
                     return (
-                      <div key={`barber_${barbers.indexOf(barber)}`} className="barber">
-                        <img onClick={() => {
-                          selectBarber(barber);
-                        }} src={barber.img} className="img" />
+                      <div onClick={() => {
+                        selectBarber(barber);
+                      }} key={`barber_${barbers.indexOf(barber)}`} className="barber">
+                        <img src={barber.img} className="img" />
                         <p className="barber-name">{barber.name}</p>
                       </div>
                     )
@@ -356,10 +362,11 @@ export const ReservationModal = () => {
                 {
                   selectedBarbers.map(barber => {
                     return (
-                      <div key={`selected_barber_${barbers.indexOf(barber)}`} className="barber">
-                        <img onClick={() => {
-                          unselectBarber(barber);
-                        }} src={barber.img} className="img" />
+                      <div onClick={() => {
+                        unselectBarber(barber);
+                      }} key={`selected_barber_${barbers.indexOf(barber)}`} className="barber">
+                        <img src={barber.img} className="img" />
+                        <p className="barber-name">{barber.name}</p>
                       </div>
                     )
                   })

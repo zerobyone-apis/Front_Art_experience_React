@@ -2,12 +2,12 @@
   // Button Activator
   .footer_right-box {
     position: absolute;
-    width: max-content;
     display: flex;  
     right: 0;
     padding-right: 20px;
     .footer-button {
       margin-left: 10px;
+      margin-top: 3px;
     }
   } 
   .reservation-btn {
@@ -55,7 +55,7 @@
           bottom: 2px;
           padding-left:20px;
           font-size: 18px;
-          color: black;
+          color: rgb(49, 49, 49);
         }
       }
     }
@@ -81,9 +81,11 @@
         }
         .name {
           font-size: 14px;
+          color: rgb(49, 49, 49);
         }
         .price {
           font-size: 14px;
+          color: rgb(49, 49, 49);
         }
         .service-text {
           font-family: 'Courier New', Courier, monospace;
@@ -124,9 +126,11 @@
         }
         .name {
           font-size: 14px;
+          color: rgb(49, 49, 49);
         }
         .price {
           font-size: 14px;
+          color: rgb(49, 49, 49);
         }
         .trash-icon {
           position: absolute;
@@ -145,25 +149,37 @@
       display: flex;
       .barber {
         position: relative;
-        padding: 2px;
-        width: 130px;
-        height: 130px;
+        width: 90%;
+        height: 80px;
         margin:auto;
-        margin-top: 30px;
-        margin-bottom: 60px;
+        margin-left: 20px;
+        margin-bottom: 5px;
         cursor: pointer;
-        text-align: center;
+        background-color: rgb(231, 231, 231);
+        border-radius: 12px;
+        border-top-left-radius: 80px;
+        border-bottom-left-radius: 80px;
         .img {
-          width: 100%;
-          height: 100%;
+          position: relative;
+          width: 70px;
+          height: 70px;
+          top: 2px;
+          border-style: solid;
+          border-color: white;
           border-radius: 50%;
-        }
-        .img:hover {
-          box-shadow: 0 0 4px 0px black;
+          filter: grayscale(1);  
         }
         .barber-name {
-          position: relative;
-          bottom: 10px;
+          position: absolute;
+          left: 90px;
+          top: 0px;
+          font-size: 14px;
+        }
+      }
+      .barber:hover {
+        background-color: rgb(191, 246, 128);
+        .img {
+          filter: grayscale(0);
         }
       }
       .list_barbers-box {
@@ -176,6 +192,12 @@
         position: relative;
         width: 50%;
         height: 360px;
+        .barber {
+          margin: auto;
+        }
+        .img {
+          filter: grayscale(0);  
+        }
       }
     }
   }

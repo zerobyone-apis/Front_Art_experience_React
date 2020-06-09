@@ -5,11 +5,12 @@
     font-size: 12px;
     padding: 8px 20px 8px 20px;
     transition: box-shadow .3s;
-    border-radius: 8px;
+    border-radius: 4px;
     border-style: none;
+    color: rgb(49, 49, 49);
   }
   button:hover {
-    box-shadow: 0 0 11px rgba(33,33,33,.2);
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.322);
     cursor: pointer;
   }
 }
