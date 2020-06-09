@@ -64,7 +64,7 @@
       display: flex;
       border-top-style: solid;
       border-bottom-style: solid;
-    border-color: rgb(231, 231, 231);
+      border-color: rgb(231, 231, 231);
 
     .list_services-box {
       position: relative;
@@ -74,10 +74,10 @@
       overflow-x: hidden;
       .service {
         position: relative;
+        height: 70px;
         padding-left: 60px;
-        cursor: pointer;
-        margin-bottom: -10px;
         padding-bottom: 1px;
+        cursor: pointer;
         .circle-icon {
           position: absolute;
           left: 20px;
@@ -86,11 +86,14 @@
         .name {
           font-size: 14px;
           color: rgb(49, 49, 49);
-          padding-top: 5px;
+          padding-top: 10px;
+          margin: 0;
         }
         .price {
           font-size: 14px;
           color: rgb(49, 49, 49);
+          margin: 0;
+          padding-top: 20px;
         }
         .service-text {
           font-family: 'Courier New', Courier, monospace;
@@ -113,7 +116,7 @@
           position: relative;
           padding-left: 60px;
           cursor: pointer;
-          margin-bottom: -10px;
+          // margin-bottom: -10px;
           padding-bottom: 1px;
         }
         .service:hover {
@@ -134,6 +137,7 @@
           font-size: 14px;
           color: rgb(49, 49, 49);
           padding-top: 5px;
+          margin: 0;
         }
         .price {
           font-size: 14px;
