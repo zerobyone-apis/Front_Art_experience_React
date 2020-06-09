@@ -64,8 +64,7 @@
       display: flex;
       border-top-style: solid;
       border-bottom-style: solid;
-      border-color: rgb(231, 231, 231);
-
+      border-color: rgba(238, 238, 238, 0.459);
     .list_services-box {
       position: relative;
       width: 50%;
@@ -93,7 +92,7 @@
           font-size: 14px;
           color: rgb(49, 49, 49);
           margin: 0;
-          padding-top: 20px;
+          padding-top: 10px;
         }
         .service-text {
           font-family: 'Courier New', Courier, monospace;
@@ -101,7 +100,6 @@
         }
       }
       .service:hover {
-        // box-shadow: 0 0 3px 0px rgb(138, 138, 138);
         background-color: rgb(222, 255, 203);
       }
     }
@@ -114,13 +112,12 @@
         width: 100%;
         .service {
           position: relative;
+          height: 70px;
           padding-left: 60px;
-          cursor: pointer;
-          // margin-bottom: -10px;
           padding-bottom: 1px;
+          cursor: pointer;
         }
         .service:hover {
-          // box-shadow: 0 0 3px 0px rgb(0, 0, 0);
           .circle-icon {
             visibility: hidden;
           }
@@ -142,6 +139,8 @@
         .price {
           font-size: 14px;
           color: rgb(49, 49, 49);
+          margin: 0;
+          padding-top: 10px;
         }
         .trash-icon {
           position: absolute;
