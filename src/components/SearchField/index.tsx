@@ -2,12 +2,17 @@
 import React, { useState, ChangeEvent, useEffect } from 'react';
 import { TextField } from '../TextField';
 import { Button } from '../Button';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faSearch
+} from '@fortawesome/free-solid-svg-icons'
 import './SearchField.scss';
 
 export const SearchField = (props: {
   defaultValue?: string;
   items: any[];
   itemFilter: string;
+  showButton?: boolean;
   onChangeResults: (filtredItems: any) => void;
   className?: string;
   buttonLabel?: string;
@@ -32,13 +37,10 @@ export const SearchField = (props: {
     );
   }
 
-  // CallBack of the textfield
-  const onChange = ({
-    target: { value },
-  }: ChangeEvent<HTMLInputElement>) => {
+  const onChange = (value: string) => {
     setFieldValue(value);
     filterItems();
-  };
+  }
 
   return (
     <div className={`search-field ${props.className}`}>
@@ -46,16 +48,22 @@ export const SearchField = (props: {
         label={props.fieldLabel || 'Search'}
         className="search-text_field"
         name="search"
+        icon="faSearch"
+        iconColor="grey"
         type="text"
         value={props.defaultValue}
         onChange={onChange}
       />
-      <Button
-        onClick={() => {
-          filterItems();
-        }}
-        label={props.buttonLabel || 'Search'}
-        className="search-btn" />
+      {
+        props.showButton ? (
+          <Button
+            onClick={() => {
+              filterItems();
+            }}
+            label={props.buttonLabel || 'Search'}
+            className="search-btn" />
+        ) : null
+      }
     </div>
   );
 }

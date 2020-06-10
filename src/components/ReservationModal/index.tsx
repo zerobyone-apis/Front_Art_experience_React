@@ -2,14 +2,20 @@
 import React, { useState, Fragment, useEffect } from 'react';
 import { DialogModal } from '../DialogModal';
 import { SearchField } from '../SearchField';
-import { faShoppingCart, faCircle, faCheck, faArrowLeft, faCartPlus, faCartArrowDown } from '@fortawesome/free-solid-svg-icons'
+import {
+  faShoppingCart,
+  faArrowLeft,
+  faCartPlus,
+  faCartArrowDown,
+  faHeadSideCough
+} from '@fortawesome/free-solid-svg-icons'
 import { Button } from '../Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './ReservationModal.scss';
 import '../../styles/theme.scss';
 
 export const ReservationModal = () => {
-  const data_services = [
+  const services = [
     {
       workId: 1,
       name: "Corte",
@@ -144,7 +150,7 @@ export const ReservationModal = () => {
         "https://cdn.shopify.com/s/files/1/0162/2116/files/smart_haircuts_for_men_7.jpg?v=1506147407"
     }
   ];
-  const data_barbers = [
+  const barbers = [
     {
       barberId: 1,
       userId: 1,
@@ -200,11 +206,10 @@ export const ReservationModal = () => {
     }
   ];
 
-  const [showMenu, setShowMenu] = useState(false);
-  const [services, setServices] = useState(data_services);
-  const [barbers, setBarber] = useState(data_barbers);
+  // const [showMenu, setShowMenu] = useState(false);
   const [selectedBarbers, setSelectedBarbers] = useState([]);
-  const [selectedServices, setSelectedServices] = useState([]);
+  const [clientCart, setClientCart] = useState([]);
+  const [selectedService, setSelectedService] = useState(null);
   const [searchResult, setSearchResult] = useState([]);
   const [wizard, setWizard] = useState(0);
 
@@ -214,18 +219,22 @@ export const ReservationModal = () => {
 
   // SERVICE
   const selectService = (selectedService: any) => {
-    let existsItem = selectedServices.filter(item => {
+    setSelectedService(selectedService);
+  }
+  const unselectService = (selectedItem: any) => {
+    let removedItem = clientCart.filter(item => {
+      return (item != selectedItem);
+    });
+    setClientCart(removedItem);
+  }
+  const addService = (selectedService: any) => {
+    let existsItem = clientCart.filter(item => {
       return item === selectedService;
     });
     if (existsItem.length == 0) {
-      setSelectedServices([...selectedServices, selectedService]);
+      setClientCart([...clientCart, selectedService]);
     }
-  }
-  const unselectService = (selectedItem: any) => {
-    let removedItem = selectedServices.filter(item => {
-      return (item != selectedItem);
-    });
-    setSelectedServices(removedItem);
+    setSelectedService(null);
   }
 
   // BARBER
@@ -244,12 +253,9 @@ export const ReservationModal = () => {
     setSelectedBarbers(removedItem);
   }
 
-
-
-
   const getTotalCost = () => {
     let total: number = 0;
-    selectedServices.forEach(service => {
+    clientCart.forEach(service => {
       total += service.cost;
     })
     return `$ ${total}`;
@@ -267,7 +273,7 @@ export const ReservationModal = () => {
                 <SearchField
                   items={services}
                   itemFilter="name"
-                  buttonLabel="Buscar"
+                  showButton={false}
                   fieldLabel="Buscar Servicio"
                   className="search-field"
                   onChangeResults={onChangeSearchResult} />
@@ -284,7 +290,7 @@ export const ReservationModal = () => {
             <div className="services-box">
               <div className="list_services-box">
                 {
-                  searchResult.map(item => {
+                  true ? searchResult.map(item => {
                     return (
                       <div
                         key={`service_${searchResult.indexOf(item)}`}
@@ -304,34 +310,59 @@ export const ReservationModal = () => {
                         </p>
                       </div>
                     )
-                  })
+                  }) : <p className="no-results">No se encontraron resultados</p>
                 }
               </div>
               <div className="selected_services-box">
                 {
-                  selectedServices.map(item => {
-                    return (
-                      <div key={`selected_service_${selectedServices.indexOf(item)}`} className="selected_service">
-                        <div
-                          className="service"
-                          onClick={() => {
-                            unselectService(item);
-                          }}
-                        >
-                          <FontAwesomeIcon
-                            color="#69f0ae"
-                            icon={faCartArrowDown}
-                            className="circle-icon" />
-                          <p className="name">{item.name}</p>
-                          <p className="price">$ {item.cost}</p>
-                          <FontAwesomeIcon
-                            color="pink"
-                            icon={faArrowLeft}
-                            className="trash-icon" />
+                  selectedService ? (
+                    <div className="confirm_service-box">
+                      <p className="name">{selectedService.name}</p>
+                      <p className="price">$ {selectedService.cost}</p>
+                      <p className="info">Info acerca del servicio, se caracteriza por ciertas caracteristicas.</p>
+                      <div className="sub-footer">
+                        <div className="content-footer">
+                          <Button
+                            className="add_cart-btn"
+                            label="Colocar en el carrito"
+                            onClick={() => {
+                              addService(selectedService);
+                            }}
+                          />
+                          <Button
+                            className="cancel_cart-btn"
+                            label="No incluir"
+                            onClick={() => {
+                              setSelectedService(null);
+                            }}
+                          />
                         </div>
                       </div>
-                    )
-                  })
+                    </div>
+                  ) :
+                    clientCart.map(item => {
+                      return (
+                        <div key={`selected_service_${clientCart.indexOf(item)}`} className="selected_service">
+                          <div
+                            className="service"
+                            onClick={() => {
+                              unselectService(item);
+                            }}
+                          >
+                            <FontAwesomeIcon
+                              color="#69f0ae"
+                              icon={faCartArrowDown}
+                              className="circle-icon" />
+                            <p className="name">{item.name}</p>
+                            <p className="price">$ {item.cost}</p>
+                            <FontAwesomeIcon
+                              color="pink"
+                              icon={faArrowLeft}
+                              className="trash-icon" />
+                          </div>
+                        </div>
+                      )
+                    })
                 }
               </div>
             </div>
@@ -387,7 +418,6 @@ export const ReservationModal = () => {
         break;
     }
   }
-
   return (
     <div className="reservation-modal">
       <DialogModal
@@ -409,13 +439,20 @@ export const ReservationModal = () => {
                 />
               ) : null
             }
-            <Button
-              className="footer-button"
-              label={wizard < 2 ? 'Siguiente' : 'Realizar Reserva'}
-              onClick={() => {
-                setWizard(wizard + 1);
-              }}
-            />
+
+            {
+              selectedService ? null : (
+                <Button
+                  className="footer-button"
+                  label={wizard < 2 ? 'Siguiente' : 'Realizar Reserva'}
+                  onClick={() => {
+                    setWizard(wizard + 1);
+                  }}
+                />
+              )
+            }
+
+
           </div>
         }
         content={

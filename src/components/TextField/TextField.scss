@@ -30,18 +30,27 @@ select:-webkit-autofill:focus {
     font-family: Arial, Helvetica, sans-serif;
     color: rgb(184, 0, 0);
   }
-  input {
-    height: 18px;
-    outline: none;
-    border-style: solid;
-    border-radius: 4px;
-    border-width: 1px;
-    border-color: rgb(167, 167, 167);
-    padding: 5px;
-    padding-left: 10px;
-    color: rgb(49, 49, 49);
-    font-size: 14px;
-    font-style: normal;
-    transition: background-color 5000s ease-in-out 0s;
+  .input-box {
+    input {
+      height: 18px;
+      outline: none;
+      border-style: solid;
+      border-radius: 4px;
+      border-width: 1px;
+      border-color: rgb(167, 167, 167);
+      padding: 5px;
+      padding-left: 10px;
+      color: rgb(49, 49, 49);
+      font-size: 14px;
+      font-style: normal;
+      transition: background-color 5000s ease-in-out 0s;
+    }
+    .text_field-icon {
+      position: absolute;
+      top: 36px;
+      right: 5px;
+      opacity: 0.4;
+    }  
   }
+  
 }

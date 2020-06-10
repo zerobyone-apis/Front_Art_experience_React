@@ -71,6 +71,7 @@
       height: 270px;
       overflow-y: scroll;
       overflow-x: hidden;
+      // text-align: center;
       
       // SERVICE OF LIST OF SERVICES
       .service {
@@ -107,6 +108,12 @@
         background-color: rgb(222, 255, 203);
       }
 
+      .no-results {
+        position: relative;
+        color: rgb(49, 49, 49);
+        top: 30%;
+      }
+
       @keyframes slide_left {
         0%   { left:200px; top:0px;}
         100% { left:0px; top:0px;}
@@ -118,11 +125,62 @@
     }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
     .selected_services-box {
       position: relative;
       width: 50%;
       height: 270px;
       overflow-y: scroll;
+      .confirm_service-box {
+        text-align: center;
+        .name {
+          color: rgb(49, 49, 49);
+        }
+        .price {
+          color: rgb(49, 49, 49);
+        }
+        .info {
+          color: rgb(49, 49, 49);
+        }
+        .sub-footer {
+          position: absolute;
+          bottom: 5px;
+          // margin: auto;
+          width: 100%;
+          // margin-bottom: 5px;
+          // background-color: green;
+          display: flex;
+          text-align: center !important;
+          .content-footer {
+            margin: auto;
+            display: flex;
+            // background-color:red;
+          }
+          .add_cart-btn {
+
+          }
+          .cancel_cart-btn {
+            margin-left: 5px;
+          }
+        }
+      }
+
+
+
+
+
+
       .selected_service {
         width: 100%;
         overflow-x: hidden;
