@@ -1,7 +1,7 @@
 # Frontend ArtExperience React
 
-First install with:
--sudo npm install
+# First install with:
+sudo npm install
 
-For run:
+# For run:
 npm run dev
