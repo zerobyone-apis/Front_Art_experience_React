@@ -1,0 +1,29 @@
+.divider-box {
+    .divider_left {
+        position: relative;
+        background-image: url("https://kontinent.se/wp-content/uploads/Barbershop_7.jpg");
+        clip-path: polygon(100% 50%, 0 0, 0 100%);
+        height: 400px;
+        // background-color: rgb(224, 224, 224);
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .divider_right {
+        position: relative;
+        background-image: url("http://pointbarber.com/images/home-slideshow/pointbarber-slideshow2.jpg");
+        clip-path: polygon(0 50%, 100% 100%, 100% 0);
+        height: 400px;
+        // background-color: rgb(224, 224, 224);
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .img_paralax {
+        height: 100%;
+        width: 100%;
+    }
+}
