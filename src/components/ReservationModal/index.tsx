@@ -7,7 +7,7 @@ import {
   faArrowLeft,
   faCartPlus,
   faCartArrowDown,
-  faHeadSideCough
+  faHeadSideCough,
 } from '@fortawesome/free-solid-svg-icons'
 import { Button } from '../Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -422,7 +422,7 @@ export const ReservationModal = () => {
     <div className="reservation-modal">
       <DialogModal
         title="Reservacion"
-        buttonLabel="Reservar"
+        buttonLabel="Reservar Aqui"
         buttonClassName="reservation-btn"
         width={'640px'}
         // header={null}
