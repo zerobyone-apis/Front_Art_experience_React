@@ -122,15 +122,15 @@ const DashboardPage = () => {
   const dividers = [
     {
       img: "https://kontinent.se/wp-content/uploads/Barbershop_7.jpg",
-      align: 'left'
-    },
-    {
-      img: "http://pointbarber.com/images/home-slideshow/pointbarber-slideshow2.jpg",
       align: 'right'
     },
     {
-      img: "https://kontinent.se/wp-content/uploads/Barbershop_7.jpg",
+      img: "http://pointbarber.com/images/home-slideshow/pointbarber-slideshow2.jpg",
       align: 'left'
+    },
+    {
+      img: "https://kontinent.se/wp-content/uploads/Barbershop_7.jpg",
+      align: 'right'
     }
   ];
 
@@ -209,6 +209,7 @@ const DashboardPage = () => {
       <div className="page-box">
         {/* <LeftMenu /> */}
         <div className="dashboard">
+
           <div className="banner">
             <div className="title-box">
               <p className="title font-title">{pageInfo.name}</p>
@@ -234,7 +235,6 @@ const DashboardPage = () => {
           </Card>
 
           <Divider align={dividers[1].align} img={dividers[1].img} />
-
 
           <Card title={pageInfo.contactUsTitle} subtitle={pageInfo.contactUs}>
             {getFooter()}
