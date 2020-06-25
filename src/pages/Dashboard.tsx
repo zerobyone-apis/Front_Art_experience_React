@@ -202,14 +202,12 @@ const DashboardPage = () => {
     )
   }
 
-
   return (
     <Fragment>
       <Toolbar />
       <div className="page-box">
         {/* <LeftMenu /> */}
         <div className="dashboard">
-
           <div className="banner">
             <div className="title-box">
               <p className="title font-title">{pageInfo.name}</p>
@@ -217,29 +215,25 @@ const DashboardPage = () => {
             </div>
             <div className="banner-img" />
           </div>
-
+          <div id="about_us" />
           <Card title={pageInfo.aboutUsTitle} subtitle={pageInfo.aboutUs}>
             {getListEmployees()}
           </Card>
-
           <Divider align={dividers[1].align} img={dividers[1].img} />
-
+          <div id="services" />
           <Card title={pageInfo.servicesTitle} subtitle={pageInfo.services}>
             {getListServices()}
           </Card>
-
           <Divider align={dividers[2].align} img={dividers[2].img} />
-
+          <div id="courses" />
           <Card title={pageInfo.coursesTitle} subtitle={pageInfo.courses}>
             {getListCourses()}
           </Card>
-
           <Divider align={dividers[1].align} img={dividers[1].img} />
-
+          <div id="contact" />
           <Card title={pageInfo.contactUsTitle} subtitle={pageInfo.contactUs}>
             {getFooter()}
           </Card>
-
         </div>
       </div >
     </Fragment >
