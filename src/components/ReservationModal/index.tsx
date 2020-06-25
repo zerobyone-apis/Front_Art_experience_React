@@ -14,7 +14,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './ReservationModal.scss';
 import '../../styles/theme.scss';
 
-export const ReservationModal = () => {
+export const ReservationModal = (props: {
+  className?: string,
+}) => {
   const services = [
     {
       workId: 1,
