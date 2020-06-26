@@ -10,6 +10,7 @@ export const DialogModal = (props: {
   footer?: any,
   width?: string,
   buttonLabel?: string,
+  className?: string,
   buttonClassName?: string
 }) => {
   const [showMenu, setShowMenu] = useState(false);
@@ -18,13 +19,13 @@ export const DialogModal = (props: {
       <div className="dialog_activator-box" onClick={() => { setShowMenu(!showMenu) }}>
         <Button className={`dialog_activator-btn ${props.buttonClassName}`} label={props.buttonLabel} />
       </div>
-      <div className="dialog-box" style={{ visibility: (showMenu ? "visible" : "hidden") }}>
+      <div className={`dialog-box ${props.className}`} style={{ visibility: (showMenu ? "visible" : "hidden") }}>
         <div className="dialog-modal" style={{ width: props.width }}>
           <div className="header">
             <div className="header-title">
               {props.header ||
                 (
-                  <p className="title">Reservacion</p>
+                  <p className="title">{props.title}</p>
                 )}
             </div>
           </div>
