@@ -1,7 +1,8 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useState, Fragment, useEffect } from 'react';
+import React, { useState, ChangeEvent } from 'react';
 import { DialogModal } from '../DialogModal';
 import { SearchField } from '../SearchField';
+import { TextField } from '../TextField';
 import {
   faShoppingCart,
   faArrowLeft,
@@ -20,137 +21,32 @@ export const ReservationModal = (props: {
   const services = [
     {
       workId: 1,
-      name: "Corte",
+      name: "Corte-Barba-Cejas",
       img:
         "https://cdn.shopify.com/s/files/1/0162/2116/files/smart_haircuts_for_men_7.jpg?v=1506147407",
       cost: 250
     },
     {
       workId: 2,
-      name: "Lavado",
-      cost: 50,
+      name: "Barba-Cejas",
       img:
-        "https://cdn.shopify.com/s/files/1/0162/2116/files/smart_haircuts_for_men_7.jpg?v=1506147407"
+        "https://cdn.shopify.com/s/files/1/0162/2116/files/smart_haircuts_for_men_7.jpg?v=1506147407",
+      cost: 250
+    },
+    {
+      workId: 2,
+      name: "Corte-Cejas",
+      img:
+        "https://cdn.shopify.com/s/files/1/0162/2116/files/smart_haircuts_for_men_7.jpg?v=1506147407",
+      cost: 250
     },
     {
       workId: 3,
-      name: "Brushing",
-      cost: 200,
+      name: "Corte-Tintado",
       img:
-        "https://cdn.shopify.com/s/files/1/0162/2116/files/smart_haircuts_for_men_7.jpg?v=1506147407"
+        "https://cdn.shopify.com/s/files/1/0162/2116/files/smart_haircuts_for_men_7.jpg?v=1506147407",
+      cost: 250
     },
-    {
-      workId: 4,
-      name: "Depilacion",
-      cost: 70,
-      img:
-        "https://cdn.shopify.com/s/files/1/0162/2116/files/smart_haircuts_for_men_7.jpg?v=1506147407"
-    },
-    {
-      workId: 5,
-      name: "Botox",
-      cost: 50,
-      img:
-        "https://cdn.shopify.com/s/files/1/0162/2116/files/smart_haircuts_for_men_7.jpg?v=1506147407"
-    },
-    {
-      workId: 6,
-      name: "HIDROCAUTERIZACION",
-      cost: 590,
-      img:
-        "https://cdn.shopify.com/s/files/1/0162/2116/files/smart_haircuts_for_men_7.jpg?v=1506147407"
-    },
-    {
-      workId: 7,
-      name: "BRUSHING_PROGRESIVO",
-      cost: 1200,
-      img:
-        "https://cdn.shopify.com/s/files/1/0162/2116/files/smart_haircuts_for_men_7.jpg?v=1506147407"
-    },
-    {
-      workId: 8,
-      name: "CLARITOS",
-      cost: 900,
-      img:
-        "https://cdn.shopify.com/s/files/1/0162/2116/files/smart_haircuts_for_men_7.jpg?v=1506147407"
-    },
-    {
-      workId: 9,
-      name: "MECHAS",
-      cost: 900,
-      img:
-        "https://cdn.shopify.com/s/files/1/0162/2116/files/smart_haircuts_for_men_7.jpg?v=1506147407"
-    },
-    {
-      workId: 10,
-      name: "REFLEJOS",
-      cost: 900,
-      img:
-        "https://cdn.shopify.com/s/files/1/0162/2116/files/smart_haircuts_for_men_7.jpg?v=1506147407"
-    },
-    {
-      workId: 20,
-      name: "FADE",
-      cost: 270,
-      img:
-        "https://cdn.shopify.com/s/files/1/0162/2116/files/smart_haircuts_for_men_7.jpg?v=1506147407"
-    },
-    {
-      workId: 21,
-      name: "Clasico",
-      cost: 230,
-      img:
-        "https://cdn.shopify.com/s/files/1/0162/2116/files/smart_haircuts_for_men_7.jpg?v=1506147407"
-    },
-    {
-      workId: 22,
-      name: "Barba",
-      cost: 120,
-      img:
-        "https://cdn.shopify.com/s/files/1/0162/2116/files/smart_haircuts_for_men_7.jpg?v=1506147407"
-    },
-    {
-      workId: 23,
-      name: "Cejas",
-      cost: 70,
-      img:
-        "https://cdn.shopify.com/s/files/1/0162/2116/files/smart_haircuts_for_men_7.jpg?v=1506147407"
-    },
-    {
-      workId: 24,
-      name: "Afeitado clasico",
-      cost: 160,
-      img:
-        "https://cdn.shopify.com/s/files/1/0162/2116/files/smart_haircuts_for_men_7.jpg?v=1506147407"
-    },
-    {
-      workId: 25,
-      name: "BRUSHING_PROGRESIVO_BARBER",
-      cost: 500,
-      img:
-        "https://cdn.shopify.com/s/files/1/0162/2116/files/smart_haircuts_for_men_7.jpg?v=1506147407"
-    },
-    {
-      workId: 26,
-      name: "MECHAS_BARBER",
-      cost: 500,
-      img:
-        "https://cdn.shopify.com/s/files/1/0162/2116/files/smart_haircuts_for_men_7.jpg?v=1506147407"
-    },
-    {
-      workId: 26,
-      name: "PLANCHADO",
-      cost: 1200,
-      img:
-        "https://cdn.shopify.com/s/files/1/0162/2116/files/smart_haircuts_for_men_7.jpg?v=1506147407"
-    },
-    {
-      workId: 27,
-      name: "COLORES_FANTASIA_BARBER",
-      cost: 800,
-      img:
-        "https://cdn.shopify.com/s/files/1/0162/2116/files/smart_haircuts_for_men_7.jpg?v=1506147407"
-    }
   ];
   const barbers = [
     {
@@ -208,7 +104,7 @@ export const ReservationModal = (props: {
     }
   ];
 
-  // const [showMenu, setShowMenu] = useState(false);
+  const [fields, setFields] = useState({});
   const [selectedBarbers, setSelectedBarbers] = useState([]);
   const [clientCart, setClientCart] = useState([]);
   const [selectedService, setSelectedService] = useState(null);
@@ -220,6 +116,55 @@ export const ReservationModal = (props: {
   }
 
   // SERVICE
+  const getServices = () => {
+    return services.map((item, i) => {
+      return (
+        <div
+          key={i}
+          onClick={() => {
+            selectService(item);
+          }}
+          className="service">
+          <FontAwesomeIcon
+            color="silver"
+            icon={faCartPlus}
+            className="circle-icon" />
+          <p className="name">
+            {item.name}
+          </p>
+          <p className="price">
+            ${item.cost}
+          </p>
+        </div>
+
+      )
+    })
+  }
+  const getClientKart = () => {
+    return clientCart.map((item, i) => {
+      return (
+        <div key={i} className="selected_service">
+          <div
+            className="service"
+            onClick={() => {
+              unselectService(item);
+            }}
+          >
+            <FontAwesomeIcon
+              color="#69f0ae"
+              icon={faCartArrowDown}
+              className="circle-icon" />
+            <p className="name">{item.name}</p>
+            <p className="price">$ {item.cost}</p>
+            <FontAwesomeIcon
+              color="pink"
+              icon={faArrowLeft}
+              className="trash-icon" />
+          </div>
+        </div>
+      )
+    })
+  }
   const selectService = (selectedService: any) => {
     setSelectedService(selectedService);
   }
@@ -238,7 +183,6 @@ export const ReservationModal = (props: {
     }
     setSelectedService(null);
   }
-
   // BARBER
   const selectBarber = (selectedItem: any) => {
     let existsItem = selectedBarbers.filter(item => {
@@ -254,7 +198,6 @@ export const ReservationModal = (props: {
     });
     setSelectedBarbers(removedItem);
   }
-
   const getTotalCost = () => {
     let total: number = 0;
     clientCart.forEach(service => {
@@ -262,7 +205,9 @@ export const ReservationModal = (props: {
     })
     return `$ ${total}`;
   }
-
+  const onChange = (value: string) => {
+    setFields({ ...fields, value });
+  }
   const stepper = () => {
     switch (wizard) {
       case 0:
@@ -270,50 +215,9 @@ export const ReservationModal = (props: {
           // Step 0: select service
           <div className="reservation-step">
             <p className='subtitle'>Seleccione el servicio que se desea realizar</p>
-            <div className="top-box">
-              <div className="left-box">
-                <SearchField
-                  items={services}
-                  itemFilter="name"
-                  showButton={false}
-                  fieldLabel="Buscar Servicio"
-                  className="search-field"
-                  onChangeResults={onChangeSearchResult} />
-              </div>
-              <div className="right-box">
-                <FontAwesomeIcon
-                  color="#69f0ae"
-                  icon={faShoppingCart}
-                  className="shopping_cart-icon" />
-                <p className="total-price">{getTotalCost()}</p>
-              </div>
-            </div>
-
             <div className="services-box">
               <div className="list_services-box">
-                {
-                  true ? searchResult.map(item => {
-                    return (
-                      <div
-                        key={`service_${searchResult.indexOf(item)}`}
-                        onClick={() => {
-                          selectService(item);
-                        }}
-                        className="service">
-                        <FontAwesomeIcon
-                          color="silver"
-                          icon={faCartPlus}
-                          className="circle-icon" />
-                        <p className="name">
-                          {item.name}
-                        </p>
-                        <p className="price">
-                          ${item.cost}
-                        </p>
-                      </div>
-                    )
-                  }) : <p className="no-results">No se encontraron resultados</p>
-                }
+                {getServices()}
               </div>
               <div className="selected_services-box">
                 {
@@ -325,7 +229,7 @@ export const ReservationModal = (props: {
                       <div className="sub-footer">
                         <div className="content-footer">
                           <Button
-                            className="add_cart-btn"
+                            className="add_cart-btn confirm"
                             label="Colocar en el carrito"
                             onClick={() => {
                               addService(selectedService);
@@ -342,29 +246,7 @@ export const ReservationModal = (props: {
                       </div>
                     </div>
                   ) :
-                    clientCart.map(item => {
-                      return (
-                        <div key={`selected_service_${clientCart.indexOf(item)}`} className="selected_service">
-                          <div
-                            className="service"
-                            onClick={() => {
-                              unselectService(item);
-                            }}
-                          >
-                            <FontAwesomeIcon
-                              color="#69f0ae"
-                              icon={faCartArrowDown}
-                              className="circle-icon" />
-                            <p className="name">{item.name}</p>
-                            <p className="price">$ {item.cost}</p>
-                            <FontAwesomeIcon
-                              color="pink"
-                              icon={faArrowLeft}
-                              className="trash-icon" />
-                          </div>
-                        </div>
-                      )
-                    })
+                    getClientKart()
                 }
               </div>
             </div>
@@ -410,13 +292,15 @@ export const ReservationModal = (props: {
         );
         break;
       case 2:
-        // Step 2: select date and hour
-        <div className="reservation-step">
-          <p className='subtitle'>Seleccione el fecha y hora</p>
-          <div className="barbers-box">
-
+        return (
+          // Step 2: select date and hour
+          <div className="reservation-step">
+            <p className='subtitle'>Seleccione el fecha y hora</p>
+            <div className="time-box">
+              <TextField name="name" onChange={onChange} />
+            </div>
           </div>
-        </div>
+        );
         break;
     }
   }
@@ -426,8 +310,8 @@ export const ReservationModal = (props: {
         title="Reservacion"
         buttonLabel="Reservar Aqui"
         buttonClassName="reservation-btn"
+        className="dialog_modal"
         width={'640px'}
-        // header={null}
         footer={
           <div className="footer_right-box">
             {
@@ -441,11 +325,10 @@ export const ReservationModal = (props: {
                 />
               ) : null
             }
-
             {
               selectedService ? null : (
                 <Button
-                  className="footer-button"
+                  className="footer-button confirm"
                   label={wizard < 2 ? 'Siguiente' : 'Realizar Reserva'}
                   onClick={() => {
                     setWizard(wizard + 1);
@@ -453,8 +336,6 @@ export const ReservationModal = (props: {
                 />
               )
             }
-
-
           </div>
         }
         content={
@@ -464,3 +345,23 @@ export const ReservationModal = (props: {
     </div>
   );
 }
+
+
+{/* <div className="top-box">
+              <div className="left-box">
+                <SearchField
+                  items={services}
+                  itemFilter="name"
+                  showButton={false}
+                  fieldLabel="Buscar Servicio"
+                  className="search-field"
+                  onChangeResults={onChangeSearchResult} />
+              </div>
+              <div className="right-box">
+                <FontAwesomeIcon
+                  color="#69f0ae"
+                  icon={faShoppingCart}
+                  className="shopping_cart-icon" />
+                <p className="total-price">{getTotalCost()}</p>
+              </div>
+            </div> */}

@@ -9,16 +9,34 @@
       margin-left: 10px;
       margin-top: 3px;
     }
+    .confirm {
+    background-color: rgb(146, 144, 108); 
+    }
   } 
   .dialog_activator-btn {
     position: relative;
     width: 100%;
     height: 100%;
   }
+  // .dialog_modal {
+  //   .dialog-modal {
+  //     background-color: rgb(16, 17, 22);
+  //     .header {
+  //       background-color: rgb(23, 25, 32);
+  //       .header-title {
+  //         .title {
+  //           color: white;
+  //         }
+  //       }
+  //     }
+  //     .footer {
+  //       background-color: #000000;
+  //     }
+  //   }
+  // }  
   .reservation-btn {
     position: relative;
     width: 100%;
-    // height: 30px;
     background: rgb(146, 144, 108);
     color: rgb(24, 24, 24);
     font-size: 13px;
@@ -43,62 +61,58 @@
       position: relative;
       padding-left: 20px;
       font-size: 14px;
-      color: rgb(56, 56, 56) !important;
+      color: rgb(214, 214, 214);
     }
-    .top-box {
-      display: flex;
-      position: relative;
-      width: 100%;
-      margin-bottom: 20px;
-      .left-box {
-        position: relative;
-        width: 50%;
-        .search-field {
-          position: relative;
-          padding-left: 20px;
-        }
-      }
-      .right-box {
-        position: relative;
-        width: 50%;
-        .shopping_cart-icon {
-          position: relative;
-          font-size: 18px;
-          top: 15px;
-          left: 10px;
-        }
-        .total-price {
-          position: relative;
-          bottom: 2px;
-          padding-left:20px;
-          font-size: 18px;
-          color: rgb(49, 49, 49);
-        }
-      }
-    }
+    // .top-box {
+    //   display: flex;
+    //   position: relative;
+    //   width: 100%;
+    //   margin-bottom: 20px;
+    //   .left-box {
+    //     position: relative;
+    //     width: 50%;
+    //     .search-field {
+    //       position: relative;
+    //       padding-left: 20px;
+    //     }
+    //   }
+    //   .right-box {
+    //     position: relative;
+    //     width: 50%;
+    //     .shopping_cart-icon {
+    //       position: relative;
+    //       font-size: 18px;
+    //       top: 15px;
+    //       left: 10px;
+    //     }
+    //     .total-price {
+    //       position: relative;
+    //       bottom: 2px;
+    //       padding-left:20px;
+    //       font-size: 18px;
+    //       color: rgb(49, 49, 49);
+    //     }
+    //   }
+    // }
     .services-box {
       width: 100%;
       display: flex;
-      border-top-style: solid;
-      border-bottom-style: solid;
-      border-color: rgba(238, 238, 238, 0.459);
     .list_services-box {
       position: relative;
+      top: 40px;
       width: 50%;
       height: 270px;
       overflow-y: scroll;
       overflow-x: hidden;
-      // text-align: center;
-      
       // SERVICE OF LIST OF SERVICES
       .service {
         position: relative;
         height: 70px;
-        padding-left: 60px;
+        width: 100%;
         padding-bottom: 1px;
-        cursor: pointer;
-        animation-name: slide_left;
+        animation-name: slide-top;
         animation-duration: 1s;
+        cursor: pointer;
         .circle-icon {
           position: absolute;
           left: 20px;
@@ -106,13 +120,13 @@
         }
         .name {
           font-size: 14px;
-          color: rgb(49, 49, 49);
+          color: rgb(214, 214, 214);
           padding-top: 10px;
           margin: 0;
         }
         .price {
           font-size: 14px;
-          color: rgb(49, 49, 49);
+          color: rgb(214, 214, 214);
           margin: 0;
           padding-top: 10px;
         }
@@ -122,82 +136,49 @@
         }
       }
       .service:hover {
-        background-color: rgb(222, 255, 203);
+        background-color: rgb(85, 85, 85);
       }
-
       .no-results {
         position: relative;
         color: rgb(49, 49, 49);
         top: 30%;
       }
-
-      @keyframes slide_left {
-        0%   { left:200px; top:0px;}
-        100% { left:0px; top:0px;}
-      }
-      @keyframes slide_top {
-        0%   { left:0; top:100px;}
-        100% { left:0; top:0px;}
-      }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     .selected_services-box {
       position: relative;
+      top: 40px;
       width: 50%;
       height: 270px;
       overflow-y: scroll;
       .confirm_service-box {
         text-align: center;
         .name {
-          color: rgb(49, 49, 49);
+          color: rgb(214, 214, 214);
         }
         .price {
-          color: rgb(49, 49, 49);
+          color: rgb(214, 214, 214);
         }
         .info {
-          color: rgb(49, 49, 49);
+          color: rgb(214, 214, 214);
         }
         .sub-footer {
           position: absolute;
           bottom: 5px;
-          // margin: auto;
           width: 100%;
-          // margin-bottom: 5px;
-          // background-color: green;
           display: flex;
           text-align: center !important;
           .content-footer {
             margin: auto;
             display: flex;
-            // background-color:red;
-          }
-          .add_cart-btn {
-
           }
           .cancel_cart-btn {
             margin-left: 5px;
           }
+          .confirm {
+            background-color: rgb(146, 144, 108); 
+            }
         }
       }
-
-
-
-
-
-
       .selected_service {
         width: 100%;
         overflow-x: hidden;
@@ -207,7 +188,7 @@
           padding-left: 60px;
           padding-bottom: 1px;
           cursor: pointer;
-          animation-name: slide_left;
+          animation-name: slide-left;
           animation-duration: 1s;
         }
         .service:hover {
@@ -226,13 +207,13 @@
         }
         .name {
           font-size: 14px;
-          color: rgb(49, 49, 49);
+          color: rgb(214, 214, 214);
           padding-top: 5px;
           margin: 0;
         }
         .price {
           font-size: 14px;
-          color: rgb(49, 49, 49);
+          color: rgb(214, 214, 214);
           margin: 0;
           padding-top: 10px;
         }
@@ -251,7 +232,7 @@
     .barbers-box {
       width: 100%;
       display: flex;
-      overflow-x: hidden;
+      overflow-x: none;
       .barber {
         position: relative;
         width: 90%;
@@ -260,14 +241,15 @@
         margin-left: 20px;
         margin-bottom: 5px;
         cursor: pointer;
-        background-color: rgb(231, 231, 231);
+        // background-color: rgb(231, 231, 231);
         border-radius: 12px;
         border-top-left-radius: 80px;
         border-bottom-left-radius: 80px;
-        animation-name: slide_top;
+        animation-name: slide-top;
         animation-duration: 1s;
         .img {
-          position: relative;
+          position: absolute;
+          left: 0px;
           width: 70px;
           height: 70px;
           top: 2px;
@@ -281,11 +263,11 @@
           left: 90px;
           top: 0px;
           font-size: 14px;
-          color: rgb(49, 49, 49);
+          color: rgb(214, 214, 214);
         }
       }
       .barber:hover {
-        background-color: rgb(191, 246, 128);
+        background-color: rgb(85, 85, 85);
         .img {
           filter: grayscale(0);
         }
@@ -302,9 +284,9 @@
         height: 360px;
         .barber {
           margin: auto;
-          animation-name: slide_left;
-          animation-duration: 1s;
           margin-bottom: 5px;
+          animation-name: slide-left;
+          animation-duration: 1s;
         }
         .barber:hover {
           background-color: rgba(255, 218, 218, 0.329);
@@ -314,5 +296,34 @@
         }
       }
     }
+
+
+    .time-box {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      overflow-x: none;
+      background-color: green;
+    }
+
+
+
+
+
+
+
+
+
+
+
   }
+}
+@keyframes slide-left {
+  0%   { opacity: 0;left: 100px; }
+  100% { opacity: 1;left: 0px; }
+}
+@keyframes slide-top {
+  0%   { left:0; top:100px;}
+  100% { left:0; top:0px;}
 }
