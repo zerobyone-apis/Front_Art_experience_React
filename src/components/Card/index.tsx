@@ -6,9 +6,10 @@ export const Card = (props: {
     title: string,
     subtitle: string,
     children?: any;
+    id?: string;
 }) => {
     return (
-        <div className="card">
+        <div className="card" id={props.id}>
             <div className="anchor" id="about_us"></div>
             <h1
                 className="card_title font-title"

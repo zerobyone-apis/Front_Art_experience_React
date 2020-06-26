@@ -4,6 +4,41 @@ body {
   background-color: rgb(16, 17, 22);
   overflow-x: hidden;
 }
+
+// ANCHORS
+#about_us {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  bottom: 25vh;
+  // background-color: red;
+  margin: auto;
+}
+#services {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  bottom: 25vh;
+  // background-color: red;
+  margin: auto;
+}
+#courses {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  bottom: 25vh;
+  // background-color: red;
+  margin: auto;
+}
+#contact {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  bottom: 25vh;
+  // background-color: red;
+  margin: auto;
+}
+
 .page-box {
   position: absolute;
   // background-color: rgb(22, 22, 22);
@@ -17,11 +52,6 @@ body {
     min-height: 100px;
     height: max-content;
     // background-color: rgb(206, 206, 206);
-
-
-
-
-
 
     .banner {
       position: relative;
@@ -43,27 +73,29 @@ body {
       }
       .title-box {
         .title {
-            position: absolute;
+          position: absolute;
           z-index: 1;
           top: 40%;
-          left: 10%;
+          left: 200px;
           font-size: 50px !important;
           color: rgb(146, 144, 108);
           text-shadow: 5px 5px 5px #000000;
+          animation-name: slide_left;
+          animation-duration: 3s;
         }
         .sub-title {
           position: absolute;
           z-index: 1;
           top: 56%;
-          left: 15%;
+          left: 200px;
           font-size: 18px;
           color: rgb(214, 214, 214);
           text-shadow: 5px 5px 5px #000000;
+          animation-name: slide_left;
+          animation-duration: 3s;
         }
       }
     }
-
-
 
 
         .employee-item {
@@ -78,9 +110,6 @@ body {
             width: 150px;
             height: 150px;
             margin: auto;
-            // border-width: 4px;
-            // border-style: solid;
-            // border-color: white;
           }
           .employee-name {
             margin-top: 10px;
@@ -157,28 +186,21 @@ body {
           display: inline-table;
           text-align: center;
           font-size: 16px;
-          // background-color: #ff6126;
-  
           .course-name {
             color: rgb(214, 214, 214);
           }
-  
           .course-img {
             width: 90%;
             height: 140px;
             border-radius: 4%;
           }
-  
           .course-duration {
-            // margin-left: 10px;
             color: rgb(214, 214, 214);
           }
-  
           .course-info {
             margin-left: 10px;
             color: rgb(214, 214, 214);
           }
-  
           .course-url {
             position: absolute;
             bottom: 0px;
@@ -186,14 +208,13 @@ body {
             color: #3b3b3bbb;
           }
         }
-
         .footer {
           position: relative;
           width: 100%;
           height: 200px; //delete this when end the footer design
           padding: 20px;
           margin-top: 100px;
-          background-color: #66666657;
+          background-color: #000000;
           .logo {
             text-align: center;
             font-size: 30px;
@@ -232,5 +253,20 @@ body {
 
       }
     }
+
+
+    @keyframes slide_left {
+      0%   { left: 0px;}
+      100% { left: 200px;}
+    }
+    @keyframes slide_top {
+      0%   { left:0; top:100px;}
+      100% { left:0; top:0px;}
+    }
+    @keyframes opacity_effect {
+      0%   { opacity: 0;}
+      100% { opacity: 1;}
+    }
+    
 
     ////////////
