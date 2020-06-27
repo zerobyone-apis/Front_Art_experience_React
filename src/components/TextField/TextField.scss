@@ -14,13 +14,15 @@ select:-webkit-autofill:focus {
 }
 .text-field {
   position: relative;
-  display: grid;
-  label {
+  margin-top: 20px;
+  // display: grid;
+  .label {
+    position: relative;
     font-size: 12px;
-    margin-top: 14px;
-    margin-left: 5px;
+    margin: 0;
+    left: 0px;
     margin-bottom: 2px;
-    color: rgb(49, 49, 49);
+    color: rgb(214, 214, 214);
     font-family: Arial, Helvetica, sans-serif;
   }
   .error-label {

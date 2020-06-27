@@ -15,7 +15,7 @@ export const TextField = (props: {
   iconColor?: string;
   required?: boolean;
   className?: string;
-  onChange?: (value: string) => void;
+  onChange?: (name: string, value: string) => void;
 }) => {
 
   const [error, setError] = useState(props.error);
@@ -26,7 +26,7 @@ export const TextField = (props: {
   }, [props.error])
 
   useEffect(() => {
-    props.onChange(value);
+    props.onChange(props.name, value);
   }, [value]);
 
   const changeValue = ({
@@ -36,8 +36,8 @@ export const TextField = (props: {
   }
 
   return (
-    <div className={`${props.className} text-field`}>
-      <label>{props.label}</label>
+    <div className={`${props.className || ''} text-field`}>
+      <label className="label">{props.label}</label>
       <div className="input-box">
         <input
           autoFocus
