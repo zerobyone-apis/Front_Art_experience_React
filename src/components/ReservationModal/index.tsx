@@ -1,8 +1,19 @@
 // eslint-disable-next-line no-unused-vars
+import 'date-fns';
 import React, { useState, ChangeEvent } from 'react';
 import { DialogModal } from '../DialogModal';
-import { SearchField } from '../SearchField';
+// import TextField from '@material-ui/core/TextField';
 import { TextField } from '../TextField';
+import Calendar from 'react-calendar';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import 'react-calendar/dist/Calendar.css';
+import moment from 'moment';
+import {
+  MuiPickersUtilsProvider,
+  KeyboardTimePicker,
+  KeyboardDatePicker,
+} from '@material-ui/pickers';
+import DateFnsUtils from '@date-io/date-fns';
 import {
   faShoppingCart,
   faArrowLeft,
@@ -14,6 +25,7 @@ import { Button } from '../Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './ReservationModal.scss';
 import '../../styles/theme.scss';
+import { isWithinInterval } from 'date-fns';
 
 export const ReservationModal = (props: {
   className?: string,
@@ -103,7 +115,14 @@ export const ReservationModal = (props: {
       facebook: "https://www.facebook.com/TheUniqueDesign"
     }
   ];
+  const hours = ['11:00', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00', '17:30', '18:00', '18:30'];
 
+  const [selectedHour, setSelectedHour] = useState("");
+  const [selectedDate, setSelectedDate] = useState(moment().format());
+  const handleDateChange = (date: any) => {
+    setSelectedDate(date);
+  };
+  const [reservationDate, setReservationDate] = useState(new Date());
   const [fields, setFields] = useState({});
   const [selectedBarbers, setSelectedBarbers] = useState([]);
   const [clientCart, setClientCart] = useState([]);
@@ -111,10 +130,47 @@ export const ReservationModal = (props: {
   const [searchResult, setSearchResult] = useState([]);
   const [wizard, setWizard] = useState(0);
 
+
+
+
+
+  const defaultReservationFields = {
+    reservationDate: '',
+    clientName: '',
+    clientPhone: '',
+    barberName: '',
+    services: []
+  };
+  const [reservationFields, setReservationFields] = useState(defaultReservationFields);
+  const onChangeReservationFields = (fieldName: string, value: string) => {
+    setReservationFields({ ...reservationFields, [fieldName]: value })
+  }
+
+
+
+
+  const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+      container: {
+        display: 'flex',
+        flexWrap: 'wrap',
+      },
+      textField: {
+        marginLeft: theme.spacing(1),
+        marginRight: theme.spacing(1),
+        width: 200,
+      },
+    }),
+  );
+  const classes = useStyles();
+  const getDefaultDate = () => {
+    // this date is for default date of Textfield date
+    let dateParts = moment().format().split(':');
+    return `${dateParts[0]}:${dateParts[1]}`
+  }
   const onChangeSearchResult = (value: any) => {
     setSearchResult(value);
   }
-
   // SERVICE
   const getServices = () => {
     return services.map((item, i) => {
@@ -205,9 +261,46 @@ export const ReservationModal = (props: {
     })
     return `$ ${total}`;
   }
-  const onChange = (value: string) => {
-    setFields({ ...fields, value });
+  const onChange = date => {
+    setReservationDate(date);
   }
+  const CalendarBox = () => {
+    return (
+      <div className="calendar-box">
+        <Calendar
+          onChange={onChange}
+          value={reservationDate}
+        />
+        {selectedDate ? (
+          <p className="selcted_datetime">
+            {`${
+              moment(reservationDate).format("DD/MM/YYYY")
+              } ${selectedHour}`}
+          </p>
+        ) : null}
+      </div>
+    );
+  }
+  const HoursBox = () => {
+    return (
+      <div className="hours-item">
+        <div className="hours-box">
+          {hours.map((hour, i) => {
+            return (
+              <Button
+                className={`hour-item ${selectedHour === hour ? 'selected-hour' : null}`}
+                key={i}
+                label={hour}
+                onClick={() => {
+                  setSelectedHour(hour)
+                }} />
+            )
+          })}
+        </div>
+      </div >
+    )
+  }
+
   const stepper = () => {
     switch (wizard) {
       case 0:
@@ -297,8 +390,33 @@ export const ReservationModal = (props: {
           <div className="reservation-step">
             <p className='subtitle'>Seleccione el fecha y hora</p>
             <div className="time-box">
-              <TextField name="name" onChange={onChange} />
+              {CalendarBox()}
+              {HoursBox()}
             </div>
+          </div>
+        );
+        break;
+      case 3:
+        return (
+          // Step 3 - Client info
+          <div className="reservation-step">
+            <p className='subtitle'>Ingrese sus datos personales</p>
+            <div className="client_info-box">
+              <TextField
+                label="ingrese su nombre"
+                name="clientName"
+                value={reservationFields.clientName}
+                onChange={onChangeReservationFields} />
+              <TextField
+                label="Ingrese su telefono"
+                name="clientPhone"
+                value={reservationFields.clientPhone}
+                onChange={onChangeReservationFields} />
+            </div>
+            {
+              `${reservationFields.clientName}`
+            }
+
           </div>
         );
         break;
@@ -329,7 +447,7 @@ export const ReservationModal = (props: {
               selectedService ? null : (
                 <Button
                   className="footer-button confirm"
-                  label={wizard < 2 ? 'Siguiente' : 'Realizar Reserva'}
+                  label={wizard < 3 ? 'Siguiente' : 'Reservar'}
                   onClick={() => {
                     setWizard(wizard + 1);
                   }}

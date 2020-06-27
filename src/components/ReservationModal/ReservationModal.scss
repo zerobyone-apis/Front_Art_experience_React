@@ -18,22 +18,6 @@
     width: 100%;
     height: 100%;
   }
-  // .dialog_modal {
-  //   .dialog-modal {
-  //     background-color: rgb(16, 17, 22);
-  //     .header {
-  //       background-color: rgb(23, 25, 32);
-  //       .header-title {
-  //         .title {
-  //           color: white;
-  //         }
-  //       }
-  //     }
-  //     .footer {
-  //       background-color: #000000;
-  //     }
-  //   }
-  // }  
   .reservation-btn {
     position: relative;
     width: 100%;
@@ -42,7 +26,7 @@
     font-size: 13px;
     border-radius: 2px;
     top: 15px;
-    border-radius: 10px;
+    border-radius: 4px;
   }
   .reservation-btn:hover {
     font-size: 13px;
@@ -63,43 +47,12 @@
       font-size: 14px;
       color: rgb(214, 214, 214);
     }
-    // .top-box {
-    //   display: flex;
-    //   position: relative;
-    //   width: 100%;
-    //   margin-bottom: 20px;
-    //   .left-box {
-    //     position: relative;
-    //     width: 50%;
-    //     .search-field {
-    //       position: relative;
-    //       padding-left: 20px;
-    //     }
-    //   }
-    //   .right-box {
-    //     position: relative;
-    //     width: 50%;
-    //     .shopping_cart-icon {
-    //       position: relative;
-    //       font-size: 18px;
-    //       top: 15px;
-    //       left: 10px;
-    //     }
-    //     .total-price {
-    //       position: relative;
-    //       bottom: 2px;
-    //       padding-left:20px;
-    //       font-size: 18px;
-    //       color: rgb(49, 49, 49);
-    //     }
-    //   }
-    // }
     .services-box {
       width: 100%;
       display: flex;
+      margin-top: 40px;
     .list_services-box {
       position: relative;
-      top: 40px;
       width: 50%;
       height: 270px;
       overflow-y: scroll;
@@ -146,11 +99,12 @@
     }
     .selected_services-box {
       position: relative;
-      top: 40px;
       width: 50%;
       height: 270px;
       overflow-y: scroll;
       .confirm_service-box {
+        animation-name: slide-opacity;
+        animation-duration: 1s;
         text-align: center;
         .name {
           color: rgb(214, 214, 214);
@@ -232,6 +186,7 @@
     .barbers-box {
       width: 100%;
       display: flex;
+      margin-top: 40px;
       overflow-x: none;
       .barber {
         position: relative;
@@ -240,8 +195,8 @@
         margin:auto;
         margin-left: 20px;
         margin-bottom: 5px;
+        // top: 40px;
         cursor: pointer;
-        // background-color: rgb(231, 231, 231);
         border-radius: 12px;
         border-top-left-radius: 80px;
         border-bottom-left-radius: 80px;
@@ -296,32 +251,107 @@
         }
       }
     }
-
-
     .time-box {
       position: relative;
       width: 100%;
       height: 100%;
       display: flex;
-      overflow-x: none;
-      background-color: green;
+      top: 40px;
+      padding-left: 20px;
+      padding-right: 20px;
+      .calendar-box {
+        position: relative;
+        width: 90%;
+        animation-name: slide-top;
+        animation-duration: 1s;
+        .selcted_datetime {
+          color: white;
+          margin: 0;
+          margin-top: 20px;
+        }
+        .react-calendar {
+          border-radius: 4px;
+          border-style: none;
+          background-color: rgba(105, 105, 105, 0.5);
+          // padding: 5px;
+          abbr,span {
+            color: rgb(255, 255, 255);
+          }
+          .react-calendar__navigation__arrow {
+            color: white;
+          } 
+          .react-calendar__navigation__arrow:hover {
+            background-color: rgb(146, 144, 108); 
+          } 
+          .react-calendar__navigation__label:hover {
+            background-color: rgb(146, 144, 108); 
+          }
+          .react-calendar__tile.react-calendar__month-view__days__day {
+            border-radius: 4px;
+          }
+          .react-calendar__tile {
+            color: white;
+          }
+          .react-calendar__tile--now {
+            background-color: rgb(107, 107, 107); 
+          }
+          .react-calendar__tile--active {
+            background-color: rgb(146, 144, 108); 
+          }
+          .react-calendar__tile:hover {
+            background-color: rgba(255, 255, 255, 0.178);
+          }
+        }
+      }
+      .hours-box {
+        position: relative;
+        width: 90%;
+        height: max-content;
+        margin: auto;
+        animation-name: slide-left;
+        animation-duration: 1s;
+        border-radius: 4px;
+        .hour-item {
+          display: inline-block;
+          position: relative;
+          width: 50px;
+          height: max-content;
+          padding: 10px;
+          margin: 0 10px 10px 10px;
+          border-radius: 4px;
+          background-color: rgba(239, 239, 239, 0.5);
+          color: white;
+          .hour {
+            padding: 0;
+            margin:0;
+            color: rgb(214, 214, 214);
+          }
+        }
+        .hour-item:hover {
+          background-color: rgba(255, 255, 255, 0.178);
+        }
+        .selected-hour {
+          background-color: rgb(146, 144, 108); 
+        }
+      }
     }
-
-
-
-
-
-
-
-
-
-
-
+    .client_info-box {
+      position: relative;
+      width: 100%;
+      margin-top: 40px;
+      overflow-x: none;
+      animation-name: slide-top;
+      animation-duration: 1s;
+    }
   }
 }
 @keyframes slide-left {
-  0%   { opacity: 0;left: 100px; }
+  0%   { opacity: 0;left: 20px; }
   100% { opacity: 1;left: 0px; }
+}
+@keyframes slide-opacity {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
 }
 @keyframes slide-top {
   0%   { left:0; top:100px;}
