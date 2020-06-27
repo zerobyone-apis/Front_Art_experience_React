@@ -52,7 +52,6 @@ body {
     min-height: 100px;
     height: max-content;
     // background-color: rgb(206, 206, 206);
-
     .banner {
       position: relative;
       width: 100%;
@@ -96,8 +95,6 @@ body {
         }
       }
     }
-
-
         .employee-item {
           position: relative;
           margin: 5px;
@@ -140,8 +137,6 @@ body {
             margin-left: 40%;
           }
         }
-
-
         .service-item {
           position: relative;
           margin: 5px;
@@ -174,9 +169,6 @@ body {
             color: rgb(214, 214, 214);
           }
         }
-
-
-
         .course-item {
           position: relative;
           margin: 5px;
@@ -249,12 +241,8 @@ body {
             color: rgb(214, 214, 214);
           }
         }
-
-
       }
     }
-
-
     @keyframes slide_left {
       0%   { left: 0px;}
       100% { left: 200px;}
@@ -267,6 +255,3 @@ body {
       0%   { opacity: 0;}
       100% { opacity: 1;}
     }
-    
-
-    ////////////
