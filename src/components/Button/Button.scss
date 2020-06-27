@@ -1,6 +1,9 @@
 .button-holder {
+  position: relative;
   text-align: center;
+  display: inline-flex;
   button {
+    position: relative;
     outline:none;
     font-size: 12px;
     padding: 8px 20px 8px 20px;
