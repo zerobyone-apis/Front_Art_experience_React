@@ -9,6 +9,7 @@ export const TextField = (props: {
   type?: string;
   label?: string;
   error?: string;
+  defaultValue?: string;
   value?: any;
   result?: string;
   icon?: string;
@@ -20,6 +21,10 @@ export const TextField = (props: {
 
   const [error, setError] = useState(props.error);
   const [value, setValue] = useState('');
+
+  useEffect(() => {
+    setValue(props.value);
+  }, [])
 
   useEffect(() => {
     setError(props.error);
