@@ -7,6 +7,7 @@ export const Button = (props: {
   onClick?: any;
   width?: string;
   color?: string;
+  disabled?: boolean;
   fontColor?: string;
   className?: string;
   href?: string;
@@ -16,7 +17,8 @@ export const Button = (props: {
     <div className='button-holder'>
       <a href={props.href}>
         <button
-          className={`${props.className}`}
+          disabled={props.disabled}
+          className={`${props.className} ${props.disabled ? 'disabled' : ''}`}
           style={{
             'width': props.width,
             background: props.color,
