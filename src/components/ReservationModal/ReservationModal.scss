@@ -343,6 +343,18 @@
       animation-name: slide-top;
       animation-duration: 1s;
     }
+    .confirm_data-box {
+      position: relative;
+      width: 100%;
+      margin-top: 40px;
+      overflow-x: none;
+      .confirm_info {
+        font-size: 14px;
+        color: rgb(214, 214, 214);
+        animation-name: slide-left;
+        animation-duration: 1s;
+      }
+    }
   }
 }
 @keyframes slide-left {
@@ -354,6 +366,6 @@
   100% { opacity: 1; }
 }
 @keyframes slide-top {
-  0%   { left:0; top:100px;}
-  100% { left:0; top:0px;}
+  0%   { top:100px;}
+  100% { top:0px;}
 }

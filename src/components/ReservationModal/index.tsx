@@ -2,30 +2,20 @@
 import 'date-fns';
 import React, { useState, ChangeEvent } from 'react';
 import { DialogModal } from '../DialogModal';
-// import TextField from '@material-ui/core/TextField';
 import { TextField } from '../TextField';
 import Calendar from 'react-calendar';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import 'react-calendar/dist/Calendar.css';
 import moment from 'moment';
 import {
-  MuiPickersUtilsProvider,
-  KeyboardTimePicker,
-  KeyboardDatePicker,
-} from '@material-ui/pickers';
-import DateFnsUtils from '@date-io/date-fns';
-import {
-  faShoppingCart,
   faArrowLeft,
   faCartPlus,
   faCartArrowDown,
-  faHeadSideCough,
 } from '@fortawesome/free-solid-svg-icons'
 import { Button } from '../Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './ReservationModal.scss';
 import '../../styles/theme.scss';
-import { isWithinInterval } from 'date-fns';
 
 export const ReservationModal = (props: {
   className?: string,
@@ -119,20 +109,11 @@ export const ReservationModal = (props: {
 
   const [selectedHour, setSelectedHour] = useState("");
   const [selectedDate, setSelectedDate] = useState(moment().format());
-  const handleDateChange = (date: any) => {
-    setSelectedDate(date);
-  };
   const [reservationDate, setReservationDate] = useState(new Date());
-  const [fields, setFields] = useState({});
   const [selectedBarbers, setSelectedBarbers] = useState([]);
   const [clientCart, setClientCart] = useState([]);
   const [selectedService, setSelectedService] = useState(null);
-  const [searchResult, setSearchResult] = useState([]);
   const [wizard, setWizard] = useState(0);
-
-
-
-
 
   const defaultReservationFields = {
     reservationDate: '',
@@ -145,9 +126,6 @@ export const ReservationModal = (props: {
   const onChangeReservationFields = (fieldName: string, value: string) => {
     setReservationFields({ ...reservationFields, [fieldName]: value })
   }
-
-
-
 
   const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -176,7 +154,7 @@ export const ReservationModal = (props: {
     return services.map((item, i) => {
       return (
         <div
-          key={i}
+          key={`service_${i}`}
           onClick={() => {
             selectService(item);
           }}
@@ -192,7 +170,6 @@ export const ReservationModal = (props: {
             ${item.cost}
           </p>
         </div>
-
       )
     })
   }
@@ -300,7 +277,37 @@ export const ReservationModal = (props: {
       </div >
     )
   }
+  const createReservation = () => {
 
+  }
+  const checkStep = () => {
+    switch (wizard) {
+      case 0:
+        if (clientCart.length) {
+          return true;
+        }
+        break;
+      case 1:
+        if (selectedBarbers.length) {
+          return true;
+        }
+        break;
+      case 2:
+        if (selectedDate && selectedHour) {
+          return true;
+        }
+        break;
+      case 3:
+        if (reservationFields.clientName && reservationFields.clientPhone) {
+          return true;
+        }
+        break;
+      case 4:
+        return true;
+        break;
+    }
+    return false;
+  }
   const stepper = () => {
     switch (wizard) {
       case 0:
@@ -405,6 +412,7 @@ export const ReservationModal = (props: {
               <TextField
                 label="ingrese su nombre"
                 name="clientName"
+                defaultValue={reservationFields.clientName}
                 value={reservationFields.clientName}
                 onChange={onChangeReservationFields} />
               <TextField
@@ -417,6 +425,27 @@ export const ReservationModal = (props: {
               `${reservationFields.clientName}`
             }
 
+          </div>
+        );
+        break;
+      case 4:
+        return (
+          // Step 4 - Confirm data
+          <div className="reservation-step">
+            <p className='subtitle'>Confirmacion de reserva</p>
+            <div className="confirm_data-box">
+              <p className="confirm_info">Nombre: {reservationFields.clientName}</p>
+              <p className="confirm_info">Telefono: {reservationFields.clientPhone}</p>
+              <p className="confirm_info">
+                {`Fecha de reservacion: ${
+                  moment(reservationDate).format("DD/MM/YYYY")
+                  }`}
+              </p>
+              <p className="confirm_info">{`Hora: ${selectedHour}`}</p>
+              <p className="confirm_info">{`Barbero: ${selectedBarbers.length ? selectedBarbers[0].name : ''}`}</p>
+              <p className="confirm_info">{`Servicio: ${clientCart.length ? clientCart[0].name : ''}`}</p>
+
+            </div>
           </div>
         );
         break;
@@ -444,12 +473,16 @@ export const ReservationModal = (props: {
               ) : null
             }
             {
-              selectedService ? null : (
+              !checkStep() ? null : (
                 <Button
                   className="footer-button confirm"
-                  label={wizard < 3 ? 'Siguiente' : 'Reservar'}
+                  label={wizard < 4 ? 'Siguiente' : 'Reservar'}
                   onClick={() => {
-                    setWizard(wizard + 1);
+                    if (wizard < 4) {
+                      setWizard(wizard + 1);
+                    } else {
+                      createReservation();
+                    }
                   }}
                 />
               )
@@ -463,23 +496,3 @@ export const ReservationModal = (props: {
     </div>
   );
 }
-
-
-{/* <div className="top-box">
-              <div className="left-box">
-                <SearchField
-                  items={services}
-                  itemFilter="name"
-                  showButton={false}
-                  fieldLabel="Buscar Servicio"
-                  className="search-field"
-                  onChangeResults={onChangeSearchResult} />
-              </div>
-              <div className="right-box">
-                <FontAwesomeIcon
-                  color="#69f0ae"
-                  icon={faShoppingCart}
-                  className="shopping_cart-icon" />
-                <p className="total-price">{getTotalCost()}</p>
-              </div>
-            </div> */}
