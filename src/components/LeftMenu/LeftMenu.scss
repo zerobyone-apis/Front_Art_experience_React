@@ -1,27 +1,48 @@
-.left-menu {
-    position: relative;
-    left: 0px;
-    width: 200px;
-    height: calc(100% - 60px);
-    background-color: rgb(255, 255, 255);
-    .new-event_btn {
-      text-align: center;
-      padding-top: 20px !important;
-      margin-bottom: 10px;
-      button {
-        width: 80%;
-        height: 60px;
-        border-radius: 40px;
-      }
-    }
-    .item-list_btn {
-      text-align: center;
-      button {
-        width: 100%;
-        border-top-right-radius: 15px;
-        border-bottom-right-radius: 15px;
-        border: none;
-        padding-right: 80px;
-      }
-    }
+$menu_size: 200px;
+.left_menu {
+  .dialog_activator-btn {
+    background-color:rgba(255, 255, 255, 0);
   }
+  .menu-icon {
+    position: relative;
+    left: 20px;
+    top: 2px;
+  }
+  @media only screen and (min-width: 800px) {
+      .menu-icon {
+        visibility: hidden;
+        position: absolute;
+      }
+}
+  .left_menu-dialog {
+      .dialog-modal {
+        position: relative;
+        width: 100%;
+        top: 0;
+        background-color: rgba(0, 0, 0, 0.568);
+        height: calc(100%);
+        border-radius: 0;
+        .close-box {
+          position: relative;
+          left: 26px;
+          top: 10px;
+        }
+        .header {
+          height: 60px;
+        }
+        .footer {
+          visibility: hidden;
+        }
+        .content {
+          position: relative;
+          text-align: center;
+          padding-top: 100px;
+          .left_menu-btn {
+            width: 80vw;
+            height: 40px;
+            margin-bottom: 40px;  
+          }
+        }
+      }
+    }
+}

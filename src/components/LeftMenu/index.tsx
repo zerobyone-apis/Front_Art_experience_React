@@ -1,33 +1,29 @@
 import { Button } from '../Button';
 import React, { useState } from 'react'
 import './LeftMenu.scss';
+import '../../styles/ArtExperienceButtons.scss';
+import { FiMenu } from 'react-icons/fi'
+import { DialogModal } from '../DialogModal';
+import { toolbarButtons } from '../../utils/toolbarButtons';
 
-export const LeftMenu = () => {
-
-    const [dashboardStep, setDashboardStep] = useState(1);
-
+export const LeftMenu = (props: {
+    buttonClassName?: string;
+}) => {
+    const [showDialog, setShowDialog] = useState(false);
     return (
-        <div className="left-menu">
-            <Button
-                label="Acerca de Nosotros"
-                color="white"
-                className="new-event_btn"
-                onClick={() => { setDashboardStep(1) }}
-            />
-            <Button
-                label="Mis Reservas"
-                color={dashboardStep == 1 ? '#E8F0FE' : 'white'}
-                fontColor={dashboardStep == 1 ? '#1967D2' : ''}
-                className="item-list_btn"
-                onClick={() => { setDashboardStep(1) }}
-            />
-            <Button
-                label="Registro"
-                color={dashboardStep == 2 ? '#E8F0FE' : 'white'}
-                fontColor={dashboardStep == 2 ? '#1967D2' : ''}
-                className="item-list_btn"
-                onClick={() => { setDashboardStep(2) }}
-            />
+        <div className="left_menu">
+            <FiMenu onClick={() => { setShowDialog(true) }} className="art_experience-icon menu-icon" />
+            {
+                !showDialog ? null : (
+                    <DialogModal onClose={() => { setShowDialog(false) }} className="left_menu-dialog">
+                        {
+                            toolbarButtons.map((button, i) => {
+                                return <Button key={i} href={button.href} onClick={() => { setShowDialog(false) }} className="art_experience-button left_menu-btn" label={button.label} />
+                            })
+                        }
+                    </DialogModal>
+                )
+            }
         </div>
     );
 }
