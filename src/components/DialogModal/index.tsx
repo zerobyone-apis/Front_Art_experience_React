@@ -21,7 +21,7 @@ export const DialogModal = (props: {
         <div className="dialog-modal">
           <div className="header">
             <div className="close_btn-box">
-              <Button className="close_btn" onClick={() => { props.onClose() }}>
+              <Button className="art_experience-button_outlined close_btn" onClick={() => { props.onClose() }}>
                 <AiOutlineClose
                   className="art_experience-icon" />
               </Button>
