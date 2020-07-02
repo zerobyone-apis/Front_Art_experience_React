@@ -75,22 +75,23 @@ body {
           position: absolute;
           z-index: 1;
           top: 40%;
-          left: 200px;
+          left: 10vw;
+          margin:0;
           font-size: 50px !important;
           color: rgb(146, 144, 108);
           text-shadow: 5px 5px 5px #000000;
-          animation-name: slide_left;
+          animation-name: opacity_effect;
           animation-duration: 3s;
         }
         .sub-title {
           position: absolute;
           z-index: 1;
-          top: 56%;
-          left: 200px;
+          top: 50%;
+          left: 15vw;
           font-size: 18px;
           color: rgb(214, 214, 214);
           text-shadow: 5px 5px 5px #000000;
-          animation-name: slide_left;
+          animation-name: opacity_effect;
           animation-duration: 3s;
         }
       }
