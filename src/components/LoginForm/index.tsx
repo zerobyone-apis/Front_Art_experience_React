@@ -11,27 +11,13 @@ export const LoginForm = () => {
     x: { value: '', error: '', required: true },
     password: { value: '', error: '', required: true }
   }
-
   const [fields, setFields] = useState(initialValues);
-
   const onChange = ({
     target: { value, name },
   }: ChangeEvent<HTMLInputElement>) => {
     setFields({ ...fields, [name]: { ...fields[name], value: value } });
   };
-
-  // const validationFields = (fields: any) => {
-  //   Object.keys(fields).forEach((fieldName: string) => {
-  //     if (!fields[fieldName].value && fields[fieldName].required) {
-  //       setFields({ ...fields, [fieldName]: { ...fields[fieldName], error: "El campo es requerido!" } })
-  //     } else {
-  //       setFields({ ...fields, [fieldName]: { ...fields[fieldName], error: "" } })
-  //     }
-  //   })
-  // }
-
   const login = () => {
-    // validationFields(fields)
     document.location.href = 'Dashboard';
   }
 
