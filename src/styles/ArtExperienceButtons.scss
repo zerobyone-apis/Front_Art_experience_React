@@ -1,6 +1,19 @@
 .art_experience-button {
-    background: rgb(146, 144, 108);
-    color: rgb(24, 24, 24);
+    button {
+        background: rgb(146, 144, 108);
+        color: rgb(24, 24, 24);
+    }
+}
+.art_experience-button_outlined {
+    button {
+        background: rgba(0, 0, 0, 0);
+        color: rgb(202, 202, 202);
+    }
+    button:hover {
+        .art_experience-icon {
+            color: white;
+        }
+    }   
 }
 .art_experience-icon {
     color: rgb(146, 144, 108);
