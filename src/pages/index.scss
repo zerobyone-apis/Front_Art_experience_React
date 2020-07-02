@@ -3,15 +3,19 @@ body {
   padding: 0;
   background-color: rgb(16, 17, 22);
   overflow-x: hidden;
+  overflow-y: hidden;
 }
-
+.index_page {
+  position: absolute;
+  width: 100vw !important;
+  height: 100vh;
+  overflow-y: scroll;
 // ANCHORS
 #about_us {
   position: relative;
   width: 20px;
   height: 20px;
   bottom: 25vh;
-  // background-color: red;
   margin: auto;
 }
 #services {
@@ -19,7 +23,6 @@ body {
   width: 20px;
   height: 20px;
   bottom: 25vh;
-  // background-color: red;
   margin: auto;
 }
 #courses {
@@ -27,7 +30,6 @@ body {
   width: 20px;
   height: 20px;
   bottom: 25vh;
-  // background-color: red;
   margin: auto;
 }
 #contact {
@@ -35,23 +37,18 @@ body {
   width: 20px;
   height: 20px;
   bottom: 25vh;
-  // background-color: red;
   margin: auto;
 }
-
 .page-box {
   position: absolute;
-  // background-color: rgb(22, 22, 22);
   width: 100%;
   height: calc(100% - 81px);
-  // display: flex;
   .dashboard {
     position: relative;
     top: 0px;
     width: 100%;
     min-height: 100px;
     height: max-content;
-    // background-color: rgb(206, 206, 206);
     .banner {
       position: relative;
       width: 100%;
@@ -256,3 +253,5 @@ body {
       0%   { opacity: 0;}
       100% { opacity: 1;}
     }
+
+}

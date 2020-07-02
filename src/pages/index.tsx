@@ -204,7 +204,7 @@ const IndexPage = () => {
   }
 
   return (
-    <Fragment>
+    <div className="index_page">
       <Toolbar />
       <div className="page-box">
         {/* <LeftMenu /> */}
@@ -237,7 +237,7 @@ const IndexPage = () => {
           </Card>
         </div>
       </div >
-    </Fragment >
+    </div >
   );
 };
 
