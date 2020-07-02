@@ -6,6 +6,7 @@ export const Button = (props: {
   label: string;
   onClick?: any;
   width?: string;
+  children?: React.ReactChildren;
   color?: string;
   disabled?: boolean;
   fontColor?: string;
@@ -27,6 +28,7 @@ export const Button = (props: {
           type={props.type || 'button'}
           onClick={props.onClick}
         >
+          {props.children}
           {props.label}
         </button>
       </a>
