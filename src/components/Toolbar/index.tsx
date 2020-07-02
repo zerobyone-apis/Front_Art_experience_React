@@ -14,15 +14,19 @@ export const Toolbar = () => {
             <div id="start_page" />
             <div className="left-box">
                 <LeftMenu />
-                <p className="art_experience-title title">ArtExperience</p>
+                <Button
+                    href="#"
+                    labelClassName="art_experience-title"
+                    className="title-btn art_experience-button_outlined"
+                    label="ArtExperience" />
                 {
                     toolbarButtons.map((button, i) => {
-                        return <Button key={i} href={button.href} className="art_experience-button toolbar-btn" label={button.label} />
+                        return <Button key={i} href={button.href} className="art_experience-button_outlined toolbar-btn" label={button.label} />
                     })
                 }
             </div>
             <div className="right-box">
-                <ReservationModal className="reservationModal" />
+                <ReservationModal />
                 {/* <AccountMenu /> */}
             </div>
         </div>

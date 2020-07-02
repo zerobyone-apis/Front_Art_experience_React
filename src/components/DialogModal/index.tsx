@@ -20,17 +20,21 @@ export const DialogModal = (props: {
       <div className={`dialog-box ${props.className}`}>
         <div className="dialog-modal">
           <div className="header">
-            <div className="header-title">
-              {props.header ||
-                (
-                  <p className="title">{props.title}</p>
-                )}
+            <div className="close_btn-box">
+              <Button className="close_btn" onClick={() => { props.onClose() }}>
+                <AiOutlineClose
+                  className="art_experience-icon" />
+              </Button>
             </div>
-            <div className="close-box">
-              <AiOutlineClose onClick={() => {
-                { props.onClose() }
-              }} className="art_experience-icon close-btn" />
-            </div>
+            {
+              !props.title ? null :
+                <div className="header-title">
+                  {props.header ||
+                    (
+                      <p className="title">{props.title}</p>
+                    )}
+                </div>
+            }
           </div>
           <div className="content">
             {props.children}

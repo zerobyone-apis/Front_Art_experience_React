@@ -3,23 +3,24 @@ import React, { useState, ChangeEvent } from 'react';
 import './Button.scss';
 import { loadGetInitialProps } from 'next/dist/next-server/lib/utils';
 export const Button = (props: {
-  label: string;
+  label?: string;
   onClick?: any;
   width?: string;
-  children?: React.ReactChildren;
+  children?: React.ReactChild;
   color?: string;
   disabled?: boolean;
   fontColor?: string;
   className?: string;
+  labelClassName?: string;
   href?: string;
   type?: 'button' | 'submit' | 'reset';
 }) => {
   return (
-    <div className='button-holder'>
+    <div className={`${props.className} button-holder`}>
       <a href={props.href}>
         <button
           disabled={props.disabled}
-          className={`${props.className} ${props.disabled ? 'disabled' : ''}`}
+          className={`${props.disabled ? 'disabled' : ''}`}
           style={{
             'width': props.width,
             background: props.color,
@@ -29,7 +30,11 @@ export const Button = (props: {
           onClick={props.onClick}
         >
           {props.children}
-          {props.label}
+          {!props.label ? null :
+            <p className={`${props.labelClassName} label_button`}
+              style={{ marginLeft: (props.children ? "10px" : "0px") }}>
+              {props.label}
+            </p>}
         </button>
       </a>
     </div>

@@ -6,6 +6,10 @@ import { TextField } from '../TextField';
 import Calendar from 'react-calendar';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import 'react-calendar/dist/Calendar.css';
+import '../../styles/ArtExperienceButtons.scss';
+import './ReservationModal.scss';
+import '../../styles/theme.scss';
+
 import moment from 'moment';
 import {
   faArrowLeft,
@@ -14,8 +18,6 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { Button } from '../Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import './ReservationModal.scss';
-import '../../styles/theme.scss';
 
 export const ReservationModal = (props: {
   className?: string,
@@ -461,8 +463,9 @@ export const ReservationModal = (props: {
   return (
     <div className="reservation-modal">
 
+
       <div className="dialog_activator-box" onClick={() => { setShowDialog(true) }}>
-        <Button className={`dialog_activator-btn reservation-btn`} label={'Reservar Aqui'} />
+        <Button className={`activator-btn reservation-btn art_experience-button`} label={'Reservar Aqui'} />
       </div>
 
       {

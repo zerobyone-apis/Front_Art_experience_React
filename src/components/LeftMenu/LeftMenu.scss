@@ -1,15 +1,18 @@
 $menu_size: 200px;
+
 .left_menu {
   .dialog_activator-btn {
     background-color:rgba(255, 255, 255, 0);
   }
-  .menu-icon {
+  .activator_btn {
     position: relative;
-    left: 20px;
-    top: 2px;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    display: flex;
+    align-items: center;
   }
   @media only screen and (min-width: 800px) {
-      .menu-icon {
+      .activator_btn {
         visibility: hidden;
         position: absolute;
       }
