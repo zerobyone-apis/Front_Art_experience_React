@@ -13,10 +13,10 @@
   z-index: 100;
   .dialog-modal {
     position: relative;
-    // width: 80%;
     top: calc(50% - 35vh);
     height: max-content;
-    margin:auto !important;
+    max-width: 800px;
+    margin:auto;
     border-radius: 8px;
     background-color: rgb(16, 17, 22);
     box-shadow: 0 4px 0 0 rgba(0, 0, 0, 0.123);
@@ -26,7 +26,6 @@
       height: 40px;
       border-radius: 8px 8px 0 0;
       background-color: rgb(23, 25, 32);
-      // border-bottom-style: solid;
       border-color: rgba(128, 128, 128, 0.198);
       border-width: 2px;
       .header-title {
@@ -36,6 +35,18 @@
           padding-top: 10px;
           color: rgb(146, 144, 108);
           font-size: 18px;
+        }
+      }
+      .close-box {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        width: 40px;
+        height: 100%;
+        // color: rgb(146, 144, 108);
+        text-align: center;
+        .close-btn {
+          background-color: rgba(0, 0, 0, 0);
         }
       }
     }

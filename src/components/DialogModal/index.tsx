@@ -1,26 +1,24 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useState, Fragment } from 'react';
+import React, { useState, Fragment, useEffect } from 'react';
 import { Button } from '../Button';
 import './DialogModal.scss';
+import '../../styles/ArtExperienceButtons.scss';
+import { AiOutlineClose } from 'react-icons/ai';
 
 export const DialogModal = (props: {
   title?: string,
   header?: any,
-  content?: any,
-  footer?: any,
+  children?: any,
   width?: string,
-  buttonLabel?: string,
+  onClose: () => void;
+  showModal?: boolean,
   className?: string,
   buttonClassName?: string
 }) => {
-  const [showMenu, setShowMenu] = useState(false);
   return (
-    <Fragment>
-      <div className="dialog_activator-box" onClick={() => { setShowMenu(!showMenu) }}>
-        <Button className={`dialog_activator-btn ${props.buttonClassName}`} label={props.buttonLabel} />
-      </div>
-      <div className={`dialog-box ${props.className}`} style={{ visibility: (showMenu ? "visible" : "hidden") }}>
-        <div className="dialog-modal" style={{ width: props.width }}>
+    <div>
+      <div className={`dialog-box ${props.className}`}>
+        <div className="dialog-modal">
           <div className="header">
             <div className="header-title">
               {props.header ||
@@ -28,15 +26,17 @@ export const DialogModal = (props: {
                   <p className="title">{props.title}</p>
                 )}
             </div>
+            <div className="close-box">
+              <AiOutlineClose onClick={() => {
+                { props.onClose() }
+              }} className="art_experience-icon close-btn" />
+            </div>
           </div>
           <div className="content">
-            {props.content}
-          </div>
-          <div className="footer">
-            {props.footer}
+            {props.children}
           </div>
         </div>
       </div>
-    </Fragment>
+    </div>
   );
 }
