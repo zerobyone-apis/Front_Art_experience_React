@@ -173,6 +173,7 @@ const IndexPage = () => {
     return courses.map((course, i) =>
       <div
         className="course-item"
+        key={i}
       >
         <p className="course-name">{course.name}</p>
         <img className="course-img" aspect-ratio="1" src={course.img}></img>
