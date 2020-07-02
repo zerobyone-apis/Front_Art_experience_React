@@ -106,15 +106,6 @@ export const ReservationModal = (props: {
     }
   ];
   const hours = ['11:00', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00', '17:30', '18:00', '18:30'];
-
-  const [selectedHour, setSelectedHour] = useState("");
-  const [selectedDate, setSelectedDate] = useState(moment().format());
-  const [reservationDate, setReservationDate] = useState(new Date());
-  const [selectedBarbers, setSelectedBarbers] = useState([]);
-  const [clientCart, setClientCart] = useState([]);
-  const [selectedService, setSelectedService] = useState(null);
-  const [wizard, setWizard] = useState(0);
-
   const defaultReservationFields = {
     reservationDate: '',
     clientName: '',
@@ -122,11 +113,18 @@ export const ReservationModal = (props: {
     barberName: '',
     services: []
   };
+  const [showDialog, setShowDialog] = useState(false);
+  const [selectedHour, setSelectedHour] = useState("");
+  const [reservationDate, setReservationDate] = useState(new Date());
   const [reservationFields, setReservationFields] = useState(defaultReservationFields);
+  const [selectedBarbers, setSelectedBarbers] = useState([]);
+  const [clientCart, setClientCart] = useState([]);
+  const [selectedService, setSelectedService] = useState(null);
+  const [wizard, setWizard] = useState(0);
+
   const onChangeReservationFields = (fieldName: string, value: string) => {
     setReservationFields({ ...reservationFields, [fieldName]: value })
   }
-
   const useStyles = makeStyles((theme: Theme) =>
     createStyles({
       container: {
@@ -145,9 +143,6 @@ export const ReservationModal = (props: {
     // this date is for default date of Textfield date
     let dateParts = moment().format().split(':');
     return `${dateParts[0]}:${dateParts[1]}`
-  }
-  const onChangeSearchResult = (value: any) => {
-    setSearchResult(value);
   }
   // SERVICE
   const getServices = () => {
@@ -248,7 +243,7 @@ export const ReservationModal = (props: {
           onChange={onChange}
           value={reservationDate}
         />
-        {selectedDate ? (
+        {reservationDate ? (
           <p className="selcted_datetime">
             {`${
               moment(reservationDate).format("DD/MM/YYYY")
@@ -277,9 +272,6 @@ export const ReservationModal = (props: {
       </div >
     )
   }
-  const createReservation = () => {
-
-  }
   const checkStep = () => {
     switch (wizard) {
       case 0:
@@ -293,7 +285,7 @@ export const ReservationModal = (props: {
         }
         break;
       case 2:
-        if (selectedDate && selectedHour) {
+        if (reservationDate && selectedHour) {
           return true;
         }
         break;
@@ -409,17 +401,22 @@ export const ReservationModal = (props: {
           <div className="reservation-step">
             <p className='subtitle'>Ingrese sus datos personales</p>
             <div className="client_info-box">
-              <TextField
-                label="ingrese su nombre"
-                name="clientName"
-                defaultValue={reservationFields.clientName}
-                value={reservationFields.clientName}
-                onChange={onChangeReservationFields} />
-              <TextField
-                label="Ingrese su telefono"
-                name="clientPhone"
-                value={reservationFields.clientPhone}
-                onChange={onChangeReservationFields} />
+              <form>
+                <TextField
+                  tabIndex={1}
+                  label="ingrese su nombre"
+                  name="clientName"
+                  defaultValue={reservationFields.clientName}
+                  value={reservationFields.clientName}
+                  onChange={onChangeReservationFields} />
+                <TextField
+                  tabIndex={2}
+                  label="Ingrese su telefono"
+                  name="clientPhone"
+                  value={reservationFields.clientPhone}
+                  onChange={onChangeReservationFields} />
+              </form>
+
             </div>
             {
               `${reservationFields.clientName}`
@@ -451,48 +448,66 @@ export const ReservationModal = (props: {
         break;
     }
   }
+  const createReservation = () => {
+    // restart all steps of reservation_modal
+    setSelectedHour("");
+    setReservationDate(new Date());
+    setSelectedBarbers([]);
+    setClientCart([]);
+    setReservationFields(defaultReservationFields);
+    setWizard(0);
+  }
+
   return (
     <div className="reservation-modal">
-      <DialogModal
-        title="Reservacion"
-        buttonLabel="Reservar Aqui"
-        buttonClassName="reservation-btn"
-        className="dialog_modal"
-        width={'640px'}
-        footer={
-          <div className="footer_right-box">
-            {
-              wizard ? (
-                <Button
-                  className="footer-button"
-                  label="Volver"
-                  onClick={() => {
-                    setWizard(wizard - 1);
-                  }}
-                />
-              ) : null
-            }
-            {
-              !checkStep() ? null : (
-                <Button
-                  className="footer-button confirm"
-                  label={wizard < 4 ? 'Siguiente' : 'Reservar'}
-                  onClick={() => {
-                    if (wizard < 4) {
-                      setWizard(wizard + 1);
-                    } else {
-                      createReservation();
-                    }
-                  }}
-                />
-              )
-            }
-          </div>
-        }
-        content={
-          stepper()
-        }
-      />
+
+      <div className="dialog_activator-box" onClick={() => { setShowDialog(true) }}>
+        <Button className={`dialog_activator-btn reservation-btn`} label={'Reservar Aqui'} />
+      </div>
+
+      {
+        !showDialog ? null : (
+          <DialogModal
+            title="Reservacion"
+            className="dialog_modal"
+            width='640px'
+            onClose={() => { setShowDialog(false) }}
+          >
+            {stepper()}
+            <div className="footer">
+              <div className="footer_right-box">
+                {
+                  wizard ? (
+                    <Button
+                      className="footer-button"
+                      label="Volver"
+                      onClick={() => {
+                        setWizard(wizard - 1);
+                      }}
+                    />
+                  ) : null
+                }
+                {
+                  !checkStep() ? null : (
+                    <Button
+                      className="footer-button confirm"
+                      label={wizard < 4 ? 'Siguiente' : 'Reservar'}
+                      onClick={() => {
+                        if (wizard < 4) {
+                          setWizard(wizard + 1);
+                        } else {
+                          createReservation();
+                        }
+                      }}
+                    />
+                  )
+                }
+              </div>
+            </div>
+
+          </DialogModal>
+        )
+      }
     </div>
   );
 }
