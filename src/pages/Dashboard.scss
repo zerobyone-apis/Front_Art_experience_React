@@ -75,29 +75,19 @@ body {
         .title {
           position: absolute;
           z-index: 1;
-          top: 40%;
-          left: 200px;
           font-size: 50px !important;
           color: rgb(146, 144, 108);
           text-shadow: 5px 5px 5px #000000;
-          animation-name: slide_left;
-          animation-duration: 3s;
         }
         .sub-title {
           position: absolute;
           z-index: 1;
-          top: 56%;
-          left: 200px;
           font-size: 18px;
           color: rgb(214, 214, 214);
           text-shadow: 5px 5px 5px #000000;
-          animation-name: slide_left;
-          animation-duration: 3s;
         }
       }
     }
-
-
         .employee-item {
           position: relative;
           margin: 5px;
