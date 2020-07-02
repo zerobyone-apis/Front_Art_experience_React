@@ -13,6 +13,7 @@ export const TextField = (props: {
   value?: any;
   result?: string;
   icon?: string;
+  tabIndex?: number;
   iconColor?: string;
   required?: boolean;
   className?: string;
@@ -45,6 +46,7 @@ export const TextField = (props: {
       <label className="label">{props.label}</label>
       <div className="input-box">
         <input
+          tabIndex={props.tabIndex}
           autoFocus
           defaultValue={props.value}
           id={props.name}
