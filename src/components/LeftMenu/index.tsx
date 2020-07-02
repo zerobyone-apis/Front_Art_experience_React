@@ -11,9 +11,10 @@ export const LeftMenu = (props: {
     const [showDialog, setShowDialog] = useState(false);
     return (
         <div className="left_menu">
-            <Button className="art_experience-button_outlined activator_btn" onClick={() => { setShowDialog(true) }}>
-                <FiMenu
-                    className="art_experience-icon icon_button" />
+            <Button
+                className="art_experience-button_outlined activator_btn"
+                onClick={() => { setShowDialog(true) }}>
+                <FiMenu className="art_experience-icon icon_button" />
             </Button>
             {
                 !showDialog ? null : (
@@ -22,18 +23,60 @@ export const LeftMenu = (props: {
                         className="left_menu-dialog">
                         {
                             toolbarButtons.map((button, i) => {
-                                return
-                                <Button
-                                    key={i}
-                                    href={button.href}
-                                    onClick={() => { setShowDialog(false) }}
-                                    className="art_experience-button left_menu-btn"
-                                    label={button.label} />
+                                return (
+                                    <Button
+                                        key={i}
+                                        href={button.href}
+                                        onClick={() => { setShowDialog(false) }}
+                                        className="art_experience-button_outlined left_menu-btn"
+                                        label={button.label} />
+                                )
                             })
                         }
                     </DialogModal>
                 )
             }
         </div>
+
+
+
+
+
+
+
+
+
+
+
+
+        // <div className="left_menu">
+        //     <Button
+        //         className="art_experience-button_outlined activator_btn"
+        //         onClick={() => { setShowDialog(true) }}>
+        //         <FiMenu className="art_experience-icon icon_button" />
+        //     </Button>
+        //     {
+        //         !showDialog ? null : (
+        //             <DialogModal
+        //                 onClose={() => { setShowDialog(false) }}
+        //                 className="left_menu-dialog">
+        //             </DialogModal>
+        //         )
+        //     }
+        // </div>
     );
 }
+
+{/* <p>Hola xd</p>
+
+{
+
+    toolbarButtons.forEach((button, i) => {
+        return <Button
+            key={i}
+            href={button.href}
+            onClick={() => { setShowDialog(false) }}
+            className="art_experience-button left_menu-btn"
+            label={button.label} />
+    })
+} */}
