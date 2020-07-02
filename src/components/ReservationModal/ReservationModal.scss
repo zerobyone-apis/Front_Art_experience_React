@@ -29,7 +29,7 @@
   .reservation-step {
     position: relative;
     width: 100%;
-    height: 400px;
+    height: 450px;
     padding-bottom: 20px;
     .subtitle {
       position: relative;
@@ -47,27 +47,39 @@
       height: 270px;
       overflow-y: scroll;
       overflow-x: hidden;
+
+
+
       // SERVICE OF LIST OF SERVICES
       .service {
         position: relative;
         height: 70px;
         width: 100%;
         padding-bottom: 1px;
+        margin-bottom: 10px;
+        // background-color: green;
         animation-name: slide-top;
         animation-duration: 1s;
         cursor: pointer;
         .circle-icon {
           position: absolute;
           left: 20px;
-          top: 35%;
+          margin:0;
+          top: 10px;
         }
         .name {
+          position: absolute;
+          top: 0;
+          left: 60px;
           font-size: 14px;
           color: rgb(214, 214, 214);
           padding-top: 10px;
           margin: 0;
         }
         .price {
+          position: absolute;
+          top: 30px;
+          left: 60px;
           font-size: 14px;
           color: rgb(214, 214, 214);
           margin: 0;
@@ -78,6 +90,11 @@
           font-size: 18px;
         }
       }
+
+
+
+
+
       .service:hover {
         background-color: rgb(85, 85, 85);
       }

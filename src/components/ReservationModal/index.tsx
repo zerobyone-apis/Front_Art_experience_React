@@ -1,14 +1,16 @@
 // eslint-disable-next-line no-unused-vars
 import 'date-fns';
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState } from 'react';
 import { DialogModal } from '../DialogModal';
 import { TextField } from '../TextField';
 import Calendar from 'react-calendar';
+import { FaCartPlus } from 'react-icons/fa';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import 'react-calendar/dist/Calendar.css';
 import '../../styles/ArtExperienceButtons.scss';
 import './ReservationModal.scss';
 import '../../styles/theme.scss';
+
 
 import moment from 'moment';
 import {
@@ -156,9 +158,8 @@ export const ReservationModal = (props: {
             selectService(item);
           }}
           className="service">
-          <FontAwesomeIcon
+          <FaCartPlus
             color="silver"
-            icon={faCartPlus}
             className="circle-icon" />
           <p className="name">
             {item.name}
@@ -462,16 +463,12 @@ export const ReservationModal = (props: {
 
   return (
     <div className="reservation-modal">
-
-
       <div className="dialog_activator-box" onClick={() => { setShowDialog(true) }}>
         <Button className={`activator-btn reservation-btn art_experience-button`} label={'Reservar Aqui'} />
       </div>
-
       {
         !showDialog ? null : (
           <DialogModal
-            title="Reservacion"
             className="dialog_modal"
             width='640px'
             onClose={() => { setShowDialog(false) }}
