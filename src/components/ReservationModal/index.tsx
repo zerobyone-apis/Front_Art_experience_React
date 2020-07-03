@@ -58,54 +58,28 @@ export const ReservationModal = (props: {
     {
       barberId: 1,
       userId: 1,
-      name: "Maximiliano Olivera",
-      job: "Barbero",
-      amountCuts: 2,
-      clientsBarber: 5,
-      rateOfBarber: 0,
-      amountOfReservesByDay: 10,
-      img:
-        "https://instagram.fmvd1-1.fna.fbcdn.net/v/t51.2885-19/s150x150/51832663_382908072507752_2052880357581127680_n.jpg?_nc_ht=instagram.fmvd1-1.fna.fbcdn.net&_nc_ohc=7ydmF-QY_OkAX_AVJo7&oh=c1bfde98b1e10ce06cee75b55d20b112&oe=5F072FAB",
-      instagram: "https://www.instagram.com/damianezetiel/",
-      facebook: "https://www.facebook.com/TheUniqueDesign"
-    },
-    {
-      barberId: 2,
-      userId: 2,
-      name: "Damian Rodriguez",
-      job: "Peluquero",
-      amountCuts: 2,
-      clientsBarber: 5,
-      rateOfBarber: 0,
-      amountOfReservesByDay: 10,
-      img: "https://scontent.fmvd4-1.fna.fbcdn.net/v/t1.0-9/101099602_1279890275735698_3012316497491001344_n.jpg?_nc_cat=104&_nc_sid=85a577&_nc_ohc=xFiEkzwl8RIAX-z3lmK&_nc_ht=scontent.fmvd4-1.fna&oh=ff5c2cb3b4272e965b6643c87618160d&oe=5F04BBAF",
-      instagram: "https://www.instagram.com/damianezetiel/",
-      facebook: "https://www.facebook.com/TheUniqueDesign"
-    },
-    {
-      barberId: 2,
-      userId: 2,
-      name: "JorgeXD",
-      job: "Peluquero",
-      amountCuts: 2,
-      clientsBarber: 5,
-      rateOfBarber: 0,
-      amountOfReservesByDay: 10,
-      img: "https://scontent.fmvd4-1.fna.fbcdn.net/v/t31.0-8/12240880_162684954085327_8170328642351335943_o.jpg?_nc_cat=111&_nc_sid=7aed08&_nc_ohc=Wb6hzMQ-6HoAX9kfGgI&_nc_ht=scontent.fmvd4-1.fna&oh=6b2a6f34ca8edd58546e3a7ccf2cf109&oe=5F042709",
-      instagram: "https://www.instagram.com/damianezetiel/",
-      facebook: "https://www.facebook.com/TheUniqueDesign"
-    },
-    {
-      barberId: 2,
-      userId: 2,
       name: "Mariano Moreno",
-      job: "Peluquero",
+      job: "Profecional Barber",
       amountCuts: 2,
-      clientsBarber: 5,
-      rateOfBarber: 0,
-      amountOfReservesByDay: 10,
-      img: "https://scontent.fmvd4-1.fna.fbcdn.net/v/t31.0-8/26172137_2286283258264781_8470637382988249565_o.jpg?_nc_cat=110&_nc_sid=dd7718&_nc_ohc=wvzUR0SOwY8AX_TpgRV&_nc_ht=scontent.fmvd4-1.fna&oh=4c5e24e9d9432cd46331f46fa82c892b&oe=5F029CDD",
-      instagram: "https://www.instagram.com/damianezetiel/",
+      clientsBarber: 5,//amountClients
+      rateOfBarber: 0,//prestige
+      amountOfReservesByDay: 10,//amountDailyReserves
+      img:
+        "https://instagram.fmvd4-1.fna.fbcdn.net/v/t51.2885-15/e35/p1080x1080/81096072_209788046863421_8027631315464043835_n.jpg?_nc_ht=instagram.fmvd4-1.fna.fbcdn.net&_nc_cat=105&_nc_ohc=tHUEjcHZ2UwAX9KqbzI&oh=1fe698f633765cf59bf8e671b6e91a0c&oe=5F2A13A1",
+      instagram: "https://www.instagram.com/marianomoreno.11/",
+      facebook: "https://www.facebook.com/mariano.moreno.5209000/"
+    },
+    {
+      barberId: 2,
+      userId: 2,
+      name: "Pablo Mendez",// tengo que averiguar el appellido
+      job: "Profecional Barber",
+      amountCuts: 2,
+      clientsBarber: 5,//amountClients
+      rateOfBarber: 0,//prestige
+      amountOfReservesByDay: 10,//amountDailyReserves
+      img: "https://instagram.fmvd4-1.fna.fbcdn.net/v/t51.2885-15/e35/p1080x1080/77094002_605862643493062_9053649117496349366_n.jpg?_nc_ht=instagram.fmvd4-1.fna.fbcdn.net&_nc_cat=110&_nc_ohc=EL9qbeJc2QQAX8ZwTaZ&oh=acda434810cd3a8546c350c24dda8b7d&oe=5F283230",
+      instagram: "https://www.instagram.com/mernis.01/",
       facebook: "https://www.facebook.com/TheUniqueDesign"
     }
   ];

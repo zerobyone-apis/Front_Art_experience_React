@@ -11,38 +11,42 @@ const IndexPage = () => {
     {
       barberId: 1,
       userId: 1,
-      name: "Maximiliano Olivera",
-      job: "Barbero",
+      name: "Mariano Moreno",
+      job: "Profecional Barber",
       amountCuts: 2,
-      clientsBarber: 5,
-      rateOfBarber: 0,
-      amountOfReservesByDay: 10,
+      clientsBarber: 5,//amountClients
+      rateOfBarber: 0,//prestige
+      amountOfReservesByDay: 10,//amountDailyReserves
       img:
-        "https://instagram.fmvd1-1.fna.fbcdn.net/v/t51.2885-19/s150x150/51832663_382908072507752_2052880357581127680_n.jpg?_nc_ht=instagram.fmvd1-1.fna.fbcdn.net&_nc_ohc=7ydmF-QY_OkAX_AVJo7&oh=c1bfde98b1e10ce06cee75b55d20b112&oe=5F072FAB",
-      instagram: "https://www.instagram.com/damianezetiel/",
-      facebook: "https://www.facebook.com/TheUniqueDesign"
+        "https://instagram.fmvd4-1.fna.fbcdn.net/v/t51.2885-15/e35/p1080x1080/81096072_209788046863421_8027631315464043835_n.jpg?_nc_ht=instagram.fmvd4-1.fna.fbcdn.net&_nc_cat=105&_nc_ohc=tHUEjcHZ2UwAX9KqbzI&oh=1fe698f633765cf59bf8e671b6e91a0c&oe=5F2A13A1",
+      instagram: "https://www.instagram.com/marianomoreno.11/",
+      facebook: "https://www.facebook.com/mariano.moreno.5209000/"
     },
     {
       barberId: 2,
       userId: 2,
-      name: "Damian Rodriguez",
-      job: "Peluquero",
+      name: "Pablo Mendez",// tengo que averiguar el appellido
+      job: "Profecional Barber",
       amountCuts: 2,
-      clientsBarber: 5,
-      rateOfBarber: 0,
-      amountOfReservesByDay: 10,
-      img: "https://scontent.fmvd4-1.fna.fbcdn.net/v/t1.0-9/101099602_1279890275735698_3012316497491001344_n.jpg?_nc_cat=104&_nc_sid=85a577&_nc_ohc=xFiEkzwl8RIAX-z3lmK&_nc_ht=scontent.fmvd4-1.fna&oh=ff5c2cb3b4272e965b6643c87618160d&oe=5F04BBAF",
-      instagram: "https://www.instagram.com/damianezetiel/",
+      clientsBarber: 5,//amountClients
+      rateOfBarber: 0,//prestige
+      amountOfReservesByDay: 10,//amountDailyReserves
+      img: "https://instagram.fmvd4-1.fna.fbcdn.net/v/t51.2885-15/e35/p1080x1080/77094002_605862643493062_9053649117496349366_n.jpg?_nc_ht=instagram.fmvd4-1.fna.fbcdn.net&_nc_cat=110&_nc_ohc=EL9qbeJc2QQAX8ZwTaZ&oh=acda434810cd3a8546c350c24dda8b7d&oe=5F283230",
+      instagram: "https://www.instagram.com/mernis.01/",
       facebook: "https://www.facebook.com/TheUniqueDesign"
     }
   ];
+
   const pageInfo = {
     name: "Art Experience",
-    slogan: "Experiencia en Barberia Profesional",
-    number: "099 999 999",
+    slogan: "Space for Men",
+    openTimeLV: "11 a 19hs",
+    openTimeSBD: "10 a 18hs",
+    number: "22913056",
+    cel: "099 999 999",
     email: "artexperience@gmail.com",
-    instagram: '',
-    facebook: '',
+    instagram: 'https://www.instagram.com/artexperiencee/',
+    facebook: 'https://www.facebook.com/artexperiencee/?epa=SEARCH_BOX',
     aboutUsTitle: "Acerca de Nosotros",
     aboutUs:
       "Art Experience brinda servicios de calidad dedicados a gestion de barberias y administracion de reservas para clientes.",
