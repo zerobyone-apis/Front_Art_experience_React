@@ -18,8 +18,6 @@
     max-width: 800px;
     margin:auto;
     border-radius: 8px;
-    background-color: rgb(16, 17, 22);
-    box-shadow: 0 4px 0 0 rgba(0, 0, 0, 0.123);
     .header {
       position: relative;
       width: 100%;
@@ -44,8 +42,14 @@
       }
       }
       .header-title {
+        width: max-content;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        margin: auto;
         .title {
           position: relative;
+          width: max-content;
           margin:0;
           padding-top: 10px;
           color: rgb(146, 144, 108);
@@ -56,38 +60,22 @@
     .content {
       position: relative;
       min-height: 40vh;
-    }
-    .footer {
-      position: relative;
-      width: 100%;
-      height: 40px;
-      padding-top: 4px;
-      bottom: 0;
-      border-radius: 0 0 8px 8px;
-      background-color: #000000;
-      border-color: rgba(128, 128, 128, 0.198);
-      border-width: 2px;
+      height: 100%;
+      background-color: rgb(16, 17, 22);
     }
   }
   @media only screen and (max-width: 800px) {
     .dialog-modal {
       position: relative;
       top: 0;
-      height: 100%;
-      max-width: 800px;
-      margin:auto;
+      height: 100% !important;
+      width: 100% !important;
+      margin:auto; 
       border-radius: 0;
       background-color: rgb(16, 17, 22);
       box-shadow: 0 4px 0 0 rgba(0, 0, 0, 0.123);
       .content {
-        height: calc(100% - 75px);
-      }
-      .footer {
-        position: absolute !important;
-        bottom: 0px !important;
-        width: 100%;
-        height: 40px;
-        border-radius: 0;
+        height: calc(100% - 60px);
       }
     }
   }  

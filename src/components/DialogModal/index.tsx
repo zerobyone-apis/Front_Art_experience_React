@@ -10,6 +10,7 @@ export const DialogModal = (props: {
   header?: any,
   children?: any,
   width?: string,
+  height?: string,
   onClose: () => void;
   showModal?: boolean,
   className?: string,
@@ -18,7 +19,7 @@ export const DialogModal = (props: {
   return (
     <div>
       <div className={`dialog-box ${props.className}`}>
-        <div className="dialog-modal">
+        <div className="dialog-modal" style={{ height: props.height, width: props.width }}>
           <div className="header">
             <div className="close_btn-box">
               <Button className="art_experience-button_outlined close_btn" onClick={() => { props.onClose() }}>

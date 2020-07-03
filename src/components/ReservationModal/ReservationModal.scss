@@ -1,18 +1,6 @@
+
 .reservation-modal {
-  // Button Activator
-  .footer_right-box {
-    position: absolute;
-    display: flex;  
-    right: 0;
-    padding-right: 20px;
-    .footer-button {
-      margin-left: 10px;
-      margin-top: 3px;
-    }
-    .confirm {
-    background-color: rgb(146, 144, 108); 
-    }
-  } 
+  $footer-height: 40px;
   .activator-btn {
     position: relative;
     height: 100%;
@@ -27,29 +15,36 @@
   }
   // Content of Dialog 
   .reservation-step {
-    position: relative;
+    position: absolute;
     width: 100%;
-    height: 450px;
-    padding-bottom: 20px;
-    .subtitle {
+    height: calc(100%  - 60px); // step fop
+    // padding-bottom: 20px;
+    .step-title {
       position: relative;
-      padding-left: 20px;
-      font-size: 14px;
-      color: rgb(214, 214, 214);
+      height: 60px;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      p {
+        position: relative;
+        width: max-content;
+        font-size: 14px;
+        margin: 0;
+        margin: auto;
+        color: rgb(214, 214, 214);
+      }
     }
     .services-box {
+      position: relative;
       width: 100%;
+      height: calc(100% - 80px); // footer
       display: flex;
-      margin-top: 40px;
     .list_services-box {
       position: relative;
       width: 50%;
-      height: 270px;
+      height: 100%; // footer
       overflow-y: scroll;
       overflow-x: hidden;
-
-
-
       // SERVICE OF LIST OF SERVICES
       .service {
         position: relative;
@@ -90,11 +85,6 @@
           font-size: 18px;
         }
       }
-
-
-
-
-
       .service:hover {
         background-color: rgb(85, 85, 85);
       }
@@ -107,8 +97,8 @@
     .selected_services-box {
       position: relative;
       width: 50%;
-      height: 270px;
-      overflow-y: scroll;
+      height: 100%;
+      // overflow-y: scroll;
       .confirm_service-box {
         animation-name: slide-opacity;
         animation-duration: 1s;
@@ -191,18 +181,18 @@
     }
     }
     .barbers-box {
+      position: relative;
       width: 100%;
+      height: calc(100% - 80px); // footer
       display: flex;
-      margin-top: 40px;
       overflow-x: none;
       .barber {
         position: relative;
         width: 90%;
-        height: 80px;
+        height: 60px;
         margin:auto;
         margin-left: 20px;
         margin-bottom: 5px;
-        // top: 40px;
         cursor: pointer;
         border-radius: 12px;
         border-top-left-radius: 80px;
@@ -212,11 +202,11 @@
         .img {
           position: absolute;
           left: 0px;
-          width: 70px;
-          height: 70px;
+          width: 50px;
+          height: 50px;
           top: 2px;
           border-style: solid;
-          border-color: white;
+          border-color: rgba(255, 255, 255, 0.329);
           border-radius: 50%;
           filter: grayscale(1);  
         }
@@ -237,7 +227,7 @@
       .list_barbers-box {
         position: relative;
         width: 50%;
-        height: 360px;
+        height: 100%;
         overflow-y: scroll;
       }
       .selected_barber-box {
@@ -259,28 +249,19 @@
       }
     }
     .time-box {
-      position: relative;
+      position: absolute;
       width: 100%;
       height: 100%;
-      display: flex;
-      top: 40px;
-      padding-left: 20px;
-      padding-right: 20px;
       .calendar-box {
         position: relative;
-        width: 90%;
         animation-name: slide-top;
         animation-duration: 1s;
-        .selcted_datetime {
-          color: white;
-          margin: 0;
-          margin-top: 20px;
-        }
         .react-calendar {
+          margin: auto;
           border-radius: 4px;
           border-style: none;
           background-color: rgba(105, 105, 105, 0.5);
-          // padding: 5px;
+          padding: 5px;
           abbr,span {
             color: rgb(255, 255, 255);
           }
@@ -312,25 +293,20 @@
       }
       .hours-box {
         position: relative;
-        width: 90%;
-        height: max-content;
-        margin: auto;
-        animation-name: slide-left;
+        width: 100%;
+        max-width: 400px;
+        margin:auto;
+        text-align: center;
+        animation-name: slide-top;
         animation-duration: 1s;
-        border-radius: 4px;
         .hour-item {
-          display: inline-block;
           position: relative;
-          width: 50px;
           height: max-content;
-          padding: 10px;
-          margin: 0 10px 10px 10px;
+          margin:auto;
+          margin: 10px;
           border-radius: 4px;
-          background-color: rgba(239, 239, 239, 0.5);
           color: white;
           .hour {
-            padding: 0;
-            margin:0;
             color: rgb(214, 214, 214);
           }
         }
@@ -338,7 +314,29 @@
           background-color: rgba(255, 255, 255, 0.178);
         }
         .selected-hour {
-          background-color: rgb(146, 144, 108); 
+          button {
+            color: white;
+            background-color: rgb(146, 144, 108); 
+          } 
+        }
+      }
+      .selcted_datetime {
+        position: absolute;
+        margin: auto;
+        text-align: center;
+        bottom: 80px;
+        color: white;
+        background-color: red;
+        // margin: 0;
+        // margin-top: 20px;
+      }
+    }
+    @media only screen and (max-width: 800px) { 
+      .time-box {
+        display: inline;
+        text-align: center;
+        .calendar-box {
+          margin: auto;
         }
       }
     }
@@ -347,6 +345,7 @@
       width: 100%;
       margin-top: 40px;
       overflow-x: none;
+      text-align: center;
       animation-name: slide-top;
       animation-duration: 1s;
     }
@@ -354,14 +353,40 @@
       position: relative;
       width: 100%;
       margin-top: 40px;
+      text-align: center;
       overflow-x: none;
       .confirm_info {
-        font-size: 14px;
-        color: rgb(214, 214, 214);
+        font-size: 18px;
+        color: rgb(170, 170, 170);
         animation-name: slide-left;
         animation-duration: 1s;
       }
     }
+  }
+  .footer {
+      position: absolute;
+      width: 100%;
+      height: 40px;
+      padding-top: 4px;
+      bottom: 0px !important;
+      border-radius: 0 0 8px 8px;
+      background-color: #000000;
+      border-color: rgba(128, 128, 128, 0.198);
+      border-width: 2px;
+      // Button Activator
+      .footer_right-box {
+        position: absolute;
+        display: flex;  
+        right: 0;
+        padding-right: 20px;
+        .footer-button {
+          margin-left: 10px;
+          margin-top: 3px;
+        }
+        .confirm {
+        background-color: rgb(146, 144, 108); 
+        }
+      } 
   }
 }
 @keyframes slide-left {

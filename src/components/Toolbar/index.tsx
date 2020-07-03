@@ -7,6 +7,7 @@ import '../../styles/ArtExperienceButtons.scss';
 import '../../styles/ArtExperienceFonts.scss';
 import { LeftMenu } from '../LeftMenu';
 import { toolbarButtons } from '../../utils/toolbarButtons';
+// import logo from '../../assets/logo_gold.png';
 
 export const Toolbar = () => {
     return (
@@ -14,6 +15,7 @@ export const Toolbar = () => {
             <div id="start_page" />
             <div className="left-box">
                 <LeftMenu />
+                {/* <img src={logo} alt="" /> */}
                 <Button
                     href="#"
                     labelClassName="art_experience-title"

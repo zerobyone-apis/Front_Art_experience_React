@@ -6,12 +6,11 @@ import { TextField } from '../TextField';
 import Calendar from 'react-calendar';
 import { FaCartPlus } from 'react-icons/fa';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import '../../styles/ArtExperienceButtons.scss';
 import 'react-calendar/dist/Calendar.css';
 import '../../styles/ArtExperienceButtons.scss';
 import './ReservationModal.scss';
 import '../../styles/theme.scss';
-
-
 import moment from 'moment';
 import {
   faArrowLeft,
@@ -20,6 +19,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { Button } from '../Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { TableFooter } from '@material-ui/core';
 
 export const ReservationModal = (props: {
   className?: string,
@@ -113,6 +113,7 @@ export const ReservationModal = (props: {
   const defaultReservationFields = {
     reservationDate: '',
     clientName: '',
+    clientEmail: '',
     clientPhone: '',
     barberName: '',
     services: []
@@ -246,13 +247,6 @@ export const ReservationModal = (props: {
           onChange={onChange}
           value={reservationDate}
         />
-        {reservationDate ? (
-          <p className="selcted_datetime">
-            {`${
-              moment(reservationDate).format("DD/MM/YYYY")
-              } ${selectedHour}`}
-          </p>
-        ) : null}
       </div>
     );
   }
@@ -309,7 +303,9 @@ export const ReservationModal = (props: {
         return (
           // Step 0: select service
           <div className="reservation-step">
-            <p className='subtitle'>Seleccione el servicio que se desea realizar</p>
+            <div className="step-title">
+              <p>Seleccione el servicio que se desea realizar</p>
+            </div>
             <div className="services-box">
               <div className="list_services-box">
                 {getServices()}
@@ -324,7 +320,7 @@ export const ReservationModal = (props: {
                       <div className="sub-footer">
                         <div className="content-footer">
                           <Button
-                            className="add_cart-btn confirm"
+                            className="art_experience-button add_cart-btn confirm"
                             label="Colocar en el carrito"
                             onClick={() => {
                               addService(selectedService);
@@ -352,7 +348,9 @@ export const ReservationModal = (props: {
         return (
           // Step 1: select barber
           <div className="reservation-step">
-            <p className='subtitle'>Seleccione el barbero</p>
+            <div className="step-title">
+              <p>Seleccione el barbero</p>
+            </div>
             <div className="barbers-box">
               <div className="list_barbers-box">
                 {
@@ -390,10 +388,19 @@ export const ReservationModal = (props: {
         return (
           // Step 2: select date and hour
           <div className="reservation-step">
-            <p className='subtitle'>Seleccione el fecha y hora</p>
+            <div className="step-title">
+              <p >Seleccione fecha y hora</p>
+            </div>
             <div className="time-box">
               {CalendarBox()}
               {HoursBox()}
+              {/* {reservationDate ? (
+                <p className="selcted_datetime">
+                  {`${
+                    moment(reservationDate).format("DD/MM/YYYY")
+                    } ${selectedHour}`}
+                </p>
+              ) : null} */}
             </div>
           </div>
         );
@@ -402,7 +409,9 @@ export const ReservationModal = (props: {
         return (
           // Step 3 - Client info
           <div className="reservation-step">
-            <p className='subtitle'>Ingrese sus datos personales</p>
+            <div className="step-title">
+              <p>Ingrese sus datos personales</p>
+            </div>
             <div className="client_info-box">
               <form>
                 <TextField
@@ -413,18 +422,20 @@ export const ReservationModal = (props: {
                   value={reservationFields.clientName}
                   onChange={onChangeReservationFields} />
                 <TextField
+                  tabIndex={1}
+                  label="ingrese su email"
+                  name="clientEmail"
+                  defaultValue={reservationFields.clientEmail}
+                  value={reservationFields.clientEmail}
+                  onChange={onChangeReservationFields} />
+                <TextField
                   tabIndex={2}
                   label="Ingrese su telefono"
                   name="clientPhone"
                   value={reservationFields.clientPhone}
                   onChange={onChangeReservationFields} />
               </form>
-
             </div>
-            {
-              `${reservationFields.clientName}`
-            }
-
           </div>
         );
         break;
@@ -432,7 +443,9 @@ export const ReservationModal = (props: {
         return (
           // Step 4 - Confirm data
           <div className="reservation-step">
-            <p className='subtitle'>Confirmacion de reserva</p>
+            <div className="step-title">
+              <p>Confirmacion de reserva</p>
+            </div>
             <div className="confirm_data-box">
               <p className="confirm_info">Nombre: {reservationFields.clientName}</p>
               <p className="confirm_info">Telefono: {reservationFields.clientPhone}</p>
@@ -451,6 +464,38 @@ export const ReservationModal = (props: {
         break;
     }
   }
+  const footer = () => {
+    return <div className="footer">
+      <div className="footer_right-box">
+        {
+          wizard ? (
+            <Button
+              className="footer-button"
+              label="Volver"
+              onClick={() => {
+                setWizard(wizard - 1);
+              }}
+            />
+          ) : null
+        }
+        {
+          !checkStep() ? null : (
+            <Button
+              className="art_experience-button footer-button confirm"
+              label={wizard < 4 ? 'Siguiente' : 'Reservar'}
+              onClick={() => {
+                if (wizard < 4) {
+                  setWizard(wizard + 1);
+                } else {
+                  createReservation();
+                }
+              }}
+            />
+          )
+        }
+      </div>
+    </div>
+  }
   const createReservation = () => {
     // restart all steps of reservation_modal
     setSelectedHour("");
@@ -460,53 +505,23 @@ export const ReservationModal = (props: {
     setReservationFields(defaultReservationFields);
     setWizard(0);
   }
-
   return (
     <div className="reservation-modal">
       <div className="dialog_activator-box" onClick={() => { setShowDialog(true) }}>
         <Button className={`activator-btn reservation-btn art_experience-button`} label={'Reservar Aqui'} />
       </div>
-      {
-        !showDialog ? null : (
-          <DialogModal
-            className="dialog_modal"
-            width='640px'
-            onClose={() => { setShowDialog(false) }}
-          >
-            {stepper()}
-            <div className="footer">
-              <div className="footer_right-box">
-                {
-                  wizard ? (
-                    <Button
-                      className="footer-button"
-                      label="Volver"
-                      onClick={() => {
-                        setWizard(wizard - 1);
-                      }}
-                    />
-                  ) : null
-                }
-                {
-                  !checkStep() ? null : (
-                    <Button
-                      className="footer-button confirm"
-                      label={wizard < 4 ? 'Siguiente' : 'Reservar'}
-                      onClick={() => {
-                        if (wizard < 4) {
-                          setWizard(wizard + 1);
-                        } else {
-                          createReservation();
-                        }
-                      }}
-                    />
-                  )
-                }
-              </div>
-            </div>
-
-          </DialogModal>
-        )
+      {!showDialog ? null : (
+        <DialogModal
+          title="Reservacion - ArtExperience"
+          className="dialog_modal"
+          width='65vw'
+          height='65vh'
+          onClose={() => { setShowDialog(false) }}
+        >
+          {stepper()}
+          {footer()}
+        </DialogModal>
+      )
       }
     </div>
   );
