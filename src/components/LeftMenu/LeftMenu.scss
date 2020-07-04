@@ -58,10 +58,18 @@ $menu_size: 200px;
                 width: 90%;
                 height: 60px;
                 // background-color: red;
+                display: flex;
+                align-items: center;
+                text-align: center;
                 .label_button {
-                  position: absolute;
+                  display: inline;
                   margin: 0;
+                  padding: 0;
+                  // background-color: green;
                 }
+              }
+              button:hover {
+                background-color: rgba(0, 0, 0, 0.404);
               }
             }
           }

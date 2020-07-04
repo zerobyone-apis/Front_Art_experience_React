@@ -7,8 +7,6 @@ import '../../styles/ArtExperienceButtons.scss';
 import '../../styles/ArtExperienceFonts.scss';
 import { LeftMenu } from '../LeftMenu';
 import { toolbarButtons } from '../../utils/toolbarButtons';
-// import logo from '../../assets/logo_gold.png';
-
 export const Toolbar = () => {
     return (
         <div className="toolbar">
