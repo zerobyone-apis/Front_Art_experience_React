@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState, ChangeEvent } from 'react';
 import './Button.scss';
-import { loadGetInitialProps } from 'next/dist/next-server/lib/utils';
+import '../../styles/ArtExperienceFonts.scss';
 export const Button = (props: {
   label?: string;
   onClick?: any;
@@ -31,7 +31,7 @@ export const Button = (props: {
         >
           {props.children}
           {!props.label ? null :
-            <p className={`${props.labelClassName} label_button`}
+            <p className={`${props.labelClassName} label_button art_experience-text-light`}
               style={{ marginLeft: (props.children ? "10px" : "0px") }}>
               {props.label}
             </p>}

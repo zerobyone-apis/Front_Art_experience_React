@@ -1,10 +1,19 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:regular,bold,italic&subset=latin,latin-ext');
+
 .art_experience-title {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Balthazar', serif;
     color: rgb(146, 144, 108);
 }
-.art_experience-text {
-    font-family: 'Inter beta',sans-serif;
+.art_experience-text-dark {
+    font-family: 'Balthazar', serif;
     color: #303030d5;
+    font-weight: 300;
+    text-transform: none;
+    box-shadow: 1px, 3px #ffffff4f;
+}
+.art_experience-text-light {
+    font-family: 'Balthazar', serif;
+    color: #ffffffef;
     font-weight: 300;
     text-transform: none;
     box-shadow: 1px, 3px #ffffff4f;

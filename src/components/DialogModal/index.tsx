@@ -3,6 +3,7 @@ import React, { useState, Fragment, useEffect } from 'react';
 import { Button } from '../Button';
 import './DialogModal.scss';
 import '../../styles/ArtExperienceButtons.scss';
+import '../../styles/ArtExperienceFonts.scss';
 import { AiOutlineClose } from 'react-icons/ai';
 
 export const DialogModal = (props: {
@@ -32,7 +33,7 @@ export const DialogModal = (props: {
                 <div className="header-title">
                   {props.header ||
                     (
-                      <p className="title">{props.title}</p>
+                      <p className="title art_experience-text-light">{props.title}</p>
                     )}
                 </div>
             }

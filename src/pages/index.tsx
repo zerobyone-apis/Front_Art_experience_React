@@ -3,7 +3,7 @@ import { LeftMenu } from '../components/LeftMenu';
 import { Toolbar } from '../components/Toolbar';
 import { Card } from '../components/Card';
 import { Divider } from '../components/Divider';
-import './Dashboard.scss';
+import './index.scss';
 import * as Icons from 'react-icons/fa';
 
 const IndexPage = () => {
@@ -145,8 +145,8 @@ const IndexPage = () => {
         key={i}
       >
         <img className="employee-img" src={employee.img} aspect-ratio="1"></img>
-        <p className="employee-name">{employee.name}</p>
-        <p className="employee-info">{employee.job}</p>
+        <p className="employee-name art_experience-text-light">{employee.name}</p>
+        <p className="employee-info art_experience-text-light">{employee.job}</p>
         <div className="employee-social">
           <a href={employee.instagram}>
             <i className="fa fa-instagram" aria-hidden="true"></i>
@@ -167,8 +167,8 @@ const IndexPage = () => {
         key={i}
       >
         <Icons.FaHome className="service-icon" />
-        <p className="service-name">{service.name}</p>
-        <p className="service-info">{service.info}</p>
+        <p className="service-name art_experience-text-light">{service.name}</p>
+        <p className="service-info art_experience-text-light">{service.info}</p>
       </div>
     )
   }
@@ -179,10 +179,10 @@ const IndexPage = () => {
         className="course-item"
         key={i}
       >
-        <p className="course-name">{course.name}</p>
+        <p className="course-name art_experience-text-light">{course.name}</p>
         <img className="course-img" aspect-ratio="1" src={course.img}></img>
-        <p className="course-duration">duracion: {course.duration}</p>
-        <p className="course-info">{course.info}</p>
+        <p className="course-duration art_experience-text-light">duracion: {course.duration}</p>
+        <p className="course-info art_experience-text-light">{course.info}</p>
       </div >
     )
   }
@@ -190,8 +190,8 @@ const IndexPage = () => {
   const getFooter = () => {
     return (
       <div className="footer">
-        <p className="logo" data-aos="fade-up" data-aos-duration="600">Art Experience</p>
-        <p className="footer-email">{pageInfo.email}</p>
+        <p className="logo art_experience-text-light" data-aos="fade-up" data-aos-duration="600">Art Experience</p>
+        <p className="footer-email art_experience-text-light">{pageInfo.email}</p>
         <div className="footer-social">
 
           <a href={pageInfo.instagram}>
@@ -202,7 +202,7 @@ const IndexPage = () => {
             <Icons.FaFacebook className="footer-social-logo social-logo" />
           </a>
         </div>
-        <p className="footer-bussiness">© 2019 Art Experience</p>
+        <p className="footer-bussiness art_experience-text-light">© 2019 Art Experience</p>
       </div>
     )
   }
@@ -215,8 +215,8 @@ const IndexPage = () => {
         <div className="dashboard">
           <div className="banner">
             <div className="title-box">
-              <p className="title font-title">{pageInfo.name}</p>
-              <p className="sub-title font-title">{pageInfo.slogan}</p>
+              <p className="title font-title art_experience-text-light">{pageInfo.name}</p>
+              <p className="sub-title font-title art_experience-text-light">{pageInfo.slogan}</p>
             </div>
             <div className="banner-img" />
           </div>
