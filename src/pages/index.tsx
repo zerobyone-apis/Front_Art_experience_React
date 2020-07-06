@@ -5,6 +5,7 @@ import { Card } from '../components/Card';
 import { Divider } from '../components/Divider';
 import './index.scss';
 import * as Icons from 'react-icons/fa';
+// import logo from '../assets/logo_gold.png';
 
 const IndexPage = () => {
   const employees = [
@@ -214,11 +215,16 @@ const IndexPage = () => {
         {/* <LeftMenu /> */}
         <div className="dashboard">
           <div className="banner">
-            <div className="title-box">
-              <p className="title font-title art_experience-text-light">{pageInfo.name}</p>
-              <p className="sub-title font-title art_experience-text-light">{pageInfo.slogan}</p>
-            </div>
             <div className="banner-img" />
+            <div className="title-box">
+              <div className="box-shadow_space">
+              </div>
+              <img className="logo-img" src="https://raw.githubusercontent.com/zerobyone-apis/Front_Art_experience_React/master/src/assets/logo_gold.png" alt="" />
+              <div className="box-shadow_logo">
+              </div>
+              {/* <p className="title font-title art_experience-text-light">{pageInfo.name}</p>
+              <p className="sub-title font-title art_experience-text-light">{pageInfo.slogan}</p> */}
+            </div>
           </div>
           <div id="about_us" />
           <Card title={pageInfo.aboutUsTitle} subtitle={pageInfo.aboutUs}>

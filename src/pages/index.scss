@@ -62,14 +62,27 @@ body {
         width: 100%;
         background-image: linear-gradient(#ff9d2f, #ff6126);
         background-image: url("https://kontinent.se/wp-content/uploads/Barbershop_7.jpg");
-        opacity: 0.5;
+        opacity: 0.2;
         background-attachment: fixed;
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
-        box-shadow: inset 0 0 20px 20px rgba(0, 0, 0, 0.836);
+        box-shadow: inset 0 0 20px 20px rgba(0, 0, 0, 0.904);
       }
       .title-box {
+        position: absolute;
+        width: 100%;
+        top: 30vh;
+        text-align: center;
+        img {
+          margin: auto;
+          text-align: center;
+          z-index: 1;  
+          width: 100vw;
+          min-width: 100px !important;
+          max-width: 500px; 
+          filter: drop-shadow(5px 10px 2px rgb(0, 0, 0));
+        }
         .title {
           position: absolute;
           z-index: 1;
@@ -93,6 +106,15 @@ body {
           text-shadow: 5px 5px 5px #000000;
           animation-name: opacity_effect;
           animation-duration: 3s;
+        }
+
+        .box-shadow_space {
+          position: absolute;
+          right: 198px;
+          bottom: 10px;
+          width: 200px;
+          height: 16px;
+
         }
       }
     }

@@ -14,11 +14,12 @@ export const Toolbar = () => {
             <div className="left-box">
                 <LeftMenu />
                 {/* <img src={logo} alt="" /> */}
-                <Button
+                <img className="logo-img" src="https://raw.githubusercontent.com/zerobyone-apis/Front_Art_experience_React/master/src/assets/logo_gold.png" alt="" />
+                {/* <Button
                     href="#"
                     labelClassName="art_experience-title"
                     className="title-btn art_experience-button_outlined"
-                    label="ArtExperience" />
+                    label="ArtExperience" /> */}
                 {
                     toolbarButtons.map((button, i) => {
                         return <Button key={i} href={button.href} className="art_experience-button_outlined toolbar-btn" label={button.label} />

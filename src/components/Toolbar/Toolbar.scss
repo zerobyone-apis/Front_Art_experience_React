@@ -23,6 +23,10 @@ $toolbar_height: 60px;
       left: 0px;
       display: flex;
       align-items: center;
+      .logo-img {
+        width: 150px;
+        margin-left: 20px;
+      }
       .title-btn {
         p {
           color: rgb(146, 144, 108);
