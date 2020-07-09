@@ -169,6 +169,8 @@ export const ReserveModal = (props: { className?: string }) => {
   const onChangeReserveFields = (fieldName: string, value: string) => {
     setReserveFields({ ...reserveFields, [fieldName]: value })
   }
+
+  // CREATE RESERVE
   const createReserve = () => {
     let totalCost = 0;
     clientCart.forEach((item: any) => {
@@ -185,7 +187,7 @@ export const ReserveModal = (props: { className?: string }) => {
       startTime: startDateFormatted,
       endTime: '', // TODO
       priceWork: totalCost,
-      workToDo: clientCart[0].name,
+      workToDo: selectedService.name,
     }
     reserveActions.add(newReserve);
     // restart all steps of reserve_modal
@@ -196,6 +198,7 @@ export const ReserveModal = (props: { className?: string }) => {
     setReserveFields(defaultReserveFields);
     setWizard(0);
   }
+
   const checkStep = () => {
     switch (wizard) {
       case 0:
@@ -239,6 +242,8 @@ export const ReserveModal = (props: { className?: string }) => {
     }
     return false;
   }
+
+
   return (
     <div className="reserve-modal">
       <div className="dialog_activator-box" onClick={() => { setShowDialog(true) }}>
@@ -275,11 +280,13 @@ export const ReserveModal = (props: { className?: string }) => {
               clientName: reserveFields.clientName,
               clientPhone: reserveFields.clientPhone,
               setReserveFields: onChangeReserveFields
-            }} />
+            }}
+          />
           <ReserveFooter
             wizard={wizard}
             checkStep={checkStep}
             onChangeWizard={setWizard}
+            finalize={createReserve}
           />
         </DialogModal>
       )

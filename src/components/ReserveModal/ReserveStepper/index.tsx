@@ -9,7 +9,7 @@ import { BarbersList } from '../BarbersList';
 import { TextField } from '../../TextField';
 
 export const ReserveStepper = (props: {
-    wizard: number
+    wizard: number,
     serviceStep: {
         services: any,
         selectedService: any,
