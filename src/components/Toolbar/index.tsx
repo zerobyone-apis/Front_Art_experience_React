@@ -1,6 +1,6 @@
 import React from 'react';
 import { AccountMenu } from '../AccountMenu';
-import { ReservationModal } from '../ReservationModal';
+import { ReserveModal } from '../ReserveModal';
 import { Button } from '../Button';
 import './Toolbar.scss';
 import '../../styles/ArtExperienceButtons.scss';
@@ -27,7 +27,7 @@ export const Toolbar = () => {
                 }
             </div>
             <div className="right-box">
-                <ReservationModal />
+                <ReserveModal />
                 {/* <AccountMenu /> */}
             </div>
         </div>
