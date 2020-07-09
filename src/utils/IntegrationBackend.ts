@@ -1,5 +1,5 @@
 export default class IntegrationBackend {
-  private baseUrl = 'https://cyber-manager-back-v2.herokuapp.com'; //-> Postgres = Latest v4
+  private baseUrl = 'https://backend-art-experience.herokuapp.com';
   private axios = require('axios');
 
   async send(method: string, data?: any, route?: string) {
