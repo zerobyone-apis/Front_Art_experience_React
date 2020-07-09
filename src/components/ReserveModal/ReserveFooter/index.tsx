@@ -5,7 +5,8 @@ import './ReserveFooter.scss';
 export const ReserveFooter = (props: {
     wizard: number,
     onChangeWizard: any,
-    checkStep: any
+    checkStep: any,
+    finalize: any
 }) => {
     return <div className="footer">
         <div className="footer_right-box">
@@ -29,7 +30,7 @@ export const ReserveFooter = (props: {
                             if (props.wizard < 4) {
                                 props.onChangeWizard(props.wizard + 1);
                             } else {
-                                // createReserve();
+                                props.finalize();
                             }
                         }}
                     />
