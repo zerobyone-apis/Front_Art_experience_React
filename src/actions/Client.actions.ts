@@ -21,6 +21,9 @@ export default class ClientActions {
     }
 
     add = async (newClient: IClient) => {
-
+        console.log('accede a add client')
+        console.log(newClient)
+        newClient.userId = 666;
+        return newClient;
     }
 }
