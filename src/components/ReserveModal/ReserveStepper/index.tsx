@@ -10,6 +10,7 @@ import { ClientAccess } from '../ClientAccess';
 
 export const ReserveStepper = (props: {
     wizard: number,
+    onClientLogged: any,
     serviceStep: {
         services: any,
         selectedService: any,
@@ -26,14 +27,10 @@ export const ReserveStepper = (props: {
         reserveHour: any,
         setHour: any
     },
-    clientStep: {
-        clientName: string,
-        clientEmail: string,
-        clientPassword: string,
-        clientPhone: string,
-        setReserveFields: any
-    }
 }) => {
+
+
+
     switch (props.wizard) {
         case 0:
             return (
@@ -90,12 +87,7 @@ export const ReserveStepper = (props: {
                     <div className="step-title">
                         <p>Ingrese sus datos personales</p>
                     </div>
-                    <ClientAccess
-                        clientEmail={props.clientStep.clientEmail}
-                        clientName={props.clientStep.clientName}
-                        clientPassword={props.clientStep.clientPassword}
-                        clientPhone={props.clientStep.clientPhone}
-                        setReserveFields={props.clientStep.setReserveFields}
+                    <ClientAccess onClientLogged={props.onClientLogged}
                     />
                 </div>
             );
@@ -108,8 +100,8 @@ export const ReserveStepper = (props: {
                         <p>Confirmacion de reserva</p>
                     </div>
                     <div className="confirm_data-box">
-                        <p className="confirm_info">Nombre: {props.clientStep.clientName}</p>
-                        <p className="confirm_info">Telefono: {props.clientStep.clientPhone}</p>
+                        {/* <p className="confirm_info">Nombre: {props.clientStep.clientName}</p>
+                        <p className="confirm_info">Telefono: {props.clientStep.clientPhone}</p> */}
                         <p className="confirm_info">
                             {`Fecha de reservacion: ${
                                 moment(props.timeStep.reserveDate).format("DD/MM/YYYY")

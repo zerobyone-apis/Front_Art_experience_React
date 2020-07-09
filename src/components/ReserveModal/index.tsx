@@ -2,7 +2,7 @@
 import 'date-fns';
 // IMPORTS
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 // COMPONENTS
 import { DialogModal } from '../DialogModal';
@@ -142,48 +142,44 @@ export const ReserveModal = (props: { className?: string }) => {
     name: '',
     barberId: -1
   }
-  const defaultReserveFields = {
-    reserveDate: '',
-    clientName: '',
-    clientEmail: '',
-    clientPassword: '',
-    clientPhone: '',
-    barberName: '',
-    services: []
-  };
+  const defaultClient: IClient = {
+    cel: '',
+    email: '',
+    name: '',
+    password: '',
+    username: '',
+    userId: -1
+  }
 
   // STATES
   const [showDialog, setShowDialog] = useState(false);
   const [reserveHour, setReserveHour] = useState("");
   const [reserveDate, setReserveDate] = useState(null);
-  const [reserveFields, setReserveFields] = useState(defaultReserveFields);
   const [selectedBarber, setSelectedBarber] = useState(defaultBarber);
-  const [clientCart, setClientCart] = useState([]);
   const [selectedService, setSelectedService] = useState({ name: '' });
   const [wizard, setWizard] = useState(0);
-  // const [client, setClient] = useState(null);
+  const [client, setClient] = useState(defaultClient);
 
   // ACTIONS
   const reserveActions = new ReserveActions();
   const clientActions = new ClientActions();
 
-  const onChangeReserveFields = (fieldName: string, value: string) => {
-    setReserveFields({ ...reserveFields, [fieldName]: value })
-  }
+
+  useEffect(() => {
+    console.log('change client in reserve')
+    console.log(client)
+  }, [client])
 
   // CREATE RESERVE
   const createReserve = () => {
     let totalCost = 0;
-    clientCart.forEach((item: any) => {
-      totalCost += item.cost;
-    });
     let startDateFormatted = `${moment(reserveDate).format().split('T')[0]}T${reserveHour}-03:00`
     let newReserve: IReserve = {
-      clientId: -1,
+      clientId: client.userId,
       barberOrHairdresserId: selectedBarber.barberId,
-      nameClient: reserveFields.clientName,
-      mailClient: reserveFields.clientEmail,
-      celClient: reserveFields.clientPhone,
+      nameClient: client.name,
+      mailClient: client.email,
+      celClient: client.cel,
       workTime: 30, // default work time
       startTime: startDateFormatted,
       endTime: '', // TODO
@@ -195,8 +191,7 @@ export const ReserveModal = (props: { className?: string }) => {
     setReserveHour("");
     setReserveDate(new Date());
     setSelectedBarber(defaultBarber);
-    setClientCart([]);
-    setReserveFields(defaultReserveFields);
+    setClient(defaultClient);
     setWizard(0);
   }
 
@@ -218,22 +213,7 @@ export const ReserveModal = (props: { className?: string }) => {
         }
         break;
       case 3:
-        if (reserveFields.clientEmail && reserveFields.clientName && reserveFields.clientPhone) {
-          const client = clientActions.get(reserveFields.clientEmail);
-          if (client) {
-            // get client info
-            // setClient(client);
-          } else {
-            // create client 
-            const clientData: IClient = {
-              cel: reserveFields.clientPhone,
-              email: reserveFields.clientEmail,
-              name: reserveFields.clientName,
-              password: '',
-              username: '',
-            }
-            clientActions.add(clientData);
-          }
+        if (client.userId != -1) {
           return true;
         }
         break;
@@ -243,7 +223,6 @@ export const ReserveModal = (props: { className?: string }) => {
     }
     return false;
   }
-
 
   return (
     <div className="reserve-modal">
@@ -260,6 +239,7 @@ export const ReserveModal = (props: { className?: string }) => {
         >
           <ReserveStepper
             wizard={wizard}
+            onClientLogged={setClient}
             serviceStep={{
               services: services,
               selectedService: selectedService,
@@ -275,13 +255,6 @@ export const ReserveModal = (props: { className?: string }) => {
               reserveHour: reserveHour,
               setDate: setReserveDate,
               setHour: setReserveHour
-            }}
-            clientStep={{
-              clientEmail: reserveFields.clientEmail,
-              clientPassword: reserveFields.clientPassword,
-              clientName: reserveFields.clientName,
-              clientPhone: reserveFields.clientPhone,
-              setReserveFields: onChangeReserveFields
             }}
           />
           <ReserveFooter
