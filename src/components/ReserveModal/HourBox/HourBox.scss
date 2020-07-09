@@ -1,0 +1,35 @@
+.hours-box {
+    position: relative;
+    width: 100%;
+    max-width: 380px;
+    margin:auto;
+    text-align: center;
+    animation-name: slide-top;
+    animation-duration: 1s;
+    margin-top: 10px;
+    margin-bottom: 45px;
+    // background-color: green;
+    .hour-item {
+      position: relative;
+      height: max-content;
+      margin:auto;
+      margin: 2px;
+      border-radius: 4px;
+      color: white;
+      button{
+        // width: 30px;
+      }
+      .hour {
+        color: rgb(214, 214, 214);
+      }
+    }
+    .hour-item:hover {
+      background-color: rgba(255, 255, 255, 0.178);
+    }
+    .selected-hour {
+      button {
+        color: white;
+        background-color: rgb(146, 144, 108); 
+      } 
+    }
+  }
