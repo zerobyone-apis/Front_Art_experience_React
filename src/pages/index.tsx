@@ -1,13 +1,27 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { LeftMenu } from '../components/LeftMenu';
 import { Toolbar } from '../components/Toolbar';
 import { Card } from '../components/Card';
 import { Divider } from '../components/Divider';
 import './index.scss';
 import * as Icons from 'react-icons/fa';
-// import logo from '../assets/logo_gold.png';
+import BarberAction from '../actions/Barber.actions';
 
 const IndexPage = () => {
+  const barberActions = new BarberAction();
+
+  async function getBarbers() {
+    await barberActions.getAll()
+  }
+
+  // useEffect(() => {
+  //   const coso = async () => {
+  //     console.log('accede')
+  //     await getBarbers();
+  //   }
+  //   coso();
+  // }, [])
+
   const employees = [
     {
       barberId: 1,
@@ -18,6 +32,7 @@ const IndexPage = () => {
       clientsBarber: 5,//amountClients
       rateOfBarber: 0,//prestige
       amountOfReservesByDay: 10,//amountDailyReserves
+      info: "",
       img:
         "https://instagram.fmvd4-1.fna.fbcdn.net/v/t51.2885-15/e35/p1080x1080/81096072_209788046863421_8027631315464043835_n.jpg?_nc_ht=instagram.fmvd4-1.fna.fbcdn.net&_nc_cat=105&_nc_ohc=tHUEjcHZ2UwAX9KqbzI&oh=1fe698f633765cf59bf8e671b6e91a0c&oe=5F2A13A1",
       instagram: "https://www.instagram.com/marianomoreno.11/",
@@ -32,12 +47,12 @@ const IndexPage = () => {
       clientsBarber: 5,//amountClients
       rateOfBarber: 0,//prestige
       amountOfReservesByDay: 10,//amountDailyReserves
+      info: '2 años de experiencia laboral comenzó cortando en su casa y luego se incorporó al equipo art donde fue capacitado por Mariano Moreno se destaca en su gran atencion al publico por su buen freestyle',
       img: "https://instagram.fmvd4-1.fna.fbcdn.net/v/t51.2885-15/e35/p1080x1080/77094002_605862643493062_9053649117496349366_n.jpg?_nc_ht=instagram.fmvd4-1.fna.fbcdn.net&_nc_cat=110&_nc_ohc=EL9qbeJc2QQAX8ZwTaZ&oh=acda434810cd3a8546c350c24dda8b7d&oe=5F283230",
       instagram: "https://www.instagram.com/mernis.01/",
       facebook: "https://www.facebook.com/TheUniqueDesign"
     }
   ];
-
   const pageInfo = {
     name: "Art Experience",
     slogan: "Space for Men",
@@ -62,65 +77,81 @@ const IndexPage = () => {
   const services = [
     {
       icon: "event",
-      name: "Gestion de reservas",
+      name: "Clasico",
       info:
         "La gestion automatizada de las reservas mejora el rendimiento y la facilidad de uso.",
       url: "Read More"
     },
     {
-      icon: "home",
-      name: "Perfil de la barberia",
+      icon: "event",
+      name: "Estilo Libre",
       info:
         "Tendra toda la informacion de su barberia, incluyendo a sus barberos, productos y promociones",
       url: "Read More"
     },
     {
-      icon: "people",
+      icon: "Tratamiento Facial",
       name: "Perfil del barbero",
       info:
         "Contendra toda la informacion del barbero, incluyendo sus trabajos y opiniones de los clientes",
       url: "Read More"
     },
-    {
-      icon: "star",
-      name: "Sistema de puntuaciones",
-      info:
-        "Tendra una puntuacion su barberia, la cual aumentara el numero de clientes",
-      url: "Read More"
-    },
-    {
-      icon: "info",
-      name: "Notificaciones",
-      info: "Se mantendra informado de toda la actividad de sus clientes",
-      url: "Read More"
-    }
   ];
   const courses = [
     {
+      name: "Curso intensivo",
+      duration: "4 meses / 1 clase por semana a partir de las 13:30hrs",
+      info: `
+      Es un curso intensivo en donde se aprendera:
+      técnicas de fade
+      - uso correspondiente de las herramientas 
+      - barbas
+      - freestyle 
+      - peinados 
+      - marketing 
+      -fotografia 
+      - atención al publico
+      -particiones y secciones de la cabeza
+      `,
+      cost: `
+      Contamos con  2 posibilidades de pago:
+      Contado : $ 13.000 
+      Financiado: $ 4.000 en 4 cuotas
+      Posibilidad de reservar un lugar con una seña de $1500
+      `,
       icon: "event",
       img:
         "https://www.inquirer.com/resizer/orhvGzXeXNLr2xpL6_d81Lv-IQE=/1400x932/smart/arc-anglerfish-arc2-prod-pmn.s3.amazonaws.com/public/PTR2I5SGUNHJJGUGMHSGXFFCKU.jpg",
-      name: "Basico",
+      url: "Read More"
+    },
+    {
+      name: "Perfeccionamiento de colorimentria",
+      info: `
+      Tiene los materiales incluidos.
+      En la clase trabajamos con 3 modelos:
+      Modelo 1 platinado
+      - Modelo 2 fantasia
+      - Modelo 3 mechitas.
+      Va con certificado de concurrencia y la fecha a es coordinar
+      `,
       duration: "3 meses",
-      info: "Curso basico de corte y estilo.",
+      cost: 'El curso tiene un costo de $8.000',
+      icon: "event",
+      img:
+        "https://www.inquirer.com/resizer/orhvGzXeXNLr2xpL6_d81Lv-IQE=/1400x932/smart/arc-anglerfish-arc2-prod-pmn.s3.amazonaws.com/public/PTR2I5SGUNHJJGUGMHSGXFFCKU.jpg",
       url: "Read More"
     },
     {
-      icon: "home",
+      name: "Perfeccionamiento de corte",
+      info: `
+        Trabajamos con 4 modelos hacemos 3 estilos diferentes por ej: 
+        french crop pompadour y classic cuts.
+      `,
+      duration: "2 dias / 2 cortes diarios",
+      cost: 'El curso tiene un costo de $6.000',
+      icon: "event",
       img:
-        "https://static.wixstatic.com/media/bd10eec5564a47b78638ff005f18261d.jpg/v1/crop/x_1203,y_720,w_6156,h_4191/fill/w_602,h_600,al_c,q_85,usm_0.66_1.00_0.01/Barber%20Shop.webp",
-      name: "Perfeccionamiento",
-      duration: "4 meses",
-      info: "Curso de perfeccionamiento de corte y estilo.",
-      url: "Read More"
-    },
-    {
-      icon: "people",
-      img:
-        "https://hairstyleonpoint.com/wp-content/uploads/2017/04/v-shaped-low-fade-mens-haircut.jpg",
-      name: "Avanzado",
-      duration: "5 meses",
-      info: "Curso avanzado de corte y estilo.",
+        "https://www.inquirer.com/resizer/orhvGzXeXNLr2xpL6_d81Lv-IQE=/1400x932/smart/arc-anglerfish-arc2-prod-pmn.s3.amazonaws.com/public/PTR2I5SGUNHJJGUGMHSGXFFCKU.jpg",
       url: "Read More"
     }
   ];
@@ -138,7 +169,6 @@ const IndexPage = () => {
       align: 'right'
     }
   ];
-
   const getListEmployees = () => {
     return employees.map((employee, i) =>
       <div
@@ -148,6 +178,8 @@ const IndexPage = () => {
         <img className="employee-img" src={employee.img} aspect-ratio="1"></img>
         <p className="employee-name art_experience-text-light">{employee.name}</p>
         <p className="employee-info art_experience-text-light">{employee.job}</p>
+        <p className="employee-info art_experience-text-light">{employee.info}</p>
+
         <div className="employee-social">
           <a href={employee.instagram}>
             <i className="fa fa-instagram" aria-hidden="true"></i>
@@ -160,7 +192,6 @@ const IndexPage = () => {
       </div>
     )
   }
-
   const getListServices = () => {
     return services.map((service, i) =>
       <div
@@ -173,7 +204,6 @@ const IndexPage = () => {
       </div>
     )
   }
-
   const getListCourses = () => {
     return courses.map((course, i) =>
       <div
@@ -182,12 +212,12 @@ const IndexPage = () => {
       >
         <p className="course-name art_experience-text-light">{course.name}</p>
         <img className="course-img" aspect-ratio="1" src={course.img}></img>
-        <p className="course-duration art_experience-text-light">duracion: {course.duration}</p>
+        <p className="course-duration art_experience-text-light">Duracion: {course.duration}</p>
         <p className="course-info art_experience-text-light">{course.info}</p>
+        <p className="course-info art_experience-text-light">{course.cost}</p>
       </div >
     )
   }
-
   const getFooter = () => {
     return (
       <div className="footer">
@@ -222,8 +252,6 @@ const IndexPage = () => {
               <img className="logo-img" src="https://raw.githubusercontent.com/zerobyone-apis/Front_Art_experience_React/master/src/assets/logo_gold.png" alt="" />
               <div className="box-shadow_logo">
               </div>
-              {/* <p className="title font-title art_experience-text-light">{pageInfo.name}</p>
-              <p className="sub-title font-title art_experience-text-light">{pageInfo.slogan}</p> */}
             </div>
           </div>
           <div id="about_us" />
