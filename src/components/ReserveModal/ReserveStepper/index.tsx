@@ -6,7 +6,7 @@ import { CalendarBox } from '../CalendarBox';
 import { HourBox } from '../HourBox';
 import { ServicesList } from '../ServicesList';
 import { BarbersList } from '../BarbersList';
-import { TextField } from '../../TextField';
+import { ClientAccess } from '../ClientAccess';
 
 export const ReserveStepper = (props: {
     wizard: number,
@@ -29,6 +29,7 @@ export const ReserveStepper = (props: {
     clientStep: {
         clientName: string,
         clientEmail: string,
+        clientPassword: string,
         clientPhone: string,
         setReserveFields: any
     }
@@ -89,30 +90,13 @@ export const ReserveStepper = (props: {
                     <div className="step-title">
                         <p>Ingrese sus datos personales</p>
                     </div>
-                    <div className="client_info-box">
-                        <form>
-                            <TextField
-                                tabIndex={1}
-                                label="ingrese su nombre"
-                                name="clientName"
-                                defaultValue={props.clientStep.clientName}
-                                value={props.clientStep.clientName}
-                                onChange={props.clientStep.setReserveFields} />
-                            <TextField
-                                tabIndex={1}
-                                label="ingrese su email"
-                                name="clientEmail"
-                                defaultValue={props.clientStep.clientEmail}
-                                value={props.clientStep.clientEmail}
-                                onChange={props.clientStep.setReserveFields} />
-                            <TextField
-                                tabIndex={2}
-                                label="Ingrese su telefono"
-                                name="clientPhone"
-                                value={props.clientStep.clientPhone}
-                                onChange={props.clientStep.setReserveFields} />
-                        </form>
-                    </div>
+                    <ClientAccess
+                        clientEmail={props.clientStep.clientEmail}
+                        clientName={props.clientStep.clientName}
+                        clientPassword={props.clientStep.clientPassword}
+                        clientPhone={props.clientStep.clientPhone}
+                        setReserveFields={props.clientStep.setReserveFields}
+                    />
                 </div>
             );
             break;

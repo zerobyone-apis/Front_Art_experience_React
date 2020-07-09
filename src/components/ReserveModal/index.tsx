@@ -146,6 +146,7 @@ export const ReserveModal = (props: { className?: string }) => {
     reserveDate: '',
     clientName: '',
     clientEmail: '',
+    clientPassword: '',
     clientPhone: '',
     barberName: '',
     services: []
@@ -277,6 +278,7 @@ export const ReserveModal = (props: { className?: string }) => {
             }}
             clientStep={{
               clientEmail: reserveFields.clientEmail,
+              clientPassword: reserveFields.clientPassword,
               clientName: reserveFields.clientName,
               clientPhone: reserveFields.clientPhone,
               setReserveFields: onChangeReserveFields
