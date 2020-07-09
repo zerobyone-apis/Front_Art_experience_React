@@ -242,14 +242,13 @@ const IndexPage = () => {
     <div className="index_page">
       <Toolbar />
       <div className="page-box">
-        {/* <LeftMenu /> */}
         <div className="dashboard">
           <div className="banner">
             <div className="banner-img" />
             <div className="title-box">
               <div className="box-shadow_space">
               </div>
-              <img className="logo-img" src="https://raw.githubusercontent.com/zerobyone-apis/Front_Art_experience_React/master/src/assets/logo_gold.png" alt="" />
+              <img className="logo-img" src="https://raw.githubusercontent.com/zerobyone-apis/Front_Art_experience_React/master/src/assets/gold_logo.png" alt="" />
               <div className="box-shadow_logo">
               </div>
             </div>
