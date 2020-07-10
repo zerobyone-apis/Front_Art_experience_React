@@ -12,7 +12,7 @@ $toolbar_height: 60px;
     z-index: 999;
     width: 100%;
     height: $toolbar_height;
-    background-color: #000000;
+    background-color: #111111da;
     box-shadow: 0 5px 5px #00000086;
     animation-name: slide_bottom;
     animation-duration: 2s;
@@ -24,7 +24,7 @@ $toolbar_height: 60px;
       display: flex;
       align-items: center;
       .logo-img {
-        width: 150px;
+        width: 120px;
         margin-left: 20px;
         animation-name: slide-opacity;
         animation-duration: 4s;

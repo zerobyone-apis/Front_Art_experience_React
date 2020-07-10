@@ -178,7 +178,7 @@ const IndexPage = () => {
         <img className="employee-img" src={employee.img} aspect-ratio="1"></img>
         <p className="employee-name art_experience-text-light">{employee.name}</p>
         <p className="employee-info art_experience-text-light">{employee.job}</p>
-        <p className="employee-info art_experience-text-light">{employee.info}</p>
+        {/* <p className="employee-info art_experience-text-light">{employee.info}</p> */}
 
         <div className="employee-social">
           <a href={employee.instagram}>
@@ -243,6 +243,7 @@ const IndexPage = () => {
       <Toolbar />
       <div className="page-box">
         <div className="dashboard">
+          <div id="banner" />
           <div className="banner">
             <div className="banner-img" />
             <div className="title-box">
