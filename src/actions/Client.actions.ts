@@ -5,9 +5,9 @@ import { GET_ENDPOIT, CLIENT_ROUTE } from '../types/Routes.type';
 export default class ClientActions {
     private backend: IntegrationBackend = new IntegrationBackend();
 
-    get = async (email: string) => {
+    get = async (email: string, password: string) => {
         try {
-            let data = { email };
+            let data = { email, password };
             let responseClient: IClient = await this.backend.send(
                 GET_ENDPOIT,
                 data,
@@ -15,6 +15,7 @@ export default class ClientActions {
             );
             return responseClient;
         } catch (error) {
+            // usar un switch case para mostrar errores
             console.error(`Error: getAll barber-> ${error.message}`);
             return null;
         }
