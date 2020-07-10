@@ -18,6 +18,12 @@ $menu_size: 200px;
       }
 }
   .left_menu-dialog {
+    button {
+      text-align: center;
+      p {
+        margin: auto !important;
+      }
+    }
       .dialog-modal {
         position: relative;
         width: 100%;
@@ -47,7 +53,6 @@ $menu_size: 200px;
           padding-top: 100px;
           .left_menu-btn {
             position: relative;
-            background-color: green;
             margin-bottom: 60px;
             width: 100%;
             a {
@@ -67,7 +72,7 @@ $menu_size: 200px;
                 }
               }
               button:hover {
-                background-color: rgba(0, 0, 0, 0.404);
+                background-color: rgb(85, 85, 85);
               }
             }
           }
