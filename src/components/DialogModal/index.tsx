@@ -20,7 +20,7 @@ export const DialogModal = (props: {
   return (
     <div>
       <div className={`dialog-box ${props.className}`}>
-        <div className="dialog-modal" style={{ height: props.height, width: props.width }}>
+        <div className="dialog-modal" style={{ height: `${props.height}`, width: `${props.width}` }}>
           <div className="header">
             <div className="close_btn-box">
               <div className="art_experience-button_only-text">
@@ -30,15 +30,11 @@ export const DialogModal = (props: {
                 </Button>
               </div>
             </div>
-            {
-              !props.title ? null :
-                <div className="header-title">
-                  {props.header ||
-                    (
-                      <p className="title art_experience-text-light">{props.title}</p>
-                    )}
-                </div>
-            }
+
+            <div className="header-title">
+              {props.header || <p className="title art_experience-text-light">{props.title}</p>}
+            </div>
+
           </div>
           <div className="content">
             {props.children}
