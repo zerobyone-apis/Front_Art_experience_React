@@ -13,6 +13,7 @@ const IndexPage = () => {
   const barberActions = new BarberAction();
 
   const [showDialogCourse, setShowDialogCourse] = useState(false);
+  const [selectedCourse, setSelectedCourse] = useState(null);
 
   async function getBarbers() {
     await barberActions.getAll()
@@ -218,24 +219,17 @@ const IndexPage = () => {
         <img className="course-img" aspect-ratio="1" src={course.img}></img>
         <p className="course-duration art_experience-text-light">Duracion: {course.duration}</p>
         <Button
+          className="see_more-btn art_experience-button_outlined"
+          label="Ver mas"
           onClick={() => {
+            setSelectedCourse(course);
             setShowDialogCourse(true);
           }}
-          className="see_more-btn art_experience-button_outlined"
-          label="Ver mas" />
-        {!showDialogCourse ? null :
-          (
-            <DialogModal title={course.name} onClose={() => { setShowDialogCourse(false) }} >
-              <div>
-                <p className="course-info art_experience-text-light">{course.info}</p>
-                <p className="course-info art_experience-text-light">{course.cost}</p>
-              </div>
-            </DialogModal>
-          )
-        }
+        />
       </div >
     )
   }
+
 
 
 
@@ -300,6 +294,18 @@ const IndexPage = () => {
           </Card>
         </div>
       </div >
+
+      {!showDialogCourse ? null :
+        <DialogModal
+          className="dialog"
+          title={selectedCourse.name}
+          onClose={() => { setShowDialogCourse(false) }} >
+
+          <p className="course-info art_experience-text-light">{selectedCourse.info}</p>
+          <p className="course-info art_experience-text-light">{selectedCourse.cost}</p>
+
+        </DialogModal>
+      }
     </div >
   );
 };

@@ -256,15 +256,6 @@ body {
           color: rgb(214, 214, 214);
         }
 
-        .see_more-btn {}
-
-        .course-info {
-          top: 40px;
-          margin: 0;
-          margin-left: 10px;
-          color: rgb(214, 214, 214);
-        }
-
         .course-url {
           position: absolute;
           bottom: 0px;
@@ -272,11 +263,6 @@ body {
           color: #3b3b3bbb;
         }
       }
-
-      // .course-item:hover {
-      //   color: white;
-      //   box-shadow: 0px 0px 20px 0px rgb(68, 66, 52);
-      // }
 
       .footer {
         position: relative;
@@ -327,6 +313,30 @@ body {
       }
     }
   }
+
+
+  .dialog {
+    display: flex;
+    align-items: center;
+
+    .dialog-modal {
+      width: 40%;
+      height: max-content !important;
+      text-align: center;
+
+      .content {
+        padding: 20px;
+
+        .course-info {
+          position: relative;
+          padding: 0;
+          margin: 0;
+        }
+      }
+    }
+  }
+
+
 
   @keyframes slide_left {
     0% {
