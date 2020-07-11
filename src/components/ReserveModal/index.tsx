@@ -1,7 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import 'date-fns';
 // IMPORTS
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 // COMPONENTS
@@ -23,21 +22,6 @@ import '../../styles/theme.scss';
 
 
 export const ReserveModal = (props: { className?: string }) => {
-
-  const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-      container: {
-        display: 'flex',
-        flexWrap: 'wrap',
-      },
-      textField: {
-        marginLeft: theme.spacing(1),
-        marginRight: theme.spacing(1),
-        width: 200,
-      },
-    }),
-  );
-  const classes = useStyles();
 
   // DATA
   const services = [
