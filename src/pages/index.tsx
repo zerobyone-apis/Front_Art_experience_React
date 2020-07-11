@@ -1,14 +1,18 @@
-import React, { Fragment, useEffect } from 'react';
-import { LeftMenu } from '../components/LeftMenu';
+import React, { useState } from 'react';
 import { Toolbar } from '../components/Toolbar';
 import { Card } from '../components/Card';
+import { DialogModal } from '../components/DialogModal';
 import { Divider } from '../components/Divider';
-import './index.scss';
+import { Button } from '../components/Button';
 import * as Icons from 'react-icons/fa';
 import BarberAction from '../actions/Barber.actions';
+import './index.scss';
+import '../styles/ArtExperienceButtons.scss';
 
 const IndexPage = () => {
   const barberActions = new BarberAction();
+
+  const [showDialogCourse, setShowDialogCourse] = useState(false);
 
   async function getBarbers() {
     await barberActions.getAll()
@@ -92,7 +96,7 @@ const IndexPage = () => {
   const courses = [
     {
       name: "Curso intensivo",
-      duration: "4 meses / 1 clase por semana a partir de las 13:30hrs",
+      duration: "4 meses", //  / 1 clase por semana a partir de las 13:30hrs
       info: `
       Es un curso intensivo en donde se aprendera:
       técnicas de fade
@@ -139,7 +143,7 @@ const IndexPage = () => {
         Trabajamos con 4 modelos hacemos 3 estilos diferentes por ej: 
         french crop pompadour y classic cuts.
       `,
-      duration: "2 dias / 2 cortes diarios",
+      duration: "2 dias", //  / 2 cortes diarios
       cost: 'El curso tiene un costo de $6.000',
       icon: "event",
       img:
@@ -198,6 +202,12 @@ const IndexPage = () => {
       </div>
     )
   }
+
+
+
+
+
+
   const getListCourses = () => {
     return courses.map((course, i) =>
       <div
@@ -207,11 +217,32 @@ const IndexPage = () => {
         <p className="course-name art_experience-text-light">{course.name}</p>
         <img className="course-img" aspect-ratio="1" src={course.img}></img>
         <p className="course-duration art_experience-text-light">Duracion: {course.duration}</p>
-        <p className="course-info art_experience-text-light">{course.info}</p>
-        <p className="course-info art_experience-text-light">{course.cost}</p>
+        <Button
+          onClick={() => {
+            setShowDialogCourse(true);
+          }}
+          className="see_more-btn art_experience-button_outlined"
+          label="Ver mas" />
+        {!showDialogCourse ? null :
+          (
+            <DialogModal title={course.name} onClose={() => { setShowDialogCourse(false) }} >
+              <div>
+                <p className="course-info art_experience-text-light">{course.info}</p>
+                <p className="course-info art_experience-text-light">{course.cost}</p>
+              </div>
+            </DialogModal>
+          )
+        }
       </div >
     )
   }
+
+
+
+
+
+
+
   const getFooter = () => {
     return (
       <div className="footer">

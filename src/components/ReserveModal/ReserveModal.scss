@@ -1,6 +1,6 @@
-
 .reserve-modal {
   $footer-height: 40px;
+
   .activator-btn {
     position: relative;
     height: 100%;
@@ -9,24 +9,43 @@
     display: flex;
     align-items: center;
   }
+
   .reserve-btn:hover {
     font-size: 13px;
     color: white;
   }
 }
+
 @keyframes slide-left {
-  0%   { opacity: 0;left: 20px; }
-  100% { opacity: 1;left: 0px; }
+  0% {
+    opacity: 0;
+    left: 20px;
+  }
+
+  100% {
+    opacity: 1;
+    left: 0px;
+  }
 }
+
 @keyframes slide-opacity {
-  0%   { opacity: 0; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
+
 @keyframes slide-top {
   from {
-    opacity: 0;top:100px;
+    opacity: 0;
+    top: 100px;
   }
+
   to {
-    opacity: 1;top:0px;
+    opacity: 1;
+    top: 0px;
   }
 }
