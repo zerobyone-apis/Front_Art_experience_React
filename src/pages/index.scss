@@ -5,290 +5,351 @@ body {
   overflow-x: hidden;
   overflow-y: hidden;
 }
+
 .index_page {
   position: absolute;
   width: 100vw !important;
   height: 100vh;
   overflow-y: scroll;
   overflow-x: hidden;
-// ANCHORS
-#banner {
-  position: relative;
-  width: 20px;
-  height: 20px;
-  bottom: 50px;
-}
-#about_us {
-  position: relative;
-  width: 20px;
-  height: 20px;
-  bottom: 50px;
-}
-#services {
-  position: relative;
-  width: 20px;
-  height: 20px;
-  bottom: 50px;
-}
-#courses {
-  position: relative;
-  width: 20px;
-  height: 20px;
-  bottom: 50px;
-}
-#contact {
-  position: relative;
-  width: 20px;
-  height: 20px;
-  bottom: 50px;
-}
-.page-box {
-  position: absolute;
-  width: 100%;
-  height: calc(100% - 81px);
-  .dashboard {
+
+  // ANCHORS
+  #banner {
     position: relative;
-    top: 0px;
+    width: 20px;
+    height: 20px;
+    bottom: 50px;
+  }
+
+  #about_us {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    bottom: 50px;
+  }
+
+  #services {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    bottom: 50px;
+  }
+
+  #courses {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    bottom: 50px;
+  }
+
+  #contact {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    bottom: 50px;
+  }
+
+  .page-box {
+    position: absolute;
     width: 100%;
-    min-height: 100px;
-    height: max-content;
-    .banner {
+    height: calc(100% - 81px);
+
+    .dashboard {
       position: relative;
+      top: 0px;
       width: 100%;
-      height: 100vh;
-      background-color: rgb(0, 0, 0);
-      // margin-bottom: 65px;
-      .banner-img {
+      min-height: 100px;
+      height: max-content;
+
+      .banner {
         position: relative;
-        height: 100%;
         width: 100%;
-        background-image: linear-gradient(#ff9d2f, #ff6126);
-        background-image: url("https://kontinent.se/wp-content/uploads/Barbershop_7.jpg");
-        opacity: 0.2;
-        background-attachment: fixed;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        box-shadow: inset 0 0 20px 20px rgba(0, 0, 0, 0.904);
-      }
-      .title-box {
-        position: absolute;
-        width: 100%;
-        top: 30vh;
-        text-align: center;
-        img {
-          margin: auto;
-          text-align: center;
-          z-index: 1;  
-          width: 100vw;
-          min-width: 100px !important;
-          max-width: 500px; 
-          // box-shadow: 0px 0px 20px 0px ;
-          filter: drop-shadow(40px 40px 40px rgb(0, 0, 0));
-          animation-name: opacity_effect;
-          animation-duration: 4s;
-        }
-        .title {
-          position: absolute;
-          z-index: 1;
-          top: 250px;
-          left: 10vw;
-          margin:0;
-          font-size: 50px !important;
-          color: rgb(146, 144, 108);
-          text-shadow: 5px 5px 5px #000000;
-          animation-name: opacity_effect;
-          animation-duration: 3s;
-        }
-        .sub-title {
-          position: absolute;
-          z-index: 1;
-          top: 280px;
-          left: 200px;
-          // left: 15vw;
-          font-size: 18px;
-          color: rgb(214, 214, 214);
-          text-shadow: 5px 5px 5px #000000;
-          animation-name: opacity_effect;
-          animation-duration: 3s;
-        }
-        .box-shadow_space {
-          position: absolute;
-          right: 198px;
-          bottom: 10px;
-          width: 200px;
-          height: 16px;
-        }
-      }
-    }
-        .employee-item {
+        height: 100vh;
+        background-color: rgb(0, 0, 0);
+
+        // margin-bottom: 65px;
+        .banner-img {
           position: relative;
-          margin: 5px;
-          width: 300px;
-          height: 280px;
-          display: inline-table;
+          height: 100%;
+          width: 100%;
+          background-image: linear-gradient(#ff9d2f, #ff6126);
+          background-image: url("https://kontinent.se/wp-content/uploads/Barbershop_7.jpg");
+          opacity: 0.2;
+          background-attachment: fixed;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+          box-shadow: inset 0 0 20px 20px rgba(0, 0, 0, 0.904);
+        }
+
+        .title-box {
+          position: absolute;
+          width: 100%;
+          top: 30vh;
           text-align: center;
-          .employee-img {
-            border-radius: 4px;
-            border-top-left-radius: 20px;
-            border-bottom-right-radius: 20px;
-            box-shadow: 0px 0px 20px 0px rgb(68, 66, 52);
-            width: 140px;
-            height: 150px;
+
+          img {
             margin: auto;
+            text-align: center;
+            z-index: 1;
+            width: 100vw;
+            min-width: 100px !important;
+            max-width: 500px;
+            // box-shadow: 0px 0px 20px 0px ;
+            filter: drop-shadow(40px 40px 40px rgb(0, 0, 0));
+            animation-name: opacity_effect;
+            animation-duration: 4s;
           }
-          .employee-name {
-            margin-top: 10px;
-            font-size: 16px;
-            color: rgb(214, 214, 214);
-          }
-          .employee-info {
-            color: rgb(214, 214, 214);
-          }
-          .employee-social {
-            position: relative;
-            width: 100%;
-            .employee-social-logo {
-              position: relative;
-              display: inline-block;
-              width: 30px;
-              height: 30px;
-              margin: 0 20px 0 20px;
-              color: rgb(214, 214, 214);
-              border-radius: 50%;
-            }
-            .employee-social-logo:hover {
-              color: white;
-              box-shadow: 0px 0px 20px 0px rgb(68, 66, 52);
-             
-            }
-          }
-          .employee-url {
+
+          .title {
             position: absolute;
-            bottom: 0px;
-            margin-left: 40%;
+            z-index: 1;
+            top: 250px;
+            left: 10vw;
+            margin: 0;
+            font-size: 50px !important;
+            color: rgb(146, 144, 108);
+            text-shadow: 5px 5px 5px #000000;
+            animation-name: opacity_effect;
+            animation-duration: 3s;
+          }
+
+          .sub-title {
+            position: absolute;
+            z-index: 1;
+            top: 280px;
+            left: 200px;
+            // left: 15vw;
+            font-size: 18px;
+            color: rgb(214, 214, 214);
+            text-shadow: 5px 5px 5px #000000;
+            animation-name: opacity_effect;
+            animation-duration: 3s;
+          }
+
+          .box-shadow_space {
+            position: absolute;
+            right: 198px;
+            bottom: 10px;
+            width: 200px;
+            height: 16px;
           }
         }
-        .service-item {
-          position: relative;
-          margin: 5px;
-          margin-top: 20px;
-          width: 250px;
+      }
+
+      .employee-item {
+        position: relative;
+        margin: 5px;
+        width: 300px;
+        height: 280px;
+        display: inline-table;
+        text-align: center;
+
+        .employee-img {
+          border-radius: 4px;
+          border-top-left-radius: 20px;
+          border-bottom-right-radius: 20px;
+          box-shadow: 0px 0px 20px 0px rgb(68, 66, 52);
+          width: 220px;
           height: 240px;
-          display: inline-table;
-          text-align: center;
-          font-size: 16px;
-          .service-icon {
-            font-size: 40px;
-            color: rgb(214, 214, 214);
-            box-shadow: 0px 0px 20px 0px rgb(68, 66, 52);
-            border-radius: 50%;
-          }
-          .service-name {
-            margin-bottom: 20px;
-            color: rgb(214, 214, 214);
-          }
-          .service-info {
-            margin-left: 10px;
-            color: rgb(214, 214, 214);
-          }
-          .service-url {
-            position: absolute;
-            bottom: 0px;
-            margin-left: 40%;
-            color: rgb(214, 214, 214);
-          }
+          margin: auto;
         }
-        .course-item {
-          position: relative;
-          margin: 5px;
-          margin-top: 20px;
-          width: 260px;
-          height: 320px;
-          display: inline-table;
-          text-align: center;
+
+        .employee-name {
+          margin-top: 10px;
           font-size: 16px;
-          // background-color: rgba(128, 128, 128, 0.26);
-          .course-name {
-            color: rgb(214, 214, 214);
-          }
-          .course-img {
-            position: relative;
-            width: 140px;
-            height: 150px;
-            border-radius: 4px;
-            border-top-left-radius: 20px;
-            border-bottom-right-radius: 20px;
-            box-shadow: 0px 0px 20px 0px rgb(68, 66, 52);
-          }
-          .course-duration {
-            color: rgb(214, 214, 214);
-          }
-          .course-info {
-            margin-left: 10px;
-            color: rgb(214, 214, 214);
-          }
-          .course-url {
-            position: absolute;
-            bottom: 0px;
-            margin-left: 40%;
-            color: #3b3b3bbb;
-          }
+          color: rgb(214, 214, 214);
         }
-        .footer {
+
+        .employee-info {
+          color: rgb(214, 214, 214);
+        }
+
+        .employee-social {
           position: relative;
           width: 100%;
-          height: 200px; //delete this when end the footer design
-          padding: 20px;
-          margin-top: 100px;
-          background-color: #000000;
-          .logo {
-            text-align: center;
-            font-size: 30px;
-            color: rgb(214, 214, 214);
-          }
-          .footer-social {
+
+          .employee-social-logo {
             position: relative;
-            width: 100%;
-            text-align: center;
-            .footer-social-logo {
-              position: relative;
-              display: inline-block;
-              width: 30px;
-              height: 30px;
-              margin: 0 20px 0 20px;
-              color: rgb(214, 214, 214);
-              border-radius: 50%;
-            }
-            .footer-social-logo:hover {
-              color: white;
-              box-shadow: 0px 0px 30px 0px rgb(58, 57, 44);
-            }
-          }
-          .footer-email {
-            text-align: center;
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            margin: 0 20px 0 20px;
             color: rgb(214, 214, 214);
+            border-radius: 50%;
           }
-          .footer-bussiness {
+
+          .employee-social-logo:hover {
+            color: white;
+            box-shadow: 0px 0px 20px 0px rgb(68, 66, 52);
+
+          }
+        }
+
+        .employee-url {
+          position: absolute;
+          bottom: 0px;
+          margin-left: 40%;
+        }
+      }
+
+      .service-item {
+        position: relative;
+        margin: 5px;
+        margin-top: 20px;
+        width: 250px;
+        height: 240px;
+        display: inline-table;
+        text-align: center;
+        font-size: 16px;
+
+        .service-icon {
+          font-size: 40px;
+          color: rgb(214, 214, 214);
+          box-shadow: 0px 0px 20px 0px rgb(68, 66, 52);
+          border-radius: 50%;
+        }
+
+        .service-name {
+          margin-bottom: 20px;
+          color: rgb(214, 214, 214);
+        }
+
+        .service-info {
+          margin-left: 10px;
+          color: rgb(214, 214, 214);
+        }
+
+        .service-url {
+          position: absolute;
+          bottom: 0px;
+          margin-left: 40%;
+          color: rgb(214, 214, 214);
+        }
+      }
+
+      .course-item {
+        position: relative;
+        margin: 5px;
+        margin-top: 20px;
+        width: 260px;
+        height: 320px;
+        display: inline-table;
+        text-align: center;
+        font-size: 16px;
+
+        // background-color: rgba(128, 128, 128, 0.26);
+        .course-name {
+          color: rgb(214, 214, 214);
+        }
+
+        .course-img {
+          position: relative;
+          width: 140px;
+          height: 150px;
+          border-radius: 4px;
+          border-top-left-radius: 20px;
+          border-bottom-right-radius: 20px;
+          box-shadow: 0px 0px 20px 0px rgb(68, 66, 52);
+        }
+
+        .course-duration {
+          color: rgb(214, 214, 214);
+        }
+
+        .course-info {
+          margin-left: 10px;
+          color: rgb(214, 214, 214);
+        }
+
+        .course-url {
+          position: absolute;
+          bottom: 0px;
+          margin-left: 40%;
+          color: #3b3b3bbb;
+        }
+      }
+
+      .footer {
+        position: relative;
+        width: 100%;
+        height: 200px; //delete this when end the footer design
+        padding: 20px;
+        margin-top: 100px;
+        background-color: #000000;
+
+        .logo {
+          text-align: center;
+          font-size: 30px;
+          color: rgb(214, 214, 214);
+        }
+
+        .footer-social {
+          position: relative;
+          width: 100%;
+          text-align: center;
+
+          .footer-social-logo {
             position: relative;
-            top: 10px;
-            text-align: center;
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            margin: 0 20px 0 20px;
             color: rgb(214, 214, 214);
+            border-radius: 50%;
           }
+
+          .footer-social-logo:hover {
+            color: white;
+            box-shadow: 0px 0px 30px 0px rgb(58, 57, 44);
+          }
+        }
+
+        .footer-email {
+          text-align: center;
+          color: rgb(214, 214, 214);
+        }
+
+        .footer-bussiness {
+          position: relative;
+          top: 10px;
+          text-align: center;
+          color: rgb(214, 214, 214);
         }
       }
     }
-    @keyframes slide_left {
-      0%   { left: 0px;}
-      100% { left: 200px;}
+  }
+
+  @keyframes slide_left {
+    0% {
+      left: 0px;
     }
-    @keyframes slide_top {
-      0%   { left:0; top:100px;}
-      100% { left:0; top:0px;}
+
+    100% {
+      left: 200px;
     }
-    @keyframes opacity_effect {
-      0%   { opacity: 0;}
-      100% { opacity: 1;}
+  }
+
+  @keyframes slide_top {
+    0% {
+      left: 0;
+      top: 100px;
     }
+
+    100% {
+      left: 0;
+      top: 0px;
+    }
+  }
+
+  @keyframes opacity_effect {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
 
 }

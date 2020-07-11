@@ -149,15 +149,17 @@ const IndexPage = () => {
   ];
   const dividers = [
     {
-      img: "https://kontinent.se/wp-content/uploads/Barbershop_7.jpg",
+      img: "https://instagram.fmvd4-1.fna.fbcdn.net/v/t51.2885-15/e35/43817515_183935092515961_6000014555973943296_n.jpg?_nc_ht=instagram.fmvd4-1.fna.fbcdn.net&_nc_cat=101&_nc_ohc=kTnSWPExREMAX_FyY7p&oh=48bb5b4b313cb1997be070d53a800d08&oe=5F31C7A2",
+      // img: "https://instagram.fmvd4-1.fna.fbcdn.net/v/t51.2885-15/e35/43367910_1351984181604340_350490896384393216_n.jpg?_nc_ht=instagram.fmvd4-1.fna.fbcdn.net&_nc_cat=104&_nc_ohc=Tc4IEcYpfOcAX8MyDhZ&se=7&oh=a2e734fdb106dca03958d2183fced125&oe=5F310F38",
       align: 'right'
     },
     {
-      img: "http://pointbarber.com/images/home-slideshow/pointbarber-slideshow2.jpg",
+      img: "https://instagram.fmvd4-1.fna.fbcdn.net/v/t51.2885-15/e35/54800426_106275450418894_8601708499349892562_n.jpg?_nc_ht=instagram.fmvd4-1.fna.fbcdn.net&_nc_cat=110&_nc_ohc=q4qz70Pjc80AX-b06U8&oh=3251c0cae9f80fbccf8e56c45667f64f&oe=5F30DAD3",
       align: 'left'
     },
     {
-      img: "https://kontinent.se/wp-content/uploads/Barbershop_7.jpg",
+      img: "https://instagram.fmvd4-1.fna.fbcdn.net/v/t51.2885-15/e35/40756317_547596808994027_4028564252884205568_n.jpg?_nc_ht=instagram.fmvd4-1.fna.fbcdn.net&_nc_cat=111&_nc_ohc=srMCC6hpZMwAX-h656-&oh=c9e0bfbd7eb63d38243e9a5e08f99a99&oe=5F33820C",
+      // img: "https://instagram.fmvd4-1.fna.fbcdn.net/v/t51.2885-15/e35/54732253_1263206357161931_429745595166432294_n.jpg?_nc_ht=instagram.fmvd4-1.fna.fbcdn.net&_nc_cat=111&_nc_ohc=cGjYvzoqLzQAX_vzeKj&oh=739a0d7634799d1dd4b860ceea4e3540&oe=5F341B10",
       align: 'right'
     }
   ];
@@ -250,17 +252,17 @@ const IndexPage = () => {
           <Card title={pageInfo.aboutUsTitle} subtitle={pageInfo.aboutUs}>
             {getListEmployees()}
           </Card>
-          <Divider align={dividers[1].align} img={dividers[1].img} />
+          <Divider align={dividers[1].align} img={dividers[0].img} />
           <div id="services" />
           <Card title={pageInfo.servicesTitle} subtitle={pageInfo.services}>
             {getListServices()}
           </Card>
-          <Divider align={dividers[2].align} img={dividers[2].img} />
+          <Divider align={dividers[2].align} img={dividers[1].img} />
           <div id="courses" />
           <Card title={pageInfo.coursesTitle} subtitle={pageInfo.courses}>
             {getListCourses()}
           </Card>
-          <Divider align={dividers[1].align} img={dividers[1].img} />
+          <Divider align={dividers[1].align} img={dividers[2].img} />
           <div id="contact" />
           <Card title={pageInfo.contactUsTitle} subtitle={pageInfo.contactUs}>
             {getFooter()}
