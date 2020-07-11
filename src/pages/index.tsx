@@ -112,8 +112,8 @@ const IndexPage = () => {
       Posibilidad de reservar un lugar con una seña de $1500
       `,
       icon: "event",
-      img:
-        "https://www.inquirer.com/resizer/orhvGzXeXNLr2xpL6_d81Lv-IQE=/1400x932/smart/arc-anglerfish-arc2-prod-pmn.s3.amazonaws.com/public/PTR2I5SGUNHJJGUGMHSGXFFCKU.jpg",
+      img: "https://instagram.fmvd4-1.fna.fbcdn.net/v/t51.2885-15/e35/43490422_709651562739316_4357652159001526272_n.jpg?_nc_ht=instagram.fmvd4-1.fna.fbcdn.net&_nc_cat=104&_nc_ohc=7YqzfuNMHbMAX-_3tw5&oh=9ef930cc35eec708b3c616984ce7aa5c&oe=5F3401A6",
+      // img: "https://www.inquirer.com/resizer/orhvGzXeXNLr2xpL6_d81Lv-IQE=/1400x932/smart/arc-anglerfish-arc2-prod-pmn.s3.amazonaws.com/public/PTR2I5SGUNHJJGUGMHSGXFFCKU.jpg",
       url: "Read More"
     },
     {
@@ -130,7 +130,7 @@ const IndexPage = () => {
       cost: 'El curso tiene un costo de $8.000',
       icon: "event",
       img:
-        "https://www.inquirer.com/resizer/orhvGzXeXNLr2xpL6_d81Lv-IQE=/1400x932/smart/arc-anglerfish-arc2-prod-pmn.s3.amazonaws.com/public/PTR2I5SGUNHJJGUGMHSGXFFCKU.jpg",
+        "https://instagram.fmvd4-1.fna.fbcdn.net/v/t51.2885-15/e35/58409183_137399877418737_8950341037487835391_n.jpg?_nc_ht=instagram.fmvd4-1.fna.fbcdn.net&_nc_cat=109&_nc_ohc=GubE4LWr7IEAX_aM2cn&oh=7fffce0f31cd8bdf1b3b86a0a82cd985&oe=5F3461FC",
       url: "Read More"
     },
     {
@@ -143,7 +143,7 @@ const IndexPage = () => {
       cost: 'El curso tiene un costo de $6.000',
       icon: "event",
       img:
-        "https://www.inquirer.com/resizer/orhvGzXeXNLr2xpL6_d81Lv-IQE=/1400x932/smart/arc-anglerfish-arc2-prod-pmn.s3.amazonaws.com/public/PTR2I5SGUNHJJGUGMHSGXFFCKU.jpg",
+        "https://instagram.fmvd4-1.fna.fbcdn.net/v/t51.2885-15/e35/42445912_1055449394629308_9141098897463050240_n.jpg?_nc_ht=instagram.fmvd4-1.fna.fbcdn.net&_nc_cat=100&_nc_ohc=RPxUTU8psqcAX_M2dDx&oh=8bc9581f0c52b504ccc3f2307e00d3e2&oe=5F310548",
       url: "Read More"
     }
   ];
