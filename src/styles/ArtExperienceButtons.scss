@@ -1,22 +1,63 @@
 .art_experience-button {
     border-radius: 4px;
+
     button {
         background: rgb(146, 144, 108);
         color: rgb(24, 24, 24);
     }
 }
-.art_experience-button_outlined {
-    border-radius: 4px;
+
+.art_experience-button_only-text {
     button {
         background: rgba(0, 0, 0, 0);
-        color: rgb(202, 202, 202);
-    }
-    button:hover {
-        .art_experience-icon {
-            color: rgb(146, 144, 108);
+
+        p {
+            color: rgb(165, 165, 165);
         }
-    }   
+    }
+
+    button:hover {
+        p {
+            color: white;
+        }
+    }
+
+    .art_experience-icon {
+        color: white;
+    }
 }
-.art_experience-icon {
-    color: rgb(146, 144, 108);
+
+.art_experience-button_only-text:hover {
+    .art_experience-icon {
+        color: rgb(146, 144, 108);
+    }
+}
+
+.art_experience-button_outlined {
+    button {
+        border-radius: 4px;
+        border-width: 1px;
+        border-style: solid;
+        border-color: rgb(146, 144, 108);
+        background: rgba(0, 0, 0, 0);
+
+        p {
+            color: rgb(165, 165, 165);
+        }
+    }
+
+    button:hover {
+        background: rgb(146, 144, 108);
+        transition: all ease 0.9s;
+
+        p {
+            color: white;
+        }
+    }
+}
+
+.art_experience-button_outlined:hover {
+    .art_experience-icon {
+        color: white;
+    }
 }

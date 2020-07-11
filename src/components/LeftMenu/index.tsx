@@ -12,7 +12,7 @@ export const LeftMenu = (props: {
     return (
         <div className="left_menu">
             <Button
-                className="art_experience-button_outlined activator_btn"
+                className="art_experience-button_only-text activator_btn"
                 onClick={() => { setShowDialog(true) }}>
                 <FiMenu className="art_experience-icon icon_button" />
             </Button>

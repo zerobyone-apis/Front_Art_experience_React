@@ -2,81 +2,92 @@
   position: relative;
   width: 100%;
   height: calc(100% - 80px); // footer
+
   // display: flex;
-.list_services-box {
-  position: relative;
-  width: 80%;
-  margin: auto;
-  height: 100%; // footer
-  overflow-y: scroll;
-  overflow-x: hidden;
-  animation-name: slide-top;
-  animation-duration: 1s;
-  // SERVICE OF LIST OF SERVICES  
+  .list_services-box {
+    position: relative;
+    width: 80%;
+    margin: auto;
+    height: 100%; // footer
+    overflow-y: scroll;
+    overflow-x: hidden;
+    animation-name: slide-top;
+    animation-duration: 1s;
+    // SERVICE OF LIST OF SERVICES  
 
     .service {
+      position: relative;
+      height: 50px;
+      width: 100%;
+      padding-bottom: 1px;
+      margin-bottom: 10px;
+      animation-name: slide-opacity;
+      animation-duration: 1s;
+      cursor: pointer;
+      display: flex;
+
+      .circle-icon {
         position: relative;
-        height: 50px;
-        width: 100%;
-        padding-bottom: 1px;
-        margin-bottom: 10px;
-        animation-name: slide-opacity;
-        animation-duration: 1s;
-        cursor: pointer;
-        display: flex;
-        .circle-icon {
-          position: relative;
-          visibility: hidden;
-          width: 40px;
-          height: 70px;
-        }
-        .name {
-          position: relative;
-          width: 50%;
-          padding-left: 20px;
-          padding-right: 20px;
-          padding-top: 10px;
-          font-size: 12px;
-          color: rgb(214, 214, 214);
+        visibility: hidden;
+        width: 40px;
+        height: 70px;
+      }
+
+      .name {
+        position: relative;
+        width: 50%;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 10px;
+        font-size: 12px;
+        color: rgb(214, 214, 214);
+        margin: 0;
+        text-transform: uppercase;
+
+        p {
           margin: 0;
-          text-transform: uppercase;
-          p {
-            margin: 0;
-            padding: 0;
-          }
-        }
-        .price {
-          position: relative;
-          width: 50%;
-          text-align: right;
-          right: 0px;
-          font-size: 12px;
-          padding-top: 10px;
-          margin: 0;
-          padding-top: 10px;
-          padding-right: 20px;
-          color: rgb(214, 214, 214);
-          p {
-            margin: 0;
-            padding: 0;
-          }
-        }
-        .service-text {
-          font-family: 'Courier New', Courier, monospace;
-          font-size: 18px;
+          padding: 0;
         }
       }
-      .selected-service {
-        color: white;
-        background-color: rgb(146, 144, 108); 
+
+      .price {
+        position: relative;
+        width: 50%;
+        text-align: right;
+        right: 0px;
+        font-size: 12px;
+        padding-top: 10px;
+        margin: 0;
+        padding-top: 10px;
+        padding-right: 20px;
+        color: rgb(214, 214, 214);
+
+        p {
+          margin: 0;
+          padding: 0;
+        }
+      }
+
+      .service-text {
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 18px;
+      }
     }
-      .service:hover {
-        background-color: rgb(85, 85, 85);
-      }
-      .no-results {
-        position: relative;
-        color: rgb(49, 49, 49);
-        top: 30%;
-      }
-}
+
+    .selected-service {
+      color: white;
+      background-color: rgb(146, 144, 108);
+    }
+
+    .service:hover {
+      background: rgb(146, 144, 108);
+      transition: all ease 0.9s;
+    }
+
+    .no-results {
+      position: relative;
+      color: rgb(49, 49, 49);
+      top: 30%;
+    }
+  }
 }

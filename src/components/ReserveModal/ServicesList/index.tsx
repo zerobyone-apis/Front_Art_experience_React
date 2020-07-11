@@ -1,5 +1,6 @@
 import React from 'react';
 import './ServicesList.scss';
+import '../../../styles/ArtExperienceButtons.scss';
 
 export const ServicesList = (props: {
     value: any,

@@ -14,14 +14,6 @@ const IndexPage = () => {
     await barberActions.getAll()
   }
 
-  // useEffect(() => {
-  //   const coso = async () => {
-  //     console.log('accede')
-  //     await getBarbers();
-  //   }
-  //   coso();
-  // }, [])
-
   const employees = [
     {
       barberId: 1,

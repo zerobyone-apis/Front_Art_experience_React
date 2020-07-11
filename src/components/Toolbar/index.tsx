@@ -20,7 +20,11 @@ export const Toolbar = () => {
                 </a>
                 {
                     toolbarButtons.map((button, i) => {
-                        return <Button key={i} href={button.href} className="art_experience-button_outlined toolbar-btn" label={button.label} />
+                        return <Button
+                            key={i}
+                            href={button.href}
+                            className="art_experience-button_only-text toolbar-btn"
+                            label={button.label} />
                     })
                 }
             </div>

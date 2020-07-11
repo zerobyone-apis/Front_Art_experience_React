@@ -2,8 +2,9 @@ $menu_size: 200px;
 
 .left_menu {
   .dialog_activator-btn {
-    background-color:rgba(255, 255, 255, 0);
+    background-color: rgba(255, 255, 255, 0);
   }
+
   .activator_btn {
     position: relative;
     height: 100%;
@@ -11,76 +12,94 @@ $menu_size: 200px;
     display: flex;
     align-items: center;
   }
-  @media only screen and (min-width: 800px) {
-      .activator_btn {
-        visibility: hidden;
-        position: absolute;
-      }
-}
+
+  @media only screen and (min-width: 700px) {
+    .activator_btn {
+      visibility: hidden;
+      position: absolute;
+    }
+  }
+
   .left_menu-dialog {
     button {
       text-align: center;
+
       p {
         margin: auto !important;
       }
     }
-      .dialog-modal {
-        position: relative;
-        width: 100%;
-        top: 0;
-        height: calc(100%);
+
+    .dialog-modal {
+      position: relative;
+      width: 100%;
+      top: 0;
+      height: calc(100%);
+      border-radius: 0;
+      animation-name: slide-left;
+      animation-duration: 1s;
+
+      .header {
+        height: 60px;
         border-radius: 0;
-        animation-name: slide-left;
-        animation-duration: 1s;
-        .header {
-          height: 60px;
-          border-radius: 0;
-          .close_btn-box {
-            text-align: left;
-            .close_btn {
-              height: 100%;
-              display: flex;
-              align-items: center;
-            }
+
+        .close_btn-box {
+          text-align: left;
+
+          .close_btn {
+            height: 100%;
+            display: flex;
+            align-items: center;
           }
         }
-        .footer {
-          visibility: hidden;
-        }
-        .content {
+      }
+
+      .footer {
+        visibility: hidden;
+      }
+
+      .content {
+        position: relative;
+        text-align: center;
+        padding-top: 100px;
+
+        .left_menu-btn {
           position: relative;
-          text-align: center;
-          padding-top: 100px;
-          .left_menu-btn {
-            position: relative;
-            margin-bottom: 60px;
-            width: 100%;
-            a {
+          margin-bottom: 60px;
+          width: 100%;
+
+          a {
+            width: 90%;
+            margin: auto;
+
+            button {
+              position: absolute;
               width: 90%;
-              margin: auto;
-              button {
-                position: absolute;
-                width: 90%;
-                height: 60px;
-                display: flex;
-                align-items: center;
-                text-align: center;
-                .label_button {
-                  display: inline;
-                  margin: 0;
-                  padding: 0;
-                }
-              }
-              button:hover {
-                background-color: rgb(85, 85, 85);
+              height: 60px;
+              display: flex;
+              align-items: center;
+              text-align: center;
+
+              .label_button {
+                display: inline;
+                margin: 0;
+                padding: 0;
               }
             }
           }
         }
       }
     }
+  }
 }
+
 @keyframes slide-left {
-  0%   { opacity: 0;right: 100vw; }
-  100% { opacity: 1;right: 0px; }
+  0% {
+    opacity: 0;
+    right: 100vw;
+  }
+
+  100% {
+    opacity: 1;
+    right: 0px;
+  }
 }

@@ -1,41 +1,52 @@
 .calendar-box {
-    position: relative;
-    animation-name: slide-top;
-    animation-duration: 1s;
-    .react-calendar {
-      margin: auto;
+  position: relative;
+  animation-name: slide-top;
+  animation-duration: 1s;
+
+  .react-calendar {
+    margin: auto;
+    border-radius: 4px;
+    border-style: none;
+    background-color: rgba(105, 105, 105, 0.5);
+    padding: 5px;
+
+    abbr,
+    span {
+      color: rgb(255, 255, 255);
+    }
+
+    .react-calendar__navigation__arrow {
+      color: white;
+    }
+
+    .react-calendar__navigation__arrow:hover {
+      background-color: rgb(146, 144, 108);
+    }
+
+    .react-calendar__navigation__label:hover {
+      background-color: rgb(146, 144, 108);
+    }
+
+    .react-calendar__tile.react-calendar__month-view__days__day {
       border-radius: 4px;
-      border-style: none;
-      background-color: rgba(105, 105, 105, 0.5);
-      padding: 5px;
-      abbr,span {
-        color: rgb(255, 255, 255);
-      }
-      .react-calendar__navigation__arrow {
-        color: white;
-      } 
-      .react-calendar__navigation__arrow:hover {
-        background-color: rgb(146, 144, 108); 
-      } 
-      .react-calendar__navigation__label:hover {
-        background-color: rgb(146, 144, 108); 
-      }
-      .react-calendar__tile.react-calendar__month-view__days__day {
-        border-radius: 4px;
-      }
-      .react-calendar__tile {
-        color: white;
-      }
-      .react-calendar__tile--now {
-        background-color: rgb(107, 107, 107); 
-      }
-      .react-calendar__tile--active {
-        background-color: rgb(146, 144, 108); 
-      }
-      .react-calendar__tile:hover {
-        background-color: rgba(255, 255, 255, 0.178);
-      }
+    }
+
+    .react-calendar__tile {
+      color: white;
+    }
+
+    .react-calendar__tile--now {
+      background-color: rgb(107, 107, 107);
+    }
+
+    .react-calendar__tile--active {
+      background-color: rgb(146, 144, 108);
+    }
+
+    .react-calendar__tile:hover {
+      // background-color: rgba(255, 255, 255, 0.178);
+      background: rgb(146, 144, 108);
+      transition: all ease 0.9s;
     }
   }
-
-
+}

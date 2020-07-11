@@ -23,10 +23,12 @@ export const DialogModal = (props: {
         <div className="dialog-modal" style={{ height: props.height, width: props.width }}>
           <div className="header">
             <div className="close_btn-box">
-              <Button className="art_experience-button_outlined close_btn" onClick={() => { props.onClose() }}>
-                <AiOutlineClose
-                  className="art_experience-icon" />
-              </Button>
+              <div className="art_experience-button_only-text">
+                <Button className="close_btn" onClick={() => { props.onClose() }}>
+                  <AiOutlineClose
+                    className="art_experience-icon" />
+                </Button>
+              </div>
             </div>
             {
               !props.title ? null :

@@ -20,7 +20,7 @@ export const ClientAccess = (props: {
         phone: '',
     };
 
-    const [accessMode, setAccessMode] = useState(1);
+    const [accessMode, setAccessMode] = useState(0);
     const [clientFields, setClientFields] = useState(defaultFields);
     const clientActions: ClientActions = new ClientActions();
 
@@ -42,7 +42,9 @@ export const ClientAccess = (props: {
         props.onClientLogged(client);
     }
     // LOGIN
-    const login = () => {
+    const login = async () => {
+        // let clientResponse = await clientActions.get(clientFields.email, clientFields.password);
+        // console.log('login client access', clientResponse)
     }
 
     const getAccessByMode = () => {

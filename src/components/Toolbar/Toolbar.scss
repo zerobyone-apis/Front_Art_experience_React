@@ -7,63 +7,85 @@ $toolbar_height: 60px;
   height: 20px;
   margin: auto;
 }
+
 .toolbar {
-    position: fixed;
-    z-index: 999;
-    width: 100%;
+  position: fixed;
+  z-index: 999;
+  width: 100%;
+  height: $toolbar_height;
+  background-color: #111111da;
+  box-shadow: 0 5px 5px #00000086;
+  animation-name: slide_bottom;
+  animation-duration: 2s;
+
+  .left-box {
+    position: relative;
     height: $toolbar_height;
-    background-color: #111111da;
-    box-shadow: 0 5px 5px #00000086;
-    animation-name: slide_bottom;
-    animation-duration: 2s;
-    .left-box {
+    width: max-content;
+    left: 0px;
+    display: flex;
+    align-items: center;
+
+    .logo-img {
+      width: 120px;
+      margin-left: 20px;
+      animation-name: slide-opacity;
+      animation-duration: 4s;
+    }
+
+    .title-btn {
+      p {
+        color: rgb(146, 144, 108);
+        font-size: 20px !important;
+      }
+    }
+
+    .toolbar-btn {
       position: relative;
-      height: $toolbar_height;
-      width: max-content;
-      left: 0px;
-      display: flex;
-      align-items: center;
-      .logo-img {
-        width: 120px;
-        margin-left: 20px;
-        animation-name: slide-opacity;
-        animation-duration: 4s;
-      }
-      .title-btn {
-        p {
-          color: rgb(146, 144, 108);
-          font-size: 20px !important; 
-        }
-      }
+    }
+
+    @media only screen and (max-width: 700px) {
       .toolbar-btn {
-        position: relative;
+        visibility: hidden;
       }
-      @media only screen and (max-width: 800px) {
-        .toolbar-btn {
+
+      .left_box {
+        .menu-icon {
           visibility: hidden;
         }
-        .left_box {
-          .menu-icon {
-            visibility: hidden;
-          }
-        }
-    }
-    }
-    .right-box {
-      position: absolute;
-      height: $toolbar_height;
-      width: max-content;
-      right: 20px;
-      top: 0;
-      display: flex;
-      align-items: center;
+      }
     }
   }
-  @keyframes slide_bottom {
-    0%   { left:0; top:-100px;}
-    100% { left:0; top:0px;}
+
+  .right-box {
+    position: absolute;
+    height: $toolbar_height;
+    width: max-content;
+    right: 20px;
+    top: 0;
+    display: flex;
+    align-items: center;
   }
-  @keyframes slide-opacity {
-    0%   { opacity: 0; }
-    100% { opacity: 1; }
+}
+
+@keyframes slide_bottom {
+  0% {
+    left: 0;
+    top: -100px;
   }
+
+  100% {
+    left: 0;
+    top: 0px;
+  }
+}
+
+@keyframes slide-opacity {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

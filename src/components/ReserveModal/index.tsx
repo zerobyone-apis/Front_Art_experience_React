@@ -227,7 +227,7 @@ export const ReserveModal = (props: { className?: string }) => {
   return (
     <div className="reserve-modal">
       <div className="dialog_activator-box" onClick={() => { setShowDialog(true) }}>
-        <Button className={`activator-btn reserve-btn art_experience-button`} label={'Reservar Aqui'} />
+        <Button className={`activator-btn reserve-btn art_experience-button_outlined`} label={'Reservar Aqui'} />
       </div>
       {!showDialog ? null : (
         <DialogModal

@@ -3,6 +3,7 @@
   width: max-content;
   margin: 0px 0px 0px 20px;
 }
+
 .dialog-box {
   position: fixed;
   width: 100%;
@@ -14,12 +15,14 @@
   align-items: center;
   animation-name: slide-opacity;
   animation-duration: 1s;
+
   .dialog-modal {
     position: relative;
     height: 100% !important;
     max-width: 800px;
-    margin:auto;
+    margin: auto;
     border-radius: 8px;
+
     .header {
       position: relative;
       width: 100%;
@@ -28,6 +31,7 @@
       background-color: rgb(23, 25, 32);
       border-color: rgba(128, 128, 128, 0.198);
       border-width: 2px;
+
       .close_btn-box {
         position: absolute;
         width: max-content;
@@ -36,29 +40,33 @@
         display: flex;
         align-items: center;
         text-align: right;
-      .close_btn {
-        position: relative;
-        background-color: rgba(0, 0, 0, 0);
-        z-index: 1;
-        border-radius: 8px;
+
+        .close_btn {
+          position: relative;
+          // background-color: rgba(0, 0, 0, 0);
+          z-index: 1;
+          border-radius: 8px;
+        }
       }
-      }
+
       .header-title {
         width: max-content;
         height: 100%;
         display: flex;
         align-items: center;
         margin: auto;
+
         .title {
           position: relative;
           width: max-content;
-          margin:0;
+          margin: 0;
           padding-top: 10px;
           color: rgb(146, 144, 108);
           font-size: 18px;
         }
       }
     }
+
     .content {
       position: relative;
       min-height: 40vh;
@@ -67,33 +75,55 @@
       background-color: rgb(16, 17, 22);
     }
   }
+
   @media only screen and (max-width: 800px) {
     .dialog-modal {
       position: relative;
       top: 0;
       height: 100% !important;
       width: 100% !important;
-      margin:auto; 
+      margin: auto;
       border-radius: 0;
       background-color: rgb(16, 17, 22);
       box-shadow: 0 4px 0 0 rgba(0, 0, 0, 0.123);
       animation-name: slide-opacity;
       animation-duration: 1s;
+
       .content {
         height: calc(100% - 60px);
       }
     }
-  }  
+  }
 }
+
 @keyframes slide-opacity {
-  0%   { opacity: 0; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
+
 @keyframes slide-top {
-  0%   { top:100px;}
-  100% { top:0px;}
+  0% {
+    top: 100px;
+  }
+
+  100% {
+    top: 0px;
+  }
 }
+
 @keyframes slide-left {
-  0%   { opacity: 0;left: 20px; }
-  100% { opacity: 1;left: 0px; }
+  0% {
+    opacity: 0;
+    left: 20px;
+  }
+
+  100% {
+    opacity: 1;
+    left: 0px;
+  }
 }
