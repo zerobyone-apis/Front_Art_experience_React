@@ -7,7 +7,7 @@ export const HourBox = (props: {
     onSelectHour: any
 }) => {
 
-    const hours = ['11:00', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00', '17:30', '18:00', '18:30'];
+    const hours = ['14:00', "14:40", '15:20', '16:00', '16:40', '17:20'];
 
     return (
         <div className="hours-item">
@@ -15,7 +15,7 @@ export const HourBox = (props: {
                 {hours.map((hour, i) => {
                     return (
                         <Button
-                            className={`hour-item ${props.value === hour ? 'selected-hour' : null}`}
+                            className={`art_experience-button_outlined hour-item ${props.value === hour ? 'selected-hour' : null}`}
                             key={i}
                             label={hour}
                             onClick={() => {

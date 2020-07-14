@@ -49,10 +49,8 @@ export const TextField = (props: {
           tabIndex={props.tabIndex}
           autoFocus
           defaultValue={props.value}
-          id={props.name}
           type={props.type}
           required={props.required}
-          name={props.name}
           value={value}
           onChange={
             changeValue
