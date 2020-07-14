@@ -4,47 +4,92 @@ import { TextField } from '../../TextField';
 import { Button } from '../../Button';
 // actions
 import ClientActions from '../../../actions/Client.actions';
-import { IClient } from '../../../types/Client.type'
+import { IClient } from '../../../types/Client.type';
 // styles
 import './ClientAccess.scss';
 import '../../../styles/ArtExperienceButtons.scss';
 import '../../../styles/ArtExperienceFonts.scss';
+import Validation from '../../../utils/Validation';
 
 export const ClientAccess = (props: {
     onClientLogged: any
 }) => {
+    let validate: Validation = new Validation();
+
     const defaultFields = {
         name: '',
         email: '',
         password: '',
-        phone: '',
+        cel: '',
     };
-
-    const [accessMode, setAccessMode] = useState(0);
+    const registerFieldsStructure: Record<string, any> = {
+        objectName: 'registerFields',
+        fields: [
+            ['name', 'string'],
+            ['email', 'string'],
+            ['password', 'string'],
+            ['cel', 'string']
+        ]
+    };
+    const loginFieldsStructure: Record<string, any> = {
+        objectName: 'loginFields',
+        fields: [
+            ['email', 'string'],
+            ['password', 'string'],
+        ]
+    };
+    const [accessMode, setAccessMode] = useState(0); // 0 - Login / 1 - register
+    const [errorMessage, setErrorMessage] = useState('');
+    const [successMessage, setSuccessMessage] = useState('');
     const [clientFields, setClientFields] = useState(defaultFields);
+    const [errorsFields, setErrorFields] = useState([]); // used by validation
     const clientActions: ClientActions = new ClientActions();
 
     const onChangeField = (fieldName: string, value: string) => {
         setClientFields({ ...clientFields, [fieldName]: value })
     }
 
+    const changeAccess = (index: number) => {
+        setErrorFields([]);
+        setErrorMessage("");
+        setAccessMode(index);
+    }
+
     // REGISTER
     const register = async () => {
-        let newClient: IClient = {
+        let registerFields: IClient = {
             username: clientFields.name,
-            cel: clientFields.phone,
+            cel: clientFields.cel,
             email: clientFields.email,
             name: clientFields.name,
             password: clientFields.password
         }
-        let client = await clientActions.add(newClient);
-
-        props.onClientLogged(client);
+        if (validate.validateFields(registerFields, setErrorFields, [registerFieldsStructure])) {
+            let clientResponse = await clientActions.add(registerFields);
+            if (typeof (clientResponse) !== 'string') {
+                props.onClientLogged(clientResponse);
+                setSuccessMessage('Te has registrado con exitosamente')
+            } else {
+                setErrorMessage(clientResponse);
+            }
+        }
     }
+
     // LOGIN
     const login = async () => {
-        // let clientResponse = await clientActions.get(clientFields.email, clientFields.password);
-        // console.log('login client access', clientResponse)
+        let loginFields = {
+            email: clientFields.email,
+            password: clientFields.password
+        }
+        if (validate.validateFields(loginFields, setErrorFields, [loginFieldsStructure])) {
+            let clientResponse = await clientActions.login(loginFields);
+            if (typeof (clientResponse) !== 'string') {
+                props.onClientLogged(clientResponse);
+                setSuccessMessage('Has iniciado sesion con exito')
+            } else {
+                setErrorMessage(clientResponse);
+            }
+        }
     }
 
     const getAccessByMode = () => {
@@ -58,26 +103,28 @@ export const ClientAccess = (props: {
                                 name="email"
                                 defaultValue={clientFields.email}
                                 value={clientFields.email}
+                                error={validate.get('loginFields.email', errorsFields) || ''}
                                 onChange={onChangeField} />
                             <TextField
                                 label="Contraseña"
                                 name="password"
                                 defaultValue={clientFields.password}
                                 value={clientFields.password}
+                                error={validate.get('loginFields.password', errorsFields) || ''}
                                 onChange={onChangeField} />
                             <Button
                                 onClick={() => {
                                     login();
                                 }}
-                                className="access_btn art_experience-button"
+                                className="access_btn art_experience-button_outlined"
                                 label="Acceder" />
                         </form>
-                        <p className="title">Si no estas registrado, ingresa AQUI</p>
+                        <p className="art_experience-text-light title">Si no estas registrado, ingresa AQUI</p>
                         <Button
                             onClick={() => {
-                                setAccessMode(1);
+                                changeAccess(1);
                             }}
-                            className="access_btn art_experience-button"
+                            className="access_btn art_experience-button_outlined"
                             label="Registrate Aqui"
                         />
                     </div>
@@ -89,41 +136,48 @@ export const ClientAccess = (props: {
                         <form>
                             <TextField
                                 label="Nombre"
-                                name="name"
                                 defaultValue={clientFields.name}
                                 value={clientFields.name}
+                                name="name"
+                                error={validate.get('registerFields.name', errorsFields) || ''}
                                 onChange={onChangeField} />
                             <TextField
                                 label="Email"
-                                name="email"
                                 defaultValue={clientFields.email}
                                 value={clientFields.email}
+                                name="email"
+                                error={validate.get('registerFields.email', errorsFields) || ''}
                                 onChange={onChangeField} />
                             <TextField
                                 label="Contraseña"
-                                name="password"
+                                type="password"
                                 defaultValue={clientFields.password}
                                 value={clientFields.password}
+                                error={validate.get('registerFields.password', errorsFields) || ''}
+                                name="password"
                                 onChange={onChangeField} />
                             <TextField
                                 label="Celular / Telefono"
-                                name="phone"
-                                value={clientFields.phone}
+                                value={clientFields.cel}
+                                name="cel"
+                                error={validate.get('registerFields.cel', errorsFields) || ''}
                                 onChange={onChangeField} />
+                            <p className="error_message">{errorMessage}</p>
+                            <p className="success_message">{successMessage}</p>
                             <Button
                                 onClick={() => {
                                     register();
                                 }}
-                                className="access_btn art_experience-button"
+                                className="access_btn art_experience-button_outlined"
                                 label="Registrarse"
                             />
                         </form>
-                        <p className="title">Si ya estas registrado accede AQUI</p>
+                        <p className="art_experience-text-light title">Si ya estas registrado accede AQUI</p>
                         <Button
                             onClick={() => {
                                 setAccessMode(0);
                             }}
-                            className="access_btn art_experience-button"
+                            className="access_btn art_experience-button_outlined"
                             label="Accede Aqui"
                         />
                     </div>

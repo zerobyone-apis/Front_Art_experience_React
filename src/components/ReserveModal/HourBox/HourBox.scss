@@ -18,10 +18,6 @@
     border-radius: 4px;
     color: white;
 
-    button {
-      // width: 30px;
-    }
-
     button:hover {
       background: rgb(146, 144, 108);
       transition: all ease 0.9s;
@@ -38,8 +34,11 @@
 
   .selected-hour {
     button {
-      color: white;
       background-color: rgb(146, 144, 108);
+
+      p {
+        color: white !important;
+      }
     }
   }
 }

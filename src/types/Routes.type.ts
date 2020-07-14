@@ -23,13 +23,13 @@ export const RESERVE_ROUTE: string = '/reserve';
 // PUT /reserve  -> /update
 // PUT /reserve  -> /client/{id_client}/cancel/{id_reserve}
 // DELETE /reserve -> /user/{id_barber_or_hair}/reserve/{id_reserve}
-export const CLIENT_ROUTE: string = '/client';
+export const CLIENT_ROUTE: string = `/client`;
+export const CLIENT_EXISTS_ROUTE: string = `${CLIENT_ROUTE}/email`;
 // GET /client -> Obtiene todas
 // GET /client -> /{id_client}
 // POST /client
 // PUT /client 
 // DELETE /client -> /{id_client}
-
 
 // endpoints
 export const GET_ENDPOIT: string = 'get';

@@ -1,40 +1,48 @@
 .client_info-box {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow-x: none;
+  text-align: center;
+  animation-name: slide-top;
+  animation-duration: 1s;
+
+  p {
+    // color: white;
+  }
+
+  .success_message {
+    color: rgb(129, 235, 129);
+  }
+
+  .login-box {
     position: relative;
     width: 100%;
-    height: 100vh;
-    overflow-x: none;
-    text-align: center;
+    height: max-content;
+    // margin-bottom: 40px;
     animation-name: slide-top;
     animation-duration: 1s;
-    p {
-      color: white;
-    }
-    .error_message {
-      color: red;
-    }
-    .login-box {
-      position: relative;
-      width: 100%;
-      height: max-content;
-      // margin-bottom: 40px;
-      animation-name: slide-top;
-      animation-duration: 1s;
-    }
-    .register-box {
-      position: relative;
-      animation-name: slide-top;
-      animation-duration: 1s;
-    }
-    .access_btn {
-      margin-top: 10px;
-    }
   }
-  
-  @keyframes slide-top {
-    from {
-      opacity: 0;top:100px;
-    }
-    to {
-      opacity: 1;top:0px;
-    }
+
+  .register-box {
+    position: relative;
+    animation-name: slide-top;
+    animation-duration: 1s;
   }
+
+  .access_btn {
+    margin-top: 10px;
+  }
+}
+
+@keyframes slide-top {
+  from {
+    opacity: 0;
+    top: 100px;
+  }
+
+  to {
+    opacity: 1;
+    top: 0px;
+  }
+}

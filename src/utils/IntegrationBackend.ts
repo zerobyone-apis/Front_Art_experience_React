@@ -1,4 +1,5 @@
 export default class IntegrationBackend {
+  // private baseUrl = 'https://backend-art-experience.herokuapp.com';
   private baseUrl = 'https://backend-art-experience.herokuapp.com';
   private axios = require('axios');
 
