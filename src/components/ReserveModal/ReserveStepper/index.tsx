@@ -52,7 +52,7 @@ export const ReserveStepper = (props: {
                 // Step 1: select barber
                 <div className="reserve-step">
                     <div className="step-title">
-                        <p>Seleccione el barbero</p>
+                        <p>Seleccione el Barbero</p>
                     </div>
                     <BarbersList
                         value={props.barberStep.selectedBarber}
