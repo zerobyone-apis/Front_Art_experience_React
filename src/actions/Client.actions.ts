@@ -22,12 +22,15 @@ export default class ClientActions {
                     data,
                     CLIENT_ROUTE
                 );
+                if (response.status !== 201) {
+                    console.log('Error on create client', response.message)
+                    return Error('Error on create client')
+                }
                 console.log('success post client')
-                console.log(response)
+                return response;
             } catch (error) {
                 return "Ocurrio un error! Vuelva a intentarlo"
             }
-            return newClient;
         } else {
             return "El email ya esta registrado";
         }

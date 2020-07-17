@@ -1,7 +1,7 @@
 {
-  "name": "frontend",
-  "version": "1.0.0",
-  "description": "",
+  "name": "art_experience",
+  "version": "1.0.1",
+  "description": "Este es el proyecto",
   "main": "dist/index.js",
   "engines": {
     "node": "12.13.0"
@@ -13,21 +13,16 @@
     "lint": "eslint ./src --ext .js,.ts,.tsx,.jsx",
     "lint:fix": "eslint ./src --ext .js,.ts,.tsx,.jsx --fix"
   },
-  "husky": {
-    "hooks": {
-      "pre-push": "npm run lint"
-    }
-  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/TecDSX/proyecto-final-tecnicatura-client.git"
+    "url": "git+https://github.com/zerobyone-apis/Front_Art_experience_React.git"
   },
-  "author": "",
+  "author": "ZeroByOne - Damian Rodriguez",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/TecDSX/proyecto-final-tecnicatura-client/issues"
+    "url": "https://github.com/zerobyone-apis/Front_Art_experience_React/issues"
   },
-  "homepage": "https://github.com/TecDSX/proyecto-final-tecnicatura-client#readme",
+  "homepage": "https://github.com/zerobyone-apis/Front_Art_experience_React/#README.md",
   "devDependencies": {
     "@types/cookie-parser": "^1.4.2",
     "@types/cors": "^2.8.6",
