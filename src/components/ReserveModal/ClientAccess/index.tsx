@@ -73,12 +73,19 @@ export const ClientAccess = (props: {
         if (validate.validateFields(registerFields, setErrorFields, [registerFieldsStructure])) {
             let clientResponse = await clientActions.add(registerFields);
             if (typeof (clientResponse) !== 'string') {
+                clientCookie(clientResponse);
                 props.onClientLogged(clientResponse);
                 setSuccessMessage('Te has registrado con exitosamente')
             } else {
                 setErrorMessage(clientResponse);
             }
         }
+    }
+
+    function clientCookie(client: IClient){
+        document.cookie
+        
+
     }
 
     // LOGIN

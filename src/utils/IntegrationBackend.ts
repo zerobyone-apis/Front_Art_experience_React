@@ -8,13 +8,18 @@ export default class IntegrationBackend {
       method: method,
       url: this.baseUrl + (route == undefined ? '' : route),
       data: {
-        ...data
+        ...data // This is the body part
       },
       headers: {
         'Content-Type': 'application/json;charset=UTF-8'
       }
     };
+    console.log('Este es el objeto que se manda para el backend \n', data)
     let res = await this.axios(config);
     return res.data;
   }
+
+
+
+
 }
