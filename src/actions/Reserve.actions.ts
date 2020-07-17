@@ -8,34 +8,17 @@ export default class ReserveActions {
     private backend: IntegrationBackend = new IntegrationBackend();
 
     public async add(reserve: IReserve) {
+        console.log("Accede ReserveActions", reserve)
         let customMoment = moment;
         customMoment.locale();
-
         try {
-            let data: IReserve = {
-                barberOrHairdresserId: reserve.barberOrHairdresserId,
-                clientId: -1,
-                nameClient: reserve.nameClient,
-                mailClient: reserve.mailClient,
-                celClient: reserve.celClient,
-                totalCost: reserve.totalCost,
-                startTime: moment(reserve.startTime).format(),
-                endTime: reserve.endTime,
-                priceWork: reserve.priceWork,
-                workTime: reserve.workTime,
-                workToDo: reserve.workToDo,
-                reserveDay: reserve.reserveDay,
-                isActive: reserve.isActive,
-            };
-
-            console.log(data);
-
-            // const response: { id: number }[] = await this.backend.send(
-            //     POST_ENDPOIT,
-            //     data,
-            //     RESERVE_ROUTE
-            // );
-
+            reserve.startTime = moment(reserve.startTime).format();
+            const response: any = await this.backend.send(
+                POST_ENDPOIT,
+                reserve,
+                `${RESERVE_ROUTE}/${reserve.clientId}`
+            );
+            console.log("response reserve action:", response)
             return new ResultObject(201, 'reserve created success')
         } catch (error) {
             console.error('Error Reserve.actions method add -> ', error.message);
