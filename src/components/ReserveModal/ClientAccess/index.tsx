@@ -27,7 +27,7 @@ export const ClientAccess = (props: {
         fields: [
             ['name', 'string'],
             ['email', 'string'],
-            ['password', 'string'],
+            // ['password', 'string'],
             ['cel', 'string']
         ]
     };
@@ -35,7 +35,7 @@ export const ClientAccess = (props: {
         objectName: 'loginFields',
         fields: [
             ['email', 'string'],
-            ['password', 'string'],
+            // ['password', 'string'],
         ]
     };
     const [accessMode, setAccessMode] = useState(0); // 0 - Login / 1 - register
@@ -51,12 +51,18 @@ export const ClientAccess = (props: {
 
     const changeAccess = (index: number) => {
         setErrorFields([]);
-        setErrorMessage("");
+        hideMessages();
         setAccessMode(index);
+    }
+
+    const hideMessages = () => {
+        setErrorMessage("");
+        setSuccessMessage("")
     }
 
     // REGISTER
     const register = async () => {
+        hideMessages();
         let registerFields: IClient = {
             username: clientFields.name,
             cel: clientFields.cel,
@@ -77,17 +83,19 @@ export const ClientAccess = (props: {
 
     // LOGIN
     const login = async () => {
+        hideMessages();
         let loginFields = {
             email: clientFields.email,
             password: clientFields.password
         }
         if (validate.validateFields(loginFields, setErrorFields, [loginFieldsStructure])) {
-            let clientResponse = await clientActions.login(loginFields);
-            if (typeof (clientResponse) !== 'string') {
-                props.onClientLogged(clientResponse);
-                setSuccessMessage('Has iniciado sesion con exito')
+            let response = await clientActions.login(loginFields);
+            console.log('respuesta de clientaccess login ', response, typeof (response));
+            if (typeof (response) !== 'string') {
+                props.onClientLogged(response);
+                setSuccessMessage('Has iniciado sesion con exito');
             } else {
-                setErrorMessage(clientResponse);
+                setErrorMessage(response);
             }
         }
     }
@@ -105,13 +113,15 @@ export const ClientAccess = (props: {
                                 value={clientFields.email}
                                 error={validate.get('loginFields.email', errorsFields) || ''}
                                 onChange={onChangeField} />
-                            <TextField
+                            {/* <TextField
                                 label="Contraseña"
                                 name="password"
                                 defaultValue={clientFields.password}
                                 value={clientFields.password}
                                 error={validate.get('loginFields.password', errorsFields) || ''}
-                                onChange={onChangeField} />
+                                onChange={onChangeField} /> */}
+                            <p className="error_message">{errorMessage}</p>
+                            <p className="success_message">{successMessage}</p>
                             <Button
                                 onClick={() => {
                                     login();
@@ -148,14 +158,14 @@ export const ClientAccess = (props: {
                                 name="email"
                                 error={validate.get('registerFields.email', errorsFields) || ''}
                                 onChange={onChangeField} />
-                            <TextField
+                            {/* <TextField
                                 label="Contraseña"
                                 type="password"
                                 defaultValue={clientFields.password}
                                 value={clientFields.password}
                                 error={validate.get('registerFields.password', errorsFields) || ''}
                                 name="password"
-                                onChange={onChangeField} />
+                                onChange={onChangeField} /> */}
                             <TextField
                                 label="Celular / Telefono"
                                 value={clientFields.cel}
