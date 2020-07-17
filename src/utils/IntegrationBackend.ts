@@ -1,5 +1,4 @@
 export default class IntegrationBackend {
-  // private baseUrl = 'https://backend-art-experience.herokuapp.com';
   private baseUrl = 'https://backend-art-experience.herokuapp.com';
   private axios = require('axios');
 
@@ -9,7 +8,7 @@ export default class IntegrationBackend {
       method: method,
       url: this.baseUrl + (route == undefined ? '' : route),
       data: {
-        data // This is the body part
+        ...data
       },
       headers: {
         'Content-Type': 'application/json;charset=UTF-8'
