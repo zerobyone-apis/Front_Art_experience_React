@@ -155,7 +155,7 @@ export const ReserveModal = (props: { className?: string }) => {
   }, [client])
 
   // CREATE RESERVE
-  const createReserve = () => {
+  const createReserve = async () => {
     let totalCost = 0;
     let startDateFormatted = `${moment(reserveDate).format().split('T')[0]}T${reserveHour}-03:00`
     let newReserve: IReserve = {
@@ -170,7 +170,8 @@ export const ReserveModal = (props: { className?: string }) => {
       priceWork: totalCost,
       workToDo: selectedService.name,
     }
-    reserveActions.add(newReserve);
+    console.log('create reserve', newReserve)
+    await reserveActions.add(newReserve);
     // restart all steps of reserve_modal
     setReserveHour("");
     setReserveDate(new Date());

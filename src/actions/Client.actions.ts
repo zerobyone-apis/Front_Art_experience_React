@@ -7,7 +7,7 @@ export default class ClientActions {
 
     add = async (newClient: IClient) => {
         console.log("Access to add", newClient)
-        let existsEmail = await this.exists(newClient.email);
+        let existsEmail = await this.getByEmail(newClient.email);
         if (!existsEmail) {
             try {
                 let data: IClient = {
@@ -35,48 +35,30 @@ export default class ClientActions {
 
     login = async (client: { email: string, password: string }) => {
         console.log("Access to login", client)
-        let existsEmail = await this.exists(client.email);
-        if (!existsEmail) {
+        let existsEmail = await this.getByEmail(client.email);
+        console.log(existsEmail)
+        if (existsEmail) {
             try {
-                // let data: IClient = {
-                //     "name": newClient.name,
-                //     "username": newClient.username,
-                //     "email": newClient.email,
-                //     "password": newClient.password,
-                //     "cel": newClient.cel,
-                // };
-                // const response: any = await this.backend.send(
-                //     POST_ENDPOIT,
-                //     data,
-                //     CLIENT_ROUTE
-                // );
-                // console.log('success post client')
-                // console.log(response)
+                // login method
+                return existsEmail;
             } catch (error) {
                 return "Ocurrio un error! Vuelva a intentarlo"
             }
-            return null;
-            // return newClient;
         } else {
-            return "El email ya esta registrado";
+            return "El email no esta registrado";
         }
     }
 
-    get = async (email: string, password: string) => {
-    }
-
-    exists = async (email: string) => {
+    getByEmail = async (email: string) => {
         try {
             let data = { email };
-            let existsClient: IClient = await this.backend.send(
+            let response: IClient = await this.backend.send(
                 GET_ENDPOIT,
                 data,
                 `${CLIENT_EXISTS_ROUTE}/${email}`
             );
-            console.log('No errors exists client ', existsClient)
-            return existsClient;
+            return response;
         } catch (error) {
-            // usar un switch case para mostrar errores
             console.error(`Error: exists client-> ${error.message}`);
             return null;
         }

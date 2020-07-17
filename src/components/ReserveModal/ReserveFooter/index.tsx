@@ -32,6 +32,7 @@ export const ReserveFooter = (props: {
                             if (props.wizard < 4) {
                                 props.onChangeWizard(props.wizard + 1);
                             } else {
+                                console.log("Es finalize")
                                 props.finalize();
                             }
                         }}
