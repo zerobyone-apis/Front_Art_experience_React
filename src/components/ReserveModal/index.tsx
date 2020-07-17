@@ -156,17 +156,15 @@ export const ReserveModal = (props: { className?: string }) => {
 
   // CREATE RESERVE
   const createReserve = async () => {
-    let totalCost = 0;
-    let startDateFormatted = `${moment(reserveDate).format().split('T')[0]}T${reserveHour}-03:00`
+    let totalCost = 0; // Total cost lo calculo en el backend es al pedo que este aca
+    let startDateFormatted = `${moment(reserveDate).format().split('T')[0]}T${reserveHour}:00`
     let newReserve: IReserve = {
-      clientId: client.userId,
       barberOrHairdresserId: selectedBarber.barberId,
+      clientId: client.clientId,
       nameClient: client.name,
       mailClient: client.email,
       celClient: client.cel,
-      workTime: 30, // default work time
       startTime: startDateFormatted,
-      endTime: '', // TODO
       priceWork: totalCost,
       workToDo: selectedService.name,
     }
