@@ -12,7 +12,6 @@ export default class ReserveActions {
         let customMoment = moment;
         customMoment.locale();
         try {
-            reserve.startTime = moment(reserve.startTime).format();
             const response: any = await this.backend.send(
                 POST_ENDPOIT,
                 reserve,
