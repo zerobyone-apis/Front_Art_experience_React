@@ -99,22 +99,13 @@ const IndexPage = () => {
       name: "Curso intensivo",
       duration: "4 meses", //  / 1 clase por semana a partir de las 13:30hrs
       info: `
-      Es un curso intensivo en donde se aprendera:
-      técnicas de fade
-      - uso correspondiente de las herramientas 
-      - barbas
-      - freestyle 
-      - peinados 
-      - marketing 
-      -fotografia 
-      - atención al publico
-      -particiones y secciones de la cabeza
-      `,
+      Curso intensivo en donde se aprenderan técnicas de fade con uso correspondiente de las herramientas\n 
+      \nBarbas / reestyle / peinados / marketing / fotografia / particiones y secciones de la cabeza\n`,
       cost: `
       Contamos con  2 posibilidades de pago:
       Contado : $ 13.000 
       Financiado: $ 4.000 en 4 cuotas
-      Posibilidad de reservar un lugar con una seña de $1500
+      Posibilidad de reservar un lugar con una seña de $1500\n
       `,
       icon: "event",
       img: "https://instagram.fmvd4-1.fna.fbcdn.net/v/t51.2885-15/e35/43490422_709651562739316_4357652159001526272_n.jpg?_nc_ht=instagram.fmvd4-1.fna.fbcdn.net&_nc_cat=104&_nc_ohc=7YqzfuNMHbMAX-_3tw5&oh=9ef930cc35eec708b3c616984ce7aa5c&oe=5F3401A6",
@@ -141,8 +132,8 @@ const IndexPage = () => {
     {
       name: "Perfeccionamiento de corte",
       info: `
-        Trabajamos con 4 modelos hacemos 3 estilos diferentes por ej: 
-        french crop pompadour y classic cuts.
+        Trabajamos con 4 modelos hacemos 3 estilos diferentes:\n 
+        French crop pompadour y Classic cuts
       `,
       duration: "2 dias", //  / 2 cortes diarios
       cost: 'El curso tiene un costo de $6.000',
@@ -300,10 +291,17 @@ const IndexPage = () => {
           className="dialog"
           title={selectedCourse.name}
           onClose={() => { setShowDialogCourse(false) }} >
-
-          <p className="course-info art_experience-text-light">{selectedCourse.info}</p>
-          <p className="course-info art_experience-text-light">{selectedCourse.cost}</p>
-
+          {
+            selectedCourse.info.split('\n').map((item, i) => {
+              return <p className="course-info art_experience-text-light" key={i}>{item}</p>
+            })
+          }
+          <div className="divider"></div>
+          {
+            selectedCourse.cost.split('\n').map((item, i) => {
+              return <p className="course-info art_experience-text-light" key={i}>{item}</p>
+            })
+          }
         </DialogModal>
       }
     </div >
