@@ -26,9 +26,9 @@ export default class UserActions {
         charge: userData.charge,
         isAdmin: userData.isAdmin
       };
-      return new ResultObject(200, user);
+      return new ResultObject(200, user,{});
     } catch (error) {
-      return new ResultObject(400, error);
+      return new ResultObject(400, error,{});
     }
   }
 
