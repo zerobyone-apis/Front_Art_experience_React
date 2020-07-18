@@ -29,8 +29,6 @@ export const ReserveStepper = (props: {
     },
 }) => {
 
-
-
     switch (props.wizard) {
         case 0:
             return (
