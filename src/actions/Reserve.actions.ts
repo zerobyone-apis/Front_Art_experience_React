@@ -8,7 +8,7 @@ export default class ReserveActions {
     private backend: IntegrationBackend = new IntegrationBackend();
 
     public async add(reserve: IReserve) {
-        console.log("Accede ReserveActions", reserve)
+        console.log("Accede Reserve Actions", reserve)
         let customMoment = moment;
         customMoment.locale();
         try {
@@ -17,11 +17,15 @@ export default class ReserveActions {
                 reserve,
                 `${RESERVE_ROUTE}/${reserve.clientId}`
             );
-            console.log("response reserve action:", response)
-            return new ResultObject(201, 'reserve created success')
+            if (response.status !== 201) {
+                console.log(response.message)
+                throw Error(response.message)
+            }
+            console.log("Reserve success \n", response.data)
+            return response.data
         } catch (error) {
             console.error('Error Reserve.actions method add -> ', error.message);
-            return new ResultObject(404, error);
+            return new ResultObject(404, error, {});
         }
     }
 }

@@ -22,12 +22,13 @@ export default class ClientActions {
                     data,
                     CLIENT_ROUTE
                 );
+                
                 if (response.status !== 201) {
                     console.log('Error on create client', response.message)
                     return Error('Error on create client')
                 }
                 console.log('success post client')
-                return response;
+                return response.data;
             } catch (error) {
                 return "Ocurrio un error! Vuelva a intentarlo"
             }
@@ -55,12 +56,16 @@ export default class ClientActions {
     getByEmail = async (email: string) => {
         try {
             let data = { email };
-            let response: IClient = await this.backend.send(
+            let response = await this.backend.send(
                 GET_ENDPOIT,
                 data,
                 `${CLIENT_EXISTS_ROUTE}/${email}`
             );
-            return response;
+            if (response.status !== 200) {
+                console.log(response.message)
+                return Error(response.message)
+            }
+            return response.data;
         } catch (error) {
             console.error(`Error: exists client-> ${error.message}`);
             return null;

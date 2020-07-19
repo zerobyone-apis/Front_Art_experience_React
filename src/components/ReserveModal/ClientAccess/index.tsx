@@ -72,6 +72,7 @@ export const ClientAccess = (props: {
         }
         if (validate.validateFields(registerFields, setErrorFields, [registerFieldsStructure])) {
             let clientResponse = await clientActions.add(registerFields);
+            
             if (typeof (clientResponse) !== 'string') {
                 clientCookie(clientResponse);
                 props.onClientLogged(clientResponse);
@@ -82,9 +83,9 @@ export const ClientAccess = (props: {
         }
     }
 
+    //Do feature to save the client object to cookie 
     function clientCookie(client: IClient){
         document.cookie
-        
 
     }
 

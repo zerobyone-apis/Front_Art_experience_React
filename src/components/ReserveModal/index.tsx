@@ -19,6 +19,7 @@ import { IClient } from '../../types/Client.type';
 import '../../styles/ArtExperienceButtons.scss';
 import './ReserveModal.scss';
 import '../../styles/theme.scss';
+import ResultObject from '../../utils/ResultObject';
 
 
 export const ReserveModal = (props: { className?: string }) => {
@@ -110,7 +111,7 @@ export const ReserveModal = (props: { className?: string }) => {
     {
       barberId: 2,
       userId: 2,
-      name: "Pablo Mendez",// tengo que averiguar el appellido
+      name: "Pablo Merniz",// tengo que averiguar el appellido
       job: "Profecional Barber",
       amountCuts: 2,
       clientsBarber: 5,//amountClients
@@ -140,7 +141,7 @@ export const ReserveModal = (props: { className?: string }) => {
   const [reserveHour, setReserveHour] = useState("");
   const [reserveDate, setReserveDate] = useState(null);
   const [selectedBarber, setSelectedBarber] = useState(defaultBarber);
-  const [selectedService, setSelectedService] = useState({ name: '' });
+  const [selectedService, setSelectedService] = useState({ name: '' ,cost: 0});
   const [wizard, setWizard] = useState(0);
   const [client, setClient] = useState(defaultClient);
 
@@ -150,7 +151,6 @@ export const ReserveModal = (props: { className?: string }) => {
 
 
   useEffect(() => {
-    console.log('change client in reserve')
     console.log(client)
   }, [client])
 
@@ -159,6 +159,7 @@ export const ReserveModal = (props: { className?: string }) => {
   const createReserve = async () => {
     let totalCost = 0; // Total cost lo calculo en el backend es al pedo que este aca
     let startDateFormatted = `${moment(reserveDate).format().split('T')[0]}T${reserveHour}:00`
+    
     let newReserve: IReserve = {
       barberOrHairdresserId: selectedBarber.barberId,
       clientId: client.clientId,
@@ -166,11 +167,13 @@ export const ReserveModal = (props: { className?: string }) => {
       mailClient: client.email,
       celClient: client.cel,
       startTime: startDateFormatted,
-      priceWork: totalCost,
+      priceWork: selectedService.cost,
       workToDo: selectedService.name,
     }
-    console.log('create reserve', newReserve)
-    await reserveActions.add(newReserve);
+    console.log('To create reserve', newReserve)
+    let createdReserve: any = await reserveActions.add(newReserve);
+    console.log(`Created Reserve full object: ${createdReserve.clientId}`);
+
     // restart all steps of reserve_modal
     setReserveHour("");
     setReserveDate(new Date());
