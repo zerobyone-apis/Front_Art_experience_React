@@ -1,0 +1,46 @@
+.login-dialog {
+    display: flex;
+    align-items: center;
+
+    .dialog-modal {
+        width: 40%;
+        height: max-content !important;
+        text-align: center;
+
+        .content {
+            padding: 20px;
+
+            .course-info {
+                position: relative;
+                padding: 0;
+                margin: 0;
+            }
+
+            .divider {
+                position: relative;
+                width: 20px;
+                height: 20px;
+            }
+        }
+    }
+}
+
+
+
+// .login-modal {
+//     .dialog {
+//         display: flex;
+//         align-items: center;
+//     }
+
+//     .dialog-modal {
+//         position: relative;
+//         width: 40% !important;
+//         height: max-content !important;
+//         text-align: center;
+
+//         .content {
+//             padding: 20px;
+//         }
+//     }
+// }
