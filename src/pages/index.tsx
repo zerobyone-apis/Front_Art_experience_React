@@ -6,6 +6,7 @@ import { Divider } from '../components/Divider';
 import { Button } from '../components/Button';
 import * as Icons from 'react-icons/fa';
 import BarberAction from '../actions/Barber.actions';
+import { ButtonContext, ButtonProvider } from '../contexts/ButtonsContext';
 import './index.scss';
 import '../styles/ArtExperienceButtons.scss';
 
@@ -182,6 +183,7 @@ const IndexPage = () => {
       </div>
     )
   }
+
   const getListServices = () => {
     return services.map((service, i) =>
       <div
@@ -194,11 +196,6 @@ const IndexPage = () => {
       </div>
     )
   }
-
-
-
-
-
 
   const getListCourses = () => {
     return courses.map((course, i) =>
@@ -220,13 +217,6 @@ const IndexPage = () => {
       </div >
     )
   }
-
-
-
-
-
-
-
 
   const getFooter = () => {
     return (
