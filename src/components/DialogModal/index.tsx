@@ -18,27 +18,23 @@ export const DialogModal = (props: {
   buttonClassName?: string
 }) => {
   return (
-    <div>
-      <div className={`dialog-box ${props.className}`}>
-        <div className="dialog-modal" style={{ height: `${props.height}`, width: `${props.width}` }}>
-          <div className="header">
-            <div className="close_btn-box">
-              <div className="art_experience-button_only-text">
-                <Button className="close_btn" onClick={() => { props.onClose() }}>
-                  <AiOutlineClose
-                    className="art_experience-icon" />
-                </Button>
-              </div>
+    <div className={`dialog-box ${props.className}`}>
+      <div className="dialog-modal" style={{ height: `${props.height}`, width: `${props.width}` }}>
+        <div className="header">
+          <div className="close_btn-box">
+            <div className="art_experience-button_only-text">
+              <Button className="close_btn" onClick={() => { props.onClose() }}>
+                <AiOutlineClose
+                  className="art_experience-icon" />
+              </Button>
             </div>
-
-            <div className="header-title">
-              {props.header || <p className="title art_experience-text-light">{props.title}</p>}
-            </div>
-
           </div>
-          <div className="content">
-            {props.children}
+          <div className="header-title">
+            {props.header || <p className="title art_experience-text-light">{props.title}</p>}
           </div>
+        </div>
+        <div className="content">
+          {props.children}
         </div>
       </div>
     </div>
