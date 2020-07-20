@@ -2,9 +2,10 @@
   position: relative;
   text-align: center;
   display: inline-flex;
+
   button {
     position: relative;
-    outline:none;
+    outline: none;
     font-size: 12px;
     padding: 8px 20px 8px 20px;
     transition: box-shadow .3s;
@@ -13,14 +14,21 @@
     display: flex;
     background-color: rgb(93, 93, 93);
   }
+
   button:hover {
     color: white;
     cursor: pointer;
   }
+
   .label_button {
     margin: 0;
   }
-  .disabled {
-    background: grey !important;
+}
+
+.disabled {
+  opacity: 0.2;
+
+  button:hover {
+    cursor: initial !important;
   }
 }
