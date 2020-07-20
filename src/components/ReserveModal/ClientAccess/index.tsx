@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
 import { TextField } from '../../TextField';
 import { Button } from '../../Button';
+import { ButtonContext } from '../../../contexts/ButtonsContext';
+import { ClientContext } from '../../../contexts/ClientContext';
 // actions
 import ClientActions from '../../../actions/Client.actions';
 import { IClient } from '../../../types/Client.type';
@@ -14,6 +16,21 @@ import Validation from '../../../utils/Validation';
 export const ClientAccess = (props: {
     onClientLogged: any
 }) => {
+    // Contexts
+
+    const {
+        // @ts-ignore
+        disabled,
+        setDisabledButton
+    } = useContext(ButtonContext);
+    const {
+        // @ts-ignore
+        clientIsLogged,
+        setClientData
+    } = useContext(ClientContext);
+
+
+
     let validate: Validation = new Validation();
 
     const defaultFields = {
@@ -72,10 +89,10 @@ export const ClientAccess = (props: {
         }
         if (validate.validateFields(registerFields, setErrorFields, [registerFieldsStructure])) {
             let clientResponse = await clientActions.add(registerFields);
-            
             if (typeof (clientResponse) !== 'string') {
                 clientCookie(clientResponse);
                 props.onClientLogged(clientResponse);
+                setClientData(clientResponse);
                 setSuccessMessage('Te has registrado con exitosamente')
             } else {
                 setErrorMessage(clientResponse);
@@ -84,9 +101,8 @@ export const ClientAccess = (props: {
     }
 
     //Do feature to save the client object to cookie 
-    function clientCookie(client: IClient){
+    function clientCookie(client: IClient) {
         document.cookie
-
     }
 
     // LOGIN
@@ -97,10 +113,13 @@ export const ClientAccess = (props: {
             password: clientFields.password
         }
         if (validate.validateFields(loginFields, setErrorFields, [loginFieldsStructure])) {
+            setDisabledButton(true);
             let response = await clientActions.login(loginFields);
+            setDisabledButton(false);
             console.log('respuesta de clientaccess login ', response, typeof (response));
             if (typeof (response) !== 'string') {
                 props.onClientLogged(response);
+                setClientData(response);
                 setSuccessMessage('Has iniciado sesion con exito');
             } else {
                 setErrorMessage(response);

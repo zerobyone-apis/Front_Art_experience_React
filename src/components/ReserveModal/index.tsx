@@ -141,7 +141,7 @@ export const ReserveModal = (props: { className?: string }) => {
   const [reserveHour, setReserveHour] = useState("");
   const [reserveDate, setReserveDate] = useState(null);
   const [selectedBarber, setSelectedBarber] = useState(defaultBarber);
-  const [selectedService, setSelectedService] = useState({ name: '' ,cost: 0});
+  const [selectedService, setSelectedService] = useState({ name: '', cost: 0 });
   const [wizard, setWizard] = useState(0);
   const [client, setClient] = useState(defaultClient);
 
@@ -149,17 +149,15 @@ export const ReserveModal = (props: { className?: string }) => {
   const reserveActions = new ReserveActions();
   const clientActions = new ClientActions();
 
-
   useEffect(() => {
     console.log(client)
   }, [client])
-
 
   // CREATE RESERVE
   const createReserve = async () => {
     let totalCost = 0; // Total cost lo calculo en el backend es al pedo que este aca
     let startDateFormatted = `${moment(reserveDate).format().split('T')[0]}T${reserveHour}:00`
-    
+
     let newReserve: IReserve = {
       barberOrHairdresserId: selectedBarber.barberId,
       clientId: client.clientId,
@@ -213,8 +211,11 @@ export const ReserveModal = (props: { className?: string }) => {
 
   return (
     <div className="reserve-modal">
-      <div className="dialog_activator-box" onClick={() => { setShowDialog(true) }}>
-        <Button className={`activator-btn reserve-btn art_experience-button_outlined`} label={'Reservar Aqui'} />
+      <div className="dialog_activator-box">
+        <Button
+          onClick={() => { setShowDialog(true) }}
+          className={`activator-btn reserve-btn art_experience-button_outlined`}
+          label={'Reservar Aqui'} />
       </div>
       {!showDialog ? null : (
         <DialogModal
