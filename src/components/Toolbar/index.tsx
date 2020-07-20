@@ -1,5 +1,5 @@
 import React from 'react';
-import { AccountMenu } from '../AccountMenu';
+import { LoginModal } from '../LoginModal';
 import { ReserveModal } from '../ReserveModal';
 import { Button } from '../Button';
 import './Toolbar.scss';
@@ -29,8 +29,8 @@ export const Toolbar = () => {
                 }
             </div>
             <div className="right-box">
+                <LoginModal />
                 <ReserveModal />
-                {/* <AccountMenu /> */}
             </div>
         </div>
     );
