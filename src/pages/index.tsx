@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Toolbar } from '../components/Toolbar';
 import { Card } from '../components/Card';
 import { DialogModal } from '../components/DialogModal';
@@ -6,11 +6,18 @@ import { Divider } from '../components/Divider';
 import { Button } from '../components/Button';
 import * as Icons from 'react-icons/fa';
 import BarberAction from '../actions/Barber.actions';
-import { ButtonContext, ButtonProvider } from '../contexts/ButtonsContext';
+import { ButtonContext } from '../contexts/ButtonsContext';
+import { LoaderPage } from '../components/LoaderPage';
 import './index.scss';
 import '../styles/ArtExperienceButtons.scss';
 
 const IndexPage = () => {
+  // context
+  const {
+    // @ts-ignore
+    disabled
+  } = useContext(ButtonContext);
+
   const barberActions = new BarberAction();
 
   const [showDialogCourse, setShowDialogCourse] = useState(false);
@@ -294,6 +301,7 @@ const IndexPage = () => {
           }
         </DialogModal>
       }
+      <LoaderPage show={disabled} />
     </div >
   );
 };
