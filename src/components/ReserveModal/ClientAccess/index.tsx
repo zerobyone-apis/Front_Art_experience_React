@@ -29,8 +29,6 @@ export const ClientAccess = (props: {
         setClientData
     } = useContext(ClientContext);
 
-
-
     let validate: Validation = new Validation();
 
     const defaultFields = {
