@@ -28,7 +28,7 @@ export const LeftMenu = (props: {
                                         key={i}
                                         href={button.href}
                                         onClick={() => { setShowDialog(false) }}
-                                        className="art_experience-button_outlined left_menu-btn"
+                                        className="art_experience-button_only-text left_menu-btn"
                                         label={button.label} />
                                 )
                             })
