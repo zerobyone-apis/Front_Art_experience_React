@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import moment from 'moment';
 import './ReserveStepper.scss';
 
@@ -7,6 +7,8 @@ import { HourBox } from '../HourBox';
 import { ServicesList } from '../ServicesList';
 import { BarbersList } from '../BarbersList';
 import { ClientAccess } from '../ClientAccess';
+import { ClientContext } from '../../../contexts/ClientContext'
+import { IClient } from '../../../types/Client.type';
 
 export const ReserveStepper = (props: {
     wizard: number,
@@ -28,6 +30,14 @@ export const ReserveStepper = (props: {
         setHour: any
     },
 }) => {
+    // context
+    const {
+        // @ts-ignore
+        clientIsLogged,
+        getClientData
+    } = useContext(ClientContext);
+
+    const clientData: IClient = getClientData();
 
     switch (props.wizard) {
         case 0:
@@ -78,19 +88,19 @@ export const ReserveStepper = (props: {
                 </div>
             );
             break;
+        // case 3:
+        //     return (
+        //         // Step 3 - Client info
+        //         <div className="reserve-step">
+        //             <div className="step-title">
+        //                 <p>Ingrese sus datos personales</p>
+        //             </div>
+        //             <ClientAccess onClientLogged={props.onClientLogged}
+        //             />
+        //         </div>
+        //     );
+        //     break;
         case 3:
-            return (
-                // Step 3 - Client info
-                <div className="reserve-step">
-                    <div className="step-title">
-                        <p>Ingrese sus datos personales</p>
-                    </div>
-                    <ClientAccess onClientLogged={props.onClientLogged}
-                    />
-                </div>
-            );
-            break;
-        case 4:
             return (
                 // Step 4 - Confirm data
                 <div className="reserve-step">
@@ -105,9 +115,16 @@ export const ReserveStepper = (props: {
                                 moment(props.timeStep.reserveDate).format("DD/MM/YYYY")
                                 }`}
                         </p>
-                        <p className="confirm_info">{`Hora: ${props.timeStep.reserveHour}`}</p>
-                        <p className="confirm_info">{`Barbero: ${props.barberStep.selectedBarber ? props.barberStep.selectedBarber.name : ''}`}</p>
+                        <p className="confirm_info">{`Nombre del cliente: ${clientData.name}`}</p>
+                        <p className="confirm_info">{`Celular/Telefono del cliente: ${clientData.cel}`}</p>
+                        <p className="confirm_info">{`Email del cliente: ${clientData.email}`}</p>
                         <p className="confirm_info">{`Servicio: ${props.serviceStep.selectedService ? props.serviceStep.selectedService.name : 'No se selecciono servicio'}`}</p>
+
+                        <p className="confirm_info">{`Barbero: ${props.barberStep.selectedBarber ? props.barberStep.selectedBarber.name : ''}`}</p>
+
+                        <p className="confirm_info">{`Horario: ${props.timeStep.reserveHour}`}</p>
+
+                        <p className="confirm_info">{`Costo: ${props.serviceStep.selectedService ? `$${props.serviceStep.selectedService.cost}` : 'No se selecciono servicio'}`}</p>
 
                     </div>
                 </div>
