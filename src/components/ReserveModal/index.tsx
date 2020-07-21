@@ -1,13 +1,15 @@
 // eslint-disable-next-line no-unused-vars
 import 'date-fns';
 // IMPORTS
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import moment from 'moment';
+import { ClientContext } from '../../contexts/ClientContext';
 // COMPONENTS
 import { DialogModal } from '../DialogModal';
 import { Button } from '../Button';
 import { ReserveFooter } from './ReserveFooter';
 import { ReserveStepper } from './ReserveStepper';
+import { LoginModal } from '../LoginModal';
 
 // ACTIONS
 import ReserveActions from '../../actions/Reserve.actions';
@@ -23,6 +25,12 @@ import ResultObject from '../../utils/ResultObject';
 
 
 export const ReserveModal = (props: { className?: string }) => {
+  // context
+  const {
+    // @ts-ignore
+    clientIsLogged,
+    setClientData
+  } = useContext(ClientContext);
 
   // DATA
   const services = [
@@ -138,6 +146,7 @@ export const ReserveModal = (props: { className?: string }) => {
 
   // STATES
   const [showDialog, setShowDialog] = useState(false);
+  const [showLoginDialog, setShowLoginDialog] = useState(false);
   const [reserveHour, setReserveHour] = useState("");
   const [reserveDate, setReserveDate] = useState(null);
   const [selectedBarber, setSelectedBarber] = useState(defaultBarber);
@@ -148,10 +157,6 @@ export const ReserveModal = (props: { className?: string }) => {
   // ACTIONS
   const reserveActions = new ReserveActions();
   const clientActions = new ClientActions();
-
-  useEffect(() => {
-    console.log(client)
-  }, [client])
 
   // CREATE RESERVE
   const createReserve = async () => {
@@ -198,22 +203,28 @@ export const ReserveModal = (props: { className?: string }) => {
         }
         break;
       case 3:
-        if (client.userId != -1) {
-          return true;
-        }
-        break;
-      case 4:
         return true;
         break;
     }
     return false;
   }
 
+  const goToReserve = () => {
+    setShowLoginDialog(false)
+    setShowDialog(true)
+  }
+
   return (
     <div className="reserve-modal">
       <div className="dialog_activator-box">
         <Button
-          onClick={() => { setShowDialog(true) }}
+          onClick={() => {
+            if (clientIsLogged()) {
+              setShowDialog(true)
+            } else {
+              setShowLoginDialog(true)
+            }
+          }}
           className={`activator-btn reserve-btn art_experience-button_outlined`}
           label={'Reservar Aqui'} />
       </div>
@@ -254,6 +265,13 @@ export const ReserveModal = (props: { className?: string }) => {
         </DialogModal>
       )
       }
+
+      {showLoginDialog ? (
+        <LoginModal
+          show={true}
+          onClose={setShowLoginDialog}
+          onSuccessLogin={goToReserve} />
+      ) : null}
     </div>
   );
 }
