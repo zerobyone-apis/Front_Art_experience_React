@@ -1,9 +1,10 @@
 /* eslint-disable react/prop-types */
 // eslint-disable-next-line no-unused-vars
-import React, { ReactElement, FC } from 'react';
+import React, { FC } from 'react';
 import { ButtonProvider } from '../contexts/ButtonsContext';
 import { ClientProvider } from '../contexts/ClientContext';
-import './index.scss';
+
+import './app.scss';
 const App: FC<{ Component: any; pageProps: any }> = ({
   Component,
   pageProps,
