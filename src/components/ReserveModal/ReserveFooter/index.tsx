@@ -27,9 +27,9 @@ export const ReserveFooter = (props: {
                 !props.checkStep() ? null : (
                     <Button
                         className="art_experience-button_outlined footer-button confirm"
-                        label={props.wizard < 4 ? 'Siguiente' : 'Reservar'}
+                        label={props.wizard < 3 ? 'Siguiente' : 'Reservar'}
                         onClick={() => {
-                            if (props.wizard < 4) {
+                            if (props.wizard < 3) {
                                 props.onChangeWizard(props.wizard + 1);
                             } else {
                                 console.log("Es finalize")
