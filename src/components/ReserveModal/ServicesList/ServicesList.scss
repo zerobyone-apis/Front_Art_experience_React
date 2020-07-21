@@ -76,11 +76,11 @@
 
     .selected-service {
       color: white;
-      background-color: rgb(146, 144, 108);
+      background-color: rgba(146, 144, 108, 0.300);
     }
 
     .service:hover {
-      background: rgb(146, 144, 108);
+      background: rgba(146, 144, 108, 0.300);
       transition: all ease 0.9s;
     }
 
