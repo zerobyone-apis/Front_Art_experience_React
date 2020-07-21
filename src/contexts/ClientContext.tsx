@@ -5,27 +5,33 @@ import React, {
     useState,
     ReactElement,
 } from 'react';
+import { IClient } from '../types/Client.type';
 
 
 export const ClientContext = createContext({
-    clientIsLogged: {},
+    clientIsLogged: () => undefined,
+    getClientData: () => undefined,
     setClientData: (clientData: object) => undefined,
 });
 
 export const ClientProvider = (props: {
     children: ReactElement;
 }) => {
-    const [client, setClient] = useState({});
+    const [client, setClient] = useState(null);
 
     const setClientData = (clientData: object) => {
         setClient(clientData);
+    }
+
+    const getClientData = () => {
+        return client;
     }
 
     const clientIsLogged = () => {
         return client ? true : false;
     }
 
-    const context = { clientIsLogged, setClientData };
+    const context = { clientIsLogged, getClientData, setClientData };
 
     return (
         <ClientContext.Provider value={context}>
