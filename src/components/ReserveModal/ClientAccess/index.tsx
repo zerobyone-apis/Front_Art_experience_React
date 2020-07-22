@@ -86,7 +86,9 @@ export const ClientAccess = (props: {
             password: clientFields.password
         }
         if (validate.validateFields(registerFields, setErrorFields, [registerFieldsStructure])) {
+            setDisabledButton(true);
             let clientResponse = await clientActions.add(registerFields);
+            setDisabledButton(false);
             if (typeof (clientResponse) !== 'string') {
                 clientCookie(clientResponse);
                 props.onClientLogged(clientResponse);
