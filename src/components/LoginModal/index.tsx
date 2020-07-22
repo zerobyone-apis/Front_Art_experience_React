@@ -1,32 +1,34 @@
-import React, { useState, useContext, useEffect, SetStateAction, Dispatch } from 'react';
+import React, { useState, useContext, SetStateAction, Dispatch, useEffect } from 'react';
 import { DialogModal } from '../DialogModal';
 import { ClientAccess } from '../ReserveModal/ClientAccess';
-import { IClient } from '../../types/Client.type';
+import { ClientContext } from '../../contexts/ClientContext';
+import { RiAccountCircleLine } from 'react-icons/ri';
 import { Button } from '../Button';
 import './LoginModal.scss';
 
 export const LoginModal = (props: {
     show?: boolean,
     onClose?: Dispatch<SetStateAction<boolean>>,
-    onSuccessLogin: any
+    onSuccessLogin?: any
 }) => {
-    const defaultClient: IClient = {
-        cel: '',
-        email: '',
-        name: '',
-        password: '',
-        username: '',
-        userId: -1
-    }
+    // context
+    const {
+        // @ts-ignore
+        clientIsLogged,
+        getClientData
+    } = useContext(ClientContext);
+
+    useEffect(() => {
+        console.log(getClientData())
+    }, [])
 
     const [showDialog, setShowDialog] = useState(props.show || false);
-    const [client, setClient] = useState(defaultClient);
 
     const onClientLogged = (clientData: any) => {
-        setClient(clientData);
-        props.onSuccessLogin(true);
+        if (props.onSuccessLogin) {
+            props.onSuccessLogin(true);
+        }
     }
-
     return (
         <div className="login-modal">
             {!props.show ? (
@@ -34,7 +36,9 @@ export const LoginModal = (props: {
                     <Button
                         onClick={() => { setShowDialog(true) }}
                         className={`activator-btn login-btn art_experience-button_outlined`}
-                        label={'Acceder'} />
+                        label={clientIsLogged() ? getClientData().name : 'Acceder'}>
+                        <RiAccountCircleLine className="icon" />
+                    </Button>
                 </div>
             ) : null}
 
@@ -46,7 +50,9 @@ export const LoginModal = (props: {
                     height='65vh'
                     onClose={() => {
                         setShowDialog(false);
-                        props.onClose(false);
+                        if (props.onClose) {
+                            props.onClose(false);
+                        }
                     }}
                 >
                     <ClientAccess onClientLogged={onClientLogged} />

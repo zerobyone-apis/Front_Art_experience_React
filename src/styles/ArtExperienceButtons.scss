@@ -40,6 +40,17 @@
         border-style: solid;
         border-color: rgb(146, 144, 108);
         background: rgba(0, 0, 0, 0);
+        display: flex;
+        align-items: center;
+
+        .icon {
+            position: absolute;
+            color: white;
+            left: 5px;
+            top: 5px;
+            width: 20px;
+            height: 20px;
+        }
 
         p {
             color: rgb(165, 165, 165);
