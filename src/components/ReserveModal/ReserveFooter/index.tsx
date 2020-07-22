@@ -3,7 +3,6 @@ import { Button } from '../../Button';
 import './ReserveFooter.scss';
 import '../../../styles/ArtExperienceButtons.scss';
 
-
 export const ReserveFooter = (props: {
     wizard: number,
     onChangeWizard: any,

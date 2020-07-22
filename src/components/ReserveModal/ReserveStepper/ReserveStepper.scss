@@ -52,4 +52,24 @@
     animation-name: slide-left;
     animation-duration: 1s;
   }
+
+  .success-icon {
+    width: 80px;
+    height: 80px;
+    color: rgb(199, 194, 109);
+    animation-name: slide-top;
+    animation-duration: 2s;
+  }
+
+  @keyframes slide-top {
+    from {
+      opacity: 0;
+      top: 100px;
+    }
+
+    to {
+      opacity: 1;
+      top: 0px;
+    }
+  }
 }

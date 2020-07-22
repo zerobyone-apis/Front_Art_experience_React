@@ -4,6 +4,7 @@ import 'date-fns';
 import React, { useState, useEffect, useContext } from 'react';
 import moment from 'moment';
 import { ClientContext } from '../../contexts/ClientContext';
+import { ButtonContext } from '../../contexts/ButtonsContext';
 // COMPONENTS
 import { DialogModal } from '../DialogModal';
 import { Button } from '../Button';
@@ -29,8 +30,13 @@ export const ReserveModal = (props: { className?: string }) => {
   const {
     // @ts-ignore
     clientIsLogged,
-    setClientData
+    getClientData
   } = useContext(ClientContext);
+  const {
+    // @ts-ignore
+    disabled,
+    setDisabledButton
+  } = useContext(ButtonContext);
 
   // DATA
   const services = [
@@ -143,6 +149,9 @@ export const ReserveModal = (props: { className?: string }) => {
     username: '',
     userId: -1
   }
+  const defaultService = {
+    name: '', cost: 0
+  }
 
   // STATES
   const [showDialog, setShowDialog] = useState(false);
@@ -150,9 +159,8 @@ export const ReserveModal = (props: { className?: string }) => {
   const [reserveHour, setReserveHour] = useState("");
   const [reserveDate, setReserveDate] = useState(null);
   const [selectedBarber, setSelectedBarber] = useState(defaultBarber);
-  const [selectedService, setSelectedService] = useState({ name: '', cost: 0 });
+  const [selectedService, setSelectedService] = useState(defaultService);
   const [wizard, setWizard] = useState(0);
-  const [client, setClient] = useState(defaultClient);
 
   // ACTIONS
   const reserveActions = new ReserveActions();
@@ -165,24 +173,30 @@ export const ReserveModal = (props: { className?: string }) => {
 
     let newReserve: IReserve = {
       barberOrHairdresserId: selectedBarber.barberId,
-      clientId: client.clientId,
-      nameClient: client.name,
-      mailClient: client.email,
-      celClient: client.cel,
+      clientId: getClientData().clientId,
+      nameClient: getClientData().name,
+      mailClient: getClientData().email,
+      celClient: getClientData().cel,
       startTime: startDateFormatted,
       priceWork: selectedService.cost,
       workToDo: selectedService.name,
     }
-    console.log('To create reserve', newReserve)
+    setDisabledButton(true);
     let createdReserve: any = await reserveActions.add(newReserve);
-    console.log(`Created Reserve full object: ${createdReserve.clientId}`);
+    setDisabledButton(false);
 
-    // restart all steps of reserve_modal
-    setReserveHour("");
-    setReserveDate(new Date());
-    setSelectedBarber(defaultBarber);
-    setClient(defaultClient);
-    setWizard(0);
+    if (createReserve) {
+      setWizard(4);
+      setTimeout(() => {
+        // restart all steps of reserve_modal
+        setSelectedService(defaultService);
+        setSelectedBarber(defaultBarber);
+        setReserveDate(new Date());
+        setReserveHour("");
+        setShowDialog(false);
+        setWizard(0);
+      }, 3000);
+    }
   }
 
   const checkStep = () => {
@@ -235,10 +249,10 @@ export const ReserveModal = (props: { className?: string }) => {
           width='65vw'
           height='65vh'
           onClose={() => { setShowDialog(false) }}
+          hideCloseButton={wizard == 4}
         >
           <ReserveStepper
             wizard={wizard}
-            onClientLogged={setClient}
             serviceStep={{
               services: services,
               selectedService: selectedService,
@@ -256,12 +270,14 @@ export const ReserveModal = (props: { className?: string }) => {
               setHour: setReserveHour
             }}
           />
-          <ReserveFooter
-            wizard={wizard}
-            checkStep={checkStep}
-            onChangeWizard={setWizard}
-            finalize={createReserve}
-          />
+          {wizard != 4 ? ( // exception
+            <ReserveFooter
+              wizard={wizard}
+              checkStep={checkStep}
+              onChangeWizard={setWizard}
+              finalize={createReserve}
+            />
+          ) : null}
         </DialogModal>
       )
       }
@@ -272,6 +288,8 @@ export const ReserveModal = (props: { className?: string }) => {
           onClose={setShowLoginDialog}
           onSuccessLogin={goToReserve} />
       ) : null}
+
+
     </div>
   );
 }

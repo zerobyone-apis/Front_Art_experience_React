@@ -6,13 +6,12 @@ import { CalendarBox } from '../CalendarBox';
 import { HourBox } from '../HourBox';
 import { ServicesList } from '../ServicesList';
 import { BarbersList } from '../BarbersList';
-import { ClientAccess } from '../ClientAccess';
 import { ClientContext } from '../../../contexts/ClientContext'
 import { IClient } from '../../../types/Client.type';
+import { FaRegCalendarCheck } from 'react-icons/fa';
 
 export const ReserveStepper = (props: {
     wizard: number,
-    onClientLogged: any,
     serviceStep: {
         services: any,
         selectedService: any,
@@ -33,7 +32,6 @@ export const ReserveStepper = (props: {
     // context
     const {
         // @ts-ignore
-        clientIsLogged,
         getClientData
     } = useContext(ClientContext);
 
@@ -119,16 +117,26 @@ export const ReserveStepper = (props: {
                         <p className="confirm_info">{`Celular/Telefono del cliente: ${clientData.cel}`}</p>
                         <p className="confirm_info">{`Email del cliente: ${clientData.email}`}</p>
                         <p className="confirm_info">{`Servicio: ${props.serviceStep.selectedService ? props.serviceStep.selectedService.name : 'No se selecciono servicio'}`}</p>
-
                         <p className="confirm_info">{`Barbero: ${props.barberStep.selectedBarber ? props.barberStep.selectedBarber.name : ''}`}</p>
-
                         <p className="confirm_info">{`Horario: ${props.timeStep.reserveHour}`}</p>
-
                         <p className="confirm_info">{`Costo: ${props.serviceStep.selectedService ? `$${props.serviceStep.selectedService.cost}` : 'No se selecciono servicio'}`}</p>
-
                     </div>
                 </div>
             );
             break;
+        case 4:
+            return (
+                // Step 4 - Success reserve!
+                <div className="reserve-step">
+                    <div className="step-title">
+                        <p>Reservacion - ArtExperience</p>
+                    </div>
+                    <div className="confirm_data-box">
+                        <p className="confirm_info">Se ha realizado la reserva de forma exitosa!</p>
+                        <FaRegCalendarCheck className="success-icon" />
+                    </div>
+                </div>
+            );
     }
+
 }
