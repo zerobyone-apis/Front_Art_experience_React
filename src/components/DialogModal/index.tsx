@@ -12,7 +12,8 @@ export const DialogModal = (props: {
   children?: any,
   width?: string,
   height?: string,
-  onClose: () => void;
+  onClose: () => void,
+  hideCloseButton?: boolean,
   showModal?: boolean,
   className?: string,
   buttonClassName?: string
@@ -23,10 +24,12 @@ export const DialogModal = (props: {
         <div className="header">
           <div className="close_btn-box">
             <div className="art_experience-button_only-text">
-              <Button className="close_btn" onClick={() => { props.onClose() }}>
-                <AiOutlineClose
-                  className="art_experience-icon" />
-              </Button>
+              {!props.hideCloseButton ? (
+                <Button className="close_btn" onClick={() => { props.onClose() }}>
+                  <AiOutlineClose
+                    className="art_experience-icon" />
+                </Button>
+              ) : null}
             </div>
           </div>
           <div className="header-title">
