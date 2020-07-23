@@ -3,7 +3,7 @@ import 'date-fns';
 // IMPORTS
 import React, { useState, useEffect, useContext } from 'react';
 import moment from 'moment';
-import { ClientContext } from '../../contexts/ClientContext';
+import { UserContext } from '../../contexts/UserContext';
 import { ButtonContext } from '../../contexts/ButtonsContext';
 // COMPONENTS
 import { DialogModal } from '../DialogModal';
@@ -24,14 +24,13 @@ import './ReserveModal.scss';
 import '../../styles/theme.scss';
 import ResultObject from '../../utils/ResultObject';
 
-
 export const ReserveModal = (props: { className?: string }) => {
   // context
   const {
     // @ts-ignore
-    clientIsLogged,
-    getClientData
-  } = useContext(ClientContext);
+    userIsLogged,
+    getUserData
+  } = useContext(UserContext);
   const {
     // @ts-ignore
     disabled,
@@ -173,10 +172,10 @@ export const ReserveModal = (props: { className?: string }) => {
 
     let newReserve: IReserve = {
       barberOrHairdresserId: selectedBarber.barberId,
-      clientId: getClientData().clientId,
-      nameClient: getClientData().name,
-      mailClient: getClientData().email,
-      celClient: getClientData().cel,
+      clientId: getUserData().clientId,
+      nameClient: getUserData().name,
+      mailClient: getUserData().email,
+      celClient: getUserData().cel,
       startTime: startDateFormatted,
       priceWork: selectedService.cost,
       workToDo: selectedService.name,
@@ -233,7 +232,7 @@ export const ReserveModal = (props: { className?: string }) => {
       <div className="dialog_activator-box">
         <Button
           onClick={() => {
-            if (clientIsLogged()) {
+            if (userIsLogged()) {
               setShowDialog(true)
             } else {
               setShowLoginDialog(true)
