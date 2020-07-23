@@ -7,6 +7,7 @@ import { DialogModal } from '../DialogModal';
 import { toolbarButtons } from '../../utils/toolbarButtons';
 
 export const LeftMenu = (props: {
+    items?: any[],
 }) => {
     const [showDialog, setShowDialog] = useState(false);
     return (
