@@ -72,6 +72,7 @@
     "react-date-picker": "^8.0.1",
     "react-dom": "^16.13.1",
     "react-icons": "^3.10.0",
+    "store": "^2.0.12",
     "url-loader": "^4.1.0",
     "yup": "^0.28.5"
   }
