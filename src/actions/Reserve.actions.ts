@@ -1,6 +1,6 @@
 import IntegrationBackend from '../utils/IntegrationBackend';
 import ResultObject from '../utils/ResultObject';
-import { RESERVE_ROUTE, POST_ENDPOIT } from '../types/Routes.type';
+import { RESERVE_ROUTE, POST_ENDPOIT, GET_ENDPOIT } from '../types/Routes.type';
 import { IReserve } from '../types/Reserve.type';
 import moment from 'moment';
 
@@ -26,6 +26,21 @@ export default class ReserveActions {
         } catch (error) {
             console.error('Error Reserve.actions method add -> ', error.message);
             return new ResultObject(404, error, {});
+        }
+    }
+
+    public async getAll() {
+        try {
+            const response: any = await this.backend.send(
+                GET_ENDPOIT,
+                undefined,
+                `${RESERVE_ROUTE}`
+            );
+            console.log('accede', response)
+            return response.data;
+        } catch (error) {
+            console.error('Error Reserve.actions method add -> ', error.message);
+            return null;
         }
     }
 }
