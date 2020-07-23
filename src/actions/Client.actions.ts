@@ -22,7 +22,7 @@ export default class ClientActions {
                     data,
                     CLIENT_ROUTE
                 );
-                
+
                 if (response.status !== 201) {
                     console.log('Error on create client', response.message)
                     return Error('Error on create client')
