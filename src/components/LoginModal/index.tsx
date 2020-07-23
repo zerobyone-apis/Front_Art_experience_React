@@ -6,6 +6,8 @@ import { ButtonContext } from '../../contexts/ButtonsContext';
 import { RiAccountCircleLine } from 'react-icons/ri';
 import { useOutsideAlerter } from '../../hooks/useOutsideAlerter';
 import { Button } from '../Button';
+import { getPageName } from '../../utils/utils';
+import { INDEX_PAGE, DASHBOARD_PAGE } from '../../types/Pages.type';
 import './LoginModal.scss';
 
 export const LoginModal = (props: {
@@ -32,7 +34,6 @@ export const LoginModal = (props: {
     // control account menu
     const wrapperRef = useRef(null);
     useOutsideAlerter(wrapperRef, setShowAccountMenu);
-
 
     const onClientLogged = (clientData: any) => {
         if (props.onSuccessLogin) {
@@ -70,7 +71,6 @@ export const LoginModal = (props: {
                     </Button>
                 </div>
             ) : null}
-
             {!showDialog ? null : (
                 <DialogModal
                     title="Inicio de Sesion - ArtExperience"
@@ -93,16 +93,20 @@ export const LoginModal = (props: {
                     <div className="account-menu" ref={wrapperRef}>
                         <p className="item-text user-name">{getUserData().name}</p>
                         <p className="item-text user-email">{getUserData().email}</p>
-                        <Button
-                            label="Gestion de Reservas"
-                            className="item-list_btn art_experience-button_outlined"
-                            onClick={() => { document.location.href = '/Dashboard'; }}
-                        />
-                        <Button
-                            label="Pagina Principal"
-                            className="item-list_btn art_experience-button_outlined"
-                            onClick={() => { document.location.href = '/'; }}
-                        />
+                        {getPageName() === INDEX_PAGE ? (
+                            <Button
+                                label="Gestion de Reservas"
+                                className="item-list_btn art_experience-button_outlined"
+                                onClick={() => { document.location.href = '/Dashboard'; }}
+                            />
+                        ) : null}
+                        {getPageName() === DASHBOARD_PAGE ? (
+                            <Button
+                                label="Pagina Principal"
+                                className="item-list_btn art_experience-button_outlined"
+                                onClick={() => { document.location.href = '/'; }}
+                            />
+                        ) : null}
                         <Button
                             label="Cerrar Seion"
                             className="item-list_btn art_experience-button_outlined"
