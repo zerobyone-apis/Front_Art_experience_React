@@ -6,7 +6,7 @@ import { CalendarBox } from '../CalendarBox';
 import { HourBox } from '../HourBox';
 import { ServicesList } from '../ServicesList';
 import { BarbersList } from '../BarbersList';
-import { ClientContext } from '../../../contexts/ClientContext'
+import { UserContext } from '../../../contexts/UserContext'
 import { IClient } from '../../../types/Client.type';
 import { FaRegCalendarCheck } from 'react-icons/fa';
 
@@ -32,10 +32,10 @@ export const ReserveStepper = (props: {
     // context
     const {
         // @ts-ignore
-        getClientData
-    } = useContext(ClientContext);
+        getUserData
+    } = useContext(UserContext);
 
-    const clientData: IClient = getClientData();
+    const clientData: IClient = getUserData();
 
     switch (props.wizard) {
         case 0:
