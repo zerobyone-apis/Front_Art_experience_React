@@ -29,8 +29,8 @@ export const Toolbar = () => {
                 }
             </div>
             <div className="right-box">
-                <LoginModal />
                 <ReserveModal />
+                <LoginModal />
             </div>
         </div>
     );
