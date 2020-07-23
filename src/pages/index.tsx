@@ -22,6 +22,7 @@ const IndexPage = () => {
 
   const [showDialogCourse, setShowDialogCourse] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState(null);
+  const [showDashboard, setShowDashboard] = useState(false);
 
   async function getBarbers() {
     await barberActions.getAll()
