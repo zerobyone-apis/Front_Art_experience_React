@@ -2,19 +2,21 @@
 // eslint-disable-next-line no-unused-vars
 import React, { FC } from 'react';
 import { ButtonProvider } from '../contexts/ButtonsContext';
-import { ClientProvider } from '../contexts/ClientContext';
-
+import { UserProvider } from '../contexts/UserContext';
+import { USER_DATA_STORAGE } from '../types/StorageData.type';
 import './app.scss';
+
 const App: FC<{ Component: any; pageProps: any }> = ({
   Component,
   pageProps,
 }) => {
+  let store = require('store'); // store :3
   return (
     <div>
       <ButtonProvider disabled={false}>
-        <ClientProvider >
+        <UserProvider value={store.get(USER_DATA_STORAGE) || null}>
           <Component {...pageProps} />
-        </ClientProvider>
+        </UserProvider>
       </ButtonProvider>
     </div>
   )
