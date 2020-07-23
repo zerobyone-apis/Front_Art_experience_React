@@ -1,48 +1,74 @@
-import { IUserStore } from '../types/UserStore.type';
-import {
-  USER_ROUTE,
-  USER_SIGN_IN_ROUTE,
-  POST_ENDPOIT,
-  DELETE_ENDPOIT
-} from '../types/Routes.type';
+import moment from 'moment';
 import IntegrationBackend from '../utils/IntegrationBackend';
-import ResultObject from '../utils/ResultObject';
-
+import { IUser } from '../types/User.type'
+import { GET_ENDPOIT, POST_ENDPOIT, USER_ROUTE, USER_EXISTS_ROUTE } from '../types/Routes.type';
 export default class UserActions {
   private backend: IntegrationBackend = new IntegrationBackend();
 
-  public async signUp(userData: IUserStore) {
-    try {
-      await this.backend.send(POST_ENDPOIT, userData, USER_ROUTE);
-      let responseSignIn: any = await this.backend.send(
-        POST_ENDPOIT,
-        userData,
-        USER_SIGN_IN_ROUTE
-      );
-      console.log('Result user to save on dataStorage: ');
-      let user: IUserStore = {
-        id: responseSignIn.idUser,
-        username: userData.username,
-        charge: userData.charge,
-        isAdmin: userData.isAdmin
-      };
-      return new ResultObject(200, user,{});
-    } catch (error) {
-      return new ResultObject(400, error,{});
-    }
-  }
+  // add = async (newUser: IUser) => {
+  //   console.log("Access to add user actions", newUser);
+  //   let existsEmail = await this.getByEmail(newUser.email);
+  //   if (!existsEmail) {
+  //     try {
+  //       let data: IClient = {
+  //         "name": newClient.name,
+  //         "username": newClient.username,
+  //         "email": newClient.email,
+  //         "password": newClient.password,
+  //         "cel": newClient.cel,
+  //       };
+  //       const response: any = await this.backend.send(
+  //         POST_ENDPOIT,
+  //         data,
+  //         CLIENT_ROUTE
+  //       );
 
-  public async delete(id: number) {
-    try {
-      const response: any = await this.backend.send(
-        DELETE_ENDPOIT,
-        undefined,
-        `${USER_ROUTE}/${id}`
-      );
-      return true;
-    } catch (error) {
-      console.error('Error borrando cuenta => ', error);
-      return null;
-    }
-  }
+  //       if (response.status !== 201) {
+  //         console.log('Error on create client', response.message)
+  //         return Error('Error on create client')
+  //       }
+  //       console.log('success post client')
+  //       return response.data;
+  //     } catch (error) {
+  //       return "Ocurrio un error! Vuelva a intentarlo"
+  //     }
+  //   } else {
+  //     return "El email ya esta registrado";
+  //   }
+  // }
+
+  // login = async (client: { email: string, password: string }) => {
+  //   console.log("Access to login", client)
+  //   let existsEmail = await this.getByEmail(client.email);
+  //   console.log(existsEmail)
+  //   if (existsEmail) {
+  //     try {
+  //       // login method
+  //       return existsEmail;
+  //     } catch (error) {
+  //       return "Ocurrio un error! Vuelva a intentarlo"
+  //     }
+  //   } else {
+  //     return "El email no esta registrado";
+  //   }
+  // }
+
+  // getByEmail = async (email: string) => {
+  //   try {
+  //     let data = { email };
+  //     let response = await this.backend.send(
+  //       GET_ENDPOIT,
+  //       data,
+  //       `${CLIENT_EXISTS_ROUTE}/${email}`
+  //     );
+  //     if (response.status !== 200) {
+  //       console.log(response.message)
+  //       return Error(response.message)
+  //     }
+  //     return response.data;
+  //   } catch (error) {
+  //     console.error(`Error: exists client-> ${error.message}`);
+  //     return null;
+  //   }
+  // }
 }
