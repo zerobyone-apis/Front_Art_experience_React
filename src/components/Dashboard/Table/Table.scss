@@ -1,0 +1,162 @@
+.table-box {
+    padding: 10px;
+    overflow-x: hidden;
+    position: absolute;
+    left: 0;
+    top: 130px;
+    width: 100%;
+    height: 500px;
+    overflow-y: scroll;
+    text-align: center;
+    background-color: white;
+
+    .table {
+        width: 100%;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // TODO: La tabla va a ser un componente, con propiedades de tema
+    .order_light {
+        background-color: #ffffff8c;
+
+        .item_table-text {
+            color: rgb(0, 0, 0);
+        }
+    }
+
+    .order_dark {
+        background-color: #525252;
+
+        .item_table-text {
+            color: rgb(255, 255, 255);
+        }
+    }
+
+    .order {
+        position: relative;
+        margin: auto;
+        margin-bottom: 10px;
+        width: 100%;
+        height: max-content;
+        border-radius: 15px;
+        display: flex;
+        cursor: pointer;
+
+        .left-box {
+            position: relative;
+            width: 5%;
+            height: 100%;
+
+            .icon {
+                z-index: 1;
+                position: relative;
+                margin: 20px !important;
+            }
+        }
+
+        .content-box {
+            position: relative;
+            width: 90%;
+            height: 100%;
+            margin-top: 10px;
+            background-color: white; //
+
+
+
+
+
+            .header_table-text {
+                font-size: 14px;
+            }
+
+            .item_table-text {
+                font-size: 14px;
+                margin-top: 10px;
+                text-transform: none;
+            }
+
+            .item_status-box {
+                position: relative;
+                border-style: solid;
+                border-radius: 10px;
+                text-align: center;
+
+                .item_status-text {
+                    margin: 10px;
+                }
+            }
+
+            .icon {
+                position: absolute;
+                top: 5px;
+                margin: auto;
+            }
+        }
+
+        .right-box {
+            position: relative;
+            width: 5%;
+            height: 100%;
+
+            .icon {
+                z-index: 9999;
+                position: relative;
+                margin: 20px;
+                right: 40px !important;
+            }
+        }
+    }
+
+    .orders-table {
+        border-radius: 20px;
+        height: 100%;
+        padding-top: 10px;
+
+        .text-start {
+            .checkbox-marked {
+                width: 10px;
+                height: 10px;
+            }
+        }
+    }
+
+    .header-table {
+        right: 0px;
+        float: right;
+    }
+
+    .no-orders {
+        font-size: 20px;
+        color: grey;
+        opacity: 0.8;
+        margin-top: 100px;
+
+        .v-icon {
+            color: grey;
+            font-size: 80px;
+        }
+    }
+}
