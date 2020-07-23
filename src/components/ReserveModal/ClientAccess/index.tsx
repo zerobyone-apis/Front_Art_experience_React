@@ -3,21 +3,31 @@ import React, { useState, useContext } from 'react';
 import { TextField } from '../../TextField';
 import { Button } from '../../Button';
 import { ButtonContext } from '../../../contexts/ButtonsContext';
-import { ClientContext } from '../../../contexts/ClientContext';
-// actions
-import ClientActions from '../../../actions/Client.actions';
+import { UserContext } from '../../../contexts/UserContext';
 import { IClient } from '../../../types/Client.type';
-// styles
+import ClientActions from '../../../actions/Client.actions';
+import Validation from '../../../utils/Validation';
 import './ClientAccess.scss';
 import '../../../styles/ArtExperienceButtons.scss';
 import '../../../styles/ArtExperienceFonts.scss';
-import Validation from '../../../utils/Validation';
 
 export const ClientAccess = (props: {
     onClientLogged: any
 }) => {
-    // Contexts
+    const defaultFields = {
+        name: '',
+        email: '',
+        password: '',
+        cel: '',
+    };
+    const [accessMode, setAccessMode] = useState(0); // 0 - Login / 1 - register
+    const [errorMessage, setErrorMessage] = useState('');
+    const [successMessage, setSuccessMessage] = useState('');
+    const [clientFields, setClientFields] = useState(defaultFields);
+    const [errorsFields, setErrorFields] = useState([]); // used by validation
+    const clientActions: ClientActions = new ClientActions();
 
+    // Contexts
     const {
         // @ts-ignore
         disabled,
@@ -25,18 +35,13 @@ export const ClientAccess = (props: {
     } = useContext(ButtonContext);
     const {
         // @ts-ignore
-        clientIsLogged,
-        setClientData
-    } = useContext(ClientContext);
+        userIsLogged,
+        setUserData
+    } = useContext(UserContext);
 
     let validate: Validation = new Validation();
 
-    const defaultFields = {
-        name: '',
-        email: '',
-        password: '',
-        cel: '',
-    };
+
     const registerFieldsStructure: Record<string, any> = {
         objectName: 'registerFields',
         fields: [
@@ -53,23 +58,14 @@ export const ClientAccess = (props: {
             // ['password', 'string'],
         ]
     };
-    const [accessMode, setAccessMode] = useState(0); // 0 - Login / 1 - register
-    const [errorMessage, setErrorMessage] = useState('');
-    const [successMessage, setSuccessMessage] = useState('');
-    const [clientFields, setClientFields] = useState(defaultFields);
-    const [errorsFields, setErrorFields] = useState([]); // used by validation
-    const clientActions: ClientActions = new ClientActions();
-
     const onChangeField = (fieldName: string, value: string) => {
         setClientFields({ ...clientFields, [fieldName]: value })
     }
-
     const changeAccess = (index: number) => {
         setErrorFields([]);
         hideMessages();
         setAccessMode(index);
     }
-
     const hideMessages = () => {
         setErrorMessage("");
         setSuccessMessage("")
@@ -92,7 +88,7 @@ export const ClientAccess = (props: {
             if (typeof (clientResponse) !== 'string') {
                 clientCookie(clientResponse);
                 props.onClientLogged(clientResponse);
-                setClientData(clientResponse);
+                setUserData(clientResponse);
                 setSuccessMessage('Te has registrado con exitosamente')
             } else {
                 setErrorMessage(clientResponse);
@@ -116,10 +112,9 @@ export const ClientAccess = (props: {
             setDisabledButton(true);
             let response = await clientActions.login(loginFields);
             setDisabledButton(false);
-            console.log('respuesta de clientaccess login ', response, typeof (response));
             if (typeof (response) !== 'string') {
                 props.onClientLogged(response);
-                setClientData(response);
+                setUserData(response);
                 setSuccessMessage('Has iniciado sesion con exito');
             } else {
                 setErrorMessage(response);
