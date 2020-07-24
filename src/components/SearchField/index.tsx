@@ -19,40 +19,33 @@ export const SearchField = (props: {
   fieldLabel?: string;
 }) => {
   const [fieldValue, setFieldValue] = useState('');
-  const [filtredItems, setFiltredItems] = useState([]);
+  const [filtredItems, setFiltredItems] = useState(props.items || []);
 
   useEffect(() => {
-    setFiltredItems(props.items);
-  }, []);
+    filterItems();
+  }, [fieldValue]);
 
   useEffect(() => {
     props.onChangeResults(filtredItems);
   }, [filtredItems]);
 
   const filterItems = () => {
-    setFiltredItems(
-      props.items.filter(item => {
-        return (item[props.itemFilter] || '').toLowerCase().indexOf(fieldValue) != -1;
-      })
-    );
+    let items = filtredItems.filter(item => {
+      let formattedText = (item[props.itemFilter] || '').toLowerCase();
+      console.log(item[props.itemFilter])
+      console.log(formattedText, fieldValue, (formattedText.indexOf(fieldValue) !== -1))
+      return (formattedText.indexOf(fieldValue) !== -1);
+    })
+    props.onChangeResults(items);
   }
-
-  const onChange = (value: string) => {
-    setFieldValue(value);
-    filterItems();
-  }
-
   return (
     <div className={`search-field ${props.className}`}>
       <TextField
+        onChange={setFieldValue}
         label={props.fieldLabel || 'Search'}
         className="search-text_field"
-        name="search"
         icon="faSearch"
         iconColor="grey"
-        type="text"
-        value={props.defaultValue}
-        onChange={onChange}
       />
       {
         props.showButton ? (
