@@ -41,10 +41,9 @@ const DashboardPage = () => {
             <Toolbar />
             <div className="page-box">
                 <div className="dashboard">
-                    <img src="https://instagram.fmvd3-1.fna.fbcdn.net/v/t51.2885-15/e35/16908004_267284700350772_2860727636823375872_n.jpg?_nc_ht=instagram.fmvd3-1.fna.fbcdn.net&_nc_cat=100&_nc_ohc=Gg16hcNu30YAX-IgcF7&oh=bac572518fde54f2c7f19429ea9f9a8c&oe=5F450E0A" alt="" />
-                    {/* {reserves.length ?
+                    {reserves.length ?
                         (<Table />) : null}
-                    items={reserves} headers={headerOrder} */}
+                    {/* items={reserves} headers={headerOrder} */}
                 </div>
             </div>
             <LoaderPage show={disabled} />
