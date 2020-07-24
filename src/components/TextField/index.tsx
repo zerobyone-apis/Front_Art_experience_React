@@ -5,41 +5,50 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as Icons from '@fortawesome/free-solid-svg-icons'
 
 export const TextField = (props: {
-  name: string;
+  value?: any;
+  onChange?: (value: string) => void;
+  name?: string;
   type?: string;
   label?: string;
   error?: string;
   defaultValue?: string;
-  value?: any;
   result?: string;
   icon?: string;
   tabIndex?: number;
   iconColor?: string;
   required?: boolean;
   className?: string;
-  onChange?: (name: string, value: string) => void;
 }) => {
-
+  const [value, setValue] = useState(props.value || '');
   const [error, setError] = useState(props.error);
-  const [value, setValue] = useState('');
 
+  // function
   useEffect(() => {
-    setValue(props.value);
-  }, [])
+    props.onChange(value);
+  }, [value]);
 
+  const changeValue = ({ target: { value } }: ChangeEvent<HTMLInputElement>) => {
+    setValue(value);
+  }
+
+  // error
   useEffect(() => {
     setError(props.error);
   }, [props.error])
 
-  useEffect(() => {
-    props.onChange(props.name, value);
-  }, [value]);
 
-  const changeValue = ({
-    target: { value },
-  }: ChangeEvent<HTMLInputElement>) => {
-    setValue(value);
-  }
+  const ErrorLabel = (props: {
+    value: string;
+  }) => {
+    if (props.value) {
+      return <label className="error-label">{props.value}</label>;
+    } else {
+      return null;
+    }
+  };
+
+
+
 
   return (
     <div className={`${props.className || ''} text-field`}>
@@ -48,13 +57,10 @@ export const TextField = (props: {
         <input
           tabIndex={props.tabIndex}
           autoFocus
-          defaultValue={props.value}
           type={props.type}
           required={props.required}
           value={value}
-          onChange={
-            changeValue
-          }
+          onChange={changeValue}
         />
         {
           props.icon && !value ? (
@@ -68,16 +74,6 @@ export const TextField = (props: {
       <ErrorLabel value={error} />
     </div>
   );
-};
-
-const ErrorLabel = (props: {
-  value: string;
-}) => {
-  if (props.value) {
-    return <label className="error-label">{props.value}</label>;
-  } else {
-    return null;
-  }
 };
 
 TextField.displayName = 'Text Field';
