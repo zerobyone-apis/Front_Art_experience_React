@@ -1,12 +1,8 @@
 import React from 'react';
 import { LoginModal } from '../../LoginModal';
-// import { ReserveModal } from '../../ReserveModal';
-import { Button } from '../../Button';
-import { AccountMenu } from '../../../components/AccountMenu';
 import './Toolbar.scss';
 import '../../../styles/ArtExperienceButtons.scss';
 import '../../../styles/ArtExperienceFonts.scss';
-// import { LeftMenu } from '../../LeftMenu';
 
 export const Toolbar = () => {
     return (

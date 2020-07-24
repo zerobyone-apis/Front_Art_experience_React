@@ -10,7 +10,7 @@ const App: FC<{ Component: any; pageProps: any }> = ({
   Component,
   pageProps,
 }) => {
-  let store = require('store'); // store :3
+  const store = require('store'); // store :3
   return (
     <div>
       <ButtonProvider disabled={false}>

@@ -1,5 +1,5 @@
-import moment from 'moment';
 import IntegrationBackend from '../utils/IntegrationBackend';
+// eslint-disable-next-line no-unused-vars
 import { IClient } from '../types/Client.type'
 import { GET_ENDPOIT, POST_ENDPOIT, CLIENT_ROUTE, CLIENT_EXISTS_ROUTE } from '../types/Routes.type';
 export default class ClientActions {
@@ -7,10 +7,10 @@ export default class ClientActions {
 
     add = async (newClient: IClient) => {
         console.log("Access to add", newClient)
-        let existsEmail = await this.getByEmail(newClient.email);
+        const existsEmail = await this.getByEmail(newClient.email);
         if (!existsEmail) {
             try {
-                let data: IClient = {
+                const data: IClient = {
                     "name": newClient.name,
                     "username": newClient.username,
                     "email": newClient.email,
@@ -39,7 +39,7 @@ export default class ClientActions {
 
     login = async (client: { email: string, password: string }) => {
         console.log("Access to login", client)
-        let existsEmail = await this.getByEmail(client.email);
+        const existsEmail = await this.getByEmail(client.email);
         console.log(existsEmail)
         if (existsEmail) {
             try {
@@ -55,8 +55,8 @@ export default class ClientActions {
 
     getByEmail = async (email: string) => {
         try {
-            let data = { email };
-            let response = await this.backend.send(
+            const data = { email };
+            const response = await this.backend.send(
                 GET_ENDPOIT,
                 data,
                 `${CLIENT_EXISTS_ROUTE}/${email}`

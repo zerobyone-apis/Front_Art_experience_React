@@ -1,4 +1,4 @@
-import React, { useState, useRef, useContext, SetStateAction, Dispatch, useEffect } from 'react';
+import React, { useState, useRef, useContext, SetStateAction, Dispatch } from 'react';
 import { DialogModal } from '../DialogModal';
 import { ClientAccess } from '../ReserveModal/ClientAccess';
 import { UserContext } from '../../contexts/UserContext';

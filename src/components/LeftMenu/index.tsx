@@ -1,14 +1,12 @@
-import { Button } from '../Button';
 import React, { useState } from 'react'
-import './LeftMenu.scss';
-import '../../styles/ArtExperienceButtons.scss';
+import { Button } from '../Button';
 import { FiMenu } from 'react-icons/fi'
 import { DialogModal } from '../DialogModal';
 import { toolbarButtons } from '../../utils/toolbarButtons';
+import './LeftMenu.scss';
+import '../../styles/ArtExperienceButtons.scss';
 
-export const LeftMenu = (props: {
-    items?: any[],
-}) => {
+export const LeftMenu = () => {
     const [showDialog, setShowDialog] = useState(false);
     return (
         <div className="left_menu">

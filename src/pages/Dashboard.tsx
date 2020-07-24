@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Table } from '../components/Dashboard/Table';
+import { Table } from '../components/Dashboard/CustomTable';
 import ReserveActions from '../actions/Reserve.actions';
 import { ButtonContext } from '../contexts/ButtonsContext';
 import { Toolbar } from '../components/Dashboard/Toolbar';
@@ -42,7 +42,8 @@ const DashboardPage = () => {
             <div className="page-box">
                 <div className="dashboard">
                     {reserves.length ?
-                        (<Table items={reserves} headers={headerOrder} />) : null}
+                        (<Table />) : null}
+                    {/* items={reserves} headers={headerOrder} */}
                 </div>
             </div>
             <LoaderPage show={disabled} />

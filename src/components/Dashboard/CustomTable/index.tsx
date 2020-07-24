@@ -1,10 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './Table.scss';
-export const Table = (props: {
-    items: any[],
-    headers: { text: string, value: string }[],
-}) => {
-    const [items, setItems] = useState(props.items || []);
+export const Table = () => {
+    // const [items, setItems] = useState(props.items || []);
 
     return (
         <div className="table-box">
@@ -17,7 +14,10 @@ export const Table = (props: {
             <div className="left-box">
             </div>
             <div className="content-box">
-                <table className="table">
+
+
+
+                {/* <table className="table">
                     <tr>
                         {props.headers.map((header, i) => {
                             return <th className="header" key={i}>{header.text}</th>
@@ -36,7 +36,9 @@ export const Table = (props: {
                             )
                         })
                     }
-                </table>
+                </table> */}
+
+
             </div>
             <div className="right-box">
             </div>

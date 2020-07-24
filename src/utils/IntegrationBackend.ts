@@ -15,7 +15,7 @@ export default class IntegrationBackend {
       }
     };
     console.log('Este es el objeto que se manda para el backend \n', data)
-    let res = await this.axios(config);
+    const res = await this.axios(config);
     return res;
   }
 

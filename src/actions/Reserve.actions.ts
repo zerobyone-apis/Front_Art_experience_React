@@ -1,6 +1,7 @@
 import IntegrationBackend from '../utils/IntegrationBackend';
 import ResultObject from '../utils/ResultObject';
 import { RESERVE_ROUTE, POST_ENDPOIT, GET_ENDPOIT } from '../types/Routes.type';
+// eslint-disable-next-line no-unused-vars
 import { IReserve } from '../types/Reserve.type';
 import moment from 'moment';
 
@@ -9,7 +10,7 @@ export default class ReserveActions {
 
     public async add(reserve: IReserve) {
         console.log("Accede Reserve Actions", reserve)
-        let customMoment = moment;
+        const customMoment = moment;
         customMoment.locale();
         try {
             const response: any = await this.backend.send(

@@ -12,7 +12,7 @@ export default class Validation {
             case 'string':
               if (object[field[0]] === '') {
                 noErrors = false;
-                let fieldError = {
+                const fieldError = {
                   name: field[0],
                   form: fieldArray.objectName,
                   error: 'El campo es requerido'
@@ -21,9 +21,9 @@ export default class Validation {
               }
               break;
             case 'number':
-              if (Number(object[field[0]]) === NaN) {
+              if (Number(object[field[0]]).toString() === 'NaN') {
                 noErrors = false;
-                let fieldError = {
+                const fieldError = {
                   name: field[0],
                   form: fieldArray.objectName,
                   error: 'El campo solo debe contener numeros'

@@ -19,7 +19,7 @@ export const UserProvider = (props: {
     value?: IUser,
     children: ReactElement;
 }) => {
-    let storex = require('store'); // store :3
+    const storex = require('store'); // store :3
 
     const [user, setUser] = useState(props.value || null);
 

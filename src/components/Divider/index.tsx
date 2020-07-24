@@ -1,6 +1,5 @@
-import React, { ReactChildren, Children, ReactChild } from 'react';
+import React, { ReactChild } from 'react';
 import './Divider.scss';
-import { url } from 'inspector';
 
 export const Divider = (props: {
     children?: ReactChild,

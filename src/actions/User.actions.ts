@@ -1,7 +1,7 @@
-import moment from 'moment';
 import IntegrationBackend from '../utils/IntegrationBackend';
-import { IUser } from '../types/User.type'
-import { GET_ENDPOIT, POST_ENDPOIT, USER_ROUTE, USER_EXISTS_ROUTE } from '../types/Routes.type';
+// eslint-disable-next-line no-unused-vars
+// import { IUser } from '../types/User.type'
+// import { GET_ENDPOIT, POST_ENDPOIT, USER_ROUTE, USER_EXISTS_ROUTE } from '../types/Routes.type';
 export default class UserActions {
   private backend: IntegrationBackend = new IntegrationBackend();
 

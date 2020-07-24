@@ -167,10 +167,10 @@ export const ReserveModal = (props: { className?: string }) => {
 
   // CREATE RESERVE
   const createReserve = async () => {
-    let totalCost = 0; // Total cost lo calculo en el backend es al pedo que este aca
-    let startDateFormatted = `${moment(reserveDate).format().split('T')[0]}T${reserveHour}:00`
+    const totalCost = 0; // Total cost lo calculo en el backend es al pedo que este aca
+    const startDateFormatted = `${moment(reserveDate).format().split('T')[0]}T${reserveHour}:00`
 
-    let newReserve: IReserve = {
+    const newReserve: IReserve = {
       barberOrHairdresserId: selectedBarber.barberId,
       clientId: getUserData().clientId,
       nameClient: getUserData().name,
@@ -181,7 +181,7 @@ export const ReserveModal = (props: { className?: string }) => {
       workToDo: selectedService.name,
     }
     setDisabledButton(true);
-    let createdReserve: any = await reserveActions.add(newReserve);
+    const createdReserve: any = await reserveActions.add(newReserve);
     setDisabledButton(false);
 
     if (createReserve) {

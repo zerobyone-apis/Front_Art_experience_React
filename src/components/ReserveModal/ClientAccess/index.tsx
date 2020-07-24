@@ -39,7 +39,7 @@ export const ClientAccess = (props: {
         setUserData
     } = useContext(UserContext);
 
-    let validate: Validation = new Validation();
+    const validate: Validation = new Validation();
 
 
     const registerFieldsStructure: Record<string, any> = {
@@ -74,7 +74,7 @@ export const ClientAccess = (props: {
     // REGISTER
     const register = async () => {
         hideMessages();
-        let registerFields: IClient = {
+        const registerFields: IClient = {
             username: clientFields.name,
             cel: clientFields.cel,
             email: clientFields.email,
@@ -83,7 +83,7 @@ export const ClientAccess = (props: {
         }
         if (validate.validateFields(registerFields, setErrorFields, [registerFieldsStructure])) {
             setDisabledButton(true);
-            let clientResponse = await clientActions.add(registerFields);
+            const clientResponse = await clientActions.add(registerFields);
             setDisabledButton(false);
             if (typeof (clientResponse) !== 'string') {
                 clientCookie(clientResponse);
@@ -104,13 +104,13 @@ export const ClientAccess = (props: {
     // LOGIN
     const login = async () => {
         hideMessages();
-        let loginFields = {
+        const loginFields = {
             email: clientFields.email,
             password: clientFields.password
         }
         if (validate.validateFields(loginFields, setErrorFields, [loginFieldsStructure])) {
             setDisabledButton(true);
-            let response = await clientActions.login(loginFields);
+            const response = await clientActions.login(loginFields);
             setDisabledButton(false);
             if (typeof (response) !== 'string') {
                 props.onClientLogged(response);
