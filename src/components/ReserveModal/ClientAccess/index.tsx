@@ -6,6 +6,7 @@ import { ButtonContext } from '../../../contexts/ButtonsContext';
 import { UserContext } from '../../../contexts/UserContext';
 import { IClient } from '../../../types/Client.type';
 import ClientActions from '../../../actions/Client.actions';
+import UserActions from '../../../actions/User.actions';
 import Validation from '../../../utils/Validation';
 import './ClientAccess.scss';
 import '../../../styles/ArtExperienceButtons.scss';
@@ -26,6 +27,7 @@ export const ClientAccess = (props: {
     const [clientFields, setClientFields] = useState(defaultFields);
     const [errorsFields, setErrorFields] = useState([]); // used by validation
     const clientActions: ClientActions = new ClientActions();
+    const userActions: UserActions = new UserActions();
 
     // Contexts
     const {
@@ -55,7 +57,7 @@ export const ClientAccess = (props: {
         objectName: 'loginFields',
         fields: [
             ['email', 'string'],
-            // ['password', 'string'],
+            ['password', 'string'],
         ]
     };
     const onChangeField = (value: string, fieldName: string) => {
@@ -110,7 +112,7 @@ export const ClientAccess = (props: {
         }
         if (validate.validateFields(loginFields, setErrorFields, [loginFieldsStructure])) {
             setDisabledButton(true);
-            const response = await clientActions.login(loginFields);
+            const response = await userActions.login(loginFields);
             setDisabledButton(false);
             if (typeof (response) !== 'string') {
                 props.onClientLogged(response);
@@ -135,13 +137,14 @@ export const ClientAccess = (props: {
                                 value={clientFields.email}
                                 error={validate.get('loginFields.email', errorsFields) || ''}
                                 onChange={onChangeField} />
-                            {/* <TextField
+                            <TextField
                                 label="Contraseña"
                                 name="password"
+                                type="password"
                                 defaultValue={clientFields.password}
                                 value={clientFields.password}
                                 error={validate.get('loginFields.password', errorsFields) || ''}
-                                onChange={onChangeField} /> */}
+                                onChange={onChangeField} />
                             <p className="error_message">{errorMessage}</p>
                             <p className="success_message">{successMessage}</p>
                             <Button
@@ -224,3 +227,4 @@ export const ClientAccess = (props: {
         </div>
     );
 }
+

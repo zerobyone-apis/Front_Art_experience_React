@@ -5,7 +5,7 @@ export const USER_ROUTE: string = '/user';
 // POST /user
 // PUT /user 
 // DELETE /user -> /{id_user}
-export const USER_SIGN_IN_ROUTE: string = `${USER_ROUTE}/signin`;
+export const USER_SIGN_IN_ROUTE: string = `${USER_ROUTE}/v1/login`;
 export const USER_EXISTS_ROUTE: string = `${USER_ROUTE}/email`;
 
 export const BARBER_ROUTE: string = '/barber';
