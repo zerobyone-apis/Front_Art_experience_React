@@ -21,6 +21,7 @@ const DashboardPage = () => {
         { text: 'Cliente', value: 'nameClient' },
         { text: 'Fecha de Reservacion', value: 'startTime' },
         { text: 'Servicio', value: 'workToDo' },
+        { text: 'Estado', value: 'status' },
     ];
 
     useEffect(() => {
@@ -43,6 +44,8 @@ const DashboardPage = () => {
                 <div className="dashboard">
                     {reserves.length ? (
                         <CustomTable
+                            noItemsMessage="No tiene reservas creadas"
+                            noSearchMessage="No se encontraron coincidencias"
                             items={reserves}
                             headers={headerOrder} />) : null}
                 </div>
