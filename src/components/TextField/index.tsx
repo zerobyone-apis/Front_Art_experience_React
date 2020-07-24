@@ -6,7 +6,7 @@ import * as Icons from '@fortawesome/free-solid-svg-icons'
 
 export const TextField = (props: {
   value?: any;
-  onChange?: (value: string) => void;
+  onChange?: (value: string, name: string | undefined) => void;
   name?: string;
   type?: string;
   label?: string;
@@ -24,7 +24,7 @@ export const TextField = (props: {
 
   // function
   useEffect(() => {
-    props.onChange(value);
+    props.onChange(value, props.name);
   }, [value]);
 
   const changeValue = ({ target: { value } }: ChangeEvent<HTMLInputElement>) => {

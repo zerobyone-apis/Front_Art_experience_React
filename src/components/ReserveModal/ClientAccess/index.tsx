@@ -58,7 +58,7 @@ export const ClientAccess = (props: {
             // ['password', 'string'],
         ]
     };
-    const onChangeField = (fieldName: string, value: string) => {
+    const onChangeField = (value: string, fieldName: string) => {
         setClientFields({ ...clientFields, [fieldName]: value })
     }
     const changeAccess = (index: number) => {
