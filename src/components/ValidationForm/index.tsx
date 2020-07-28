@@ -1,5 +1,4 @@
 import React, { useState, useEffect, ReactElement } from 'react';
-import { ValidationProvider } from '../../contexts/ValidationContext';
 import { Button } from '../Button';
 import './ValidationForm.scss';
 
