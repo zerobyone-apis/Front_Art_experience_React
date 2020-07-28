@@ -1,11 +1,11 @@
 import React, { useState, useRef, useContext, SetStateAction, Dispatch } from 'react';
 import { DialogModal } from '../DialogModal';
+import { Button } from '../Button';
 import { ClientAccess } from '../ReserveModal/ClientAccess';
-import { UserContext } from '../../contexts/UserContext';
-import { ButtonContext } from '../../contexts/ButtonsContext';
 import { RiAccountCircleLine } from 'react-icons/ri';
 import { useOutsideAlerter } from '../../hooks/useOutsideAlerter';
-import { Button } from '../Button';
+import { UserContext } from '../../contexts/UserContext';
+import { ButtonContext } from '../../contexts/ButtonsContext';
 import { getPageName } from '../../utils/utils';
 import { INDEX_PAGE, DASHBOARD_PAGE } from '../../types/Pages.type';
 import './LoginModal.scss';
