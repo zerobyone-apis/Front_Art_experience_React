@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction } from "react";
 
 export default class Validation {
   private fieldsFail: any = [];
-  public onChangeErrors: Dispatch<SetStateAction<any[]>>;
+  // public onChangeErrors: Dispatch<SetStateAction<any[]>> = new Dispatch<SetStateAction<any[]>>;
 
   validateFields(object: any, fieldsArrays: any[]) {
     this.fieldsFail = [];
@@ -38,7 +38,7 @@ export default class Validation {
         });
       }
     );
-    this.onChangeErrors(this.fieldsFail);
+    // this.onChangeErrors(this.fieldsFail);
     return noErrors;
   }
 
@@ -81,7 +81,7 @@ export default class Validation {
     if (passwd1 === passwd2) {
       return true;
     } else {
-      this.onChangeErrors(this.fieldsFail);
+      // this.onChangeErrors(this.fieldsFail);
       // errorsFields.push(
       //   {
       //     name: 'password2',

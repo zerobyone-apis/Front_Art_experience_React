@@ -41,6 +41,7 @@ export const SearchField = (props: {
   return (
     <div className={`search-field ${props.className}`}>
       <TextField
+        name="searchField"
         onChange={setFieldValue}
         label={props.fieldLabel || 'Search'}
         className="search-text_field"

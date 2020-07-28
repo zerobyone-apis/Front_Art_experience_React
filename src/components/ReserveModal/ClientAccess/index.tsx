@@ -2,8 +2,6 @@ import React, { useState, useContext, Fragment } from 'react';
 
 import { TextField } from '../../TextField';
 import { ValidationForm } from '../../ValidationForm';
-import ValidationX from '../../../utils/Validation';
-import { ValidationContext } from '../../../contexts/ValidationContext';
 import { Button } from '../../Button';
 import { ButtonContext } from '../../../contexts/ButtonsContext';
 import { UserContext } from '../../../contexts/UserContext';
@@ -52,8 +50,8 @@ export const ClientAccess = (props: {
         setUserData
     } = useContext(UserContext);
 
-    const validate: ValidationX = new ValidationX();
-    validate.onChangeErrors = setErrorFields;
+    // const validate: ValidationX = new ValidationX();
+    // validate.onChangeErrors = setErrorFields;
 
 
     const registerFieldsStructure: Record<string, any> = {

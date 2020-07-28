@@ -5,7 +5,7 @@ export interface IClient {
     name: string;
     username: string;
     password: string;
-    password2: string;
+    password2?: string;
     email: string;
     cel: string;
 
