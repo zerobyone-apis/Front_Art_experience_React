@@ -1,13 +1,13 @@
 // eslint-disable-next-line no-unused-vars
 import React, { ChangeEvent, useState, useEffect } from 'react';
-import './TextField.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import * as Icons from '@fortawesome/free-solid-svg-icons'
+import * as Icons from '@fortawesome/free-solid-svg-icons';
+import './TextField.scss';
 
 export const TextField = (props: {
   value?: any;
   onChange?: (value: string, name: string | undefined) => void;
-  name?: string;
+  name: string;
   type?: string;
   label?: string;
   error?: string;
@@ -22,34 +22,28 @@ export const TextField = (props: {
   const [value, setValue] = useState(props.value || '');
   const [error, setError] = useState(props.error);
 
-  // function
-  useEffect(() => {
-    props.onChange(value, props.name);
-  }, [value]);
-
-  const changeValue = ({ target: { value } }: ChangeEvent<HTMLInputElement>) => {
-    setValue(value);
-  }
-
-  // error
   useEffect(() => {
     setError(props.error);
   }, [props.error])
-
-
+  useEffect(() => {
+    props.onChange(value, props.name);
+  }, [value]);
+  const changeValue = ({ target: { value } }: ChangeEvent<HTMLInputElement>) => {
+    setValue(value);
+  }
   const ErrorLabel = (props: {
     value: string;
   }) => {
     if (props.value) {
-      return <label className="error-label">{props.value}</label>;
+      return (
+        <div>
+          <label className="error-label">{props.value}</label>;
+        </div>
+      )
     } else {
       return null;
     }
   };
-
-
-
-
   return (
     <div className={`${props.className || ''} text-field`}>
       <label className="label">{props.label}</label>
@@ -57,7 +51,7 @@ export const TextField = (props: {
         <input
           tabIndex={props.tabIndex}
           autoFocus
-          type={props.type}
+          type={props.type || 'string'}
           required={props.required}
           value={value}
           onChange={changeValue}
@@ -71,9 +65,8 @@ export const TextField = (props: {
           ) : null
         }
       </div>
-      <ErrorLabel value={error} />
+      <ErrorLabel value={props.error} />
     </div>
   );
 };
-
 TextField.displayName = 'Text Field';
