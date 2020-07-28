@@ -1,8 +1,12 @@
 export interface IUser {
-    userId?: number;
     username: string;
+    email: string;
     password: string;
+    cel: string;
     createOn: string;
-    status?: boolean;
     admin: boolean;
+    userId: number;
+    barberId: number;
+    fullName: string;
+    status: boolean;
 }
