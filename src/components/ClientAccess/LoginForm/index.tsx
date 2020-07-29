@@ -22,7 +22,6 @@ export const LoginForm = (props: {
     const [message, setMessage] = useState(baseMessage)
 
     const onChangeLoginField = (value: string, fieldName: string) => {
-        console.log(value, ' - ', fieldName)
         setLoginFields({ ...loginFields, [fieldName]: value })
     }
 

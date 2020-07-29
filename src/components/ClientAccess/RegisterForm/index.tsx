@@ -53,11 +53,11 @@ export const RegisterForm = (props: {
             password2: fields.password2
         }
         setDisabledButton(true);
-        const clientResponse = await clientActions.add(data);
+        const response = await clientActions.add(data);
         setDisabledButton(false);
-        if (typeof (clientResponse) !== 'string') {
-            props.onClientRegister(clientResponse);
-            setUserData(clientResponse);
+        if (response) {
+            props.onClientRegister(response);
+            setUserData(response);
             setMessage({ value: 'Registro realizado con exito', isError: false });
         } else {
             setMessage({ value: 'No se pudo realizar el registro, vuelva a intentarlo', isError: true });
@@ -70,6 +70,7 @@ export const RegisterForm = (props: {
                 objectTest={fields}
                 buttonLabel="Registrarse"
                 buttonClassName="access_btn art_experience-button_outlined"
+                equalFields={[{ field1: 'password', field2: 'password2', error: 'Las contraseñas no coinciden' }]}
                 onClick={() => {
                     register()
                 }}
