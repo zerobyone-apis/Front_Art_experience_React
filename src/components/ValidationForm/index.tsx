@@ -4,6 +4,7 @@ import './ValidationForm.scss';
 
 export const ValidationForm = (props: {
     objectTest?: object,
+    equalFields?: { field1: string, field2: string, error: string }[],
     children: React.ReactChild[],
     buttonClassName?: string,
     buttonLabel: string,
@@ -86,6 +87,17 @@ export const ValidationForm = (props: {
                 }
             }
         });
+        // Equals fields
+        if (props.equalFields) {
+            props.equalFields.forEach(item => {
+                let field1 = props.objectTest[item.field1];
+                let field2 = props.objectTest[item.field2];
+                if (field1 != field2) {
+                    errorsList.push({ name: item.field2, error: item.error })
+                    success = false;
+                }
+            });
+        }
         setErrors(errorsList)
         return success;
     }
