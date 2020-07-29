@@ -25,12 +25,16 @@ export const TextField = (props: {
   useEffect(() => {
     setError(props.error);
   }, [props.error])
-  useEffect(() => {
-    props.onChange(value, props.name);
-  }, [value]);
-  const changeValue = ({ target: { value } }: ChangeEvent<HTMLInputElement>) => {
+
+  // useEffect(() => {
+  //   props.onChange(value, props.name);
+  // }, [value]);
+
+  const changeValue = ({ target: { value, name } }: ChangeEvent<HTMLInputElement>) => {
     setValue(value);
+    props.onChange(value, name);
   }
+
   const ErrorLabel = (props: {
     value: string;
   }) => {
@@ -44,16 +48,18 @@ export const TextField = (props: {
       return null;
     }
   };
+
   return (
     <div className={`${props.className || ''} text-field`}>
       <label className="label">{props.label}</label>
       <div className="input-box">
         <input
           tabIndex={props.tabIndex}
-          autoFocus
+          name={props.name}
           type={props.type || 'string'}
           required={props.required}
           value={value}
+          autoFocus
           onChange={changeValue}
         />
         {
@@ -69,4 +75,3 @@ export const TextField = (props: {
     </div>
   );
 };
-TextField.displayName = 'Text Field';
