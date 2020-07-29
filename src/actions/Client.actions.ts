@@ -6,33 +6,25 @@ export default class ClientActions {
     private backend: IntegrationBackend = new IntegrationBackend();
 
     add = async (newClient: IClient) => {
-        console.log("Access to add", newClient)
-        const existsEmail = await this.getByEmail(newClient.email);
-        if (!existsEmail) {
-            try {
-                const data: IClient = {
-                    "name": newClient.name,
-                    "username": newClient.username,
-                    "email": newClient.email,
-                    "password": newClient.password,
-                    "cel": newClient.cel,
-                };
-                const response: any = await this.backend.send(
-                    POST_ENDPOIT,
-                    data,
-                    CLIENT_ROUTE
-                );
-                if (response.status !== 201) {
-                    console.log('Error on create client', response.message)
-                    return Error('Error on create client')
-                }
-                console.log('success post client')
-                return response.data;
-            } catch (error) {
-                return "Ocurrio un error! Vuelva a intentarlo"
-            }
-        } else {
-            return "El email ya esta registrado";
+        try {
+            const data: IClient = {
+                name: newClient.name,
+                username: newClient.username,
+                password: newClient.password,
+                email: newClient.email,
+                cel: newClient.cel,
+                clientType: 'Nuevo'
+            };
+            const response: any = await this.backend.send(
+                POST_ENDPOIT,
+                data,
+                CLIENT_ROUTE
+            );
+            return response.data;
+        } catch (error) {
+            console.log('error: ')
+            console.log(JSON.stringify(error))
+            return null;
         }
     }
 
