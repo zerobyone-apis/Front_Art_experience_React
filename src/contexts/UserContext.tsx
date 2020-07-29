@@ -20,18 +20,20 @@ export const UserProvider = (props: {
     children: ReactElement;
 }) => {
     const storex = require('store'); // store :3
-
     const [user, setUser] = useState(props.value || null);
-
     useEffect(() => {
         storex.set(USER_DATA_STORAGE, user);
     }, [user])
-
     const setUserData = (userData: any) => {
         setUser(userData);
     }
     const getUserData = () => {
-        return user;
+        console.log(user)
+        if (user['user']) {
+            return user['user']
+        } else {
+            return user
+        }
     }
     const userIsLogged = () => {
         return user ? true : false;
