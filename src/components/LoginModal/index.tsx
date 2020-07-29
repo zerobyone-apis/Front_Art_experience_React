@@ -1,7 +1,7 @@
 import React, { useState, useRef, useContext, SetStateAction, Dispatch } from 'react';
 import { DialogModal } from '../DialogModal';
 import { Button } from '../Button';
-import { ClientAccess } from '../ReserveModal/ClientAccess';
+import { ClientAccess } from '../ClientAccess';
 import { RiAccountCircleLine } from 'react-icons/ri';
 import { useOutsideAlerter } from '../../hooks/useOutsideAlerter';
 import { UserContext } from '../../contexts/UserContext';
