@@ -66,7 +66,7 @@ export const LoginModal = (props: {
                     <Button
                         onClick={() => { launchModal() }}
                         className={`activator-btn login-btn art_experience-button_outlined`}
-                        label={userIsLogged() ? getUserData().name : 'Acceder'}>
+                        label={userIsLogged() ? getUserData().username : 'Acceder'}>
                         <RiAccountCircleLine className="icon" />
                     </Button>
                 </div>
@@ -93,7 +93,7 @@ export const LoginModal = (props: {
                     <div className="account-menu" ref={wrapperRef}>
                         <p className="item-text user-name">{getUserData().name}</p>
                         <p className="item-text user-email">{getUserData().email}</p>
-                        {getPageName() === INDEX_PAGE ? (
+                        {(getPageName() === INDEX_PAGE && getUserData()['admin']) ? (
                             <Button
                                 label="Gestion de Reservas"
                                 className="item-list_btn art_experience-button_outlined"
