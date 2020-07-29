@@ -48,7 +48,6 @@ export const TextField = (props: {
       return null;
     }
   };
-
   return (
     <div className={`${props.className || ''} text-field`}>
       <label className="label">{props.label}</label>
