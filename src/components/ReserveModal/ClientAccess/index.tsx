@@ -7,8 +7,7 @@ import { ButtonContext } from '../../../contexts/ButtonsContext';
 import { UserContext } from '../../../contexts/UserContext';
 import { IClient } from '../../../types/Client.type';
 import ClientActions from '../../../actions/Client.actions';
-import UserActions from '../../../actions/User.actions';
-
+// import Actions from '../../../actions/User.actions';
 import './ClientAccess.scss';
 import '../../../styles/ArtExperienceButtons.scss';
 import '../../../styles/ArtExperienceFonts.scss';
@@ -30,13 +29,10 @@ export const ClientAccess = (props: {
     const [accessMode, setAccessMode] = useState(0); // 0 - Login / 1 - register
     const [errorMessage, setErrorMessage] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
-
     const [loginFields, setLoginFields] = useState(defaultLoginFields);
     const [registerFields, setRegisterFields] = useState(defaultRegisterFields);
-
-    const [errorsFields, setErrorFields] = useState([]); // used by validation
+    // const [errorsFields, setErrorFields] = useState([]); // used by validation
     const clientActions: ClientActions = new ClientActions();
-    const userActions: UserActions = new UserActions();
 
     // Contexts
     const {
@@ -46,39 +42,17 @@ export const ClientAccess = (props: {
     } = useContext(ButtonContext);
     const {
         // @ts-ignore
-        userIsLogged,
         setUserData
     } = useContext(UserContext);
-
-    // const validate: ValidationX = new ValidationX();
-    // validate.onChangeErrors = setErrorFields;
-
-
-    const registerFieldsStructure: Record<string, any> = {
-        objectName: 'registerFields',
-        fields: [
-            ['name', 'string'],
-            ['email', 'string'],
-            ['cel', 'string'],
-            ['password', 'string'],
-            ['password2', 'string'],
-        ]
-    };
-    const loginFieldsStructure: Record<string, any> = {
-        objectName: 'loginFields',
-        fields: [
-            ['email', 'string'],
-            ['password', 'string'],
-        ]
-    };
     const onChangeLoginField = (value: string, fieldName: string) => {
+        console.log(value, ' - ', fieldName)
         setLoginFields({ ...loginFields, [fieldName]: value })
     }
     const onChangeRegisterField = (value: string, fieldName: string) => {
+        console.log(value, ' - ', fieldName)
         setRegisterFields({ ...registerFields, [fieldName]: value })
     }
     const changeAccess = (index: number) => {
-        setErrorFields([]);
         hideMessages();
         setAccessMode(index);
     }
@@ -112,11 +86,6 @@ export const ClientAccess = (props: {
         // }
     }
 
-    //Do feature to save the client object to cookie 
-    function clientCookie(client: IClient) {
-        document.cookie
-    }
-
     // LOGIN
     const login = async () => {
         hideMessages();
@@ -125,61 +94,62 @@ export const ClientAccess = (props: {
             password: loginFields.password
         }
         setDisabledButton(true);
-        const response = await userActions.login(fields);
-        setDisabledButton(false);
-        if (typeof (response) !== 'string') {
+        const response = await clientActions.login(fields);
+        if (response) {
             props.onClientLogged(response);
             setUserData(response);
             setSuccessMessage('Has iniciado sesion con exito');
         } else {
-            setErrorMessage(response);
+            setErrorMessage('No se pudo iniciar sesion, verifique email y contaseña');
         }
+        setDisabledButton(false);
     }
 
-    const getAccessByMode = () => {
-        switch (accessMode) {
-            case 0:
-                return (
-                    <div className="login-box">
-                        <ValidationForm
-                            objectTest={loginFields}
-                            buttonLabel="Acceder"
-                            buttonClassName="access_btn art_experience-button_outlined"
-                            onClick={() => {
-                                login()
-                            }}
-                        >
-                            <TextField
-                                value={loginFields.email}
-                                name="email"
-                                type="email"
-                                required={true}
-                                label="Email"
-                                onChange={onChangeLoginField} />
-                            <TextField
-                                value={loginFields.password}
-                                name="password"
-                                type="password"
-                                required={true}
-                                label="Contraseña"
-                                onChange={onChangeLoginField} />
-                        </ValidationForm>
-                        <p className="error_message">{errorMessage}</p>
-                        <p className="success_message">{successMessage}</p>
+    //Do feature to save the client object to cookie 
+    function clientCookie(client: IClient) {
+        document.cookie
+    }
 
-                        <p className="art_experience-text-light title">Si no estas registrado, ingresa AQUI</p>
-                        <Button
-                            onClick={() => {
-                                changeAccess(1);
-                            }}
-                            className="access_btn art_experience-button_outlined"
-                            label="Registrate Aqui"
-                        />
-                    </div>
-                );
-                break;
-            case 1:
-                return (
+    return (
+        <div className="client_info-box">
+            {accessMode == 0 ? (
+                <div className="login-box">
+                    <ValidationForm
+                        objectTest={loginFields}
+                        buttonLabel="Acceder"
+                        buttonClassName="access_btn art_experience-button_outlined"
+                        onClick={() => {
+                            login()
+                        }}
+                    >
+                        <TextField
+                            value={loginFields.email}
+                            name="email"
+                            type="email"
+                            required={true}
+                            label="Email"
+                            onChange={onChangeLoginField} />
+                        <TextField
+                            value={loginFields.password}
+                            name="password"
+                            type="password"
+                            required={true}
+                            label="Contraseña"
+                            onChange={onChangeLoginField} />
+                    </ValidationForm>
+                    <p className="error_message">{errorMessage}</p>
+                    <p className="success_message">{successMessage}</p>
+
+                    <p className="art_experience-text-light title">Si no estas registrado, ingresa AQUI</p>
+                    <Button
+                        onClick={() => {
+                            changeAccess(1);
+                        }}
+                        className="access_btn art_experience-button_outlined"
+                        label="Registrate Aqui"
+                    />
+                </div>
+            ) : (
                     <div className="register-box">
                         <ValidationForm
                             objectTest={registerFields}
@@ -235,15 +205,7 @@ export const ClientAccess = (props: {
                             label="Accede Aqui"
                         />
                     </div>
-                );
-                break;
-        }
-    }
-
-    return (
-        <div className="client_info-box">
-            {getAccessByMode()}
+                )}
         </div>
     );
 }
-
