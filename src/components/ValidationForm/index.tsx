@@ -25,15 +25,14 @@ export const ValidationForm = (props: {
     }, [props.objectTest])
 
     const loadFields = () => {
-        // let requiredFields = [];
-        // React.Children.toArray(props.children).forEach((child: ReactElement) => {
-        //     if (child.props['required'] === true) {
-        //         requiredFields.push({ name: child.props['name'], type: child.props['type'] })
-        //     }
-        // })
-        // setFields(requiredFields)
+        let requiredFields = [];
+        React.Children.toArray(props.children).forEach((child: ReactElement) => {
+            if (child.props['required'] === true) {
+                requiredFields.push({ name: child.props['name'], type: child.props['type'] })
+            }
+        })
+        setFields(requiredFields)
     }
-
 
     const ErrorLabel = (props: {
         value: string[],
@@ -120,28 +119,22 @@ export const ValidationForm = (props: {
         return fieldErrors;
     }
 
-    // const getChildByName = (name: string) => {
-    //     return React.Children.toArray(props.children).filter((child: ReactElement) => {
-    //         return child.props.name === name
-    //     })
-    // }
-
-    // const getChidrens = () => {
-    //     return React.Children.map(props.children, (child: ReactElement, i: number) => {
-    //         return (
-    //             <div key={i}>
-    //                 {child}
-    //                 <ErrorLabel
-    //                     value={getErrorByField(child.props.name)} />
-    //             </div>
-    //         )
-    //     })
-    // }
+    const getChidrens = () => {
+        return React.Children.map(props.children, (child: ReactElement, i: number) => {
+            return (
+                <div key={i}>
+                    {child}
+                    <ErrorLabel
+                        value={getErrorByField(child.props.name)} />
+                </div>
+            )
+        })
+    }
 
     return (
         <div>
-            {/* {getChidrens()} */}
-            {props.children}
+            {getChidrens()}
+            {/* {props.children} */}
             <Button
                 onClick={() => {
                     onClickValidate()
