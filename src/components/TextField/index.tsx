@@ -26,10 +26,6 @@ export const TextField = (props: {
     setError(props.error);
   }, [props.error])
 
-  // useEffect(() => {
-  //   props.onChange(value, props.name);
-  // }, [value]);
-
   const changeValue = ({ target: { value, name } }: ChangeEvent<HTMLInputElement>) => {
     setValue(value);
     props.onChange(value, name);
