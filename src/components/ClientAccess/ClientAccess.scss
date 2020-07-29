@@ -7,6 +7,11 @@
   animation-name: slide-top;
   animation-duration: 1s;
 
+  .form {
+    animation-name: slide-top;
+    animation-duration: 1s;
+  }
+
   p {
     // color: white;
   }
@@ -17,22 +22,6 @@
 
   .error_message {
     color: rgb(235, 129, 129);
-  }
-
-  .login-box {
-    position: relative;
-    width: 100%;
-    height: max-content;
-    animation-name: slide-top;
-    animation-duration: 1s;
-  }
-
-  .register-box {
-    position: relative;
-    width: 100%;
-    height: max-content;
-    animation-name: slide-top;
-    animation-duration: 1s;
   }
 
   .access_btn {
