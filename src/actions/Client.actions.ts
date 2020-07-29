@@ -1,7 +1,7 @@
 import IntegrationBackend from '../utils/IntegrationBackend';
 // eslint-disable-next-line no-unused-vars
 import { IClient } from '../types/Client.type'
-import { GET_ENDPOIT, POST_ENDPOIT, CLIENT_ROUTE, CLIENT_EXISTS_ROUTE } from '../types/Routes.type';
+import { GET_ENDPOIT, USER_SIGN_IN_ROUTE, POST_ENDPOIT, CLIENT_ROUTE, CLIENT_EXISTS_ROUTE } from '../types/Routes.type';
 export default class ClientActions {
     private backend: IntegrationBackend = new IntegrationBackend();
 
@@ -22,7 +22,6 @@ export default class ClientActions {
                     data,
                     CLIENT_ROUTE
                 );
-
                 if (response.status !== 201) {
                     console.log('Error on create client', response.message)
                     return Error('Error on create client')
@@ -38,18 +37,22 @@ export default class ClientActions {
     }
 
     login = async (client: { email: string, password: string }) => {
-        console.log("Access to login", client)
-        const existsEmail = await this.getByEmail(client.email);
-        console.log(existsEmail)
-        if (existsEmail) {
-            try {
-                // login method
-                return existsEmail;
-            } catch (error) {
-                return "Ocurrio un error! Vuelva a intentarlo"
+        try {
+            let data = {
+                email: client.email,
+                password: client.password
             }
-        } else {
-            return "El email no esta registrado";
+            const response: any = await this.backend.send(
+                POST_ENDPOIT,
+                data,
+                USER_SIGN_IN_ROUTE
+            );
+            console.log('response ', response)
+            return response.data;
+        } catch (error) {
+            console.log('error: ')
+            console.log(JSON.stringify(error))
+            return null
         }
     }
 
