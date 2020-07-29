@@ -15,10 +15,11 @@ export default class UserActions {
         data,
         USER_SIGN_IN_ROUTE
       );
-      console.log(response)
+      console.log('response ', response)
       return response.data;
     } catch (error) {
-      console.log('Error xd')
+      console.log('error: ')
+      console.log(JSON.stringify(error))
       return null
     }
   }
