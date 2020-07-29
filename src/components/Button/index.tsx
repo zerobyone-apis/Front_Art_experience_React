@@ -36,15 +36,13 @@ export const Button = (props: {
         onClick={props.onClick}
       >
         <a href={props.href}>
-          <div>
-            {props.children}
-            {!props.label ? null :
-              <p className={`${props.labelClassName} label_button art_experience-text-light`}
-                style={{ marginLeft: (props.children ? "10px" : "0px") }}>
-                {props.label}
-              </p>
-            }
-          </div>
+          {props.children}
+          {!props.label ? null :
+            <p className={`${props.labelClassName} label_button art_experience-text-light`}
+              style={{ marginLeft: (props.children ? "10px" : "0px") }}>
+              {props.label}
+            </p>
+          }
         </a>
       </button>
     </div>
