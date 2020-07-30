@@ -106,14 +106,12 @@ export const ReserveStepper = (props: {
                         <p>Confirmacion de reserva</p>
                     </div>
                     <div className="confirm_data-box">
-                        {/* <p className="confirm_info">Nombre: {props.clientStep.clientName}</p>
-                        <p className="confirm_info">Telefono: {props.clientStep.clientPhone}</p> */}
                         <p className="confirm_info">
                             {`Fecha de reservacion: ${
                                 moment(props.timeStep.reserveDate).format("DD/MM/YYYY")
                                 }`}
                         </p>
-                        <p className="confirm_info">{`Nombre del cliente: ${clientData.name}`}</p>
+                        <p className="confirm_info">{`Nombre del cliente: ${clientData.username}`}</p>
                         <p className="confirm_info">{`Celular/Telefono del cliente: ${clientData.cel}`}</p>
                         <p className="confirm_info">{`Email del cliente: ${clientData.email}`}</p>
                         <p className="confirm_info">{`Servicio: ${props.serviceStep.selectedService ? props.serviceStep.selectedService.name : 'No se selecciono servicio'}`}</p>
