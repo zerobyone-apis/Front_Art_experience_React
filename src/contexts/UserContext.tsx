@@ -21,24 +21,30 @@ export const UserProvider = (props: {
 }) => {
     const storex = require('store'); // store :3
     const [user, setUser] = useState(props.value || null);
+
     useEffect(() => {
         storex.set(USER_DATA_STORAGE, user);
     }, [user])
+
     const setUserData = (userData: any) => {
         setUser(userData);
     }
+
     const getUserData = () => {
-        console.log(user)
-        if (user['user']) {
-            return user['user']
-        } else {
-            return user
+        console.log('getUserData: ', user)
+        if (user['barber']) {
+            return user['barber']
+        } else if (user['client']) {
+            return user['client']
         }
     }
+
     const userIsLogged = () => {
         return user ? true : false;
     }
+
     const context = { userIsLogged, getUserData, setUserData };
+
     return (
         <UserContext.Provider value={context}>
             {props.children}
