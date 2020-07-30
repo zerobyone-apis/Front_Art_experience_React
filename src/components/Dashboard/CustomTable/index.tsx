@@ -2,17 +2,27 @@ import React, { useState, useEffect } from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { Button } from '../../Button';
 import { SearchField } from '../../SearchField';
-import { Grid, Paper } from '@material-ui/core';
+
+import { useWindowSize } from '../../../hooks/useWindowSize';
+
+import { Grid } from '@material-ui/core';
 import './Table.scss';
 import '../../../styles/ArtExperienceButtons.scss';
+
 export const CustomTable = (props: {
     items: any[],
     headers: { text: string, value: string }[],
+    mobileHeaders?: { text: string, value: string }[],
     noItemsMessage?: string,
     noSearchMessage?: string,
     showSearchField?: boolean,
 }) => {
     const [filtredItems, setFiltredItems] = useState(props.items || []);
+
+    const windowSize = useWindowSize();
+    const gridsMobileHeaders: any = (12 / props.mobileHeaders.length || 6);
+    console.log('grid mobile: ', gridsMobileHeaders)
+
     const useStyles = makeStyles((theme: Theme) =>
         createStyles({
             root: {
@@ -26,15 +36,17 @@ export const CustomTable = (props: {
         }),
     );
     const classes = useStyles();
+
     return (
         <div className="custom-table">
-            <div>
+            <div className="search-field">
                 <SearchField
                     items={filtredItems}
                     onChangeResults={setFiltredItems}
                     itemFilter="nameClient"
                     fieldLabel="Buscar"
                 />
+                <p>{windowSize.size.width}</p>
             </div>
             {!filtredItems && props.noItemsMessage ?
                 (
@@ -63,13 +75,27 @@ export const CustomTable = (props: {
                                         <div className="header">
                                             <Grid container xl={12} spacing={3}>
                                                 {
-                                                    props.headers.map((header: { text: string, value: string }, headerIndex) => {
-                                                        return (
-                                                            <Grid item xs={2} xl={2} sm={2} key={headerIndex}>
-                                                                <Button className="art_experience-button_only-text" label={header.text} />
-                                                            </Grid>
+                                                    windowSize.isMD() ? (
+                                                        props.headers.map((header: { text: string, value: string }, headerIndex) => {
+                                                            return (
+                                                                <Grid item xs={2} xl={2} sm={2}
+                                                                    key={headerIndex}
+                                                                    className={`header_${headerIndex}`}>
+                                                                    <Button className="art_experience-button_only-text" label={header.text} />
+                                                                </Grid>
+                                                            )
+                                                        })
+                                                    ) : (
+                                                            props.mobileHeaders.map((header: { text: string, value: string }, headerIndex) => {
+                                                                return (
+                                                                    <Grid item xs={gridsMobileHeaders} xl={gridsMobileHeaders} sm={gridsMobileHeaders}
+                                                                        key={headerIndex}
+                                                                        className={`header_${headerIndex}`}>
+                                                                        <Button className="art_experience-button_only-text" label={header.text} />
+                                                                    </Grid>
+                                                                )
+                                                            })
                                                         )
-                                                    })
                                                 }
                                             </Grid>
                                         </div>
@@ -77,10 +103,12 @@ export const CustomTable = (props: {
                                     {/* ROWS */}
                                     <div className="row">
                                         <Grid container xl={12} spacing={3}>
-                                            {
+                                            {windowSize.isMD() ? (
                                                 props.headers.map((header: { text: string, value: string }, headerIndex) => {
                                                     return (
-                                                        <Grid item xs={2} xl={2} sm={2} key={headerIndex}>
+                                                        <Grid item xs={2} xl={2} sm={2}
+                                                            key={headerIndex}
+                                                            className={`row_${headerIndex}`}>
                                                             {
                                                                 header.value != 'status' ? (
                                                                     <p
@@ -93,6 +121,26 @@ export const CustomTable = (props: {
                                                         </Grid>
                                                     )
                                                 })
+                                            ) : (
+                                                    props.mobileHeaders.map((header: { text: string, value: string }, headerIndex) => {
+                                                        return (
+                                                            <Grid item xs={gridsMobileHeaders} xl={gridsMobileHeaders} sm={gridsMobileHeaders}
+                                                                key={headerIndex}
+                                                                className={`row_${headerIndex}`}>
+                                                                {
+                                                                    header.value != 'status' ? (
+                                                                        <p
+                                                                            className="item_table-text"
+                                                                        >{row[header.value]}</p>
+                                                                    ) : (
+                                                                            <Button className="art_experience-button_outlined" label="status" />
+                                                                        )
+                                                                }
+                                                            </Grid>
+                                                        )
+                                                    })
+                                                )
+
                                             }
                                         </Grid>
                                     </div>

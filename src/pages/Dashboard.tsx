@@ -23,6 +23,7 @@ const DashboardPage = () => {
         { text: 'Servicio', value: 'workToDo' },
         { text: 'Estado', value: 'status' },
     ];
+    const mobileHeaders = [headerOrder[0], headerOrder[2], headerOrder[4]];
 
     useEffect(() => {
         getReserves();
@@ -47,7 +48,10 @@ const DashboardPage = () => {
                             noItemsMessage="No tiene reservas creadas"
                             noSearchMessage="No se encontraron coincidencias"
                             items={reserves}
-                            headers={headerOrder} />) : null}
+                            headers={headerOrder}
+                            mobileHeaders={mobileHeaders}
+                        />
+                    ) : null}
                 </div>
             </div>
             <LoaderPage show={disabled} />
