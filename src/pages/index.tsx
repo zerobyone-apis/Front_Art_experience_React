@@ -11,6 +11,7 @@ import { LoaderPage } from '../components/LoaderPage';
 import './index.scss';
 import '../styles/ArtExperienceButtons.scss';
 
+
 const IndexPage = () => {
   // context
   const {
@@ -177,8 +178,6 @@ const IndexPage = () => {
         <img className="employee-img" src={employee.img} aspect-ratio="1"></img>
         <p className="employee-name art_experience-text-light">{employee.name}</p>
         <p className="employee-info art_experience-text-light">{employee.job}</p>
-        {/* <p className="employee-info art_experience-text-light">{employee.info}</p> */}
-
         <div className="employee-social">
           <a href={employee.instagram}>
             <i className="fa fa-instagram" aria-hidden="true"></i>
@@ -229,7 +228,7 @@ const IndexPage = () => {
   const getFooter = () => {
     return (
       <div className="footer">
-        <p className="logo art_experience-text-light" data-aos="fade-up" data-aos-duration="600">Art Experience</p>
+        <p className="logo art_experience-text-light">Art Experience</p>
         <p className="footer-email art_experience-text-light">{pageInfo.email}</p>
         <div className="footer-social">
 
@@ -241,7 +240,7 @@ const IndexPage = () => {
             <Icons.FaFacebook className="footer-social-logo social-logo" />
           </a>
         </div>
-        <p className="footer-bussiness art_experience-text-light">© 2019 Art Experience</p>
+        <p className="footer-bussiness art_experience-text-light">© 2020 Art Experience</p>
       </div>
     )
   }
@@ -262,6 +261,7 @@ const IndexPage = () => {
               </div>
             </div>
           </div>
+
           <div id="about_us" />
           <Card title={pageInfo.aboutUsTitle} subtitle={pageInfo.aboutUs}>
             {getListEmployees()}

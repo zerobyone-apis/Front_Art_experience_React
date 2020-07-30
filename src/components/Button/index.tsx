@@ -25,26 +25,29 @@ export const Button = (props: {
   } = useContext(ButtonContext);
   return (
     <div className={`${props.className} ${disabled ? 'disabled' : ''} button-holder`}>
-      <button
-        disabled={props.disabled || disabled}
-        style={{
-          'width': props.width,
-          background: props.color,
-          color: props.fontColor
-        }}
-        type={props.type || 'button'}
-        onClick={props.onClick}
-      >
-        <a href={props.href}>
-          {props.children}
-          {!props.label ? null :
-            <p className={`${props.labelClassName} label_button art_experience-text-light`}
-              style={{ marginLeft: (props.children ? "10px" : "0px") }}>
-              {props.label}
-            </p>
-          }
-        </a>
-      </button>
+      <a href={props.href}>
+
+        <button
+          disabled={props.disabled || disabled}
+          style={{
+            'width': props.width,
+            background: props.color,
+            color: props.fontColor
+          }}
+          type={props.type || 'button'}
+          onClick={props.onClick}
+        >
+          <div>
+            {props.children}
+            {!props.label ? null :
+              <p className={`${props.labelClassName} label_button art_experience-text-light`}
+                style={{ marginLeft: (props.children ? "10px" : "0px") }}>
+                {props.label}
+              </p>
+            }
+          </div>
+        </button>
+      </a>
     </div>
   );
 };

@@ -2,11 +2,13 @@ import React from 'react';
 import { LoginModal } from '../LoginModal';
 import { ReserveModal } from '../ReserveModal';
 import { Button } from '../Button';
+import { LeftMenu } from '../LeftMenu';
+import { toolbarButtons } from '../../utils/toolbarButtons';
 import './Toolbar.scss';
 import '../../styles/ArtExperienceButtons.scss';
 import '../../styles/ArtExperienceFonts.scss';
-import { LeftMenu } from '../LeftMenu';
-import { toolbarButtons } from '../../utils/toolbarButtons';
+
+
 export const Toolbar = () => {
     return (
         <div className="toolbar">
@@ -20,11 +22,16 @@ export const Toolbar = () => {
                 </a>
                 {
                     toolbarButtons.map((button, i) => {
-                        return <Button
-                            key={i}
-                            href={button.href}
-                            className="art_experience-button_only-text toolbar-btn"
-                            label={button.label} />
+                        return (
+                            <Button
+                                key={i}
+                                href={button.href}
+                                className="art_experience-button_only-text toolbar-btn"
+                                label={button.label}
+                            />
+                        )
+
+
                     })
                 }
             </div>
