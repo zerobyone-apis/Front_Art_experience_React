@@ -3,8 +3,8 @@ import { useState, useEffect } from 'react';
 // Hook
 export const useWindowSize = () => {
     const [size, setSize] = useState({
-        width: undefined,
-        height: undefined,
+        width: -1,
+        height: -1,
     });
 
     useEffect(() => {
@@ -28,13 +28,13 @@ export const useWindowSize = () => {
     }, []); // Empty array ensures that effect is only run on mount
 
     const isXS = () => {
-        return size.width < 600 ? true : false;
+        return size.width != -1 ? (size.width < 600 ? true : false) : false;
     }
     const isSM = () => {
-        return (size.width > 601 && size.width < 960) ? true : false;
+        return size.width != -1 ? ((size.width > 601 && size.width < 960) ? true : false) : false;
     }
     const isMD = () => {
-        return (size.width > 961 && size.width < 1280) ? true : false;
+        return size.width != -1 ? ((size.width > 961 && size.width < 1280) ? true : false) : false;
     }
 
     return { size, isXS, isSM, isMD };
