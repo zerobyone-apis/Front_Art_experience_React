@@ -228,10 +228,10 @@ const IndexPage = () => {
   const getFooter = () => {
     return (
       <div className="footer">
-        <p className="logo art_experience-text-light">Art Experience</p>
+        <img className="footer_logo-img" src="https://raw.githubusercontent.com/zerobyone-apis/Front_Art_experience_React/master/src/assets/gold_logo.png" alt="" />
+        {/* <p className="logo art_experience-text-light">Art Experience</p> */}
         <p className="footer-email art_experience-text-light">{pageInfo.email}</p>
         <div className="footer-social">
-
           <a href={pageInfo.instagram}>
             <i className="fa fa-instagram" aria-hidden="true"></i>
             <Icons.FaInstagram className="footer-social-logo social-logo" />
