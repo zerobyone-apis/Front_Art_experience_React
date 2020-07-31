@@ -31,6 +31,7 @@
             border-radius: 15px;
             display: flex;
             cursor: pointer;
+            background-color: green;
 
             .left-box {
                 position: relative;
@@ -92,32 +93,4 @@
             }
         }
     }
-
-
-
-
-    // @media only screen and (max-width: 800px) {
-
-    //     .table {
-    //         margin: auto !important;
-    //         width: max-content;
-    //         background-color: green;
-
-    //         .header_2,
-    //         .header_3,
-    //         .header_4 {
-    //             visibility: hidden;
-    //         }
-
-    //         .row_1 {
-    //             background-color: blue;
-    //         }
-
-    //         .row_2,
-    //         .row_3,
-    //         .row_4 {
-    //             visibility: hidden;
-    //         }
-    //     }
-    // }
 }

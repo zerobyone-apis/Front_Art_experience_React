@@ -107,16 +107,18 @@ export const CustomTable = (props: {
                                                     return (
                                                         <Grid item xs={2} xl={2} sm={2}
                                                             key={headerIndex}
-                                                            className={`row_${headerIndex}`}>
-                                                            {
-                                                                header.value != 'status' ? (
-                                                                    <p
-                                                                        className="item_table-text"
-                                                                    >{row[header.value]}</p>
-                                                                ) : (
-                                                                        <Button className="art_experience-button_outlined" label="status" />
-                                                                    )
+                                                            className={`cell cell_${headerIndex}`}>
+
+                                                            {header.value != 'status' ? (
+                                                                <p
+                                                                    className="item_table-text"
+                                                                >{row[header.value]}</p>
+                                                            ) : (
+                                                                    <Button className="state-btn art_experience-button_outlined" label="status" />
+                                                                )
                                                             }
+
+
                                                         </Grid>
                                                     )
                                                 })
