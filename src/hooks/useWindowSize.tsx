@@ -17,6 +17,7 @@ export const useWindowSize = () => {
             });
         }
 
+
         // Add event listener
         window.addEventListener("resize", handleResize);
 
@@ -27,15 +28,17 @@ export const useWindowSize = () => {
         return () => window.removeEventListener("resize", handleResize);
     }, []); // Empty array ensures that effect is only run on mount
 
-    const isXS = () => {
-        return size.width != -1 ? (size.width < 600 ? true : false) : false;
-    }
-    const isSM = () => {
-        return size.width != -1 ? ((size.width > 601 && size.width < 960) ? true : false) : false;
-    }
-    const isMD = () => {
-        return size.width != -1 ? ((size.width > 961 && size.width < 1280) ? true : false) : false;
+
+    const screenMode = () => {
+        let width = Number(size.width)
+        if (width < 600) {
+            return 'xs';
+        } else if (width > 600 && width < 960) {
+            return 'sm'
+        } else if (width > 960) {
+            return 'md'
+        }
     }
 
-    return { size, isXS, isSM, isMD };
+    return { size, screenMode };
 }
