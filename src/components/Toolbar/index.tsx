@@ -30,8 +30,6 @@ export const Toolbar = () => {
                                 label={button.label}
                             />
                         )
-
-
                     })
                 }
             </div>
