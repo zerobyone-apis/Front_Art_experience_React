@@ -1,16 +1,18 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { CustomTable } from '../components/Dashboard/CustomTable';
-import ReserveActions from '../actions/Reserve.actions';
 import { ButtonContext } from '../contexts/ButtonsContext';
 import { Toolbar } from '../components/Dashboard/Toolbar';
 import { LoaderPage } from '../components/LoaderPage';
-import './Dashboard.scss';
 import { IReserve } from '../types/Reserve.type';
+import ReserveActions from '../actions/Reserve.actions';
 import moment from 'moment';
+import './Dashboard.scss';
 
 const DashboardPage = () => {
     const reserveActions: ReserveActions = new ReserveActions();
     const [reserves, setReserve] = useState([]);
+    const [selectedReserve, setSelectedReserve] = useState([]);
+
     // context
     const {
         // @ts-ignore
@@ -56,6 +58,7 @@ const DashboardPage = () => {
                             items={reserves}
                             headers={headerOrder}
                             mobileHeaders={mobileHeaders}
+                            onSelectRow={setSelectedReserve}
                         />
                     ) : null}
                 </div>

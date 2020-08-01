@@ -16,9 +16,10 @@ export const CustomTable = (props: {
     noItemsMessage?: string,
     noSearchMessage?: string,
     showSearchField?: boolean,
+    onSelectRow: any,
 }) => {
     const [filtredItems, setFiltredItems] = useState(props.items || []);
-    const [selectedHeader, setSelectedHeader] = useState(props.headers[0]);
+    const [selectedHeader, setSelectedHeader] = useState(props.mobileHeaders[0]);
     const windowSize = useWindowSize();
     const gridsMobileHeaders: any = (12 / props.mobileHeaders.length || 6);
     const gridDefaultHeaders: any = (12 / props.headers.length || 2);
@@ -37,9 +38,10 @@ export const CustomTable = (props: {
     const classes = useStyles();
     return (
         <div className="custom-table">
-            <h1
-                className="title font-title art_experience-text-light"
-            >{props.title}</h1>
+            <h1 className="title font-title art_experience-text-light"
+            >
+                {props.title}
+            </h1>
             <div className="search-field">
                 <SearchField
                     items={filtredItems}

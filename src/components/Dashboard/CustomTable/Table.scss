@@ -12,13 +12,15 @@
         position: relative;
         margin: 0;
         padding-top: 20px;
+        margin-bottom: 20px;
         color: rgb(146, 144, 108);
     }
 
     .search-field {
         position: relative;
-        margin: 10px;
-        margin-left: 15px;
+        width: 90%;
+        margin: auto;
+        // background-color: green;
     }
 
     p {
