@@ -11,7 +11,7 @@ import './SearchField.scss';
 export const SearchField = (props: {
   defaultValue?: string;
   items: any[];
-  itemFilter: string;
+  itemFilter: { text: string, value: string };
   showButton?: boolean;
   onChangeResults: (filtredItems: any) => void;
   className?: string;
@@ -20,6 +20,10 @@ export const SearchField = (props: {
 }) => {
   const [fieldValue, setFieldValue] = useState('');
   const [filtredItems, setFiltredItems] = useState(props.items || []);
+
+  useEffect(() => {
+    console.log('Item filter', props.itemFilter)
+  }, [props.itemFilter])
 
   useEffect(() => {
     filterItems();
@@ -31,8 +35,8 @@ export const SearchField = (props: {
 
   const filterItems = () => {
     let items = filtredItems.filter(item => {
-      let formattedText = (item[props.itemFilter] || '').toLowerCase();
-      console.log(item[props.itemFilter])
+      let formattedText = (String(item[props.itemFilter.value]) || '').toLowerCase();
+      console.log(item[props.itemFilter.value])
       console.log(formattedText, fieldValue, (formattedText.indexOf(fieldValue) !== -1))
       return (formattedText.indexOf(fieldValue) !== -1);
     })

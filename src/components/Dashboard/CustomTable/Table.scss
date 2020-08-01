@@ -1,18 +1,24 @@
 .custom-table {
-    padding: 10px;
-    overflow-x: hidden;
-    position: absolute;
-    left: 0;
-    top: 130px;
+    position: relative;
     width: 100%;
-    height: 500px;
-    overflow-y: scroll;
+    height: 50vh;
+    top: 60px;
     text-align: center;
+    overflow-x: hidden;
+    overflow-y: hidden;
     background-color: rgb(16, 16, 16);
+
+    .title {
+        position: relative;
+        margin: 0;
+        padding-top: 20px;
+        color: rgb(146, 144, 108);
+    }
 
     .search-field {
         position: relative;
         margin: 10px;
+        margin-left: 15px;
     }
 
     p {
@@ -20,76 +26,102 @@
     }
 
     .table {
-        width: 100%;
+        position: relative;
+        width: 90%;
+        margin: auto;
+        overflow-x: hidden;
+        overflow-y: hidden;
 
-        .row {
-            position: relative;
-            margin: auto;
-            margin-bottom: 10px;
-            width: 100%;
-            height: max-content;
-            border-radius: 15px;
-            display: flex;
-            cursor: pointer;
-            background-color: green;
-
-            .left-box {
-                position: relative;
-                width: 5%;
-                height: 100%;
-
-                .icon {
-                    z-index: 1;
-                    position: relative;
-                    margin: 20px !important;
+        .header {
+            .selected {
+                p {
+                    color: rgb(146, 144, 108);
                 }
             }
+        }
 
-            .content-box {
+        .row-box {
+            height: 300px;
+            overflow-y: scroll;
+            overflow-x: hidden;
+
+            .row {
                 position: relative;
-                width: 90%;
-                height: 100%;
-                margin-top: 10px;
+                margin: auto;
+                width: 100%;
+                height: max-content;
+                display: flex;
+                margin-bottom: 10px;
+                background-color: rgb(59, 59, 59);
+                border-radius: 10px;
 
-                .header_table-text {
-                    font-size: 14px;
+                .selected {
+                    color: rgb(146, 144, 108);
                 }
 
-                .item_table-text {
-                    font-size: 14px;
-                    margin-top: 10px;
-                    text-transform: none;
-                }
-
-                .item_status-box {
+                .left-box {
                     position: relative;
-                    border-style: solid;
-                    border-radius: 10px;
-                    text-align: center;
+                    width: 5%;
+                    height: 100%;
 
-                    .item_status-text {
-                        margin: 10px;
+                    .icon {
+                        z-index: 1;
+                        position: relative;
+                        margin: 20px !important;
                     }
                 }
 
-                .icon {
-                    position: absolute;
-                    top: 5px;
-                    margin: auto;
+                .content-box {
+                    position: relative;
+                    width: 90%;
+                    height: 100%;
+                    margin-top: 10px;
+
+                    .header_table-text {
+                        font-size: 14px;
+                    }
+
+                    .item_table-text {
+                        font-size: 14px;
+                        margin-top: 10px;
+                        text-transform: none;
+                    }
+
+                    .item_status-box {
+                        position: relative;
+                        border-style: solid;
+                        border-radius: 10px;
+                        text-align: center;
+
+                        .item_status-text {
+                            margin: 10px;
+                        }
+                    }
+
+                    .icon {
+                        position: absolute;
+                        top: 5px;
+                        margin: auto;
+                    }
+                }
+
+                .right-box {
+                    position: relative;
+                    width: 5%;
+                    height: 100%;
+
+                    .icon {
+                        z-index: 9999;
+                        position: relative;
+                        margin: 20px;
+                        right: 40px !important;
+                    }
                 }
             }
 
-            .right-box {
-                position: relative;
-                width: 5%;
-                height: 100%;
-
-                .icon {
-                    z-index: 9999;
-                    position: relative;
-                    margin: 20px;
-                    right: 40px !important;
-                }
+            .row:hover {
+                background-color: rgba(117, 117, 117, 0.63);
+                cursor: pointer;
             }
         }
     }

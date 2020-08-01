@@ -8,6 +8,7 @@ export interface IReserve {
     celClient: string;
 
     startTime: string; //Reserve Time dd/mm/yyyy HH:MM:SS - Java Instant time
+    startTimeFront?: string;
     endTime?: string; // dd/mm/yyyy HH:MM:SS - Java Instant time
     reserveDay?: string; // Dia de la reservacion -> Tengo que añadirlo en el backend
 

@@ -31,9 +31,9 @@ export const UserProvider = (props: {
     }
 
     const getUserData = () => {
-        console.log('getUserData: ', user)
-        if (user['barber']) {
-            return user['barber']
+        // console.log('getUserData: ', user)
+        if (user['user']) {
+            return user['user']
         } else if (user['client']) {
             return user['client']
         }

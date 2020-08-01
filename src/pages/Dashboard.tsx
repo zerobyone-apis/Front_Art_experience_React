@@ -5,6 +5,8 @@ import { ButtonContext } from '../contexts/ButtonsContext';
 import { Toolbar } from '../components/Dashboard/Toolbar';
 import { LoaderPage } from '../components/LoaderPage';
 import './Dashboard.scss';
+import { IReserve } from '../types/Reserve.type';
+import moment from 'moment';
 
 const DashboardPage = () => {
     const reserveActions: ReserveActions = new ReserveActions();
@@ -19,11 +21,10 @@ const DashboardPage = () => {
     const headerOrder = [
         { text: 'ID', value: 'reserveId' },
         { text: 'Cliente', value: 'nameClient' },
-        { text: 'Fecha de Reservacion', value: 'startTime' },
-        { text: 'Servicio', value: 'workToDo' },
-        { text: 'Estado', value: 'status' },
+        { text: 'Fecha de Reservacion', value: 'startTimeFront' },
+        { text: 'Servicio', value: 'workToDo' }
     ];
-    const mobileHeaders = [headerOrder[0], headerOrder[2], headerOrder[4]];
+    const mobileHeaders = [headerOrder[1], headerOrder[2], headerOrder[3]];
 
     useEffect(() => {
         getReserves();
@@ -31,9 +32,13 @@ const DashboardPage = () => {
 
     const getReserves = async () => {
         setDisabledButton(true)
-        const reserves = await reserveActions.getAll();
+        const reserves: any[] = await reserveActions.getAll();
         setDisabledButton(false)
         if (reserves) {
+            // formatting date
+            reserves.map((reserve: IReserve) => {
+                reserve.startTimeFront = moment(reserve.startTime).format('DD/MM/YYYY hh:mm:ss');
+            })
             setReserve(reserves)
         }
     }
@@ -45,6 +50,7 @@ const DashboardPage = () => {
                 <div className="dashboard">
                     {reserves.length ? (
                         <CustomTable
+                            title="Lista de Reservas"
                             noItemsMessage="No tiene reservas creadas"
                             noSearchMessage="No se encontraron coincidencias"
                             items={reserves}
