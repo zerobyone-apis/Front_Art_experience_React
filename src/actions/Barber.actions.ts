@@ -9,20 +9,19 @@ import {
 export default class BarberActions {
     private backend: IntegrationBackend = new IntegrationBackend();
     public async getAll() {
-        const barbers: IBarber[] = [];
         try {
-            const responseBarbers: IBarber[] = await this.backend.send(
+            const responseBarbers: any = await this.backend.send(
                 GET_ENDPOIT,
                 undefined,
                 BARBER_ROUTE
             );
-            responseBarbers.forEach((barber: IBarber) => {
-                console.log(barber)
-            });
-            return barbers;
+            if(responseBarbers.status != 200){
+                throw Error(`Error Status code: , ${responseBarbers.status}`)
+            }
+            return responseBarbers.data;
         } catch (error) {
-            console.error(`Error: getAll barber-> ${error.message}`);
-            return barbers;
+            console.error(`Error: Obteniendo barberos -> ${error}`);
+            return [];
         }
     }
 }

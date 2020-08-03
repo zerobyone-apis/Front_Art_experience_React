@@ -269,8 +269,6 @@ body {
         }
       }
 
-
-
       .footer {
         position: relative;
         width: 80%;
@@ -281,12 +279,23 @@ body {
 
         .footer_logo-img {
           position: relative;
-          width: 80vw;
+          width: 10vw;
           filter: drop-shadow(40px 40px 40px rgb(0, 0, 0));
           animation-name: opacity_effect;
           animation-duration: 4s;
         }
-
+        //.zerobyone_logo {
+        //  position: relative;
+        //  width: 10vw;
+        //  height: 3vw;
+        //  filter: drop-shadow(40px 40px 40px rgb(0, 0, 0));
+        //  animation-name: opacity_effect;
+        //  animation-duration: 4s;
+        //}
+        .ZeroByOne_text {
+          color: green;
+          background-color: white;
+        }
         .logo {
           text-align: center;
           font-size: 30px;

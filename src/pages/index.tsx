@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Toolbar } from '../components/Toolbar';
 import { Card } from '../components/Card';
 import { DialogModal } from '../components/DialogModal';
@@ -10,6 +10,8 @@ import { ButtonContext } from '../contexts/ButtonsContext';
 import { LoaderPage } from '../components/LoaderPage';
 import './index.scss';
 import '../styles/ArtExperienceButtons.scss';
+import { IBarber } from '../types/Barber.type';
+import moment from 'moment';
 
 
 const IndexPage = () => {
@@ -24,12 +26,26 @@ const IndexPage = () => {
   const [showDialogCourse, setShowDialogCourse] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState(null);
   const [showDashboard, setShowDashboard] = useState(false);
+  const [barbers, setBarbers] = useState([]);
 
-  async function getBarbers() {
-    await barberActions.getAll()
+  useEffect(() => {
+    getBarbers();
+  }, [])
+  
+  const getBarbers = async () => {
+    const barbers: IBarber[] = await barberActions.getAll();
+    if (barbers) {
+      // formatting date
+      barbers.map((barber: IBarber) => {
+        barber.startDate = moment(barber.startDate).format('DD/MM/YYYY hh:mm:ss').substr(0, 16);
+        barber.job = 'Professional Barber';
+      })
+      setBarbers(barbers)
+    }
   }
 
-  const employees = [
+
+/* ?  const employees = [
     {
       barberId: 1,
       userId: 1,
@@ -60,19 +76,26 @@ const IndexPage = () => {
       facebook: "https://www.facebook.com/TheUniqueDesign"
     }
   ];
+
+  */
   const pageInfo = {
     name: "Art Experience",
     slogan: "Space for Men",
     openTimeLV: "11 a 19hs",
     openTimeSBD: "10 a 18hs",
     number: "22913056",
-    cel: "099 999 999",
-    email: "artexperience@gmail.com",
+    cel: "095 499 023",
+    email: "art.experience.uy.2020@gmail.com",
     instagram: 'https://www.instagram.com/artexperiencee/',
     facebook: 'https://www.facebook.com/artexperiencee/?epa=SEARCH_BOX',
     aboutUsTitle: "Acerca de Nosotros",
-    aboutUs:
-      "Art Experience brinda servicios de calidad dedicados a gestion de barberias y administracion de reservas para clientes.",
+    aboutUs: `
+      En Art Experience nos enfocamos en brindar un servicio excepcional con la finalidad de que nuestros clientes se sientan comodos y agustos \n
+      en un ambiente muy divertido y profesional en el cual se valora el tiempo de cada uno de nuestros clientes\n 
+      logrando que cada trabajo sea exclusivo que \nhará resaltar u obtener el estilo que tanto buscas en ese corte o delineado. \n
+      sabemos muy bien que la barberia es una zona de relajacion donde a muchos de nuestros clientes les gusta venir a relajarse y disfrutar de un ambiente amistoso, agradable,
+      \n haciendo que cada session de corte sea entretenida y relejante.
+      Con nuestros servicios los clientes tendran varias opciones para elegir antes de ser atendidos y obtener el resultado esperado`,
     servicesTitle: "Nuestros Servicios",
     services:
       "Brindamos servicios de calidad que facilitan su trabajo y aumenta su productividad.",
@@ -109,13 +132,15 @@ const IndexPage = () => {
       name: "Curso intensivo",
       duration: "4 meses", //  / 1 clase por semana a partir de las 13:30hrs
       info: `
-      Curso intensivo en donde se aprenderan técnicas de fade con uso correspondiente de las herramientas\n 
-      \nBarbas / reestyle / peinados / marketing / fotografia / particiones y secciones de la cabeza\n`,
+      El curso incluye los materialez a utilizar en el mismo.
+      Conoceras y entenderas las diferentes tecnicas y conceptos que \nte harán ser un barbero
+      capaz de Manejar, Utilizar y Perfeccionar estilos de las ultimas tendendias.
+      \nFreestyle \nFade (Degradé) \nPeinados \nMarketing \nFotografia \nParticiones y secciones de la cabeza\n`,
       cost: `
       Contamos con  2 posibilidades de pago:
-      Contado : $ 13.000 
-      Financiado: $ 4.000 en 4 cuotas
-      Posibilidad de reservar un lugar con una seña de $1500\n
+         - Contado :   $ 13.000\n 
+         - Financiado: $ 4.000 (hasta en 4 cuotas)\n\n
+      Posibilidad de reservar un lugar con una seña de $1500
       `,
       icon: "event",
       img: "https://instagram.fmvd4-1.fna.fbcdn.net/v/t51.2885-15/e35/43490422_709651562739316_4357652159001526272_n.jpg?_nc_ht=instagram.fmvd4-1.fna.fbcdn.net&_nc_cat=104&_nc_ohc=7YqzfuNMHbMAX-_3tw5&oh=9ef930cc35eec708b3c616984ce7aa5c&oe=5F3401A6",
@@ -125,14 +150,19 @@ const IndexPage = () => {
     {
       name: "Perfeccionamiento de colorimentria",
       info: `
-      Tiene los materiales incluidos.
-      En la clase trabajamos con 3 modelos:
-      Modelo 1 platinado
-      - Modelo 2 fantasia
-      - Modelo 3 mechitas.
-      Va con certificado de concurrencia y la fecha a es coordinar
+      Tiene los materiales incluidos.\n
+      Se realizaran los siguientes trabajos en cada uno de los modelos\n
+      dando lugar a poder conocer las diferentes tecnicas aplicadas para cada una de los colores aplicados.
+      
+      \nEn la clase trabajamos con 3 modelos.\n
+      1 - Modelo: Platinado\n
+      2 - Modelo: Fantasia\n
+      3 - Modelo: Mechitas\n
+
+      Este curso le otorgará un certificado de concurrencia
+      Fecha a coordinar 
       `,
-      duration: "3 meses",
+      duration: "6 Horas",
       cost: 'El curso tiene un costo de $8.000',
       icon: "event",
       img:
@@ -142,8 +172,9 @@ const IndexPage = () => {
     {
       name: "Perfeccionamiento de corte",
       info: `
-        Trabajamos con 4 modelos hacemos 3 estilos diferentes:\n 
-        French crop pompadour y Classic cuts
+        En este perfeccionamientoTrabajamos con 4 modelos,
+        En los cuales haremos 3 estilos diferentes:\n 
+         1 - FrenchCrop.\n 2 - Pompadour.\n 3 - Classic Cuts\n
       `,
       duration: "2 dias", //  / 2 cortes diarios
       cost: 'El curso tiene un costo de $6.000',
@@ -169,15 +200,16 @@ const IndexPage = () => {
       align: 'right'
     }
   ];
-  const getListEmployees = () => {
-    return employees.map((employee, i) =>
+  const getEmployees = () => {
+    return barbers.map((employee, i) =>
       <div
         className="employee-item"
         key={i}
       >
-        <img className="employee-img" src={employee.img} aspect-ratio="1"></img>
+        <img className="employee-img" src={employee.urlProfileImage} aspect-ratio="1"></img>
         <p className="employee-name art_experience-text-light">{employee.name}</p>
         <p className="employee-info art_experience-text-light">{employee.job}</p>
+        <p className="employee-info art_experience-text-light">{employee.barberDescription}</p>
         <div className="employee-social">
           <a href={employee.instagram}>
             <i className="fa fa-instagram" aria-hidden="true"></i>
@@ -191,7 +223,7 @@ const IndexPage = () => {
     )
   }
 
-  const getListServices = () => {
+  const getServices = () => {
     return services.map((service, i) =>
       <div
         className="service-item"
@@ -204,7 +236,7 @@ const IndexPage = () => {
     )
   }
 
-  const getListCourses = () => {
+  const getCourses = () => {
     return courses.map((course, i) =>
       <div
         className="course-item"
@@ -240,7 +272,7 @@ const IndexPage = () => {
             <Icons.FaFacebook className="footer-social-logo social-logo" />
           </a>
         </div>
-        <p className="footer-bussiness art_experience-text-light">© 2020 Art Experience</p>
+        <p className="footer-bussiness art_experience-text-light">© 2020 Art Experience - Powered by <a className="ZeroByOne_text" href="https://www.instagram.com/max_.olivero/">ZeroByOne</a></p>
       </div>
     )
   }
@@ -264,17 +296,17 @@ const IndexPage = () => {
 
           <div id="about_us" />
           <Card title={pageInfo.aboutUsTitle} subtitle={pageInfo.aboutUs}>
-            {getListEmployees()}
+            {getEmployees()}
           </Card>
           <Divider align={dividers[1].align} img={dividers[0].img} />
           <div id="services" />
           <Card title={pageInfo.servicesTitle} subtitle={pageInfo.services}>
-            {getListServices()}
+            {getServices()}
           </Card>
           <Divider align={dividers[2].align} img={dividers[1].img} />
           <div id="courses" />
           <Card title={pageInfo.coursesTitle} subtitle={pageInfo.courses}>
-            {getListCourses()}
+            {getCourses()}
           </Card>
           <Divider align={dividers[1].align} img={dividers[2].img} />
           <div id="contact" />

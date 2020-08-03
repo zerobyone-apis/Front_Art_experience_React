@@ -12,10 +12,11 @@ export interface IBarber {
 
     // Barber Information
     name: string;
-    localId: number;
+    localId: 1; // ID 1 default
     localName: string;
     workTime: string; // Horario del barbero EJ: 10:00 a 18:00
     cutsTimes: string; // Tiempos del los servicios, puede ser fijo o individuales Ej: 30 min
+    job: 'Professional Barber';
 
     // Analytics information
     amountOfCuts?: number;
@@ -25,5 +26,12 @@ export interface IBarber {
     amountOfShares?: number;
     amountDailyReserves?: number;
     prestige?: number; // Double
+
+    barberDescription: string;
+    facebook:string;
+    instagram:string;
+    urlProfileImage:string;
+    
+    admin:boolean;
     isActive?: boolean;
 }

@@ -26,7 +26,7 @@ export default class ReserveActions {
             return response.data
         } catch (error) {
             console.error('Error Reserve.actions method add -> ', error.message);
-            return new ResultObject(404, error, {});
+            return new ResultObject(404, error.message, {});
         }
     }
 
