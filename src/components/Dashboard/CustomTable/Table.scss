@@ -121,6 +121,10 @@
                 }
             }
 
+            .selected-row {
+                background-color: rgb(39, 39, 39);
+            }
+
             .row:hover {
                 background-color: rgba(117, 117, 117, 0.63);
                 cursor: pointer;

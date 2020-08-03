@@ -20,9 +20,11 @@ export const CustomTable = (props: {
 }) => {
     const [filtredItems, setFiltredItems] = useState(props.items || []);
     const [selectedHeader, setSelectedHeader] = useState(props.mobileHeaders[0]);
+    const [selectedRow, setSelectedRow] = useState(undefined);
+
     const windowSize = useWindowSize();
+    const gridHeaders: any = (12 / props.headers.length || 2);
     const gridsMobileHeaders: any = (12 / props.mobileHeaders.length || 6);
-    const gridDefaultHeaders: any = (12 / props.headers.length || 2);
     const useStyles = makeStyles((theme: Theme) =>
         createStyles({
             root: {
@@ -36,6 +38,20 @@ export const CustomTable = (props: {
         }),
     );
     const classes = useStyles();
+    useEffect(() => {
+        props.onSelectRow(selectedRow)
+    }, [selectedRow])
+    const getDataByScreenSize = (screenSize: string) => {
+        switch (screenSize) {
+            case 'xs':
+                return { headers: props.mobileHeaders, grid: gridsMobileHeaders };
+                break;
+            case 'md':
+                return { headers: props.headers, grid: gridHeaders };
+                break;
+        }
+        return { headers: props.headers, grid: gridHeaders };
+    }
     return (
         <div className="custom-table">
             <h1 className="title font-title art_experience-text-light"
@@ -68,43 +84,27 @@ export const CustomTable = (props: {
                 {/* HEADER */}
                 <div className="header">
                     <Grid container xl={12} spacing={3}>
-                        {(windowSize.screenMode() == 'md') ? (
-                            props.headers.map((header: { text: string, value: string }, headerIndex) => {
-                                return (
-                                    <Grid item xs={gridDefaultHeaders} xl={gridDefaultHeaders} sm={gridDefaultHeaders}
-                                        key={headerIndex}
-                                        className={`header_${headerIndex}`}>
-                                        <Button
-                                            className={`${(selectedHeader == header) ? 'selected' : ''} art_experience-button_only-text`}
-                                            label={header.text}
-                                            onClick={() => {
-                                                setSelectedHeader(header)
-                                            }}
-                                        />
-                                    </Grid>
-                                )
-                            })
-                        ) : (
-                                props.mobileHeaders.map((header: { text: string, value: string }, headerIndex) => {
-                                    return (
-                                        <Grid item xs={gridsMobileHeaders} xl={gridsMobileHeaders} sm={gridsMobileHeaders}
-                                            key={headerIndex}
-                                            className={`header_${headerIndex}`}>
-                                            <Button
-                                                className={`${(selectedHeader == header) ? 'selected' : ''} art_experience-button_only-text`}
-                                                label={header.text}
-                                                onClick={() => {
-                                                    setSelectedHeader(header)
-                                                }}
-                                            />
-                                        </Grid>
-                                    )
-                                })
+                        {getDataByScreenSize(windowSize.screenMode()).headers.map((header: { text: string, value: string }, headerIndex) => {
+                            return (
+                                <Grid item
+                                    xs={getDataByScreenSize(windowSize.screenMode()).grid}
+                                    xl={getDataByScreenSize(windowSize.screenMode()).grid}
+                                    sm={getDataByScreenSize(windowSize.screenMode()).grid}
+                                    key={headerIndex}
+                                    className={`header_${headerIndex}`}>
+                                    <Button
+                                        className={`${(selectedHeader == header) ? 'selected' : ''} art_experience-button_only-text`}
+                                        label={header.text}
+                                        onClick={() => {
+                                            setSelectedHeader(header)
+                                        }}
+                                    />
+                                </Grid>
                             )
+                        })
                         }
                     </Grid>
                 </div>
-
                 <div className="row-box">
                     {filtredItems.map((row: any, rowIndex) => {
                         return (
@@ -112,44 +112,31 @@ export const CustomTable = (props: {
                                 <div className="content-box">
                                     <div className={classes.root}>
                                         {/* ROWS */}
-                                        <div className="row">
+                                        <div
+                                            className={`${(selectedRow == row) ? 'selected-row' : ''} row`}
+                                            onClick={() => {
+                                                setSelectedRow(row)
+                                            }}>
                                             <Grid container xl={12} spacing={3}>
-                                                {(windowSize.screenMode() == 'md') ? (
-                                                    props.headers.map((header: { text: string, value: string }, headerIndex) => {
-                                                        return (
-                                                            <Grid item xs={gridDefaultHeaders} xl={gridDefaultHeaders} sm={gridDefaultHeaders}
-                                                                key={headerIndex}
-                                                                className={`cell cell_${headerIndex}`}>
-                                                                {header.value != 'status' ? (
-                                                                    <p
-                                                                        className={`${(selectedHeader == header) ? 'selected' : ''} item_table-text`}
-                                                                    >{row[header.value]}</p>
-                                                                ) : (
-                                                                        <Button className="state-btn art_experience-button_outlined" label="status" />
-                                                                    )
-                                                                }
-                                                            </Grid>
-                                                        )
-                                                    })
-                                                ) : (
-                                                        props.mobileHeaders.map((header: { text: string, value: string }, headerIndex) => {
-                                                            return (
-                                                                <Grid item xs={gridsMobileHeaders} xl={gridsMobileHeaders} sm={gridsMobileHeaders}
-                                                                    key={headerIndex}
-                                                                    className={`row_${headerIndex}`}>
-                                                                    {
-                                                                        header.value != 'status' ? (
-                                                                            <p
-                                                                                className={`${(selectedHeader == header) ? 'selected' : ''} item_table-text`}
-                                                                            >{row[header.value]}</p>
-                                                                        ) : (
-                                                                                <Button className="art_experience-button_outlined" label="status" />
-                                                                            )
-                                                                    }
-                                                                </Grid>
-                                                            )
-                                                        })
+                                                {getDataByScreenSize(windowSize.screenMode()).headers.map((header: { text: string, value: string }, headerIndex) => {
+                                                    return (
+                                                        <Grid item
+                                                            xs={getDataByScreenSize(windowSize.screenMode()).grid}
+                                                            xl={getDataByScreenSize(windowSize.screenMode()).grid}
+                                                            sm={getDataByScreenSize(windowSize.screenMode()).grid}
+                                                            key={headerIndex}
+                                                            className={`header_${headerIndex}`}>
+                                                            {header.value != 'status' ? (
+                                                                <p
+                                                                    className={`${(selectedHeader == header) ? 'selected' : ''} item_table-text`}
+                                                                >{row[header.value]}</p>
+                                                            ) : (
+                                                                    <Button className="state-btn art_experience-button_outlined" label="status" />
+                                                                )
+                                                            }
+                                                        </Grid>
                                                     )
+                                                })
                                                 }
                                             </Grid>
                                         </div>
