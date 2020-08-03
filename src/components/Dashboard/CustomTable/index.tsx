@@ -58,14 +58,6 @@ export const CustomTable = (props: {
             >
                 {props.title}
             </h1>
-            <div className="search-field">
-                <SearchField
-                    items={filtredItems}
-                    onChangeResults={setFiltredItems}
-                    itemFilter={selectedHeader}
-                    fieldLabel={`Buscar por: ${selectedHeader.text}`}
-                />
-            </div>
             {!filtredItems && props.noItemsMessage ?
                 (
                     <div className="no-orders">
@@ -81,6 +73,14 @@ export const CustomTable = (props: {
                 ) : null
             }
             <div className="table">
+                <div className="search-field">
+                    <SearchField
+                        items={filtredItems}
+                        onChangeResults={setFiltredItems}
+                        itemFilter={selectedHeader}
+                        fieldLabel={`Buscar por: ${selectedHeader.text}`}
+                    />
+                </div>
                 {/* HEADER */}
                 <div className="header">
                     <Grid container xl={12} spacing={3}>
