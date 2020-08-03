@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { CustomTable } from '../components/Dashboard/CustomTable';
 import { ButtonContext } from '../contexts/ButtonsContext';
+import { ReserveDialog } from '../components/Dashboard/ReserveDialog';
 import { Toolbar } from '../components/Dashboard/Toolbar';
 import { LoaderPage } from '../components/LoaderPage';
 import { IReserve } from '../types/Reserve.type';
@@ -13,6 +14,8 @@ const DashboardPage = () => {
     const reserveActions: ReserveActions = new ReserveActions();
     const [reserves, setReserve] = useState([]);
     const [selectedReserve, setSelectedReserve] = useState([]);
+    const [showReserveDialog, setShowReserveDialog] = useState(false);
+
     // context
     const {
         // @ts-ignore
@@ -37,11 +40,17 @@ const DashboardPage = () => {
         if (reserves) {
             // formatting date
             reserves.map((reserve: IReserve) => {
-                reserve.startTimeFront = moment(reserve.startTime).format('DD/MM/YYYY hh:mm:ss');
+                reserve.startTimeFront = moment(reserve.startTime).format('DD/MM/YYYY hh:mm:ss').substr(0, 16);
             })
             setReserve(reserves)
         }
     }
+
+    const showSelectedReserve = (selectedReserve: any) => {
+        setSelectedReserve(selectedReserve);
+        setShowReserveDialog(true);
+    }
+
     return (
         <div className="dashboard_page">
             <Toolbar />
@@ -55,12 +64,17 @@ const DashboardPage = () => {
                             items={reserves}
                             headers={headerOrder}
                             mobileHeaders={mobileHeaders}
-                            onSelectRow={setSelectedReserve}
+                            onSelectRow={showSelectedReserve}
                         />
                     ) : null}
                 </div>
             </div>
             <LoaderPage show={disabled} />
+            {selectedReserve && showReserveDialog ? (
+                <ReserveDialog
+                    onClose={setShowReserveDialog}
+                    reserve={selectedReserve} />
+            ) : null}
         </div>
     );
 }
