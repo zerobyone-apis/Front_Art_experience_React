@@ -7,12 +7,12 @@ import { IReserve } from '../types/Reserve.type';
 import ReserveActions from '../actions/Reserve.actions';
 import moment from 'moment';
 import './Dashboard.scss';
+import '../styles/theme.scss';
 
 const DashboardPage = () => {
     const reserveActions: ReserveActions = new ReserveActions();
     const [reserves, setReserve] = useState([]);
     const [selectedReserve, setSelectedReserve] = useState([]);
-
     // context
     const {
         // @ts-ignore
@@ -27,11 +27,9 @@ const DashboardPage = () => {
         { text: 'Servicio', value: 'workToDo' }
     ];
     const mobileHeaders = [headerOrder[1], headerOrder[2], headerOrder[3]];
-
     useEffect(() => {
         getReserves();
     }, [])
-
     const getReserves = async () => {
         setDisabledButton(true)
         const reserves: any[] = await reserveActions.getAll();
@@ -44,7 +42,6 @@ const DashboardPage = () => {
             setReserve(reserves)
         }
     }
-
     return (
         <div className="dashboard_page">
             <Toolbar />
