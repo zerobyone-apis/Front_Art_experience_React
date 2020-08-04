@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { DialogModal } from '../../DialogModal';
 import ReserveActions from '../../../actions/Reserve.actions';
 import { IReserve } from '../../../types/Reserve.type';
-import { Button } from '../../Button'
+import { Button } from '../../Button';
+import { TextField } from '../../TextField';
 import moment from 'moment';
 import './ReserveDialog.scss';
 import '../../../styles/ArtExperienceButtons.scss'
@@ -11,9 +12,24 @@ export const ReserveDialog = (props: {
     reserve: IReserve,
     onClose: any
 }) => {
+    const baseReserve: IReserve = {
+        barberOrHairdresserId: -1,
+        celClient: '',
+        clientId: -1,
+        mailClient: '',
+        nameClient: '',
+        priceWork: 0,
+        startTime: '',
+        additionalCost: 0,
+    }
+
     const [showDialog, setShowDialog] = useState(false);
-    // const [reserve, setReserve] = useState(props.reserve || {});
+    const [reserve, setReserve] = useState(props.reserve || baseReserve)
     const reserveActions: ReserveActions = new ReserveActions();
+
+    const onChangeReserve = (value: string, fieldName: string) => {
+        setReserve({ ...reserve, [fieldName]: value })
+    }
 
     return (
         <DialogModal
@@ -22,20 +38,58 @@ export const ReserveDialog = (props: {
             showModal={showDialog}
             onClose={props.onClose}>
             <div className="reserve-modal">
-                {/* <p>{JSON.stringify(props.reserve)}</p> */}
                 <div className="reserve_data-box">
-                    <p className="reserve_info">
-                        {`Fecha: ${
-                            props.reserve.startTimeFront
-                            }`}
-                    </p>
-                    <p className="reserve_info">{`Nombre del cliente: ${props.reserve.nameClient}`}</p>
-                    <p className="reserve_info">{`Celular/Telefono del cliente: ${props.reserve.celClient}`}</p>
-                    <p className="reserve_info">{`Email del cliente: ${props.reserve.mailClient}`}</p>
-                    <p className="reserve_info">{`Servicio: ${props.reserve.workToDo}`}</p>
-                    {/* <p className="reserve_info">{`Barbero: ${props.reserve.}`}</p> */}
-                    <p className="reserve_info">{`Horario: ${props.reserve.startTimeFront.substr(11)}`}</p>
-                    <p className="reserve_info">{`Costo: ${props.reserve.totalCost}`}</p>
+                    <p className="reserve_info">Datos del Cliente</p>
+                    <TextField
+                        value={reserve.nameClient}
+                        name="nameClient"
+                        type="email"
+                        required={true}
+                        label="Nombre"
+                        onChange={onChangeReserve} />
+                    <TextField
+                        value={reserve.mailClient}
+                        name="mailClient"
+                        type="email"
+                        required={true}
+                        label="Email"
+                        onChange={onChangeReserve} />
+                    <TextField
+                        value={reserve.celClient}
+                        name="celClient"
+                        type="string"
+                        required={true}
+                        label="Celular"
+                        onChange={onChangeReserve} />
+                    <p className="reserve_info">Datos de la Reserva</p>
+                    <TextField
+                        value={reserve.startTimeFront}
+                        name="startTimeFront"
+                        type="string"
+                        required={true}
+                        label="Fecha y hora"
+                        onChange={onChangeReserve} />
+                    <TextField
+                        value={reserve.barberOrHairdresserId}
+                        name="barberOrHairdresserId"
+                        type="string"
+                        required={true}
+                        label="Barbero"
+                        onChange={onChangeReserve} />
+                    <TextField
+                        value={reserve.workToDo}
+                        name="workToDo"
+                        type="string"
+                        required={true}
+                        label="Servicio"
+                        onChange={onChangeReserve} />
+                    <TextField
+                        value={reserve.totalCost}
+                        name="totalCost"
+                        type="string"
+                        required={true}
+                        label="Costo Total"
+                        onChange={onChangeReserve} />
                 </div>
             </div>
 
