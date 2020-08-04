@@ -229,7 +229,7 @@ const IndexPage = () => {
         className="service-item"
         key={i}
       >
-        <Icons.FaHome className="service-icon" />
+        <Icons.FaCut className="service-icon" />
         <p className="service-name art_experience-text-light">{service.name}</p>
         <p className="service-info art_experience-text-light">{service.info}</p>
       </div>
