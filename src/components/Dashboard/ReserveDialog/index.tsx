@@ -46,6 +46,7 @@ export const ReserveDialog = (props: {
                         type="email"
                         required={true}
                         label="Nombre"
+                        className="theme-text_field--dark"
                         onChange={onChangeReserve} />
                     <TextField
                         value={reserve.mailClient}
@@ -53,6 +54,7 @@ export const ReserveDialog = (props: {
                         type="email"
                         required={true}
                         label="Email"
+                        className="theme-text_field--dark"
                         onChange={onChangeReserve} />
                     <TextField
                         value={reserve.celClient}
@@ -60,6 +62,7 @@ export const ReserveDialog = (props: {
                         type="string"
                         required={true}
                         label="Celular"
+                        className="theme-text_field--dark"
                         onChange={onChangeReserve} />
                     <p className="reserve_info">Datos de la Reserva</p>
                     <TextField
@@ -68,6 +71,7 @@ export const ReserveDialog = (props: {
                         type="string"
                         required={true}
                         label="Fecha y hora"
+                        className="theme-text_field--dark"
                         onChange={onChangeReserve} />
                     <TextField
                         value={reserve.barberOrHairdresserId}
@@ -75,6 +79,7 @@ export const ReserveDialog = (props: {
                         type="string"
                         required={true}
                         label="Barbero"
+                        className="theme-text_field--dark"
                         onChange={onChangeReserve} />
                     <TextField
                         value={reserve.workToDo}
@@ -82,6 +87,7 @@ export const ReserveDialog = (props: {
                         type="string"
                         required={true}
                         label="Servicio"
+                        className="theme-text_field--dark"
                         onChange={onChangeReserve} />
                     <TextField
                         value={reserve.totalCost}
@@ -89,6 +95,7 @@ export const ReserveDialog = (props: {
                         type="string"
                         required={true}
                         label="Costo Total"
+                        className="theme-text_field--dark"
                         onChange={onChangeReserve} />
                 </div>
             </div>

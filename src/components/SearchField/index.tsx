@@ -2,6 +2,7 @@
 import React, { useState, ChangeEvent, useEffect } from 'react';
 import { TextField } from '../TextField';
 import { Button } from '../Button';
+import '../../styles/theme.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faSearch
@@ -48,7 +49,7 @@ export const SearchField = (props: {
         name="searchField"
         onChange={setFieldValue}
         label={props.fieldLabel || 'Search'}
-        className="search-text_field"
+        className="search-text_field  theme-text_field--dark"
         icon="faSearch"
         iconColor="grey"
       />

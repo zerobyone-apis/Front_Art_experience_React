@@ -72,6 +72,7 @@ export const LoginForm = (props: {
                     type="email"
                     required={true}
                     label="Email"
+                    className="theme-text_field--dark"
                     onChange={onChangeLoginField} />
                 <TextField
                     value={loginFields.password}
@@ -79,6 +80,7 @@ export const LoginForm = (props: {
                     type="password"
                     required={true}
                     label="Contraseña"
+                    className="theme-text_field--dark"
                     onChange={onChangeLoginField} />
             </ValidationForm>
             {message.isError ? (

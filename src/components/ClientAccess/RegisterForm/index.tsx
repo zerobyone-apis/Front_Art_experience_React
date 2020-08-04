@@ -80,6 +80,7 @@ export const RegisterForm = (props: {
                     name="name"
                     required={true}
                     label="Nombre"
+                    className="theme-text_field--dark"
                     onChange={onChangeField} />
                 <TextField
                     value={fields.email}
@@ -87,6 +88,7 @@ export const RegisterForm = (props: {
                     type="email"
                     required={true}
                     label="Email"
+                    className="theme-text_field--dark"
                     onChange={onChangeField} />
                 <TextField
                     value={fields.cel}
@@ -94,6 +96,7 @@ export const RegisterForm = (props: {
                     type="number"
                     required={true}
                     label="Celular / Telefono"
+                    className="theme-text_field--dark"
                     onChange={onChangeField} />
                 <TextField
                     value={fields.password}
@@ -101,6 +104,7 @@ export const RegisterForm = (props: {
                     type="password"
                     required={true}
                     label="Contraseña"
+                    className="theme-text_field--dark"
                     onChange={onChangeField} />
                 <TextField
                     value={fields.password2}
@@ -108,6 +112,7 @@ export const RegisterForm = (props: {
                     type="password"
                     required={true}
                     label="Repita Contraseña"
+                    className="theme-text_field--dark"
                     onChange={onChangeField} />
             </ ValidationForm>
             {message.isError ? (

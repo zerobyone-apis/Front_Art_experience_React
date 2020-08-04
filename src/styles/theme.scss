@@ -16,12 +16,12 @@ select:-webkit-autofill:focus {
 ::-webkit-scrollbar {
   width: 10px;
 }
+
 ::-webkit-scrollbar-track {
   box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.322);
-  // border-radius: 10px;
 }
+
 ::-webkit-scrollbar-thumb {
-  // border-radius: 10px;
   box-shadow: inset 0 0 6px rgba(122, 122, 122, 0.5);
   border-radius: 4px;
 }
@@ -34,9 +34,72 @@ body {
   margin: 0;
   padding: 0;
 }
+
 .backgroud-page {
   background: linear-gradient(rgb(114, 114, 114), rgb(0, 0, 0));
   position: absolute;
   width: 100%;
   height: 100%;
+}
+
+// TextField
+.theme-text_field--light {
+  margin-top: 5px;
+
+  .label {
+    // font-size: 12px;
+    color: rgb(214, 214, 214);
+    // font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .error-label {
+    // font-size: 13px;
+    // font-family: Arial, Helvetica, sans-serif;
+    color: rgb(231, 131, 131);
+  }
+
+  .input-box {
+    input {
+      // outline: none;
+      // border-width: 1px;
+      color: rgb(49, 49, 49);
+      // font-size: 14px;
+      // font-style: normal;
+    }
+
+    .text_field-icon {
+      opacity: 0.4;
+    }
+  }
+}
+
+.theme-text_field--dark {
+  margin-top: 5px;
+
+  .label {
+    // font-size: 12px;
+    color: rgb(214, 214, 214);
+    // font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .error-label {
+    // font-size: 13px;
+    // font-family: Arial, Helvetica, sans-serif;
+    color: rgb(231, 131, 131);
+  }
+
+  .input-box {
+    input {
+      border-style: none;
+      // border-width: 1px;
+      color: rgb(214, 214, 214);
+      background-color: rgb(49, 49, 49);
+      // font-size: 14px;
+      // font-style: normal;
+    }
+
+    .text_field-icon {
+      opacity: 0.4;
+    }
+  }
 }

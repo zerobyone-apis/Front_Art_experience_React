@@ -4,6 +4,7 @@ import React, { FC } from 'react';
 import { ButtonProvider } from '../contexts/ButtonsContext';
 import { UserProvider } from '../contexts/UserContext';
 import { USER_DATA_STORAGE } from '../types/StorageData.type';
+import '../styles/theme.scss';
 import './app.scss';
 
 const App: FC<{ Component: any; pageProps: any }> = ({

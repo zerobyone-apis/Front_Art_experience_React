@@ -78,7 +78,7 @@ export const CustomTable = (props: {
                         items={filtredItems}
                         onChangeResults={setFiltredItems}
                         itemFilter={selectedHeader}
-                        fieldLabel={`Buscar por: ${selectedHeader.text}`}
+                        fieldLabel={`Buscar: ${selectedHeader.text}`}
                     />
                 </div>
                 {/* HEADER */}
