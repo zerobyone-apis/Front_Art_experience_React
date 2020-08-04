@@ -3,8 +3,8 @@
 
     .reserve-modal {
         position: relative;
-        width: 600px;
         margin: auto;
+        width: 600px;
 
         .reserve_data-box {
             position: relative;
@@ -13,6 +13,8 @@
             height: max-content;
             margin-top: 40px;
             text-align: center;
+            // background-color: green;
+
 
             .reserve_info {
                 font-size: 18px;
@@ -21,6 +23,13 @@
                 animation-duration: 1s;
             }
         }
+    }
+
+    @media only screen and (max-width: 750px) {
+        .reserve-modal {
+            width: 400px;
+        }
+
     }
 
     .footer {
