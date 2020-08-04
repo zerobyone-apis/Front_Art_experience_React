@@ -31,7 +31,7 @@ const IndexPage = () => {
   useEffect(() => {
     getBarbers();
   }, [])
-  
+
   const getBarbers = async () => {
     const barbers: IBarber[] = await barberActions.getAll();
     if (barbers) {
@@ -45,39 +45,39 @@ const IndexPage = () => {
   }
 
 
-/* ?  const employees = [
-    {
-      barberId: 1,
-      userId: 1,
-      name: "Mariano Moreno",
-      job: "Profecional Barber",
-      amountCuts: 2,
-      clientsBarber: 5,//amountClients
-      rateOfBarber: 0,//prestige
-      amountOfReservesByDay: 10,//amountDailyReserves
-      info: "",
-      img:
-        "https://instagram.fmvd4-1.fna.fbcdn.net/v/t51.2885-15/e35/p1080x1080/81096072_209788046863421_8027631315464043835_n.jpg?_nc_ht=instagram.fmvd4-1.fna.fbcdn.net&_nc_cat=105&_nc_ohc=tHUEjcHZ2UwAX9KqbzI&oh=1fe698f633765cf59bf8e671b6e91a0c&oe=5F2A13A1",
-      instagram: "https://www.instagram.com/marianomoreno.11/",
-      facebook: "https://www.facebook.com/mariano.moreno.5209000/"
-    },
-    {
-      barberId: 2,
-      userId: 2,
-      name: "Pablo Mendez",// tengo que averiguar el appellido
-      job: "Profecional Barber",
-      amountCuts: 2,
-      clientsBarber: 5,//amountClients
-      rateOfBarber: 0,//prestige
-      amountOfReservesByDay: 10,//amountDailyReserves
-      info: '2 años de experiencia laboral comenzó cortando en su casa y luego se incorporó al equipo art donde fue capacitado por Mariano Moreno se destaca en su gran atencion al publico por su buen freestyle',
-      img: "https://instagram.fmvd4-1.fna.fbcdn.net/v/t51.2885-15/e35/p1080x1080/77094002_605862643493062_9053649117496349366_n.jpg?_nc_ht=instagram.fmvd4-1.fna.fbcdn.net&_nc_cat=110&_nc_ohc=EL9qbeJc2QQAX8ZwTaZ&oh=acda434810cd3a8546c350c24dda8b7d&oe=5F283230",
-      instagram: "https://www.instagram.com/mernis.01/",
-      facebook: "https://www.facebook.com/TheUniqueDesign"
-    }
-  ];
-
-  */
+  /* ?  const employees = [
+      {
+        barberId: 1,
+        userId: 1,
+        name: "Mariano Moreno",
+        job: "Profecional Barber",
+        amountCuts: 2,
+        clientsBarber: 5,//amountClients
+        rateOfBarber: 0,//prestige
+        amountOfReservesByDay: 10,//amountDailyReserves
+        info: "",
+        img:
+          "https://instagram.fmvd4-1.fna.fbcdn.net/v/t51.2885-15/e35/p1080x1080/81096072_209788046863421_8027631315464043835_n.jpg?_nc_ht=instagram.fmvd4-1.fna.fbcdn.net&_nc_cat=105&_nc_ohc=tHUEjcHZ2UwAX9KqbzI&oh=1fe698f633765cf59bf8e671b6e91a0c&oe=5F2A13A1",
+        instagram: "https://www.instagram.com/marianomoreno.11/",
+        facebook: "https://www.facebook.com/mariano.moreno.5209000/"
+      },
+      {
+        barberId: 2,
+        userId: 2,
+        name: "Pablo Mendez",// tengo que averiguar el appellido
+        job: "Profecional Barber",
+        amountCuts: 2,
+        clientsBarber: 5,//amountClients
+        rateOfBarber: 0,//prestige
+        amountOfReservesByDay: 10,//amountDailyReserves
+        info: '2 años de experiencia laboral comenzó cortando en su casa y luego se incorporó al equipo art donde fue capacitado por Mariano Moreno se destaca en su gran atencion al publico por su buen freestyle',
+        img: "https://instagram.fmvd4-1.fna.fbcdn.net/v/t51.2885-15/e35/p1080x1080/77094002_605862643493062_9053649117496349366_n.jpg?_nc_ht=instagram.fmvd4-1.fna.fbcdn.net&_nc_cat=110&_nc_ohc=EL9qbeJc2QQAX8ZwTaZ&oh=acda434810cd3a8546c350c24dda8b7d&oe=5F283230",
+        instagram: "https://www.instagram.com/mernis.01/",
+        facebook: "https://www.facebook.com/TheUniqueDesign"
+      }
+    ];
+  
+    */
   const pageInfo = {
     name: "Art Experience",
     slogan: "Space for Men",
@@ -272,7 +272,9 @@ const IndexPage = () => {
             <Icons.FaFacebook className="footer-social-logo social-logo" />
           </a>
         </div>
-        <p className="footer-bussiness art_experience-text-light">© 2020 Art Experience - Powered by <a className="ZeroByOne_text" href="https://www.instagram.com/max_.olivero/">ZeroByOne</a></p>
+        <a className="footer-bussiness-link" href="https://www.instagram.com/zerobyone_/">
+          <p className="art_experience-text-light">© 2020 Art Experience - Powered by ZeroByOne</p>
+        </a>
       </div>
     )
   }
