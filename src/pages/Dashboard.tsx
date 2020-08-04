@@ -13,7 +13,7 @@ import '../styles/theme.scss';
 const DashboardPage = () => {
     const reserveActions: ReserveActions = new ReserveActions();
     const [reserves, setReserve] = useState([]);
-    const [selectedReserve, setSelectedReserve] = useState([]);
+    const [selectedReserve, setSelectedReserve] = useState(undefined);
     const [showReserveDialog, setShowReserveDialog] = useState(false);
 
     // context
