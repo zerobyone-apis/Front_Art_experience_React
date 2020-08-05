@@ -32,6 +32,12 @@
         .search-field {
             position: relative;
             text-align: left;
+
+            .label {
+                top: 22px;
+                left: 10px;
+                z-index: 1;
+            }
         }
 
         .header {
@@ -40,6 +46,16 @@
             border-color: rgb(146, 144, 108);
             border-width: 1px;
             border-radius: 4px;
+
+            .header_button-content {
+                display: flex;
+
+                .icon {
+                    color: rgb(146, 144, 108);
+                    margin-top: 12px;
+                    margin-left: 4px;
+                }
+            }
 
             .selected {
                 p {

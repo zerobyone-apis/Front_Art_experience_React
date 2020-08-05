@@ -4,6 +4,7 @@ import { Button } from '../../Button';
 import { SearchField } from '../../SearchField';
 import { useWindowSize } from '../../../hooks/useWindowSize';
 import { Grid } from '@material-ui/core';
+import { AiFillCaretDown, AiFillCaretUp } from 'react-icons/ai'
 import './Table.scss';
 import '../../../styles/ArtExperienceButtons.scss';
 import '../../../styles/ArtExperienceFonts.scss';
@@ -20,6 +21,7 @@ export const CustomTable = (props: {
 }) => {
     const [filtredItems, setFiltredItems] = useState(props.items || []);
     const [selectedHeader, setSelectedHeader] = useState(props.mobileHeaders[0]);
+    const [isSortUp, setIsSortUp] = useState(true)
     const [selectedRow, setSelectedRow] = useState(undefined);
 
     const windowSize = useWindowSize();
@@ -38,9 +40,26 @@ export const CustomTable = (props: {
         }),
     );
     const classes = useStyles();
+
     useEffect(() => {
         props.onSelectRow(selectedRow)
     }, [selectedRow])
+
+
+
+    useEffect(() => {
+        //Sort selected Column when arrow change
+        let sortItems = filtredItems.sort((a, b) => {
+            return a - b;
+        })
+        setFiltredItems(sortItems)
+        console.log('filtrado: ', filtredItems)
+    }, [isSortUp])
+
+
+
+
+
     const getDataByScreenSize = (screenSize: string) => {
         switch (screenSize) {
             case 'xs':
@@ -94,11 +113,22 @@ export const CustomTable = (props: {
                                     className={`header_${headerIndex}`}>
                                     <Button
                                         className={`${(selectedHeader == header) ? 'selected' : ''} art_experience-button_only-text`}
-                                        label={header.text}
+
                                         onClick={() => {
-                                            setSelectedHeader(header)
+                                            setSelectedHeader(header);
+                                            setIsSortUp(!isSortUp)
                                         }}
-                                    />
+                                    >
+                                        <div className="header_button-content">
+                                            <p>{header.text}</p>
+                                            {
+                                                (selectedHeader == header) ?
+                                                    (
+                                                        isSortUp ? (<AiFillCaretUp className="icon" />) : (<AiFillCaretDown className="icon" />)
+                                                    ) : null
+                                            }
+                                        </div>
+                                    </Button>
                                 </Grid>
                             )
                         })
