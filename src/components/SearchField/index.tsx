@@ -2,11 +2,9 @@
 import React, { useState, ChangeEvent, useEffect } from 'react';
 import { TextField } from '../TextField';
 import { Button } from '../Button';
-import '../../styles/theme.scss';
+import '../../styles/ArtExperienceFonts.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faSearch
-} from '@fortawesome/free-solid-svg-icons'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import './SearchField.scss';
 
 export const SearchField = (props: {
@@ -24,6 +22,8 @@ export const SearchField = (props: {
 
   useEffect(() => {
     console.log('Item filter', props.itemFilter)
+    setFieldValue('')
+    filterItems()
   }, [props.itemFilter])
 
   useEffect(() => {
@@ -37,8 +37,6 @@ export const SearchField = (props: {
   const filterItems = () => {
     let items = filtredItems.filter(item => {
       let formattedText = (String(item[props.itemFilter.value]) || '').toLowerCase();
-      console.log(item[props.itemFilter.value])
-      console.log(formattedText, fieldValue, (formattedText.indexOf(fieldValue) !== -1))
       return (formattedText.indexOf(fieldValue) !== -1);
     })
     props.onChangeResults(items);
@@ -48,8 +46,9 @@ export const SearchField = (props: {
       <TextField
         name="searchField"
         onChange={setFieldValue}
-        label={props.fieldLabel || 'Search'}
-        className="search-text_field  theme-text_field--dark"
+        label=""
+        hint={!fieldValue && props.fieldLabel ? props.fieldLabel : ''} // TODO fix problems of click and insert text
+        className="search-text_field theme-text_field--dark"
         icon="faSearch"
         iconColor="grey"
       />
