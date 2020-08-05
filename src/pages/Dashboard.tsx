@@ -26,7 +26,7 @@ const DashboardPage = () => {
     const headerOrder = [
         { text: 'ID', value: 'reserveId' },
         { text: 'Cliente', value: 'nameClient' },
-        { text: 'Fecha de Reservacion', value: 'startTimeFront' },
+        { text: 'Fecha', value: 'startTimeFront' },
         { text: 'Servicio', value: 'workToDo' }
     ];
     const mobileHeaders = [headerOrder[1], headerOrder[2], headerOrder[3]];
