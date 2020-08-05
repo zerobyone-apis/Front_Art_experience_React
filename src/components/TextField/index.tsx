@@ -3,6 +3,7 @@ import React, { ChangeEvent, useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as Icons from '@fortawesome/free-solid-svg-icons';
 import './TextField.scss';
+import '../../styles/ArtExperienceFonts.scss';
 
 export const TextField = (props: {
   value?: any;
@@ -10,6 +11,7 @@ export const TextField = (props: {
   name: string;
   type?: string;
   label?: string;
+  hint?: string;
   error?: string;
   defaultValue?: string;
   result?: string;
@@ -46,8 +48,9 @@ export const TextField = (props: {
   };
   return (
     <div className={`${props.className || ''} text-field`}>
-      <label className="label">{props.label}</label>
+      <label className="label art_experience-text-dark">{props.label}</label>
       <div className="input-box">
+        <label className="hint-label art_experience-text-dark">{props.hint}</label>
         <input
           tabIndex={props.tabIndex}
           name={props.name}
