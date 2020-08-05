@@ -47,24 +47,16 @@ body {
   margin-top: 5px;
 
   .label {
-    // font-size: 12px;
     color: rgb(214, 214, 214);
-    // font-family: Arial, Helvetica, sans-serif;
   }
 
   .error-label {
-    // font-size: 13px;
-    // font-family: Arial, Helvetica, sans-serif;
     color: rgb(231, 131, 131);
   }
 
   .input-box {
     input {
-      // outline: none;
-      // border-width: 1px;
       color: rgb(49, 49, 49);
-      // font-size: 14px;
-      // font-style: normal;
     }
 
     .text_field-icon {
@@ -77,25 +69,22 @@ body {
   margin-top: 5px;
 
   .label {
-    // font-size: 12px;
     color: rgb(214, 214, 214);
-    // font-family: Arial, Helvetica, sans-serif;
   }
 
   .error-label {
-    // font-size: 13px;
-    // font-family: Arial, Helvetica, sans-serif;
     color: rgb(231, 131, 131);
   }
 
   .input-box {
+    .hint-label {
+      color: rgb(214, 214, 214);
+    }
+
     input {
       border-style: none;
-      // border-width: 1px;
       color: rgb(214, 214, 214);
       background-color: rgb(49, 49, 49);
-      // font-size: 14px;
-      // font-style: normal;
     }
 
     .text_field-icon {
