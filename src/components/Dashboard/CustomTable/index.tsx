@@ -14,6 +14,8 @@ export const CustomTable = (props: {
     items: any[],
     headers: { text: string, value: string }[],
     mobileHeaders?: { text: string, value: string }[],
+    // sortColumnByOtherHeader: comportamiendo de ordenar una columna usando otra
+    sortColumnByOtherHeader?: { headerToAction: string, headerToSort: string },
     noItemsMessage?: string,
     noSearchMessage?: string,
     showSearchField?: boolean,
@@ -46,31 +48,128 @@ export const CustomTable = (props: {
     }, [selectedRow])
 
 
+    const compare = (a: any, b: any) => {
+        let headerValue = selectedHeader.value;
+        if (props.sortColumnByOtherHeader) {
+            if (headerValue === props.sortColumnByOtherHeader.headerToAction) {
+                headerValue = props.sortColumnByOtherHeader.headerToSort;
+            }
+        }
+        if (a[headerValue] < b[headerValue]) {
+            return -1;
+        }
+        if (a[headerValue] > b[headerValue]) {
+            return 1;
+        }
+        return 0;
+    }
 
     useEffect(() => {
-        //Sort selected Column when arrow change
-        let sortItems = filtredItems.sort((a, b) => {
-            return a - b;
-        })
+        let sortItems = filtredItems.sort(compare);
+        if (isSortUp) {
+            sortItems.reverse()
+        }
         setFiltredItems(sortItems)
         console.log('filtrado: ', filtredItems)
     }, [isSortUp])
-
-
-
-
 
     const getDataByScreenSize = (screenSize: string) => {
         switch (screenSize) {
             case 'xs':
                 return { headers: props.mobileHeaders, grid: gridsMobileHeaders };
-                break;
             case 'md':
                 return { headers: props.headers, grid: gridHeaders };
-                break;
         }
         return { headers: props.headers, grid: gridHeaders };
     }
+
+    const Header = (props: {}) => {
+        return (
+            < div className="header" >
+                <Grid container xl={12} spacing={3}>
+                    {getDataByScreenSize(windowSize.screenMode()).headers.map((header: { text: string, value: string }, headerIndex) => {
+                        return (
+                            <Grid item
+                                xs={getDataByScreenSize(windowSize.screenMode()).grid}
+                                xl={getDataByScreenSize(windowSize.screenMode()).grid}
+                                sm={getDataByScreenSize(windowSize.screenMode()).grid}
+                                key={headerIndex}
+                                className={`header_${headerIndex}`}>
+                                <Button
+                                    className={`${(selectedHeader == header) ? 'selected' : ''} art_experience-button_only-text`}
+                                    onClick={() => {
+                                        setSelectedHeader(header);
+                                        setIsSortUp(!isSortUp)
+                                    }}
+                                >
+                                    <div className="header_button-content">
+                                        <p>{header.text}</p>
+                                        {
+                                            (selectedHeader == header) ?
+                                                (
+                                                    isSortUp ? (<AiFillCaretUp className="icon" />) : (<AiFillCaretDown className="icon" />)
+                                                ) : null
+                                        }
+                                    </div>
+                                </Button>
+                            </Grid>
+                        )
+                    })
+                    }
+                </Grid>
+            </div >
+        )
+    }
+
+    const TableContent = (props: {}) => {
+        return (
+            <div className="row-box">
+                {filtredItems.map((row: any, rowIndex) => {
+                    return (
+                        <div className="table-box" key={rowIndex}>
+                            <div className="content-box">
+                                <div className={classes.root}>
+                                    {/* ROWS */}
+                                    <div
+                                        className={`${(selectedRow == row) ? 'selected-row' : ''} row`}
+                                        onClick={() => {
+                                            setSelectedRow(row)
+                                        }}>
+                                        <Grid container xl={12} spacing={3}>
+                                            {getDataByScreenSize(windowSize.screenMode()).headers.map((header: { text: string, value: string }, headerIndex) => {
+                                                return (
+                                                    <Grid item
+                                                        xs={getDataByScreenSize(windowSize.screenMode()).grid}
+                                                        xl={getDataByScreenSize(windowSize.screenMode()).grid}
+                                                        sm={getDataByScreenSize(windowSize.screenMode()).grid}
+                                                        key={headerIndex}
+                                                        className={`header_${headerIndex}`}>
+                                                        {header.value != 'status' ? (
+                                                            <p
+                                                                className={`${(selectedHeader == header) ? 'selected' : ''} item_table-text`}
+                                                            >{row[header.value]}</p>
+                                                        ) : (
+                                                                <Button className="state-btn art_experience-button_outlined" label="status" />
+                                                            )
+                                                        }
+                                                    </Grid>
+                                                )
+                                            })
+                                            }
+                                        </Grid>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="right-box">
+                            </div>
+                        </div>
+                    )
+                })}
+            </div>
+        )
+    }
+
+
     return (
         <div className="custom-table">
             <h1 className="title font-title art_experience-text-light"
@@ -100,84 +199,8 @@ export const CustomTable = (props: {
                         fieldLabel={`Buscar: ${selectedHeader.text}`}
                     />
                 </div>
-                {/* HEADER */}
-                <div className="header">
-                    <Grid container xl={12} spacing={3}>
-                        {getDataByScreenSize(windowSize.screenMode()).headers.map((header: { text: string, value: string }, headerIndex) => {
-                            return (
-                                <Grid item
-                                    xs={getDataByScreenSize(windowSize.screenMode()).grid}
-                                    xl={getDataByScreenSize(windowSize.screenMode()).grid}
-                                    sm={getDataByScreenSize(windowSize.screenMode()).grid}
-                                    key={headerIndex}
-                                    className={`header_${headerIndex}`}>
-                                    <Button
-                                        className={`${(selectedHeader == header) ? 'selected' : ''} art_experience-button_only-text`}
-
-                                        onClick={() => {
-                                            setSelectedHeader(header);
-                                            setIsSortUp(!isSortUp)
-                                        }}
-                                    >
-                                        <div className="header_button-content">
-                                            <p>{header.text}</p>
-                                            {
-                                                (selectedHeader == header) ?
-                                                    (
-                                                        isSortUp ? (<AiFillCaretUp className="icon" />) : (<AiFillCaretDown className="icon" />)
-                                                    ) : null
-                                            }
-                                        </div>
-                                    </Button>
-                                </Grid>
-                            )
-                        })
-                        }
-                    </Grid>
-                </div>
-                <div className="row-box">
-                    {filtredItems.map((row: any, rowIndex) => {
-                        return (
-                            <div className="table-box" key={rowIndex}>
-                                <div className="content-box">
-                                    <div className={classes.root}>
-                                        {/* ROWS */}
-                                        <div
-                                            className={`${(selectedRow == row) ? 'selected-row' : ''} row`}
-                                            onClick={() => {
-                                                setSelectedRow(row)
-                                            }}>
-                                            <Grid container xl={12} spacing={3}>
-                                                {getDataByScreenSize(windowSize.screenMode()).headers.map((header: { text: string, value: string }, headerIndex) => {
-                                                    return (
-                                                        <Grid item
-                                                            xs={getDataByScreenSize(windowSize.screenMode()).grid}
-                                                            xl={getDataByScreenSize(windowSize.screenMode()).grid}
-                                                            sm={getDataByScreenSize(windowSize.screenMode()).grid}
-                                                            key={headerIndex}
-                                                            className={`header_${headerIndex}`}>
-                                                            {header.value != 'status' ? (
-                                                                <p
-                                                                    className={`${(selectedHeader == header) ? 'selected' : ''} item_table-text`}
-                                                                >{row[header.value]}</p>
-                                                            ) : (
-                                                                    <Button className="state-btn art_experience-button_outlined" label="status" />
-                                                                )
-                                                            }
-                                                        </Grid>
-                                                    )
-                                                })
-                                                }
-                                            </Grid>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="right-box">
-                                </div>
-                            </div>
-                        )
-                    })}
-                </div>
+                <Header />
+                <TableContent />
             </div>
         </div >
     );

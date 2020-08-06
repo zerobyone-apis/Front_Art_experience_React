@@ -64,6 +64,7 @@ const DashboardPage = () => {
                             items={reserves}
                             headers={headerOrder}
                             mobileHeaders={mobileHeaders}
+                            sortColumnByOtherHeader={{ headerToAction: 'startTimeFront', headerToSort: 'reserveId' }}
                             onSelectRow={showSelectedReserve}
                         />
                     ) : null}
