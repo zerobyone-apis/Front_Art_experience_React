@@ -31,12 +31,17 @@ export const UserProvider = (props: {
     }
 
     const getUserData = () => {
-        // console.log('getUserData: ', user)
-        if (user['user']) {
-            return user['user']
-        } else if (user['client']) {
-            return user['client']
+        if (user) {
+            console.log('Obteniendo usuario ', user)
+            try {
+                let userData = user['user'];
+                return userData;
+            } catch (error) {
+                let clientData = user['client'];
+                return clientData;
+            }
         }
+        return null;
     }
 
     const userIsLogged = () => {
