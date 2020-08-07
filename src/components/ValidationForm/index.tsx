@@ -151,7 +151,7 @@ export const ValidationForm = (props: {
                 onClick={() => {
                     onClickValidate()
                 }}
-                className={props.buttonClassName}
+                className={`${props.buttonClassName} validate-button`}
                 label={props.buttonLabel} />
         </div>
     );
