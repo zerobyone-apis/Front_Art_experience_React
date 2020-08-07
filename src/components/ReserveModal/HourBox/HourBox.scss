@@ -1,15 +1,17 @@
 .hours-box {
   position: relative;
   width: 100%;
-  max-width: 380px;
+  max-width: 350px;
   margin: auto;
   text-align: center;
   animation-name: slide-top;
   animation-duration: 1s;
   margin-top: 10px;
   margin-bottom: 45px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border: 3px solid rgba(160, 160, 150, 0.102) !important;
 
-  // background-color: green;
   .hour-item {
     position: relative;
     height: max-content;
