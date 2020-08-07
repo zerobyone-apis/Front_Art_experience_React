@@ -1,14 +1,14 @@
 import React, { useContext } from 'react';
-import moment from 'moment';
-import './ReserveStepper.scss';
-
-import { CalendarBox } from '../CalendarBox';
-import { HourBox } from '../HourBox';
+import { ReserveTime } from '../ReserveTime';
+// import { CalendarBox } from '../CalendarBox';
+// import { HourBox } from '../HourBox';
 import { ServicesList } from '../ServicesList';
 import { BarbersList } from '../BarbersList';
 import { UserContext } from '../../../contexts/UserContext'
 import { IClient } from '../../../types/Client.type';
 import { FaRegCalendarCheck } from 'react-icons/fa';
+import moment from 'moment';
+import './ReserveStepper.scss';
 
 export const ReserveStepper = (props: {
     wizard: number,
@@ -75,14 +75,16 @@ export const ReserveStepper = (props: {
                     <div className="step-title">
                         <p >Seleccione fecha y hora</p>
                     </div>
-                    <div className="time-box">
+                    <ReserveTime />
+                    {/* <div className="time-box">
                         <CalendarBox
                             value={props.timeStep.reserveDate}
                             onSelectDate={props.timeStep.setDate} />
                         <HourBox
+                            hours={['14:00', "14:40", '15:20', '16:00', '16:40', '17:20']}
                             value={props.timeStep.reserveHour}
                             onSelectHour={props.timeStep.setHour} />
-                    </div>
+                    </div> */}
                 </div>
             );
             break;
