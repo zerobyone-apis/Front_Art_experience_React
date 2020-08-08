@@ -37,7 +37,8 @@ export default class ReserveActions {
                 undefined,
                 `${RESERVE_ROUTE}`
             );
-            return response.data;
+            console.log(response.data)
+            return response.data; //[...response.data, ...response.data];
         } catch (error) {
             console.error('Error Reserve.actions method add -> ', error.message);
             return null;
