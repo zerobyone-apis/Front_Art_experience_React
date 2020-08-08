@@ -1,22 +1,25 @@
-import React, { useState, useEffect } from 'react';
-import { Button } from '../../Button';
-import moment from 'moment';
-import AvailableTimeActions from '../../../actions/AvailableTime.actions';
 import './HourBox.scss';
-import { loadGetInitialProps } from 'next/dist/next-server/lib/utils';
+
+import React, { useEffect, useState } from 'react';
+
+import { Button } from '../../Button';
 
 export const HourBox = (props: {
     value: any,
     hours: string[],
     onSelectHour: any
 }) => {
-    // const timeActions: AvailableTimeActions = new AvailableTimeActions();
+    const [selectedHour, setSelectedHour] = useState(props.value)
     const [hours, setHours] = useState([])
-    // const [availableHours, setAvailableHours] = useState([])
 
     useEffect(() => {
         setHours(props.hours)
     }, [props.hours])
+
+    const isHourSelected = (hour: string) => {
+        setSelectedHour(hour)
+        props.onSelectHour(hour);
+    }
 
     return (
         <div className="hours-item">
@@ -28,7 +31,8 @@ export const HourBox = (props: {
                             key={i}
                             label={hour}
                             onClick={() => {
-                                props.onSelectHour(hour);
+                                // props.onSelectHour(hour);
+                                isHourSelected(hour)
                             }} />
                     )
                 })}
