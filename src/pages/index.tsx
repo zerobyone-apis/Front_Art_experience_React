@@ -1,42 +1,45 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { Toolbar } from '../components/Toolbar';
+import './index.scss';
+import '../styles/ArtExperienceButtons.scss';
+
+import * as Icons from 'react-icons/fa';
+
+import React, { useContext, useEffect, useState } from 'react';
+
+import BarberAction from '../actions/Barber.actions';
+import { Button } from '../components/Button';
+import { ButtonContext } from '../contexts/ButtonsContext';
 import { Card } from '../components/Card';
 import { DialogModal } from '../components/DialogModal';
 import { Divider } from '../components/Divider';
-import { Button } from '../components/Button';
-import * as Icons from 'react-icons/fa';
-import BarberAction from '../actions/Barber.actions';
-import { ButtonContext } from '../contexts/ButtonsContext';
-import { LoaderPage } from '../components/LoaderPage';
-import './index.scss';
-import '../styles/ArtExperienceButtons.scss';
 import { IBarber } from '../types/Barber.type';
+import { LoaderPage } from '../components/LoaderPage';
+import { Toolbar } from '../components/Toolbar';
 import moment from 'moment';
 
-
 const IndexPage = () => {
-  // context
+  const [showDialogCourse, setShowDialogCourse] = useState(false);
+  const [selectedCourse, setSelectedCourse] = useState(null);
+  const [barbers, setBarbers] = useState([]);
+
   const {
     // @ts-ignore
     disabled
   } = useContext(ButtonContext);
-
   const barberActions = new BarberAction();
-
-  const [showDialogCourse, setShowDialogCourse] = useState(false);
-  const [selectedCourse, setSelectedCourse] = useState(null);
-  const [showDashboard, setShowDashboard] = useState(false);
-  const [barbers, setBarbers] = useState([]);
 
   useEffect(() => {
     getBarbers();
+    // TODO
+    // getPageInfo();
+    // getServices();
+    // getCourses();
   }, [])
 
   const getBarbers = async () => {
-    const barbers: IBarber[] = await barberActions.getAll();
-    if (barbers) {
-      // formatting date
+    const response: IBarber[] = await barberActions.getAll();
+    if (response) {
       barbers.map((barber: IBarber) => {
+        // formatting data
         barber.startDate = moment(barber.startDate).format('DD/MM/YYYY hh:mm:ss').substr(0, 16);
         barber.job = 'Professional Barber';
       })
@@ -44,40 +47,6 @@ const IndexPage = () => {
     }
   }
 
-
-  /* ?  const employees = [
-      {
-        barberId: 1,
-        userId: 1,
-        name: "Mariano Moreno",
-        job: "Profecional Barber",
-        amountCuts: 2,
-        clientsBarber: 5,//amountClients
-        rateOfBarber: 0,//prestige
-        amountOfReservesByDay: 10,//amountDailyReserves
-        info: "",
-        img:
-          "https://instagram.fmvd4-1.fna.fbcdn.net/v/t51.2885-15/e35/p1080x1080/81096072_209788046863421_8027631315464043835_n.jpg?_nc_ht=instagram.fmvd4-1.fna.fbcdn.net&_nc_cat=105&_nc_ohc=tHUEjcHZ2UwAX9KqbzI&oh=1fe698f633765cf59bf8e671b6e91a0c&oe=5F2A13A1",
-        instagram: "https://www.instagram.com/marianomoreno.11/",
-        facebook: "https://www.facebook.com/mariano.moreno.5209000/"
-      },
-      {
-        barberId: 2,
-        userId: 2,
-        name: "Pablo Mendez",// tengo que averiguar el appellido
-        job: "Profecional Barber",
-        amountCuts: 2,
-        clientsBarber: 5,//amountClients
-        rateOfBarber: 0,//prestige
-        amountOfReservesByDay: 10,//amountDailyReserves
-        info: '2 años de experiencia laboral comenzó cortando en su casa y luego se incorporó al equipo art donde fue capacitado por Mariano Moreno se destaca en su gran atencion al publico por su buen freestyle',
-        img: "https://instagram.fmvd4-1.fna.fbcdn.net/v/t51.2885-15/e35/p1080x1080/77094002_605862643493062_9053649117496349366_n.jpg?_nc_ht=instagram.fmvd4-1.fna.fbcdn.net&_nc_cat=110&_nc_ohc=EL9qbeJc2QQAX8ZwTaZ&oh=acda434810cd3a8546c350c24dda8b7d&oe=5F283230",
-        instagram: "https://www.instagram.com/mernis.01/",
-        facebook: "https://www.facebook.com/TheUniqueDesign"
-      }
-    ];
-  
-    */
   const pageInfo = {
     name: "Art Experience",
     slogan: "Space for Men",
@@ -200,12 +169,10 @@ const IndexPage = () => {
       align: 'right'
     }
   ];
+
   const getEmployees = () => {
     return barbers.map((employee, i) =>
-      <div
-        className="employee-item"
-        key={i}
-      >
+      <div className="employee-item" key={i}>
         <img className="employee-img" src={employee.urlProfileImage} aspect-ratio="1"></img>
         <p className="employee-name art_experience-text-light">{employee.name}</p>
         <p className="employee-info art_experience-text-light">{employee.job}</p>
@@ -225,10 +192,7 @@ const IndexPage = () => {
 
   const getServices = () => {
     return services.map((service, i) =>
-      <div
-        className="service-item"
-        key={i}
-      >
+      <div className="service-item" key={i}>
         <Icons.FaCut className="service-icon" />
         <p className="service-name art_experience-text-light">{service.name}</p>
         <p className="service-info art_experience-text-light">{service.info}</p>
@@ -238,21 +202,16 @@ const IndexPage = () => {
 
   const getCourses = () => {
     return courses.map((course, i) =>
-      <div
-        className="course-item"
-        key={i}
-      >
+      <div className="course-item" key={i}>
         <p className="course-name art_experience-text-light">{course.name}</p>
         <img className="course-img" aspect-ratio="1" src={course.img}></img>
         <p className="course-duration art_experience-text-light">Duracion: {course.duration}</p>
-        <Button
-          className="see_more-btn art_experience-button_outlined"
+        <Button className="see_more-btn art_experience-button_outlined"
           label="Ver mas"
           onClick={() => {
             setSelectedCourse(course);
             setShowDialogCourse(true);
-          }}
-        />
+          }} />
       </div >
     )
   }
@@ -261,7 +220,6 @@ const IndexPage = () => {
     return (
       <div className="footer">
         <img className="footer_logo-img" src="https://raw.githubusercontent.com/zerobyone-apis/Front_Art_experience_React/master/src/assets/gold_logo.png" alt="" />
-        {/* <p className="logo art_experience-text-light">Art Experience</p> */}
         <p className="footer-email art_experience-text-light">{pageInfo.email}</p>
         <div className="footer-social">
           <a href={pageInfo.instagram}>
@@ -273,7 +231,7 @@ const IndexPage = () => {
           </a>
         </div>
         <a className="footer-bussiness-link" href="https://www.instagram.com/zerobyone_/">
-          <p className="art_experience-text-light">© 2020 Art Experience - Powered by ZeroByOne</p>
+          <p className="art_experience-text-light">© 2020 Art Experience - Desarrollado por ZeroByOne</p>
         </a>
       </div>
     )
@@ -295,7 +253,6 @@ const IndexPage = () => {
               </div>
             </div>
           </div>
-
           <div id="about_us" />
           <Card title={pageInfo.aboutUsTitle} subtitle={pageInfo.aboutUs}>
             {getEmployees()}
@@ -317,25 +274,19 @@ const IndexPage = () => {
           </Card>
         </div>
       </div >
-
       {!showDialogCourse ? null :
         <DialogModal
           className="dialog"
           title={selectedCourse.name}
           onClose={() => { setShowDialogCourse(false) }} >
-          {
-            selectedCourse.info.split('\n').map((item, i) => {
-              return <p className="course-info art_experience-text-light" key={i}>{item}</p>
-            })
-          }
+          {selectedCourse.info.split('\n').map((item, i) => {
+            return <p className="course-info art_experience-text-light" key={i}>{item}</p>
+          })}
           <div className="divider"></div>
-          {
-            selectedCourse.cost.split('\n').map((item, i) => {
-              return <p className="course-info art_experience-text-light" key={i}>{item}</p>
-            })
-          }
-        </DialogModal>
-      }
+          {selectedCourse.cost.split('\n').map((item, i) => {
+            return <p className="course-info art_experience-text-light" key={i}>{item}</p>
+          })}
+        </DialogModal>}
       <LoaderPage show={disabled} />
     </div >
   );
