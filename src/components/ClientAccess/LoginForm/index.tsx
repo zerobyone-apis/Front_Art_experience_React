@@ -1,9 +1,10 @@
-import React, { useState, useContext } from 'react';
-import { ValidationForm } from '../../ValidationForm';
-import { TextField } from '../../TextField';
+import React, { useContext, useState } from 'react';
+
 import { ButtonContext } from '../../../contexts/ButtonsContext';
-import { UserContext } from '../../../contexts/UserContext';
 import ClientActions from '../../../actions/Client.actions';
+import { TextField } from '../../TextField';
+import { UserContext } from '../../../contexts/UserContext';
+import { ValidationForm } from '../../ValidationForm';
 
 export const LoginForm = (props: {
     onClientLogged: (response: any) => void
