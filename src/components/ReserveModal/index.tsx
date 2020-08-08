@@ -1,43 +1,38 @@
-// eslint-disable-next-line no-unused-vars
-import 'date-fns';
-// IMPORTS
-import React, { useState, useEffect, useContext } from 'react';
-import moment from 'moment';
-import { UserContext } from '../../contexts/UserContext';
-import { ButtonContext } from '../../contexts/ButtonsContext';
-// COMPONENTS
-import { DialogModal } from '../DialogModal';
-import { Button } from '../Button';
-import { ReserveFooter } from './ReserveFooter';
-import { ReserveStepper } from './ReserveStepper';
-import { LoginModal } from '../LoginModal';
+import React, { useContext, useState } from 'react';
 
-// ACTIONS
-import ReserveActions from '../../actions/Reserve.actions';
-import ClientActions from '../../actions/Client.actions';
-// TYPES
+import { BarbersList } from './BarbersList';
+import { Button } from '../Button';
+import { ButtonContext } from '../../contexts/ButtonsContext';
+import { DialogModal } from '../DialogModal';
 import { IReserve } from '../../types/Reserve.type';
-import { IClient } from '../../types/Client.type';
-// STYLES
-import '../../styles/ArtExperienceButtons.scss';
+import { LoginModal } from '../LoginModal';
+import ReserveActions from '../../actions/Reserve.actions';
+import { ReserveFooter } from './ReserveFooter';
+import { ReserveTime } from './ReserveTime';
+import { ServicesList } from './ServicesList';
+import { Stepper } from '../Stepper';
+import { UserContext } from '../../contexts/UserContext';
+import { defaultBarber } from '../../types/Barber.type';
+import { defaultService } from '../../types/Service.type';
+import { FaRegCalendarCheck } from 'react-icons/fa';
+import moment from 'moment';
+
+import 'date-fns';
 import './ReserveModal.scss';
 import '../../styles/theme.scss';
-import ResultObject from '../../utils/ResultObject';
+import '../../styles/ArtExperienceButtons.scss';
 
 export const ReserveModal = (props: { className?: string }) => {
-  // context
   const {
     // @ts-ignore
     userIsLogged,
-    getUserData
+    getUserData,
   } = useContext(UserContext);
   const {
     // @ts-ignore
     disabled,
     setDisabledButton
   } = useContext(ButtonContext);
-
-  // DATA
   const services = [
     {
       workId: 1,
@@ -135,24 +130,6 @@ export const ReserveModal = (props: { className?: string }) => {
       facebook: "https://www.facebook.com/TheUniqueDesign"
     }
   ];
-  //
-  const defaultBarber = {
-    name: '',
-    barberId: -1
-  }
-  const defaultClient: IClient = {
-    cel: '',
-    email: '',
-    name: '',
-    password: '',
-    username: '',
-    userId: -1
-  }
-  const defaultService = {
-    name: '', cost: 0
-  }
-
-  // STATES
   const [showDialog, setShowDialog] = useState(false);
   const [showLoginDialog, setShowLoginDialog] = useState(false);
   const [reserveHour, setReserveHour] = useState("");
@@ -161,14 +138,11 @@ export const ReserveModal = (props: { className?: string }) => {
   const [selectedService, setSelectedService] = useState(defaultService);
   const [wizard, setWizard] = useState(0);
 
-  // ACTIONS
   const reserveActions = new ReserveActions();
-  const clientActions = new ClientActions();
 
-  // CREATE RESERVE
   const createReserve = async () => {
-    const totalCost = 0; // Total cost lo calculo en el backend es al pedo que este aca
-    const startDateFormatted = `${moment(reserveDate).format().split('T')[0]}T${reserveHour}:00`
+    const totalCost = 0;
+    const startDateFormatted = `${moment(reserveDate).format().split('T')[0]}T${reserveHour}:00`;
     const newReserve: IReserve = {
       barberOrHairdresserId: selectedBarber.barberId,
       clientId: getUserData().clientId,
@@ -180,13 +154,10 @@ export const ReserveModal = (props: { className?: string }) => {
       workToDo: selectedService.name,
     }
     setDisabledButton(true);
-    const createdReserve: any = await reserveActions.add(newReserve);
-    setDisabledButton(false);
-
-    if (createReserve) {
+    const response: any = await reserveActions.add(newReserve);
+    if (response) {
       setWizard(4);
-      setTimeout(() => {
-        // restart all steps of reserve_modal
+      setTimeout(() => { // restart all steps of reserve_modal
         setSelectedService(defaultService);
         setSelectedBarber(defaultBarber);
         setReserveDate(new Date());
@@ -195,28 +166,19 @@ export const ReserveModal = (props: { className?: string }) => {
         setWizard(0);
       }, 3000);
     }
+    setDisabledButton(false);
   }
 
   const checkStep = () => {
     switch (wizard) {
       case 0:
-        if (selectedService.name) {
-          return true;
-        }
-        break;
+        return selectedService.name ? true : false;
       case 1:
-        if (selectedBarber.name) {
-          return true;
-        }
-        break;
+        return selectedBarber.name ? true : false;
       case 2:
-        if (reserveDate && reserveHour) {
-          return true;
-        }
-        break;
+        return (reserveDate && reserveHour) ? true : false;
       case 3:
         return true;
-        break;
     }
     return false;
   }
@@ -228,18 +190,16 @@ export const ReserveModal = (props: { className?: string }) => {
 
   return (
     <div className="reserve-modal">
+
       <div className="dialog_activator-box">
         <Button
           onClick={() => {
-            if (userIsLogged()) {
-              setShowDialog(true)
-            } else {
-              setShowLoginDialog(true)
-            }
+            userIsLogged() ? setShowDialog(true) : setShowLoginDialog(true);
           }}
           className={`activator-btn reserve-btn art_experience-button_outlined`}
           label={'Reservar'} />
       </div>
+
       {!showDialog ? null : (
         <DialogModal
           title="Reservacion - ArtExperience"
@@ -247,47 +207,83 @@ export const ReserveModal = (props: { className?: string }) => {
           width='65vw'
           height='65vh'
           onClose={() => { setShowDialog(false) }}
-          hideCloseButton={wizard == 4}
-        >
-          <ReserveStepper
-            wizard={wizard}
-            serviceStep={{
-              services: services,
-              selectedService: selectedService,
-              setService: setSelectedService
-            }}
-            barberStep={{
-              barbers: barbers,
-              selectedBarber: selectedBarber,
-              setBarber: setSelectedBarber
-            }}
-            timeStep={{
-              reserveDate: reserveDate,
-              reserveHour: reserveHour,
-              setDate: setReserveDate,
-              setHour: setReserveHour
-            }}
-          />
-          {wizard != 4 ? ( // exception
+          hideCloseButton={wizard == 4}>
+          <Stepper wizard={wizard}>
+            <div className="reserve-step">
+              <div className="step-title">
+                <p>Seleccione el servicio que se desea realizar</p>
+              </div>
+              <ServicesList
+                services={services}
+                value={selectedService}
+                setService={setSelectedService} />
+            </div>
+
+            <div className="reserve-step">
+              <div className="step-title">
+                <p>Seleccione el Barbero</p>
+              </div>
+              <BarbersList
+                value={selectedBarber}
+                barbers={barbers}
+                setBarber={setSelectedBarber} />
+            </div>
+
+            <div className="reserve-step">
+              <div className="step-title">
+                <p>Seleccione el Barbero</p>
+              </div>
+              <ReserveTime
+                reserveDate={reserveDate}
+                reserveHour={reserveHour}
+                onSelctDate={setReserveDate}
+                onSelctHour={setReserveHour} />
+            </div>
+
+            <div className="reserve-step">
+              <div className="step-title">
+                <p>Confirmacion de reserva</p>
+              </div>
+              <div className="confirm_data-box">
+                <p className="confirm_info">
+                  {`Fecha de reservacion: ${moment(reserveDate).format("DD/MM/YYYY")}`}
+                </p>
+                <p className="confirm_info">{`Nombre del cliente: ${getUserData().username}`}</p>
+                <p className="confirm_info">{`Celular/Telefono del cliente: ${getUserData().cel}`}</p>
+                <p className="confirm_info">{`Email del cliente: ${getUserData().email}`}</p>
+                <p className="confirm_info">{`Servicio: ${selectedService ? selectedService.name : 'No se selecciono servicio'}`}</p>
+                <p className="confirm_info">{`Barbero: ${selectedBarber ? selectedBarber.name : ''}`}</p>
+                <p className="confirm_info">{`Horario: ${reserveHour}`}</p>
+                <p className="confirm_info">{`Costo: ${selectedService ? `$${selectedService.cost}` : 'No se selecciono servicio'}`}</p>
+              </div>
+            </div>
+
+            <div className="reserve-step">
+              <div className="step-title">
+                <p>Reservacion - ArtExperience</p>
+              </div>
+              <div className="confirm_data-box">
+                <p className="confirm_info">Se ha realizado la reserva de forma exitosa!</p>
+                <FaRegCalendarCheck className="success-icon" />
+              </div>
+            </div>
+          </Stepper>
+          {wizard != 4 ? (
             <ReserveFooter
               wizard={wizard}
               checkStep={checkStep}
               onChangeWizard={setWizard}
-              finalize={createReserve}
-            />
+              finalize={createReserve} />
           ) : null}
         </DialogModal>
       )
       }
-
       {showLoginDialog ? (
         <LoginModal
           show={true}
           onClose={setShowLoginDialog}
           onSuccessLogin={goToReserve} />
       ) : null}
-
-
     </div>
   );
 }
