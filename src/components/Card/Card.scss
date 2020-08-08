@@ -1,21 +1,23 @@
 .card {
   position: relative;
-  margin: 20px;
   min-height: max-content;
   text-align: center;
+  padding-top: 20px;
   padding-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
 
   .card_title {
     position: relative;
     margin: 0;
-    padding-top: 20px;
     color: rgb(146, 144, 108);
   }
 
   .card_subtitle {
     position: relative;
     font-size: 18px;
-    margin: 20px;
+    margin: 0;
+    margin-top: 20px;
     color: rgb(214, 214, 214);
   }
 

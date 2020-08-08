@@ -28,7 +28,7 @@ const IndexPage = () => {
   const barberActions = new BarberAction();
 
   useEffect(() => {
-    getBarbers();
+    getBarbers().then(response => setBarbers(response));
     // TODO
     // getPageInfo();
     // getServices();
@@ -37,14 +37,16 @@ const IndexPage = () => {
 
   const getBarbers = async () => {
     const response: IBarber[] = await barberActions.getAll();
+    console.log('La response es: ', response)
     if (response) {
       barbers.map((barber: IBarber) => {
         // formatting data
         barber.startDate = moment(barber.startDate).format('DD/MM/YYYY hh:mm:ss').substr(0, 16);
         barber.job = 'Professional Barber';
       })
-      setBarbers(barbers)
+      return response;
     }
+    return undefined
   }
 
   const pageInfo = {
@@ -155,8 +157,7 @@ const IndexPage = () => {
   ];
   const dividers = [
     {
-      img: "https://instagram.fmvd4-1.fna.fbcdn.net/v/t51.2885-15/e35/43817515_183935092515961_6000014555973943296_n.jpg?_nc_ht=instagram.fmvd4-1.fna.fbcdn.net&_nc_cat=101&_nc_ohc=kTnSWPExREMAX_FyY7p&oh=48bb5b4b313cb1997be070d53a800d08&oe=5F31C7A2",
-      // img: "https://instagram.fmvd4-1.fna.fbcdn.net/v/t51.2885-15/e35/43367910_1351984181604340_350490896384393216_n.jpg?_nc_ht=instagram.fmvd4-1.fna.fbcdn.net&_nc_cat=104&_nc_ohc=Tc4IEcYpfOcAX8MyDhZ&se=7&oh=a2e734fdb106dca03958d2183fced125&oe=5F310F38",
+      img: "https://instagram.fmvd1-1.fna.fbcdn.net/v/t51.2885-15/e35/57488298_2276560875734649_7666756016645949298_n.jpg?_nc_ht=instagram.fmvd1-1.fna.fbcdn.net&_nc_cat=109&_nc_ohc=MskQCPZA-BkAX_omsCq&oh=44ff4fcc828dcbe2403bedd48f6383e6&oe=5F57538C",
       align: 'right'
     },
     {
@@ -165,7 +166,6 @@ const IndexPage = () => {
     },
     {
       img: "https://instagram.fmvd4-1.fna.fbcdn.net/v/t51.2885-15/e35/40756317_547596808994027_4028564252884205568_n.jpg?_nc_ht=instagram.fmvd4-1.fna.fbcdn.net&_nc_cat=111&_nc_ohc=srMCC6hpZMwAX-h656-&oh=c9e0bfbd7eb63d38243e9a5e08f99a99&oe=5F33820C",
-      // img: "https://instagram.fmvd4-1.fna.fbcdn.net/v/t51.2885-15/e35/54732253_1263206357161931_429745595166432294_n.jpg?_nc_ht=instagram.fmvd4-1.fna.fbcdn.net&_nc_cat=111&_nc_ohc=cGjYvzoqLzQAX_vzeKj&oh=739a0d7634799d1dd4b860ceea4e3540&oe=5F341B10",
       align: 'right'
     }
   ];
