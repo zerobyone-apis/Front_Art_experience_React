@@ -22,7 +22,8 @@ select:-webkit-autofill:focus {
 }
 
 ::-webkit-scrollbar-thumb {
-  box-shadow: inset 0 0 6px rgba(122, 122, 122, 0.5);
+  height: max-content !important;
+  box-shadow: inset 0 0 3px rgb(146, 144, 108);
   border-radius: 4px;
 }
 
