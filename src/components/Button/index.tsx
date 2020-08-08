@@ -24,7 +24,7 @@ export const Button = (props: {
     disabled
   } = useContext(ButtonContext);
   return (
-    <div className={`${props.className} ${disabled ? 'disabled' : ''} button-holder`}>
+    <div className={`button-holder ${props.className} ${disabled ? 'disabled' : ''}`}>
       <a href={props.href}>
 
         <button
