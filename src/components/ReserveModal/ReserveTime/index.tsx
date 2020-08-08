@@ -1,22 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import './ReserveTime.scss';
+
+import React, { useEffect, useState } from 'react';
+
+import AvailableTimeActions from '../../../actions/AvailableTime.actions';
 import { CalendarBox } from '../CalendarBox';
 import { HourBox } from '../HourBox';
-import AvailableTimeActions from '../../../actions/AvailableTime.actions';
 import moment from 'moment';
-import './ReserveTime.scss';
-import { loadGetInitialProps } from 'next/dist/next-server/lib/utils';
 
-export const ReserveTime = (props: {}) => {
+export const ReserveTime = (props: {
+    reserveDate: Date,
+    reserveHour: string,
+    onSelctDate: any,
+    onSelctHour: any,
+}) => {
     // list of all reserves: [ date: string, hours: string[] ]
     const [reservesList, setReservesList] = useState([]);
     // hours in HoursBox
     const [availableHours, setAvailableHours] = useState([]);
-
-
     const [barberShopTime, setBarberShopTime] = useState([])
-
-    const [reserveDate, setReserveDate] = useState(undefined);
-    const [reserveHour, setReserveHour] = useState(null);
+    const [reserveDate, setReserveDate] = useState(props.reserveDate || undefined);
+    const [reserveHour, setReserveHour] = useState(props.reserveHour || null);
 
     const timeActions: AvailableTimeActions = new AvailableTimeActions();
 
@@ -33,11 +36,20 @@ export const ReserveTime = (props: {}) => {
     useEffect(() => {
         getDatesByReserves().then((response: any) => { setReservesList(response) })
         getHoursByBarberShop().then((response: any) => setBarberShopTime(response))
+        if (props.reserveHour) {
+            console.log('es')
+            onSelectDate(props.reserveDate)
+        }
     }, [])
 
     const onSelectDate = (selectedDate: Date) => {
         let formatSelectedDate = moment(selectedDate).format('YYYY-MM-DD');
         setReserveDate(selectedDate);
+        setReserveHour(undefined);
+
+        props.onSelctHour(undefined);
+        props.onSelctDate(selectedDate);
+
         let listBusyHours = [];
 
         // get busy hours by reserve date
@@ -64,14 +76,15 @@ export const ReserveTime = (props: {}) => {
                 } else {
                     availables.push(barberShopHour)
                 }
-
             }
         })
         setAvailableHours(availables)
+        console.log(availables, availableHours)
     }
 
     const onSelectHour = (selectedHour: string) => {
         setReserveHour(selectedHour);
+        props.onSelctHour(selectedHour);
     }
 
     return (
@@ -79,10 +92,10 @@ export const ReserveTime = (props: {}) => {
             <CalendarBox
                 value={reserveDate}
                 onSelectDate={onSelectDate} />
-            {availableHours ? (
+            {availableHours.length ? (
                 <HourBox
-                    hours={[...availableHours]}
                     value={reserveHour}
+                    hours={[...availableHours]}
                     onSelectHour={onSelectHour} />
             ) : (
                     <p className="art_experience-text-light">No hay horarios disponibles para esta fecha</p>
