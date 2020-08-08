@@ -28,3 +28,13 @@ export interface IReserve {
     updateOn?: number; // dd/mm/yyyy HH:MM:SS - Java Instant time
     isActive?: boolean;
 }
+
+export const defaultReserve: IReserve = {
+    barberOrHairdresserId: -1,
+    celClient: '',
+    clientId: -1,
+    mailClient: '',
+    nameClient: '',
+    priceWork: 0,
+    startTime: '',
+}

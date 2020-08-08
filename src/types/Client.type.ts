@@ -19,3 +19,12 @@ export interface IClient {
     clientType?: string; // Double
     status?: boolean;
 }
+
+export const defaultClient: IClient = {
+    cel: '',
+    email: '',
+    name: '',
+    password: '',
+    username: '',
+    userId: -1
+}

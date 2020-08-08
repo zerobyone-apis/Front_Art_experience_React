@@ -28,10 +28,15 @@ export interface IBarber {
     prestige?: number; // Double
 
     barberDescription: string;
-    facebook:string;
-    instagram:string;
-    urlProfileImage:string;
-    
-    admin:boolean;
+    facebook: string;
+    instagram: string;
+    urlProfileImage: string;
+
+    admin: boolean;
     isActive?: boolean;
+}
+
+export const defaultBarber = {
+    name: '',
+    barberId: -1
 }
