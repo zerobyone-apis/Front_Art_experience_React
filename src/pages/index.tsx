@@ -23,12 +23,17 @@ const IndexPage = () => {
 
   const {
     // @ts-ignore
+    setDisabledButton,
     disabled
   } = useContext(ButtonContext);
   const barberActions = new BarberAction();
 
   useEffect(() => {
-    getBarbers().then(response => setBarbers(response));
+    setDisabledButton(true)
+    getBarbers().then(response => {
+      setBarbers(response);
+      setDisabledButton(false);
+    });
     // TODO
     // getPageInfo();
     // getServices();
@@ -173,10 +178,15 @@ const IndexPage = () => {
   const getEmployees = () => {
     return barbers.map((employee, i) =>
       <div className="employee-item" key={i}>
-        <img className="employee-img" src={employee.urlProfileImage} aspect-ratio="1"></img>
         <p className="employee-name art_experience-text-light">{employee.name}</p>
-        <p className="employee-info art_experience-text-light">{employee.job}</p>
-        <p className="employee-info art_experience-text-light">{employee.barberDescription}</p>
+
+        <div className="content-box">
+          <img className="employee-img" src={employee.urlProfileImage} aspect-ratio="1"></img>
+
+          <p className="employee-info art_experience-text-light">{employee.job}</p>
+          <p className="employee-info art_experience-text-light">{employee.barberDescription}</p>
+        </div>
+
         <div className="employee-social">
           <a href={employee.instagram}>
             <i className="fa fa-instagram" aria-hidden="true"></i>
