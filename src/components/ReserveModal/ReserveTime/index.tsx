@@ -2,6 +2,7 @@ import './ReserveTime.scss';
 import '../../../styles/Effects.scss';
 
 import React, { useEffect, useState } from 'react';
+import { Button } from '../../Button';
 
 import AvailableTimeActions from '../../../actions/AvailableTime.actions';
 import { CalendarBox } from '../CalendarBox';
@@ -36,12 +37,16 @@ export const ReserveTime = (props: {
 
     useEffect(() => {
         getDatesByReserves().then((response: any) => { setReservesList(response) })
-        getHoursByBarberShop().then((response: any) => setBarberShopTime(response))
-        if (props.reserveHour) {
-            console.log('es')
-            onSelectDate(props.reserveDate)
-        }
+        getHoursByBarberShop().then((response: any) => {
+            setBarberShopTime(response)
+        })
     }, [])
+
+    useEffect(() => {
+        if (reserveDate) {
+            onSelectDate(reserveDate)
+        }
+    }, [reserveDate])
 
     const onSelectDate = (selectedDate: Date) => {
         let formatSelectedDate = moment(selectedDate).format('YYYY-MM-DD');
@@ -80,7 +85,7 @@ export const ReserveTime = (props: {
             }
         })
         setAvailableHours(availables)
-        console.log(availables, availableHours)
+        // console.log(availables, availableHours)
     }
 
     const onSelectHour = (selectedHour: string) => {
@@ -94,10 +99,34 @@ export const ReserveTime = (props: {
                 value={reserveDate}
                 onSelectDate={onSelectDate} />
             {availableHours.length ? (
-                <HourBox
-                    value={reserveHour}
-                    hours={[...availableHours]}
-                    onSelectHour={onSelectHour} />
+                // <HourBox
+                //     value={reserveHour}
+                //     hours={availableHours}
+                //     onSelectHour={onSelectHour} />
+
+                <div className="hours-item">
+                    <div className="hours-box effect-slide_top">
+                        {availableHours.map((hour, i) => {
+                            return (
+                                <Button
+                                    className={`art_experience-button_outlined hour-item ${reserveHour === hour ? 'selected-hour' : null}`}
+                                    key={i}
+                                    label={hour}
+                                    onClick={() => {
+                                        onSelectHour(hour)
+                                        // isHourSelected(hour)
+                                    }} />
+                            )
+                        })}
+                    </div>
+                </div >
+
+
+
+
+
+
+
             ) : (
                     <p className="no-hours art_experience-text-light">No hay horarios disponibles para esta fecha</p>
                 )

@@ -10,7 +10,7 @@ export const HourBox = (props: {
     onSelectHour: any
 }) => {
     const [selectedHour, setSelectedHour] = useState(props.value)
-    const [hours, setHours] = useState([])
+    const [hours, setHours] = useState(props.hours || [])
 
     useEffect(() => {
         setHours(props.hours)

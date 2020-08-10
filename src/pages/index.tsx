@@ -177,7 +177,7 @@ const IndexPage = () => {
       align: 'left'
     },
     {
-      img: "https://instagram.fmvd4-1.fna.fbcdn.net/v/t51.2885-15/e35/40756317_547596808994027_4028564252884205568_n.jpg?_nc_ht=instagram.fmvd4-1.fna.fbcdn.net&_nc_cat=111&_nc_ohc=srMCC6hpZMwAX-h656-&oh=c9e0bfbd7eb63d38243e9a5e08f99a99&oe=5F33820C",
+      img: "https://scontent.fmvd4-1.fna.fbcdn.net/v/t1.0-9/s960x960/45230851_310326229560512_8082084365997178880_o.jpg?_nc_cat=110&_nc_sid=dd9801&_nc_ohc=LwkdhjYPttcAX8sw6hk&_nc_ht=scontent.fmvd4-1.fna&_nc_tp=7&oh=e90cde8ea10295ce8a00a64d7e1cae1a&oe=5F565319",
       align: 'right'
     }
   ];
@@ -188,8 +188,11 @@ const IndexPage = () => {
         <p className="employee-name art_experience-text-light">{employee.name}</p>
         <div className="content-box">
           <img className="employee-img" src={employee.urlProfileImage} aspect-ratio="1"></img>
-          <p className="employee-info effect-opacity art_experience-text-light">{employee.job}</p>
-          <p className="employee-info effect-opacity art_experience-text-light">{employee.barberDescription}</p>
+          <div className="info-box">
+            <p className="employee-info effect-opacity art_experience-text-light">{employee.job}</p>
+            <p className="employee-info effect-opacity art_experience-text-light">{employee.barberDescription}</p>
+          </div>
+
         </div>
         <div className="employee-social">
           <a href={employee.instagram}>

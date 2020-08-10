@@ -195,7 +195,6 @@
     }
 
     button:disabled {
-      // background-color: rgba(231, 131, 131, 0.5);
       background-color: rgba(255, 255, 255, 0);
       opacity: 0.3;
       border-radius: 0 !important;
@@ -209,6 +208,10 @@
     span {
       color: rgb(165, 165, 165);
       text-decoration: none;
+    }
+
+    .react-calendar__navigation {
+      height: 10px;
     }
 
     .react-calendar__navigation__arrow {
