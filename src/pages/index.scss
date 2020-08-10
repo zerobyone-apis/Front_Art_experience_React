@@ -55,14 +55,25 @@
         background-color: rgb(0, 0, 0);
 
         .banner-img {
-          position: absolute;
-          top: 0;
+          position: relative;
           height: 100%;
           width: 100%;
-          background-image: url("https://lh6.googleusercontent.com/proxy/sGPIfOpDBdIbW2kUprDAFEa3kxMpBjhegwDGzZoRrxny1TQWUX666MXQlTr-ujrj-Nugzn9yCroQtUzRuMh6JZOrqP5HrJB59XN8N-WomzS6sONOPkb6HEtdTLZb6bC206svYLyh0UWBgvmc=s0-d");
+          background-color: red;
+          top: 0;
           opacity: 0.2;
-          background-position: center;
-          background-position-y: -330px;
+
+          img {
+            position: relative;
+            height: 100%;
+            width: 100%;
+            background-position: center;
+          }
+        }
+
+        @media only screen and (max-width: 400px) {
+          .banner-img {
+            height: 100vh;
+          }
         }
 
         .title-box {
@@ -102,7 +113,6 @@
         margin: 5px;
         width: 100%;
         height: 100%;
-
         max-width: 500px;
         max-height: 750px;
         display: inline-table;

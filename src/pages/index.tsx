@@ -261,7 +261,9 @@ const IndexPage = () => {
         <div className="dashboard">
           <div id="banner" />
           <div className="banner">
-            <div className="banner-img" />
+            <div className="banner-img">
+              <img src="https://lh6.googleusercontent.com/proxy/sGPIfOpDBdIbW2kUprDAFEa3kxMpBjhegwDGzZoRrxny1TQWUX666MXQlTr-ujrj-Nugzn9yCroQtUzRuMh6JZOrqP5HrJB59XN8N-WomzS6sONOPkb6HEtdTLZb6bC206svYLyh0UWBgvmc=s0-d" alt="" />
+            </div>
             <div className="title-box">
               <div className="box-shadow_space">
               </div>
