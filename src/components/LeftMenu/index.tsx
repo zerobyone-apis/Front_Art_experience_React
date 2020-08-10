@@ -5,6 +5,7 @@ import { DialogModal } from '../DialogModal';
 import { toolbarButtons } from '../../utils/toolbarButtons';
 import './LeftMenu.scss';
 import '../../styles/ArtExperienceButtons.scss';
+import '../../styles/Effects.scss';
 
 export const LeftMenu = () => {
     const [showDialog, setShowDialog] = useState(false);

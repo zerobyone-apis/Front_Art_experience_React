@@ -9,11 +9,11 @@ export const ServicesList = (props: {
 }) => {
     return (
         <div className="services-box">
-            <div className="list_services-box">
+            <div className="list_services-box effect-slide_top">
                 {props.services.map((service, i) => {
                     return (
                         <div
-                            className={`service ${props.value.name === service.name ? 'selected-service' : null}`}
+                            className={`service effect-opacity ${props.value.name === service.name ? 'selected-service' : null}`}
                             onClick={() => {
                                 props.setService(service);
                             }}

@@ -20,6 +20,7 @@ import moment from 'moment';
 import 'date-fns';
 import './ReserveModal.scss';
 import '../../styles/theme.scss';
+import '../../styles/Effects.scss';
 import '../../styles/ArtExperienceButtons.scss';
 
 export const ReserveModal = (props: { className?: string }) => {
@@ -100,35 +101,6 @@ export const ReserveModal = (props: { className?: string }) => {
       img: "",
       cost: 700
     },
-  ];
-  const barbers = [
-    {
-      barberId: 1,
-      userId: 1,
-      name: "Mariano Moreno",
-      job: "Profecional Barber",
-      amountCuts: 2,
-      clientsBarber: 5,//amountClients
-      rateOfBarber: 0,//prestige
-      amountOfReservesByDay: 10,//amountDailyReserves
-      img:
-        "https://instagram.fmvd4-1.fna.fbcdn.net/v/t51.2885-15/e35/p1080x1080/81096072_209788046863421_8027631315464043835_n.jpg?_nc_ht=instagram.fmvd4-1.fna.fbcdn.net&_nc_cat=105&_nc_ohc=tHUEjcHZ2UwAX9KqbzI&oh=1fe698f633765cf59bf8e671b6e91a0c&oe=5F2A13A1",
-      instagram: "https://www.instagram.com/marianomoreno.11/",
-      facebook: "https://www.facebook.com/mariano.moreno.5209000/"
-    },
-    {
-      barberId: 2,
-      userId: 2,
-      name: "Pablo Merniz",// tengo que averiguar el appellido
-      job: "Profecional Barber",
-      amountCuts: 2,
-      clientsBarber: 5,//amountClients
-      rateOfBarber: 0,//prestige
-      amountOfReservesByDay: 10,//amountDailyReserves
-      img: "https://instagram.fmvd4-1.fna.fbcdn.net/v/t51.2885-15/e35/p1080x1080/77094002_605862643493062_9053649117496349366_n.jpg?_nc_ht=instagram.fmvd4-1.fna.fbcdn.net&_nc_cat=110&_nc_ohc=EL9qbeJc2QQAX8ZwTaZ&oh=acda434810cd3a8546c350c24dda8b7d&oe=5F283230",
-      instagram: "https://www.instagram.com/mernis.01/",
-      facebook: "https://www.facebook.com/TheUniqueDesign"
-    }
   ];
   const [showDialog, setShowDialog] = useState(false);
   const [showLoginDialog, setShowLoginDialog] = useState(false);
@@ -225,7 +197,6 @@ export const ReserveModal = (props: { className?: string }) => {
               </div>
               <BarbersList
                 value={selectedBarber}
-                barbers={barbers}
                 setBarber={setSelectedBarber} />
             </div>
 
@@ -245,7 +216,7 @@ export const ReserveModal = (props: { className?: string }) => {
                 <p>Confirmacion de reserva</p>
               </div>
               <div className="confirm_data-box">
-                <p className="confirm_info">
+                <p className="confirm_info effect-slide_left">
                   {`Fecha de reservacion: ${moment(reserveDate).format("DD/MM/YYYY")}`}
                 </p>
                 <p className="confirm_info">{`Nombre del cliente: ${getUserData().username}`}</p>
@@ -264,7 +235,7 @@ export const ReserveModal = (props: { className?: string }) => {
               </div>
               <div className="confirm_data-box">
                 <p className="confirm_info">Se ha realizado la reserva de forma exitosa!</p>
-                <FaRegCalendarCheck className="success-icon" />
+                <FaRegCalendarCheck className="success-icon effect-slide_top" />
               </div>
             </div>
           </Stepper>

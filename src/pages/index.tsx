@@ -1,4 +1,5 @@
 import './index.scss';
+import '../styles/Effects.scss';
 import '../styles/ArtExperienceButtons.scss';
 
 import * as Icons from 'react-icons/fa';
@@ -8,6 +9,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import BarberAction from '../actions/Barber.actions';
 import { Button } from '../components/Button';
 import { ButtonContext } from '../contexts/ButtonsContext';
+import { BarberListContext } from '../contexts/BarberListContext';
 import { Card } from '../components/Card';
 import { DialogModal } from '../components/DialogModal';
 import { Divider } from '../components/Divider';
@@ -26,12 +28,18 @@ const IndexPage = () => {
     setDisabledButton,
     disabled
   } = useContext(ButtonContext);
+  const {
+    // @ts-ignore
+    setBarberList,
+  } = useContext(BarberListContext);
+
   const barberActions = new BarberAction();
 
   useEffect(() => {
-    setDisabledButton(true)
+    setDisabledButton(true);
     getBarbers().then(response => {
       setBarbers(response);
+      setBarberList(response); // save in store
       setDisabledButton(false);
     });
     // TODO
@@ -42,7 +50,6 @@ const IndexPage = () => {
 
   const getBarbers = async () => {
     const response: IBarber[] = await barberActions.getAll();
-    console.log('La response es: ', response)
     if (response) {
       barbers.map((barber: IBarber) => {
         // formatting data
@@ -177,16 +184,13 @@ const IndexPage = () => {
 
   const getEmployees = () => {
     return barbers.map((employee, i) =>
-      <div className="employee-item" key={i}>
+      <div className="employee-item effect-opacity" key={i}>
         <p className="employee-name art_experience-text-light">{employee.name}</p>
-
         <div className="content-box">
           <img className="employee-img" src={employee.urlProfileImage} aspect-ratio="1"></img>
-
-          <p className="employee-info art_experience-text-light">{employee.job}</p>
-          <p className="employee-info art_experience-text-light">{employee.barberDescription}</p>
+          <p className="employee-info effect-opacity art_experience-text-light">{employee.job}</p>
+          <p className="employee-info effect-opacity art_experience-text-light">{employee.barberDescription}</p>
         </div>
-
         <div className="employee-social">
           <a href={employee.instagram}>
             <i className="fa fa-instagram" aria-hidden="true"></i>
@@ -229,7 +233,7 @@ const IndexPage = () => {
   const getFooter = () => {
     return (
       <div className="footer">
-        <img className="footer_logo-img" src="https://raw.githubusercontent.com/zerobyone-apis/Front_Art_experience_React/master/src/assets/gold_logo.png" alt="" />
+        <img className="footer_logo-img effect-opacity" src="https://raw.githubusercontent.com/zerobyone-apis/Front_Art_experience_React/master/src/assets/gold_logo.png" alt="" />
         <p className="footer-email art_experience-text-light">{pageInfo.email}</p>
         <div className="footer-social">
           <a href={pageInfo.instagram}>
@@ -258,7 +262,9 @@ const IndexPage = () => {
             <div className="title-box">
               <div className="box-shadow_space">
               </div>
-              <img className="logo-img" src="https://raw.githubusercontent.com/zerobyone-apis/Front_Art_experience_React/master/src/assets/gold_logo.png" alt="" />
+              <img
+                className="logo-img effect-opacity"
+                src="https://raw.githubusercontent.com/zerobyone-apis/Front_Art_experience_React/master/src/assets/gold_logo.png" alt="" />
               <div className="box-shadow_logo">
               </div>
             </div>

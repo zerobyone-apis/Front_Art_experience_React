@@ -4,6 +4,7 @@ import { Button } from '../Button';
 import './DialogModal.scss';
 import '../../styles/ArtExperienceButtons.scss';
 import '../../styles/ArtExperienceFonts.scss';
+import '../../styles/Effects.scss';
 import { AiOutlineClose } from 'react-icons/ai';
 
 export const DialogModal = (props: {
@@ -19,8 +20,8 @@ export const DialogModal = (props: {
   buttonClassName?: string
 }) => {
   return (
-    <div className={`dialog-box ${props.className}`}>
-      <div className="dialog-modal" style={{ height: `${props.height}`, width: `${props.width}` }}>
+    <div className={`dialog-box effect-opacity ${props.className}`}>
+      <div className="dialog-modal effect-opacity" style={{ height: `${props.height}`, width: `${props.width}` }}>
         <div className="header">
           <div className="close_btn-box">
             <div className="art_experience-button_only-text">

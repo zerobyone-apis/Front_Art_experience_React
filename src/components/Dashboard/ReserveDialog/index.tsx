@@ -7,7 +7,8 @@ import { Button } from '../../Button';
 import { TextField } from '../../TextField';
 import moment from 'moment';
 import './ReserveDialog.scss';
-import '../../../styles/ArtExperienceButtons.scss'
+import '../../../styles/ArtExperienceButtons.scss';
+import '../../../styles/Effects.scss';
 
 export const ReserveDialog = (props: {
     reserve: IReserve,
@@ -23,7 +24,6 @@ export const ReserveDialog = (props: {
         startTime: '',
         additionalCost: 0,
     }
-
     const [showDialog, setShowDialog] = useState(false);
     const [reserve, setReserve] = useState(props.reserve || baseReserve)
     const reserveActions: ReserveActions = new ReserveActions();
@@ -40,7 +40,7 @@ export const ReserveDialog = (props: {
             onClose={props.onClose}>
             <div className="reserve-modal">
                 <div className="reserve_data-box">
-                    <p className="reserve_info">Datos del Cliente</p>
+                    <p className="reserve_info effect-slide_left">Datos del Cliente</p>
                     <ValidationForm
                         objectTest={reserve}
                         buttonLabel="Guardar Cambios"

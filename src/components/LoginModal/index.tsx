@@ -9,6 +9,7 @@ import { ButtonContext } from '../../contexts/ButtonsContext';
 import { getPageName } from '../../utils/utils';
 import { INDEX_PAGE, DASHBOARD_PAGE } from '../../types/Pages.type';
 import './LoginModal.scss';
+import '../../styles/Effects.scss';
 
 export const LoginModal = (props: {
     show?: boolean,
@@ -90,7 +91,7 @@ export const LoginModal = (props: {
             }
             {
                 showAccountMenu && userIsLogged() ? (
-                    <div className="account-menu" ref={wrapperRef}>
+                    <div className="account-menu effect-opacity" ref={wrapperRef}>
                         <p className="item-text user-name">{getUserData().name}</p>
                         <p className="item-text user-email">{getUserData().email}</p>
                         {(getPageName() === INDEX_PAGE && getUserData()['admin']) ? (

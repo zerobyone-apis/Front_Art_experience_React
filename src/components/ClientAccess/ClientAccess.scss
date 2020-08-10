@@ -1,20 +1,8 @@
 .client_info-box {
   position: relative;
   width: 100%;
-  // height: 100vh;
   overflow-x: none;
   text-align: center;
-  animation-name: slide-top;
-  animation-duration: 1s;
-
-  .form {
-    animation-name: slide-top;
-    animation-duration: 1s;
-  }
-
-  p {
-    // color: white;
-  }
 
   .success_message {
     color: rgb(129, 235, 129);
@@ -26,17 +14,5 @@
 
   .access_btn {
     margin-top: 10px;
-  }
-}
-
-@keyframes slide-top {
-  from {
-    opacity: 0;
-    top: 100px;
-  }
-
-  to {
-    opacity: 1;
-    top: 0px;
   }
 }

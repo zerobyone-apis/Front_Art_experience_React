@@ -4,12 +4,8 @@
   height: 80px;
   padding-top: 4px;
   bottom: 0px !important;
-  // border-radius: 0 0 8px 8px;
-  // background-color: rgba(0, 0, 0, 0.78);
   border-color: rgba(128, 128, 128, 0.198);
-  // border-width: 2px;
 
-  // Button Activator
   .footer_right-box {
     position: absolute;
     display: flex;
@@ -19,10 +15,6 @@
     .footer-button {
       margin-left: 10px;
       margin-top: 3px;
-    }
-
-    .confirm {
-      // background-color: rgb(146, 144, 108); 
     }
   }
 }

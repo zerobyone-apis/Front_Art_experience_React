@@ -15,8 +15,6 @@ $toolbar_height: 60px;
   height: $toolbar_height;
   background-color: #111111ed;
   box-shadow: 0 5px 5px #00000086;
-  animation-name: slide_bottom;
-  animation-duration: 2s;
 
   .left-box {
     position: relative;
@@ -29,8 +27,6 @@ $toolbar_height: 60px;
     .logo-img {
       width: 120px;
       margin-left: 20px;
-      animation-name: slide-opacity;
-      animation-duration: 4s;
     }
 
     .title-btn {
@@ -65,27 +61,5 @@ $toolbar_height: 60px;
     top: 0;
     display: flex;
     align-items: center;
-  }
-}
-
-@keyframes slide_bottom {
-  0% {
-    left: 0;
-    top: -100px;
-  }
-
-  100% {
-    left: 0;
-    top: 0px;
-  }
-}
-
-@keyframes slide-opacity {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
   }
 }

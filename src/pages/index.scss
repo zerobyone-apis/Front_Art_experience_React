@@ -1,11 +1,3 @@
-body {
-  margin: 0;
-  padding: 0;
-  background-color: #000000;
-  overflow-x: hidden;
-  overflow-y: hidden;
-}
-
 .index_page {
   position: absolute;
   width: 100vw !important;
@@ -17,35 +9,30 @@ body {
   #banner {
     position: relative;
     width: 20px;
-    // height: 20px;
     bottom: 50px;
   }
 
   #about_us {
     position: relative;
     width: 20px;
-    // height: 20px;
     bottom: 50px;
   }
 
   #services {
     position: relative;
     width: 20px;
-    // height: 20px;
     bottom: 50px;
   }
 
   #courses {
     position: relative;
     width: 20px;
-    // height: 20px;
     bottom: 50px;
   }
 
   #contact {
     position: relative;
     width: 20px;
-    // height: 20px;
     bottom: 50px;
   }
 
@@ -72,18 +59,10 @@ body {
           top: 0;
           height: 100%;
           width: 100%;
-          // background-image: linear-gradient(#ff9d2f, #ff6126);
           background-image: url("https://lh6.googleusercontent.com/proxy/sGPIfOpDBdIbW2kUprDAFEa3kxMpBjhegwDGzZoRrxny1TQWUX666MXQlTr-ujrj-Nugzn9yCroQtUzRuMh6JZOrqP5HrJB59XN8N-WomzS6sONOPkb6HEtdTLZb6bC206svYLyh0UWBgvmc=s0-d");
           opacity: 0.2;
           background-position: center;
           background-position-y: -330px;
-          // background-attachment: fixed;
-          // background-position: center;
-          // // background-repeat: no-repeat;
-          // background-size: cover;
-          // // box-shadow: inset 0 0 20px 20px rgba(0, 0, 0, 0.904);
-          // border-top-left-radius: 10%;
-          // border-bottom-right-radius: 10%;
         }
 
         .title-box {
@@ -99,42 +78,13 @@ body {
             width: 100vw;
             min-width: 100px !important;
             max-width: 600px;
-            // box-shadow: 0px 0px 20px 0px;
             filter: drop-shadow(40px 40px 40px rgb(0, 0, 0));
-            animation-name: opacity_effect;
-            animation-duration: 4s;
           }
 
           @media only screen and (max-width: 750px) {
             img {
               width: 80vw;
             }
-          }
-
-          .title {
-            position: absolute;
-            z-index: 1;
-            top: 250px;
-            left: 10vw;
-            margin: 0;
-            font-size: 50px !important;
-            color: rgb(146, 144, 108);
-            text-shadow: 5px 5px 5px #000000;
-            animation-name: opacity_effect;
-            animation-duration: 3s;
-          }
-
-          .sub-title {
-            position: absolute;
-            z-index: 1;
-            top: 280px;
-            left: 200px;
-            // left: 15vw;
-            font-size: 18px;
-            color: rgb(214, 214, 214);
-            text-shadow: 5px 5px 5px #000000;
-            animation-name: opacity_effect;
-            animation-duration: 3s;
           }
 
           .box-shadow_space {
@@ -155,8 +105,6 @@ body {
         display: inline-table;
         text-align: center;
         margin-top: 20px;
-        animation-name: opacity_effect;
-        animation-duration: 1s;
         border-top-left-radius: 40px;
         border-bottom-right-radius: 40px;
 
@@ -190,8 +138,8 @@ body {
         }
 
         .employee-social {
-          visibility: hidden;
           position: relative;
+          visibility: hidden;
           width: 100%;
 
           .employee-social-logo {
@@ -223,37 +171,22 @@ body {
 
         .employee-img {
           filter: grayscale(1);
-
         }
 
         .employee-info {
           visibility: visible;
-
-          animation-name: opacity_effect;
-          animation-duration: 1s;
         }
 
         .employee-social {
           visibility: visible;
-          animation-name: opacity_effect; //slide-top;
-          animation-duration: 1s;
         }
       }
-
-
-
-
-
-
-
-
 
       .service-item {
         position: relative;
         margin: 5px;
         margin-top: 20px;
         width: 250px;
-        // height: 240px;
         display: inline-table;
         text-align: center;
         font-size: 16px;
@@ -330,8 +263,6 @@ body {
           position: relative;
           width: 20vw;
           filter: drop-shadow(40px 40px 40px rgb(0, 0, 0));
-          animation-name: opacity_effect;
-          animation-duration: 4s;
         }
 
         .logo {
@@ -376,7 +307,6 @@ body {
     }
   }
 
-
   .dialog {
     display: flex;
     align-items: center;
@@ -403,37 +333,4 @@ body {
       }
     }
   }
-
-  @keyframes slide_left {
-    0% {
-      left: 0px;
-    }
-
-    100% {
-      left: 200px;
-    }
-  }
-
-  @keyframes slide_top {
-    0% {
-      left: 0;
-      top: 100px;
-    }
-
-    100% {
-      left: 0;
-      top: 0px;
-    }
-  }
-
-  @keyframes opacity_effect {
-    0% {
-      opacity: 0;
-    }
-
-    100% {
-      opacity: 1;
-    }
-  }
-
 }

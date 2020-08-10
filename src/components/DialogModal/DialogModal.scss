@@ -14,8 +14,6 @@
   z-index: 999;
   display: flex;
   align-items: center;
-  animation-name: slide-opacity;
-  animation-duration: 1s;
 
   .dialog-modal {
     position: relative;
@@ -81,44 +79,10 @@
       margin: auto;
       border-radius: 0;
       box-shadow: 0 4px 0 0 rgba(0, 0, 0, 0.123);
-      animation-name: slide-opacity;
-      animation-duration: 1s;
 
       .content {
         height: calc(100% - 60px);
       }
     }
-  }
-}
-
-@keyframes slide-opacity {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes slide-top {
-  0% {
-    top: 100px;
-  }
-
-  100% {
-    top: 0px;
-  }
-}
-
-@keyframes slide-left {
-  0% {
-    opacity: 0;
-    left: 20px;
-  }
-
-  100% {
-    opacity: 1;
-    left: 0px;
   }
 }

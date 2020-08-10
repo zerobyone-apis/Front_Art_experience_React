@@ -1,4 +1,5 @@
 import './ReserveTime.scss';
+import '../../../styles/Effects.scss';
 
 import React, { useEffect, useState } from 'react';
 
@@ -88,7 +89,7 @@ export const ReserveTime = (props: {
     }
 
     return (
-        <div className="time-box">
+        <div className="time-box effect-slide_top">
             <CalendarBox
                 value={reserveDate}
                 onSelectDate={onSelectDate} />
@@ -98,7 +99,7 @@ export const ReserveTime = (props: {
                     hours={[...availableHours]}
                     onSelectHour={onSelectHour} />
             ) : (
-                    <p className="art_experience-text-light">No hay horarios disponibles para esta fecha</p>
+                    <p className="no-hours art_experience-text-light">No hay horarios disponibles para esta fecha</p>
                 )
             }
         </div>

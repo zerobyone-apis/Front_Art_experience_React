@@ -11,8 +11,6 @@
     height: 100%; // footer
     overflow-y: scroll;
     overflow-x: hidden;
-    animation-name: slide-top;
-    animation-duration: 1s;
     // SERVICE OF LIST OF SERVICES  
 
     .service {
@@ -21,8 +19,6 @@
       width: 100%;
       padding-bottom: 1px;
       margin-bottom: 10px;
-      animation-name: slide-opacity;
-      animation-duration: 1s;
       cursor: pointer;
       display: flex;
 

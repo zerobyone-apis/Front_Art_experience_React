@@ -23,7 +23,7 @@ export const HourBox = (props: {
 
     return (
         <div className="hours-item">
-            <div className="hours-box">
+            <div className="hours-box effect-slide_top">
                 {hours.map((hour, i) => {
                     return (
                         <Button
@@ -31,7 +31,6 @@ export const HourBox = (props: {
                             key={i}
                             label={hour}
                             onClick={() => {
-                                // props.onSelectHour(hour);
                                 isHourSelected(hour)
                             }} />
                     )
