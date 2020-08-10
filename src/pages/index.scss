@@ -130,6 +130,7 @@
             height: 100%;
             text-align: center;
             visibility: hidden;
+            overflow-y: scroll;
 
             .employee-info {
               margin: 10px;

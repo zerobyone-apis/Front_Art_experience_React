@@ -39,6 +39,13 @@ $toolbar_height: 60px;
       position: relative;
     }
 
+    @media only screen and (max-width:290px) {
+      .logo-img {
+        width: 50px !important;
+        margin-left: 0px;
+      }
+    }
+
     @media only screen and (max-width: 400px) {
       .logo-img {
         width: 90px;
