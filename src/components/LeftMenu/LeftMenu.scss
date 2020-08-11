@@ -8,7 +8,7 @@ $menu_size: 200px;
   .activator_btn {
     position: relative;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0);
+    // background-color: rgba(0, 0, 0, 0);
     display: flex;
     align-items: center;
   }
@@ -21,8 +21,13 @@ $menu_size: 200px;
   }
 
   .left_menu-dialog {
+    a {
+      position: relative;
+      top: 0 !important;
+    }
 
     button {
+      // background-color: rgba(27, 27, 27, 0.726) !important;
       width: 100%;
       text-align: center;
 
@@ -32,11 +37,6 @@ $menu_size: 200px;
     }
 
     .dialog-modal {
-      position: relative;
-      width: 100%;
-      top: 0;
-      height: calc(100%);
-      border-radius: 0;
 
       .header {
         height: 60px;
@@ -59,8 +59,8 @@ $menu_size: 200px;
 
       .content {
         position: relative;
-        text-align: center;
-        padding-top: 100px;
+        // text-align: center;
+        // padding-top: 100px;
 
         .left_menu-btn {
           position: relative;

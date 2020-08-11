@@ -20,7 +20,15 @@ export const LeftMenu = () => {
                 !showDialog ? null : (
                     <DialogModal
                         onClose={() => { setShowDialog(false) }}
-                        className="left_menu-dialog">
+                        className="left_menu-dialog"
+                        header={
+                            <a href="#banner">
+                                <img
+                                    className="logo-img effect-opacity"
+                                    src="https://raw.githubusercontent.com/zerobyone-apis/Front_Art_experience_React/master/src/assets/gold_logo.png" alt="" />
+                            </a>
+                        }
+                    >
                         {
                             toolbarButtons.map((button, i) => {
                                 return (
