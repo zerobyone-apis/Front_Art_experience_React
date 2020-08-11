@@ -1,6 +1,8 @@
 // eslint-disable-next-line no-unused-vars
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
+import '../../styles/ArtExperienceFonts.scss';
+
 import React, { useState, Fragment } from 'react';
 // import { useOutsideAlerter } from '../../hooks/useOutsideAlerter';
 import { Button } from '../Button';
@@ -68,7 +70,7 @@ export const NotificationMenu = () => {
           className="notification-bell" />
         {(getNotificationsAvailable() != 0) && (
           <div className="notification-circle">
-            <p className="notification-number">{getNotificationsAvailable()}</p>
+            <p className="notification-number art-text">{getNotificationsAvailable()}</p>
           </div>
         )}
       </div>
@@ -76,10 +78,10 @@ export const NotificationMenu = () => {
       {/* getNotificationsAvailable() != 0 ? 'red' : 'white' */}
 
       <div className="notifications-menu" style={{ visibility: (showMenu ? "visible" : "hidden") }}>
-        <p className="notifications-title">Notificaciones</p>
+        <p className="notifications-title art-text">Notificaciones</p>
         {!getNotificationsAvailable() && (
           <div className="no-notifications">
-            <p>No tiene notificaciones</p>
+            <p className="art_experience-text-light art-text">No tiene notificaciones</p>
           </div>
         )
         }
@@ -89,8 +91,8 @@ export const NotificationMenu = () => {
               <Fragment>
                 <div className={`${(cancelEventMode && selectedNotification === item) ? 'selected' : ''} notification`}>
                   <div className="notification-info">
-                    <p className="event-name">{item.name}</p>
-                    <p className="event-date">{item.date}</p>
+                    <p className="art_experience-text-light art-text event-name">{item.name}</p>
+                    <p className="art_experience-text-light art-text event-date">{item.date}</p>
                   </div>
                   <div className="buttons-box">
                     {!cancelEventMode && (
@@ -115,7 +117,7 @@ export const NotificationMenu = () => {
                     {
                       (cancelEventMode && selectedNotification === item) && (
                         <Fragment>
-                          <p className="cancel-text">Seguro que desea cancelar la invitacion?</p>
+                          <p className="art_experience-text-light art-text cancel-text">Seguro que desea cancelar la invitacion?</p>
                           <Button
                             label="Si"
                             color='white'

@@ -20,7 +20,7 @@ export const ClientAccess = (props: {
                 (
                     <div className='form effect-slide_top'>
                         <LoginForm onClientLogged={props.onClientLogged} />
-                        <p className="art_experience-text-light title">Si no estas registrado, ingresa AQUI</p>
+                        <p className="art_experience-text-light art-text title">Si no estas registrado, ingresa AQUI</p>
                         <Button
                             onClick={() => {
                                 setAccessMode(1);
@@ -33,7 +33,7 @@ export const ClientAccess = (props: {
                 (
                     <div className='form'>
                         <RegisterForm onClientRegister={props.onClientLogged} />
-                        <p className="art_experience-text-light title">Si ya estas registrado accede AQUI</p>
+                        <p className="art_experience-text-light art-text title">Si ya estas registrado accede AQUI</p>
                         <Button
                             onClick={() => {
                                 setAccessMode(0);

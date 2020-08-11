@@ -192,7 +192,7 @@ const IndexPage = () => {
             <p className="employee-info effect-opacity art_experience-text-light">{employee.job}</p>
             <p className="employee-info effect-opacity art_experience-text-light">{employee.barberDescription}</p>
           </div>
-
+          <p className="see-more effect-opacity art_experience-text-light">Pulse para mas información</p>
         </div>
         <div className="employee-social">
           <a href={employee.instagram}>
@@ -248,7 +248,7 @@ const IndexPage = () => {
           </a>
         </div>
         <a className="footer-bussiness-link" href="https://www.instagram.com/zerobyone_/">
-          <p className="art_experience-text-light">© 2020 Art Experience - Desarrollado por ZeroByOne</p>
+          <p className="art-text art_experience-text-light">© 2020 Art Experience - Desarrollado por ZeroByOne</p>
         </a>
       </div>
     )

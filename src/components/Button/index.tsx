@@ -1,9 +1,9 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useContext } from 'react';
 import { ButtonContext } from '../../contexts/ButtonsContext';
-
-import './Button.scss';
 import '../../styles/ArtExperienceFonts.scss';
+import './Button.scss';
+
 export const Button = (props: {
   label?: string;
   onClick?: any;

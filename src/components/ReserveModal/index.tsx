@@ -228,7 +228,6 @@ export const ReserveModal = (props: { className?: string }) => {
                 <p className="confirm_info">{`Costo: ${selectedService ? `$${selectedService.cost}` : 'No se selecciono servicio'}`}</p>
               </div>
             </div>
-
             <div className="reserve-step">
               <div className="step-title">
                 <p>Reservacion - ArtExperience</p>

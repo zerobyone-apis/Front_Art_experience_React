@@ -12,11 +12,9 @@ export const Card = (props: {
     return (
         <div className="card" id={props.id}>
             <div className="anchor" id="about_us"></div>
-            <h1
-                className="card_title font-title art_experience-text-light"
-            >{props.title}</h1>
-            <p
-                className="card_subtitle font-text art_experience-text-light"
+            <p className="card_title art-title title art_experience-text-light"
+            >{props.title}</p>
+            <p className="card_subtitle art-text art_experience-text-light"
             >{props.subtitle}</p>
             <div className="card_items">
                 {props.children}

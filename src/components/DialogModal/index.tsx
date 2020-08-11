@@ -34,7 +34,7 @@ export const DialogModal = (props: {
             </div>
           </div>
           <div className="header-title">
-            {props.header || <p className="title art_experience-text-light">{props.title}</p>}
+            {props.header || <p className="art_experience-text-light art-title title">{props.title}</p>}
           </div>
         </div>
         <div className="content">
