@@ -49,6 +49,8 @@ $toolbar_height: 60px;
 
     @media only screen and (max-width: 400px) {
       .logo-img {
+        // background-color: red;
+        visibility: hidden;
         width: 90px;
         margin-left: 0px;
       }
