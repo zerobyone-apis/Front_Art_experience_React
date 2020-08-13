@@ -4,6 +4,8 @@
   text-align: center;
   padding-top: 20px;
   padding-bottom: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
 
   .card_title {
     position: relative;
@@ -25,8 +27,16 @@
   }
 }
 
+@media only screen and (max-width: 400px) {
+  .card {
+    margin: 0;
+  }
+}
+
 @media only screen and (max-width: 800px) {
   .card {
+    padding-left: 40px;
+    padding-right: 40px;
     margin: 0;
   }
 }
