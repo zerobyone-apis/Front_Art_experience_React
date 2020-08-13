@@ -31,6 +31,7 @@ export const UserProvider = (props: {
     }
 
     const getUserData = () => {
+        console.log('user data', user)
         if (user) {
             try {
                 let userData = user['user'];

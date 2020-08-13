@@ -2,9 +2,11 @@ import './index.scss';
 import '../styles/Effects.scss';
 import '../styles/ArtExperienceButtons.scss';
 
-import * as Icons from 'react-icons/fa';
-
 import React, { useContext, useEffect, useState } from 'react';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FaCut, FaGift, FaInstagram, FaFacebook } from 'react-icons/fa';
+import { GiPaintedPottery } from 'react-icons/gi';
 
 import BarberAction from '../actions/Barber.actions';
 import { Button } from '../components/Button';
@@ -81,7 +83,7 @@ const IndexPage = () => {
       Con nuestros servicios los clientes tendran varias opciones para elegir antes de ser atendidos y obtener el resultado esperado`,
     servicesTitle: "Nuestros Servicios",
     services:
-      "Brindamos servicios de calidad que facilitan su trabajo y aumenta su productividad.",
+      "Brindamos servicios de calidad y asesoramiento personalizado",
     coursesTitle: "Nuestros Cursos",
     courses: "Ofrecemos cursos para aumentaran su experiencia",
     contactUsTitle: "Contactenos",
@@ -89,24 +91,24 @@ const IndexPage = () => {
   };
   const services = [
     {
-      icon: "event",
-      name: "Clasico",
+      icon: <FaCut className="service-icon" />,
+      name: "Cortes",
       info:
-        "La gestion automatizada de las reservas mejora el rendimiento y la facilidad de uso.",
+        "La mejor calidad de cortes modernos y clasicos",
       url: "Read More"
     },
     {
-      icon: "event",
-      name: "Estilo Libre",
+      icon: <GiPaintedPottery className="service-icon" />,
+      name: "Colores",
       info:
-        "Tendra toda la informacion de su barberia, incluyendo a sus barberos, productos y promociones",
+        "Toda la gama de colores y el mejor proceso de tintado, protegiendo la salud del cabello",
       url: "Read More"
     },
     {
-      icon: "Tratamiento Facial",
-      name: "Perfil del barbero",
+      icon: <FaGift className="service-icon" />,
+      name: "Promos",
       info:
-        "Contendra toda la informacion del barbero, incluyendo sus trabajos y opiniones de los clientes",
+        "Beneficios en seleccion de servicios especiales, tales como combos y productos",
       url: "Read More"
     },
   ];
@@ -197,10 +199,10 @@ const IndexPage = () => {
         <div className="employee-social">
           <a href={employee.instagram}>
             <i className="fa fa-instagram" aria-hidden="true"></i>
-            <Icons.FaInstagram className="employee-social-logo social-logo" />
+            <FaInstagram className="employee-social-logo social-logo" />
           </a>
           <a href={employee.facebook}>
-            <Icons.FaFacebook className="employee-social-logo social-logo" />
+            <FaFacebook className="employee-social-logo social-logo" />
           </a>
         </div>
       </div>
@@ -210,7 +212,15 @@ const IndexPage = () => {
   const getServices = () => {
     return services.map((service, i) =>
       <div className="service-item" key={i}>
-        <Icons.FaCut className="service-icon" />
+        {service.icon}
+
+        {/* { ? (
+          
+
+          <FontAwesomeIcon
+            icon={Icons[service.icon]}
+            className="service-icon" />
+        ) : null} */}
         <p className="service-name art_experience-text-light">{service.name}</p>
         <p className="service-info art_experience-text-light">{service.info}</p>
       </div>
@@ -241,10 +251,10 @@ const IndexPage = () => {
         <div className="footer-social">
           <a href={pageInfo.instagram}>
             <i className="fa fa-instagram" aria-hidden="true"></i>
-            <Icons.FaInstagram className="footer-social-logo social-logo" />
+            <FaInstagram className="footer-social-logo social-logo" />
           </a>
           <a href={pageInfo.facebook}>
-            <Icons.FaFacebook className="footer-social-logo social-logo" />
+            <FaFacebook className="footer-social-logo social-logo" />
           </a>
         </div>
         <a className="footer-bussiness-link" href="https://www.instagram.com/zerobyone_/">
