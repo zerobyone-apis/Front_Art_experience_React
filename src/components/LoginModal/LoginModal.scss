@@ -5,7 +5,10 @@
     .dialog_activator-box {
         @media only screen and (max-width: 750px) {
             .activator-btn {
+                // background-color: red;
+
                 button {
+                    // visibility: hidden;
                     width: 20px;
                     text-align: center !important;
 
@@ -14,9 +17,10 @@
                     }
 
                     p {
-                        padding: 0;
-                        margin: 0;
+                        // position: absolute;
                         visibility: hidden !important;
+                        // padding: 0;
+                        // margin: 0;
                     }
                 }
             }

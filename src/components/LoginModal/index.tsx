@@ -16,6 +16,9 @@ export const LoginModal = (props: {
     onClose?: Dispatch<SetStateAction<boolean>>,
     onSuccessLogin?: any
 }) => {
+    const [showDialog, setShowDialog] = useState(props.show || false);
+    const [showAccountMenu, setShowAccountMenu] = useState(false);
+
     // context
     const {
         // @ts-ignore
@@ -28,9 +31,6 @@ export const LoginModal = (props: {
         disabled,
         setDisabledButton
     } = useContext(ButtonContext);
-
-    const [showDialog, setShowDialog] = useState(props.show || false);
-    const [showAccountMenu, setShowAccountMenu] = useState(false);
 
     // control account menu
     const wrapperRef = useRef(null);
@@ -67,7 +67,7 @@ export const LoginModal = (props: {
                     <Button
                         onClick={() => { launchModal() }}
                         className={`activator-btn login-btn art_experience-button_outlined`}
-                        label={userIsLogged() ? getUserData().username : 'Acceder'}>
+                        label={userIsLogged() ? getUserData().username : 'Acceder para Reservar'}>
                         <RiAccountCircleLine className="icon" />
                     </Button>
                 </div>
@@ -94,7 +94,11 @@ export const LoginModal = (props: {
                     <div className="account-menu effect-opacity" ref={wrapperRef}>
                         <p className="item-text user-name">{getUserData().name}</p>
                         <p className="item-text user-email">{getUserData().email}</p>
-                        {(getPageName() === INDEX_PAGE && getUserData()['admin']) ? (
+
+                        {/* {(getPageName() === INDEX_PAGE && getUserData()['admin']) ? (
+                        } */}
+
+                        {(getPageName() === INDEX_PAGE) ? (
                             <Button
                                 label="Gestion de Reservas"
                                 className="item-list_btn art_experience-button_outlined"

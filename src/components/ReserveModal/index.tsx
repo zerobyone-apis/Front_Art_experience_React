@@ -162,7 +162,6 @@ export const ReserveModal = (props: { className?: string }) => {
 
   return (
     <div className="reserve-modal">
-
       <div className="dialog_activator-box">
         <Button
           onClick={() => {
@@ -219,9 +218,11 @@ export const ReserveModal = (props: { className?: string }) => {
                 <p className="confirm_info effect-slide_left">
                   {`Fecha de reservacion: ${moment(reserveDate).format("DD/MM/YYYY")}`}
                 </p>
-                <p className="confirm_info">{`Nombre del cliente: ${getUserData().username}`}</p>
+
+                {/* <p className="confirm_info">{`Nombre del cliente: ${getUserData().username}`}</p>
                 <p className="confirm_info">{`Celular/Telefono del cliente: ${getUserData().cel}`}</p>
-                <p className="confirm_info">{`Email del cliente: ${getUserData().email}`}</p>
+                <p className="confirm_info">{`Email del cliente: ${getUserData().email}`}</p> */}
+
                 <p className="confirm_info">{`Servicio: ${selectedService ? selectedService.name : 'No se selecciono servicio'}`}</p>
                 <p className="confirm_info">{`Barbero: ${selectedBarber ? selectedBarber.name : ''}`}</p>
                 <p className="confirm_info">{`Horario: ${reserveHour}`}</p>

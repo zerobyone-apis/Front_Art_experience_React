@@ -10,7 +10,7 @@ import './RegisterForm.scss';
 export const RegisterForm = (props: {
     onClientRegister: (response: any) => void
 }) => {
-    const defaultFields = {
+    const defaultRegisterFields = {
         name: '',
         email: '',
         password: '',
@@ -23,11 +23,11 @@ export const RegisterForm = (props: {
         isError: false
     }
 
-    const [fields, setFields] = useState(defaultFields);
+    const [registerFields, setRegisterFields] = useState(defaultRegisterFields);
     const [message, setMessage] = useState(baseMessage)
 
-    const onChangeField = (value: string, fieldName: string) => {
-        setFields({ ...fields, [fieldName]: value })
+    const onChangeRegisterField = (value: string, fieldName: string) => {
+        setRegisterFields({ ...registerFields, [fieldName]: value })
     }
 
     const clientActions: ClientActions = new ClientActions();
@@ -42,19 +42,19 @@ export const RegisterForm = (props: {
         setUserData
     } = useContext(UserContext);
 
+    // REGISTER
     const register = async () => {
         setMessage({ value: '', isError: false }); //clear
-        const data: IClient = {
-            username: fields.name,
-            cel: fields.cel,
-            email: fields.email,
-            name: fields.name,
-            password: fields.password,
-            password2: fields.password2
+        const fields: IClient = {
+            username: registerFields.name,
+            cel: registerFields.cel,
+            email: registerFields.email,
+            name: registerFields.name,
+            password: registerFields.password,
+            password2: registerFields.password2
         }
         setDisabledButton(true);
-        const response = await clientActions.add(data);
-        setDisabledButton(false);
+        const response = await clientActions.add(fields);
         if (response) {
             props.onClientRegister(response);
             setUserData(response);
@@ -62,58 +62,60 @@ export const RegisterForm = (props: {
         } else {
             setMessage({ value: 'No se pudo realizar el registro, vuelva a intentarlo', isError: true });
         }
+        setDisabledButton(false);
     }
 
     return (
         <div className="register-box">
             <ValidationForm
-                objectTest={fields}
+                objectTest={registerFields}
                 buttonLabel="Registrarse"
                 buttonClassName="access_btn art_experience-button_outlined"
-                equalFields={[{ field1: 'password', field2: 'password2', error: 'Las contraseñas no coinciden' }]}
+                equalFields={[
+                    { field1: 'password', field2: 'password2', error: 'Las contraseñas no coinciden' }]}
                 onClick={() => {
                     register()
                 }}
             >
                 <TextField
-                    value={fields.name}
+                    value={registerFields.name}
                     name="name"
                     required={true}
                     label="Nombre"
                     className="theme-text_field--dark"
-                    onChange={onChangeField} />
+                    onChange={onChangeRegisterField} />
                 <TextField
-                    value={fields.email}
+                    value={registerFields.email}
                     name="email"
                     type="email"
                     required={true}
                     label="Email"
                     className="theme-text_field--dark"
-                    onChange={onChangeField} />
+                    onChange={onChangeRegisterField} />
                 <TextField
-                    value={fields.cel}
+                    value={registerFields.cel}
                     name="cel"
                     type="number"
                     required={true}
                     label="Celular / Telefono"
                     className="theme-text_field--dark"
-                    onChange={onChangeField} />
+                    onChange={onChangeRegisterField} />
                 <TextField
-                    value={fields.password}
+                    value={registerFields.password}
                     name="password"
                     type="password"
                     required={true}
                     label="Contraseña"
                     className="theme-text_field--dark"
-                    onChange={onChangeField} />
+                    onChange={onChangeRegisterField} />
                 <TextField
-                    value={fields.password2}
+                    value={registerFields.password2}
                     name="password2"
                     type="password"
                     required={true}
                     label="Repita Contraseña"
                     className="theme-text_field--dark"
-                    onChange={onChangeField} />
+                    onChange={onChangeRegisterField} />
             </ ValidationForm>
             {message.isError ? (
                 <p className="error_message">{message.value}</p>

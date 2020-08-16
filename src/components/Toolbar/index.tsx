@@ -5,11 +5,18 @@ import '../../styles/ArtExperienceFonts.scss';
 import { Button } from '../Button';
 import { LeftMenu } from '../LeftMenu';
 import { LoginModal } from '../LoginModal';
-import React from 'react';
+import React, { useContext } from 'react';
 import { ReserveModal } from '../ReserveModal';
 import { toolbarButtons } from '../../utils/toolbarButtons';
+import { UserContext } from '../../contexts/UserContext';
 
 export const Toolbar = () => {
+    const {
+        // @ts-ignore
+        userIsLogged,
+        getUserData,
+    } = useContext(UserContext);
+
     return (
         <div className="toolbar effect-slide_bottom">
             <div id="start_page" />
@@ -33,7 +40,7 @@ export const Toolbar = () => {
                 }
             </div>
             <div className="right-box">
-                <ReserveModal />
+                {userIsLogged() ? <ReserveModal /> : null}
                 <LoginModal />
             </div>
         </div>

@@ -1,26 +1,26 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/display-name */
 import React, {
     createContext,
     useState,
     ReactElement,
     useEffect,
 } from 'react';
-import { IUser } from '../types/User.type';
+import { IUser, defaultUser } from '../types/User.type';
 import { USER_DATA_STORAGE } from '../types/StorageData.type';
 
 export const UserContext = createContext({
     userIsLogged: () => undefined,
+    userIsAdmin: () => undefined,
     getUserData: () => undefined,
-    setUserData: (userData: any) => undefined,
+    setUserData: (userData: any) => { }
 });
+
+const storex = require('store'); // store :3
 
 export const UserProvider = (props: {
     value?: IUser,
     children: ReactElement;
 }) => {
-    const storex = require('store'); // store :3
-    const [user, setUser] = useState(props.value || null);
+    const [user, setUser] = useState(props.value);
 
     useEffect(() => {
         storex.set(USER_DATA_STORAGE, user);
@@ -31,24 +31,18 @@ export const UserProvider = (props: {
     }
 
     const getUserData = () => {
-        console.log('user data', user)
-        if (user) {
-            try {
-                let userData = user['user'];
-                return userData;
-            } catch (error) {
-                let clientData = user['client'];
-                return clientData;
-            }
-        }
-        return null;
+        return user ? user : defaultUser;
     }
 
     const userIsLogged = () => {
         return user ? true : false;
     }
 
-    const context = { userIsLogged, getUserData, setUserData };
+    const userIsAdmin = () => {
+        return user.admin ? true : false;
+    }
+
+    const context = { userIsLogged, userIsAdmin, getUserData, setUserData };
 
     return (
         <UserContext.Provider value={context}>

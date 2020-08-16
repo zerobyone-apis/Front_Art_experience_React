@@ -14,13 +14,7 @@ export default class IntegrationBackend {
         'Content-Type': 'application/json;charset=UTF-8'
       }
     };
-    //console.log('Este es el objeto que se manda para el backend \n', data)
     const res = await this.axios(config);
-   // console.log('Este es el objeto que responde el backend res \n', res.data)
     return res;
   }
-
-
-
-
 }

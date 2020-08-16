@@ -11,3 +11,15 @@ export interface IUser {
     barberId: number;
     status: boolean;
 }
+
+export const defaultUser = {
+    username: '',
+    fullName: '',
+    email: '',
+    cel: '',
+    password: '',
+    admin: false,
+    barber: true,
+    status: true,
+    userId: 1
+}

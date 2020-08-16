@@ -1,5 +1,4 @@
 import IntegrationBackend from '../utils/IntegrationBackend';
-// eslint-disable-next-line no-unused-vars
 import { IClient } from '../types/Client.type'
 import { GET_ENDPOIT, USER_SIGN_IN_ROUTE, POST_ENDPOIT, CLIENT_ROUTE, CLIENT_EXISTS_ROUTE } from '../types/Routes.type';
 export default class ClientActions {
@@ -20,10 +19,10 @@ export default class ClientActions {
                 data,
                 CLIENT_ROUTE
             );
+            console.log('response register ', response)
             return response.data;
         } catch (error) {
-            console.log('error: ')
-            console.log(JSON.stringify(error))
+            console.log('Ocurrio error en register : ', error)
             return null;
         }
     }
@@ -39,11 +38,10 @@ export default class ClientActions {
                 data,
                 USER_SIGN_IN_ROUTE
             );
-            console.log('response ', response)
+            console.log('response login', response)
             return response.data;
         } catch (error) {
-            console.log('error: ')
-            console.log(JSON.stringify(error))
+            console.log('error: ', JSON.stringify(error))
             return null
         }
     }
