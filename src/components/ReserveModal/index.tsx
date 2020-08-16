@@ -164,11 +164,13 @@ export const ReserveModal = (props: { className?: string }) => {
     <div className="reserve-modal">
       <div className="dialog_activator-box">
         <Button
+          className={`activator-btn reserve-btn art_experience-button_outlined`}
+          label={'Reservar'}
+          icon={false}
           onClick={() => {
             userIsLogged() ? setShowDialog(true) : setShowLoginDialog(true);
           }}
-          className={`activator-btn reserve-btn art_experience-button_outlined`}
-          label={'Reservar'} />
+        />
       </div>
 
       {!showDialog ? null : (

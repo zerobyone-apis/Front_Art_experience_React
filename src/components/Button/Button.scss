@@ -11,8 +11,14 @@
     transition: box-shadow .3s;
     border-radius: 4px;
     border-style: none;
-    display: flex;
+    display: flex !important;
     background-color: rgb(93, 93, 93);
+
+    .button-content {
+      position: relative;
+      width: 100%;
+      display: flex;
+    }
   }
 
   button:hover {

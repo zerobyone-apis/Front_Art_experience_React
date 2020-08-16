@@ -13,6 +13,7 @@ export const Button = (props: {
   color?: string;
   disabled?: boolean;
   fontColor?: string;
+  icon?: any,
   className?: string;
   labelClassName?: string;
   href?: string;
@@ -23,10 +24,23 @@ export const Button = (props: {
     // @ts-ignore
     disabled
   } = useContext(ButtonContext);
+
+  const getLabelClasses = () => {
+    let classes = 'label_button art_experience-text-light';
+
+    if (props.labelClassName) {
+      classes = ` ${props.labelClassName}`
+    }
+    if (props.icon) {
+      console.log('xd: ', props.icon)
+      classes = `${classes} icon-left`
+    }
+    return classes;
+  }
+
   return (
     <div className={`button-holder ${props.className} ${disabled ? 'disabled' : ''}`}>
       <a href={props.href}>
-
         <button
           disabled={props.disabled || disabled}
           style={{
@@ -37,13 +51,18 @@ export const Button = (props: {
           type={props.type || 'button'}
           onClick={props.onClick}
         >
-          <div>
-            {props.children}
-            {!props.label ? null :
-              <p className={`${props.labelClassName} label_button art_experience-text-light`}
-                style={{ marginLeft: (props.children ? "10px" : "0px") }}>
+          <div className="button-content">
+            {props.icon ? (
+              <div className="icon-box">
+                {props.icon}
+              </div>
+            ) : null}
+
+            {!props.label ? null : (
+              <p className={getLabelClasses()}>
                 {props.label}
               </p>
+            )
             }
           </div>
         </button>

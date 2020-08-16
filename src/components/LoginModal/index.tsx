@@ -67,9 +67,8 @@ export const LoginModal = (props: {
                     <Button
                         onClick={() => { launchModal() }}
                         className={`activator-btn login-btn art_experience-button_outlined`}
-                        label={userIsLogged() ? getUserData().username : 'Acceder para Reservar'}>
-                        <RiAccountCircleLine className="icon" />
-                    </Button>
+                        icon={<RiAccountCircleLine />}
+                        label={userIsLogged() ? getUserData().username : 'Acceder para Reservar'} />
                 </div>
             ) : null}
             {!showDialog ? null : (
