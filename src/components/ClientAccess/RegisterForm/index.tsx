@@ -56,11 +56,15 @@ export const RegisterForm = (props: {
         setDisabledButton(true);
         const response = await clientActions.add(fields);
         if (response) {
-            props.onClientRegister(response);
-            setUserData(response);
-            setMessage({ value: 'Registro realizado con exito', isError: false });
+            if (response.status == 201) {
+                props.onClientRegister(response);
+                setUserData(response);
+                setMessage({ value: 'Registro realizado con exito', isError: false });
+            } else {
+                setMessage({ value: response.statusText, isError: true });
+            }
         } else {
-            setMessage({ value: 'No se pudo realizar el registro, vuelva a intentarlo', isError: true });
+            setMessage({ value: 'Ocurrio un error!, vuelva a intentarlo', isError: true });
         }
         setDisabledButton(false);
     }

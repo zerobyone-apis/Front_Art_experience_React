@@ -49,7 +49,7 @@ export const LoginForm = (props: {
         const response = await clientActions.login(fields);
         if (response) {
             props.onClientLogged(response);
-            setUserData(response);
+            setUserData({ ...response.data.user });
             setMessage({ value: 'Has iniciado sesion con exito', isError: false });
         } else {
             setMessage({ value: 'No se pudo iniciar sesion, verifique email y contaseña', isError: true });
