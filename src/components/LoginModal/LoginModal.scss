@@ -2,22 +2,8 @@
     display: flex;
     align-items: center;
 
-    .dialog_activator-box {
-        @media only screen and (max-width: 750px) {
-            .activator-btn {
-                button {
-                    .button-content {
-                        width: 20px;
 
-                        p {
-                            position: absolute;
-                            visibility: hidden !important;
-                        }
-                    }
-                }
-            }
-        }
-    }
+
 
     .dialog-modal {
         width: 40%;
@@ -74,6 +60,23 @@
 
             p {
                 margin: 0;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 750px) {
+    .login-modal {
+        .login-btn {
+            button {
+                .button-content {
+                    width: 20px;
+
+                    p {
+                        position: absolute;
+                        visibility: hidden !important;
+                    }
+                }
             }
         }
     }

@@ -59,7 +59,7 @@ export const Button = (props: {
 
             {!props.label ? null : (
               <p className={getLabelClasses()}>
-                {props.label}
+                {String(props.label)}
               </p>
             )
             }
