@@ -32,7 +32,6 @@ export const Button = (props: {
       classes = ` ${props.labelClassName}`
     }
     if (props.icon) {
-      console.log('xd: ', props.icon)
       classes = `${classes} icon-left`
     }
     return classes;
