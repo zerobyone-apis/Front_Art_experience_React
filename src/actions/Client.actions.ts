@@ -39,7 +39,7 @@ export default class ClientActions {
                 USER_SIGN_IN_ROUTE
             );
             console.log('response login', response)
-            return response.data;
+            return { ...response.data.user };
         } catch (error) {
             console.log('error: ', JSON.stringify(error))
             return null

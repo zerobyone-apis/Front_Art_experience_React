@@ -31,6 +31,7 @@ export const UserProvider = (props: {
     }
 
     const getUserData = () => {
+        console.log('userdata: ', user)
         return user ? user : defaultUser;
     }
 

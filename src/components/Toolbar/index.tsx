@@ -40,7 +40,7 @@ export const Toolbar = () => {
                 }
             </div>
             <div className="right-box">
-                {userIsLogged() ? <ReserveModal /> : null}
+                {(userIsLogged() && !getUserData().admin) ? <ReserveModal /> : null}
                 <LoginModal />
             </div>
         </div>

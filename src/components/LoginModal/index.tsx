@@ -94,11 +94,7 @@ export const LoginModal = (props: {
                     <div className="account-menu effect-opacity" ref={wrapperRef}>
                         <p className="item-text user-name">{getUserData().name}</p>
                         <p className="item-text user-email">{getUserData().email}</p>
-
-                        {/* {(getPageName() === INDEX_PAGE && getUserData()['admin']) ? (
-                        } */}
-
-                        {(getPageName() === INDEX_PAGE) ? (
+                        {(getPageName() === INDEX_PAGE && getUserData().admin) ? (
                             <Button
                                 label="Gestion de Reservas"
                                 className="item-list_btn art_experience-button_outlined"
