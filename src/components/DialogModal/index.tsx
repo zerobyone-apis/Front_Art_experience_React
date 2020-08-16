@@ -26,10 +26,10 @@ export const DialogModal = (props: {
           <div className="close_btn-box">
             <div className="art_experience-button_only-text">
               {!props.hideCloseButton ? (
-                <Button className="close_btn" onClick={() => { props.onClose() }}>
-                  <AiOutlineClose
-                    className="art_experience-icon" />
-                </Button>
+                <Button className="close_btn"
+                  icon={<AiOutlineClose
+                    className="art_experience-icon" />}
+                  onClick={() => { props.onClose() }} />
               ) : null}
             </div>
           </div>

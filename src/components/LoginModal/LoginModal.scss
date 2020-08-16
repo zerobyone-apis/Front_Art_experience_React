@@ -5,22 +5,14 @@
     .dialog_activator-box {
         @media only screen and (max-width: 750px) {
             .activator-btn {
-                // background-color: red;
-
                 button {
-                    // visibility: hidden;
-                    width: 20px;
-                    text-align: center !important;
+                    .button-content {
+                        width: 20px;
 
-                    .icon {
-                        margin-left: 5px !important;
-                    }
-
-                    p {
-                        // position: absolute;
-                        visibility: hidden !important;
-                        // padding: 0;
-                        // margin: 0;
+                        p {
+                            position: absolute;
+                            visibility: hidden !important;
+                        }
                     }
                 }
             }

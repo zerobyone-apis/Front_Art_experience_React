@@ -13,9 +13,8 @@ export const LeftMenu = () => {
         <div className="left_menu">
             <Button
                 className="art_experience-button_only-text activator_btn"
-                onClick={() => { setShowDialog(true) }}>
-                <FiMenu className="art_experience-icon icon_button" />
-            </Button>
+                icon={<FiMenu className="art_experience-icon icon_button" />}
+                onClick={() => { setShowDialog(true) }} />
             {
                 !showDialog ? null : (
                     <DialogModal
