@@ -371,7 +371,7 @@ const IndexPage = () => {
     const getLeft = (barber) => {
       return (
         <div className="barber-card">
-          {getInfoBox(barber, 'dark')}
+          {getInfoBox(barber, 'light')}
           {getSliderBox(barber)}
         </div>
       )
@@ -381,7 +381,7 @@ const IndexPage = () => {
       return (
         <div className="barber-card">
           {getSliderBox(barber)}
-          {getInfoBox(barber, 'dark')}
+          {getInfoBox(barber, 'light')}
         </div >
       )
     }
@@ -390,7 +390,7 @@ const IndexPage = () => {
       <div>
         {
           barbers.map((barber, i) => {
-            if (i % 2 == 0) {
+            if (i % 2 != 0) {
               return getLeft(barber);
             } else {
               return getRight(barber);
@@ -426,15 +426,21 @@ const IndexPage = () => {
           </div>
           <div id="about_us" />
           <AboutUsCard />
+          <BarbersCard />
           <div id="services" />
-          <Card theme="light" title={pageInfo.servicesTitle} subtitle={pageInfo.services}>
+          {/* <Divider align={dividers[2].align} img={dividers[1].img} /> */}
+          <Card theme="dark" title={pageInfo.servicesTitle} subtitle={pageInfo.services}>
             {getServices()}
           </Card>
-          <BarbersCard />
-
-
-
-
+          <div id="courses" />
+          <Card theme="dark" title={pageInfo.coursesTitle} subtitle={pageInfo.courses}>
+            {getCourses()}
+          </Card>
+          <Divider align={dividers[1].align} img={dividers[2].img} />
+          <div id="contact" />
+          <Card theme="dark" title={pageInfo.contactUsTitle} subtitle={pageInfo.contactUs}>
+            {getFooter()}
+          </Card>
 
           {/* <Card title={pageInfo.aboutUsTitle} subtitle={pageInfo.aboutUs}>
             {getEmployees()}
@@ -442,15 +448,6 @@ const IndexPage = () => {
           <Divider align={dividers[1].align} img={dividers[0].img} />
           <div id="services" />
           <Divider align={dividers[2].align} img={dividers[1].img} /> */}
-          <div id="courses" />
-          <Card theme="light" title={pageInfo.coursesTitle} subtitle={pageInfo.courses}>
-            {getCourses()}
-          </Card>
-          <Divider align={dividers[1].align} img={dividers[2].img} />
-          <div id="contact" />
-          <Card title={pageInfo.contactUsTitle} subtitle={pageInfo.contactUs}>
-            {getFooter()}
-          </Card>
         </div>
       </div >
       {!showDialogCourse ? null :
