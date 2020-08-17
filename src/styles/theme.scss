@@ -46,6 +46,32 @@ body {
   height: 100%;
 }
 
+.dark {
+  background-color: black;
+}
+
+.light {
+  background-color: white;
+}
+
+.text-light {
+  font-family: 'Balthazar', serif;
+  color: #303030d5;
+  font-weight: 300;
+  text-transform: none;
+  box-shadow: 1px, 3px #ffffff4f;
+}
+
+.text-dark {
+  font-family: 'Balthazar', serif;
+  color: #ffffffef;
+  font-weight: 300;
+  text-transform: none;
+  box-shadow: 1px, 3px #ffffff4f;
+}
+
+
+
 // TextField
 .theme-text_field--light {
   margin-top: 5px;

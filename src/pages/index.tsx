@@ -1,16 +1,24 @@
 import './index.scss';
 import '../styles/Effects.scss';
+import '../styles/theme.scss';
 import '../styles/ArtExperienceButtons.scss';
 
+// import Iconxd from '../assets/gold_logo.png';
+// const iconxd = require('../assets/gold_logo.png');
+
 import React, { useContext, useEffect, useState } from 'react';
+import { Transition } from 'react-transition-group';
+import classNames from 'classnames';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FiArrowRight, FiArrowLeft } from 'react-icons/fi';
 import { FaCut, FaGift, FaInstagram, FaFacebook } from 'react-icons/fa';
 import { GiPaintedPottery } from 'react-icons/gi';
 
 import BarberAction from '../actions/Barber.actions';
 import { Button } from '../components/Button';
 import { ButtonContext } from '../contexts/ButtonsContext';
+import { ThemeContext } from '../contexts/ThemeContext';
 import { BarberListContext } from '../contexts/BarberListContext';
 import { Card } from '../components/Card';
 import { DialogModal } from '../components/DialogModal';
@@ -24,7 +32,10 @@ const IndexPage = () => {
   const [showDialogCourse, setShowDialogCourse] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState(null);
   const [barbers, setBarbers] = useState([]);
-
+  const {
+    // @ts-ignore
+    getTheme,
+  } = useContext(ThemeContext);
   const {
     // @ts-ignore
     setDisabledButton,
@@ -169,6 +180,12 @@ const IndexPage = () => {
       url: "Read More"
     }
   ];
+
+  const aboutusPictures = [
+    { url: 'https://instagram.fmvd1-1.fna.fbcdn.net/v/t51.2885-15/e35/57488298_2276560875734649_7666756016645949298_n.jpg?_nc_ht=instagram.fmvd1-1.fna.fbcdn.net&_nc_cat=109&_nc_ohc=MskQCPZA-BkAX_omsCq&oh=44ff4fcc828dcbe2403bedd48f6383e6&oe=5F57538C' },
+    { url: 'https://instagram.fmvd4-1.fna.fbcdn.net/v/t51.2885-15/e35/54800426_106275450418894_8601708499349892562_n.jpg?_nc_ht=instagram.fmvd4-1.fna.fbcdn.net&_nc_cat=110&_nc_ohc=q4qz70Pjc80AX-b06U8&oh=3251c0cae9f80fbccf8e56c45667f64f&oe=5F30DAD3' }
+  ]
+
   const dividers = [
     {
       img: "https://instagram.fmvd1-1.fna.fbcdn.net/v/t51.2885-15/e35/57488298_2276560875734649_7666756016645949298_n.jpg?_nc_ht=instagram.fmvd1-1.fna.fbcdn.net&_nc_cat=109&_nc_ohc=MskQCPZA-BkAX_omsCq&oh=44ff4fcc828dcbe2403bedd48f6383e6&oe=5F57538C",
@@ -213,16 +230,8 @@ const IndexPage = () => {
     return services.map((service, i) =>
       <div className="service-item" key={i}>
         {service.icon}
-
-        {/* { ? (
-          
-
-          <FontAwesomeIcon
-            icon={Icons[service.icon]}
-            className="service-icon" />
-        ) : null} */}
-        <p className="service-name art_experience-text-light">{service.name}</p>
-        <p className="service-info art_experience-text-light">{service.info}</p>
+        <p className="service-name text-light">{service.name}</p>
+        <p className="service-info text-light">{service.info}</p>
       </div>
     )
   }
@@ -230,9 +239,9 @@ const IndexPage = () => {
   const getCourses = () => {
     return courses.map((course, i) =>
       <div className="course-item" key={i}>
-        <p className="course-name art_experience-text-light">{course.name}</p>
+        <p className="course-name text-light">{course.name}</p>
         <img className="course-img" aspect-ratio="1" src={course.img}></img>
-        <p className="course-duration art_experience-text-light">Duracion: {course.duration}</p>
+        <p className="course-duration text-light">Duracion: {course.duration}</p>
         <Button className="see_more-btn art_experience-button_outlined"
           label="Ver mas"
           onClick={() => {
@@ -264,6 +273,136 @@ const IndexPage = () => {
     )
   }
 
+
+
+
+
+
+  const Slider = (props: {
+    items: { url: string }[],
+    auto: boolean,
+  }) => {
+    const [wizard, setWizard] = useState(0);
+
+    useEffect(() => {
+      if (props.auto) {
+        automaticSlide()
+      }
+    }, [])
+
+    const automaticSlide = () => {
+      while (true) {
+        setTimeout(() => {
+          wizard < props.items.length ? setWizard(wizard + 1) : setWizard(0)
+        }, 2000);
+      }
+    }
+
+    const goLeft = () => {
+      wizard > 0 ? setWizard(wizard - 1) : setWizard(props.items.length - 1)
+    }
+
+    const goRight = () => {
+      wizard < props.items.length ? setWizard(wizard + 1) : setWizard(0)
+    }
+
+    return (
+      <div className="slider">
+        <div className="slider_item">
+          <img
+            src={props.items[wizard].url}
+            className="slider_item-image" />
+          {props.items.length > 1 ? (
+            <div className="arrows-box">
+              <div className="arrow_left-box" onClick={() => { goLeft() }}>
+                <FiArrowLeft className="arrow" />
+              </div>
+              <div className="arrow_right-box" onClick={() => { goRight() }}>
+                <FiArrowRight className="arrow" />
+              </div>
+            </div>
+          ) : null}
+        </div>
+      </div>
+    )
+  }
+
+
+  const AboutUsCard = () => {
+    return (
+      <div className="about_us-card">
+        <div className="info-box">
+          <p className="title art_experience-title art-title">{pageInfo.aboutUsTitle}</p>
+          <p className="info art_experience-text-light art-text">{pageInfo.aboutUs}</p>
+        </div>
+        <div className="slider-box">
+          <Slider auto={false} items={aboutusPictures} />
+        </div>
+      </div>
+    );
+  }
+
+  const BarbersCard = () => {
+    const getInfoBox = (barber, theme) => {
+      return (
+        <div className={`info-box ${theme}`}>
+          <p className="title art_experience-title art-title">{barber.name}</p>
+          <p className={`info art-text text-${theme}`}>{barber.barberDescription}</p>
+          <div className="employee-social">
+            <a href={barber.instagram}>
+              <i className="fa fa-instagram" aria-hidden="true"></i>
+              <FaInstagram className="employee-social-logo social-logo" />
+            </a>
+            <a href={barber.facebook}>
+              <FaFacebook className="employee-social-logo social-logo" />
+            </a>
+          </div>
+        </div>
+      )
+    }
+    const getSliderBox = (barber) => {
+      return (
+        <div className="slider-box">
+          <Slider auto={false} items={[{ url: barber.urlProfileImage }]} />
+        </div>
+      )
+    }
+
+    const getLeft = (barber) => {
+      return (
+        <div className="barber-card">
+          {getInfoBox(barber, 'dark')}
+          {getSliderBox(barber)}
+        </div>
+      )
+    }
+
+    const getRight = (barber) => {
+      return (
+        <div className="barber-card">
+          {getSliderBox(barber)}
+          {getInfoBox(barber, 'dark')}
+        </div >
+      )
+    }
+
+    return (
+      <div>
+        {
+          barbers.map((barber, i) => {
+            if (i % 2 == 0) {
+              return getLeft(barber);
+            } else {
+              return getRight(barber);
+            }
+          })
+        }
+      </div >
+    )
+  }
+
+
+
   return (
     <div className="index_page">
       <Toolbar />
@@ -273,6 +412,7 @@ const IndexPage = () => {
           <div className="banner">
             <div className="banner-img">
               <img src="https://lh6.googleusercontent.com/proxy/sGPIfOpDBdIbW2kUprDAFEa3kxMpBjhegwDGzZoRrxny1TQWUX666MXQlTr-ujrj-Nugzn9yCroQtUzRuMh6JZOrqP5HrJB59XN8N-WomzS6sONOPkb6HEtdTLZb6bC206svYLyh0UWBgvmc=s0-d" alt="" />
+              {/* <img src={iconxd} /> */}
             </div>
             <div className="title-box">
               <div className="box-shadow_space">
@@ -285,17 +425,25 @@ const IndexPage = () => {
             </div>
           </div>
           <div id="about_us" />
-          <Card title={pageInfo.aboutUsTitle} subtitle={pageInfo.aboutUs}>
+          <AboutUsCard />
+          <div id="services" />
+          <Card theme="light" title={pageInfo.servicesTitle} subtitle={pageInfo.services}>
+            {getServices()}
+          </Card>
+          <BarbersCard />
+
+
+
+
+
+          {/* <Card title={pageInfo.aboutUsTitle} subtitle={pageInfo.aboutUs}>
             {getEmployees()}
           </Card>
           <Divider align={dividers[1].align} img={dividers[0].img} />
           <div id="services" />
-          <Card title={pageInfo.servicesTitle} subtitle={pageInfo.services}>
-            {getServices()}
-          </Card>
-          <Divider align={dividers[2].align} img={dividers[1].img} />
+          <Divider align={dividers[2].align} img={dividers[1].img} /> */}
           <div id="courses" />
-          <Card title={pageInfo.coursesTitle} subtitle={pageInfo.courses}>
+          <Card theme="light" title={pageInfo.coursesTitle} subtitle={pageInfo.courses}>
             {getCourses()}
           </Card>
           <Divider align={dividers[1].align} img={dividers[2].img} />

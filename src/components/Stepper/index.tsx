@@ -1,6 +1,5 @@
-import './Stepper.scss';
-
 import React, { Children, ReactChild, useContext } from 'react';
+import './Stepper.scss';
 
 export const Stepper = (props: {
     wizard: number,

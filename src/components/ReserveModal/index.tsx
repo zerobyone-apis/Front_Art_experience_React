@@ -183,7 +183,7 @@ export const ReserveModal = (props: { className?: string }) => {
           hideCloseButton={wizard == 4}>
           <Stepper wizard={wizard}>
             <div className="reserve-step">
-              <div className="step-title">
+              <div className="step-title art_experience-text-light">
                 <p>Seleccione el servicio que se desea realizar</p>
               </div>
               <ServicesList
@@ -193,7 +193,7 @@ export const ReserveModal = (props: { className?: string }) => {
             </div>
 
             <div className="reserve-step">
-              <div className="step-title">
+              <div className="step-title art_experience-text-light">
                 <p>Seleccione el Barbero</p>
               </div>
               <BarbersList
@@ -202,7 +202,7 @@ export const ReserveModal = (props: { className?: string }) => {
             </div>
 
             <div className="reserve-step">
-              <div className="step-title">
+              <div className="step-title art_experience-text-light">
                 <p>Seleccione el Barbero</p>
               </div>
               <ReserveTime
@@ -213,7 +213,7 @@ export const ReserveModal = (props: { className?: string }) => {
             </div>
 
             <div className="reserve-step">
-              <div className="step-title">
+              <div className="step-title art_experience-text-light">
                 <p>Confirmacion de reserva</p>
               </div>
               <div className="confirm_data-box">
@@ -232,7 +232,7 @@ export const ReserveModal = (props: { className?: string }) => {
               </div>
             </div>
             <div className="reserve-step">
-              <div className="step-title">
+              <div className="step-title art_experience-text-light">
                 <p>Reservacion - ArtExperience</p>
               </div>
               <div className="confirm_data-box">

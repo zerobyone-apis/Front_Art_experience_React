@@ -10,17 +10,18 @@
   height: 100%;
   left: 0;
   top: 0;
-  background-color: rgba(0, 0, 0, 0.78);
+  background-color: rgba(0, 0, 0, 0.924);
   z-index: 999;
   display: flex;
   align-items: center;
 
   .dialog-modal {
     position: relative;
-    height: calc(100% - 120px) !important;
+    // height: calc(100% - 120px) !important;
+    // height: 100%;
     max-width: 800px;
     margin: auto;
-    background-color: rgb(16, 16, 16);
+    background-color: rgba(16, 16, 16, 0.52);
 
     .header {
       position: relative;
