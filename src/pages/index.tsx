@@ -230,8 +230,8 @@ const IndexPage = () => {
     return services.map((service, i) =>
       <div className="service-item" key={i}>
         {service.icon}
-        <p className="service-name text-light">{service.name}</p>
-        <p className="service-info text-light">{service.info}</p>
+        <p className={`service-name text-${getTheme()}`}>{service.name}</p>
+        <p className={`service-info text-${getTheme()}`}>{service.info}</p>
       </div>
     )
   }
@@ -239,9 +239,9 @@ const IndexPage = () => {
   const getCourses = () => {
     return courses.map((course, i) =>
       <div className="course-item" key={i}>
-        <p className="course-name text-light">{course.name}</p>
+        <p className={`course-name text-${getTheme()}`}>{course.name}</p>
         <img className="course-img" aspect-ratio="1" src={course.img}></img>
-        <p className="course-duration text-light">Duracion: {course.duration}</p>
+        <p className={`course-duration text-${getTheme()}`}>Duracion: {course.duration}</p>
         <Button className="see_more-btn art_experience-button_outlined"
           label="Ver mas"
           onClick={() => {
@@ -256,7 +256,7 @@ const IndexPage = () => {
     return (
       <div className="footer">
         <img className="footer_logo-img effect-opacity" src="https://raw.githubusercontent.com/zerobyone-apis/Front_Art_experience_React/master/src/assets/gold_logo.png" alt="" />
-        <p className="footer-email art_experience-text-light">{pageInfo.email}</p>
+        <p className={`footer-email text-light`}>{pageInfo.email}</p>
         <div className="footer-social">
           <a href={pageInfo.instagram}>
             <i className="fa fa-instagram" aria-hidden="true"></i>
@@ -267,7 +267,7 @@ const IndexPage = () => {
           </a>
         </div>
         <a className="footer-bussiness-link" href="https://www.instagram.com/zerobyone_/">
-          <p className="art-text art_experience-text-light">© 2020 Art Experience - Desarrollado por ZeroByOne</p>
+          <p className={`art-text art_experience-text-${getTheme()}`}>© 2020 Art Experience - Desarrollado por ZeroByOne</p>
         </a>
       </div>
     )
@@ -436,9 +436,9 @@ const IndexPage = () => {
           <Card theme="dark" title={pageInfo.coursesTitle} subtitle={pageInfo.courses}>
             {getCourses()}
           </Card>
-          <Divider align={dividers[1].align} img={dividers[2].img} />
+          {/* <Divider align={dividers[1].align} img={dividers[2].img} /> */}
           <div id="contact" />
-          <Card theme="dark" title={pageInfo.contactUsTitle} subtitle={pageInfo.contactUs}>
+          <Card theme="light" title={pageInfo.contactUsTitle} subtitle={pageInfo.contactUs}>
             {getFooter()}
           </Card>
 

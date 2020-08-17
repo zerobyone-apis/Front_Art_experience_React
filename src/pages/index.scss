@@ -209,9 +209,10 @@
       .about_us-card {
         position: relative;
         width: 100%;
-        height: 700px;
+        height: 500px;
         background-color: grey;
         display: flex;
+        box-shadow: inset 20px 0 20px 20px red;
 
         .info-box {
           position: relative;
@@ -246,7 +247,7 @@
         display: flex;
         // border-top-style: solid;
         border-top-style: solid;
-        border-color: rgba(0, 0, 0, 0.472);
+        border-color: rgba(255, 255, 255, 0.835);
 
         .info-box {
           position: relative;
@@ -500,7 +501,7 @@
         .logo {
           text-align: center;
           font-size: 30px;
-          color: rgb(214, 214, 214);
+          // color: rgb(214, 214, 214);
         }
 
         .footer-social {
@@ -514,26 +515,27 @@
             width: 30px;
             height: 30px;
             margin: 0 20px 0 20px;
-            color: rgb(214, 214, 214);
+            // color: rgb(214, 214, 214);
+            color: rgb(146, 144, 108);
             border-radius: 50%;
           }
 
           .footer-social-logo:hover {
-            color: white;
+            // color: white;
             box-shadow: 0px 0px 30px 0px rgb(58, 57, 44);
           }
         }
 
         .footer-email {
           text-align: center;
-          color: rgb(214, 214, 214);
+          // color: rgb(214, 214, 214);
         }
 
         .footer-bussiness {
           position: relative;
           top: 10px;
           text-align: center;
-          color: rgb(214, 214, 214);
+          // color: rgb(214, 214, 214);
         }
       }
     }
