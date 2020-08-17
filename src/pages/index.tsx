@@ -372,6 +372,7 @@ const IndexPage = () => {
       return (
         <div className="barber-card">
           {getInfoBox(barber, 'dark')}
+          <div className={`line_divider ${getTheme()}`}><div /></div>
           {getSliderBox(barber)}
         </div>
       )
@@ -381,6 +382,7 @@ const IndexPage = () => {
       return (
         <div className="barber-card">
           {getSliderBox(barber)}
+          <div className="line_divider"><div /></div>
           {getInfoBox(barber, 'dark')}
         </div >
       )
