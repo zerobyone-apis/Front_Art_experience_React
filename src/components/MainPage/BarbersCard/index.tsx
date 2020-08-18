@@ -4,6 +4,7 @@ import { FaInstagram, FaFacebook } from 'react-icons/fa';
 import { ThemeContext } from '../../../contexts/ThemeContext';
 import './BarbersCard.scss';
 import { Slider } from '../../Slider';
+import { Card } from '../../Card';
 
 export const BarbersCard = (props: {
     barbers: IBarber[]
@@ -60,7 +61,7 @@ export const BarbersCard = (props: {
     }
 
     return (
-        <div>
+        <Card theme="dark" title="Barberos" subtitle="Tenemos un personal especializado en todo tipo de trabajos, con la mejor atencion y coordialidad">
             {
                 props.barbers.map((barber, i) => {
                     if (i % 2 != 0) {
@@ -70,6 +71,6 @@ export const BarbersCard = (props: {
                     }
                 })
             }
-        </div >
+        </Card >
     )
 }
