@@ -1,36 +1,27 @@
+import React, { useContext, useEffect, useState } from 'react';
+import { FaCut, FaGift } from 'react-icons/fa';
+import { GiPaintedPottery } from 'react-icons/gi';
+import BarberAction from '../actions/Barber.actions';
+import { ButtonContext } from '../contexts/ButtonsContext';
+import { ThemeContext } from '../contexts/ThemeContext';
+import { BarberListContext } from '../contexts/BarberListContext';
+import { Card } from '../components/Card';
+import { IBarber } from '../types/Barber.type';
+import { LoaderPage } from '../components/LoaderPage';
+import { Toolbar } from '../components/Toolbar';
+import moment from 'moment';
+import { BarbersCard } from '../components/MainPage/BarbersCard';
+import { AboutUsCard } from '../components/MainPage/AboutUsCard';
+import { HomeFooter } from '../components/MainPage/HomeFooter';
+import { CoursesCard } from '../components/MainPage/CoursesCard';
+import { Banner } from '../components/MainPage/Banner';
+import { ServicesCard } from '../components/MainPage/ServicesCard';
 import './index.scss';
 import '../styles/Effects.scss';
 import '../styles/theme.scss';
 import '../styles/ArtExperienceButtons.scss';
 
-// import Iconxd from '../assets/gold_logo.png';
-// const iconxd = require('../assets/gold_logo.png');
-
-import React, { useContext, useEffect, useState } from 'react';
-import { Transition } from 'react-transition-group';
-import classNames from 'classnames';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { FiArrowRight, FiArrowLeft } from 'react-icons/fi';
-import { FaCut, FaGift, FaInstagram, FaFacebook } from 'react-icons/fa';
-import { GiPaintedPottery } from 'react-icons/gi';
-
-import BarberAction from '../actions/Barber.actions';
-import { Button } from '../components/Button';
-import { ButtonContext } from '../contexts/ButtonsContext';
-import { ThemeContext } from '../contexts/ThemeContext';
-import { BarberListContext } from '../contexts/BarberListContext';
-import { Card } from '../components/Card';
-import { DialogModal } from '../components/DialogModal';
-import { Divider } from '../components/Divider';
-import { IBarber } from '../types/Barber.type';
-import { LoaderPage } from '../components/LoaderPage';
-import { Toolbar } from '../components/Toolbar';
-import moment from 'moment';
-
 const IndexPage = () => {
-  const [showDialogCourse, setShowDialogCourse] = useState(false);
-  const [selectedCourse, setSelectedCourse] = useState(null);
   const [barbers, setBarbers] = useState([]);
   const {
     // @ts-ignore
@@ -73,7 +64,6 @@ const IndexPage = () => {
     }
     return undefined
   }
-
   const pageInfo = {
     name: "Art Experience",
     slogan: "Space for Men",
@@ -180,12 +170,10 @@ const IndexPage = () => {
       url: "Read More"
     }
   ];
-
   const aboutusPictures = [
     { url: 'https://instagram.fmvd1-1.fna.fbcdn.net/v/t51.2885-15/e35/57488298_2276560875734649_7666756016645949298_n.jpg?_nc_ht=instagram.fmvd1-1.fna.fbcdn.net&_nc_cat=109&_nc_ohc=MskQCPZA-BkAX_omsCq&oh=44ff4fcc828dcbe2403bedd48f6383e6&oe=5F57538C' },
     { url: 'https://instagram.fmvd4-1.fna.fbcdn.net/v/t51.2885-15/e35/54800426_106275450418894_8601708499349892562_n.jpg?_nc_ht=instagram.fmvd4-1.fna.fbcdn.net&_nc_cat=110&_nc_ohc=q4qz70Pjc80AX-b06U8&oh=3251c0cae9f80fbccf8e56c45667f64f&oe=5F30DAD3' }
   ]
-
   const dividers = [
     {
       img: "https://instagram.fmvd1-1.fna.fbcdn.net/v/t51.2885-15/e35/57488298_2276560875734649_7666756016645949298_n.jpg?_nc_ht=instagram.fmvd1-1.fna.fbcdn.net&_nc_cat=109&_nc_ohc=MskQCPZA-BkAX_omsCq&oh=44ff4fcc828dcbe2403bedd48f6383e6&oe=5F57538C",
@@ -201,271 +189,41 @@ const IndexPage = () => {
     }
   ];
 
-  const getEmployees = () => {
-    return barbers.map((employee, i) =>
-      <div className="employee-item effect-opacity" key={i}>
-        <p className="employee-name art_experience-text-light">{employee.name}</p>
-        <div className="content-box">
-          <img className="employee-img" src={employee.urlProfileImage} aspect-ratio="1"></img>
-          <div className="info-box">
-            <p className="employee-info effect-opacity art_experience-text-light">{employee.job}</p>
-            <p className="employee-info effect-opacity art_experience-text-light">{employee.barberDescription}</p>
-          </div>
-          <p className="see-more effect-opacity art_experience-text-light">Pulse para mas información</p>
-        </div>
-        <div className="employee-social">
-          <a href={employee.instagram}>
-            <i className="fa fa-instagram" aria-hidden="true"></i>
-            <FaInstagram className="employee-social-logo social-logo" />
-          </a>
-          <a href={employee.facebook}>
-            <FaFacebook className="employee-social-logo social-logo" />
-          </a>
-        </div>
-      </div>
-    )
-  }
-
-  const getServices = () => {
-    return services.map((service, i) =>
-      <div className="service-item" key={i}>
-        {service.icon}
-        <p className={`service-name text-${getTheme()}`}>{service.name}</p>
-        <p className={`service-info text-${getTheme()}`}>{service.info}</p>
-      </div>
-    )
-  }
-
-  const getCourses = () => {
-    return courses.map((course, i) =>
-      <div className="course-item" key={i}>
-        <p className={`course-name text-${getTheme()}`}>{course.name}</p>
-        <img className="course-img" aspect-ratio="1" src={course.img}></img>
-        <p className={`course-duration text-${getTheme()}`}>Duracion: {course.duration}</p>
-        <Button className="see_more-btn art_experience-button_outlined"
-          label="Ver mas"
-          onClick={() => {
-            setSelectedCourse(course);
-            setShowDialogCourse(true);
-          }} />
-      </div >
-    )
-  }
-
-  const getFooter = () => {
-    return (
-      <div className="footer">
-        <img className="footer_logo-img effect-opacity" src="https://raw.githubusercontent.com/zerobyone-apis/Front_Art_experience_React/master/src/assets/gold_logo.png" alt="" />
-        <p className={`footer-email text-light`}>{pageInfo.email}</p>
-        <div className="footer-social">
-          <a href={pageInfo.instagram}>
-            <i className="fa fa-instagram" aria-hidden="true"></i>
-            <FaInstagram className="footer-social-logo social-logo" />
-          </a>
-          <a href={pageInfo.facebook}>
-            <FaFacebook className="footer-social-logo social-logo" />
-          </a>
-        </div>
-        <a className="footer-bussiness-link" href="https://www.instagram.com/zerobyone_/">
-          <p className={`art-text art_experience-text-${getTheme()}`}>© 2020 Art Experience - Desarrollado por ZeroByOne</p>
-        </a>
-      </div>
-    )
-  }
-
-
-
-
-
-
-  const Slider = (props: {
-    items: { url: string }[],
-    auto: boolean,
-  }) => {
-    const [wizard, setWizard] = useState(0);
-
-    useEffect(() => {
-      if (props.auto) {
-        automaticSlide()
-      }
-    }, [])
-
-    const automaticSlide = () => {
-      while (true) {
-        setTimeout(() => {
-          wizard < props.items.length ? setWizard(wizard + 1) : setWizard(0)
-        }, 2000);
-      }
-    }
-
-    const goLeft = () => {
-      wizard > 0 ? setWizard(wizard - 1) : setWizard(props.items.length - 1)
-    }
-
-    const goRight = () => {
-      wizard < props.items.length ? setWizard(wizard + 1) : setWizard(0)
-    }
-
-    return (
-      <div className="slider">
-        <div className="slider_item">
-          <img
-            src={props.items[wizard].url}
-            className="slider_item-image" />
-          {props.items.length > 1 ? (
-            <div className="arrows-box">
-              <div className="arrow_left-box" onClick={() => { goLeft() }}>
-                <FiArrowLeft className="arrow" />
-              </div>
-              <div className="arrow_right-box" onClick={() => { goRight() }}>
-                <FiArrowRight className="arrow" />
-              </div>
-            </div>
-          ) : null}
-        </div>
-      </div>
-    )
-  }
-
-
-  const AboutUsCard = () => {
-    return (
-      <div className="about_us-card">
-        <div className="info-box">
-          <p className="title art_experience-title art-title">{pageInfo.aboutUsTitle}</p>
-          <p className="info art_experience-text-light art-text">{pageInfo.aboutUs}</p>
-        </div>
-        <div className="slider-box">
-          <Slider auto={false} items={aboutusPictures} />
-        </div>
-      </div>
-    );
-  }
-
-  const BarbersCard = () => {
-    const getInfoBox = (barber, theme) => {
-      return (
-        <div className={`info-box ${theme}`}>
-          <p className="title art_experience-title art-title">{barber.name}</p>
-          <p className={`info art-text text-${theme}`}>{barber.barberDescription}</p>
-          <div className="employee-social">
-            <a href={barber.instagram}>
-              <i className="fa fa-instagram" aria-hidden="true"></i>
-              <FaInstagram className="employee-social-logo social-logo" />
-            </a>
-            <a href={barber.facebook}>
-              <FaFacebook className="employee-social-logo social-logo" />
-            </a>
-          </div>
-        </div>
-      )
-    }
-    const getSliderBox = (barber) => {
-      return (
-        <div className="slider-box">
-          <Slider auto={false} items={[{ url: barber.urlProfileImage }]} />
-        </div>
-      )
-    }
-
-    const getLeft = (barber) => {
-      return (
-        <div className="barber-card">
-          {getInfoBox(barber, 'dark')}
-          <div className={`line_divider ${getTheme()}`}><div /></div>
-          {getSliderBox(barber)}
-        </div>
-      )
-    }
-
-    const getRight = (barber) => {
-      return (
-        <div className="barber-card">
-          {getSliderBox(barber)}
-          <div className="line_divider"><div /></div>
-          {getInfoBox(barber, 'dark')}
-        </div >
-      )
-    }
-
-    return (
-      <div>
-        {
-          barbers.map((barber, i) => {
-            if (i % 2 != 0) {
-              return getLeft(barber);
-            } else {
-              return getRight(barber);
-            }
-          })
-        }
-      </div >
-    )
-  }
-
-
-
   return (
     <div className="index_page">
       <Toolbar />
       <div className="page-box">
         <div className="dashboard">
           <div id="banner" />
-          <div className="banner">
-            <div className="banner-img">
-              <img src="https://lh6.googleusercontent.com/proxy/sGPIfOpDBdIbW2kUprDAFEa3kxMpBjhegwDGzZoRrxny1TQWUX666MXQlTr-ujrj-Nugzn9yCroQtUzRuMh6JZOrqP5HrJB59XN8N-WomzS6sONOPkb6HEtdTLZb6bC206svYLyh0UWBgvmc=s0-d" alt="" />
-              {/* <img src={iconxd} /> */}
-            </div>
-            <div className="title-box">
-              <div className="box-shadow_space">
-              </div>
-              <img
-                className="logo-img effect-opacity"
-                src="https://raw.githubusercontent.com/zerobyone-apis/Front_Art_experience_React/master/src/assets/gold_logo.png" alt="" />
-              <div className="box-shadow_logo">
-              </div>
-            </div>
-          </div>
+          <Banner />
           <div id="about_us" />
-          <AboutUsCard />
-          <BarbersCard />
+          <AboutUsCard
+            title={pageInfo.aboutUsTitle}
+            info={pageInfo.aboutUs}
+            pictures={aboutusPictures}
+          />
           <div id="services" />
-          <Divider align={dividers[2].align} img={dividers[1].img} />
-          <Card theme="dark" title={pageInfo.servicesTitle} subtitle={pageInfo.services}>
-            {getServices()}
-          </Card>
-          <Divider align={dividers[1].align} img={dividers[0].img} />
+          <ServicesCard
+            services={services}
+            title={pageInfo.servicesTitle}
+            subTitle={pageInfo.contactUs} />
+          <BarbersCard barbers={barbers} />
           <div id="courses" />
-          <Card theme="dark" title={pageInfo.coursesTitle} subtitle={pageInfo.courses}>
-            {getCourses()}
-          </Card>
-          <Divider align={dividers[1].align} img={dividers[2].img} />
+          <CoursesCard
+            courses={courses}
+            title={pageInfo.coursesTitle}
+            subtitle={pageInfo.contactUs} />
           <div id="contact" />
-          <Card theme="dark" title={pageInfo.contactUsTitle} subtitle={pageInfo.contactUs}>
-            {getFooter()}
+          <Card
+            title={pageInfo.contactUsTitle}
+            subtitle={pageInfo.contactUs}>
+            <HomeFooter
+              email={pageInfo.email}
+              instagram={pageInfo.instagram}
+              facebook={pageInfo.facebook} />
           </Card>
-
-          {/* <Card title={pageInfo.aboutUsTitle} subtitle={pageInfo.aboutUs}>
-            {getEmployees()}
-          </Card>
-          <Divider align={dividers[1].align} img={dividers[0].img} />
-          <div id="services" />
-          <Divider align={dividers[2].align} img={dividers[1].img} /> */}
         </div>
       </div >
-      {!showDialogCourse ? null :
-        <DialogModal
-          className="dialog"
-          title={selectedCourse.name}
-          onClose={() => { setShowDialogCourse(false) }} >
-          {selectedCourse.info.split('\n').map((item, i) => {
-            return <p className="course-info art_experience-text-light" key={i}>{item}</p>
-          })}
-          <div className="divider"></div>
-          {selectedCourse.cost.split('\n').map((item, i) => {
-            return <p className="course-info art_experience-text-light" key={i}>{item}</p>
-          })}
-        </DialogModal>}
       <LoaderPage show={disabled} />
     </div >
   );

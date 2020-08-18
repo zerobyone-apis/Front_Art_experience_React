@@ -48,572 +48,215 @@
       min-height: 100px;
       height: max-content;
 
-      .banner {
-        position: relative;
-        width: 100%;
-        height: 100vh;
-        background-color: rgb(0, 0, 0);
-        // box-shadow: inset 20px 20px 0 0 rgb(68, 66, 52);
-        // border-radius: 20px;
-
-        .banner-img {
-          position: relative;
-          height: 100%;
-          width: 100%;
-          top: 0;
-          opacity: 0.5;
-
-          img {
-            position: relative;
-            height: 100%;
-            width: 100%;
-            background-position: center;
-          }
-        }
-
-        @media only screen and (max-width: 400px) {
-          .banner-img {
-            height: 100vh;
-          }
-        }
-
-        .title-box {
-          position: absolute;
-          width: 100%;
-          top: 30vh;
-          text-align: center;
-
-          img {
-            margin: auto;
-            text-align: center;
-            z-index: 1;
-            width: 100vw;
-            min-width: 100px !important;
-            max-width: 600px;
-            filter: drop-shadow(40px 40px 40px rgb(0, 0, 0));
-          }
-
-          @media only screen and (max-width: 750px) {
-            img {
-              width: 80vw;
-            }
-          }
-
-          .box-shadow_space {
-            position: absolute;
-            right: 198px;
-            bottom: 10px;
-            width: 200px;
-            height: 16px;
-          }
-        }
-      }
-
-
-      // slider
-
-      .slider {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.452);
-
-        .slider_item {
-          position: relative;
-          width: 100%;
-          height: 100%;
-          text-align: center;
-          // background-color: green;
-
-          .slider_item-image {
-            position: relative;
-            // width: 80%;
-            width: 100%;
-            height: 100%;
-          }
-
-          .arrows-box {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            bottom: 0;
-            margin: auto;
-            // background-color: green;
-
-            .arrow {
-              width: 40px;
-              height: 40px;
-              color: rgb(146, 144, 108);
-              opacity: 0.4;
-              margin: 0 10px 0 10px;
-              border-radius: 50%;
-            }
-
-            .arrow_left-box {
-              position: absolute;
-              height: 100%;
-              // background-color: red;
-              display: flex;
-              align-items: center;
-            }
-
-            .arrow_right-box {
-              position: absolute;
-              height: 100%;
-              right: 0;
-              // background-color: orange;
-              display: flex;
-              align-items: center;
-            }
-
-            @keyframes opacity_effect {
-              0% {
-                opacity: 0;
-              }
-
-              100% {
-                opacity: 1;
-              }
-            }
-
-
-            .arrow_left-box:hover {
-              animation-name: opacity_effect;
-              animation-duration: 2s;
-              background-color: rgba(0, 0, 0, 0.411);
-
-              .arrow {
-                opacity: 1;
-                background-color: rgba(0, 0, 0, 0.411);
-              }
-            }
-
-            .arrow_right-box:hover {
-              animation-name: opacity_effect;
-              animation-duration: 2s;
-              background-color: rgba(0, 0, 0, 0.411);
-
-              .arrow {
-                opacity: 1;
-                background-color: rgba(0, 0, 0, 0.411);
-              }
-            }
-
-          }
-        }
-
-        // CUSTOM STYLE
-        .slider_item {
-          display: flex;
-          align-items: center;
-
-          img {
-            position: relative;
-            margin: auto;
-            width: 70% !important;
-            height: 70% !important;
-            max-width: 400px;
-            border-radius: 4px;
-            border-top-left-radius: 20px;
-            border-bottom-right-radius: 20px;
-            box-shadow: 0px 0px 20px 0px rgb(68, 66, 52);
-          }
-        }
-      }
-
-
-
-
-      .about_us-card {
-        position: relative;
-        width: 100%;
-        height: 600px;
-        // background-color: grey;
+      // CUSTOM STYLE
+      .slider_item {
         display: flex;
-        // box-shadow: inset 20px 0 20px 20px red;
+        align-items: center;
 
-        .info-box {
+        img {
           position: relative;
-          width: 65%;
-          height: 100%;
-          background-color: black;
-
-          .title {
-            margin: 40px 0 0 0;
-            padding: 0;
-            text-align: center;
-          }
-
-          .info {
-            margin: 40px 10vw 0 10vw;
-          }
-        }
-
-        .slider-box {
-          position: relative;
-          width: 35%;
-          height: 100%;
-          // background-color: orange;
-        }
-      }
-
-      .barber-card {
-        position: relative;
-        width: 100%;
-        height: 600px;
-        background-color: grey;
-        display: flex;
-        border-color: rgba(255, 255, 255, 0.835);
-
-        .info-box {
-          position: relative;
-          width: 50%;
-          height: 100%;
-
-          .title {
-            margin: 40px 0 0 0;
-            padding: 0;
-            text-align: center;
-          }
-
-          .info {
-            margin: 40px 10vw 0 10vw;
-          }
-
-          .employee-social {
-            position: absolute;
-            // visibility: hidden;
-            width: 100%;
-            bottom: 40px; // background-color: red;
-            text-align: center;
-
-            .employee-social-logo {
-              position: relative;
-              display: inline-block;
-              width: 30px;
-              height: 30px;
-              // top: -20px;
-              margin: 0 20px 0 20px;
-              color: rgb(146, 144, 108);
-              border-radius: 50%;
-            }
-
-            .employee-social-logo:hover {
-              // color: white;
-              box-shadow: 0px 0px 20px 5px rgb(187, 187, 187);
-            }
-          }
-        }
-
-        .line_divider {
-          position: relative;
-          width: 2px;
-          height: 100%;
-          background-color: black;
-          display: flex;
-          align-items: center;
-
-          div {
-            position: relative;
-            width: 2px;
-            height: 70%;
-            background-color: rgb(146, 144, 108);
-          }
-        }
-
-        .slider-box {
-          position: relative;
-          width: 50%;
-          height: 100%;
-          background-color: rgb(0, 0, 0);
-
-          .slider_item {
-            display: flex;
-            align-items: center;
-
-            img {
-              position: relative;
-              margin: auto;
-              width: 70% !important;
-              height: 70% !important;
-              max-width: 400px;
-              border-radius: 4px;
-              border-top-left-radius: 20px;
-              border-bottom-right-radius: 20px;
-              box-shadow: 0px 0px 20px 0px rgb(68, 66, 52);
-            }
-          }
-
-
-        }
-      }
-
-
-
-
-
-
-
-
-
-      .employee-item {
-        position: relative;
-        margin: 5px;
-        width: 100%;
-        height: 100%;
-        max-width: 500px;
-        max-height: 750px;
-        display: inline-table;
-        text-align: center;
-        margin-top: 20px;
-        border-top-left-radius: 20px;
-        border-bottom-right-radius: 20px;
-
-        .content-box {
-          position: relative;
-
-          .employee-img {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            max-width: 500px;
-            max-height: 750px;
-            border-radius: 4px;
-            box-shadow: 0px 0px 20px 0px rgb(68, 66, 52);
-            // border-top-left-radius: 20%;
-            // border-bottom-right-radius: 20%;
-            border-radius: 10%;
-          }
-
-          .info-box {
-            position: absolute;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            text-align: center;
-            visibility: hidden;
-            overflow-y: scroll;
-
-            .employee-info {
-              margin: 10px;
-              font-size: calc(1vw + 8px);
-              color: rgb(214, 214, 214);
-              text-shadow: 2px 2px #000000;
-            }
-          }
-        }
-
-        .employee-name {
-          margin-top: 10px;
-          font-size: 16px;
-          color: rgb(214, 214, 214);
-        }
-
-        .employee-social {
-          position: absolute;
-          visibility: hidden;
-          width: 100%;
-          bottom: 10px; // background-color: red;
-
-          .employee-social-logo {
-            position: relative;
-            display: inline-block;
-            width: 30px;
-            height: 30px;
-            // top: -20px;
-            margin: 0 20px 0 20px;
-            color: rgb(214, 214, 214);
-            border-radius: 50%;
-          }
-
-          .employee-social-logo:hover {
-            color: white;
-            box-shadow: 0px 0px 20px 0px rgb(68, 66, 52);
-
-          }
-        }
-
-        .employee-url {
-          position: absolute;
-          bottom: 0px;
-          margin-left: 40%;
-        }
-      }
-
-      .employee-item:hover {
-        box-shadow: 0px 0px 20px 0px rgb(68, 66, 52);
-
-        .employee-img {
-          filter: grayscale(1);
-          opacity: 0.2;
-        }
-
-        .info-box {
-          visibility: visible;
-
-          .employee-info {
-            visibility: visible;
-          }
-        }
-
-        .see-more {
-          visibility: hidden;
-        }
-
-        .employee-social {
-          visibility: visible;
-        }
-      }
-
-      .service-item {
-        position: relative;
-        margin: 5px;
-        margin-top: 20px;
-        width: 250px;
-        display: inline-table;
-        text-align: center;
-        font-size: 16px;
-
-        .service-icon {
-          font-size: 40px;
-          color: rgb(68, 66, 52);
-        }
-
-        .service-name {
-          margin-bottom: 20px;
-          // color: rgb(214, 214, 214);
-        }
-
-        .service-info {
-          margin-left: 10px;
-          font-size: calc(1vw + 8px);
-          // color: rgb(214, 214, 214);
-        }
-
-        .service-url {
-          position: absolute;
-          bottom: 0px;
-          margin-left: 40%;
-          color: rgb(214, 214, 214);
-        }
-      }
-
-      .course-item {
-        position: relative;
-        margin: 5px;
-        margin-top: 20px;
-        width: 260px;
-        height: 320px;
-        display: inline-table;
-        text-align: center;
-        font-size: 16px;
-
-        .course-name {
-          // color: rgb(214, 214, 214);
-        }
-
-        .course-img {
-          position: relative;
-          width: 220px;
-          height: 240px;
+          margin: auto;
+          width: 70% !important;
+          height: 70% !important;
+          max-width: 400px;
           border-radius: 4px;
           border-top-left-radius: 20px;
           border-bottom-right-radius: 20px;
           box-shadow: 0px 0px 20px 0px rgb(68, 66, 52);
         }
+      }
+    }
 
-        .course-duration {
-          // color: rgb(214, 214, 214);
+    .employee-item {
+      position: relative;
+      margin: 5px;
+      width: 100%;
+      height: 100%;
+      max-width: 500px;
+      max-height: 750px;
+      display: inline-table;
+      text-align: center;
+      margin-top: 20px;
+      border-top-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+
+      .content-box {
+        position: relative;
+
+        .employee-img {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          max-width: 500px;
+          max-height: 750px;
+          border-radius: 4px;
+          box-shadow: 0px 0px 20px 0px rgb(68, 66, 52);
+          border-radius: 10%;
         }
 
-        .course-url {
+        .info-box {
           position: absolute;
-          bottom: 0px;
-          margin-left: 40%;
-          color: #3b3b3bbb;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          text-align: center;
+          visibility: hidden;
+          overflow-y: scroll;
+
+          .employee-info {
+            margin: 10px;
+            font-size: calc(1vw + 8px);
+            color: rgb(214, 214, 214);
+            text-shadow: 2px 2px #000000;
+          }
         }
       }
 
-      .footer {
+      .employee-name {
+        margin-top: 10px;
+        font-size: 16px;
+        color: rgb(214, 214, 214);
+      }
+
+      .employee-social {
+        position: absolute;
+        visibility: hidden;
+        width: 100%;
+        bottom: 10px;
+
+        .employee-social-logo {
+          position: relative;
+          display: inline-block;
+          width: 30px;
+          height: 30px;
+          margin: 0 20px 0 20px;
+          color: rgb(214, 214, 214);
+          border-radius: 50%;
+        }
+
+        .employee-social-logo:hover {
+          color: white;
+          box-shadow: 0px 0px 20px 0px rgb(68, 66, 52);
+
+        }
+      }
+
+      .employee-url {
+        position: absolute;
+        bottom: 0px;
+        margin-left: 40%;
+      }
+    }
+
+    .employee-item:hover {
+      box-shadow: 0px 0px 20px 0px rgb(68, 66, 52);
+
+      .employee-img {
+        filter: grayscale(1);
+        opacity: 0.2;
+      }
+
+      .info-box {
+        visibility: visible;
+
+        .employee-info {
+          visibility: visible;
+        }
+      }
+
+      .see-more {
+        visibility: hidden;
+      }
+
+      .employee-social {
+        visibility: visible;
+      }
+    }
+
+    .service-item {
+      position: relative;
+      margin: 5px;
+      margin-top: 20px;
+      width: 250px;
+      display: inline-table;
+      text-align: center;
+      font-size: 16px;
+
+      .service-icon {
+        font-size: 40px;
+        color: rgb(68, 66, 52);
+      }
+
+      .service-name {
+        margin-bottom: 20px;
+      }
+
+      .service-info {
+        margin-left: 10px;
+        font-size: calc(1vw + 8px);
+      }
+
+      .service-url {
+        position: absolute;
+        bottom: 0px;
+        margin-left: 40%;
+        color: rgb(214, 214, 214);
+      }
+    }
+
+    .course-item {
+      position: relative;
+      margin: 5px;
+      margin-top: 20px;
+      width: 260px;
+      height: 320px;
+      display: inline-table;
+      text-align: center;
+      font-size: 16px;
+
+      .course-img {
         position: relative;
-        width: 80%;
-        height: max-content;
-        margin: auto;
-        padding: 20px;
+        width: 220px;
+        height: 240px;
+        border-radius: 4px;
+        border-top-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+        box-shadow: 0px 0px 20px 0px rgb(68, 66, 52);
+      }
 
-        .footer_logo-img {
-          position: relative;
-          width: 20vw;
-          filter: drop-shadow(40px 40px 40px rgb(0, 0, 0));
-        }
-
-        .logo {
-          text-align: center;
-          font-size: 30px;
-          // color: rgb(214, 214, 214);
-        }
-
-        .footer-social {
-          position: relative;
-          width: 100%;
-          text-align: center;
-
-          .footer-social-logo {
-            position: relative;
-            display: inline-block;
-            width: 30px;
-            height: 30px;
-            margin: 0 20px 0 20px;
-            // color: rgb(214, 214, 214);
-            color: rgb(146, 144, 108);
-            border-radius: 50%;
-          }
-
-          .footer-social-logo:hover {
-            // color: white;
-            box-shadow: 0px 0px 30px 0px rgb(58, 57, 44);
-          }
-        }
-
-        .footer-email {
-          text-align: center;
-          // color: rgb(214, 214, 214);
-        }
-
-        .footer-bussiness {
-          position: relative;
-          top: 10px;
-          text-align: center;
-          // color: rgb(214, 214, 214);
-        }
+      .course-url {
+        position: absolute;
+        bottom: 0px;
+        margin-left: 40%;
+        color: #3b3b3bbb;
       }
     }
   }
+}
 
-  .dialog {
-    display: flex;
-    align-items: center;
+.dialog {
+  display: flex;
+  align-items: center;
 
-    .dialog-modal {
-      width: 40%;
-      height: max-content !important;
-      text-align: center;
+  .dialog-modal {
+    width: 40%;
+    height: max-content !important;
+    text-align: center;
 
-      .content {
-        padding: 20px;
+    .content {
+      padding: 20px;
 
-        .course-info {
-          position: relative;
-          font-size: calc(1vw + 8px);
-          padding: 0;
-          margin: 0;
-        }
+      .course-info {
+        position: relative;
+        font-size: calc(1vw + 8px);
+        padding: 0;
+        margin: 0;
+      }
 
-        .divider {
-          position: relative;
-          width: 20px;
-          height: 20px;
-        }
+      .divider {
+        position: relative;
+        width: 20px;
+        height: 20px;
       }
     }
   }

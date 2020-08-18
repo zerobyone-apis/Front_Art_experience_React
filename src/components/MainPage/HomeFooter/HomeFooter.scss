@@ -1,0 +1,53 @@
+.home-footer {
+    position: relative;
+    width: 80%;
+    height: max-content;
+    margin: auto;
+    padding: 20px;
+
+    .footer_logo-img {
+        position: relative;
+        width: 20vw;
+        filter: drop-shadow(40px 40px 40px rgb(0, 0, 0));
+    }
+
+    .logo {
+        text-align: center;
+        font-size: 30px;
+        // color: rgb(214, 214, 214);
+    }
+
+    .footer-social {
+        position: relative;
+        width: 100%;
+        text-align: center;
+
+        .footer-social-logo {
+            position: relative;
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            margin: 0 20px 0 20px;
+            // color: rgb(214, 214, 214);
+            color: rgb(146, 144, 108);
+            border-radius: 50%;
+        }
+
+        .footer-social-logo:hover {
+            // color: white;
+            box-shadow: 0px 0px 30px 0px rgb(58, 57, 44);
+        }
+    }
+
+    .footer-email {
+        text-align: center;
+        // color: rgb(214, 214, 214);
+    }
+
+    .footer-bussiness {
+        position: relative;
+        top: 10px;
+        text-align: center;
+        // color: rgb(214, 214, 214);
+    }
+}
