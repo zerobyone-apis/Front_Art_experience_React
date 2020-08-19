@@ -3,6 +3,7 @@ import { Card } from '../../Card';
 import { ThemeContext } from '../../../contexts/ThemeContext';
 import { Button } from '../../Button';
 import { DialogModal } from '../../DialogModal';
+import './CoursesCard.scss';
 
 export const CoursesCard = (props: {
     courses: any[],
@@ -34,7 +35,7 @@ export const CoursesCard = (props: {
 
     return (
         <Fragment>
-            <Card title={props.title} subtitle={props.subtitle}>
+            <Card className="courses-box" title={props.title} subtitle={props.subtitle}>
                 {getCourses()}
             </Card>
             {

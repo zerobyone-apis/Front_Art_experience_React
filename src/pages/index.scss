@@ -178,65 +178,6 @@
         visibility: visible;
       }
     }
-
-    .service-item {
-      position: relative;
-      margin: 5px;
-      margin-top: 20px;
-      width: 250px;
-      display: inline-table;
-      text-align: center;
-      font-size: 16px;
-
-      .service-icon {
-        font-size: 40px;
-        color: rgb(68, 66, 52);
-      }
-
-      .service-name {
-        margin-bottom: 20px;
-      }
-
-      .service-info {
-        margin-left: 10px;
-        font-size: calc(1vw + 8px);
-      }
-
-      .service-url {
-        position: absolute;
-        bottom: 0px;
-        margin-left: 40%;
-        color: rgb(214, 214, 214);
-      }
-    }
-
-    .course-item {
-      position: relative;
-      margin: 5px;
-      margin-top: 20px;
-      width: 260px;
-      height: 320px;
-      display: inline-table;
-      text-align: center;
-      font-size: 16px;
-
-      .course-img {
-        position: relative;
-        width: 220px;
-        height: 240px;
-        border-radius: 4px;
-        border-top-left-radius: 20px;
-        border-bottom-right-radius: 20px;
-        box-shadow: 0px 0px 20px 0px rgb(68, 66, 52);
-      }
-
-      .course-url {
-        position: absolute;
-        bottom: 0px;
-        margin-left: 40%;
-        color: #3b3b3bbb;
-      }
-    }
   }
 }
 

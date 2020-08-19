@@ -61,7 +61,7 @@ export const BarbersCard = (props: {
     }
 
     return (
-        <Card title="Barberos" subtitle="Tenemos un personal especializado en todo tipo de trabajos, con la mejor atencion y coordialidad">
+        <Card className="barber-box" title="Barberos" subtitle="Tenemos un personal especializado en todo tipo de trabajos, con la mejor atencion y coordialidad">
             {
                 props.barbers.map((barber, i) => {
                     if (i % 2 != 0) {

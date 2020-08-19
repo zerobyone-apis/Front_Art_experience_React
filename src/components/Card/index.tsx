@@ -8,6 +8,7 @@ import '../../styles/theme.scss';
 export const Card = (props: {
     title: string,
     subtitle: string,
+    className?: string,
     children?: any,
     id?: string,
     theme?: 'dark' | 'light'
@@ -18,7 +19,7 @@ export const Card = (props: {
     } = useContext(ThemeContext);
 
     return (
-        <div className={`card ${props.theme ? props.theme : getTheme()}`} id={props.id}>
+        <div className={`${props.className + ' ' || ''}card ${props.theme ? props.theme : getTheme()}`} id={props.id}>
             <div className="anchor" id="about_us"></div>
             <p className={`text-${props.theme ? props.theme : getTheme()} card_title art-title title`}
             >{props.title}</p>

@@ -1,0 +1,52 @@
+.services-card {
+    .service-item {
+        position: relative;
+        width: 250px;
+        margin: 40px 20px 0 20px;
+        display: inline-table;
+        text-align: center;
+        font-size: 16px;
+
+        .service-icon {
+            font-size: 40px;
+            color: rgb(68, 66, 52);
+        }
+
+        .service-name {
+            margin-bottom: 20px;
+        }
+
+        .service-info {
+            // margin-left: 10px;
+            font-size: calc(1vw + 8px);
+        }
+
+        .service-url {
+            position: absolute;
+            bottom: 0px;
+            margin-left: 40%;
+            color: rgb(214, 214, 214);
+        }
+    }
+}
+
+// IPHONE5/SE
+@media only screen and (max-width: 750px) {
+    .services-card {
+        text-align: center;
+
+        .card_subtitle {
+            margin-bottom: 20px;
+        }
+
+        .service-icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        .service-item {
+            display: inline;
+            margin: 0;
+        }
+    }
+}

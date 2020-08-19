@@ -24,7 +24,7 @@ export const ServicesCard = (props: {
     }
 
     return (
-        <Card title={props.title} subtitle={props.subTitle}>
+        <Card className="services-card" title={props.title} subtitle={props.subTitle}>
             {getServices()}
         </Card>
     )
