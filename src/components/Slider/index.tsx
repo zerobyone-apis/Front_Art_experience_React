@@ -1,11 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { FiArrowLeft, FiArrowRight } from 'react-icons/fi';
 import './Slider.scss';
+import { ThemeContext } from '../../contexts/ThemeContext';
 
 export const Slider = (props: {
     items: { url: string }[],
     auto: boolean,
 }) => {
+    const {
+        // @ts-ignore
+        getTheme,
+    } = useContext(ThemeContext);
+
     const [wizard, setWizard] = useState(0);
 
     useEffect(() => {
@@ -31,7 +37,7 @@ export const Slider = (props: {
     }
 
     return (
-        <div className="slider">
+        <div className={`slider ${getTheme()}`}>
             <div className="slider_item">
                 <img
                     src={props.items[wizard].url}

@@ -43,7 +43,7 @@ export const BarbersCard = (props: {
     const getLeft = (barber) => {
         return (
             <div className="barber-card">
-                {getInfoBox(barber, 'dark')}
+                {getInfoBox(barber, getTheme())}
                 <div className={`line_divider ${getTheme()}`}><div /></div>
                 {getSliderBox(barber)}
             </div>
@@ -55,13 +55,13 @@ export const BarbersCard = (props: {
             <div className="barber-card">
                 {getSliderBox(barber)}
                 <div className="line_divider"><div /></div>
-                {getInfoBox(barber, 'dark')}
+                {getInfoBox(barber, getTheme())}
             </div >
         )
     }
 
     return (
-        <Card theme="dark" title="Barberos" subtitle="Tenemos un personal especializado en todo tipo de trabajos, con la mejor atencion y coordialidad">
+        <Card title="Barberos" subtitle="Tenemos un personal especializado en todo tipo de trabajos, con la mejor atencion y coordialidad">
             {
                 props.barbers.map((barber, i) => {
                     if (i % 2 != 0) {

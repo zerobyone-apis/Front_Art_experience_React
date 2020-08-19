@@ -2,12 +2,10 @@
     display: flex;
     align-items: center;
 
-
-
-
     .dialog-modal {
         width: 40%;
-        height: max-content !important;
+        // height: max-content !important;
+        height: 80%;
         text-align: center;
 
         .content {
@@ -66,20 +64,9 @@
 }
 
 @media only screen and (max-width: 750px) {
-    .login-modal {
-        .login-btn {
-            button {
-                // .button-content {
-                //     // width: 20px;
-
-                //     p {
-                //         // position: absolute;
-                //         // visibility: hidden !important;
-                //     }
-                // }
-            }
-        }
-    }
+    // .login-modal {
+    //     .login-btn {}
+    // }
 }
 
 

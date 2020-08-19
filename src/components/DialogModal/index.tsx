@@ -1,11 +1,12 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useState, Fragment, useEffect } from 'react';
+import React, { useState, Fragment, useEffect, useContext } from 'react';
 import { Button } from '../Button';
 import './DialogModal.scss';
 import '../../styles/ArtExperienceButtons.scss';
 import '../../styles/ArtExperienceFonts.scss';
-import '../../styles/Effects.scss';
+// import '../../styles/Effects.scss';
 import { AiOutlineClose } from 'react-icons/ai';
+import { ThemeContext } from '../../contexts/ThemeContext';
 
 export const DialogModal = (props: {
   title?: string,
@@ -19,9 +20,15 @@ export const DialogModal = (props: {
   className?: string,
   buttonClassName?: string
 }) => {
+  const {
+    // @ts-ignore
+    getTheme,
+  } = useContext(ThemeContext);
+
+  // style={{ height: `${props.height}`, width: `${props.width}` }
   return (
     <div className={`dialog-box effect-opacity ${props.className}`}>
-      <div className="dialog-modal effect-opacity" style={{ height: `${props.height}`, width: `${props.width}` }}>
+      <div className={`dialog-modal effect-opacity ${getTheme()}`}>
         <div className="header">
           <div className="close_btn-box">
             <div className="art_experience-button_only-text">
@@ -37,10 +44,10 @@ export const DialogModal = (props: {
             {props.header || <p className="art_experience-text-light art-title title">{props.title}</p>}
           </div>
         </div>
-        <div className="content">
+        <div className={`content ${getTheme}`}>
           {props.children}
         </div>
       </div>
-    </div>
+    </div >
   );
 }

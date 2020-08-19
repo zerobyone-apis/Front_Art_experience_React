@@ -9,6 +9,7 @@ import React, { useContext } from 'react';
 import { ReserveModal } from '../ReserveModal';
 import { toolbarButtons } from '../../utils/toolbarButtons';
 import { UserContext } from '../../contexts/UserContext';
+import { ThemeContext } from '../../contexts/ThemeContext';
 
 export const Toolbar = () => {
     const {
@@ -16,9 +17,13 @@ export const Toolbar = () => {
         userIsLogged,
         getUserData,
     } = useContext(UserContext);
+    const {
+        // @ts-ignore
+        getTheme,
+    } = useContext(ThemeContext);
 
     return (
-        <div className="toolbar effect-slide_bottom">
+        <div className={`toolbar effect-slide_bottom ${getTheme()}`}>
             <div id="start_page" />
             <div className="left-box">
                 <LeftMenu />

@@ -34,7 +34,7 @@ export const CoursesCard = (props: {
 
     return (
         <Fragment>
-            <Card theme="dark" title={props.title} subtitle={props.subtitle}>
+            <Card title={props.title} subtitle={props.subtitle}>
                 {getCourses()}
             </Card>
             {

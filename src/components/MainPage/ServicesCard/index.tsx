@@ -15,7 +15,7 @@ export const ServicesCard = (props: {
 
     const getServices = () => {
         return props.services.map((service, i) =>
-            <div className="service-item" key={i}>
+            <div className={`service-item ${getTheme()}`} key={i}>
                 {service.icon}
                 <p className={`service-name text-${getTheme()}`}>{service.name}</p>
                 <p className={`service-info text-${getTheme()}`}>{service.info}</p>
@@ -24,7 +24,7 @@ export const ServicesCard = (props: {
     }
 
     return (
-        <Card theme="dark" title={props.title} subtitle={props.subTitle}>
+        <Card title={props.title} subtitle={props.subTitle}>
             {getServices()}
         </Card>
     )

@@ -1,29 +1,19 @@
 .services-box {
   position: relative;
   width: 100%;
-  background-color: green;
-
-  // height: 90%; // footer
-  // height: calc(100% - 780px) !important;
-  // height: calc(100% - 80px); // footer
-  // overflow-y: scroll;
-  // display: flex;
 
   .list_services-box {
     position: relative;
     width: 80%;
     margin: auto;
-    height: 100%; // footer
+    height: 100%;
     overflow-x: hidden;
-
-    // SERVICE OF LIST OF SERVICES  
 
     .service {
       position: relative;
       height: 50px;
       width: 100%;
       padding-bottom: 1px;
-      // margin-bottom: 10px;
       cursor: pointer;
       display: flex;
 

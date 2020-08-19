@@ -17,8 +17,8 @@ import { CoursesCard } from '../components/MainPage/CoursesCard';
 import { Banner } from '../components/MainPage/Banner';
 import { ServicesCard } from '../components/MainPage/ServicesCard';
 import './index.scss';
-import '../styles/Effects.scss';
-import '../styles/theme.scss';
+// import '../styles/Effects.scss';
+// import '../styles/theme.scss';
 import '../styles/ArtExperienceButtons.scss';
 
 const IndexPage = () => {
@@ -207,6 +207,7 @@ const IndexPage = () => {
             services={services}
             title={pageInfo.servicesTitle}
             subTitle={pageInfo.contactUs} />
+          <div id="barbers" />
           <BarbersCard barbers={barbers} />
           <div id="courses" />
           <CoursesCard

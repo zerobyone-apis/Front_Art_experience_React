@@ -12,7 +12,6 @@
     border-radius: 4px;
     border-style: none;
     display: flex !important;
-    background-color: rgb(93, 93, 93);
 
     .button-content {
       position: relative;
@@ -22,7 +21,6 @@
   }
 
   button:hover {
-    color: white;
     cursor: pointer;
   }
 
