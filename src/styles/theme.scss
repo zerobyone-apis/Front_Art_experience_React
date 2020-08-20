@@ -31,6 +31,12 @@ a {
   color: rgba(0, 0, 0, 0) !important;
 }
 
+
+body {
+  // background-image: url("https://previews.123rf.com/images/sunspire/sunspire1610/sunspire161000338/64589322-vector-modern-abstract-geometry-memphis-pattern-black-and-white-seamless-geometric-background-subtle.jpg");
+  background-repeat: repeat;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -46,16 +52,30 @@ body {
   height: 100%;
 }
 
+
+// BACKGROUNDS
 .dark {
-  background-color: black;
+  background-color: rgb(7, 7, 7);
 }
 
 .light {
   background-color: white;
 }
 
+// FONTS
+.title {
+  font-size: calc(1vw + 14px);
+  color: rgb(146, 144, 108);
+}
+
+.text {
+  // font-size: calc(1vw + 4px);
+  font-size: 13px;
+  // color: green !important;
+}
+
 .text-light {
-  font-family: 'Balthazar', serif;
+  font-family: 'Roboto', sans-serif;
   color: #303030d5;
   font-weight: 300;
   text-transform: none;
@@ -63,14 +83,10 @@ body {
 }
 
 .text-dark {
-  font-family: 'Balthazar', serif;
-  color: #ffffffef;
-  font-weight: 300;
+  font-family: 'Roboto', sans-serif;
+  color: #bebebeef;
   text-transform: none;
-  box-shadow: 1px, 3px #ffffff4f;
 }
-
-
 
 // TextField
 .theme-text_field--light {
