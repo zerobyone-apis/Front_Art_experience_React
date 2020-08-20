@@ -111,12 +111,8 @@ export const ValidationForm = (props: {
     }
 
     const onClickValidate: any = () => {
-        console.log('accede onClickValidate')
         if (validate()) {
-            console.log('val true')
             props.onClick();
-        } else {
-            console.log('val false')
         }
     }
 

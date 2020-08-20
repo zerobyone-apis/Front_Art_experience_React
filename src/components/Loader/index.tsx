@@ -7,7 +7,6 @@ export const Loader = () => {
         <div className="loader">
 
             <div className="lds-ellipsis">
-                {/* <p className="title">Cargando</p> */}
                 <FaCut className="icon" />
                 <FaCut className="icon" />
                 <FaCut className="icon" />

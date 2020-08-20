@@ -9,10 +9,6 @@
     align-items: center;
   }
 
-  .reserve-btn:hover {
-    font-size: 13px;
-  }
-
   // Reserve Stepper
   .reserve-step {
     position: absolute;
@@ -62,7 +58,6 @@
     overflow-x: none;
 
     .confirm_info {
-      font-size: 18px;
       color: rgb(170, 170, 170);
     }
 

@@ -22,8 +22,13 @@ import './ReserveModal.scss';
 import '../../styles/theme.scss';
 import '../../styles/Effects.scss';
 import '../../styles/ArtExperienceButtons.scss';
+import { ThemeContext } from '../../contexts/ThemeContext';
 
 export const ReserveModal = (props: { className?: string }) => {
+  const {
+    // @ts-ignore
+    getTheme,
+  } = useContext(ThemeContext);
   const {
     // @ts-ignore
     userIsLogged,
@@ -183,8 +188,8 @@ export const ReserveModal = (props: { className?: string }) => {
           hideCloseButton={wizard == 4}>
           <Stepper wizard={wizard}>
             <div className="reserve-step">
-              <div className="step-title art_experience-text-light">
-                <p>Seleccione el servicio que se desea realizar</p>
+              <div className="step-title">
+                <p className={`text text-${getTheme()}`}>Seleccione el servicio que se desea realizar</p>
               </div>
               <ServicesList
                 services={services}
@@ -193,8 +198,8 @@ export const ReserveModal = (props: { className?: string }) => {
             </div>
 
             <div className="reserve-step">
-              <div className="step-title art_experience-text-light">
-                <p>Seleccione el Barbero</p>
+              <div className="step-title">
+                <p className={`text text-${getTheme()}`}>Seleccione el Barbero</p>
               </div>
               <BarbersList
                 value={selectedBarber}
@@ -202,8 +207,8 @@ export const ReserveModal = (props: { className?: string }) => {
             </div>
 
             <div className="reserve-step">
-              <div className="step-title art_experience-text-light">
-                <p>Seleccione el Barbero</p>
+              <div className="step-title">
+                <p className={`text text-${getTheme()}`}>Seleccione la fecha y hora</p>
               </div>
               <ReserveTime
                 reserveDate={reserveDate}
@@ -213,27 +218,24 @@ export const ReserveModal = (props: { className?: string }) => {
             </div>
 
             <div className="reserve-step">
-              <div className="step-title art_experience-text-light">
-                <p>Confirmacion de reserva</p>
+              <div className="step-title">
+                <p className={`text text-${getTheme()}`}>Confirmacion de reserva</p>
               </div>
               <div className="confirm_data-box">
-                <p className="confirm_info effect-slide_left">
+                <p className={`confirm_info effect-slide_left text text-${getTheme()}`}>
                   {`Fecha de reservacion: ${moment(reserveDate).format("DD/MM/YYYY")}`}
                 </p>
-
-                {/* <p className="confirm_info">{`Nombre del cliente: ${getUserData().username}`}</p>
-                <p className="confirm_info">{`Celular/Telefono del cliente: ${getUserData().cel}`}</p>
-                <p className="confirm_info">{`Email del cliente: ${getUserData().email}`}</p> */}
-
-                <p className="confirm_info">{`Servicio: ${selectedService ? selectedService.name : 'No se selecciono servicio'}`}</p>
-                <p className="confirm_info">{`Barbero: ${selectedBarber ? selectedBarber.name : ''}`}</p>
-                <p className="confirm_info">{`Horario: ${reserveHour}`}</p>
-                <p className="confirm_info">{`Costo: ${selectedService ? `$${selectedService.cost}` : 'No se selecciono servicio'}`}</p>
+                <p className={`confirm_info text text-${getTheme()}`}>{`Servicio: ${selectedService ? selectedService.name : 'No se selecciono servicio'}`}</p>
+                <p className={`confirm_info text text-${getTheme()}`}>{`Barbero: ${selectedBarber ? selectedBarber.name : ''}`}</p>
+                <p className={`confirm_info text text-${getTheme()}`}>{`Horario: ${reserveHour}`}</p>
+                <p className={`confirm_info text text-${getTheme()}`}>{`Costo: ${selectedService ? `$${selectedService.cost}` : 'No se selecciono servicio'}`}</p>
               </div>
             </div>
+
+            {/* Success reservation message  */}
             <div className="reserve-step">
-              <div className="step-title art_experience-text-light">
-                <p>Reservacion - ArtExperience</p>
+              <div className="step-title">
+                <p className={`text text-${getTheme()}`}>Reservacion - ArtExperience</p>
               </div>
               <div className="confirm_data-box">
                 <p className="confirm_info">Se ha realizado la reserva de forma exitosa!</p>
@@ -251,12 +253,14 @@ export const ReserveModal = (props: { className?: string }) => {
         </DialogModal>
       )
       }
-      {showLoginDialog ? (
-        <LoginModal
-          show={true}
-          onClose={setShowLoginDialog}
-          onSuccessLogin={goToReserve} />
-      ) : null}
-    </div>
+      {
+        showLoginDialog ? (
+          <LoginModal
+            show={true}
+            onClose={setShowLoginDialog}
+            onSuccessLogin={goToReserve} />
+        ) : null
+      }
+    </div >
   );
 }
