@@ -1,9 +1,10 @@
 // eslint-disable-next-line no-unused-vars
-import React, { ChangeEvent, useState, useEffect } from 'react';
+import React, { ChangeEvent, useState, useEffect, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as Icons from '@fortawesome/free-solid-svg-icons';
 import './TextField.scss';
 import '../../styles/ArtExperienceFonts.scss';
+import { ThemeContext } from '../../contexts/ThemeContext';
 
 export const TextField = (props: {
   value?: any;
@@ -21,9 +22,13 @@ export const TextField = (props: {
   required?: boolean;
   className?: string;
 }) => {
+  const {
+    // @ts-ignore
+    getTheme,
+  } = useContext(ThemeContext);
+
   const [value, setValue] = useState(props.value || '');
   const [error, setError] = useState(props.error);
-
   useEffect(() => {
     setError(props.error);
   }, [props.error])
@@ -47,7 +52,7 @@ export const TextField = (props: {
     }
   };
   return (
-    <div className={`${props.className || ''} text-field`}>
+    <div className={`${props.className || ''} text-field_${getTheme()} text-field`}>
       <label className="label art_experience-text-dark">{props.label}</label>
       <div className="input-box">
         <label className="hint-label art_experience-text-dark">{props.hint}</label>

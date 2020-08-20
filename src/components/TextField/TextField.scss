@@ -8,7 +8,9 @@ textarea:-webkit-autofill:focus,
 select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
-  -webkit-text-fill-color: rgb(228, 228, 228);
+  -webkit-text-fill-color: white;
+  box-shadow: 0 0 0px 1000px rgb(99, 99, 99) inset !important;
+  transition: background-color 5000s ease-in-out 0s;
 }
 
 .text-field {
@@ -55,6 +57,59 @@ select:-webkit-autofill:focus {
       position: absolute;
       top: 6px;
       right: 5px;
+      opacity: 0.4;
+    }
+  }
+}
+
+// THEMES
+// LIGHT
+.text-field_light {
+  margin-top: 5px;
+
+  .label {
+    color: rgb(214, 214, 214);
+  }
+
+  .error-label {
+    color: rgb(231, 131, 131);
+  }
+
+  .input-box {
+    input {
+      color: rgb(49, 49, 49);
+    }
+
+    .text_field-icon {
+      opacity: 0.4;
+    }
+  }
+}
+
+// DARK
+.text-field_dark {
+  margin-top: 5px;
+
+  .label {
+    color: rgb(214, 214, 214);
+  }
+
+  .error-label {
+    color: rgb(231, 131, 131);
+  }
+
+  .input-box {
+    .hint-label {
+      color: rgb(214, 214, 214);
+    }
+
+    input {
+      border-style: none;
+      color: rgb(255, 255, 255);
+      background-color: rgb(99, 99, 99);
+    }
+
+    .text_field-icon {
       opacity: 0.4;
     }
   }
