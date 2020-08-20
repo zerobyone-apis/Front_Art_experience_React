@@ -17,8 +17,8 @@ export const BarbersCard = (props: {
     const getInfoBox = (barber, theme) => {
         return (
             <div className={`info-box ${theme}`}>
-                <p className="title art_experience-title art-title">{barber.name}</p>
-                <p className={`info art-text text-${theme}`}>{barber.barberDescription}</p>
+                <p className="title">{barber.name}</p>
+                <p className={`info text text-${theme}`}>{barber.barberDescription}</p>
                 <div className="employee-social">
                     <a href={barber.instagram}>
                         <i className="fa fa-instagram" aria-hidden="true"></i>
@@ -40,9 +40,9 @@ export const BarbersCard = (props: {
         )
     }
 
-    const getLeft = (barber) => {
+    const getLeft = (barber, i) => {
         return (
-            <div className="barber-card">
+            <div className="barber-card" key={i}>
                 {getInfoBox(barber, getTheme())}
                 <div className={`line_divider ${getTheme()}`}><div /></div>
                 {getSliderBox(barber)}
@@ -50,9 +50,9 @@ export const BarbersCard = (props: {
         )
     }
 
-    const getRight = (barber) => {
+    const getRight = (barber, i) => {
         return (
-            <div className="barber-card">
+            <div className="barber-card" key={i}>
                 {getSliderBox(barber)}
                 <div className="line_divider"><div /></div>
                 {getInfoBox(barber, getTheme())}
@@ -65,9 +65,9 @@ export const BarbersCard = (props: {
             {
                 props.barbers.map((barber, i) => {
                     if (i % 2 != 0) {
-                        return getLeft(barber);
+                        return getLeft(barber, i);
                     } else {
-                        return getRight(barber);
+                        return getRight(barber, i);
                     }
                 })
             }
