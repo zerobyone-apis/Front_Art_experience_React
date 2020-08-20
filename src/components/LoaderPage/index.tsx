@@ -1,10 +1,13 @@
-import React from 'react';
+import Reactm, { useEffect } from 'react';
 import { Loader } from '../Loader';
 import './LoaderPage.scss';
 
 export const LoaderPage = (props: {
     show: boolean
 }) => {
+    useEffect(() => {
+        console.log('loader ', props.show)
+    }, [])
     const showLoader = () => {
         if (props.show) {
             return (
@@ -18,6 +21,5 @@ export const LoaderPage = (props: {
             return null
         }
     }
-
     return showLoader();
 }
