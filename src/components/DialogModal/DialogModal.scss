@@ -19,7 +19,7 @@
     position: relative;
     height: calc(100% - 60px);
     max-width: 800px;
-    // min-width: 500px;
+    min-width: 500px;
     margin: auto;
     // background-color: green;
 
@@ -67,7 +67,7 @@
       position: relative;
       min-height: 40vh;
       height: calc(100% - 60px);
-      overflow-y: scroll;
+      // overflow-y: scroll;
       overflow-x: hidden;
     }
   }

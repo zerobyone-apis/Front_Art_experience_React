@@ -46,7 +46,7 @@ select:-webkit-autofill:focus {
       position: relative;
       height: 18px;
       outline: none;
-      border-width: 1px;
+      // border-width: 1px;
       padding: 5px;
       padding-left: 10px;
       font-style: normal;
@@ -68,7 +68,7 @@ select:-webkit-autofill:focus {
   margin-top: 5px;
 
   .label {
-    color: rgb(214, 214, 214);
+    color: #303030d5;
   }
 
   .error-label {
@@ -77,7 +77,7 @@ select:-webkit-autofill:focus {
 
   .input-box {
     input {
-      color: rgb(49, 49, 49);
+      color: #303030d5;
     }
 
     .text_field-icon {
