@@ -15,10 +15,10 @@ export const ServicesCard = (props: {
 
     const getServices = () => {
         return props.services.map((service, i) =>
-            <div className={`service-item ${getTheme()}`} key={i}>
+            <div className={`service-item`} key={i}>
                 {service.icon}
-                <p className={`service-name text-${getTheme()}`}>{service.name}</p>
-                <p className={`service-info text-${getTheme()}`}>{service.info}</p>
+                <p className={`service-name text text-${getTheme()}`}>{service.name}</p>
+                <p className={`service-info text text-${getTheme()}`}>{service.info}</p>
             </div>
         )
     }

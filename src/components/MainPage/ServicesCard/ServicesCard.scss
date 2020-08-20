@@ -5,7 +5,6 @@
         margin: 40px 20px 0 20px;
         display: inline-table;
         text-align: center;
-        font-size: 16px;
 
         .service-icon {
             font-size: 40px;
@@ -14,11 +13,6 @@
 
         .service-name {
             margin-bottom: 20px;
-        }
-
-        .service-info {
-            // margin-left: 10px;
-            font-size: calc(1vw + 8px);
         }
 
         .service-url {
