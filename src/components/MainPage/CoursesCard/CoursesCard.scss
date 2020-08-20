@@ -1,4 +1,4 @@
-.courses-box {
+.courses-card {
     .course-item {
         position: relative;
         margin: 5px;
@@ -7,7 +7,6 @@
         height: 320px;
         display: inline-table;
         text-align: center;
-        font-size: 16px;
 
         .course-img {
             position: relative;
@@ -30,7 +29,7 @@
 
 // IPHONE5/SE
 @media only screen and (max-width: 750px) {
-    .courses-box {
+    .courses-card {
         padding: 20px 0 20px 0;
 
         .course-item {

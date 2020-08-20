@@ -20,9 +20,9 @@ export const CoursesCard = (props: {
     const getCourses = () => {
         return props.courses.map((course, i) =>
             <div className="course-item" key={i}>
-                <p className={`course-name text-${getTheme()}`}>{course.name}</p>
+                <p className={`course-name text text-${getTheme()}`}>{course.name}</p>
                 <img className="course-img" aspect-ratio="1" src={course.img}></img>
-                <p className={`course-duration text-${getTheme()}`}>Duracion: {course.duration}</p>
+                <p className={`course-duration text text-${getTheme()}`}>Duracion: {course.duration}</p>
                 <Button className="see_more-btn art_experience-button_outlined"
                     label="Ver mas"
                     onClick={() => {
@@ -35,7 +35,7 @@ export const CoursesCard = (props: {
 
     return (
         <Fragment>
-            <Card className="courses-box" title={props.title} subtitle={props.subtitle}>
+            <Card className="courses-card" title={props.title} subtitle={props.subtitle}>
                 {getCourses()}
             </Card>
             {
@@ -45,11 +45,11 @@ export const CoursesCard = (props: {
                         title={selected.name}
                         onClose={() => { setShowDialog(false) }} >
                         {selected.info.split('\n').map((item, i) => {
-                            return <p className="course-info art_experience-text-light" key={i}>{item}</p>
+                            return <p className="course-info text text-light" key={i}>{item}</p>
                         })}
                         <div className="divider"></div>
                         {selected.cost.split('\n').map((item, i) => {
-                            return <p className="course-info art_experience-text-light" key={i}>{item}</p>
+                            return <p className="course-info text text-light" key={i}>{item}</p>
                         })}
                     </DialogModal>
             }
