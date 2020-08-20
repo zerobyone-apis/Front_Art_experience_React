@@ -45,11 +45,11 @@ export const CoursesCard = (props: {
                         title={selected.name}
                         onClose={() => { setShowDialog(false) }} >
                         {selected.info.split('\n').map((item, i) => {
-                            return <p className="course-info text text-light" key={i}>{item}</p>
+                            return <p className={`course-info text text-${getTheme()}`} key={i}>{item}</p>
                         })}
                         <div className="divider"></div>
                         {selected.cost.split('\n').map((item, i) => {
-                            return <p className="course-info text text-light" key={i}>{item}</p>
+                            return <p className={`course-info text text-${getTheme()}`} key={i}>{item}</p>
                         })}
                     </DialogModal>
             }
