@@ -3,6 +3,8 @@ import { BarberListContext } from '../../../contexts/BarberListContext';
 import { IBarber } from '../../../types/Barber.type';
 import './BarbersList.scss';
 import '../../../styles/Effects.scss';
+import '../../../styles/theme.scss';
+import { ThemeContext } from '../../../contexts/ThemeContext';
 
 export const BarbersList = (props: {
     value: any,
@@ -13,7 +15,10 @@ export const BarbersList = (props: {
         // @ts-ignore
         getBarberList,
     } = useContext(BarberListContext);
-
+    const {
+        // @ts-ignore
+        getTheme,
+    } = useContext(ThemeContext);
     return (
         <div className="barbers-box">
             <div className="list_barbers-box">
@@ -28,7 +33,7 @@ export const BarbersList = (props: {
                                 key={`barber_${(props.barbers || getBarberList()).indexOf(barber)}`}
                             >
                                 <img src={barber.urlProfileImage} className="img" />
-                                <p className="barber-name">{barber.name}</p>
+                                <p className={`text text-${getTheme()} barber-name`}>{barber.name}</p>
                             </div>
                         )
                     })

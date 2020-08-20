@@ -2,9 +2,7 @@
   position: relative;
   width: 80%;
   margin: auto;
-  // height: calc(100% - 80px); // footer
   overflow-x: none;
-  // background-color: red;
 
   .list_barbers-box {
     position: relative;
@@ -12,7 +10,6 @@
     overflow-x: hidden;
     overflow-y: hidden;
     margin: auto;
-    // background-color: green;
 
     .barber {
       position: relative;
@@ -40,8 +37,6 @@
         position: absolute;
         left: 90px;
         top: 0px;
-        font-size: 14px;
-        color: rgb(214, 214, 214);
       }
     }
 
