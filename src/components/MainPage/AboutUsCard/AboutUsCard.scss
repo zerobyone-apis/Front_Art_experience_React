@@ -41,11 +41,19 @@
         width: 100%;
         height: max-content;
         display: inherit;
-        padding-bottom: 20px;
+        padding-bottom: 0px;
 
         .info-box {
             z-index: 1;
             width: 100%;
+
+            .title {
+                margin: 0 0 0 0;
+            }
+
+            .info {
+                margin: 20px 10vw 0 10vw;
+            }
         }
 
         .slider-box {
@@ -55,6 +63,7 @@
 
             .slider {
                 margin: auto;
+                box-shadow: 0px 0px 20px 0px rgb(68, 66, 52);
             }
         }
     }

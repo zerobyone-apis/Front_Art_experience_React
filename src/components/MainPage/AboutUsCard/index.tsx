@@ -3,6 +3,7 @@ import { Slider } from '../../Slider';
 import { ThemeContext } from '../../../contexts/ThemeContext';
 import '../../../styles/theme.scss';
 import './AboutUsCard.scss';
+import { Card } from '../../Card';
 
 export const AboutUsCard = (props: {
     title: string,
@@ -14,14 +15,17 @@ export const AboutUsCard = (props: {
         getTheme,
     } = useContext(ThemeContext);
     return (
-        <div className={`about_us-card ${getTheme()}`}>
-            <div className="info-box">
-                <p className={`title`}>{props.title}</p>
-                <p className={`text info text-${getTheme()}`}>{props.info}</p>
+        <Card className="barber-box">
+            <div className={`about_us-card ${getTheme()}`}>
+                <div className="info-box">
+                    <p className={`title`}>{props.title}</p>
+                    <p className={`text info text-${getTheme()}`}>{props.info}</p>
+                </div>
+                <div className="slider-box">
+                    <Slider auto={false} items={props.pictures} />
+                </div>
             </div>
-            <div className="slider-box">
-                <Slider auto={false} items={props.pictures} />
-            </div>
-        </div>
+        </Card>
+
     )
 }
