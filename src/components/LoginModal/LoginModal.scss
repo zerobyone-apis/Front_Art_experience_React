@@ -4,7 +4,6 @@
 
     .dialog-modal {
         width: 40%;
-        // height: max-content !important;
         height: 80%;
         text-align: center;
 
@@ -31,7 +30,6 @@
         top: 60px;
         width: 200px;
         padding: 10px 0 10px 0;
-        background-color: rgb(16, 16, 16);
         z-index: 9999;
         text-align: center;
 
@@ -62,13 +60,6 @@
         }
     }
 }
-
-@media only screen and (max-width: 750px) {
-    // .login-modal {
-    //     .login-btn {}
-    // }
-}
-
 
 @keyframes slide-opacity {
     0% {

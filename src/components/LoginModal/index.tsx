@@ -10,6 +10,7 @@ import { getPageName } from '../../utils/utils';
 import { INDEX_PAGE, DASHBOARD_PAGE } from '../../types/Pages.type';
 import './LoginModal.scss';
 import '../../styles/Effects.scss';
+import { ThemeContext } from '../../contexts/ThemeContext';
 
 export const LoginModal = (props: {
     show?: boolean,
@@ -20,6 +21,10 @@ export const LoginModal = (props: {
     const [showAccountMenu, setShowAccountMenu] = useState(false);
 
     // context
+    const {
+        // @ts-ignore
+        getTheme,
+    } = useContext(ThemeContext);
     const {
         // @ts-ignore
         userIsLogged,
@@ -90,9 +95,9 @@ export const LoginModal = (props: {
             }
             {
                 showAccountMenu && userIsLogged() ? (
-                    <div className="account-menu effect-opacity" ref={wrapperRef}>
-                        <p className="item-text user-name">{getUserData().name}</p>
-                        <p className="item-text user-email">{getUserData().email}</p>
+                    <div className={`account-menu effect-opacity ${getTheme()}`} ref={wrapperRef}>
+                        <p className={`item-text user-name text text-${getTheme()}`}>{getUserData().username}</p>
+                        <p className={`item-text user-email text text-${getTheme()}`}>{getUserData().email}</p>
                         {(getPageName() === INDEX_PAGE && getUserData().admin) ? (
                             <Button
                                 label="Gestion de Reservas"
