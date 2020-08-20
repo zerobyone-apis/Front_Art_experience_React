@@ -79,6 +79,19 @@
     }
 }
 
+// NOKIA C115
+@media only screen and (max-width: 400px) {
+    .slider-box {
+
+        .slider_item {
+            width: 250px;
+            height: 30% !important;
+            margin-top: 0px;
+
+        }
+    }
+}
+
 // IPHONE5/SE
 @media only screen and (max-width: 750px) {
     .barber-box {
