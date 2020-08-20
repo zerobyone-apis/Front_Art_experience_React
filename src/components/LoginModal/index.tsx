@@ -89,6 +89,7 @@ export const LoginModal = (props: {
                         }
                     }}
                 >
+                    <p className={`text text-${getTheme()}`}>Acceda para poder reservar y disfrutar de nuestros servicios</p>
                     <ClientAccess onClientLogged={onClientLogged} />
                 </DialogModal>
             )
