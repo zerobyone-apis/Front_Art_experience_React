@@ -52,18 +52,7 @@ const IndexPage = () => {
     // getCourses();
   }, [])
 
-  const getBarbers = async () => {
-    const response: IBarber[] = await barberActions.getAll();
-    if (response) {
-      barbers.map((barber: IBarber) => {
-        // formatting data
-        barber.startDate = moment(barber.startDate).format('DD/MM/YYYY hh:mm:ss').substr(0, 16);
-        barber.job = 'Professional Barber';
-      })
-      return response;
-    }
-    return undefined
-  }
+
   const pageInfo = {
     name: "Art Experience",
     slogan: "Space for Men",
@@ -188,6 +177,19 @@ const IndexPage = () => {
       align: 'right'
     }
   ];
+
+  const getBarbers = async () => {
+    const response: IBarber[] = await barberActions.getAll();
+    if (response) {
+      barbers.map((barber: IBarber) => {
+        // formatting data
+        barber.startDate = moment(barber.startDate).format('DD/MM/YYYY hh:mm:ss').substr(0, 16);
+        barber.job = 'Professional Barber';
+      })
+      return response;
+    }
+    return undefined
+  }
 
   return (
     <div className="index_page">
