@@ -10,13 +10,11 @@
         width: 100%;
         top: 0;
         opacity: 0.5;
-
-        img {
-            position: relative;
-            height: 100%;
-            width: 100%;
-            background-position: center;
-        }
+        background-color: green;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
     }
 
     @media only screen and (max-width: 400px) {

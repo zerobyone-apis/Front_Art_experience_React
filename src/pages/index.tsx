@@ -193,7 +193,9 @@ const IndexPage = () => {
 
   return (
     <div className="index_page">
-      <Toolbar />
+      <div className="toolbar-box">
+        <Toolbar />
+      </div>
       <div className="page-box">
         <div className="dashboard">
           <div id="banner" />
