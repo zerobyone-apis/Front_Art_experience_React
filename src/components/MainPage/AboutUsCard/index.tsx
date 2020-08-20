@@ -15,8 +15,8 @@ export const AboutUsCard = (props: {
     return (
         <div className={`about_us-card ${getTheme()}`}>
             <div className="info-box">
-                <p className={`title art-title art_experience-title`}>{props.title}</p>
-                <p className={`info art-text text-${getTheme()}`}>{props.info}</p>
+                <p className={`title`}>{props.title}</p>
+                <p className={`text info text-${getTheme()}`}>{props.info}</p>
             </div>
             <div className="slider-box">
                 <Slider auto={false} items={props.pictures} />
