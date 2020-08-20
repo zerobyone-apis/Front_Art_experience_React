@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
-import './AboutUsCard.scss';
 import { Slider } from '../../Slider';
 import { ThemeContext } from '../../../contexts/ThemeContext';
+import '../../../styles/theme.scss';
+import './AboutUsCard.scss';
 
 export const AboutUsCard = (props: {
     title: string,

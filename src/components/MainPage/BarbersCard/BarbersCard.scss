@@ -1,11 +1,9 @@
 .barber-card {
     position: relative;
     width: 100%;
-    // margin: auto;
     height: 600px;
     display: flex;
     border-color: rgba(255, 255, 255, 0.835);
-    // background-color: green;
 
     .info-box {
         position: relative;
@@ -23,7 +21,6 @@
         }
 
         .employee-social {
-            // background-color: green;
             position: absolute;
             width: 100%;
             bottom: 0px;
@@ -92,7 +89,7 @@
         }
 
         .barber-card {
-            height: 400px;
+            // height: 400px;
 
             .info-box {
                 width: 100%;

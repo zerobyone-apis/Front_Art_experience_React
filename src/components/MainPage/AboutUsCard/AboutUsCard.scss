@@ -38,16 +38,24 @@
 // IPHONE5/SE
 @media only screen and (max-width: 750px) {
     .about_us-card {
-        height: 310px;
+        width: 100%;
+        height: max-content;
+        display: inherit;
+        padding-bottom: 20px;
 
         .info-box {
             z-index: 1;
             width: 100%;
-            background-color: rgb(0, 0, 0);
         }
 
         .slider-box {
-            position: absolute;
+            margin: auto;
+            margin-top: 20px;
+            width: 80%;
+
+            .slider {
+                margin: auto;
+            }
         }
     }
 }
