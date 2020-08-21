@@ -1,4 +1,6 @@
-# Frontend ArtExperience React
+ArtExperience BarberShop
+
+Frontend in React.js
 
 # First install with:
 sudo npm install
