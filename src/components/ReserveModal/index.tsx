@@ -177,7 +177,6 @@ export const ReserveModal = (props: { className?: string }) => {
           }}
         />
       </div>
-
       {!showDialog ? null : (
         <DialogModal
           title="Reservacion - ArtExperience"
@@ -186,7 +185,7 @@ export const ReserveModal = (props: { className?: string }) => {
           height='65vh'
           onClose={() => { setShowDialog(false) }}
           hideCloseButton={wizard == 4}>
-          <Stepper wizard={wizard}>
+          <Stepper className="reserve-stepper" wizard={wizard}>
             <div className="reserve-step">
               <div className="step-title">
                 <p className={`text text-${getTheme()}`}>Seleccione el servicio que se desea realizar</p>

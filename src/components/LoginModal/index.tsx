@@ -76,6 +76,10 @@ export const LoginModal = (props: {
                         label={userIsLogged() ? getUserData().username : 'Acceder para Reservar'} />
                 </div>
             ) : null}
+
+
+
+
             {!showDialog ? null : (
                 <DialogModal
                     title="Inicio de Sesion - ArtExperience"
@@ -94,6 +98,13 @@ export const LoginModal = (props: {
                 </DialogModal>
             )
             }
+
+
+
+
+
+
+
             {
                 showAccountMenu && userIsLogged() ? (
                     <div className={`account-menu effect-opacity ${getTheme()}`} ref={wrapperRef}>

@@ -21,6 +21,11 @@ $duration: 1s;
     animation-duration: $duration;
 }
 
+.effect-hidde {
+    animation-name: hidde_effect;
+    animation-duration: $duration;
+}
+
 @keyframes slide_left {
     0% {
         left: 0px;
@@ -62,5 +67,15 @@ $duration: 1s;
 
     100% {
         opacity: 1;
+    }
+}
+
+@keyframes hidde_effect {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
     }
 }

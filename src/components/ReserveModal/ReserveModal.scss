@@ -1,5 +1,4 @@
 .reserve-modal {
-  $footer-height: 40px;
 
   .activator-btn {
     position: relative;
@@ -9,34 +8,10 @@
     align-items: center;
   }
 
-  // Reserve Stepper
-  .reserve-step {
-    position: absolute;
-    width: 100%;
-
-    .step-title {
-      position: relative;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      text-align: center;
-
-      p {
-        position: relative;
-        width: max-content;
-        font-size: 14px;
-        margin: 0;
-        margin: auto;
-        color: rgb(214, 214, 214);
-      }
-    }
-  }
-
   .time-box {
     position: absolute;
     width: 100%;
     height: 100%;
-    overflow-y: scroll;
   }
 
   @media only screen and (max-width: 800px) {
