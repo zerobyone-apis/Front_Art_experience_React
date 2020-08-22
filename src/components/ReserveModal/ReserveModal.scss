@@ -8,10 +8,16 @@
     align-items: center;
   }
 
-  .time-box {
-    position: absolute;
-    width: 100%;
-    height: 100%;
+  .step-subtitle {
+    text-align: center;
+  }
+
+  .reserve-stepper {
+    .time-box {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
   }
 
   @media only screen and (max-width: 800px) {
@@ -22,24 +28,6 @@
       .calendar-box {
         margin: auto;
       }
-    }
-  }
-
-  .confirm_data-box {
-    position: relative;
-    width: 100%;
-    margin-top: 40px;
-    text-align: center;
-    overflow-x: none;
-
-    .confirm_info {
-      color: rgb(170, 170, 170);
-    }
-
-    .success-icon {
-      width: 80px;
-      height: 80px;
-      color: rgb(199, 194, 109);
     }
   }
 }

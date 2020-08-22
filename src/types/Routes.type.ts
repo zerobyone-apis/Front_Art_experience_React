@@ -15,6 +15,7 @@ export const BARBER_ROUTE: string = '/barber';
 // PUT /barber 
 // DELETE /barber -> /{id_user}
 export const RESERVE_ROUTE: string = '/reserve';
+export const RESERVE_DATES_ROUTE: string = `${RESERVE_ROUTE}/v1/t/barber`;
 // GET /reserve -> Obtiene todas 
 // GET /reserve -> /{id_reserve}
 // GET /reserve -> /client/{client_id}

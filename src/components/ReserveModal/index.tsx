@@ -6,7 +6,6 @@ import { ButtonContext } from '../../contexts/ButtonsContext';
 import { DialogModal } from '../DialogModal';
 import { IReserve } from '../../types/Reserve.type';
 import { LoginModal } from '../LoginModal';
-import ReserveActions from '../../actions/Reserve.actions';
 import { ReserveFooter } from './ReserveFooter';
 import { ReserveTime } from './ReserveTime';
 import { ServicesList } from './ServicesList';
@@ -15,6 +14,8 @@ import { UserContext } from '../../contexts/UserContext';
 import { defaultBarber } from '../../types/Barber.type';
 import { defaultService } from '../../types/Service.type';
 import { FaRegCalendarCheck } from 'react-icons/fa';
+import { ThemeContext } from '../../contexts/ThemeContext';
+import ReserveActions from '../../actions/Reserve.actions';
 import moment from 'moment';
 
 import 'date-fns';
@@ -22,7 +23,7 @@ import './ReserveModal.scss';
 import '../../styles/theme.scss';
 import '../../styles/Effects.scss';
 import '../../styles/ArtExperienceButtons.scss';
-import { ThemeContext } from '../../contexts/ThemeContext';
+import { ConfirmBox } from './ConfirmBox';
 
 export const ReserveModal = (props: { className?: string }) => {
   const {
@@ -118,14 +119,15 @@ export const ReserveModal = (props: { className?: string }) => {
   const reserveActions = new ReserveActions();
 
   const createReserve = async () => {
+    console.log('CREATE RESERVE: ', reserveHour)
     const totalCost = 0;
     const startDateFormatted = `${moment(reserveDate).format().split('T')[0]}T${reserveHour}:00`;
     const newReserve: IReserve = {
       barberOrHairdresserId: selectedBarber.barberId,
-      clientId: getUserData().clientId,
-      nameClient: getUserData().name,
+      clientId: getUserData().userId,
+      nameClient: getUserData().username,
       mailClient: getUserData().email,
-      celClient: getUserData().cel,
+      celClient: getUserData().cel || '0000',
       startTime: startDateFormatted,
       priceWork: selectedService.cost,
       workToDo: selectedService.name,
@@ -188,7 +190,7 @@ export const ReserveModal = (props: { className?: string }) => {
           <Stepper className="reserve-stepper" wizard={wizard}>
             <div className="reserve-step">
               <div className="step-title">
-                <p className={`text text-${getTheme()}`}>Seleccione el servicio que se desea realizar</p>
+                <p className={`step-subtitle text text-${getTheme()}`}>Seleccione el servicio que se desea realizar</p>
               </div>
               <ServicesList
                 services={services}
@@ -198,7 +200,7 @@ export const ReserveModal = (props: { className?: string }) => {
 
             <div className="reserve-step">
               <div className="step-title">
-                <p className={`text text-${getTheme()}`}>Seleccione el Barbero</p>
+                <p className={`step-subtitle text text-${getTheme()}`}>Seleccione el Barbero</p>
               </div>
               <BarbersList
                 value={selectedBarber}
@@ -207,37 +209,33 @@ export const ReserveModal = (props: { className?: string }) => {
 
             <div className="reserve-step">
               <div className="step-title">
-                <p className={`text text-${getTheme()}`}>Seleccione la fecha y hora</p>
+                <p className={`step-subtitle text text-${getTheme()}`}>Seleccione la fecha y hora</p>
               </div>
               <ReserveTime
                 reserveDate={reserveDate}
                 reserveHour={reserveHour}
+                barberId={selectedBarber.barberId || -1}
                 onSelctDate={setReserveDate}
                 onSelctHour={setReserveHour} />
             </div>
-
             <div className="reserve-step">
               <div className="step-title">
-                <p className={`text text-${getTheme()}`}>Confirmacion de reserva</p>
+                <p className={`step-subtitle text text-${getTheme()}`}>Confirmacion de reserva</p>
               </div>
-              <div className="confirm_data-box">
-                <p className={`confirm_info effect-slide_left text text-${getTheme()}`}>
-                  {`Fecha de reservacion: ${moment(reserveDate).format("DD/MM/YYYY")}`}
-                </p>
-                <p className={`confirm_info text text-${getTheme()}`}>{`Servicio: ${selectedService ? selectedService.name : 'No se selecciono servicio'}`}</p>
-                <p className={`confirm_info text text-${getTheme()}`}>{`Barbero: ${selectedBarber ? selectedBarber.name : ''}`}</p>
-                <p className={`confirm_info text text-${getTheme()}`}>{`Horario: ${reserveHour}`}</p>
-                <p className={`confirm_info text text-${getTheme()}`}>{`Costo: ${selectedService ? `$${selectedService.cost}` : 'No se selecciono servicio'}`}</p>
-              </div>
+              <ConfirmBox
+                barber={selectedBarber}
+                service={selectedService}
+                hour={reserveHour}
+                date={moment(reserveDate).format("DD/MM/YYYY")}
+              />
             </div>
-
             {/* Success reservation message  */}
             <div className="reserve-step">
               <div className="step-title">
-                <p className={`text text-${getTheme()}`}>Reservacion - ArtExperience</p>
+                <p className={`step-subtitle text text-${getTheme()}`}>Reservacion - ArtExperience</p>
               </div>
               <div className="confirm_data-box">
-                <p className="confirm_info">Se ha realizado la reserva de forma exitosa!</p>
+                <p className={`confirm_info text text-${getTheme()}`}>Se ha realizado la reserva de forma exitosa!</p>
                 <FaRegCalendarCheck className="success-icon effect-slide_top" />
               </div>
             </div>

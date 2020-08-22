@@ -67,6 +67,7 @@
       position: relative;
       min-height: 40vh;
       height: calc(100% - 60px);
+      padding-top: 0 !important;
       overflow-x: hidden;
       overflow-y: hidden;
     }
