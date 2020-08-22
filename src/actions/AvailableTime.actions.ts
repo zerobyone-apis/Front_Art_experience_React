@@ -33,12 +33,10 @@ export default class AvailableTime {
                 throw Error(`Error Status code: , ${responseDates.status}`)
             }
             // Formatting data
-            console.log('RESPONSE DATES: ', responseDates)
             let formattingData = [];
             responseDates.data.forEach((item: { date: string, hours: string[] }) => {
                 formattingData.push({ date: item.date, hours: [...item.hours] })
             })
-            console.log('formatting: ', formattingData)
             return responseDates.data;
         } catch (error) {
             console.error(`Error: Obteniendo fecha de reservas -> ${error}`);
