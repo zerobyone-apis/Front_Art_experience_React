@@ -6,6 +6,30 @@ import '../../../styles/Effects.scss';
 import '../../../styles/theme.scss';
 import { ThemeContext } from '../../../contexts/ThemeContext';
 
+export const BarberItem = (props: {
+    name: string,
+    img: string,
+    selected?: boolean,
+    onSelect?: any,
+    key?: number,
+}) => {
+    const {
+        // @ts-ignore
+        getTheme,
+    } = useContext(ThemeContext);
+    return (
+        <div className={`barber effect-slide_top ${props.selected ? 'selected-barber' : null}`}
+            key={props.key}
+            onClick={() => {
+                props.onSelect ? props.onSelect() : null;
+            }}
+        >
+            <img src={props.img} className="img" />
+            <p className={`text text-${getTheme()} barber-name`}>{props.name}</p>
+        </div>
+    )
+}
+
 export const BarbersList = (props: {
     value: any,
     setBarber: any,
@@ -19,22 +43,20 @@ export const BarbersList = (props: {
         // @ts-ignore
         getTheme,
     } = useContext(ThemeContext);
+
     return (
         <div className="barbers-box">
             <div className="list_barbers-box">
                 {
-                    (props.barbers || getBarberList()).map((barber: IBarber) => {
+                    (props.barbers || getBarberList()).map((barber: IBarber, i) => {
                         return (
-                            <div
-                                className={`barber effect-slide_top ${props.value.name === barber.name ? 'selected-barber' : null}`}
-                                onClick={() => {
-                                    props.setBarber(barber);
-                                }}
-                                key={`barber_${(props.barbers || getBarberList()).indexOf(barber)}`}
-                            >
-                                <img src={barber.urlProfileImage} className="img" />
-                                <p className={`text text-${getTheme()} barber-name`}>{barber.name}</p>
-                            </div>
+                            <BarberItem
+                                name={barber.name}
+                                img={barber.urlProfileImage}
+                                selected={props.value.name === barber.name ? true : false}
+                                onSelect={() => { props.setBarber(barber) }}
+                                key={i}
+                            />
                         )
                     })
                 }
