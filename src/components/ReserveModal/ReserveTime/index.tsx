@@ -19,8 +19,9 @@ export const ReserveTime = (props: {
     const [reservesList, setReservesList] = useState([]);
     // hours in HoursBox
     const [availableHours, setAvailableHours] = useState([]);
+    const [listHours, setListHours] = useState([]);
     const [barberShopTime, setBarberShopTime] = useState([]);
-    const [reserveDate, setReserveDate] = useState(props.reserveDate || undefined);
+    const [reserveDate, setReserveDate] = useState(undefined);
     const [reserveHour, setReserveHour] = useState(props.reserveHour || null);
 
     const timeActions: AvailableTimeActions = new AvailableTimeActions();
@@ -32,22 +33,29 @@ export const ReserveTime = (props: {
 
     const getDatesByReserves = async () => {
         let response = await timeActions.getDatesByReserves2(props.barberId);
-        console.log('get date by reserve: ', response)
         return response;
     }
 
     useEffect(() => {
-        getDatesByReserves().then((response: any) => { setReservesList(response) })
-        getHoursByBarberShop().then((response: any) => {
-            setBarberShopTime(response);
-        })
+        getHoursByBarberShop().then((response: any) => { setBarberShopTime(response) })
+        getDatesByReserves().then((response: any) => {
+            setReservesList(response);
+        }).then(
+            result => {
+                setReserveDate(props.reserveDate);
+            })
     }, [])
 
     useEffect(() => {
         if (reserveDate) {
-            onSelectDate(reserveDate)
+            let filterHours = onSelectDate(reserveDate);
+            setAvailableHours(filterHours)
         }
     }, [reserveDate])
+
+    useEffect(() => {
+        setListHours(availableHours)
+    }, [availableHours])
 
     const onSelectDate = (selectedDate: Date) => {
         let formatSelectedDate = moment(selectedDate).format('YYYY-MM-DD');
@@ -83,7 +91,7 @@ export const ReserveTime = (props: {
                 }
             }
         })
-        setAvailableHours(availables)
+        return availables;
     }
 
     const onSelectHour = (selectedHour: string) => {
@@ -99,17 +107,17 @@ export const ReserveTime = (props: {
             {availableHours.length ? (
                 <div className="hours-item">
                     <div className="hours-box effect-slide_top">
-                        {availableHours.map((hour, i) => {
-                            return (
-                                <Button
-                                    className={`art_experience-button_outlined hour-item ${reserveHour === hour ? 'selected-hour' : null}`}
-                                    key={i}
-                                    label={hour}
-                                    onClick={() => {
-                                        onSelectHour(hour)
-                                    }} />
-                            )
-                        })}
+                        {availableHours.map((hour, i) => <Button
+                            className={
+                                `art_experience-button_outlined 
+                                 hour-item 
+                                ${reserveHour === hour ? 'selected-hour' : null}`}
+                            key={i}
+                            label={hour}
+                            onClick={() => {
+                                onSelectHour(hour)
+                            }} />
+                        )}
                     </div>
                 </div >
             ) : (

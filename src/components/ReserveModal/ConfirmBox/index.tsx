@@ -27,7 +27,6 @@ export const ConfirmBox = (props: {
                         selected={true}
                     />
                     <p className={`confirm_info text text-${getTheme()}`}>{`Barbero`}</p>
-
                     <BarberItem
                         name={props.barber.name}
                         img={props.barber.urlProfileImage}

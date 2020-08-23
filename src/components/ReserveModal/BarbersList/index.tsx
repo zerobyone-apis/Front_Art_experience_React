@@ -48,10 +48,9 @@ export const BarbersList = (props: {
         <div className="barbers-box">
             <div className="list_barbers-box">
                 {
-                    (props.barbers || getBarberList()).map((barber: IBarber, i) => {
+                    (props.barbers || getBarberList()).map((barber: IBarber, i: number) => {
                         return (
-                            <BarberItem
-                                name={barber.name}
+                            <BarberItem name={barber.name}
                                 img={barber.urlProfileImage}
                                 selected={props.value.name === barber.name ? true : false}
                                 onSelect={() => { props.setBarber(barber) }}
