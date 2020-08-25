@@ -26,6 +26,10 @@ $shadow-color: rgb(56, 56, 56);
 $dark-text: #bebebeef;
 $light-text: #303030d5;
 
+/* Fonts size */
+$title-size: calc(1vw + 14px);
+$text-size: 13px;
+
 /* 
   Adjusts in default styles HTML 
 */
@@ -70,12 +74,12 @@ a {
 
 /* fonts size and syle */
 .title {
-  font-size: calc(1vw + 14px);
+  font-size: $title-size;
   color: $cool-color
 }
 
 .text {
-  font-size: 13px;
+  font-size: $text-size;
 }
 
 .text-light,
