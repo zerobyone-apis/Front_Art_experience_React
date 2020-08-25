@@ -14,7 +14,6 @@ export const AnimationBox = (
     const BoxStyled = styled(motion.div)`
         opacity: 0;
     `;
-
     const DEFAULT_DURATION = 2;
 
     const getAnimation = () => {
