@@ -6,6 +6,7 @@ import { TextField } from '../../text-field/text-field';
 import { UserContext } from '../../../contexts/UserContext';
 import { ValidationForm } from '../../validation-form/validation-form';
 import './login-form.scss';
+import '../../../styles/theme-buttons.scss';
 
 export const LoginForm = (props: {
     onClientLogged: (response: any) => void
@@ -63,7 +64,7 @@ export const LoginForm = (props: {
             <ValidationForm
                 objectTest={loginFields}
                 buttonLabel="Acceder"
-                buttonClassName="access_btn art_experience-button_outlined"
+                buttonClassName="access_btn theme-button-outlined"
                 onClick={() => {
                     login()
                 }}

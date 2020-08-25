@@ -6,6 +6,7 @@ import { UserContext } from '../../../contexts/UserContext';
 import ClientActions from '../../../actions/Client.actions';
 import { IClient } from '../../../types/Client.type';
 import './register-form.scss';
+import '../../../styles/theme-buttons.scss';
 
 export const RegisterForm = (props: {
     onClientRegister: (response: any) => void
@@ -74,7 +75,7 @@ export const RegisterForm = (props: {
             <ValidationForm
                 objectTest={registerFields}
                 buttonLabel="Registrarse"
-                buttonClassName="access_btn art_experience-button_outlined"
+                buttonClassName="access_btn theme-button-outlined"
                 equalFields={[
                     { field1: 'password', field2: 'password2', error: 'Las contraseñas no coinciden' }]}
                 onClick={() => {

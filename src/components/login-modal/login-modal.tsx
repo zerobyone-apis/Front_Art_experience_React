@@ -128,7 +128,7 @@ export const LoginModal = (props: {
                         ) : null}
                         <Button
                             label="Cerrar Seion"
-                            className="item-list_btn art_experience-button_outlined"
+                            className="item-list_btn theme-button-outlined"
                             onClick={() => { logOut() }}
                         />
                     </div>
