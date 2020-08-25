@@ -68,13 +68,7 @@ $toolbar_height: 60px;
   }
 }
 
-@media only screen and (min-width: 1200px) {
-  .toolbar {
-    // width: calc(79% + 11px);
-    // left: calc(10% - 1px);
-    // margin: auto;
-  }
-}
+@media only screen and (min-width: 1200px) {}
 
 
 .right-box {

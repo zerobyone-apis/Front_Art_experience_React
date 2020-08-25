@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { CustomTable } from '../components/Dashboard/CustomTable';
+import { CustomTable } from '../components/dashboard/custom-table/custom-table';
 import { ButtonContext } from '../contexts/ButtonsContext';
-import { ReserveDialog } from '../components/Dashboard/ReserveDialog';
-import { Toolbar } from '../components/Dashboard/Toolbar';
-import { LoaderPage } from '../components/LoaderPage';
+import { ReserveDialog } from '../components/dashboard/reserve-dialog/reserve-dialog';
+import { Toolbar } from '../components/dashboard/toolbar/toolbar';
+import { LoaderPage } from '../components/loader-page/loader-page';
 import { IReserve } from '../types/Reserve.type';
 import ReserveActions from '../actions/Reserve.actions';
 import moment from 'moment';
