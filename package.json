@@ -63,11 +63,7 @@
     "express": "^4.17.1",
     "extracted-loader": "^1.0.7",
     "formik": "^2.1.4",
-<<<<<<< Updated upstream
-    "framer-motion": "^2.4.3-beta.2",
-=======
     "framer-motion": "^2.5.5",
->>>>>>> Stashed changes
     "husky": "^4.2.5",
     "moment": "^2.27.0",
     "next": "^9.4.4",
