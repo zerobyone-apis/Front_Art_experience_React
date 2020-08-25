@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '../../button/button';
 import './reserve-footer.scss';
-import '../../../styles/ArtExperienceButtons.scss';
+import '../../../styles/theme-buttons.scss';
 
 export const ReserveFooter = (props: {
     wizard: number,
@@ -14,7 +14,7 @@ export const ReserveFooter = (props: {
             {
                 props.wizard ? (
                     <Button
-                        className="art_experience-button_outlined footer-button"
+                        className="theme-button-outlined footer-button"
                         label="Volver"
                         onClick={() => {
                             props.onChangeWizard(props.wizard - 1);
@@ -25,7 +25,7 @@ export const ReserveFooter = (props: {
             {
                 !props.checkStep() ? null : (
                     <Button
-                        className="art_experience-button_outlined footer-button confirm"
+                        className="theme-button-outlined footer-button confirm"
                         label={props.wizard < 3 ? 'Siguiente' : 'Reservar'}
                         onClick={() => {
                             if (props.wizard < 3) {

@@ -1,7 +1,5 @@
-// eslint-disable-next-line no-unused-vars
-import React, { useContext } from 'react';
+import React, { useContext, Fragment } from 'react';
 import { ButtonContext } from '../../contexts/ButtonsContext';
-import '../../styles/ArtExperienceFonts.scss';
 import './button.scss';
 
 export const Button = (props: {
@@ -26,7 +24,7 @@ export const Button = (props: {
   } = useContext(ButtonContext);
 
   const getLabelClasses = () => {
-    let classes = 'label_button art_experience-text-light';
+    let classes = 'label_button text-light text';
 
     if (props.labelClassName) {
       classes = ` ${props.labelClassName}`
@@ -38,34 +36,37 @@ export const Button = (props: {
   }
 
   return (
-    <div className={`button-holder ${props.className} ${disabled ? 'disabled' : ''}`}>
-      <a href={props.href}>
-        <button
-          disabled={props.disabled || disabled}
-          style={{
-            'width': props.width,
-            background: props.color,
-            color: props.fontColor
-          }}
-          type={props.type || 'button'}
-          onClick={props.onClick}
-        >
-          <div className="button-content">
-            {props.icon ? (
-              <div className="icon-box">
-                {props.icon}
-              </div>
-            ) : null}
+    <div className="button">
+      <div className={`button-holder ${props.className} ${disabled ? 'disabled' : ''}`}>
+        <a href={props.href}>
+          <button
+            disabled={props.disabled || disabled}
+            style={{
+              'width': props.width,
+              background: props.color,
+              color: props.fontColor
+            }}
+            type={props.type || 'button'}
+            onClick={props.onClick}
+          >
+            <div className="button-content">
+              {props.icon ? (
+                <div className="icon-box">
+                  {props.icon}
+                </div>
+              ) : null}
 
-            {!props.label ? null : (
-              <p className={getLabelClasses()}>
-                {props.label}
-              </p>
-            )
-            }
-          </div>
-        </button>
-      </a>
+              {!props.label ? null : (
+                <p className={getLabelClasses()}>
+                  {props.label}
+                </p>
+              )
+              }
+            </div>
+          </button>
+        </a>
+      </div>
     </div>
+
   );
 };

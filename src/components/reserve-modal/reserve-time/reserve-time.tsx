@@ -1,12 +1,13 @@
-import './reserve-time.scss';
-import '../../../styles/Effects.scss';
-
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Button } from '../../button/button';
 import AvailableTimeActions from '../../../actions/AvailableTime.actions';
 import { CalendarBox } from '../calendar-box/calendar-box';
 import { HourBox } from '../hour-box/hour-box';
 import moment from 'moment';
+import { ThemeContext } from '../../../contexts/ThemeContext';
+import './reserve-time.scss';
+import '../../../styles/effects.scss';
+import '../../../styles/theme-buttons.scss';
 
 export const ReserveTime = (props: {
     reserveDate: Date,
@@ -24,6 +25,11 @@ export const ReserveTime = (props: {
     const [reserveDate, setReserveDate] = useState(undefined);
     const [reserveHour, setReserveHour] = useState(props.reserveHour || null);
 
+    const {
+        // @ts-ignore
+        getTheme,
+    } = useContext(ThemeContext);
+
     const timeActions: AvailableTimeActions = new AvailableTimeActions();
 
     const getHoursByBarberShop = async () => {
@@ -32,7 +38,7 @@ export const ReserveTime = (props: {
     }
 
     const getDatesByReserves = async () => {
-        let response = await timeActions.getDatesByReserves2(props.barberId);
+        let response = await timeActions.getDatesByReserves(props.barberId);
         return response;
     }
 
@@ -109,7 +115,7 @@ export const ReserveTime = (props: {
                     <div className="hours-box effect-slide_top">
                         {availableHours.map((hour, i) => <Button
                             className={
-                                `art_experience-button_outlined 
+                                `theme-button-outlined 
                                  hour-item 
                                 ${reserveHour === hour ? 'selected-hour' : null}`}
                             key={i}
@@ -121,9 +127,9 @@ export const ReserveTime = (props: {
                     </div>
                 </div >
             ) : (
-                    <p className="no-hours art_experience-text-light">No hay horarios disponibles para esta fecha</p>
+                    <p className={`no-hours text text-${getTheme()}`}>No hay horarios disponibles para esta fecha</p>
                 )
             }
-        </div>
+        </div >
     );
 }

@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
-import './services-list.scss';
-import '../../../styles/ArtExperienceButtons.scss';
 import { ThemeContext } from '../../../contexts/ThemeContext';
+import './services-list.scss';
 
 export const ServiceItem = (props: {
     name: string,

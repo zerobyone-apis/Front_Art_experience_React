@@ -15,15 +15,15 @@ import { defaultBarber } from '../../types/Barber.type';
 import { defaultService } from '../../types/Service.type';
 import { FaRegCalendarCheck } from 'react-icons/fa';
 import { ThemeContext } from '../../contexts/ThemeContext';
+import { ConfirmBox } from './confirm-box/confirm-box';
 import ReserveActions from '../../actions/Reserve.actions';
 import moment from 'moment';
 
 import 'date-fns';
 import './reserve-modal.scss';
 import '../../styles/theme.scss';
-import '../../styles/Effects.scss';
-import '../../styles/ArtExperienceButtons.scss';
-import { ConfirmBox } from './confirm-box/confirm-box';
+import '../../styles/theme-buttons.scss';
+import '../../styles/effects.scss';
 
 export const ReserveModal = (props: { className?: string }) => {
   const {
@@ -119,7 +119,6 @@ export const ReserveModal = (props: { className?: string }) => {
   const reserveActions = new ReserveActions();
 
   const createReserve = async () => {
-    console.log('CREATE RESERVE: ', reserveHour)
     const totalCost = 0;
     const startDateFormatted = `${moment(reserveDate).format().split('T')[0]}T${reserveHour}:00`;
     const newReserve: IReserve = {
@@ -171,7 +170,7 @@ export const ReserveModal = (props: { className?: string }) => {
     <div className="reserve-modal">
       <div className="dialog_activator-box">
         <Button
-          className={`activator-btn reserve-btn art_experience-button`}
+          className={`activator-btn reserve-btn theme-button`}
           label='Reservar'
           icon={false}
           onClick={() => {
@@ -197,7 +196,6 @@ export const ReserveModal = (props: { className?: string }) => {
                 value={selectedService}
                 setService={setSelectedService} />
             </div>
-
             <div className="reserve-step">
               <div className="step-title">
                 <p className={`step-subtitle text text-${getTheme()}`}>Seleccione el Barbero</p>
@@ -206,7 +204,6 @@ export const ReserveModal = (props: { className?: string }) => {
                 value={selectedBarber}
                 setBarber={setSelectedBarber} />
             </div>
-
             <div className="reserve-step">
               <div className="step-title">
                 <p className={`step-subtitle text text-${getTheme()}`}>Seleccione la fecha y hora</p>
@@ -247,8 +244,7 @@ export const ReserveModal = (props: { className?: string }) => {
               onChangeWizard={setWizard}
               finalize={createReserve} />
           ) : null}
-        </DialogModal>
-      )
+        </DialogModal>)
       }
       {
         showLoginDialog ? (

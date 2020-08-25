@@ -1,71 +1,95 @@
+/* 
+  Colors theme palette 
+*/
+
+/* background color of the page */
+$backgroun-page: #000000;
+
+/* dark theme colors */
+$primary-dark: #333333;
+$secundary-dark: #333333;
+$tertiary-dark: #333333;
+
+/* light theme colors */
+$primary-light: white;
+$secundary-light: white;
+$tertiary-light: white;
+
+/* details */
+$warm-color: rgb(165, 162, 98);
+$cool-color: rgb(146, 144, 108);
+
+/* shadows */
+$shadow-color: rgb(56, 56, 56);
+
+/* fonts colors */
+$dark-text: #bebebeef;
+$light-text: #303030d5;
+
+/* 
+  Adjusts in default styles HTML 
+*/
+
+/* body style */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: $backgroun-page;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+/* Scrollbar style */
 ::-webkit-scrollbar {
   width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.322);
+  box-shadow: inset 0 0 10px $shadow-color;
 }
 
 ::-webkit-scrollbar-thumb {
   height: max-content !important;
-  box-shadow: inset 0 0 3px rgb(146, 144, 108);
+  box-shadow: inset 0 0 3px $cool-color;
   border-radius: 4px;
 }
 
+/* 'hidde' a element */
 a {
   color: rgba(0, 0, 0, 0) !important;
 }
 
-body {
-  // background-image: url("https://previews.123rf.com/images/sunspire/sunspire1610/sunspire161000338/64589322-vector-modern-abstract-geometry-memphis-pattern-black-and-white-seamless-geometric-background-subtle.jpg");
-  background-repeat: repeat;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  background-color: #000000;
-  overflow-x: hidden;
-  overflow-y: hidden;
-}
-
-.backgroud-page {
-  background: linear-gradient(rgb(114, 114, 114), rgb(0, 0, 0));
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-
-
-// BACKGROUNDS
+/* background color of components */
 .dark {
-  background-color: #333333;
+  background-color: $primary-dark;
 }
 
 .light {
-  background-color: white;
+  background-color: $primary-light;
 }
 
-// FONTS
+/* fonts size and syle */
 .title {
   font-size: calc(1vw + 14px);
-  color: rgb(146, 144, 108);
+  color: $cool-color
 }
 
 .text {
   font-size: 13px;
 }
 
-.text-light {
-  font-family: 'Roboto', sans-serif;
-  color: #303030d5;
-  font-weight: 300;
+.text-light,
+.text-dark {
   text-transform: none;
-  box-shadow: 1px, 3px #ffffff4f;
+  font-family: 'Franklin Gothic Medium';
+}
+
+.text-light {
+  color: $dark-text;
+  font-weight: 300;
+  box-shadow: 1px, 3px $shadow-color;
 }
 
 .text-dark {
-  font-family: 'Roboto', sans-serif;
-  color: #bebebeef;
-  text-transform: none;
+  color: $dark-text;
 }

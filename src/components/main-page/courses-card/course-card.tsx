@@ -4,6 +4,7 @@ import { ThemeContext } from '../../../contexts/ThemeContext';
 import { Button } from '../../button/button';
 import { DialogModal } from '../../dialog-modal/dialog-modal';
 import './courses-card.scss';
+import '../../../styles/theme-buttons.scss';
 
 export const CoursesCard = (props: {
     courses: any[],
@@ -23,7 +24,7 @@ export const CoursesCard = (props: {
                 <p className={`course-name text text-${getTheme()}`}>{course.name}</p>
                 <img className="course-img" aspect-ratio="1" src={course.img}></img>
                 <p className={`course-duration text text-${getTheme()}`}>Duracion: {course.duration}</p>
-                <Button className="see_more-btn art_experience-button_outlined"
+                <Button className="see_more-btn theme-button-outlined"
                     label="Ver mas"
                     onClick={() => {
                         setSelected(course);

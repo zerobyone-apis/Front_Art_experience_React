@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { ThemeContext } from '../../../contexts/ThemeContext';
 import './confirm-box.scss';
 import '../../../styles/theme.scss';
-import '../../../styles/Effects.scss';
+import '../../../styles/effects.scss';
 import { BarberItem } from '../barbers-list/barber-list';
 import { ServiceItem } from '../services-list/services-list';
 

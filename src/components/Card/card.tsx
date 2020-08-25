@@ -1,8 +1,7 @@
 // eslint-disable-next-line no-unused-vars
-import React, { ReactChild, useContext } from 'react';
+import React, { useContext } from 'react';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import './card.scss';
-import '../../styles/ArtExperienceFonts.scss';
 import '../../styles/theme.scss';
 
 export const Card = (props: {

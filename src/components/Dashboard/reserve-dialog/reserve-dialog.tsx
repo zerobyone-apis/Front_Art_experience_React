@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { DialogModal } from '../../dialog-modal/dialog-modal';
 import ReserveActions from '../../../actions/Reserve.actions';
 import { IReserve } from '../../../types/Reserve.type';
@@ -7,8 +7,8 @@ import { Button } from '../../button/button';
 import { TextField } from '../../text-field/text-field';
 import moment from 'moment';
 import './reserve-dialog.scss';
-import '../../../styles/ArtExperienceButtons.scss';
-import '../../../styles/Effects.scss';
+import '../../../styles/theme-buttons.scss';
+import '../../../styles/effects.scss';
 
 export const ReserveDialog = (props: {
     reserve: IReserve,
@@ -44,7 +44,7 @@ export const ReserveDialog = (props: {
                     <ValidationForm
                         objectTest={reserve}
                         buttonLabel="Guardar Cambios"
-                        buttonClassName="access_btn art_experience-button_outlined"
+                        buttonClassName="access_btn theme-button-outlined"
                         onClick={() => {
                             // login()
                             alert('click')
@@ -113,8 +113,8 @@ export const ReserveDialog = (props: {
 
             <div className="footer">
                 <div className="footer_right-box">
-                    <Button className="footer-button art_experience-button_outlined" label="Finalizar" onClick={() => { }} />
-                    <Button className="footer-button art_experience-button_outlined" label="Cancelar" onClick={() => { }} />
+                    <Button className="footer-button theme-button-outlined" label="Finalizar" onClick={() => { }} />
+                    <Button className="footer-button theme-button-outlined" label="Cancelar" onClick={() => { }} />
                 </div>
             </div>
         </DialogModal >

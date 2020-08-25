@@ -8,9 +8,11 @@ import { UserContext } from '../../contexts/UserContext';
 import { ButtonContext } from '../../contexts/ButtonsContext';
 import { getPageName } from '../../utils/utils';
 import { INDEX_PAGE, DASHBOARD_PAGE } from '../../types/Pages.type';
-import './login-modal.scss';
-import '../../styles/Effects.scss';
 import { ThemeContext } from '../../contexts/ThemeContext';
+
+import './login-modal.scss';
+import '../../styles/effects.scss';
+import '../../styles/theme-buttons.scss';
 
 export const LoginModal = (props: {
     show?: boolean,
@@ -71,7 +73,7 @@ export const LoginModal = (props: {
                 <div className="dialog_activator-box">
                     <Button
                         onClick={() => { launchModal() }}
-                        className={!userIsLogged() ? "art_experience-button" : "art_experience-button_outlined " + `activator-btn login-btn`}
+                        className={!userIsLogged() ? "theme-button" : "theme-button-outlined " + `activator-btn login-btn`}
                         icon={<RiAccountCircleLine />}
                         label={userIsLogged() ? getUserData().username : 'Acceder para Reservar'} />
                 </div>

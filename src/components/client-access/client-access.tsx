@@ -3,12 +3,10 @@ import React, { useState, useContext } from 'react';
 import { Button } from '../button/button';
 import { LoginForm } from './login-form/login-form';
 import { RegisterForm } from './register-form/register-form';
-import './client-access.scss';
-import '../../styles/ArtExperienceButtons.scss';
-import '../../styles/ArtExperienceFonts.scss';
-import '../../styles/Effects.scss';
 import { ThemeContext } from '../../contexts/ThemeContext';
-
+import './client-access.scss';
+import '../../styles/theme-buttons.scss';
+import '../../styles/effects.scss';
 export const ClientAccess = (props: {
     onClientLogged: any
 }) => {
@@ -30,7 +28,7 @@ export const ClientAccess = (props: {
                             onClick={() => {
                                 setAccessMode(1);
                             }}
-                            className="access_btn art_experience-button_outlined"
+                            className="access_btn theme-button-outlined"
                             label="Registrate Aqui"
                         />
                     </div>
@@ -43,7 +41,7 @@ export const ClientAccess = (props: {
                             onClick={() => {
                                 setAccessMode(0);
                             }}
-                            className="access_btn art_experience-button_outlined"
+                            className="access_btn theme-button-outlined"
                             label="Accede Aqui"
                         />
                     </div>

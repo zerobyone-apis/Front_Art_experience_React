@@ -1,7 +1,3 @@
-import './toolbar.scss';
-import '../../styles/ArtExperienceButtons.scss';
-import '../../styles/ArtExperienceFonts.scss';
-
 import { Button } from '../button/button';
 import { LeftMenu } from '../left-menu/left-menu';
 import { LoginModal } from '../login-modal/login-modal';
@@ -10,6 +6,8 @@ import { ReserveModal } from '../reserve-modal/reserve-modal';
 import { toolbarButtons } from '../../utils/toolbarButtons';
 import { UserContext } from '../../contexts/UserContext';
 import { ThemeContext } from '../../contexts/ThemeContext';
+import './toolbar.scss';
+import '../../styles/theme-buttons.scss';
 
 export const Toolbar = () => {
     const {
@@ -37,7 +35,7 @@ export const Toolbar = () => {
                         <Button
                             key={i}
                             href={button.href}
-                            className="art_experience-button_only-text toolbar-btn"
+                            className="theme-button-text toolbar-btn"
                             label={button.label}
                         />
                     )

@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { BarberListContext } from '../../../contexts/BarberListContext';
 import { IBarber } from '../../../types/Barber.type';
 import './barbers-list.scss';
-import '../../../styles/Effects.scss';
+import '../../../styles/effects.scss';
 import '../../../styles/theme.scss';
 import { ThemeContext } from '../../../contexts/ThemeContext';
 

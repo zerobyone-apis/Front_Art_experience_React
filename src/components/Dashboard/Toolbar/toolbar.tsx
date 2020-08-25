@@ -1,9 +1,7 @@
 import React from 'react';
 import { LoginModal } from '../../login-modal/login-modal';
 import './toolbar.scss';
-import '../../../styles/ArtExperienceButtons.scss';
-import '../../../styles/ArtExperienceFonts.scss';
-import '../../../styles/Effects.scss';
+import '../../../styles/effects.scss';
 
 export const Toolbar = () => {
     return (

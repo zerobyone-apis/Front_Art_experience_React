@@ -1,7 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
+import moment from 'moment';
+
 import { FaCut, FaGift } from 'react-icons/fa';
 import { GiPaintedPottery } from 'react-icons/gi';
+
 import BarberAction from '../actions/Barber.actions';
+
 import { ButtonContext } from '../contexts/ButtonsContext';
 import { ThemeContext } from '../contexts/ThemeContext';
 import { BarberListContext } from '../contexts/BarberListContext';
@@ -9,17 +13,14 @@ import { Card } from '../components/card/card';
 import { IBarber } from '../types/Barber.type';
 import { LoaderPage } from '../components/loader-page/loader-page';
 import { Toolbar } from '../components/toolbar/toolbar';
-import moment from 'moment';
 import { BarbersCard } from '../components/main-page/barbers-card/barber-card';
 import { AboutUsCard } from '../components/main-page/about-us-card/about-us-card';
 import { HomeFooter } from '../components/main-page/home-footer/home-footer';
 import { CoursesCard } from '../components/main-page/courses-card/course-card';
 import { Banner } from '../components/main-page/banner/banner';
 import { ServicesCard } from '../components/main-page/services-card/service-card';
+
 import './index.scss';
-// import '../styles/Effects.scss';
-// import '../styles/theme.scss';
-import '../styles/ArtExperienceButtons.scss';
 
 const IndexPage = () => {
   const [barbers, setBarbers] = useState([]);

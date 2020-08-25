@@ -1,11 +1,9 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useState, ChangeEvent, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { TextField } from '../text-field/text-field';
 import { Button } from '../button/button';
-import '../../styles/ArtExperienceFonts.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import './search-field.scss';
+import '../../styles/theme.scss';
 
 export const SearchField = (props: {
   defaultValue?: string;

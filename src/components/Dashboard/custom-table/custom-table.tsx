@@ -6,8 +6,7 @@ import { useWindowSize } from '../../../hooks/useWindowSize';
 import { Grid } from '@material-ui/core';
 import { AiFillCaretDown, AiFillCaretUp } from 'react-icons/ai'
 import './custom-table.scss';
-import '../../../styles/ArtExperienceButtons.scss';
-import '../../../styles/ArtExperienceFonts.scss';
+import '../../../styles/theme-buttons.scss';
 
 export const CustomTable = (props: {
     title: string,
@@ -96,7 +95,7 @@ export const CustomTable = (props: {
                                 key={headerIndex}
                                 className={`header_${headerIndex}`}>
                                 <Button
-                                    className={`${(selectedHeader == header) ? 'selected' : ''} art_experience-button_only-text`}
+                                    className={`${(selectedHeader == header) ? 'selected' : ''} theme-button-text`}
                                     onClick={() => {
                                         setSelectedHeader(header);
                                         setIsSortUp(!isSortUp)
@@ -149,7 +148,7 @@ export const CustomTable = (props: {
                                                                 className={`${(selectedHeader == header) ? 'selected' : ''} item_table-text`}
                                                             >{row[header.value]}</p>
                                                         ) : (
-                                                                <Button className="state-btn art_experience-button_outlined" label="status" />
+                                                                <Button className="state-btn theme-button-outlined" label="status" />
                                                             )
                                                         }
                                                     </Grid>
@@ -169,10 +168,9 @@ export const CustomTable = (props: {
         )
     }
 
-
     return (
         <div className="custom-table">
-            <h1 className="title font-title art_experience-text-light"
+            <h1 className="font-title title text-light"
             >
                 {props.title}
             </h1>

@@ -1,10 +1,9 @@
 // eslint-disable-next-line no-unused-vars
 import React, { ChangeEvent, useState, useEffect, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { ThemeContext } from '../../contexts/ThemeContext';
 import * as Icons from '@fortawesome/free-solid-svg-icons';
 import './text-field.scss';
-import '../../styles/ArtExperienceFonts.scss';
-import { ThemeContext } from '../../contexts/ThemeContext';
 
 export const TextField = (props: {
   value?: any;

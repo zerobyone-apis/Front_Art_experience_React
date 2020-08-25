@@ -68,9 +68,6 @@ $toolbar_height: 60px;
   }
 }
 
-@media only screen and (min-width: 1200px) {}
-
-
 .right-box {
   position: absolute;
   height: $toolbar_height;
@@ -80,8 +77,3 @@ $toolbar_height: 60px;
   display: flex;
   align-items: center;
 }
-
-
-/*
-
-*/

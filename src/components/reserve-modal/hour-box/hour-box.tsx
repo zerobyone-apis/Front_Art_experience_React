@@ -1,8 +1,7 @@
-import './hour-box.scss';
-
 import React, { useEffect, useState } from 'react';
-
 import { Button } from '../../button/button';
+import './hour-box.scss';
+import '../../styles/theme-buttons.scss';
 
 export const HourBox = (props: {
     value: any,
@@ -27,7 +26,7 @@ export const HourBox = (props: {
                 {hours.map((hour, i) => {
                     return (
                         <Button
-                            className={`art_experience-button_outlined hour-item ${props.value === hour ? 'selected-hour' : null}`}
+                            className={`theme-button-outlined hour-item ${props.value === hour ? 'selected-hour' : null}`}
                             key={i}
                             label={hour}
                             onClick={() => {
