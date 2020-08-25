@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { ThemeContext } from '../../../contexts/ThemeContext';
 import { AnimationBox } from '../../animation-box/animation-box';
-import './Banner.scss';
+import './banner.scss';
 
 export const Banner = () => {
     const {
