@@ -18,7 +18,10 @@ export const BarbersCard = (props: {
         return (
             <div className={`info-box ${theme}`}>
                 <p className="title">{barber.name}</p>
-                <p className={`info text text-${theme}`}>{barber.barberDescription}</p>
+                <div className="box-info">
+                    <p className={`info text text-${theme}`}>{barber.barberDescription}</p>
+                </div>
+
                 <div className="employee-social">
                     <a href={barber.instagram}>
                         <i className="fa fa-instagram" aria-hidden="true"></i>

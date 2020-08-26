@@ -53,7 +53,6 @@ const IndexPage = () => {
     // getCourses();
   }, [])
 
-
   const pageInfo = {
     name: "Art Experience",
     slogan: "Space for Men",
