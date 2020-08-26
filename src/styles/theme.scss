@@ -28,7 +28,14 @@ $light-text: #303030d5;
 
 /* Fonts size */
 $title-size: calc(1vw + 14px);
-$text-size: 13px;
+$text-size: calc(1em + 3px);
+
+
+
+
+
+
+
 
 /* 
   Adjusts in default styles HTML 
@@ -85,7 +92,7 @@ a {
 .text-light,
 .text-dark {
   text-transform: none;
-  font-family: 'Franklin Gothic Medium';
+  font-family: '';
 }
 
 .text-light {
