@@ -1,3 +1,5 @@
+@import '../styles/theme.scss';
+
 .index_page {
   position: absolute;
   width: 100vw !important;
@@ -54,12 +56,20 @@
       min-height: 100px;
       height: max-content;
 
-      .services-card {
-        background-color: #1a1a1a;
+      .services-card.dark {
+        background-color: $secundary-dark;
       }
 
-      .courses-card {
-        background-color: #1a1a1a;
+      .services-card.light {
+        background-color: $secundary-light;
+      }
+
+      .courses-card.dark {
+        background-color: $secundary-dark;
+      }
+
+      .courses-card.light {
+        background-color: $secundary-light;
       }
     }
   }
