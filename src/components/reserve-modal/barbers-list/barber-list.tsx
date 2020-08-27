@@ -19,7 +19,6 @@ export const BarberItem = (props: {
     } = useContext(ThemeContext);
     return (
         <div className={`barber effect-slide_top ${props.selected ? 'selected-barber' : null}`}
-            key={props.key}
             onClick={() => {
                 props.onSelect ? props.onSelect() : null;
             }}
@@ -50,12 +49,13 @@ export const BarbersList = (props: {
                 {
                     (props.barbers || getBarberList()).map((barber: IBarber, i: number) => {
                         return (
-                            <BarberItem name={barber.name}
-                                img={barber.urlProfileImage}
-                                selected={props.value.name === barber.name ? true : false}
-                                onSelect={() => { props.setBarber(barber) }}
-                                key={i}
-                            />
+                            <div key={i}>
+                                <BarberItem name={barber.name}
+                                    img={barber.urlProfileImage}
+                                    selected={props.value.name === barber.name ? true : false}
+                                    onSelect={() => { props.setBarber(barber) }}
+                                />
+                            </div>
                         )
                     })
                 }
