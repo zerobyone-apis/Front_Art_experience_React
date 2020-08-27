@@ -15,37 +15,57 @@
         padding-bottom: 5px;
         border: 3px solid rgba(160, 160, 150, 0.102) !important;
 
-        .hour-item {
+        .container {
             position: relative;
+            width: 70%;
             height: max-content;
             margin: auto;
-            margin: 2px;
-            border-radius: 4px;
-            color: white;
+            display: flex;
+            flex-wrap: wrap;
+            text-align: center;
 
-            button:hover {
-                background: rgb(146, 144, 108);
-                transition: all ease 0.9s;
-            }
+            .hour-item {
+                position: relative;
+                width: 75px;
+                height: max-content;
+                margin: auto !important;
+                margin-bottom: 5px !important;
+                margin: 2px;
+                border-radius: 4px;
+                color: white;
+                // background-color: red;
 
-            .hour {
-                color: rgb(214, 214, 214);
-            }
-        }
+                .button {
+                    width: 75px;
+                }
 
-        .hour-item:hover {
-            background-color: rgba(255, 255, 255, 0.178);
-        }
+                button:hover {
+                    background: rgb(146, 144, 108);
+                    transition: all ease 0.9s;
+                }
 
-        .selected-hour {
-            button {
-                background-color: rgb(146, 144, 108) !important;
-
-                p {
-                    color: white !important;
+                .hour {
+                    color: rgb(214, 214, 214);
                 }
             }
+
+            .hour-item:hover {
+                background-color: rgba(255, 255, 255, 0.178);
+            }
+
+            .selected-hour {
+                button {
+                    background-color: rgb(146, 144, 108) !important;
+
+                    p {
+                        color: white !important;
+                    }
+                }
+            }
+
         }
+
+
     }
 
     .no-hours {
@@ -54,4 +74,5 @@
         margin-top: 20px;
         padding: 0;
     }
+
 }
