@@ -4,7 +4,6 @@ import React, {
     useState,
     useEffect,
 } from 'react';
-import db from '../config/firebase';
 import TimeActions from '../actions/AvailableTime.actions';
 
 export const FirebaseContext = createContext({
