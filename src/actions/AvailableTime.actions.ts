@@ -12,7 +12,7 @@ export default class AvailableTime {
 
   /* Firebase query */
   getReservatesHoursByReserves(barberName: string) {
-    let reserves = [];
+    let reserves: any[] = [];
     try {
       db.collection('reservas')
         .doc(barberName)
