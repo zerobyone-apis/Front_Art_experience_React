@@ -24,7 +24,7 @@ export const FirebaseProvider = (props: {
     }, []);
 
     const query = (queryText: string) => {
-        let response = timeActions.getDatesByReservesFirebase(queryText);
+        let response = timeActions.getReservatesHoursByReserves(queryText);
         setData(response);
         console.log('Objeto response', response);
     };

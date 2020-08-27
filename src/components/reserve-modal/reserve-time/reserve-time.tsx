@@ -48,20 +48,12 @@ export const ReserveTime = (props: {
 
   useEffect(() => {
     getHoursByBarberShop().then((response: any) => { setBarberShopTime(response) })
-    /* in this case not found firebase functions
-      getDatesByReserves().then((response: any) => {
-      setReservesList(response);
-    }).then(
-      result => {
-        setReserveDate(props.reserveDate);
-      })
-    */
-    // test this for execute useEffect and charge dates and hours
+    // execute useEffect and charge dates and hours
     setReserveDate(props.reserveDate);
   }, [])
 
   useEffect(() => {
-    // firebase data
+    // get firebase data
     let data: {
       date: { seconds: number, nanoseconds: number },
       times: string[]
