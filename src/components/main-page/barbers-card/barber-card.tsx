@@ -66,7 +66,9 @@ export const BarbersCard = (props: {
     return (
         <Fragment>
             {props.barbers.map((barber, i) => {
-                return <ContainerPage className="container-page"
+                return <ContainerPage
+                    className="container-page"
+                    theme="light"
                     key={i}
                     title={barber.name}
                     info={barber.barberDescription}
