@@ -6,36 +6,34 @@
 $backgroun-page: #000000;
 
 /* dark theme colors */
-$primary-dark: #333333;
-$secundary-dark: #1a1a1a;
+$primary-dark: #252525b6;
+$secondary-dark: #1a1a1ab6;
 $tertiary-dark: black;
 
 /* light theme colors */
 $primary-light: white;
-$secundary-light: rgb(167, 167, 167);
+$secondary-light: rgb(167, 167, 167);
 $tertiary-light: rgb(105, 105, 105);
 
 /* details */
 $warm-color: rgb(165, 162, 98);
-$cool-color: rgb(146, 144, 108);
+$cool-color: rgb(195, 191, 111);
 
 /* shadows */
 $shadow-color: rgb(41, 41, 41);
+$shadow-dark: rgba(0, 0, 0, 0.9);
+$shadow-light: rgba(238, 238, 238, 0.90);
 
 /* fonts colors */
-$dark-text: #bebebeef;
-$light-text: #303030d5;
+$dark-text: #303030d5; //#303030d5
+$light-text: #bebebeef; //#bebebeef
 
 /* Fonts size */
-$title-size: calc(1vw + 14px);
-$text-size: calc(1em + 3px);
+$title-size: 25px;
+$text-size: 16px;
 
-
-
-
-
-
-
+/* control of media screen size */
+$mobile-screen: 1100px;
 
 /* 
   Adjusts in default styles HTML 
@@ -48,6 +46,7 @@ body {
   background-color: $backgroun-page;
   overflow-x: hidden;
   overflow-y: hidden;
+  font-family: 'Open Sans', sans-serif;
 }
 
 /* Scrollbar style */
@@ -79,6 +78,15 @@ a {
   background-color: $primary-light;
 }
 
+/* background shadow color of components */
+.shadow-dark {
+  background-color: $shadow-dark;
+}
+
+.shadow-light {
+  background-color: $shadow-light;
+}
+
 /* fonts size and syle */
 .title {
   font-size: $title-size;
@@ -87,18 +95,18 @@ a {
 
 .text {
   font-size: $text-size;
+  text-rendering: optimizeLegibility;
+  box-shadow: 1px, 3px $shadow-color;
 }
 
 .text-light,
 .text-dark {
   text-transform: none;
-  font-family: '';
 }
 
 .text-light {
   color: $dark-text;
-  font-weight: 300;
-  box-shadow: 1px, 3px $shadow-color;
+
 }
 
 .text-dark {
