@@ -11,7 +11,8 @@ export const ContainerPage = (props: {
     img: string,
     key?: number,
     align: 'left' | 'right',
-    className?: string
+    className?: string,
+    theme?: 'dark' | 'light'
 }) => {
     const screenSize = useWindowSize();
     const {
@@ -63,7 +64,7 @@ export const ContainerPage = (props: {
     }
 
     return (
-        <div key={props.key} className={`${props.className} ${getTheme()}`}>
+        <div key={props.key} className={`${props.className}${props.theme ? ' ' + props.theme : ''}`}>
             <div className={`container`}>
                 <div className={`content-box`}>
                     <div className={props.align}>
