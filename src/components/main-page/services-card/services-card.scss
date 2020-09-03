@@ -1,4 +1,11 @@
+@import '../../../styles/theme.scss';
+
 .services-card {
+    text-align: center;
+    top: 60px;
+    z-index: 1;
+    margin-bottom: 40px;
+
     .service-item {
         position: relative;
         width: 250px;
@@ -8,39 +15,44 @@
 
         .service-icon {
             font-size: 40px;
-            color: rgb(68, 66, 52);
+            color: $cool-color;
         }
 
         .service-name {
             margin-bottom: 20px;
+            color: white;
+        }
+
+        .service-info {
+            color: white;
         }
 
         .service-url {
             position: absolute;
             bottom: 0px;
             margin-left: 40%;
-            color: rgb(214, 214, 214);
         }
     }
 }
 
 // IPHONE5/SE
 @media only screen and (max-width: 750px) {
-    .services-card {
-        text-align: center;
+    // .services-card {
+    //     text-align: center;
+    //     // margin: 0, 20vw;
 
-        .card_subtitle {
-            margin-bottom: 20px;
-        }
+    //     .card_subtitle {
+    //         margin-bottom: 20px;
+    //     }
 
-        .service-icon {
-            width: 20px;
-            height: 20px;
-        }
+    //     .service-icon {
+    //         width: 20px;
+    //         height: 20px;
+    //     }
 
-        .service-item {
-            display: inline;
-            margin: 0;
-        }
-    }
+    //     .service-item {
+    //         display: inline;
+    //         margin: 0;
+    //     }
+    // }
 }
