@@ -1,25 +1,20 @@
 import React, { useContext, useEffect, useState } from 'react';
 import moment from 'moment';
-
 import { FaCut, FaGift } from 'react-icons/fa';
 import { GiPaintedPottery } from 'react-icons/gi';
-
 import BarberAction from '../actions/Barber.actions';
-
 import { ButtonContext } from '../contexts/ButtonsContext';
 import { ThemeContext } from '../contexts/ThemeContext';
 import { BarberListContext } from '../contexts/BarberListContext';
-import { Card } from '../components/card/card';
 import { IBarber } from '../types/Barber.type';
 import { LoaderPage } from '../components/loader-page/loader-page';
 import { Toolbar } from '../components/toolbar/toolbar';
-import { BarbersCard } from '../components/main-page/barbers-card/barber-card';
+import { BarbersCard } from '../components/main-page/barbers-cardv2/barber-card';
 import { AboutUsCard } from '../components/main-page/about-us-card/about-us-card';
 import { HomeFooter } from '../components/main-page/home-footer/home-footer';
 import { CoursesCard } from '../components/main-page/courses-card/course-card';
 import { Banner } from '../components/main-page/banner/banner';
 import { ServicesCard } from '../components/main-page/services-card/service-card';
-
 import { ContainerPage } from '../components/main-page/container-page/container-page';
 import { Divider } from '../components/divider/divider';
 import './index.scss';
@@ -120,8 +115,7 @@ const IndexPage = () => {
       Posibilidad de reservar un lugar con una seña de $1500
       `,
       icon: "event",
-      img: "https://www.inquirer.com/resizer/orhvGzXeXNLr2xpL6_d81Lv-IQE=/1400x932/smart/arc-anglerfish-arc2-prod-pmn.s3.amazonaws.com/public/PTR2I5SGUNHJJGUGMHSGXFFCKU.jpg",
-      // img: "https://www.inquirer.com/resizer/orhvGzXeXNLr2xpL6_d81Lv-IQE=/1400x932/smart/arc-anglerfish-arc2-prod-pmn.s3.amazonaws.com/public/PTR2I5SGUNHJJGUGMHSGXFFCKU.jpg",
+      img: "https://instagram.fmvd4-1.fna.fbcdn.net/v/t51.2885-15/e35/54732253_1263206357161931_429745595166432294_n.jpg?_nc_ht=instagram.fmvd4-1.fna.fbcdn.net&_nc_cat=111&_nc_ohc=hX8gDx1EuQ0AX8qy0il&_nc_tp=18&oh=b377d78ed336223df1b8ab8cd3d32130&oe=5F7B4C10",
       url: "Read More"
     },
     {
@@ -143,7 +137,7 @@ const IndexPage = () => {
       cost: 'El curso tiene un costo de $8.000',
       icon: "event",
       img:
-        "https://www.inquirer.com/resizer/orhvGzXeXNLr2xpL6_d81Lv-IQE=/1400x932/smart/arc-anglerfish-arc2-prod-pmn.s3.amazonaws.com/public/PTR2I5SGUNHJJGUGMHSGXFFCKU.jpg",
+        "https://instagram.fmvd4-1.fna.fbcdn.net/v/t51.2885-15/e35/58409183_137399877418737_8950341037487835391_n.jpg?_nc_ht=instagram.fmvd4-1.fna.fbcdn.net&_nc_cat=109&_nc_ohc=ghmBqUjlw2cAX_cKRlu&_nc_tp=18&oh=db69053f9623d99bbe45100e522a76e6&oe=5F7B92FC",
       url: "Read More"
     },
     {
@@ -157,7 +151,7 @@ const IndexPage = () => {
       cost: 'El curso tiene un costo de $6.000',
       icon: "event",
       img:
-        "https://www.inquirer.com/resizer/orhvGzXeXNLr2xpL6_d81Lv-IQE=/1400x932/smart/arc-anglerfish-arc2-prod-pmn.s3.amazonaws.com/public/PTR2I5SGUNHJJGUGMHSGXFFCKU.jpg",
+        "https://instagram.fmvd4-1.fna.fbcdn.net/v/t51.2885-15/e35/43817515_183935092515961_6000014555973943296_n.jpg?_nc_ht=instagram.fmvd4-1.fna.fbcdn.net&_nc_cat=101&_nc_ohc=dwbWQnBxMusAX8wVKy0&_nc_tp=18&oh=f2b3f18f5fca9e4f058abdf456084471&oe=5F78F8A2",
       url: "Read More"
     }
   ];
@@ -207,19 +201,13 @@ const IndexPage = () => {
             info={pageInfo.aboutUs}
             img={aboutusPictures[0].url}
             align="right"
+            theme="light"
           />
           <div id="services" />
-
           <ServicesCard
             services={services}
             title={pageInfo.servicesTitle}
             subTitle={pageInfo.contactUs} />
-
-          {/* <CoursesCard
-            courses={courses}
-            title={pageInfo.coursesTitle}
-            subtitle={pageInfo.contactUs} /> */}
-
           <div id="barbers" />
           <BarbersCard barbers={barbers} />
           <div id="courses" />
@@ -228,16 +216,15 @@ const IndexPage = () => {
             title={pageInfo.coursesTitle}
             subtitle={pageInfo.contactUs} />
           <div id="contact" />
-          <Card
+          <HomeFooter
             title={pageInfo.contactUsTitle}
-            subtitle={pageInfo.contactUs}>
-            <HomeFooter
-              email={pageInfo.email}
-              instagram={pageInfo.instagram}
-              facebook={pageInfo.facebook}
-              theme="dark"
-            />
-          </Card>
+            subtitle={pageInfo.contactUs}
+            email={pageInfo.email}
+            instagram={pageInfo.instagram}
+            facebook={pageInfo.facebook}
+            theme="light"
+          />
+
         </div>
       </div >
       <LoaderPage show={disabled} />
