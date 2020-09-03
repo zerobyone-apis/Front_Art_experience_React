@@ -20,6 +20,8 @@ import { CoursesCard } from '../components/main-page/courses-card/course-card';
 import { Banner } from '../components/main-page/banner/banner';
 import { ServicesCard } from '../components/main-page/services-card/service-card';
 
+import { ContainerPage } from '../components/main-page/container-page/container-page';
+import { Divider } from '../components/divider/divider';
 import './index.scss';
 
 const IndexPage = () => {
@@ -161,7 +163,6 @@ const IndexPage = () => {
   ];
   const aboutusPictures = [
     { url: 'https://instagram.fmvd1-1.fna.fbcdn.net/v/t51.2885-15/e35/57488298_2276560875734649_7666756016645949298_n.jpg?_nc_ht=instagram.fmvd1-1.fna.fbcdn.net&_nc_cat=109&_nc_ohc=MskQCPZA-BkAX_omsCq&oh=44ff4fcc828dcbe2403bedd48f6383e6&oe=5F57538C' },
-    // { url: 'https://instagram.fmvd4-1.fna.fbcdn.net/v/t51.2885-15/e35/54800426_106275450418894_8601708499349892562_n.jpg?_nc_ht=instagram.fmvd4-1.fna.fbcdn.net&_nc_cat=110&_nc_ohc=q4qz70Pjc80AX-b06U8&oh=3251c0cae9f80fbccf8e56c45667f64f&oe=5F30DAD3' }
   ]
   const dividers = [
     {
@@ -201,16 +202,24 @@ const IndexPage = () => {
           <div id="banner" />
           <Banner />
           <div id="about_us" />
-          <AboutUsCard
+          <ContainerPage
             title={pageInfo.aboutUsTitle}
             info={pageInfo.aboutUs}
-            pictures={aboutusPictures}
+            img={aboutusPictures[0].url}
+            align="right"
           />
           <div id="services" />
+
           <ServicesCard
             services={services}
             title={pageInfo.servicesTitle}
             subTitle={pageInfo.contactUs} />
+
+          {/* <CoursesCard
+            courses={courses}
+            title={pageInfo.coursesTitle}
+            subtitle={pageInfo.contactUs} /> */}
+
           <div id="barbers" />
           <BarbersCard barbers={barbers} />
           <div id="courses" />
@@ -225,7 +234,9 @@ const IndexPage = () => {
             <HomeFooter
               email={pageInfo.email}
               instagram={pageInfo.instagram}
-              facebook={pageInfo.facebook} />
+              facebook={pageInfo.facebook}
+              theme="dark"
+            />
           </Card>
         </div>
       </div >
