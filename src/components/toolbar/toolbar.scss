@@ -15,7 +15,6 @@ $toolbar_height: 60px;
   z-index: 999;
   width: 100%;
   height: $toolbar_height;
-  box-shadow: 0 5px 10px $shadow-color;
 
   .left-box {
     position: relative;
@@ -33,12 +32,16 @@ $toolbar_height: 60px;
     .title-btn {
       p {
         color: rgb(146, 144, 108);
-        font-size: 20px !important;
+        font-size: $text-size !important;
       }
     }
 
     .toolbar-btn {
       position: relative;
+
+      .label_button {
+        text-transform: uppercase;
+      }
     }
 
     @media only screen and (max-width:310px) {
@@ -57,15 +60,9 @@ $toolbar_height: 60px;
       }
     }
 
-    @media only screen and (max-width: 800px) {
+    @media only screen and (max-width: $mobile-screen) {
       .toolbar-btn {
         visibility: hidden;
-      }
-
-      .left_box {
-        .menu-icon {
-          visibility: hidden;
-        }
       }
     }
   }

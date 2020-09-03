@@ -21,7 +21,8 @@ export const Toolbar = () => {
     } = useContext(ThemeContext);
 
     return (
-        <div className={`toolbar effect-slide_bottom ${getTheme()}`}>
+        // ${getTheme()}
+        <div className={`toolbar effect-slide_bottom shadow-dark`}>
             <div id="start_page" />
             <div className="left-box">
                 <LeftMenu />
