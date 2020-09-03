@@ -1,4 +1,6 @@
 .courses-card {
+    margin-bottom: 60px;
+
     .course-item {
         position: relative;
         margin: 5px;
@@ -7,6 +9,15 @@
         height: 320px;
         display: inline-table;
         text-align: center;
+
+        .course-name {
+            color: white;
+        }
+
+
+        .course-duration {
+            color: white;
+        }
 
         .course-img {
             position: relative;
