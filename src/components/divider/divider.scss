@@ -1,7 +1,4 @@
 .divider-box {
-    // background-color: rgb(146, 144, 108);
-    // visibility: hidden;
-
     .back_img {
         position: absolute;
         width: 100%;
@@ -16,7 +13,8 @@
 
     .divider_left {
         position: relative;
-        height: 60vh;
+        height: max-content;
+        min-height: 300px;
     }
 
     .img_paralax {
