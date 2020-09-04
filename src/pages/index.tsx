@@ -209,7 +209,10 @@ const IndexPage = () => {
             title={pageInfo.servicesTitle}
             subTitle={pageInfo.contactUs} />
           <div id="barbers" />
-          <BarbersCard barbers={barbers} />
+          <BarbersCard barbers={barbers}
+            title="Nuestros Barberos"
+            subTitle={""}
+          />
           <div id="courses" />
           <CoursesCard
             courses={courses}
