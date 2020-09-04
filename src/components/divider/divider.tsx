@@ -7,10 +7,11 @@ export const Divider = (props: {
     img: string,
     align?: string,
     id?: string,
-    title?: string
+    title?: string,
+    className?: string,
 }) => {
     return (
-        <div id={props.id} className="divider-box">
+        <div id={props.id} className={`divider-box ${props.className}`}>
             <div className={`divider_left`}>
                 <div
                     className="back_img"

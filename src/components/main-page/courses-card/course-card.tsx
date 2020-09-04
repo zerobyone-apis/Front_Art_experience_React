@@ -4,6 +4,7 @@ import { Divider } from '../../divider/divider';
 import { ContainerPage } from '../container-page/container-page';
 import './courses-card.scss';
 import '../../../styles/theme-buttons.scss';
+import '../../../styles/effects.scss';
 
 export const CourseItem = (props: {
     img: any,
@@ -52,9 +53,12 @@ export const CoursesCard = (props: {
         <Divider
             title="Nuestros Cursos"
             img="https://scontent.fmvd4-1.fna.fbcdn.net/v/t1.0-9/s960x960/45230851_310326229560512_8082084365997178880_o.jpg?_nc_cat=110&_nc_sid=dd9801&_nc_ohc=LwkdhjYPttcAX8sw6hk&_nc_ht=scontent.fmvd4-1.fna&_nc_tp=7&oh=e90cde8ea10295ce8a00a64d7e1cae1a&oe=5F565319"
-            align="left">
+            align="left"
+            className="divider"
+        >
             <div className="course-card">
                 <div className="courses-items">
+                    <p className="help-action">Cursos</p>
                     {getCourses()}
                 </div>
                 <div className="course-info">

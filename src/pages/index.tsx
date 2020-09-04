@@ -115,7 +115,7 @@ const IndexPage = () => {
       Posibilidad de reservar un lugar con una seña de $1500
       `,
       icon: "event",
-      img: "https://instagram.fmvd1-1.fna.fbcdn.net/v/t51.2885-15/e35/47104494_194110188200064_5324867502591705088_n.jpg?_nc_ht=instagram.fmvd1-1.fna.fbcdn.net&_nc_cat=100&_nc_ohc=n1Brgzv1W78AX_SDPkK&oh=52b7887264792145124b805f01effab7&oe=5F7D54EF",
+      img: "https://instagram.fmvd2-1.fna.fbcdn.net/v/t51.2885-15/e35/45577786_258991408073606_2863555795478380544_n.jpg?_nc_ht=instagram.fmvd2-1.fna.fbcdn.net&_nc_cat=102&_nc_ohc=x3mWD5HfJfkAX_DNzil&oh=42c25a3cc091cbef629d5593f240cf9b&oe=5F7E0C77",
       url: "Read More"
     },
     {
@@ -201,23 +201,24 @@ const IndexPage = () => {
             info={pageInfo.aboutUs}
             img={aboutusPictures[0].url}
             align="right"
-            theme="light"
+            theme="dark"
+            className="about-us-card"
           />
           <div id="services" />
-          <ServicesCard
-            services={services}
-            title={pageInfo.servicesTitle}
-            subTitle={pageInfo.contactUs} />
           <div id="barbers" />
           <BarbersCard barbers={barbers}
             title="Nuestros Barberos"
             subTitle={""}
           />
           <div id="courses" />
+          <ServicesCard
+            services={services}
+            title={pageInfo.servicesTitle}
+            subTitle={pageInfo.contactUs} />
           <CoursesCard
             courses={courses}
             title={pageInfo.coursesTitle}
-            subtitle={pageInfo.contactUs} />
+            subTitle={pageInfo.contactUs} />
           <div id="contact" />
           <HomeFooter
             title={pageInfo.contactUsTitle}

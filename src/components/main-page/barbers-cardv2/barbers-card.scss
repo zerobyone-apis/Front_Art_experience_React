@@ -1,18 +1,36 @@
 @import '../../../styles/theme.scss';
 @import '../../../styles/effects.scss';
 
+// .divider {
+    //     border-top-style: solid;
+    //     border-color: $cool-color;
+    //     border-width: 1px;
+    // }
 .barber-card {
     width: 100%;
     height: max-content;
 
     // barbers items
     .barbers-items {
-        position: relative;
+        // position: relative;
+        position: absolute;
+        right: 0;
+        z-index: 1;
         width: max-content;
         height: max-content;
         text-align: center;
-        display: flex;
-        margin: auto;
+        border-left-style: solid;
+        border-color: $warm-color;
+        border-width: 1px;
+
+        .help-action {
+            position: absolute;
+            text-transform: uppercase;
+            color: $cool-color;
+            writing-mode: vertical-lr;
+            left: -40px;
+            top: 40%;
+        }
 
         .barber-item {
             position: relative;
@@ -30,6 +48,7 @@
 
             .barber-name {
                 margin-bottom: 20px;
+                color: white;
             }
 
             .barber-url {

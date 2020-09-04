@@ -47,8 +47,10 @@ export const ServicesCard = (props: {
     return (
         <Divider
             title="Brindamos servicios de alto nivel, teniendo en cuenta sus necesidades"
-            img="https://scontent.fmvd4-1.fna.fbcdn.net/v/t1.0-9/s960x960/45230851_310326229560512_8082084365997178880_o.jpg?_nc_cat=110&_nc_sid=dd9801&_nc_ohc=LwkdhjYPttcAX8sw6hk&_nc_ht=scontent.fmvd4-1.fna&_nc_tp=7&oh=e90cde8ea10295ce8a00a64d7e1cae1a&oe=5F565319"
-            align="left">
+            img=""
+            align="left"
+            className="dark service-divider"
+        >
             <div className="divider-content">
                 <div className="services-card">
                     {getServices()}

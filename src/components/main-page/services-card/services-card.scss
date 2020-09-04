@@ -1,5 +1,13 @@
 @import '../../../styles/theme.scss';
 
+.service-divider {
+    //test
+    //animated
+    // outline: 1px dashed $secondary-dark;
+    // box-shadow: inset 0px 0px 0px 1px rgb(78, 85, 47);
+    // animation: 1s animateBorder infinite;
+}
+
 .services-card {
     text-align: center;
     top: 60px;
@@ -54,4 +62,13 @@
     //         margin: 0;
     //     }
     // }
+}
+
+
+//test
+@keyframes animateBorder {
+    to {
+        outline-color: rgb(78, 85, 47);
+        box-shadow: 0 0 0 1px $secondary-dark;
+    }
 }

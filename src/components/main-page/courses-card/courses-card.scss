@@ -6,6 +6,12 @@
     }
 }
 
+// .divider {
+//     border-top-style: solid;
+//     border-color: $cool-color;
+//     border-width: 1px;
+// }
+
 .course-card {
     width: 100%;
     height: max-content;
@@ -18,9 +24,19 @@
         width: max-content;
         height: max-content;
         text-align: center;
-        // display: inline-flexbox;
-        // margin: auto;
-        // background-color: red;
+        //for help action
+        border-right-style: solid;
+        border-color: $warm-color;
+        border-width: 1px;
+
+        .help-action {
+            position: absolute;
+            text-transform: uppercase;
+            color: $cool-color;
+            writing-mode: vertical-lr;
+            right: -40px;
+            top: 40%;
+        }
 
         .course-item {
             position: relative;
@@ -50,7 +66,7 @@
 
         .course-item:hover {
             .course-img {
-                // transition: all 500ms ease-out;
+                transition: all 500ms ease-out;
                 filter: grayscale(0);
             }
 
@@ -62,7 +78,7 @@
         .selected {
             .course-img {
                 filter: grayscale(0);
-                // transition: all 1s ease-out;
+                transition: all 1s ease-out;
             }
 
             .course-name {
