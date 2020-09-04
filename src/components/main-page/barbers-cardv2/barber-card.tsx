@@ -1,81 +1,75 @@
-import React, { useContext, Fragment } from 'react';
-import { IBarber } from '../../../types/Barber.type';
-import { FaInstagram, FaFacebook } from 'react-icons/fa';
+import React, { useContext, useState, Fragment } from 'react';
 import { ThemeContext } from '../../../contexts/ThemeContext';
-import { Slider } from '../../slider/slider';
-import { ContainerPage } from '../container-page/container-page';
+import { Card } from '../../card/card';
+import { Divider } from '../../divider/divider';
 import './barbers-card.scss';
+import '../../../styles/theme.scss';
+import { ContainerPage } from '../container-page/container-page';
 
-export const BarbersCard = (props: {
-    barbers: IBarber[]
+export const BarberItem = (props: {
+    img: any,
+    name: string,
+    info: string,
+    key?: number,
 }) => {
     const {
         // @ts-ignore
         getTheme,
     } = useContext(ThemeContext);
+    return (
+        <div className={`barber-item`} key={props.key}>
+            <img className="barber-img" src={props.img} alt="" />
+            <p className={`barber-name text text-light`}>{props.name}</p>
+        </div>
+    )
+}
 
-    const getInfoBox = (barber, theme) => {
-        return (
-            <div className={`info-box`}>
-                <p className="title">{barber.name}</p>
-                <div className="box-info">
-                    <p className={`info text text-${theme}`}>{barber.barberDescription}</p>
-                </div>
+export const BarbersCard = (props: {
+    barbers: any[],
+    title: string,
+    subTitle: string
+}) => {
 
-                <div className="employee-social">
-                    <a href={barber.instagram}>
-                        <i className="fa fa-instagram" aria-hidden="true"></i>
-                        <FaInstagram className="employee-social-logo social-logo" />
-                    </a>
-                    <a href={barber.facebook}>
-                        <FaFacebook className="employee-social-logo social-logo" />
-                    </a>
-                </div>
+    const [selectedBarber, setSelectedBarber] = useState(undefined);
+
+    const {
+        // @ts-ignore
+        getTheme,
+    } = useContext(ThemeContext);
+
+    const getBarbers = () => {
+        return props.barbers.map((barber, i) =>
+            <div onMouseEnter={() => { setSelectedBarber(barber) }} className={`${barber === selectedBarber ? 'selected' : null}`}>
+                <BarberItem key={i}
+                    name={barber.name}
+                    info={barber.info}
+                    img={barber.urlProfileImage}
+                />
             </div>
-        )
-    }
-
-    const getSliderBox = (barber) => {
-        return (
-            <div className="slider-box">
-                <Slider auto={false} items={[{ url: barber.urlProfileImage }]} />
-            </div>
-        )
-    }
-
-    const getLeft = (barber, i) => {
-        return (
-            <div className="barber-card" key={i}>
-                {getInfoBox(barber, getTheme())}
-                <div className={`line_divider`}><div /></div>
-                {getSliderBox(barber)}
-            </div>
-        )
-    }
-
-    const getRight = (barber, i) => {
-        return (
-            <div className="barber-card" key={i}>
-                {getSliderBox(barber)}
-                <div className="line_divider"><div /></div>
-                {getInfoBox(barber, getTheme())}
-            </div >
         )
     }
 
     return (
-        <Fragment>
-            {props.barbers.map((barber, i) => {
-                return <ContainerPage
-                    className="container-page"
-                    theme="light"
-                    key={i}
-                    title={barber.name}
-                    info={barber.barberDescription}
-                    img={barber.urlProfileImage}
-                    align={i % 2 === 0 ? "left" : "right"}
-                />
-            })}
-        </Fragment>
+        <div className="barber-card light">
+            <div className="barbers-items">
+                {getBarbers()}
+            </div>
+            <div className="barber-info">
+                {selectedBarber ?
+                    (
+                        <ContainerPage
+                            align="left"
+                            title={selectedBarber.name}
+                            info={selectedBarber.barberDescription}
+                            img={selectedBarber.urlProfileImage} />
+                    ) : (
+                        <ContainerPage
+                            align="left"
+                            title={"Nuestros Barberos"}
+                            info={"ArtExperience barberos"}
+                            img={"https://instagram.fmvd1-1.fna.fbcdn.net/v/t51.2885-15/e35/57488298_2276560875734649_7666756016645949298_n.jpg?_nc_ht=instagram.fmvd1-1.fna.fbcdn.net&_nc_cat=109&_nc_ohc=MskQCPZA-BkAX_omsCq&oh=44ff4fcc828dcbe2403bedd48f6383e6&oe=5F57538C"} />
+                    )}
+            </div>
+        </div>
     )
 }

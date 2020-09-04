@@ -1,7 +1,97 @@
 @import '../../../styles/theme.scss';
+@import '../../../styles/effects.scss';
 
-.container-page {
-    .content-box {
-        // background-color: $secondary-dark;
+.barber-card {
+    width: 100%;
+    height: max-content;
+
+    // barbers items
+    .barbers-items {
+        position: relative;
+        width: max-content;
+        height: max-content;
+        text-align: center;
+        display: flex;
+        margin: auto;
+
+        .barber-item {
+            position: relative;
+            width: 30%;
+            margin: 40px 20px 0 20px;
+            display: inline-table;
+            text-align: center;
+
+            .barber-img {
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+                filter: grayscale(1);
+            }
+
+            .barber-name {
+                margin-bottom: 20px;
+            }
+
+            .barber-url {
+                position: absolute;
+                bottom: 0px;
+                margin-left: 40%;
+            }
+        }
+
+        .barber-item:hover {
+            .barber-img {
+                filter: grayscale(0);
+                transition: all 500ms ease-out;
+            }
+
+            .barber-name {
+                color: $cool-color;
+            }
+        }
+
+        .selected {
+            .barber-img {
+                filter: grayscale(0);
+                transition: all 1s ease-out;
+            }
+
+            .barber-name {
+                color: $cool-color;
+            }
+        }
+    }
+
+    // image and info
+    .barber-info {
+        width: 100%;
+        height: max-content;
+        text-align: center;
+
+        .img-box {}
+
+        .selected-img {
+            max-width: 250px;
+        }
+    }
+}
+
+// IPHONE5/SE
+@media only screen and (max-width: $mobile-screen) {
+    .barber-card {
+        // display: grid;
+
+        .barbers-items {
+            // width: 100%;
+        }
+
+        .barber-info {
+            // width: 100%;
+            // background-color: green;
+
+            .selected-img {
+                min-width: 450px;
+            }
+        }
     }
 }
