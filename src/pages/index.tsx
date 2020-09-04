@@ -101,7 +101,7 @@ const IndexPage = () => {
   ];
   const courses = [
     {
-      name: "Curso intensivo",
+      name: "INTENSIVO",
       duration: "4 meses", //  / 1 clase por semana a partir de las 13:30hrs
       info: `
       El curso incluye los materialez a utilizar en el mismo.
@@ -115,11 +115,11 @@ const IndexPage = () => {
       Posibilidad de reservar un lugar con una seña de $1500
       `,
       icon: "event",
-      img: "https://instagram.fmvd4-1.fna.fbcdn.net/v/t51.2885-15/e35/54732253_1263206357161931_429745595166432294_n.jpg?_nc_ht=instagram.fmvd4-1.fna.fbcdn.net&_nc_cat=111&_nc_ohc=hX8gDx1EuQ0AX8qy0il&_nc_tp=18&oh=b377d78ed336223df1b8ab8cd3d32130&oe=5F7B4C10",
+      img: "https://instagram.fmvd1-1.fna.fbcdn.net/v/t51.2885-15/e35/47104494_194110188200064_5324867502591705088_n.jpg?_nc_ht=instagram.fmvd1-1.fna.fbcdn.net&_nc_cat=100&_nc_ohc=n1Brgzv1W78AX_SDPkK&oh=52b7887264792145124b805f01effab7&oe=5F7D54EF",
       url: "Read More"
     },
     {
-      name: "Perfeccionamiento de colorimentria",
+      name: "COLOMETRIA",
       info: `
       Tiene los materiales incluidos.\n
       Se realizaran los siguientes trabajos en cada uno de los modelos\n
@@ -141,7 +141,7 @@ const IndexPage = () => {
       url: "Read More"
     },
     {
-      name: "Perfeccionamiento de corte",
+      name: "CORTE",
       info: `
         En este perfeccionamientoTrabajamos con 4 modelos,
         En los cuales haremos 3 estilos diferentes:\n 

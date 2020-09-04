@@ -24,7 +24,12 @@ export const ContainerPage = (props: {
         return (
             <div className="info-box">
                 <p className={`title`}>{props.title}</p>
-                <p className={`text info text-${getTheme()}`}>{props.info}</p>
+                {
+                    props.info.split('\n').map((line, i) => {
+                        return <p key={i} className={`text info text-${getTheme()}`}>{line}</p>
+                    })
+                }
+                {/* <p className={`text info text-${getTheme()}`}>{props.info}</p> */}
             </div>
         );
     }

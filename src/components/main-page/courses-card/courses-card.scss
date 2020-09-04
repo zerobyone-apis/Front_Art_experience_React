@@ -6,46 +6,96 @@
     }
 }
 
-.courses-card {
+.course-card {
+    width: 100%;
     height: max-content;
 
-    .info {
-        color: white;
-        text-align: left;
+    // courses items
+    .courses-items {
+        position: absolute;
+        left: 0 !important;
+        z-index: 1;
+        width: max-content;
+        height: max-content;
+        text-align: center;
+        // display: inline-flexbox;
+        // margin: auto;
+        // background-color: red;
+
+        .course-item {
+            position: relative;
+            width: max-content;
+            margin: 40px 20px 0 20px;
+            display: inline-table;
+            text-align: center;
+
+            .course-img {
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                filter: grayscale(1);
+            }
+
+            .course-name {
+                margin-bottom: 20px;
+                color: white;
+            }
+
+            .course-url {
+                position: absolute;
+                bottom: 0px;
+                margin-left: 40%;
+            }
+        }
+
+        .course-item:hover {
+            .course-img {
+                // transition: all 500ms ease-out;
+                filter: grayscale(0);
+            }
+
+            .course-name {
+                color: $cool-color;
+            }
+        }
+
+        .selected {
+            .course-img {
+                filter: grayscale(0);
+                // transition: all 1s ease-out;
+            }
+
+            .course-name {
+                color: $cool-color;
+            }
+        }
     }
 
-    .course-item {
+    .couse-container {
         position: relative;
-        margin: 5px;
-        width: 260px;
-        height: 320px;
-        display: inline-table;
+
+        .info {
+            color: white;
+        }
+    }
+
+
+    // image and info
+    .course-info {
+        width: 100%;
+        height: max-content;
         text-align: center;
 
-        .course-name {
+        .info-box {
             color: white;
         }
 
-        .course-duration {
-            color: white;
-        }
-
-        .course-img {
-            position: relative;
-            border-radius: 4px;
-            border-top-left-radius: 20px;
-            border-bottom-right-radius: 20px;
-            box-shadow: 0px 0px 20px 0px rgb(68, 66, 52);
-        }
-
-        .course-url {
-            position: absolute;
-            bottom: 0px;
-            margin-left: 40%;
-            color: #3b3b3bbb;
+        .selected-img {
+            max-width: 250px;
         }
     }
 }
+
 
 // IPHONE5/SE
 @media only screen and (max-width: 750px) {

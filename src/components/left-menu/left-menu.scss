@@ -21,6 +21,10 @@ $menu_size: 200px;
   }
 
   .left_menu-dialog {
+    width: 50%;
+    text-align: center;
+    background-color: red;
+
     a {
       position: relative;
       top: 0 !important;
@@ -28,7 +32,6 @@ $menu_size: 200px;
 
     .logo {
       width: 100%;
-      // background-color: red;
       text-align: center;
 
       .logo-img {
@@ -49,6 +52,7 @@ $menu_size: 200px;
 
     .dialog-modal {
       height: 100%;
+      background-color: red;
 
       .header {
         height: 60px;
@@ -71,6 +75,8 @@ $menu_size: 200px;
 
       .content {
         position: relative;
+        width: 100%;
+        // background-color: green;
 
         .left_menu-btn {
           position: relative;
