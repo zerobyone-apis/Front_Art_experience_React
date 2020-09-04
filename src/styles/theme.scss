@@ -29,6 +29,7 @@ $dark-text: #303030d5; //#303030d5
 $light-text: #bebebeef; //#bebebeef
 
 /* Fonts size */
+$big-title-size: 30px;
 $title-size: 25px;
 $text-size: 16px;
 
@@ -88,6 +89,11 @@ a {
 }
 
 /* fonts size and syle */
+.big-title {
+  font-size: $big-title-size;
+  color: $cool-color
+}
+
 .title {
   font-size: $title-size;
   color: $cool-color
@@ -106,9 +112,22 @@ a {
 
 .text-light {
   color: $dark-text;
-
 }
 
 .text-dark {
   color: $dark-text;
+}
+
+@media only screen and (max-width: 500px) {
+  .big-title {
+    font-size: 22px !important;
+  }
+
+  .title {
+    font-size: 18px !important;
+  }
+
+  .text {
+    font-size: 14px !important;
+  }
 }

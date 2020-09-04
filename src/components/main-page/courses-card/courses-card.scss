@@ -1,13 +1,5 @@
 @import '../../../styles/theme.scss';
 
-.divider-content {
-    height: max-content;
-
-    .divider-title {
-        color: $cool-color !important;
-    }
-}
-
 .container-page {
     img {
         max-height: 350px !important;
