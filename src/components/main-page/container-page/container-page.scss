@@ -1,6 +1,11 @@
 @import '../../../styles/theme.scss';
 
+.container-page-box {
+    position: relative;
+}
+
 .container {
+    position: relative;
     margin: 0 20vw;
     padding: 40px 0;
     height: max-content;
@@ -48,6 +53,7 @@
         }
 
         .img-box {
+            position: relative;
             display: block;
             right: 0;
             width: 50%;

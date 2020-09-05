@@ -8,6 +8,19 @@ $duration: 1s;
     animation-duration: $duration;
 }
 
+.effect-slide-left {
+    left: -5vw;
+    transform: translate3d(5vw, 0, 0px);
+    transition: transform .2s ease-in-out;
+}
+
+.effect-slide-right {
+    right: -5vw;
+    transform: translate3d(-5vw, 0, 0px);
+    transition: .2s ease;
+    transition: transform .2s ease-in-out;
+}
+
 .effect-slide_top {
     animation-name: slide_top;
     animation-duration: $duration;
@@ -35,6 +48,18 @@ $duration: 1s;
 
     100% {
         left: 200px;
+    }
+}
+
+@keyframes slide-right {
+    0% {
+        right: -5vw;
+        opacity: 0;
+    }
+
+    100% {
+        right: 0;
+        opacity: 1;
     }
 }
 

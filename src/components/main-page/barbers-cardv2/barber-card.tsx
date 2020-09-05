@@ -1,28 +1,10 @@
-import React, { useContext, useState, Fragment } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { ThemeContext } from '../../../contexts/ThemeContext';
-import { Card } from '../../card/card';
 import { Divider } from '../../divider/divider';
+import { ContainerPage } from '../container-page/container-page';
 import './barbers-card.scss';
 import '../../../styles/theme.scss';
-import { ContainerPage } from '../container-page/container-page';
-
-export const BarberItem = (props: {
-    img: any,
-    name: string,
-    info: string,
-    key?: number,
-}) => {
-    const {
-        // @ts-ignore
-        getTheme,
-    } = useContext(ThemeContext);
-    return (
-        <div className={`barber-item`} key={props.key}>
-            <img className="barber-img" src={props.img} alt="" />
-            <p className={`barber-name text text-light`}>{props.name}</p>
-        </div>
-    )
-}
+import '../../../styles/effects.scss';
 
 export const BarbersCard = (props: {
     barbers: any[],
@@ -31,16 +13,44 @@ export const BarbersCard = (props: {
 }) => {
 
     const [selectedBarber, setSelectedBarber] = useState(undefined);
+    const [effects, setEffects] = useState('');
 
     const {
         // @ts-ignore
         getTheme,
     } = useContext(ThemeContext);
 
+    const BarberItem = (props: {
+        img: any,
+        name: string,
+        info: string,
+        key?: number,
+        barber?: any
+    }) => {
+        const {
+            // @ts-ignore
+            getTheme,
+        } = useContext(ThemeContext);
+        return (
+            <div className={`barber-item`} key={props.key}>
+                <img
+                    onMouseEnter={() => {
+                        setEffects('effect-slide-right');
+                        setSelectedBarber(props.barber);
+                    }}
+                    onMouseLeave={() => { setEffects('') }}
+                    className={`barber-img`}
+                    src={props.img} alt="" />
+                <p className={`barber-name text text-light`}>{props.name}</p>
+            </div>
+        )
+    }
+
     const getBarbers = () => {
         return props.barbers.map((barber, i) =>
-            <div onMouseEnter={() => { setSelectedBarber(barber) }} className={`${barber === selectedBarber ? 'selected' : null}`}>
+            <div className={`${barber === selectedBarber ? 'selected' : null}`}>
                 <BarberItem key={i}
+                    barber={barber}
                     name={barber.name}
                     info={barber.info}
                     img={barber.urlProfileImage}
@@ -61,11 +71,12 @@ export const BarbersCard = (props: {
                     <p className="help-action">Barberos</p>
                     {getBarbers()}
                 </div>
-                <div className="barber-info">
+                <div className={`barber-info`}>
                     {selectedBarber ?
                         (
                             <ContainerPage
-                                className="barber-container"
+                                className={`barber-container ${effects}`}
+                                imgClassName={``}
                                 align="left"
                                 title={selectedBarber.name}
                                 info={selectedBarber.barberDescription}

@@ -6,24 +6,6 @@ import './courses-card.scss';
 import '../../../styles/theme-buttons.scss';
 import '../../../styles/effects.scss';
 
-export const CourseItem = (props: {
-    img: any,
-    name: string,
-    info: string,
-    key?: number,
-}) => {
-    const {
-        // @ts-ignore
-        getTheme,
-    } = useContext(ThemeContext);
-    return (
-        <div className={`course-item`} key={props.key || 1}>
-            <img className="course-img" src={props.img} alt="" />
-            <p className={`course-name text text-light`}>{props.name}</p>
-        </div>
-    )
-}
-
 export const CoursesCard = (props: {
     courses: any[],
     title: string,
@@ -31,19 +13,47 @@ export const CoursesCard = (props: {
 }) => {
 
     const [selectedCourse, setSelectedCourse] = useState(undefined);
+    const [effects, setEffects] = useState('');
 
     const {
         // @ts-ignore
         getTheme,
     } = useContext(ThemeContext);
 
+
+    const CourseItem = (props: {
+        img: any,
+        name: string,
+        info: string,
+        key?: number,
+        course?: any
+    }) => {
+        const {
+            // @ts-ignore
+            getTheme,
+        } = useContext(ThemeContext);
+        return (
+            <div className={`course-item`} key={props.key || 1}>
+                <img
+                    onMouseEnter={() => {
+                        setEffects('effect-slide-left');
+                        setSelectedCourse(props.course);
+                    }}
+                    onMouseLeave={() => { setEffects('') }}
+                    className="course-img" src={props.img} alt="" />
+                <p className={`course-name text text-light`}>{props.name}</p>
+            </div>
+        )
+    }
+
     const getCourses = () => {
         return props.courses.map((course, i) => <div
-            onMouseEnter={() => { setSelectedCourse(course) }} className={`${course === selectedCourse ? 'selected' : null}`}>
+            className={`${course === selectedCourse ? 'selected' : null}`}>
             <CourseItem key={i}
                 name={course.name}
                 info={course.info}
                 img={course.img}
+                course={course}
             />
         </div>
         )
@@ -65,7 +75,7 @@ export const CoursesCard = (props: {
                     {selectedCourse ?
                         (
                             <ContainerPage
-                                className="couse-container"
+                                className={`couse-container ${effects}`}
                                 align="right"
                                 title={selectedCourse.name}
                                 info={selectedCourse.info}

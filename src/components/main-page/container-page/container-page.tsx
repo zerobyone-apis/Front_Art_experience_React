@@ -12,6 +12,7 @@ export const ContainerPage = (props: {
     key?: number,
     align: 'left' | 'right',
     className?: string,
+    imgClassName?: string,
     theme?: 'dark' | 'light'
 }) => {
     const screenSize = useWindowSize();
@@ -36,7 +37,7 @@ export const ContainerPage = (props: {
 
     const ImageBox = () => {
         return (
-            <div className="img-box">
+            <div className={`img-box ${props.imgClassName}`}>
                 <div className="image">
                     <img style={
                         (screenSize.size.width > 1100 ?
@@ -69,7 +70,7 @@ export const ContainerPage = (props: {
     }
 
     return (
-        <div key={props.key} className={`${props.className}${props.theme ? ' ' + props.theme : ''}`}>
+        <div key={props.key} className={`container-page-box ${props.className} ${props.theme ? ' ' + props.theme : ''}`}>
             <div className={`container`}>
                 <div className={`content-box`}>
                     <div className={props.align}>

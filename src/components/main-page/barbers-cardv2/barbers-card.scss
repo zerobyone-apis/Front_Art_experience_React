@@ -1,18 +1,12 @@
 @import '../../../styles/theme.scss';
 @import '../../../styles/effects.scss';
 
-// .divider {
-    //     border-top-style: solid;
-    //     border-color: $cool-color;
-    //     border-width: 1px;
-    // }
 .barber-card {
     width: 100%;
     height: max-content;
 
     // barbers items
     .barbers-items {
-        // position: relative;
         position: absolute;
         right: 0;
         z-index: 1;
@@ -40,6 +34,7 @@
             text-align: center;
 
             .barber-img {
+                position: relative;
                 width: 100px;
                 height: 100px;
                 border-radius: 50%;
