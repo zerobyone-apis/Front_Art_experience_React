@@ -1,4 +1,4 @@
-import React, { useContext, Fragment } from 'react';
+import React, { useContext, Fragment, ReactElement, ReactChild } from 'react';
 import { ThemeContext } from '../../../contexts/ThemeContext';
 import { useWindowSize } from '../../../hooks/useWindowSize';
 import '../../../styles/theme.scss';
@@ -8,7 +8,8 @@ import './container-page.scss';
 export const ContainerPage = (props: {
     title: string,
     info: string,
-    img: string,
+    img: string | ReactChild,
+    imgFooter?: ReactChild,
     key?: number,
     align: 'left' | 'right',
     className?: string,
@@ -30,7 +31,6 @@ export const ContainerPage = (props: {
                         return <p key={i} className={`text info text-${getTheme()}`}>{line}</p>
                     })
                 }
-                {/* <p className={`text info text-${getTheme()}`}>{props.info}</p> */}
             </div>
         );
     }
@@ -39,11 +39,22 @@ export const ContainerPage = (props: {
         return (
             <div className={`img-box ${props.imgClassName}`}>
                 <div className="image">
-                    <img style={
-                        (screenSize.size.width > 1100 ?
-                            ({ width: `${(screenSize.size.width - 520) / 2}px` })
-                            : null)}
-                        src={props.img} />
+                    {typeof (props.img) === 'string' ? (
+                        <Fragment>
+                            <img style={
+                                (screenSize.size.width > 1100 ?
+                                    ({ width: `${(screenSize.size.width - 520) / 2}px` })
+                                    : null)}
+                                src={props.img} />
+                            {props.imgFooter ? (
+                                <div className="image-footer">
+                                    {props.imgFooter}
+                                </div>
+                            ) : null}
+                        </Fragment>
+                    ) : (
+                            props.img
+                        )}
                 </div>
             </div>
         );
@@ -53,7 +64,6 @@ export const ContainerPage = (props: {
         return (
             <Fragment>
                 {InfoBox()}
-                {/* <div className={`line_divider`}><div /></div> */}
                 {ImageBox()}
             </Fragment>
         )
@@ -63,7 +73,6 @@ export const ContainerPage = (props: {
         return (
             <Fragment>
                 {ImageBox()}
-                {/* <div className={`line_divider`}><div /></div> */}
                 {InfoBox()}
             </Fragment>
         )
