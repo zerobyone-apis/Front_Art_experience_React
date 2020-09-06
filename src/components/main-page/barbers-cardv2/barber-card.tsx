@@ -1,10 +1,11 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect, Fragment } from 'react';
 import { ThemeContext } from '../../../contexts/ThemeContext';
 import { Divider } from '../../divider/divider';
 import { ContainerPage } from '../container-page/container-page';
 import './barbers-card.scss';
 import '../../../styles/theme.scss';
 import '../../../styles/effects.scss';
+import { FaInstagram, FaFacebook } from 'react-icons/fa';
 
 export const BarbersCard = (props: {
     barbers: any[],
@@ -59,6 +60,21 @@ export const BarbersCard = (props: {
         )
     }
 
+    const BarberImage = (props: { instagram: string, facebook: string }) => {
+        return <Fragment>
+            <div className="employee-social">
+                <a href={props.instagram}>
+                    <i className="fa fa-instagram" aria-hidden="true"></i>
+                    <FaInstagram className="employee-social-logo social-logo" />
+                </a>
+                <a href={props.facebook}>
+                    <FaFacebook className="employee-social-logo social-logo" />
+                </a>
+            </div>
+        </Fragment>
+    }
+
+
     return (
         <Divider
             title="Nuestros Barberos"
@@ -79,8 +95,10 @@ export const BarbersCard = (props: {
                                 imgClassName={``}
                                 align="left"
                                 title={selectedBarber.name}
+                                img={selectedBarber.urlProfileImage}
                                 info={selectedBarber.barberDescription}
-                                img={selectedBarber.urlProfileImage} />
+                                imgFooter={<BarberImage facebook={selectedBarber.facebook} instagram={selectedBarber.instagram} />}
+                            />
                         ) : (
                             <ContainerPage
                                 className="barber-container"
