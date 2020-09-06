@@ -6,12 +6,6 @@
     }
 }
 
-// .divider {
-//     border-top-style: solid;
-//     border-color: $cool-color;
-//     border-width: 1px;
-// }
-
 .course-card {
     width: 100%;
     height: max-content;
@@ -114,17 +108,37 @@
 
 
 // IPHONE5/SE
-@media only screen and (max-width: 750px) {
-    .courses-card {
-        padding: 20px 0 20px 0;
+@media only screen and (max-width: $mobile-screen) {
+    .course-card {
 
-        .course-item {
-            height: max-content;
+        .courses-items {
+            position: relative;
+            display: flex;
+            margin: auto;
+            border-style: none;
+            overflow-x: scroll;
+            width: max-content;
 
-            .course-img {
-                width: 100px;
-                height: 130px;
+            .help-action {
+                visibility: hidden;
+            }
+
+            .course-item {
+                height: max-content;
             }
         }
+
+        .course-info {
+            .couse-container {
+                .info {
+                    text-align: center;
+                }
+            }
+
+            .selected-img {
+                min-width: 450px;
+            }
+        }
+
     }
 }
