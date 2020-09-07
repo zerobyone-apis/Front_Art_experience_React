@@ -2,6 +2,7 @@ import React, { useContext, useState, Fragment } from 'react';
 import { ThemeContext } from '../../../contexts/ThemeContext';
 import { Divider } from '../../divider/divider';
 import { ContainerPage } from '../container-page/container-page';
+import { useWindowSize } from '../../../hooks/useWindowSize';
 import './courses-card.scss';
 import '../../../styles/theme-buttons.scss';
 import '../../../styles/effects.scss';
@@ -14,6 +15,7 @@ export const CoursesCard = (props: {
 
     const [selectedCourse, setSelectedCourse] = useState(undefined);
     const [effects, setEffects] = useState('');
+    const screenSize = useWindowSize();
 
     const {
         // @ts-ignore
@@ -36,7 +38,7 @@ export const CoursesCard = (props: {
             <div className={`course-item`} key={props.key || 1}>
                 <img
                     onMouseEnter={() => {
-                        setEffects('effect-slide-left');
+                        setEffects(screenSize.size.width > 1100 ? 'effect-slide-right' : 'effect-slide-top');
                         setSelectedCourse(props.course);
                     }}
                     onMouseLeave={() => { setEffects('') }}
@@ -62,7 +64,7 @@ export const CoursesCard = (props: {
     return (
         <Divider
             title="Nuestros Cursos"
-            img="https://scontent.fmvd4-1.fna.fbcdn.net/v/t1.0-9/s960x960/45230851_310326229560512_8082084365997178880_o.jpg?_nc_cat=110&_nc_sid=dd9801&_nc_ohc=LwkdhjYPttcAX8sw6hk&_nc_ht=scontent.fmvd4-1.fna&_nc_tp=7&oh=e90cde8ea10295ce8a00a64d7e1cae1a&oe=5F565319"
+            img="https://instagram.fmvd1-1.fna.fbcdn.net/v/t51.2885-15/e35/40756317_547596808994027_4028564252884205568_n.jpg?_nc_ht=instagram.fmvd1-1.fna.fbcdn.net&_nc_cat=111&_nc_ohc=G9NtG88ekgYAX-ZqNF_&oh=6b1c52b718d5107bcbd7f30a4233ac08&oe=5F7EA78C"
             align="left"
             className="divider"
         >

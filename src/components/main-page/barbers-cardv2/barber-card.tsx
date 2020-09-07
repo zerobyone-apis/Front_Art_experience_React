@@ -2,10 +2,12 @@ import React, { useContext, useState, useEffect, Fragment } from 'react';
 import { ThemeContext } from '../../../contexts/ThemeContext';
 import { Divider } from '../../divider/divider';
 import { ContainerPage } from '../container-page/container-page';
+import { useWindowSize } from '../../../hooks/useWindowSize';
+import { FaInstagram, FaFacebook } from 'react-icons/fa';
 import './barbers-card.scss';
 import '../../../styles/theme.scss';
 import '../../../styles/effects.scss';
-import { FaInstagram, FaFacebook } from 'react-icons/fa';
+
 
 export const BarbersCard = (props: {
     barbers: any[],
@@ -15,7 +17,7 @@ export const BarbersCard = (props: {
 
     const [selectedBarber, setSelectedBarber] = useState(undefined);
     const [effects, setEffects] = useState('');
-
+    const screenSize = useWindowSize();
     const {
         // @ts-ignore
         getTheme,
@@ -36,7 +38,7 @@ export const BarbersCard = (props: {
             <div className={`barber-item`} key={props.key}>
                 <img
                     onMouseEnter={() => {
-                        setEffects('effect-slide-right');
+                        setEffects(screenSize.size.width > 1100 ? 'effect-slide-right' : 'effect-slide-top');
                         setSelectedBarber(props.barber);
                     }}
                     onMouseLeave={() => { setEffects('') }}

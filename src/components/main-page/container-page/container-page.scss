@@ -89,7 +89,7 @@
 // IPHONE5/SE
 @media only screen and (max-width: $mobile-screen) {
     .container {
-        margin: 0 5vw;
+        margin: 0 10vw;
 
         .content-box {
 
@@ -102,6 +102,7 @@
             }
 
             .info-box {
+                position: relative;
                 z-index: 1;
                 width: 100%;
 
@@ -113,10 +114,7 @@
             .img-box {
                 position: relative;
                 text-align: center;
-                padding-top: 40px;
                 text-align: center;
-                // width: 100%;
-                // background-color: green;
                 margin: auto !important;
 
                 .image {

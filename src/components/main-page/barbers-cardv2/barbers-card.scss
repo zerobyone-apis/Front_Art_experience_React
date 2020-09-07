@@ -140,13 +140,9 @@
             position: relative;
 
             .barber-container {
-                .info {
-                    text-align: center;
-                }
+                .info {}
 
                 .employee-social {
-                    max-width: 400px;
-                    width: 100%;
                     margin: auto;
                 }
 
@@ -154,7 +150,6 @@
                     min-width: 450px;
                 }
             }
-
         }
     }
 }

@@ -21,6 +21,13 @@ $duration: 1s;
     transition: transform .2s ease-in-out;
 }
 
+.effect-slide-top {
+    top: -5vh;
+    transform: translate3d(0, 5vh, 0px);
+    transition: .2s ease;
+    transition: transform .2s ease-in-out;
+}
+
 .effect-slide_top {
     animation-name: slide_top;
     animation-duration: $duration;

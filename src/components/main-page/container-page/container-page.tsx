@@ -4,7 +4,6 @@ import { useWindowSize } from '../../../hooks/useWindowSize';
 import '../../../styles/theme.scss';
 import './container-page.scss';
 
-
 export const ContainerPage = (props: {
     title: string,
     info: string,

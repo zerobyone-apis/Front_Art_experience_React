@@ -61,10 +61,7 @@ const IndexPage = () => {
     instagram: 'https://www.instagram.com/artexperiencee/',
     facebook: 'https://www.facebook.com/artexperiencee/?epa=SEARCH_BOX',
     aboutUsTitle: "Acerca de Nosotros",
-    aboutUs: ` En Art Experience nos enfocamos en brindar un servicio excepcional con la finalidad de que nuestros clientes se sientan comodos y agustos 
-    en un ambiente muy divertido y profesional en el cual se valora el tiempo de cada uno de nuestros clientes
-    logrando que cada trabajo sea exclusivo que hará resaltar u obtener el estilo que tanto buscas en ese corte o delineado.
-     haciendo que cada session de corte sea entretenida y relejante.
+    aboutUs: `En Art Experience nos enfocamos en brindar un servicio excepcional con la finalidad de que nuestros clientes se sientan comodos y agustos en un ambiente muy divertido y profesional en el cual se valora el tiempo de cada uno de nuestros clientes logrando que cada trabajo sea exclusivo que hará resaltar u obtener el estilo que tanto buscas en ese corte o delineado, haciendo que cada session de corte sea entretenida y relejante.
     Con nuestros servicios los clientes tendran varias opciones para elegir antes de ser atendidos y obtener el resultado esperado`,
     servicesTitle: "Nuestros Servicios",
     services:
