@@ -78,14 +78,14 @@ export const CoursesCard = (props: {
                         (
                             <ContainerPage
                                 className={`couse-container ${effects}`}
-                                align="right"
+                                align="left"
                                 title={selectedCourse.name}
                                 info={selectedCourse.info}
                                 img={selectedCourse.img} />
                         ) : (
                             <ContainerPage
                                 className="couse-container"
-                                align="right"
+                                align="left"
                                 title={``}
                                 info={`Nuestros cursos son la mejor opcion para entrar en el mundo de la barberia profesional.\n
                                 Contamos con 3 cursos con la mejor calidad y asesoramiento personalizado.\n

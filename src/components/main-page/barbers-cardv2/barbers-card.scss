@@ -8,12 +8,12 @@
     // barbers items
     .barbers-items {
         position: absolute;
-        right: 0;
+        left: 0;
         z-index: 1;
         width: max-content;
         height: max-content;
         text-align: center;
-        border-left-style: solid;
+        border-right-style: solid;
         border-color: $warm-color;
         border-width: 1px;
 
@@ -22,7 +22,7 @@
             text-transform: uppercase;
             color: $cool-color;
             writing-mode: vertical-lr;
-            left: -40px;
+            right: -40px;
             top: 40%;
         }
 
