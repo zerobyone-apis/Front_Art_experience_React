@@ -38,7 +38,7 @@ export const CoursesCard = (props: {
             <div className={`course-item`} key={props.key || 1}>
                 <img
                     onMouseEnter={() => {
-                        setEffects(screenSize.size.width > 1100 ? 'effect-slide-right' : 'effect-slide-top');
+                        setEffects(screenSize.size.width > 1100 ? 'effect-slide-left' : 'effect-slide-top');
                         setSelectedCourse(props.course);
                     }}
                     onMouseLeave={() => { setEffects('') }}

@@ -38,7 +38,7 @@ export const BarbersCard = (props: {
             <div className={`barber-item`} key={props.key}>
                 <img
                     onMouseEnter={() => {
-                        setEffects(screenSize.size.width > 1100 ? 'effect-slide-right' : 'effect-slide-top');
+                        setEffects(screenSize.size.width > 1100 ? 'effect-slide-left' : 'effect-slide-top');
                         setSelectedBarber(props.barber);
                     }}
                     onMouseLeave={() => { setEffects('') }}
