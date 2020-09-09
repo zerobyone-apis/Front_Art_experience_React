@@ -138,12 +138,14 @@ export const ReserveModal = (props: { className?: string }) => {
 
     setDisabledButton(true);
     const response: any = await reserveActions.add(newReserve);
+
     if (response) {
+      
+      // !  Firebase POST
+      // !  ---------------
       createReserveTimeOnFirebase(selectedBarber.name, startDateFormatted);
-    }
-    // Post Firebase -> TODO
-    // const response: any = await reserveActions.add(newReserve);
-    if (response) {
+      // !  ---------------
+
       setWizard(4);
       setTimeout(() => {
         // restart all steps of reserve_modal
@@ -177,14 +179,14 @@ export const ReserveModal = (props: { className?: string }) => {
         .onSnapshot((snapshot) => {
           snapshot.docs.map((day) => {
             //debugger;
-            console.log(`Item day -> ${day}`)
+            console.log(`Item day -> ${day}`);
             dayReserves.push({
               id: day.id,
               date: day.data(),
             });
           });
         });
-        //debugger;
+      //debugger;
       console.log(`Este es el Arreglo de Day Reserves: ${dayReserves}`);
 
       if (dayReserves != []) {
