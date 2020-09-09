@@ -53,7 +53,7 @@ export const ReserveTime = (props: {
 
   const nameParcerFunction = (name: string) => {
     console.log(
-      'Este es el nombre parseado -> ',
+      'GET firebase -> Nombre parseado: ',
       name.toLowerCase().replace(' ', '.')
     );
     return name.toLowerCase().replace(' ', '.');

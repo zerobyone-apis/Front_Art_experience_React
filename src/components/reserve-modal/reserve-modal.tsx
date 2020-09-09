@@ -135,8 +135,12 @@ export const ReserveModal = (props: { className?: string }) => {
       priceWork: selectedService.cost,
       workToDo: selectedService.name,
     };
+
     setDisabledButton(true);
     const response: any = await reserveActions.add(newReserve);
+    if (response) {
+      createReserveTimeOnFirebase(selectedBarber.name, startDateFormatted);
+    }
     // Post Firebase -> TODO
     // const response: any = await reserveActions.add(newReserve);
     if (response) {
@@ -154,55 +158,86 @@ export const ReserveModal = (props: { className?: string }) => {
     setDisabledButton(false);
   };
 
-  //const nameParcerFunction = (name: string) => {
-  //  console.log(
-  //    'Este es el nombre parseado -> ',
-  //    name.toLowerCase().replace(' ', '.')
-  //  );
-  //  return name.toLowerCase().replace(' ', '.');
-  //};
-
   // TODO: post firebase RESERVE
-  //  const createReserveTimeOnFirebase = (barberName, reserveTime) => {
-  //    try {
-  //      let date;
-  //      let times = [];
-  //
-  //      db.collection('reserves')
-  //        .doc(nameParcerFunction(barberName))
-  //        .collection('day_reserves')
-  //        .onSnapshot((snapshot) => {
-  //          snapshot.docs.map((day) => {
-  //            let formatedDate = moment(
-  //              new Date(day.data().date.toDate()).toUTCString()
-  //            )
-  //              .format()
-  //              .toString()
-  //              .split('T')[0];
-  //
-  //            let currentDate = new Date().toUTCString().toString();
-  //            if (formatedDate === currentDate) {
-  //              date = formatedDate;
-  //              times.push(day.data().times);
-  //
-  //              console.log(`Esta es la fecha ${date} y esta es ${times}`);
-  //            }
-  //          });
-  //        });
-  //
-  //      if (times != []) {
-  //        times.push(reserveTime);
-  //      }
-  //      db.collection('reserves')
-  //        .doc(nameParcerFunction(barberName))
-  //        .collection('day_reserves')
-  //        .add({
-  //          date: firebase.firestore.FieldValue.serverTimestamp(),
-  //          times: times,
-  //        });
-  //    } catch (error) {}
-  //  };
-  //
+  const createReserveTimeOnFirebase = (barberName, reserveTime) => {
+    try {
+      let dayReserves = [];
+      let updateReserve;
+      let currentDate = Date.now().toLocaleString();
+
+      //? Create new Array of times and add the reserve time.
+      let newTimes = [];
+      newTimes.push(reserveTime);
+
+      //? Validate if already exist reserves in the current date.
+      //TODO: I need to check this method, now is not getting data.
+      db.collection('reserves')
+        .doc(nameParcerFunction(barberName))
+        .collection('day_reserves')
+        .onSnapshot((snapshot) => {
+          snapshot.docs.map((day) => {
+            //debugger;
+            console.log(`Item day -> ${day}`)
+            dayReserves.push({
+              id: day.id,
+              date: day.data(),
+            });
+          });
+        });
+        //debugger;
+      console.log(`Este es el Arreglo de Day Reserves: ${dayReserves}`);
+
+      if (dayReserves != []) {
+        for (const id in dayReserves) {
+          if (dayReserves.hasOwnProperty(id)) {
+            const element = dayReserves[id];
+
+            console.log(
+              `Este es el contenido del elemento day_reserves -> ${element}`
+            );
+            if (element.date === currentDate) {
+              newTimes.concat(element.times);
+
+              updateReserve = {
+                date: firebase.firestore.FieldValue.serverTimestamp(),
+                times: newTimes,
+              };
+              console.log(
+                `Este es el objeto actualizado para guardar en firebase -> ${updateReserve}`
+              );
+              db.collection('reserves')
+                .doc(nameParcerFunction(barberName))
+                .collection('day_reserves')
+                .doc(id)
+                .update(updateReserve);
+            }
+          }
+        }
+      } else {
+        //? Create new Day Reserve
+        db.collection('reserves')
+          .doc(nameParcerFunction(barberName))
+          .collection('day_reserves')
+          .add({
+            date: firebase.firestore.FieldValue.serverTimestamp(),
+            times: newTimes,
+          });
+      }
+    } catch (error) {
+      console.error(
+        `Error: Creando o Actualizando Firebase Reserve. -> ${error}`
+      );
+    }
+  };
+
+  //? PARCING NAME TO MATCH WITH THE DATABASE NAMES DOCUMENTS
+  const nameParcerFunction = (name: string) => {
+    console.log(
+      'POST firebase -> Nombre pareseado: ',
+      name.toLowerCase().replace(' ', '.')
+    );
+    return name.toLowerCase().replace(' ', '.');
+  };
 
   const checkStep = () => {
     switch (wizard) {
