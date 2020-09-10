@@ -1,90 +1,53 @@
 @import '../../../styles/theme.scss';
 
-.container {
-    margin: 0 20vw;
-    padding: 62px 0 62px 0;
-    height: max-content;
-
-    .about-us-card {
-        display: flex;
-        flex-direction: row;
-        margin: auto;
-
-        .info-box {
-            width: 50%;
-            height: 100%;
-            margin-right: 40px;
-
-            .title {
-                padding: 0 !important;
-                margin: 0 !important;
-                text-align: center;
-            }
-        }
-
-        .img-box {
-            display: block;
-            margin: 0 0 0 auto;
-            width: 50%;
-            right: 0 !important;
-
-            .image {
-                float: right;
-                height: max-content;
-                width: max-content;
-
-                img {
-                    display: block;
-                    margin: 0 0 0 auto !important;
-                    height: 100%;
-                    max-width: 400px;
-                    max-height: 460px;
-                    object-fit: cover;
-                    border-color: $cool-color;
-                    border-style: solid;
-                    border-radius: 4px;
-                    margin: auto !important;
-                }
-            }
-        }
-    }
-}
-
 // IPHONE5/SE
 @media only screen and (max-width: $mobile-screen) {
-    .container {
-        height: max-content;
 
-        .about-us-card {
+    .about-us-card {
+        position: relative;
+        padding: 40px 0 !important;
+
+        // MOBILE STYLE OF CONTAINER-PAGE
+        .container-about-us {
             width: 100%;
-            height: max-content;
-            display: inherit !important;
-            padding-bottom: 0px;
+            display: unset;
 
-            .info-box {
-                z-index: 1;
+            .left-box {
                 width: 100%;
 
-                .title {
-                    margin: 0 0 0 0;
+                .help-action {
+                    visibility: hidden;
                 }
             }
 
-            .img-box {
-                position: relative;
-                text-align: center;
-                padding-top: 40px;
-                text-align: center;
-                width: 100%;
+            .right-box {
+                visibility: hidden;
+            }
 
-                .image {
-                    float: none;
-                    width: 100%;
-                    margin: auto !important;
-                    text-align: center !important;
+            .containers {
+                display: inline;
+                margin: auto;
 
-                    img {
-                        width: 100%;
+                .sub-container {
+                    width: 70% !important;
+                    margin: auto;
+
+                    .selected-img {
+                        min-width: 450px;
+                    }
+
+                    .img-box {
+                        .image {
+                            margin: auto;
+
+                            img {
+                                width: 100%;
+                            }
+                        }
+                    }
+
+                    .title {
+                        text-align: center;
                     }
                 }
             }
