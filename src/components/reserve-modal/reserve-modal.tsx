@@ -17,7 +17,7 @@ import { FaRegCalendarCheck } from 'react-icons/fa';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import { ConfirmBox } from './confirm-box/confirm-box';
 import ReserveActions from '../../actions/Reserve.actions';
-import moment from 'moment';
+import moment, { now } from 'moment';
 import db from '../../config/firebase';
 import firebase from 'firebase';
 
@@ -26,6 +26,7 @@ import './reserve-modal.scss';
 import '../../styles/theme.scss';
 import '../../styles/theme-buttons.scss';
 import '../../styles/effects.scss';
+import { stringify } from 'querystring';
 
 export const ReserveModal = (props: { className?: string }) => {
   const {
@@ -118,7 +119,13 @@ export const ReserveModal = (props: { className?: string }) => {
   const [selectedService, setSelectedService] = useState(defaultService);
   const [wizard, setWizard] = useState(0);
 
+  const [reservesTimes, setReservesTimes] = useState([]);
+  const [reservesIds, setReservesIds] = useState([]);
+  const [docs, setDocs] = useState([]);
+
   const reserveActions = new ReserveActions();
+
+  const dayReserves = [];
 
   const createReserve = async () => {
     const totalCost = 0;
@@ -140,7 +147,6 @@ export const ReserveModal = (props: { className?: string }) => {
     const response: any = await reserveActions.add(newReserve);
 
     if (response) {
-      
       // !  Firebase POST
       // !  ---------------
       createReserveTimeOnFirebase(selectedBarber.name, startDateFormatted);
@@ -163,9 +169,12 @@ export const ReserveModal = (props: { className?: string }) => {
   // TODO: post firebase RESERVE
   const createReserveTimeOnFirebase = (barberName, reserveTime) => {
     try {
-      let dayReserves = [];
       let updateReserve;
-      let currentDate = Date.now().toLocaleString();
+      let currentDate = moment(new Date().toUTCString())
+        .format()
+        .toString()
+        .split('T')[0];
+      let existingDate;
 
       //? Create new Array of times and add the reserve time.
       let newTimes = [];
@@ -173,33 +182,66 @@ export const ReserveModal = (props: { className?: string }) => {
 
       //? Validate if already exist reserves in the current date.
       //TODO: I need to check this method, now is not getting data.
-      db.collection('reserves')
+      db.collection('reservas')
         .doc(nameParcerFunction(barberName))
         .collection('day_reserves')
         .onSnapshot((snapshot) => {
-          snapshot.docs.map((day) => {
-            //debugger;
-            console.log(`Item day -> ${day}`);
-            dayReserves.push({
-              id: day.id,
-              date: day.data(),
-            });
-          });
+          setReservesTimes(snapshot.docs.map((doc) => doc.data()));
+          setReservesIds(snapshot.docs.map((doc) => doc.id));
+          //setDocs(snapshot.docs.map((doc) => doc));
         });
-      //debugger;
-      console.log(`Este es el Arreglo de Day Reserves: ${dayReserves}`);
 
-      if (dayReserves != []) {
-        for (const id in dayReserves) {
-          if (dayReserves.hasOwnProperty(id)) {
-            const element = dayReserves[id];
+      console.log('Reserves ids -> ', reservesIds);
+      console.log('Reserves Date & Times -> ', reservesTimes);
+      //console.log('Docs -> ', docs);
 
+      let resultData: {
+        id: string;
+        date: { seconds: number; nanoseconds: number };
+        times: string[];
+      }[] = reservesTimes;
+
+      if (resultData != []) {
+        console.log('paso del post -> ', resultData);
+        for (const res of resultData) {
+          // TODO crear logica de asignacion de ID por Documento, hasta averiguar como setearlo en le mismo objeto.
+          // TODO Cada documento debe tener su propio ID correcto,
+          // TODO para actualizarlo en caso de que sea el mismo dia que se este Reservando.
+
+          reservesIds.forEach((id) => {
+            res.id = id;
+          });
+
+          console.log('Item res date -> ', res.date);
+          console.log('Item res id -> ', res.id);
+          console.log('Item res Times -> ', res.times);
+        }
+
+        /*  if (res.id) {
+            existingDate = moment(new Date(reserveDate.toDate()).toUTCString())
+              .format()
+              .toString()
+              .split('T')[0];
+            console.log('Si existe ID element -> ', res.id);
+            console.log('Si existe ID element -> ', res.data());
+
+            console.log('ExistingDate -> ', existingDate);
             console.log(
-              `Este es el contenido del elemento day_reserves -> ${element}`
+              'Firebase date -> ',
+              firebase.firestore.FieldValue.serverTimestamp()
             );
-            if (element.date === currentDate) {
-              newTimes.concat(element.times);
+            console.log('Current Date -> ', currentDate);
+            console.log('Item Reserve Date -> ', res.data.date);
 
+            let date = moment(new Date(res.data.date.toDate()).toUTCString())
+              .format()
+              .toString()
+              .split('T')[0];
+
+            let times = res.data.times;
+
+            if (date === currentDate || existingDate === date) {
+              newTimes.concat(times);
               updateReserve = {
                 date: firebase.firestore.FieldValue.serverTimestamp(),
                 times: newTimes,
@@ -207,14 +249,15 @@ export const ReserveModal = (props: { className?: string }) => {
               console.log(
                 `Este es el objeto actualizado para guardar en firebase -> ${updateReserve}`
               );
+
               db.collection('reserves')
                 .doc(nameParcerFunction(barberName))
                 .collection('day_reserves')
-                .doc(id)
+                .doc(res.id)
                 .update(updateReserve);
             }
           }
-        }
+        } );*/
       } else {
         //? Create new Day Reserve
         db.collection('reserves')
@@ -230,6 +273,13 @@ export const ReserveModal = (props: { className?: string }) => {
         `Error: Creando o Actualizando Firebase Reserve. -> ${error}`
       );
     }
+  };
+
+  const bulkDataReserves = (doc) => {
+    return {
+      id: doc.id,
+      ...doc.data(),
+    };
   };
 
   //? PARCING NAME TO MATCH WITH THE DATABASE NAMES DOCUMENTS
