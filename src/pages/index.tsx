@@ -61,8 +61,8 @@ const IndexPage = () => {
     instagram: 'https://www.instagram.com/artexperiencee/',
     facebook: 'https://www.facebook.com/artexperiencee/?epa=SEARCH_BOX',
     aboutUsTitle: "Acerca de Nosotros",
-    aboutUs: `En Art Experience nos enfocamos en brindar un servicio excepcional con la finalidad de que nuestros clientes se sientan comodos y agustos en un ambiente muy divertido y profesional en el cual se valora el tiempo de cada uno de nuestros clientes logrando que cada trabajo sea exclusivo que hará resaltar u obtener el estilo que tanto buscas en ese corte o delineado, haciendo que cada session de corte sea entretenida y relejante.
-    Con nuestros servicios los clientes tendran varias opciones para elegir antes de ser atendidos y obtener el resultado esperado`,
+    aboutUs: `En Art Experience nos enfocamos en el cliente, no es solo un corte de pelo, sino que es una experiencia competa desde que el cliente ingresa al local hasta que se retira, cada aspecto es importante. El ambiente la música, la atención, etc. 
+    Intentando superarnos y mejorar cada día para obtener una mejor experiencia del cliente. Eso nos diferencia del resto. Gracias por elegirnos.`,
     servicesTitle: "Nuestros Servicios",
     services:
       "Brindamos servicios de calidad y asesoramiento personalizado",
@@ -110,7 +110,7 @@ const IndexPage = () => {
       Posibilidad de reservar un lugar con una seña de $1500
       `,
       icon: "event",
-      img: "https://instagram.fmvd2-1.fna.fbcdn.net/v/t51.2885-15/e35/45577786_258991408073606_2863555795478380544_n.jpg?_nc_ht=instagram.fmvd2-1.fna.fbcdn.net&_nc_cat=102&_nc_ohc=x3mWD5HfJfkAX_DNzil&oh=42c25a3cc091cbef629d5593f240cf9b&oe=5F7E0C77",
+      img: "https://instagram.fmvd4-1.fna.fbcdn.net/v/t51.2885-15/e35/58409183_137399877418737_8950341037487835391_n.jpg?_nc_ht=instagram.fmvd4-1.fna.fbcdn.net&_nc_cat=109&_nc_ohc=ghmBqUjlw2cAX_cKRlu&_nc_tp=18&oh=db69053f9623d99bbe45100e522a76e6&oe=5F7B92FC",
       url: "Read More"
     },
     {
@@ -151,7 +151,7 @@ const IndexPage = () => {
     }
   ];
   const aboutusPictures = [
-    { url: 'https://instagram.fmvd1-1.fna.fbcdn.net/v/t51.2885-15/e35/57488298_2276560875734649_7666756016645949298_n.jpg?_nc_ht=instagram.fmvd1-1.fna.fbcdn.net&_nc_cat=109&_nc_ohc=MskQCPZA-BkAX_omsCq&oh=44ff4fcc828dcbe2403bedd48f6383e6&oe=5F57538C' },
+    { url: 'https://instagram.fmvd4-1.fna.fbcdn.net/v/t51.2885-15/e35/57487949_308244066513958_4727047828559730188_n.jpg?_nc_ht=instagram.fmvd4-1.fna.fbcdn.net&_nc_cat=110&_nc_ohc=vem7Eg74qIMAX_uMWBZ&oh=4d62d07f27cb64665b57396d72f9caa3&oe=5F80C0A7' },
   ]
   const dividers = [
     {
@@ -201,10 +201,12 @@ const IndexPage = () => {
           />
           <div id="services" />
           <div id="barbers" />
-          <BarbersCard barbers={barbers}
-            title="Nuestros Barberos"
-            subTitle={""}
-          />
+          {barbers.length ? (
+            <BarbersCard barbers={barbers}
+              title="Nuestros Barberos"
+              subTitle={""}
+            />
+          ) : null}
           <div id="courses" />
           <ServicesCard
             services={services}
