@@ -24,7 +24,7 @@ export const SubContainerInfo = (props: {
 export const SubContainerImage = (props: {
     imgClassName?: string,
     img: string,
-    imgFooter: any
+    imgFooter?: any
 }) => {
     const screenSize = useWindowSize();
     return (
