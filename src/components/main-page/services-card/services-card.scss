@@ -1,74 +1,39 @@
 @import '../../../styles/theme.scss';
 
 .service-divider {
-    //test
-    //animated
-    // outline: 1px dashed $secondary-dark;
-    // box-shadow: inset 0px 0px 0px 1px rgb(78, 85, 47);
-    // animation: 1s animateBorder infinite;
-}
+    background-color: rgb(12, 12, 12);
 
-.services-card {
-    text-align: center;
-    top: 60px;
-    z-index: 1;
-
-    .service-item {
-        position: relative;
-        width: 250px;
-        margin: 40px 20px 0 20px;
-        display: inline-table;
+    .services-card {
         text-align: center;
+        top: 60px;
+        z-index: 1;
 
-        .service-icon {
-            font-size: 40px;
-            color: $cool-color;
+        .service-item {
+            position: relative;
+            width: 250px;
+            margin: 40px 20px 0 20px;
+            display: inline-table;
+            text-align: center;
+
+            .service-icon {
+                font-size: 40px;
+                color: $cool-color;
+            }
+
+            .service-name {
+                margin-bottom: 20px;
+                color: white;
+            }
+
+            .service-info {
+                color: white;
+            }
+
+            .service-url {
+                position: absolute;
+                bottom: 0px;
+                margin-left: 40%;
+            }
         }
-
-        .service-name {
-            margin-bottom: 20px;
-            color: white;
-        }
-
-        .service-info {
-            color: white;
-        }
-
-        .service-url {
-            position: absolute;
-            bottom: 0px;
-            margin-left: 40%;
-        }
-    }
-}
-
-// IPHONE5/SE
-@media only screen and (max-width: 750px) {
-    // .services-card {
-    //     text-align: center;
-    //     // margin: 0, 20vw;
-
-    //     .card_subtitle {
-    //         margin-bottom: 20px;
-    //     }
-
-    //     .service-icon {
-    //         width: 20px;
-    //         height: 20px;
-    //     }
-
-    //     .service-item {
-    //         display: inline;
-    //         margin: 0;
-    //     }
-    // }
-}
-
-
-//test
-@keyframes animateBorder {
-    to {
-        outline-color: rgb(78, 85, 47);
-        box-shadow: 0 0 0 1px $secondary-dark;
     }
 }

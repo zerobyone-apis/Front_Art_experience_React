@@ -4,6 +4,7 @@ import { ThemeContext } from '../../../contexts/ThemeContext';
 import { Divider } from '../../divider/divider';
 import './services-card.scss';
 import '../../../styles/theme.scss';
+import { ContainerPage } from '../../test/container-page/container-page';
 
 export const ServiceItem = (props: {
     key?: number,
@@ -49,7 +50,7 @@ export const ServicesCard = (props: {
             title="Brindamos servicios de alto nivel, teniendo en cuenta sus necesidades"
             img=""
             align="left"
-            className="dark service-divider"
+            className="service-divider"
         >
             <div className="divider-content">
                 <div className="services-card">
