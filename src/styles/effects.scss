@@ -1,7 +1,7 @@
 @import '../styles/theme.scss';
 
 // Effects and Animations
-$duration: 1s;
+$duration: .4s;
 
 .effect-slide_left {
     animation-name: slide_left;
@@ -16,16 +16,14 @@ $duration: 1s;
     animation-duration: $duration;
 }
 
+.effect-slide-top {
+    animation-name: slide_top;
+    animation-duration: $duration;
+}
+
 .effect-slide-right {
     right: -5vw;
     transform: translate3d(-5vw, 0, 0px);
-    transition: .2s ease;
-    transition: transform .2s ease-in-out;
-}
-
-.effect-slide-top {
-    top: -5vh;
-    transform: translate3d(0, 5vh, 0px);
     transition: .2s ease;
     transition: transform .2s ease-in-out;
 }
@@ -76,13 +74,13 @@ $duration: 1s;
 
 @keyframes slide_top {
     0% {
-        left: 0;
         top: 100px;
+        opacity: 0;
     }
 
     100% {
-        left: 0;
         top: 0px;
+        opacity: 1;
     }
 }
 
