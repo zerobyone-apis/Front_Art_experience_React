@@ -15,9 +15,10 @@ import { HomeFooter } from '../components/main-page/home-footer/home-footer';
 import { CoursesCard } from '../components/main-page/courses-card/course-card';
 import { Banner } from '../components/main-page/banner/banner';
 import { ServicesCard } from '../components/main-page/services-card/service-card';
-import { ContainerPage } from '../components/main-page/container-page/container-page';
+import { ContainerPage, SubContainerInfo, SubContainerImage } from '../components/test/container-page/container-page'
 import { Divider } from '../components/divider/divider';
 import './index.scss';
+import { ProgressPlugin } from 'webpack';
 
 const IndexPage = () => {
   const [barbers, setBarbers] = useState([]);
@@ -191,14 +192,13 @@ const IndexPage = () => {
           <div id="banner" />
           <Banner />
           <div id="about_us" />
-          <ContainerPage
+
+          <AboutUsCard
             title={pageInfo.aboutUsTitle}
             info={pageInfo.aboutUs}
-            img={aboutusPictures[0].url}
-            align="right"
-            theme="dark"
-            className="about-us-card"
+            picture={aboutusPictures[0].url}
           />
+
           <div id="services" />
           <div id="barbers" />
           {barbers.length ? (
