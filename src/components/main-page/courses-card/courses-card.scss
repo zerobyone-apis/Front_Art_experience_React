@@ -1,47 +1,69 @@
 @import '../../../styles/theme.scss';
-
-.container-page {
-    img {
-        max-height: 350px !important;
-    }
-}
+@import '../../../styles/effects.scss';
 
 .course-card {
     width: 100%;
     height: max-content;
 
+
+    .employee-social {
+        // position: absolute;
+        width: 100%;
+        // height: 60px;
+        bottom: 0px;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+        text-align: center;
+        // background-color: rgba(0, 0, 0, 0.8);
+        padding: 10px 0;
+
+        .employee-social-logo {
+            position: relative;
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            margin: 0 20px 0 20px;
+            color: rgb(146, 144, 108);
+            border-radius: 50%;
+        }
+
+        .employee-social-logo:hover {
+            box-shadow: 0px 0px 30px 0px $warm-color;
+        }
+    }
+
     // courses items
     .courses-items {
-        position: absolute;
-        left: 0 !important;
-        z-index: 1;
+        // margin: auto;
         width: max-content;
         height: max-content;
         text-align: center;
-        //for help action
         border-right-style: solid;
         border-color: $warm-color;
         border-width: 1px;
+        // background-color: green;
 
         .help-action {
             position: absolute;
+            z-index: 1;
             text-transform: uppercase;
             color: $cool-color;
             writing-mode: vertical-lr;
-            right: -40px;
+            left: 150px;
             top: 40%;
         }
 
         .course-item {
             position: relative;
-            width: max-content;
+            width: 30%;
             margin: 40px 20px 0 20px;
             display: inline-table;
             text-align: center;
 
             .course-img {
-                width: 80px;
-                height: 80px;
+                position: relative;
+                width: 100px;
+                height: 100px;
                 border-radius: 50%;
                 filter: grayscale(1);
             }
@@ -60,8 +82,8 @@
 
         .course-item:hover {
             .course-img {
-                transition: all 500ms ease-out;
                 filter: grayscale(0);
+                transition: all 500ms ease-out;
             }
 
             .course-name {
@@ -81,14 +103,11 @@
         }
     }
 
-    .couse-container {
-        position: relative;
-
+    .course-container {
         .info {
             color: white;
         }
     }
-
 
     // image and info
     .course-info {
@@ -96,49 +115,72 @@
         height: max-content;
         text-align: center;
 
-        .info-box {
-            color: white;
-        }
-
         .selected-img {
             max-width: 250px;
         }
     }
 }
 
-
 // IPHONE5/SE
 @media only screen and (max-width: $mobile-screen) {
     .course-card {
+        // background-color: red;
 
-        .courses-items {
-            position: relative;
-            display: flex;
-            margin: auto;
-            border-style: none;
-            // overflow-x: scroll;
-            width: max-content;
+        // MOBILE STYLE OF CONTAINER-PAGE
+        .container-course {
+            width: 100%;
+            display: unset;
 
-            .help-action {
-                visibility: hidden;
-            }
+            .left-box {
+                width: 100%;
 
-            .course-item {
-                height: max-content;
-            }
-        }
+                .help-action {
+                    visibility: hidden;
+                }
 
-        .course-info {
-            .couse-container {
-                .info {
-                    // text-align: center;
+                .courses-items {
+                    position: relative;
+                    width: 100%;
+                    display: flex;
+                    margin: auto;
+                    border-style: none;
+                    // overflow-x: scroll;
+                    width: max-content;
+                    // background-color: green;
                 }
             }
 
-            .selected-img {
-                min-width: 450px;
+            .right-box {
+                visibility: hidden;
+            }
+
+            .containers {
+                display: inline;
+                margin: auto;
+
+                .sub-container {
+                    width: 70% !important;
+                    margin: auto;
+
+                    .selected-img {
+                        min-width: 450px;
+                    }
+
+                    .img-box {
+                        .image {
+                            margin: auto;
+
+                            img {
+                                width: 100%;
+                            }
+                        }
+                    }
+
+                    .title {
+                        text-align: center;
+                    }
+                }
             }
         }
-
     }
 }
