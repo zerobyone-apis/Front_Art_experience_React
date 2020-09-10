@@ -1,3 +1,4 @@
+@import '../../styles/effects.scss';
 $menu_size: 200px;
 
 .left_menu {
@@ -7,16 +8,18 @@ $menu_size: 200px;
   }
 
   .activator_btn {
-    position: relative;
+    position: absolute;
+    visibility: hidden;
     height: 100%;
     display: flex;
     align-items: center;
+    color: red !important;
   }
 
-  @media only screen and (min-width: 800px) {
+  @media only screen and (max-width: $mobile-screen) {
     .activator_btn {
-      visibility: hidden;
-      position: absolute;
+      visibility: visible;
+      position: relative;
     }
   }
 
