@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect, Fragment } from 'react';
 import { ThemeContext } from '../../../contexts/ThemeContext';
 import { Divider } from '../../divider/divider';
-import { ContainerPage } from '../container-page/container-page';
+// import { ContainerPage } from '../container-page/container-page';
 import { ContainerPage as Container, SubContainerInfo, SubContainerImage } from '../../test/container-page/container-page';
 import { useWindowSize } from '../../../hooks/useWindowSize';
 import { FaInstagram, FaFacebook } from 'react-icons/fa';
