@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
+import BarberAction from '../actions/Barber.actions';
 import moment from 'moment';
 import { FaCut, FaGift } from 'react-icons/fa';
 import { GiPaintedPottery } from 'react-icons/gi';
-import BarberAction from '../actions/Barber.actions';
 import { ButtonContext } from '../contexts/ButtonsContext';
 import { ThemeContext } from '../contexts/ThemeContext';
 import { BarberListContext } from '../contexts/BarberListContext';
@@ -15,10 +15,7 @@ import { HomeFooter } from '../components/main-page/home-footer/home-footer';
 import { CoursesCard } from '../components/main-page/courses-card/course-card';
 import { Banner } from '../components/main-page/banner/banner';
 import { ServicesCard } from '../components/main-page/services-card/service-card';
-import { ContainerPage, SubContainerInfo, SubContainerImage } from '../components/test/container-page/container-page'
-import { Divider } from '../components/divider/divider';
 import './index.scss';
-import { ProgressPlugin } from 'webpack';
 
 const IndexPage = () => {
   const [barbers, setBarbers] = useState([]);
@@ -111,7 +108,7 @@ const IndexPage = () => {
       Posibilidad de reservar un lugar con una seña de $1500
       `,
       icon: "event",
-      img: "https://instagram.fmvd4-1.fna.fbcdn.net/v/t51.2885-15/e35/58409183_137399877418737_8950341037487835391_n.jpg?_nc_ht=instagram.fmvd4-1.fna.fbcdn.net&_nc_cat=109&_nc_ohc=ghmBqUjlw2cAX_cKRlu&_nc_tp=18&oh=db69053f9623d99bbe45100e522a76e6&oe=5F7B92FC",
+      img: "https://i.ibb.co/WPb2qQJ/modelo-10.jpg",
       url: "Read More"
     },
     {
@@ -137,7 +134,7 @@ const IndexPage = () => {
       url: "Read More"
     },
     {
-      name: "CORTE",
+      name: "PERFECCIONAMIENTO",
       info: `
         En este perfeccionamientoTrabajamos con 4 modelos,
         En los cuales haremos 3 estilos diferentes:\n 
@@ -152,7 +149,7 @@ const IndexPage = () => {
     }
   ];
   const aboutusPictures = [
-    { url: 'https://instagram.fmvd4-1.fna.fbcdn.net/v/t51.2885-15/e35/57487949_308244066513958_4727047828559730188_n.jpg?_nc_ht=instagram.fmvd4-1.fna.fbcdn.net&_nc_cat=110&_nc_ohc=vem7Eg74qIMAX_uMWBZ&oh=4d62d07f27cb64665b57396d72f9caa3&oe=5F80C0A7' },
+    { url: 'https://i.ibb.co/9ZqynfD/Premiacion-Barber-Shop-Style.jpg' },
   ]
   const dividers = [
     {
