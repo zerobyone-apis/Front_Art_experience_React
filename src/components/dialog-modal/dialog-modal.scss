@@ -1,3 +1,5 @@
+@import '../../styles/theme.scss';
+
 .dialog_activator-box {
   position: relative;
   width: max-content;
@@ -18,8 +20,8 @@
   .dialog-modal {
     position: relative;
     height: calc(100% - 60px);
-    max-width: 800px;
-    min-width: 500px;
+    // max-width: 800px;
+    // min-width: 500px;
     margin: auto;
     // background-color: green;
 
@@ -73,7 +75,7 @@
     }
   }
 
-  @media only screen and (max-width: 750px) {
+  @media only screen and (max-width: $mobile-screen) {
     .dialog-modal {
       position: relative;
       top: 0;
