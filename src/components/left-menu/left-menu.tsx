@@ -15,8 +15,6 @@ export const LeftMenu = () => {
                 className="theme-button-text activator_btn"
                 icon={<FiMenu className="theme-icon icon_button" />}
                 onClick={() => { setShowDialog(true) }} />
-
-
             {
                 !showDialog ? null : (
                     <DialogModal
@@ -24,10 +22,10 @@ export const LeftMenu = () => {
                         className="left_menu-dialog"
                     >
                         <div className="left-menu-box">
-                            <div className="logo">
+                            {/* <div className="logox">
                                 <img className="logo-img"
                                     src="https://raw.githubusercontent.com/zerobyone-apis/Front_Art_experience_React/master/src/assets/gold_logo.png" alt="" />
-                            </div>
+                            </div> */}
                             {
                                 toolbarButtons.map((button, i) => {
                                     return (

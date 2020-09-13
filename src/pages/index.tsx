@@ -144,7 +144,7 @@ const IndexPage = () => {
       cost: 'El curso tiene un costo de $6.000',
       icon: "event",
       img:
-        "https://instagram.fmvd4-1.fna.fbcdn.net/v/t51.2885-15/e35/43817515_183935092515961_6000014555973943296_n.jpg?_nc_ht=instagram.fmvd4-1.fna.fbcdn.net&_nc_cat=101&_nc_ohc=dwbWQnBxMusAX8wVKy0&_nc_tp=18&oh=f2b3f18f5fca9e4f058abdf456084471&oe=5F78F8A2",
+        "https://i.ibb.co/S3yctcs/modelo-13.jpg",
       url: "Read More"
     }
   ];
