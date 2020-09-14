@@ -129,7 +129,7 @@ export const ReserveModal = (props: { className?: string }) => {
     }T${reserveHour}:00`;
     const newReserve: IReserve = {
       barberOrHairdresserId: selectedBarber.barberId,
-      clientId: getUserData().userId,
+      clientId: getUserData().clientId,
       nameClient: getUserData().username,
       mailClient: getUserData().email,
       celClient: getUserData().cel || '0000',
