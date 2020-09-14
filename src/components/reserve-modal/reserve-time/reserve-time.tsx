@@ -105,8 +105,6 @@ export const ReserveTime = (props: {
 
     return (
         <div className="time-box effect-slide_top">
-            {/* <p>{`hora: ${reserveHour}`}</p>
-            <p>{`fecha: ${reserveDate}`}</p> */}
             <CalendarBox
                 value={reserveDate}
                 onSelectDate={onSelectDate} />

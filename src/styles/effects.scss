@@ -99,12 +99,10 @@ $duration: .4s;
 
 @keyframes opacity_effect {
     0% {
-        left: -5vw;
         opacity: 0;
     }
 
     100% {
-        left: 0;
         opacity: 1;
     }
 }
