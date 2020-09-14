@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 
 import { BarbersList } from './barbers-list/barber-list';
 import { Button } from '../button/button';
@@ -175,13 +175,15 @@ export const ReserveModal = (props: { className?: string }) => {
       let stapppToReadFlag = false;
 
       //? Validate if already exist reserves in the current date.
-      console.log('FirstQuery getReserves');
       getReservesFirebase(barberName);
 
+      console.log('Getting Reserves. . .');
+      let count = 0;
       setTimeout(() => {
         if (docs === []) {
-          console.log('SecondQuery getReserves');
+          console.log('SecondQuery -> times: ', count);
           getReservesFirebase(barberName);
+          count = count + 1;
         }
       }, 2000);
 
@@ -230,7 +232,7 @@ export const ReserveModal = (props: { className?: string }) => {
 
               newTimes.push(...res.times);
               updateReserve = {
-                date: firebase.firestore.FieldValue.serverTimestamp(),
+                date: reserveDate,
                 times: newTimes,
               };
 
@@ -259,7 +261,7 @@ export const ReserveModal = (props: { className?: string }) => {
           .collection('day_reserves')
           .doc(selectedReserveDate)
           .set({
-            date: firebase.firestore.FieldValue.serverTimestamp(),
+            date: reserveDate,
             times: newTimes,
           });
         console.log('Created Reserve Successfuly!!');
