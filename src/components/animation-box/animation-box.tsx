@@ -1,6 +1,6 @@
 import React, { ReactChild } from 'react';
 import { motion } from 'framer-motion';
-import styled from 'styled-components';
+// import styled from 'styled-components';
 import { ANIMATIONS } from '../../types/Animations.type';
 
 export const AnimationBox = (
@@ -11,9 +11,9 @@ export const AnimationBox = (
         duration?: number
     }) => {
 
-    const BoxStyled = styled(motion.div)`
-        opacity: 0;
-    `;
+    // const BoxStyled = styled(motion.div)`
+    //     opacity: 0;
+    // `;
     const DEFAULT_DURATION = 2;
 
     const getAnimation = () => {
@@ -33,11 +33,14 @@ export const AnimationBox = (
     }
 
     return (
-        <BoxStyled
-            animate={getAnimation()}
-            transition={{ duration: (props.duration ? props.duration : DEFAULT_DURATION) }}
-        >
+        <div>
             {props.children}
-        </BoxStyled>
+        </div>
+        // <BoxStyled
+        //     animate={getAnimation()}
+        //     transition={{ duration: (props.duration ? props.duration : DEFAULT_DURATION) }}
+        // >
+        //     {props.children}
+        // </BoxStyled>
     )
 }

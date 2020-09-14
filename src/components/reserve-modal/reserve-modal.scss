@@ -1,4 +1,9 @@
+@import '../../styles/theme.scss';
+
 .reserve-modal {
+  .content {
+    min-width: 700px !important;
+  }
 
   .activator-btn {
     position: relative;
@@ -20,7 +25,7 @@
     }
   }
 
-  @media only screen and (max-width: 800px) {
+  @media only screen and (max-width: $mobile-screen) {
     .time-box {
       display: inline;
       text-align: center;

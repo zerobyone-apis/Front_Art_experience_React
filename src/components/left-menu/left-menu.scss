@@ -1,3 +1,4 @@
+@import '../../styles/effects.scss';
 $menu_size: 200px;
 
 .left_menu {
@@ -7,28 +8,38 @@ $menu_size: 200px;
   }
 
   .activator_btn {
-    position: relative;
+    position: absolute;
+    visibility: hidden;
     height: 100%;
     display: flex;
     align-items: center;
+    // color: red !important;
   }
 
-  @media only screen and (min-width: 800px) {
+  @media only screen and (max-width: $mobile-screen) {
     .activator_btn {
-      visibility: hidden;
-      position: absolute;
+      visibility: visible;
+      position: relative;
     }
   }
 
   .left_menu-dialog {
+    width: 100%;
+    text-align: center;
+
+    .left-menu-box {
+      position: relative;
+      width: 100% !important;
+      // background-color: red;
+    }
+
     a {
       position: relative;
       top: 0 !important;
     }
 
-    .logo {
+    .logox {
       width: 100%;
-      // background-color: red;
       text-align: center;
 
       .logo-img {
@@ -71,6 +82,8 @@ $menu_size: 200px;
 
       .content {
         position: relative;
+        width: 100%;
+        // background-color: green;
 
         .left_menu-btn {
           position: relative;

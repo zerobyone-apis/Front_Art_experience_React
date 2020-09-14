@@ -168,25 +168,22 @@ export const ReserveTime = (props: {
   return (
     <div className="time-box effect-slide_top">
       <CalendarBox value={reserveDate} onSelectDate={onSelectDate} />
-
       {availableHours.length ? (
-        <div className="hours-box effect-slide_top">
-          <div className="container">
+        <div className="hours-item">
+          <div className="hours-box effect-slide_top">
             {availableHours.map((hour, i) => (
-              <div
-                className={`hour-item ${
-                  reserveHour === hour ? 'selected-hour' : null
-                }`}
-              >
-                <Button
-                  className={`theme-button-outlined`}
-                  key={i}
-                  label={hour}
-                  onClick={() => {
-                    onSelectHour(hour);
-                  }}
-                />
-              </div>
+              <Button
+                className={`theme-button-outlined 
+                                 hour-item 
+                                ${
+                                  reserveHour === hour ? 'selected-hour' : null
+                                }`}
+                key={i}
+                label={hour}
+                onClick={() => {
+                  onSelectHour(hour);
+                }}
+              />
             ))}
           </div>
         </div>

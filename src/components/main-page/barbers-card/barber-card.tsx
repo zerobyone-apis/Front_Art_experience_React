@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext, Fragment } from 'react';
 import { IBarber } from '../../../types/Barber.type';
 import { FaInstagram, FaFacebook } from 'react-icons/fa';
 import { ThemeContext } from '../../../contexts/ThemeContext';
-import './barbers-card.scss';
 import { Slider } from '../../slider/slider';
-import { Card } from '../../card/card';
+import { ContainerPage } from '../container-page/container-page';
+import './barbers-card.scss';
 
 export const BarbersCard = (props: {
     barbers: IBarber[]
@@ -16,7 +16,7 @@ export const BarbersCard = (props: {
 
     const getInfoBox = (barber, theme) => {
         return (
-            <div className={`info-box ${theme}`}>
+            <div className={`info-box`}>
                 <p className="title">{barber.name}</p>
                 <div className="box-info">
                     <p className={`info text text-${theme}`}>{barber.barberDescription}</p>
@@ -47,7 +47,7 @@ export const BarbersCard = (props: {
         return (
             <div className="barber-card" key={i}>
                 {getInfoBox(barber, getTheme())}
-                <div className={`line_divider ${getTheme()}`}><div /></div>
+                <div className={`line_divider`}><div /></div>
                 {getSliderBox(barber)}
             </div>
         )
@@ -64,16 +64,18 @@ export const BarbersCard = (props: {
     }
 
     return (
-        <Card className="barber-box" title="Barberos" subtitle="Tenemos un personal especializado en todo tipo de trabajos, con la mejor atencion y coordialidad">
-            {
-                props.barbers.map((barber, i) => {
-                    if (i % 2 != 0) {
-                        return getLeft(barber, i);
-                    } else {
-                        return getRight(barber, i);
-                    }
-                })
-            }
-        </Card >
+        <Fragment>
+            {props.barbers.map((barber, i) => {
+                return <ContainerPage
+                    className="container-page"
+                    theme="light"
+                    key={i}
+                    title={barber.name}
+                    info={barber.barberDescription}
+                    img={barber.urlProfileImage}
+                    align={i % 2 === 0 ? "left" : "right"}
+                />
+            })}
+        </Fragment>
     )
 }

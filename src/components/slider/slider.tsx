@@ -6,6 +6,7 @@ import { ThemeContext } from '../../contexts/ThemeContext';
 export const Slider = (props: {
     items: { url: string }[],
     auto: boolean,
+    className?: string
 }) => {
     const {
         // @ts-ignore
@@ -37,7 +38,7 @@ export const Slider = (props: {
     }
 
     return (
-        <div className={`slider ${getTheme()}`}>
+        <div className={`slider${props.className ? ' ' + props.className : ''}`}>
             <div className="slider_item">
                 <img
                     src={props.items[wizard].url}
