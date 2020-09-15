@@ -134,7 +134,7 @@ const IndexPage = () => {
       url: "Read More"
     },
     {
-      name: "PERFECCIONAMIENTO",
+      name: "AVANZADO",
       info: `
         En este perfeccionamientoTrabajamos con 4 modelos,
         En los cuales haremos 3 estilos diferentes:\n 

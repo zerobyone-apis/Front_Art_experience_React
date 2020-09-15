@@ -20,26 +20,33 @@ export const ConfirmBox = (props: {
         <div className="confirm_data-box effect-slide_top">
             <div className="effect-slide_top">
                 <div className="service-box">
-                    <p className={`confirm_info text text-${getTheme()}`}>{`Servicio`}</p>
                     <ServiceItem
-                        name={props.service.name}
-                        cost={props.service.cost}
+                        name={`Servicio`}
+                        cost={`${props.service.name}`}
+                        selected={false}
+                    />
+                    <ServiceItem
+                        name={`Barbero`}
+                        cost={`${props.barber.name}`}
+                        selected={false}
+                    />
+                    <ServiceItem
+                        name={`Fecha de reservacion`}
+                        cost={`${props.date}`}
+                        selected={false}
+                    />
+                    <ServiceItem
+                        name={`Horario`}
+                        cost={`${props.hour}`}
+                        selected={false}
+                    />
+                    <ServiceItem
+                        name={`Costo`}
+                        cost={`$${props.service.cost}`}
                         selected={true}
                     />
-                    <p className={`confirm_info text text-${getTheme()}`}>{`Barbero`}</p>
-                    <BarberItem
-                        name={props.barber.name}
-                        img={props.barber.urlProfileImage}
-                        selected={true}
-                    />
-                    <p className={`confirm_info text text-${getTheme()}`}>
-                        {`Fecha de reservacion: ${props.date}`}
-                    </p>
-                    <p className={`confirm_info text text-${getTheme()}`}>{`Horario: ${props.hour}`}</p>
-                    <p className={`confirm_info text text-${getTheme()}`}>{`Costo: $${props.service.cost}`}</p>
-
                 </div>
             </div>
-        </div>
+        </div >
     );
 }
