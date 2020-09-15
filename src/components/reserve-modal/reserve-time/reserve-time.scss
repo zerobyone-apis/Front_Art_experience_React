@@ -1,78 +1,76 @@
 .time-box {
-    position: relative !important;
-    width: max-content;
+  position: relative !important;
+  width: max-content;
+  margin: auto;
+
+  .hours-box {
+    position: relative;
+    width: 100%;
+    max-width: 350px;
+    height: max-content;
     margin: auto;
+    display: flex;
+    overflow-x: scroll;
+    margin-top: 10px;
+    margin-bottom: 45px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: 3px solid rgba(160, 160, 150, 0.102) !important;
 
-    .hours-box {
+    .container {
+      position: relative;
+      width: 70%;
+      height: max-content;
+      display: flex;
+      margin: 2px;
+      border-radius: 4px;
+      color: white;
+
+      .hour-item {
         position: relative;
-        width: 100%;
-        max-width: 350px;
-        margin: auto;
-        text-align: center;
-        margin-top: 10px;
-        margin-bottom: 45px;
-        padding-top: 5px;
-        padding-bottom: 5px;
-        border: 3px solid rgba(160, 160, 150, 0.102) !important;
+        width: 75px;
+        height: max-content;
+        margin: auto !important;
+        margin-bottom: 5px !important;
+        margin: 2px;
+        border-radius: 4px;
+        color: white;
+        // background-color: red;
 
-        .container {
-            position: relative;
-            width: 70%;
-            height: max-content;
-            margin: auto;
-            display: flex;
-            flex-wrap: wrap;
-            text-align: center;
-
-            .hour-item {
-                position: relative;
-                width: 75px;
-                height: max-content;
-                margin: auto !important;
-                margin-bottom: 5px !important;
-                margin: 2px;
-                border-radius: 4px;
-                color: white;
-                // background-color: red;
-
-                .button {
-                    width: 75px;
-                }
-
-                button:hover {
-                    background: rgb(146, 144, 108);
-                    transition: all ease 0.9s;
-                }
-
-                .hour {
-                    color: rgb(214, 214, 214);
-                }
-            }
-
-            .hour-item:hover {
-                background-color: rgba(255, 255, 255, 0.178);
-            }
-
-            .selected-hour {
-                button {
-                    background-color: rgb(146, 144, 108) !important;
-
-                    p {
-                        color: white !important;
-                    }
-                }
-            }
-
+        .button {
+          width: 75px;
         }
 
+        button:hover {
+          background: rgb(146, 144, 108);
+          transition: all ease 0.9s;
+        }
 
+        .hour {
+          color: rgb(214, 214, 214);
+        }
+      }
+
+      .hour-item:hover {
+        background-color: rgba(255, 255, 255, 0.178);
+      }
+
+      .selected-hour {
+        button {
+          background-color: rgb(146, 144, 108) !important;
+
+          p {
+            color: white !important;
+          }
+        }
+      }
     }
+  }
 
-    .no-hours {
-        width: max-content;
-        margin: auto;
-        margin-top: 20px;
-        padding: 0;
-    }
-
+  .no-hours {
+    width: max-content;
+    margin: auto;
+    margin-top: 20px;
+    padding: 0;
+  }
 }
