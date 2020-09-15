@@ -26,6 +26,7 @@ import './reserve-modal.scss';
 import '../../styles/theme.scss';
 import '../../styles/theme-buttons.scss';
 import '../../styles/effects.scss';
+import { ErrorMessage } from 'formik';
 
 export const ReserveModal = (props: { className?: string }) => {
   const {
@@ -175,17 +176,13 @@ export const ReserveModal = (props: { className?: string }) => {
       let stapppToReadFlag = false;
 
       //? Validate if already exist reserves in the current date.
+      console.log('Getting Reserves . . 1 ');
       getReservesFirebase(barberName);
 
-      console.log('Getting Reserves. . .');
-      let count = 0;
-      setTimeout(() => {
-        if (docs === []) {
-          console.log('SecondQuery -> times: ', count);
-          getReservesFirebase(barberName);
-          count = count + 1;
-        }
-      }, 2000);
+      if (docs.length <= 0) {
+        console.log('Getting Reserves. . 2');
+        getReservesFirebase(barberName);
+      }
 
       //? Defining and parsing -> selectedReserveDate
       selectedReserveDate = moment(reserveDate.toUTCString())
@@ -282,12 +279,24 @@ export const ReserveModal = (props: { className?: string }) => {
 
   //* Query Method - GET Firestore Reserves
   const getReservesFirebase = (barberName) => {
-    db.collection('reservas')
+    const resRef = db
+      .collection('reservas')
       .doc(nameParcerFunction(barberName))
-      .collection('day_reserves')
-      .onSnapshot((snapshot) => {
+      .collection('day_reserves');
+
+    resRef
+      .get()
+      .then((snapshot) => {
         setDocs(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-      });
+      })
+      .catch((err) => console.error(err));
+
+    // db.collection('reservas')
+    //   .doc(nameParcerFunction(barberName))
+    //   .collection('day_reserves')
+    //   .onSnapshot((snapshot) => {
+    //     setDocs(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    //   });
   };
 
   const checkStep = () => {

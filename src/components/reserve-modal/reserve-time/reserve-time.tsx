@@ -34,10 +34,6 @@ export const ReserveTime = (props: {
     // @ts-ignore
     getTheme,
   } = useContext(ThemeContext);
-  //const {
-  //  // @ts-ignore
-  //  query,
-  //} = useContext(FirebaseContext);
 
   const timeActions: AvailableTimeActions = new AvailableTimeActions();
 
@@ -45,11 +41,6 @@ export const ReserveTime = (props: {
     let response = await timeActions.getBarberShopTime();
     return response;
   };
-
-  // const getDatesByReserves = async () => {
-  //   let response = await timeActions.getDatesByReserves(props.barberId);
-  //   return response;
-  // };
 
   const nameParcerFunction = (name: string) => {
     console.log(
@@ -69,17 +60,27 @@ export const ReserveTime = (props: {
 
   const getReservesHoursByReseres = (barberName) => {
     try {
-      db.collection('reservas')
-        .doc(barberName)
-        .collection('day_reserves')
-        .orderBy('date', 'asc')
-        .onSnapshot((snapshot) => {
-          setReservesTimes(snapshot.docs.map((doc) => doc.data()));
-        });
+      // Validate reserveTimes not empty
+      getQuery(barberName);
+      setInterval(() => {
+        if (reserveTimes.length === 0) {
+          getQuery(barberName);
+        }
+      }, 2000);
     } catch (error) {
       console.error(`Error: Obteniendo las reservas -> ${error}}`);
       return [];
     }
+  };
+
+  const getQuery = (barberName) => {
+    db.collection('reservas')
+      .doc(barberName)
+      .collection('day_reserves')
+      .orderBy('date', 'asc')
+      .onSnapshot((snapshot) => {
+        setReservesTimes(snapshot.docs.map((doc) => doc.data()));
+      });
   };
 
   useEffect(() => {
@@ -93,23 +94,17 @@ export const ReserveTime = (props: {
 
     console.log('get result data: ', resultData);
 
-    /* Formating date for use in component
-      { date: { seconds: 3434954, nanoseconds: 0 } }
-      to
-      { date: '2020-08-26', hours: ['16:00'] },
-    */
-
-    let formattedDates: { date: string; hours: string[] }[] = [];
+    let formattedDates: { date: string; times: string[] }[] = [];
 
     (resultData || []).map((item) => {
-      console.log('Este la item ', item);
+      // console.log('Este la item ', item);
       let date: any = item.date;
       formattedDates.push({
         date: moment(new Date(date.toDate()).toUTCString())
           .format()
           .toString()
           .split('T')[0],
-        hours: item.times,
+        times: item.times,
       });
     });
 
@@ -133,9 +128,9 @@ export const ReserveTime = (props: {
     props.onSelctDate(selectedDate);
     let listBusyHours = [];
     // get busy hours by reserve date
-    reservesList.map((reserve: { date: string; hours: string[] }) => {
+    reservesList.map((reserve: { date: string; times: string[] }) => {
       if (reserve.date === formatSelectedDate) {
-        reserve.hours.map((reserveHour: string) => {
+        reserve.times.map((reserveHour: string) => {
           listBusyHours.push(reserveHour.substr(0, 5));
         });
       }
@@ -171,17 +166,17 @@ export const ReserveTime = (props: {
       {availableHours.length ? (
         <div className="hours-item">
           <div className="hours-box effect-slide_top">
-            {availableHours.map((hour, i) => (
+            {availableHours.map((time, i) => (
               <Button
                 className={`theme-button-outlined 
                                  hour-item 
                                 ${
-                                  reserveHour === hour ? 'selected-hour' : null
+                                  reserveHour === time ? 'selected-hour' : null
                                 }`}
                 key={i}
-                label={hour}
+                label={time}
                 onClick={() => {
-                  onSelectHour(hour);
+                  onSelectHour(time);
                 }}
               />
             ))}
