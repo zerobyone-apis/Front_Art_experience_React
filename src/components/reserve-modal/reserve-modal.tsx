@@ -249,6 +249,9 @@ export const ReserveModal = (props: { className?: string }) => {
         }
       }
 
+      //TODO: Revisar validacion de PUT o POST debido a que la primera vez que va a reservar
+      //TODO: Elimina todo el documento reemplazando las horas de las reservas por la ultima que se reservo.
+
       if (stapppToReadFlag === false) {
         //? POST - Crear nueva reserva dado a que no hay ninguna para este dia aún
         console.log('POST - New!');
