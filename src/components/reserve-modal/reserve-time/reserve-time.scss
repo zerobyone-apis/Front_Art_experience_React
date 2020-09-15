@@ -7,8 +7,10 @@
         position: relative;
         width: 100%;
         max-width: 350px;
+        height: max-content;
         margin: auto;
-        text-align: center;
+        display: flex;
+        overflow-x: scroll;
         margin-top: 10px;
         margin-bottom: 45px;
         padding-top: 5px;
@@ -18,7 +20,7 @@
         .hour-item {
             position: relative;
             height: max-content;
-            margin: auto;
+            display: flex;
             margin: 2px;
             border-radius: 4px;
             color: white;
