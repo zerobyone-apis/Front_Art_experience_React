@@ -27,7 +27,7 @@ export const ServiceItem = (props: {
             </div>
             <div className={`price text text-${getTheme()}`}>
                 <p>
-                    ${props.cost}
+                    {props.cost}
                 </p>
             </div>
         </div>

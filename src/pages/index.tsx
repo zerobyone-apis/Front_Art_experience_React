@@ -132,7 +132,7 @@ const IndexPage = () => {
       url: 'Read More',
     },
     {
-      name: 'PERFECCIONAMIENTO',
+      name: 'AVANZADO',
       info: `
         En este perfeccionamientoTrabajamos con 4 modelos,
         En los cuales haremos 3 estilos diferentes:\n 
@@ -197,8 +197,6 @@ const IndexPage = () => {
             info={pageInfo.aboutUs}
             picture={aboutusPictures[0].url}
           />
-
-          <div id="services" />
           <div id="barbers" />
           {barbers.length ? (
             <BarbersCard
@@ -207,12 +205,13 @@ const IndexPage = () => {
               subTitle={''}
             />
           ) : null}
-          <div id="courses" />
+          <div id="services" />
           <ServicesCard
             services={services}
             title={pageInfo.servicesTitle}
             subTitle={pageInfo.contactUs}
           />
+          <div id="courses" />
           <CoursesCard
             courses={courses}
             title={pageInfo.coursesTitle}

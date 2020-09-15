@@ -50,7 +50,10 @@
         }
 
         .footer-email {
-            text-align: center;
+            font-size: 12px !important;
+            margin: auto;
+            margin-bottom: 20px;
+            margin-top: 20px;
         }
 
         .footer-bussiness {
@@ -63,7 +66,7 @@
 }
 
 // IPHONE5/SE
-@media only screen and (max-width: 750px) {
+@media only screen and (max-width: $mobile-screen) {
     .home-footer {
         margin: auto;
         width: 100%;
@@ -82,7 +85,7 @@
         }
 
         .footer-email {
-            text-align: center;
+            text-align: center !important;
         }
     }
 }
