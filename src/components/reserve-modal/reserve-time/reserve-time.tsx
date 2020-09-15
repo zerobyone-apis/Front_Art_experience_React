@@ -109,8 +109,8 @@ export const ReserveTime = (props: {
                 value={reserveDate}
                 onSelectDate={onSelectDate} />
             {availableHours.length ? (
-                <div className="hours-item">
-                    <div className="hours-box effect-slide_top">
+                <div className="hours-box effect-slide_top">
+                    <div className="container">
                         {availableHours.map((hour, i) => <Button
                             className={
                                 `theme-button-outlined 
