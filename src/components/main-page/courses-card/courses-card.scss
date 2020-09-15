@@ -103,6 +103,17 @@
         }
     }
 
+    // CASIO Calculator LFMAO
+    @media only screen and (max-width: 400px) {
+        .courses-items {
+            position: relative;
+            width: 100% !important;
+            overflow-x: scroll !important;
+            margin-bottom: 20px !important;
+        }
+    }
+
+
     .course-container {
         .info {
             color: white;
