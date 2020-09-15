@@ -195,8 +195,6 @@ const IndexPage = () => {
             info={pageInfo.aboutUs}
             picture={aboutusPictures[0].url}
           />
-
-          <div id="services" />
           <div id="barbers" />
           {barbers.length ? (
             <BarbersCard barbers={barbers}
@@ -204,11 +202,12 @@ const IndexPage = () => {
               subTitle={""}
             />
           ) : null}
-          <div id="courses" />
+          <div id="services" />
           <ServicesCard
             services={services}
             title={pageInfo.servicesTitle}
             subTitle={pageInfo.contactUs} />
+          <div id="courses" />
           <CoursesCard
             courses={courses}
             title={pageInfo.coursesTitle}
@@ -222,7 +221,6 @@ const IndexPage = () => {
             facebook={pageInfo.facebook}
             theme="light"
           />
-
         </div>
       </div >
       <LoaderPage show={disabled} />
