@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { Fragment, useContext } from 'react';
 import { Card } from '../../card/card';
 import { ThemeContext } from '../../../contexts/ThemeContext';
 import { Divider } from '../../divider/divider';
@@ -37,11 +37,13 @@ export const ServicesCard = (props: {
 
     const getServices = () => {
         return props.services.map((service, i) =>
-            <ServiceItem key={i}
-                name={service.name}
-                info={service.info}
-                icon={service.icon}
-            />
+            <div className="service-item" key={i}>
+                <ServiceItem
+                    name={service.name}
+                    info={service.info}
+                    icon={service.icon}
+                />
+            </div>
         )
     }
 

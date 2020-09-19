@@ -63,7 +63,7 @@ export const CoursesCard = (props: {
 
     return (
         <Divider
-            title="Nuestros Barberos"
+            title="Nuestros Cursos"
             img="https://instagram.fmvd1-1.fna.fbcdn.net/v/t51.2885-15/e35/40756317_547596808994027_4028564252884205568_n.jpg?_nc_ht=instagram.fmvd1-1.fna.fbcdn.net&_nc_cat=111&_nc_ohc=G9NtG88ekgYAX-ZqNF_&oh=6b1c52b718d5107bcbd7f30a4233ac08&oe=5F7EA78C"
             align="left"
             className="divider"
