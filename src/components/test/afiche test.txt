@@ -1,0 +1,104 @@
+
+<div className="afiche">
+    <div className="logo">
+        <img src="https://raw.githubusercontent.com/zerobyone-apis/Front_Art_experience_React/master/src/assets/gold_logo.png" alt="" />
+    </div>
+
+    <div className="container">
+        <div className="left-box">
+
+            <div className="services-box">
+                <h1 className="titlex">Nuestros Servicios</h1>
+                {
+                    services.map((item, i) => {
+                        return (
+                            <div className="service" key={i}>
+                                <GrCaretNext className="icon" />
+                                <div className="text-box">
+                                    <p className="info-text">{item}</p>
+                                </div>
+                            </div>
+                        )
+                    })
+                }
+            </div>
+
+            <div className="services-box">
+                <h1 className="titlex">Nuestras redes</h1>
+                <div className="service">
+                    <AiFillInstagram className="icon" />
+                    <p className="info-text">@artexperience</p>
+                </div>
+                <div className="service">
+                    <AiFillFacebook className="icon" />
+                    <p className="info-text">/artexperience</p>
+                </div>
+            </div>
+        </div>
+
+        {/* RIGHT BOX */}
+        <div className="right-box">
+
+            <div className="hours-box">
+                <h1 className="titlex">Horarios de Atención</h1>
+                <div className="hour">
+                    <p className="info-text info">Lunes a Viernes:</p>
+                    <p className="info-text data">10:00 a 18:00</p>
+                </div>
+                <div className="hour">
+                    <p className="info-text info">Sábados:</p>
+                    <p className="info-text data">10:00 a 19:00</p>
+                </div>
+            </div>
+
+            {/* courses */}
+            <div className="courses-box">
+                <h1 className="titlex">Nuestros Cursos</h1>
+                {
+                    courses.map((item, i) => {
+                        return (
+                            <div className="course" key={i}>
+                                <div className="box-text">
+                                    <p className="info-text">{item}</p>
+                                </div>
+                                <GrCaretPrevious className="icon" />
+                            </div>
+                        )
+                    })
+                }
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        <div className="footer">
+            <h1 className="titlex">Reserva tu hora en</h1>
+
+            <div className="services-box coso">
+                <div className="service">
+                    {/* <GiWorld className="icon" /> */}
+                    <p className="info-text">www.artexperience.com.uy</p>
+                </div>
+
+                <div className="service">
+                    {/* <TiLocation className="icon" /> */}
+                    <p className="info-text">Piovene 1027 esq Wilson ferreira</p>
+                </div>
+
+                <div className="service">
+                    {/* <AiFillPhone className="icon" /> */}
+                    <p className="info-text">22913056</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

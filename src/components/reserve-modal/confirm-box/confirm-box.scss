@@ -1,15 +1,26 @@
+@import '../../../styles/theme.scss';
+
 .confirm_data-box {
     position: relative;
+    // background-color: green;
     width: 100%;
+    margin: auto;
     height: max-content;
     margin-top: 40px;
     text-align: center;
     overflow-x: none;
 
-    .service-box {
-        border-style: solid;
+    .services-box {
+        position: relative;
+        width: 60%;
+        margin: auto;
+        // margin: auto;
+        // background-color: red;
+    }
+
+    .box-item {
         border-width: 1px;
-        border-color: rgb(146, 144, 108);
+        border-color: $warm-color;
     }
 
     .confirm_info {
