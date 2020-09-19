@@ -98,7 +98,7 @@ const DashboardPage = () => {
 
                     {reserves.length ? (
                         <CustomTable
-                            titlex="Lista de Reservas"
+                            title="Lista de Reservas"
                             noItemsMessage="No tiene reservas creadas"
                             noSearchMessage="No se encontraron coincidencias"
                             items={reserves}
