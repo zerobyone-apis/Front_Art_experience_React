@@ -38,20 +38,21 @@ export const DialogModal = (props: {
       <div className={`dialog-modal effect-opacity ${getTheme()}`}>
         <div className="header">
           <div className="close_btn-box">
-            <div className="theme-button-text">
-              {!props.hideCloseButton ? (
-                <Button className="close_btn"
-                  icon={<AiOutlineClose
-                    className="theme-icon" />}
-                  onClick={() => { onClose() }} />
-              ) : null}
-            </div>
+
+
+            {!props.hideCloseButton ? (
+              <Button className="close_btn theme-button-text"
+                icon={<AiOutlineClose className="theme-icon" />}
+                onClick={() => { onClose() }} />
+            ) : null}
+
+
           </div>
           <div className="header-title">
             {props.header || <p className={`title text-${getTheme()}`}>{props.title}</p>}
           </div>
         </div>
-        <div className={`content ${getTheme()}`}>
+        <div className={`content `}>
           {props.children}
         </div>
       </div>

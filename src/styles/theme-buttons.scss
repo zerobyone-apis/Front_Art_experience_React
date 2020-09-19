@@ -71,10 +71,8 @@ $font-size-button: 12px;
 }
 
 .theme-button-text:hover {
-    filter: drop-shadow(0 5px 5px $cool-color);
-
     .theme-icon {
-        color: rgb(146, 144, 108);
+        color: $cool-color;
     }
 }
 

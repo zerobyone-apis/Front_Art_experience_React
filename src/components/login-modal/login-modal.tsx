@@ -78,10 +78,6 @@ export const LoginModal = (props: {
                         label={userIsLogged() ? getUserData().username : 'Acceder para Reservar'} />
                 </div>
             ) : null}
-
-
-
-
             {!showDialog ? null : (
                 <DialogModal
                     title="Inicio de Sesion - ArtExperience"
@@ -100,22 +96,15 @@ export const LoginModal = (props: {
                 </DialogModal>
             )
             }
-
-
-
-
-
-
-
             {
                 showAccountMenu && userIsLogged() ? (
-                    <div className={`account-menu effect-opacity ${getTheme()}`} ref={wrapperRef}>
+                    <div className={`account-menu effect-opacity`} ref={wrapperRef}>
                         <p className={`item-text user-name text text-${getTheme()}`}>{getUserData().username}</p>
                         <p className={`item-text user-email text text-${getTheme()}`}>{getUserData().email}</p>
                         {(getPageName() === INDEX_PAGE && getUserData().admin) ? (
                             <Button
                                 label="Gestion de Reservas"
-                                className="item-list_btn art_experience-button_outlined"
+                                className="item-list_btn theme-button-outlined"
                                 onClick={() => { document.location.href = '/Dashboard'; }}
                             />
                         ) : null}
