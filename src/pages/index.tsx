@@ -36,16 +36,20 @@ const IndexPage = () => {
   const barberActions = new BarberAction();
 
   useEffect(() => {
+    const fetchData = async () => {
+      let resultBarbers = null;
+      do {
+        resultBarbers = await getBarbers();
+      } while (!resultBarbers);
+
+      setBarbers(resultBarbers);
+      setBarberList(resultBarbers); // save in store
+    };
+
+    // execute the async function
     setDisabledButton(true);
-    getBarbers().then((response) => {
-      setBarbers(response);
-      setBarberList(response); // save in store
-      setDisabledButton(false);
-    });
-    // TODO
-    // getPageInfo();
-    // getServices();
-    // getCourses();
+    fetchData();
+    setDisabledButton(false);
   }, []);
 
   const pageInfo = {

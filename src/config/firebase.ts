@@ -14,12 +14,15 @@ const firebaseConfig = {
 };
 
 // ? Inicialize firebase app  */
-const firebaseApp = firebase.initializeApp(firebaseConfig);
+let app;
+if (firebase.apps.length === 0) {
+  app = firebase.initializeApp(firebaseConfig, 'ArtExperienceDB');
+} else {
+  app = firebase.app('ArtExperienceDB');
+}
 
-// ? Inicialize database  */
-const db = firebaseApp.firestore();
-// ? Inicialize Authentication Instance  */
-const auth = firebaseApp.auth();
+const db = app.firestore();
+const auth = app.firestore();
 
 // ? Inicialize Provider of Google To Single Sign ON  */
 const provider = new firebase.auth.GoogleAuthProvider();

@@ -1,8 +1,10 @@
 @import '../../styles/theme.scss';
 
+.dialog_modal {}
+
 .reserve-modal {
   .content {
-    min-width: 700px !important;
+    min-width: 700px;
   }
 
   .activator-btn {
@@ -18,21 +20,35 @@
   }
 
   .reserve-stepper {
+    visibility: hidden !important;
+
+    .reserve-step {
+      visibility: hidden;
+      background-color: red;
+    }
+
     .time-box {
       position: absolute;
       width: 100%;
       height: 100%;
     }
   }
+}
 
-  @media only screen and (max-width: $mobile-screen) {
-    .time-box {
-      display: inline;
-      text-align: center;
+@media only screen and (max-width: $mobile-screen) {
+  .reserve-modal {
+    .content {
+      width: 100%;
+      min-width: 100%;
+    }
+  }
 
-      .calendar-box {
-        margin: auto;
-      }
+  .time-box {
+    display: inline;
+    text-align: center;
+
+    .calendar-box {
+      margin: auto;
     }
   }
 }

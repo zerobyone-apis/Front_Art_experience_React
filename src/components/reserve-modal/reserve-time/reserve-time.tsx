@@ -23,7 +23,7 @@ export const ReserveTime = (props: {
   const [reservesList, setReservesList] = useState([]);
   // hours in HoursBox
   const [availableHours, setAvailableHours] = useState([]);
-  const [listHours, setListHours] = useState([]);
+  //const [listHours, setListHours] = useState([]);
   const [barberShopTime, setBarberShopTime] = useState([]);
   const [reserveDate, setReserveDate] = useState(undefined);
   const [reserveHour, setReserveHour] = useState(props.reserveHour || null);
@@ -62,63 +62,78 @@ export const ReserveTime = (props: {
     try {
       // Validate reserveTimes not empty
       getQuery(barberName);
-      setInterval(() => {
-        if (reserveTimes.length === 0) {
-          getQuery(barberName);
-        }
-      }, 2000);
     } catch (error) {
       console.error(`Error: Obteniendo las reservas -> ${error}}`);
       return [];
     }
   };
 
-  const getQuery = (barberName) => {
-    db.collection('reservas')
-      .doc(barberName)
-      .collection('day_reserves')
-      .orderBy('date', 'asc')
-      .onSnapshot((snapshot) => {
-        setReservesTimes(snapshot.docs.map((doc) => doc.data()));
-      });
+  const getQuery = async (barberName) => {
+    //await db
+    //  .collection('reservas')
+    //  .doc(barberName)
+    //  .collection('day_reserves')
+    //  .orderBy('date', 'asc')
+    //  .onSnapshot((snapshot) => {
+    //    setReservesTimes(snapshot.docs.map((doc) => doc.data()));
+    //  });
+
+    const resRef = await db
+      .collection('reservas')
+      .doc(nameParcerFunction(barberName))
+      .collection('day_reserves');
+
+    resRef
+      .get()
+      .then((snapshot) => {
+        setReservesTimes(
+          snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+        );
+      })
+      .catch((err) => console.error(err));
   };
 
   useEffect(() => {
-    // get firebase data
-    getReservesHoursByReseres(nameParcerFunction(props.selectedBarber.name));
+    const getReservesTimes = () => {
+      // get firebase data
+      getReservesHoursByReseres(nameParcerFunction(props.selectedBarber.name));
 
-    let resultData: {
-      date: { seconds: number; nanoseconds: number };
-      times: string[];
-    }[] = reserveTimes;
+      let resultData: {
+        date: { seconds: number; nanoseconds: number };
+        times: string[];
+      }[] = reserveTimes;
 
-    console.log('get result data: ', resultData);
+      console.log('get result data: ', resultData);
 
-    let formattedDates: { date: string; times: string[] }[] = [];
+      let formattedDates: { date: string; times: string[] }[] = [];
 
-    (resultData || []).map((item) => {
-      // console.log('Este la item ', item);
-      let date: any = item.date;
-      formattedDates.push({
-        date: moment(new Date(date.toDate()).toUTCString())
-          .format()
-          .toString()
-          .split('T')[0],
-        times: item.times,
+      (resultData || []).map((item) => {
+        // console.log('Este la item ', item);
+        let date: any = item.date;
+        formattedDates.push({
+          date: moment(new Date(date.toDate()).toUTCString())
+            .format()
+            .toString()
+            .split('T')[0],
+          times: item.times,
+        });
       });
-    });
 
-    setReservesList(formattedDates);
-    console.log('data para reserve-time: ', formattedDates);
-    if (reserveDate) {
-      let filterHours = onSelectDate(reserveDate);
-      setAvailableHours(filterHours);
-    }
+      setReservesList(formattedDates);
+      console.log('data para reserve-time: ', formattedDates);
+      if (reserveDate) {
+        let filterHours = onSelectDate(reserveDate);
+        setAvailableHours(filterHours);
+      }
+    };
+
+    //Call Async method(() => {
+    getReservesTimes();
   }, [reserveDate]);
 
-  useEffect(() => {
-    setListHours(availableHours);
-  }, [availableHours]);
+  //useEffect(() => {
+  //  setListHours(availableHours);
+  //}, [availableHours]);
 
   const onSelectDate = (selectedDate: Date) => {
     let formatSelectedDate = moment(selectedDate).format('YYYY-MM-DD');

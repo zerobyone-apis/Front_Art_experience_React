@@ -19,7 +19,6 @@ import { ConfirmBox } from './confirm-box/confirm-box';
 import ReserveActions from '../../actions/Reserve.actions';
 import moment, { now } from 'moment';
 import db from '../../config/firebase';
-import firebase from 'firebase';
 
 import 'date-fns';
 import './reserve-modal.scss';
@@ -43,6 +42,7 @@ export const ReserveModal = (props: { className?: string }) => {
     disabled,
     setDisabledButton,
   } = useContext(ButtonContext);
+  // BURN DATA
   const services = [
     {
       workId: 1,
@@ -305,9 +305,9 @@ export const ReserveModal = (props: { className?: string }) => {
   const checkStep = () => {
     switch (wizard) {
       case 0:
-        return selectedService.name ? true : false;
-      case 1:
         return selectedBarber.name ? true : false;
+      case 1:
+        return selectedService.name ? true : false;
       case 2:
         return reserveDate && reserveHour ? true : false;
       case 3:
@@ -333,6 +333,7 @@ export const ReserveModal = (props: { className?: string }) => {
           }}
         />
       </div>
+
       {!showDialog ? null : (
         <DialogModal
           title="Reservacion - ArtExperience"
@@ -345,6 +346,20 @@ export const ReserveModal = (props: { className?: string }) => {
           hideCloseButton={wizard == 4}
         >
           <Stepper className="reserve-stepper" wizard={wizard}>
+            {/* BARBERS STEP  */}
+            <div className="reserve-step">
+              <div className="step-title">
+                <p className={`step-subtitle text text-${getTheme()}`}>
+                  Seleccione el Barbero
+                </p>
+              </div>
+              <BarbersList
+                value={selectedBarber}
+                setBarber={setSelectedBarber}
+              />
+            </div>
+
+            {/* SERVICES STEP  */}
             <div className="reserve-step">
               <div className="step-title">
                 <p className={`step-subtitle text text-${getTheme()}`}>
@@ -357,17 +372,8 @@ export const ReserveModal = (props: { className?: string }) => {
                 setService={setSelectedService}
               />
             </div>
-            <div className="reserve-step">
-              <div className="step-title">
-                <p className={`step-subtitle text text-${getTheme()}`}>
-                  Seleccione el Barbero
-                </p>
-              </div>
-              <BarbersList
-                value={selectedBarber}
-                setBarber={setSelectedBarber}
-              />
-            </div>
+
+            {/* RESERVE_TIME STEP  */}
             <div className="reserve-step">
               <div className="step-title">
                 <p className={`step-subtitle text text-${getTheme()}`}>
@@ -383,6 +389,8 @@ export const ReserveModal = (props: { className?: string }) => {
                 onSelctHour={setReserveHour}
               />
             </div>
+
+            {/* CONFIRMATION STEP  */}
             <div className="reserve-step">
               <div className="step-title">
                 <p className={`step-subtitle text text-${getTheme()}`}>
@@ -396,7 +404,8 @@ export const ReserveModal = (props: { className?: string }) => {
                 date={moment(reserveDate).format('DD/MM/YYYY')}
               />
             </div>
-            {/* Success reservation message  */}
+
+            {/* SUCCESS STEP  */}
             <div className="reserve-step">
               <div className="step-title">
                 <p className={`step-subtitle text text-${getTheme()}`}>
