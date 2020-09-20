@@ -6,9 +6,9 @@ import { USER_DATA_STORAGE } from '../types/StorageData.type';
 import { UserProvider } from '../contexts/UserContext';
 import { ThemeProvider } from '../contexts/ThemeContext';
 import { THEME_DARK, THEME_LIGHT } from '../types/Themes.type';
+import { LoaderPage } from '../components/loader-page/loader-page';
 import '../styles/theme.scss';
 import './app.scss';
-import { LoaderPage } from '../components/loader-page/loader-page';
 
 const App: FC<{ Component: any; pageProps: any }> = ({
   Component,

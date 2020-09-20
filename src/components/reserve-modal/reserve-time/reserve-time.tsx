@@ -104,12 +104,12 @@ export const ReserveTime = (props: {
     }
 
     return (
-        <div className="time-box effect-slide_top">
+        <div className="time-box effect-slide-top">
             <CalendarBox
                 value={reserveDate}
                 onSelectDate={onSelectDate} />
             {availableHours.length ? (
-                <div className="hours-box effect-slide_top">
+                <div className="hours-box effect-slide-top">
                     <div className="container">
                         {availableHours.map((hour, i) => <Button
                             className={

@@ -15,7 +15,7 @@ export const ServiceItem = (props: {
         getTheme,
     } = useContext(ThemeContext);
     return (
-        <div className={`service effect-opacity ${props.className || ' '} ${props.selected ? 'selected-service' : null}`}
+        <div className={`service ${props.className || ' '} ${props.selected ? 'selected-service' : null}`}
             onClick={() => {
                 props.onSelect ? props.onSelect() : null;
             }}
@@ -46,11 +46,11 @@ export const ServicesList = (props: {
     } = useContext(ThemeContext);
     return (
         <div className="services-box">
-            <div className="list_services-box effect-slide_top">
+            <div className="list_services-box effect-slide-left">
                 {props.services.sort((a, b) => { return a.cost - b.cost }).map((service, i) => {
                     return (
                         <ServiceItem
-                            className={`service effect-opacity ${props.value.name === service.name ? 'selected-service' : null}`}
+                            className={`service ${props.value.name === service.name ? 'selected-service' : null}`}
                             onSelect={() => {
                                 props.setService(service);
                             }}

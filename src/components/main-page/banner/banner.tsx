@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { ThemeContext } from '../../../contexts/ThemeContext';
-import { AnimationBox } from '../../animation-box/animation-box';
 import './banner.scss';
+import '../../../styles/effects.scss';
 
 export const Banner = () => {
     const {
@@ -18,11 +18,11 @@ export const Banner = () => {
             <div className="title-box">
                 <div className="box-shadow_space">
                 </div>
-                <AnimationBox active={true} type="scale">
-                    <img
-                        className="logo-img"
-                        src="https://raw.githubusercontent.com/zerobyone-apis/Front_Art_experience_React/master/src/assets/gold_logo.png" alt="" />
-                </AnimationBox>
+
+                <img
+                    className="logo-img effect-opacity"
+                    src="https://raw.githubusercontent.com/zerobyone-apis/Front_Art_experience_React/master/src/assets/gold_logo.png" alt="" />
+
                 <div className="box-shadow_logo">
                 </div>
             </div>

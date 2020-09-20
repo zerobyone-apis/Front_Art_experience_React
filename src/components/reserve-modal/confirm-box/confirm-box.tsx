@@ -17,7 +17,7 @@ export const ConfirmBox = (props: {
         getTheme,
     } = useContext(ThemeContext);
     return (
-        <div className="confirm_data-box effect-slide_top">
+        <div className="confirm_data-box effect-slide-top">
             <div className="services-box">
                 <ServiceItem
                     className="box-item"

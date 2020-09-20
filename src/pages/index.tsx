@@ -19,40 +19,6 @@ import './index.scss';
 
 const IndexPage = () => {
   const [barbers, setBarbers] = useState([]);
-  const {
-    // @ts-ignore
-    getTheme,
-  } = useContext(ThemeContext);
-  const {
-    // @ts-ignore
-    setDisabledButton,
-    disabled
-  } = useContext(ButtonContext);
-  const {
-    // @ts-ignore
-    setBarberList,
-  } = useContext(BarberListContext);
-
-  const barberActions = new BarberAction();
-
-  useEffect(() => {
-
-    const fetchData = async () => {
-      let resultBarbers = null;
-      do {
-        resultBarbers = await getBarbers();
-      } while (!resultBarbers);
-
-      setBarbers(resultBarbers);
-      setBarberList(resultBarbers); // save in store
-    }
-
-    // execute the async function
-    setDisabledButton(true);
-    fetchData();
-    setDisabledButton(false);
-
-  }, [])
 
   const pageInfo = {
     name: "Art Experience",
@@ -171,6 +137,43 @@ const IndexPage = () => {
       align: 'right'
     }
   ];
+  const {
+    // @ts-ignore
+    getTheme,
+  } = useContext(ThemeContext);
+  const {
+    // @ts-ignore
+    setDisabledButton,
+    disabled
+  } = useContext(ButtonContext);
+  const {
+    // @ts-ignore
+    setBarbersList,
+    getBarbersList,
+  } = useContext(BarberListContext);
+  const barberActions = new BarberAction();
+
+
+
+
+  useEffect(() => {
+
+    const fetchData = async () => {
+      let resultBarbers = null;
+      do {
+        resultBarbers = await getBarbers();
+      } while (!resultBarbers);
+
+      setBarbersList(resultBarbers); // save in store
+      setBarbers(resultBarbers);
+    }
+
+    // execute the async function
+    setDisabledButton(true);
+    fetchData();
+    setDisabledButton(false);
+
+  }, [])
 
   const getBarbers = async () => {
     const response: IBarber[] = await barberActions.getAll();
@@ -184,6 +187,10 @@ const IndexPage = () => {
     }
     return undefined
   }
+
+
+
+
 
   return (
     <div className="index_page">

@@ -21,7 +21,7 @@ export const LeftMenu = () => {
                         onClose={() => { setShowDialog(false) }}
                         className="left_menu-dialog"
                     >
-                        <div className="left-menu-box">
+                        <div className="left-menu-box effect-slide-left">
                             {/* <div className="logox">
                                 <img className="logo-img"
                                     src="https://raw.githubusercontent.com/zerobyone-apis/Front_Art_experience_React/master/src/assets/gold_logo.png" alt="" />

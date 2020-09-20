@@ -50,7 +50,7 @@ export const LoginModal = (props: {
         }
         setTimeout(() => {
             setShowDialog(false)
-        }, 2000);
+        }, 500);
     }
 
     const launchModal = () => {
@@ -62,9 +62,9 @@ export const LoginModal = (props: {
     }
 
     const logOut = () => {
-        setDisabledButton(true)
-        setUserData(null)
-        setDisabledButton(false)
+        setDisabledButton(true);
+        setUserData(null);
+        setDisabledButton(false);
         document.location.href = '/';
     }
 

@@ -16,6 +16,12 @@ $menu_size: 200px;
     // color: red !important;
   }
 
+  @media only screen and (min-width: $mobile-screen) {
+    .left_menu-dialog {
+      visibility: hidden;
+    }
+  }
+
   @media only screen and (max-width: $mobile-screen) {
     .activator_btn {
       visibility: visible;
