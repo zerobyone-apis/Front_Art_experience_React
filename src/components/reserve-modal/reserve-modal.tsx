@@ -25,7 +25,6 @@ import './reserve-modal.scss';
 import '../../styles/theme.scss';
 import '../../styles/theme-buttons.scss';
 import '../../styles/effects.scss';
-import { ErrorMessage } from 'formik';
 
 export const ReserveModal = (props: { className?: string }) => {
   const {
@@ -119,9 +118,6 @@ export const ReserveModal = (props: { className?: string }) => {
   const [selectedService, setSelectedService] = useState(defaultService);
   const [wizard, setWizard] = useState(0);
 
-  //* Firebase Reference to list of Docs.
-  const [docs, setDocs] = useState([]);
-
   const reserveActions = new ReserveActions();
 
   const createReserve = async () => {
@@ -144,7 +140,10 @@ export const ReserveModal = (props: { className?: string }) => {
 
     if (response) {
       //* Post & Put Firebase.
-      createReserveTimeOnFirebase(selectedBarber.name, startDateFormatted);
+      await createReserveTimeOnFirebase(
+        selectedBarber.name,
+        startDateFormatted
+      );
 
       setWizard(4);
       setTimeout(() => {
@@ -161,44 +160,38 @@ export const ReserveModal = (props: { className?: string }) => {
   };
 
   //* Post & Put Firebase.
-  const createReserveTimeOnFirebase = (barberName, reserveTime) => {
+  const createReserveTimeOnFirebase = async (barberName, reserveTime) => {
     try {
       let updateReserve;
       let selectedReserveDate;
 
       //? Create new Times Array and add the reserve time.
       let newTimes = [];
-      newTimes.push(
-        moment(reserveTime).format().toString().split('T')[1].substr(0, 5)
-      );
+      let reserveTime_Create = moment(reserveTime)
+        .format()
+        .toString()
+        .split('T')[1]
+        .substr(0, 5);
+      newTimes.push(reserveTime_Create);
 
-      //? Flag to validate when is an update or when is a create.
-      let stapppToReadFlag = false;
+      // Flag to validate when is an update or when is a create.
+      let isUpdated = false;
 
       //? Validate if already exist reserves in the current date.
-      console.log('Getting Reserves . . 1 ');
-      getReservesFirebase(barberName);
+      const resultDocs = await getReservesFirebase(barberName);
 
-      if (docs.length <= 0) {
-        console.log('Getting Reserves. . 2');
-        getReservesFirebase(barberName);
+      if (!resultDocs) {
+        console.log('No existen resultados. . .');
       }
 
-      //? Defining and parsing -> selectedReserveDate
+      //? Solo para checkear si la fecha es igual a la de actual
       selectedReserveDate = moment(reserveDate.toUTCString())
         .format()
         .toString()
         .split('T')[0];
 
-      //? Getting data from the Array State
-      let resultData: {
-        id: string;
-        date: any;
-        times: string[];
-      }[] = docs;
-
-      //? Parcing Result Data
-      let fullParsedResultData = resultData.map((data) => {
+      //? nuevo arreglo de sdocuments formateado en fecha.
+      const fullParsedResultData = resultDocs.map((data) => {
         return {
           id: data.id,
           date: moment(data.date.toDate().toUTCString())
@@ -209,63 +202,63 @@ export const ReserveModal = (props: { className?: string }) => {
         };
       });
 
-      if (fullParsedResultData != []) {
-        for (const res of fullParsedResultData) {
-          if (res.id) {
-            //? Fecha de reserva parseada
-            //console.log('Selected Reserve Date -> ', selectedReserveDate);
+      //! Function to update document reserves if [] is not empty.
+      //if (fullParsedResultData != []) {
+      //  console.log('IF -> EL [] NO esta vacio -> ', selectedReserveDate);
+      for (const res of fullParsedResultData) {
+        if (res.id) {
+          if (selectedReserveDate === res.date) {
+            // Validate Dates:
+            console.log('IF -> Selected Date -> ', selectedReserveDate);
+            console.log('IF -> Item.Res.Date Date -> ', res.date);
 
-            //? ID Del dia a reservar
-            //console.log('Doc item ID -> ', res.id);
+            //? Estamos colocando en el arreglo de horas a guardar para este dia,
+            //? las horas que existan anteriormente para este dia
+            newTimes.push(...res.times);
 
-            //? Fecha del dia a reservar parseado
-            let resExistDate = res.date;
-            //console.log('Doc item date -> ', res.date);
+            //! Update Obj to PUT on Firebase:
+            updateReserve = {
+              date: reserveDate,
+              times: newTimes,
+            };
+            //? PUT - Actualizar document de reserva dado a que hay reservas para este dia
+            console.log('IF -> PUT - Update!');
+            let time = await db
+              .collection('reservas')
+              .doc(nameParcerFunction(barberName))
+              .collection('day_reserves')
+              .doc(res.id)
+              .set(updateReserve);
 
-            if (selectedReserveDate === resExistDate) {
-              // Validate Dates:
-              console.log('Selected Date -> ', selectedReserveDate);
-              console.log('Item check Date -> ', res.date);
-
-              newTimes.push(...res.times);
-              updateReserve = {
-                date: reserveDate,
-                times: newTimes,
-              };
-
-              //? PUT - Actualizar document de reserva dado a que hay reservas para este dia
-              console.log('PUT - Update!');
-
-              db.collection('reservas')
-                .doc(nameParcerFunction(barberName))
-                .collection('day_reserves')
-                .doc(res.id)
-                .set(updateReserve);
-
-              //? Flag para controlar y validar si encontro un doc o crea uno nuevo.
-              stapppToReadFlag = true;
+            if (time) {
+              console.log('type of time -> ', typeof time);
+              console.log('promesa resuelta -> ', time);
+              console.log('IF -> Updated Reserve Successfuly!!');
             }
+            //? Flag to control when is Update and When is Post
+            isUpdated = true;
           }
         }
       }
 
-      //TODO: Revisar validacion de PUT o POST debido a que la primera vez que va a reservar
-      //TODO: Elimina todo el documento reemplazando las horas de las reservas por la ultima que se reservo.
+      //! Validamos si ya se actualizo o hay que crear un documento nuevo.
+      if (!isUpdated) {
+        // Creating Obj to POST on Firebase:
+        updateReserve = {
+          date: reserveDate,
+          times: newTimes,
+        };
 
-      if (stapppToReadFlag === false) {
-        //? POST - Crear nueva reserva dado a que no hay ninguna para este dia aún
-        console.log('POST - New!');
-
-        db.collection('reservas')
+        //? POST - Actualizar document de reserva dado a que hay reservas para este dia
+        console.log('IF -> POST - Creating . . .');
+        await db
+          .collection('reservas')
           .doc(nameParcerFunction(barberName))
           .collection('day_reserves')
           .doc(selectedReserveDate)
-          .set({
-            date: reserveDate,
-            times: newTimes,
-          });
-        console.log('Created Reserve Successfuly!!');
+          .set(updateReserve);
       }
+      //}
     } catch (error) {
       console.error(
         `Error: Creando o Actualizando Firebase Reserve. -> ${error}`
@@ -276,30 +269,24 @@ export const ReserveModal = (props: { className?: string }) => {
   //* Parce Method - Name convention for firestore docs.
   const nameParcerFunction = (name: string) => {
     let parsedName = name.toLowerCase().replace(' ', '.');
-    console.log('POST firestore -> Nombre pareseado: ', parsedName);
     return parsedName;
   };
 
   //* Query Method - GET Firestore Reserves
-  const getReservesFirebase = (barberName) => {
-    const resRef = db
+  const getReservesFirebase = async (barberName) => {
+    const resRef = await db
       .collection('reservas')
       .doc(nameParcerFunction(barberName))
       .collection('day_reserves');
 
-    resRef
+    const result = await resRef
       .get()
       .then((snapshot) => {
-        setDocs(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+        return snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
       })
       .catch((err) => console.error(err));
 
-    // db.collection('reservas')
-    //   .doc(nameParcerFunction(barberName))
-    //   .collection('day_reserves')
-    //   .onSnapshot((snapshot) => {
-    //     setDocs(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    //   });
+    return result;
   };
 
   const checkStep = () => {
