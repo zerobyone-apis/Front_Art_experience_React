@@ -12,6 +12,7 @@ import { ThemeContext } from '../../contexts/ThemeContext';
 
 import './login-modal.scss';
 import '../../styles/effects.scss';
+import '../../styles/theme.scss';
 import '../../styles/theme-buttons.scss';
 
 export const LoginModal = (props: {
@@ -98,7 +99,7 @@ export const LoginModal = (props: {
             }
             {
                 showAccountMenu && userIsLogged() ? (
-                    <div className={`account-menu effect-opacity`} ref={wrapperRef}>
+                    <div className={`account-menu effect-opacity ${getTheme()}`} ref={wrapperRef}>
                         <p className={`item-text user-name text text-${getTheme()}`}>{getUserData().username}</p>
                         <p className={`item-text user-email text text-${getTheme()}`}>{getUserData().email}</p>
                         {(getPageName() === INDEX_PAGE && getUserData().admin) ? (
