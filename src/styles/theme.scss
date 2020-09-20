@@ -22,7 +22,7 @@ $cool-color: rgb(195, 191, 111);
 /* shadows */
 $shadow-color: rgb(41, 41, 41);
 $shadow-dark: rgba(0, 0, 0, 0.9);
-$shadow-light: rgba(238, 238, 238, 0.90);
+$shadow-light: rgba(238, 238, 238, 0.9);
 
 /* fonts colors */
 $dark-text: #303030d5; //#303030d5
@@ -91,12 +91,12 @@ a {
 /* fonts size and syle */
 .big-title {
   font-size: $big-title-size;
-  color: $cool-color
+  color: $cool-color;
 }
 
 .title {
   font-size: $title-size;
-  color: $cool-color
+  color: $cool-color;
 }
 
 .text {
