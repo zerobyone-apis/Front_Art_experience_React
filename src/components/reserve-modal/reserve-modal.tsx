@@ -177,20 +177,20 @@ export const ReserveModal = (props: { className?: string }) => {
       // Flag to validate when is an update or when is a create.
       let isUpdated = false;
 
-      //? Validate if already exist reserves in the current date.
+      // Validate if already exist reserves in the current date.
       const resultDocs = await getReservesFirebase(barberName);
 
       if (!resultDocs) {
         console.log('No existen resultados. . .');
       }
 
-      //? Solo para checkear si la fecha es igual a la de actual
+      // Solo para checkear si la fecha es igual a la de actual
       selectedReserveDate = moment(reserveDate.toUTCString())
         .format()
         .toString()
         .split('T')[0];
 
-      //? nuevo arreglo de sdocuments formateado en fecha.
+      // nuevo arreglo de sdocuments formateado en fecha.
       const fullParsedResultData = resultDocs.map((data) => {
         return {
           id: data.id,
@@ -203,14 +203,12 @@ export const ReserveModal = (props: { className?: string }) => {
       });
 
       //! Function to update document reserves if [] is not empty.
-      //if (fullParsedResultData != []) {
-      //  console.log('IF -> EL [] NO esta vacio -> ', selectedReserveDate);
       for (const res of fullParsedResultData) {
         if (res.id) {
           if (selectedReserveDate === res.date) {
             // Validate Dates:
-            console.log('IF -> Selected Date -> ', selectedReserveDate);
-            console.log('IF -> Item.Res.Date Date -> ', res.date);
+            //console.log('IF -> Selected Date -> ', selectedReserveDate);
+            //console.log('IF -> Item.Res.Date Date -> ', res.date);
 
             //? Estamos colocando en el arreglo de horas a guardar para este dia,
             //? las horas que existan anteriormente para este dia

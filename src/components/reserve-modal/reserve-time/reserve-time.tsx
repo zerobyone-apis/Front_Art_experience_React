@@ -30,8 +30,6 @@ export const ReserveTime = (props: {
   const [reserveDate, setReserveDate] = useState(undefined);
   const [reserveHour, setReserveHour] = useState(props.reserveHour || null);
 
-  const [reserveTimes, setReservesTimes] = useState([]);
-
   const {
     // @ts-ignore
     getTheme,
@@ -45,10 +43,6 @@ export const ReserveTime = (props: {
   };
 
   const nameParcerFunction = (name: string) => {
-    console.log(
-      'GET firebase -> Nombre parseado: ',
-      name.toLowerCase().replace(' ', '.')
-    );
     return name.toLowerCase().replace(' ', '.');
   };
 
@@ -64,7 +58,7 @@ export const ReserveTime = (props: {
   useEffect(() => {
     const getReservesTimes = async () => {
       //* get firebase data
-      return await getReservesHoursByReserves(
+      await getReservesHoursByReserves(
         nameParcerFunction(props.selectedBarber.name)
       );
     };
@@ -76,19 +70,13 @@ export const ReserveTime = (props: {
   const getReservesHoursByReserves = async (barberName) => {
     try {
       //* Validate reserveTimes[] is not empty
-      await getQuery(barberName);
+      const resultDocs = await getQuery(barberName);
 
-      //* Esperando que se resuelva la promesa . . .');
-      do {
-        setTimeout(() => {}, 10000);
-      } while (!reserveTimes);
-
-      if (reserveTimes) {
-        await filterTimesAndSetAvailables(reserveTimes);
+      if (resultDocs) {
+        await filterTimesAndSetAvailables(resultDocs);
       }
     } catch (error) {
       console.error(`Error: Obteniendo las reservas -> ${error}}`);
-      return [];
     }
   };
 
@@ -99,27 +87,26 @@ export const ReserveTime = (props: {
       .doc(nameParcerFunction(barberName))
       .collection('day_reserves');
 
-    resRef
+    const result = await resRef
       .get()
       .then((snapshot) => {
-        setReservesTimes(
-          snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-        );
+        return snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
       })
       .catch((err) => console.error(err));
+    console.log('Se resolvio la promesa');
+    return result;
   };
 
   const filterTimesAndSetAvailables = (resultData: any) => {
     if (resultData) {
-      console.log('First Result data: ', resultData);
+      console.log('Result data: ', resultData);
 
       //* Nueva lista con fecha formateada
       let formattedDates: { date: string; times: string[] }[] = [];
 
-      (resultData || []).map((item) => {
-        let date: any = item.date;
+      resultData.map((item) => {
         formattedDates.push({
-          date: moment(new Date(date.toDate()).toUTCString())
+          date: moment(new Date(item.date.toDate()).toUTCString())
             .format()
             .toString()
             .split('T')[0],
@@ -128,7 +115,6 @@ export const ReserveTime = (props: {
       });
 
       // Seteamos la lista de reservas con la lista formateada.
-      // console.log('Seteando ReserveList -> : ', formattedDates);
       setReservesList(formattedDates);
       if (reserveDate) {
         // Le asignamos las horas filtradas para este dia.
