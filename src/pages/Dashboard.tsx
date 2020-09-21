@@ -116,9 +116,6 @@ const DashboardPage = () => {
       <LoaderPage show={disabled} />
       {selectedReserve && showReserveDialog ? (
         <ReserveDialog
-          onFinalized={() => { }}
-          onCancelled={() => { }}
-          onUpdated={() => { }}
           reserve={selectedReserve}
           onClose={setShowReserveDialog}
         />

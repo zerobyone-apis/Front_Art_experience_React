@@ -14,9 +14,9 @@ import '../../../styles/effects.scss';
 export const ReserveDialog = (props: {
   reserve: IReserve,
   onClose: any,
-  onFinalized: () => undefined,
-  onCancelled: () => undefined,
-  onUpdated: () => undefined,
+  onFinalized?: () => undefined,
+  onCancelled?: () => undefined,
+  onUpdated?: () => undefined,
 }) => {
   const baseReserve: IReserve = {
     barberOrHairdresserId: -1,
@@ -114,7 +114,7 @@ export const ReserveDialog = (props: {
 
   const ConfirmDialog = (props: {
     onAccept: () => undefined,
-    onCancel: () => voif,
+    onCancel: () => void,
     title: string,
     message: string
   }) => {
