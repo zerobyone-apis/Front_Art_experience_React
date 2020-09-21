@@ -18,13 +18,14 @@ export const HomeFooter = (props: {
         getTheme,
     } = useContext(ThemeContext);
     return (
+        // ${props.theme ? props.theme : getTheme()}
         <Card
             className="footer-card"
             title={props.title}
             subtitle={props.subtitle}>
             <div className={`home-footer`}>
                 <img className="footer_logo-img effect-opacity" src="https://i.ibb.co/hfX81DT/art-experience-500.png" alt="" />
-                <p className={`footer-email text text-${props.theme ? props.theme : getTheme()}`}>{props.email}</p>
+                <p className={`footer-email text text-dark`}>{props.email}</p>
                 <div className="footer-social">
                     <a href={props.instagram}>
                         <i className="fa fa-instagram" aria-hidden="true"></i>
