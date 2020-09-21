@@ -188,10 +188,6 @@ const IndexPage = () => {
     return undefined
   }
 
-
-
-
-
   return (
     <div className="index_page">
       <div className="toolbar-box">

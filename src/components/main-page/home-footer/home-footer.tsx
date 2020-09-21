@@ -23,7 +23,7 @@ export const HomeFooter = (props: {
             title={props.title}
             subtitle={props.subtitle}>
             <div className={`home-footer`}>
-                <img className="footer_logo-img effect-opacity" src="https://raw.githubusercontent.com/zerobyone-apis/Front_Art_experience_React/master/src/assets/gold_logo.png" alt="" />
+                <img className="footer_logo-img effect-opacity" src="https://i.ibb.co/FXcFKVY/art-experiecnce.png" alt="" />
                 <p className={`footer-email text text-${props.theme ? props.theme : getTheme()}`}>{props.email}</p>
                 <div className="footer-social">
                     <a href={props.instagram}>

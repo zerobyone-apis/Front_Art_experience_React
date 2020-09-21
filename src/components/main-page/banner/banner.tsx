@@ -21,7 +21,7 @@ export const Banner = () => {
 
                 <img
                     className="logo-img effect-opacity"
-                    src="https://raw.githubusercontent.com/zerobyone-apis/Front_Art_experience_React/master/src/assets/gold_logo.png" alt="" />
+                    src="https://i.ibb.co/FXcFKVY/art-experiecnce.png" alt="" />
 
                 <div className="box-shadow_logo">
                 </div>
