@@ -182,9 +182,7 @@ export const ReserveModal = (props: { className?: string }) => {
       {!showDialog ? null : (
         <DialogModal
           title="Reservacion - ArtExperience"
-          className="dialog_modal"
-          width='65vw'
-          height='65vh'
+          className="dialog_modalx"
           onClose={() => { setShowDialog(false) }}
           hideCloseButton={wizard == 4}>
           <Stepper className="reserve-stepper" wizard={wizard}>
