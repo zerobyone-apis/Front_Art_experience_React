@@ -52,9 +52,9 @@ const DashboardPage = () => {
   const headerOrder = [
     { text: 'ID', value: 'reserveId' },
     { text: 'N°Social', value: 'socialNumber' },
-    { text: 'Barbero', value: 'barberName' },
     { text: 'Cliente', value: 'nameClient' },
     { text: 'Fecha', value: 'startTimeFront' },
+    { text: 'Barbero', value: 'barberName' },
     { text: 'Servicio', value: 'workToDo' },
   ];
 
@@ -86,8 +86,8 @@ const DashboardPage = () => {
     }
   };
 
-  const showSelectedReserve = (selectedReserve: any) => {
-    setSelectedReserve(selectedReserve);
+  const showSelectedReserve = (reserve: any) => {
+    setSelectedReserve(reserve);
     setShowReserveDialog(true);
   };
 
@@ -116,8 +116,11 @@ const DashboardPage = () => {
       <LoaderPage show={disabled} />
       {selectedReserve && showReserveDialog ? (
         <ReserveDialog
-          onClose={setShowReserveDialog}
+          onFinalized={() => { }}
+          onCancelled={() => { }}
+          onUpdated={() => { }}
           reserve={selectedReserve}
+          onClose={setShowReserveDialog}
         />
       ) : null}
     </div>

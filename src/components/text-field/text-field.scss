@@ -60,6 +60,12 @@ select:-webkit-autofill:focus {
       opacity: 0.4;
     }
   }
+
+  .disabled {
+    input {
+      background-color: black !important;
+    }
+  }
 }
 
 // THEMES

@@ -7,6 +7,8 @@ import { Grid } from '@material-ui/core';
 import { AiFillCaretDown, AiFillCaretUp } from 'react-icons/ai';
 import './custom-table.scss';
 import '../../../styles/theme-buttons.scss';
+import '../../../styles/theme.scss';
+
 
 export const CustomTable = (props: {
   title: string;
@@ -42,17 +44,20 @@ export const CustomTable = (props: {
   );
   const classes = useStyles();
 
-  useEffect(() => {
-    props.onSelectRow(selectedRow);
-  }, [selectedRow]);
+  const onSelectRow = (row: any) => {
+    setSelectedRow(row);
+    props.onSelectRow(row);
+  }
 
   const compare = (a: any, b: any) => {
     let headerValue = selectedHeader.value;
+    // sort column by another header
     if (props.sortColumnByOtherHeader) {
       if (headerValue === props.sortColumnByOtherHeader.headerToAction) {
         headerValue = props.sortColumnByOtherHeader.headerToSort;
       }
     }
+    // default sort by key
     if (a[headerValue] < b[headerValue]) {
       return -1;
     }
@@ -62,13 +67,24 @@ export const CustomTable = (props: {
     return 0;
   };
 
+
   useEffect(() => {
-    let sortItems = filtredItems.sort(compare);
-    if (isSortUp) {
-      sortItems.reverse();
+    // sort by date
+    if (selectedHeader.value === 'startTimeFront') {
+      const moment = require('moment');
+      const sortedArrayByDates = filtredItems.sort((a: { startTime: string }, b: { startTime: string }) => new moment(a.startTime).format('YYYYMMDD') - new moment(b.startTime).format('YYYYMMDD'))
+      if (isSortUp) {
+        sortedArrayByDates.reverse();
+      }
+      setFiltredItems(sortedArrayByDates);
+    } else {
+      // default sort
+      let sortItems = filtredItems.sort(compare);
+      if (isSortUp) {
+        sortItems.reverse();
+      }
+      setFiltredItems(sortItems);
     }
-    setFiltredItems(sortItems);
-    //console.log('filtrado: ', filtredItems)
   }, [isSortUp]);
 
   const getDataByScreenSize = (screenSize: string) => {
@@ -96,26 +112,25 @@ export const CustomTable = (props: {
                   key={headerIndex}
                   className={`header_${headerIndex}`}
                 >
-                  <Button
-                    className={`${
-                      selectedHeader == header ? 'selected' : ''
-                    } theme-button-text`}
-                    onClick={() => {
-                      setSelectedHeader(header);
-                      setIsSortUp(!isSortUp);
-                    }}
-                  >
+                  <div className="header-item">
+                    <Button
+                      label={header.text}
+                      className={`${selectedHeader == header ? 'selected' : ''} theme-button-text`}
+                      onClick={() => {
+                        setSelectedHeader(header);
+                        setIsSortUp(!isSortUp);
+                      }}
+                    />
                     <div className="header_button-content">
-                      <p>{header.text}</p>
                       {selectedHeader == header ? (
                         isSortUp ? (
                           <AiFillCaretUp className="icon" />
                         ) : (
-                          <AiFillCaretDown className="icon" />
-                        )
+                            <AiFillCaretDown className="icon" />
+                          )
                       ) : null}
                     </div>
-                  </Button>
+                  </div>
                 </Grid>
               );
             }
@@ -128,18 +143,16 @@ export const CustomTable = (props: {
   const TableContent = (props: {}) => {
     return (
       <div className="row-box">
-        {filtredItems.map((row: any, rowIndex) => {
+        {filtredItems.map((row, i) => {
           return (
-            <div className="table-box" key={rowIndex}>
+            <div className="table-box" key={i}>
               <div className="content-box">
                 <div className={classes.root}>
                   {/* ROWS */}
-                  <div
-                    className={`${
-                      selectedRow == row ? 'selected-row' : ''
-                    } row`}
+                  <div className={`row ${selectedRow == row ? 'selected-row' : ''}`}
                     onClick={() => {
-                      setSelectedRow(row);
+                      // setSelectedRow(row);
+                      onSelectRow(row);
                     }}
                   >
                     <Grid container xl={12} spacing={3}>
@@ -168,18 +181,17 @@ export const CustomTable = (props: {
                             >
                               {header.value != 'status' ? (
                                 <p
-                                  className={`${
-                                    selectedHeader == header ? 'selected' : ''
-                                  } item_table-text`}
+                                  className={`${selectedHeader == header ? 'selected' : ''
+                                    } item_table-text`}
                                 >
                                   {row[header.value]}
                                 </p>
                               ) : (
-                                <Button
-                                  className="state-btn theme-button-outlined"
-                                  label="status"
-                                />
-                              )}
+                                  <Button
+                                    className="state-btn theme-button-outlined"
+                                    label="status"
+                                  />
+                                )}
                             </Grid>
                           );
                         }
@@ -195,6 +207,16 @@ export const CustomTable = (props: {
       </div>
     );
   };
+
+  const Footer = () => {
+    return (
+      <div className="table-footer">
+        <div className="pagination-box">
+          <p className="text dark-text">{`Total: ${filtredItems.length}`}</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="custom-table">
@@ -220,6 +242,7 @@ export const CustomTable = (props: {
         </div>
         <Header />
         <TableContent />
+        <Footer />
       </div>
     </div>
   );
