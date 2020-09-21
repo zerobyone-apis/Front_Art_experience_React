@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 
 import { BarbersList } from './barbers-list/barber-list';
 import { Button } from '../button/button';
@@ -17,7 +17,8 @@ import { FaRegCalendarCheck } from 'react-icons/fa';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import { ConfirmBox } from './confirm-box/confirm-box';
 import ReserveActions from '../../actions/Reserve.actions';
-import moment from 'moment';
+import moment, { now } from 'moment';
+import db from '../../config/firebase';
 
 import 'date-fns';
 import './reserve-modal.scss';
@@ -120,7 +121,6 @@ export const ReserveModal = (props: { className?: string }) => {
   const reserveActions = new ReserveActions();
 
   const createReserve = async () => {
-    const totalCost = 0;
     const startDateFormatted = `${
       moment(reserveDate).format().split('T')[0]
     }T${reserveHour}:00`;
@@ -137,7 +137,14 @@ export const ReserveModal = (props: { className?: string }) => {
 
     setDisabledButton(true);
     const response: any = await reserveActions.add(newReserve);
+
     if (response) {
+      //* Post & Put Firebase.
+      await createReserveTimeOnFirebase(
+        selectedBarber.name,
+        startDateFormatted
+      );
+
       setWizard(4);
       setTimeout(() => {
         // restart all steps of reserve_modal
@@ -150,6 +157,125 @@ export const ReserveModal = (props: { className?: string }) => {
       }, 3000);
     }
     setDisabledButton(false);
+  };
+
+  //* Post & Put Firebase.
+  const createReserveTimeOnFirebase = async (barberName, reserveTime) => {
+    try {
+      let updateReserve;
+      let selectedReserveDate;
+
+      //? Create new Times Array and add the reserve time.
+      let newTimes = [];
+      let reserveTime_Create = moment(reserveTime)
+        .format()
+        .toString()
+        .split('T')[1]
+        .substr(0, 5);
+      newTimes.push(reserveTime_Create);
+
+      // Flag to validate when is an update or when is a create.
+      let isUpdated = false;
+
+      // Validate if already exist reserves in the current date.
+      const resultDocs = await getReservesFirebase(barberName);
+
+      if (!resultDocs) {
+        console.log('No existen resultados. . .');
+      }
+
+      // Solo para checkear si la fecha es igual a la de actual
+      selectedReserveDate = moment(reserveDate.toUTCString())
+        .format()
+        .toString()
+        .split('T')[0];
+
+      // nuevo arreglo de sdocuments formateado en fecha.
+      const fullParsedResultData = resultDocs.map((data) => {
+        return {
+          id: data.id,
+          date: moment(data.date.toDate().toUTCString())
+            .format()
+            .toString()
+            .split('T')[0],
+          times: data.times,
+        };
+      });
+
+      //! Function to update document reserves if [] is not empty.
+      for (const res of fullParsedResultData) {
+        if (res.id) {
+          if (selectedReserveDate === res.date) {
+            //? Estamos colocando en el arreglo de horas a guardar para este dia,
+            //? las horas que existan anteriormente para este dia
+            newTimes.push(...res.times);
+
+            //! Update Obj to PUT on Firebase:
+            updateReserve = {
+              date: reserveDate,
+              times: newTimes,
+            };
+            //? PUT - Actualizar document de reserva dado a que hay reservas para este dia
+            console.log('IF -> PUT - Update!');
+            await db
+              .collection('reservas')
+              .doc(nameParcerFunction(barberName))
+              .collection('day_reserves')
+              .doc(res.id)
+              .set(updateReserve);
+
+            //? Flag to control when is Update and When is Post
+            isUpdated = true;
+          }
+        }
+      }
+
+      //! Validamos si ya se actualizo o hay que crear un documento nuevo.
+      if (!isUpdated) {
+        // Creating Obj to POST on Firebase:
+        updateReserve = {
+          date: reserveDate,
+          times: newTimes,
+        };
+
+        //? POST - Actualizar document de reserva dado a que hay reservas para este dia
+        console.log('IF -> POST - Creating . . .');
+        await db
+          .collection('reservas')
+          .doc(nameParcerFunction(barberName))
+          .collection('day_reserves')
+          .doc(selectedReserveDate)
+          .set(updateReserve);
+      }
+      //}
+    } catch (error) {
+      console.error(
+        `Error: Creando o Actualizando Firebase Reserve. -> ${error}`
+      );
+    }
+  };
+
+  //* Parce Method - Name convention for firestore docs.
+  const nameParcerFunction = (name: string) => {
+    let parsedName = name.toLowerCase().replace(' ', '.');
+    return parsedName;
+  };
+
+  //* Query Method - GET Firestore Reserves
+  const getReservesFirebase = async (barberName) => {
+    const resRef = await db
+      .collection('reservas')
+      .doc(nameParcerFunction(barberName))
+      .collection('day_reserves');
+
+    const result = await resRef
+      .get()
+      .then((snapshot) => {
+        return snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+      })
+      .catch((err) => console.error(err));
+
+    return result;
   };
 
   const checkStep = () => {
@@ -234,6 +360,7 @@ export const ReserveModal = (props: { className?: string }) => {
                 reserveDate={reserveDate}
                 reserveHour={reserveHour}
                 barberId={selectedBarber.barberId || -1}
+                selectedBarber={selectedBarber || {}}
                 onSelctDate={setReserveDate}
                 onSelctHour={setReserveHour}
               />
