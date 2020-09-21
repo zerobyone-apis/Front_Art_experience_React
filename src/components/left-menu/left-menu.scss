@@ -57,10 +57,10 @@ $menu_size: 200px;
       .logo-img {
         width: 100vw;
         max-width: 600px;
-        max-height: 750px;
+        max-height: auto;
         min-width: 300px;
-        min-height: 375px;
-        height: 70vh;
+        min-height: auto;
+        height: auto;
         visibility: visible;
         margin: auto;
       }
