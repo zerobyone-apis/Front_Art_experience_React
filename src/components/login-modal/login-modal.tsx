@@ -112,7 +112,7 @@ export const LoginModal = (props: {
                         {getPageName() === DASHBOARD_PAGE ? (
                             <Button
                                 label="Pagina Principal"
-                                className="item-list_btn art_experience-button_outlined"
+                                className="item-list_btn theme-button-outlined"
                                 onClick={() => { document.location.href = '/'; }}
                             />
                         ) : null}
