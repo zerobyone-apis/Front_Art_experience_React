@@ -20,8 +20,10 @@
 
         .footer_logo-img {
             position: relative;
-            width: 20vw;
-            height: 6vh;
+            width: 15vw;
+            height: 10vh;
+            min-width: 170px;
+            min-height: 81px;
             filter: drop-shadow(40px 40px 40px rgb(0, 0, 0));
         }
 
