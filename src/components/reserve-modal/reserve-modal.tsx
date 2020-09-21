@@ -38,80 +38,80 @@ export const ReserveModal = (props: { className?: string }) => {
   const {
     // @ts-ignore
     disabled,
-    setDisabledButton
+    setDisabledButton,
   } = useContext(ButtonContext);
   // BURN DATA
   const services = [
     {
       workId: 1,
-      name: "Degradé",
-      img: "",
-      cost: 280
+      name: 'Degradé',
+      img: '',
+      cost: 280,
     },
     {
       workId: 2,
-      name: "Degrade & barba",
-      img: "",
-      cost: 350
+      name: 'Degrade & barba',
+      img: '',
+      cost: 350,
     },
     {
       workId: 3,
-      name: "Degrade & cejas",
-      img: "",
-      cost: 320
+      name: 'Degrade & cejas',
+      img: '',
+      cost: 320,
     },
     {
       workId: 4,
-      name: "Black Mask",
-      img: "",
-      cost: 250
+      name: 'Black Mask',
+      img: '',
+      cost: 250,
     },
     {
       workId: 5,
-      name: "Cejas",
-      img: "",
-      cost: 50
+      name: 'Cejas',
+      img: '',
+      cost: 50,
     },
     {
       workId: 6,
-      name: "Barba",
-      img: "",
-      cost: 100
+      name: 'Barba',
+      img: '',
+      cost: 100,
     },
     {
       workId: 7,
-      name: "Platinado",
-      img: "",
-      cost: 1450
+      name: 'Platinado',
+      img: '',
+      cost: 1450,
     },
     {
       workId: 8,
-      name: "Mechas rubias",
-      img: "",
-      cost: 1000
+      name: 'Mechas rubias',
+      img: '',
+      cost: 1000,
     },
     {
       workId: 9,
-      name: "Mechas grises, blancas",
-      img: "",
-      cost: 1100
+      name: 'Mechas grises, blancas',
+      img: '',
+      cost: 1100,
     },
     {
       workId: 10,
-      name: "Colores fantasia",
-      img: "",
-      cost: 900
+      name: 'Colores fantasia',
+      img: '',
+      cost: 900,
     },
     {
       workId: 10,
-      name: "Franjas fantasia",
-      img: "",
-      cost: 700
+      name: 'Franjas fantasia',
+      img: '',
+      cost: 700,
     },
   ];
   const [showDialog, setShowDialog] = useState(false);
   const [showLoginDialog, setShowLoginDialog] = useState(false);
-  const [reserveHour, setReserveHour] = useState("");
+  const [reserveHour, setReserveHour] = useState('');
   const [reserveDate, setReserveDate] = useState(null);
   const [selectedBarber, setSelectedBarber] = useState(defaultBarber);
   const [selectedService, setSelectedService] = useState(defaultService);
@@ -121,32 +121,36 @@ export const ReserveModal = (props: { className?: string }) => {
 
   const createReserve = async () => {
     const totalCost = 0;
-    const startDateFormatted = `${moment(reserveDate).format().split('T')[0]}T${reserveHour}:00`;
+    const startDateFormatted = `${
+      moment(reserveDate).format().split('T')[0]
+    }T${reserveHour}:00`;
     const newReserve: IReserve = {
       barberOrHairdresserId: selectedBarber.barberId,
-      clientId: getUserData().userId,
+      clientId: getUserData().clientId,
       nameClient: getUserData().username,
       mailClient: getUserData().email,
       celClient: getUserData().cel || '0000',
       startTime: startDateFormatted,
       priceWork: selectedService.cost,
       workToDo: selectedService.name,
-    }
+    };
+
     setDisabledButton(true);
     const response: any = await reserveActions.add(newReserve);
     if (response) {
       setWizard(4);
-      setTimeout(() => { // restart all steps of reserve_modal
+      setTimeout(() => {
+        // restart all steps of reserve_modal
         setSelectedService(defaultService);
         setSelectedBarber(defaultBarber);
         setReserveDate(new Date());
-        setReserveHour("");
+        setReserveHour('');
         setShowDialog(false);
         setWizard(0);
       }, 3000);
     }
     setDisabledButton(false);
-  }
+  };
 
   const checkStep = () => {
     switch (wizard) {
@@ -155,22 +159,23 @@ export const ReserveModal = (props: { className?: string }) => {
       case 1:
         return selectedService.name ? true : false;
       case 2:
-        return (reserveDate && reserveHour) ? true : false;
+        return reserveDate && reserveHour ? true : false;
       case 3:
         return true;
     }
     return false;
-  }
+  };
 
   const goToReserve = () => {
-    setShowLoginDialog(false)
-    setShowDialog(true)
-  }
+    setShowLoginDialog(false);
+    setShowDialog(true);
+  };
 
   return (
     <div className="reserve-modal">
       <div className="dialog_activator-box">
-        <Button className={`activator-btn reserve-btn theme-button`}
+        <Button
+          className={`activator-btn reserve-btn theme-button`}
           label="Reservar"
           icon={false}
           onClick={() => {
@@ -183,65 +188,83 @@ export const ReserveModal = (props: { className?: string }) => {
         <DialogModal
           title="Reservacion - ArtExperience"
           className="dialog_modal"
-          width='65vw'
-          height='65vh'
-          onClose={() => { setShowDialog(false) }}
-          hideCloseButton={wizard == 4}>
+          width="65vw"
+          height="65vh"
+          onClose={() => {
+            setShowDialog(false);
+          }}
+          hideCloseButton={wizard == 4}
+        >
           <Stepper className="reserve-stepper" wizard={wizard}>
             {/* BARBERS STEP  */}
             <div className="reserve-step">
               <div className="step-title">
-                <p className={`step-subtitle text text-${getTheme()}`}>Seleccione el Barbero</p>
+                <p className={`step-subtitle text text-${getTheme()}`}>
+                  Seleccione el Barbero
+                </p>
               </div>
               <BarbersList
                 value={selectedBarber}
-                setBarber={setSelectedBarber} />
+                setBarber={setSelectedBarber}
+              />
             </div>
 
             {/* SERVICES STEP  */}
             <div className="reserve-step">
               <div className="step-title">
-                <p className={`step-subtitle text text-${getTheme()}`}>Seleccione el servicio que se desea realizar</p>
+                <p className={`step-subtitle text text-${getTheme()}`}>
+                  Seleccione el servicio que se desea realizar
+                </p>
               </div>
               <ServicesList
                 services={services}
                 value={selectedService}
-                setService={setSelectedService} />
+                setService={setSelectedService}
+              />
             </div>
 
             {/* RESERVE_TIME STEP  */}
             <div className="reserve-step">
               <div className="step-title">
-                <p className={`step-subtitle text text-${getTheme()}`}>Seleccione la fecha y hora</p>
+                <p className={`step-subtitle text text-${getTheme()}`}>
+                  Seleccione la fecha y hora
+                </p>
               </div>
               <ReserveTime
                 reserveDate={reserveDate}
                 reserveHour={reserveHour}
                 barberId={selectedBarber.barberId || -1}
                 onSelctDate={setReserveDate}
-                onSelctHour={setReserveHour} />
+                onSelctHour={setReserveHour}
+              />
             </div>
 
             {/* CONFIRMATION STEP  */}
             <div className="reserve-step">
               <div className="step-title">
-                <p className={`step-subtitle text text-${getTheme()}`}>Confirmacion de reserva</p>
+                <p className={`step-subtitle text text-${getTheme()}`}>
+                  Confirmacion de reserva
+                </p>
               </div>
               <ConfirmBox
                 barber={selectedBarber}
                 service={selectedService}
                 hour={reserveHour}
-                date={moment(reserveDate).format("DD/MM/YYYY")}
+                date={moment(reserveDate).format('DD/MM/YYYY')}
               />
             </div>
 
             {/* SUCCESS STEP  */}
             <div className="reserve-step">
               <div className="step-title">
-                <p className={`step-subtitle text text-${getTheme()}`}>Reservacion - ArtExperience</p>
+                <p className={`step-subtitle text text-${getTheme()}`}>
+                  Reservacion - ArtExperience
+                </p>
               </div>
               <div className="confirm_data-box">
-                <p className={`confirm_info text text-${getTheme()}`}>Se ha realizado la reserva de forma exitosa!</p>
+                <p className={`confirm_info text text-${getTheme()}`}>
+                  Se ha realizado la reserva de forma exitosa!
+                </p>
                 <FaRegCalendarCheck className="success-icon effect-slide_top" />
               </div>
             </div>
@@ -251,18 +274,18 @@ export const ReserveModal = (props: { className?: string }) => {
               wizard={wizard}
               checkStep={checkStep}
               onChangeWizard={setWizard}
-              finalize={createReserve} />
+              finalize={createReserve}
+            />
           ) : null}
-        </DialogModal>)
-      }
-      {
-        showLoginDialog ? (
-          <LoginModal
-            show={true}
-            onClose={setShowLoginDialog}
-            onSuccessLogin={goToReserve} />
-        ) : null
-      }
-    </div >
+        </DialogModal>
+      )}
+      {showLoginDialog ? (
+        <LoginModal
+          show={true}
+          onClose={setShowLoginDialog}
+          onSuccessLogin={goToReserve}
+        />
+      ) : null}
+    </div>
   );
-}
+};
