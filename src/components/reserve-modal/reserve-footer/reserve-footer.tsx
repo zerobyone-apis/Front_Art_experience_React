@@ -25,7 +25,7 @@ export const ReserveFooter = (props: {
             {
                 !props.checkStep() ? null : (
                     <Button
-                        className="theme-button-outlined footer-button confirm"
+                        className="theme-button footer-button confirm"
                         label={props.wizard < 3 ? 'Siguiente' : 'Reservar'}
                         onClick={() => {
                             if (props.wizard < 3) {

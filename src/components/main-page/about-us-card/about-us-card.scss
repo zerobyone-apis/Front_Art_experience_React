@@ -1,69 +1,59 @@
-.about_us-card {
-    position: relative;
-    width: 100%;
-    height: 600px;
-    display: flex;
-    margin: 20px 0 20px 0;
+@import '../../../styles/theme.scss';
 
-    .info-box {
-        position: relative;
-        width: 65%;
-        height: 100%;
-
-        .title {
-            margin: 40px 0 0 0;
-            padding: 0;
-            text-align: center;
-        }
-
-        .info {
-            margin: 40px 10vw 0 10vw;
-        }
-    }
-
-    .slider-box {
-        position: relative;
-        width: 35%;
-        height: 100%;
-        display: flex;
-        align-items: center;
-
-        .slider {
-            height: 90%;
-            width: 80%;
-        }
-    }
+.about-us-card {
+    background-color: rgb(12, 12, 12);
 }
 
 // IPHONE5/SE
-@media only screen and (max-width: 750px) {
-    .about_us-card {
-        width: 100%;
-        height: max-content;
-        display: inherit;
-        padding-bottom: 0px;
+@media only screen and (max-width: $mobile-screen) {
 
-        .info-box {
-            z-index: 1;
+    .about-us-card {
+        position: relative;
+        padding: 40px 0 !important;
+
+        // MOBILE STYLE OF CONTAINER-PAGE
+        .container-about-us {
             width: 100%;
+            display: unset;
 
-            .title {
-                margin: 0 0 0 0;
+            .left-box {
+                width: 100%;
+
+                .help-action {
+                    visibility: hidden;
+                }
             }
 
-            .info {
-                margin: 20px 10vw 0 10vw;
+            .right-box {
+                visibility: hidden;
             }
-        }
 
-        .slider-box {
-            margin: auto;
-            margin-top: 20px;
-            width: 80%;
-
-            .slider {
+            .containers {
+                display: inline;
                 margin: auto;
-                box-shadow: 0px 0px 20px 0px rgb(68, 66, 52);
+
+                .sub-container {
+                    width: 70% !important;
+                    margin: auto;
+
+                    .selected-img {
+                        min-width: 450px;
+                    }
+
+                    .img-box {
+                        .image {
+                            margin: auto;
+
+                            img {
+                                width: 100%;
+                            }
+                        }
+                    }
+
+                    .title {
+                        text-align: center;
+                    }
+                }
             }
         }
     }

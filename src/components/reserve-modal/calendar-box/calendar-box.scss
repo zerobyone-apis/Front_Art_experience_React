@@ -24,11 +24,11 @@
 
       .react-calendar__viewContainer {
         display: flex;
-        margin: -.5em;
+        margin: -0.5em;
 
-        >* {
+        > * {
           width: 50%;
-          margin: .5em;
+          margin: 0.5em;
         }
       }
     }
@@ -63,7 +63,6 @@
         background: none;
 
         &:enabled {
-
           &:hover,
           &:focus {
             background-color: rgb(230, 230, 230);
@@ -81,10 +80,10 @@
         text-align: center;
         text-transform: uppercase;
         font-weight: bold;
-        font-size: .75em;
+        font-size: 0.75em;
 
         &__weekday {
-          padding: .5em;
+          padding: 0.5em;
         }
       }
 
@@ -95,8 +94,8 @@
           display: flex;
           align-items: center;
           justify-content: center;
-          font-size: .75em;
-          padding: calc(.75em / .75) calc(.5em / .75);
+          font-size: 0.75em;
+          padding: calc(0.75em / 0.75) calc(0.5em / 0.75);
         }
       }
 
@@ -107,7 +106,7 @@
           }
 
           &--neighboringMonth {
-            color: rgb(117, 117, 117)
+            color: rgb(117, 117, 117);
           }
         }
       }
@@ -117,14 +116,14 @@
     &__decade-view,
     &__century-view {
       .react-calendar__tile {
-        padding: 2em .5em;
+        padding: 2em 0.5em;
       }
     }
 
     &__tile {
       max-width: 100%;
       text-align: center;
-      padding: .75em .5em;
+      padding: 0.75em 0.5em;
       background: none;
 
       &:disabled {
@@ -132,7 +131,6 @@
       }
 
       &:enabled {
-
         &:hover,
         &:focus {
           background-color: rgb(230, 230, 230);
@@ -144,7 +142,6 @@
         background: $bgcolor;
 
         &:enabled {
-
           &:hover,
           &:focus {
             background: lighten($bgcolor, 10%);
@@ -157,7 +154,6 @@
         background: $bgcolor;
 
         &:enabled {
-
           &:hover,
           &:focus {
             background: lighten($bgcolor, 10%);
@@ -171,7 +167,6 @@
         color: white;
 
         &:enabled {
-
           &:hover,
           &:focus {
             background: lighten($bgcolor, 10%);
@@ -187,7 +182,6 @@
         }
       }
     }
-
 
     // MY CUSTOM STYLE
     button {
@@ -261,9 +255,7 @@
       abbr {
         color: white !important;
       }
-
     }
-
 
     .react-calendar__tile:hover {
       background: rgb(146, 144, 108);

@@ -1,7 +1,7 @@
 @import '../../../styles/theme.scss';
 @import '../../../styles/effects.scss';
 
-.course-card {
+.barber-card {
     width: 100%;
     height: max-content;
 
@@ -32,16 +32,14 @@
         }
     }
 
-    // courses items
-    .courses-items {
-        // margin: auto;
+    // barbers items
+    .barbers-items {
         width: max-content;
         height: max-content;
         text-align: center;
         border-right-style: solid;
         border-color: $warm-color;
         border-width: 1px;
-        // background-color: green;
 
         .help-action {
             position: absolute;
@@ -53,14 +51,27 @@
             top: 40%;
         }
 
-        .course-item {
+        .selected {
+            .barber-item {
+                .barber-img {
+                    filter: grayscale(0);
+                    transition: all 1s ease-out;
+                }
+
+                .barber-name {
+                    color: $cool-color;
+                }
+            }
+        }
+
+        .barber-item {
             position: relative;
             width: 30%;
             margin: 40px 20px 0 20px;
             display: inline-table;
             text-align: center;
 
-            .course-img {
+            .barber-img {
                 position: relative;
                 width: 100px;
                 height: 100px;
@@ -68,72 +79,38 @@
                 filter: grayscale(1);
             }
 
-            .course-name {
+            .barber-name {
                 margin-bottom: 20px;
                 color: white;
             }
 
-            .course-url {
+            .barber-url {
                 position: absolute;
                 bottom: 0px;
                 margin-left: 40%;
             }
         }
 
-        .course-item:hover {
-            .course-img {
+        .barber-item:hover {
+            .barber-img {
                 filter: grayscale(0);
                 transition: all 500ms ease-out;
             }
 
-            .course-name {
-                color: $cool-color;
-            }
-        }
-
-        .selected {
-            .course-img {
-                filter: grayscale(0);
-                transition: all 1s ease-out;
-            }
-
-            .course-name {
+            .barber-name {
                 color: $cool-color;
             }
         }
     }
 
-    // CASIO Calculator LFMAO
-    @media only screen and (max-width: 400px) {
-        .courses-items {
-            position: relative;
-            width: max-content;
-            margin: auto;
-            // overflow-x: scroll !important;
-            margin-bottom: 20px !important;
-
-            .course-item {
-                margin: 40px 10px 0 10px;
-
-                .course-img {
-                    width: 80px;
-                    height: 80px;
-                    border-radius: 50%;
-                    filter: grayscale(1);
-                }
-            }
-        }
-    }
-
-
-    .course-container {
+    .barber-container {
         .info {
             color: white;
         }
     }
 
     // image and info
-    .course-info {
+    .barber-info {
         width: 100%;
         height: max-content;
         text-align: center;
@@ -144,13 +121,15 @@
     }
 }
 
+
+
 // IPHONE5/SE
 @media only screen and (max-width: $mobile-screen) {
-    .course-card {
+    .barber-card {
         // background-color: red;
 
         // MOBILE STYLE OF CONTAINER-PAGE
-        .container-course {
+        .container-barber {
             width: 100%;
             display: unset;
 
@@ -161,7 +140,7 @@
                     visibility: hidden;
                 }
 
-                .courses-items {
+                .barbers-items {
                     position: relative;
                     width: 100%;
                     display: flex;

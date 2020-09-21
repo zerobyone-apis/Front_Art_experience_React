@@ -8,7 +8,7 @@ import '../../styles/theme.scss';
 export const SearchField = (props: {
   defaultValue?: string;
   items: any[];
-  itemFilter: { text: string, value: string };
+  itemFilter: { text: string; value: string };
   showButton?: boolean;
   onChangeResults: (filtredItems: any) => void;
   className?: string;
@@ -19,10 +19,10 @@ export const SearchField = (props: {
   const [filtredItems, setFiltredItems] = useState(props.items || []);
 
   useEffect(() => {
-    console.log('Item filter', props.itemFilter)
-    setFieldValue('')
-    filterItems()
-  }, [props.itemFilter])
+    //console.log('Item filter', props.itemFilter)
+    setFieldValue('');
+    filterItems();
+  }, [props.itemFilter]);
 
   useEffect(() => {
     filterItems();
@@ -33,12 +33,14 @@ export const SearchField = (props: {
   }, [filtredItems]);
 
   const filterItems = () => {
-    let items = filtredItems.filter(item => {
-      let formattedText = (String(item[props.itemFilter.value]) || '').toLowerCase();
-      return (formattedText.indexOf(fieldValue) !== -1);
-    })
+    let items = filtredItems.filter((item) => {
+      let formattedText = (
+        String(item[props.itemFilter.value]) || ''
+      ).toLowerCase();
+      return formattedText.indexOf(fieldValue) !== -1;
+    });
     props.onChangeResults(items);
-  }
+  };
   return (
     <div className={`search-field ${props.className}`}>
       <TextField
@@ -50,16 +52,15 @@ export const SearchField = (props: {
         icon="faSearch"
         iconColor="grey"
       />
-      {
-        props.showButton ? (
-          <Button
-            onClick={() => {
-              filterItems();
-            }}
-            label={props.buttonLabel || 'Search'}
-            className="search-btn" />
-        ) : null
-      }
+      {props.showButton ? (
+        <Button
+          onClick={() => {
+            filterItems();
+          }}
+          label={props.buttonLabel || 'Search'}
+          className="search-btn"
+        />
+      ) : null}
     </div>
   );
-}
+};

@@ -8,8 +8,8 @@ import { IBarber } from '../types/Barber.type';
 import { BARBERLIST_DATA_STORAGE } from '../types/StorageData.type';
 
 export const BarberListContext = createContext({
-    getBarberList: () => undefined,
-    setBarberList: (barbersData: IBarber[]) => undefined,
+    getBarbersList: () => undefined,
+    setBarbersList: (barbersData: IBarber[]) => undefined,
 });
 
 export const BarberListProvider = (props: {
@@ -17,21 +17,22 @@ export const BarberListProvider = (props: {
     children: ReactElement;
 }) => {
     const storex = require('store'); // store :3
-    const [barbers, setBarbers] = useState(props.value || null);
+    const [barbers, setBarbers] = useState([]);
 
     useEffect(() => {
         storex.set(BARBERLIST_DATA_STORAGE, barbers);
     }, [barbers])
 
-    const setBarberList = (barbersData: IBarber[]) => {
+    const setBarbersList = (barbersData: IBarber[]) => {
+        storex.set(BARBERLIST_DATA_STORAGE, barbersData);
         setBarbers(barbersData);
     }
 
-    const getBarberList = () => {
-        return barbers ? barbers : [];
+    const getBarbersList = () => {
+        return barbers;
     }
 
-    const context = { getBarberList, setBarberList };
+    const context = { getBarbersList, setBarbersList };
 
     return (
         <BarberListContext.Provider value={context}>

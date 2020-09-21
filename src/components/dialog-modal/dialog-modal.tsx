@@ -28,30 +28,30 @@ export const DialogModal = (props: {
 
   const onClose = () => {
     setVisible(false)
-    setTimeout(() => {
-      props.onClose();
-    }, 900);
+    props.onClose();
   }
 
   return (
-    <div className={`dialog-box ${visible ? ' effect-opacity ' : ' effect-hidde '} ${props.className}`}>
+    <div className={`${props.className} dialog-box ${visible ? ' effect-opacity ' : ' effect-hide'}`}>
       <div className={`dialog-modal effect-opacity ${getTheme()}`}>
         <div className="header">
-          <div className="close_btn-box">
-            <div className="theme-button-text">
-              {!props.hideCloseButton ? (
-                <Button className="close_btn"
-                  icon={<AiOutlineClose
-                    className="theme-icon" />}
-                  onClick={() => { onClose() }} />
-              ) : null}
-            </div>
+          <div
+            onClick={() => { onClose() }}
+            className="close_btn-box">
+
+            {!props.hideCloseButton ? (
+              <Button className="close_btn theme-button-text"
+                icon={<AiOutlineClose className="theme-icon" />}
+              />
+            ) : null}
+
+
           </div>
           <div className="header-title">
             {props.header || <p className={`title text-${getTheme()}`}>{props.title}</p>}
           </div>
         </div>
-        <div className={`content ${getTheme()}`}>
+        <div className={`content `}>
           {props.children}
         </div>
       </div>

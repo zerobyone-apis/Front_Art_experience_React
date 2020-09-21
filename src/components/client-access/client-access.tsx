@@ -18,7 +18,7 @@ export const ClientAccess = (props: {
     const [accessMode, setAccessMode] = useState(0); // 0 - Login / 1 - register
 
     return (
-        <div className={`client_info-box effect-slide_top ${getTheme()}`}>
+        <div className={`client_info-box effect-slide-top`}>
             {accessMode == 0 ?
                 (
                     <div className='form effect-slide_top'>

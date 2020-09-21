@@ -56,22 +56,35 @@
       min-height: 100px;
       height: max-content;
 
+      .about-us-card {
+        .info {
+          color: white;
+        }
+      }
+
       .services-card.dark {
-        background-color: $secundary-dark;
+        background-color: $secondary-dark;
       }
 
       .services-card.light {
-        background-color: $secundary-light;
+        background-color: $secondary-light;
       }
 
       .courses-card.dark {
-        background-color: $secundary-dark;
+        background-color: $secondary-dark;
       }
 
       .courses-card.light {
-        background-color: $secundary-light;
+        background-color: $secondary-light;
       }
     }
+  }
+}
+
+.divider-content {
+
+  h1 {
+    color: $light-text !important;
   }
 }
 
@@ -92,12 +105,6 @@
         font-size: calc(1vw + 8px);
         padding: 0;
         margin: 0;
-      }
-
-      .divider {
-        position: relative;
-        width: 20px;
-        height: 20px;
       }
     }
   }

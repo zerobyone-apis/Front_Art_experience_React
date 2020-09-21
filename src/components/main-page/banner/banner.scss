@@ -9,11 +9,9 @@
         height: 100%;
         width: 100%;
         top: 0;
-        opacity: 0.5;
-        // background-color: green;
+        // opacity: .9;
         background-size: cover;
         background-repeat: no-repeat;
-        background-attachment: fixed;
         background-position: center;
     }
 
@@ -30,13 +28,14 @@
         text-align: center;
 
         img {
+            position: relative;
             margin: auto;
             text-align: center;
             z-index: 1;
             width: 100vw;
             min-width: 100px !important;
-            max-width: 600px;
-            filter: drop-shadow(40px 40px 40px rgb(0, 0, 0));
+            max-width: 800px;
+            filter: drop-shadow(10px 10px 10px rgb(17, 16, 16));
         }
 
         @media only screen and (max-width: 750px) {

@@ -1,15 +1,23 @@
+@import '../../../styles/theme.scss';
+
 .confirm_data-box {
     position: relative;
     width: 100%;
+    margin: auto;
     height: max-content;
     margin-top: 40px;
     text-align: center;
     overflow-x: none;
 
-    .service-box {
-        border-style: solid;
+    .services-box {
+        position: relative;
+        width: 60%;
+        margin: auto;
+    }
+
+    .box-item {
         border-width: 1px;
-        border-color: rgb(146, 144, 108);
+        border-color: $warm-color;
     }
 
     .confirm_info {
@@ -20,5 +28,23 @@
         width: 80px;
         height: 80px;
         color: rgb(199, 194, 109);
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .confirm_data-box {
+        .services-box {
+            width: 100%;
+            overflow-y: hidden !important;
+        }
+    }
+
+}
+
+@media only screen and (max-width: $mobile-screen) {
+    .confirm_data-box {
+        .services-box {
+            overflow-y: hidden !important;
+        }
     }
 }

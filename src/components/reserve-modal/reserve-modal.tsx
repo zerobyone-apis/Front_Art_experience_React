@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 
 import { BarbersList } from './barbers-list/barber-list';
 import { Button } from '../button/button';
@@ -17,7 +17,8 @@ import { FaRegCalendarCheck } from 'react-icons/fa';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import { ConfirmBox } from './confirm-box/confirm-box';
 import ReserveActions from '../../actions/Reserve.actions';
-import moment from 'moment';
+import moment, { now } from 'moment';
+import db from '../../config/firebase';
 
 import 'date-fns';
 import './reserve-modal.scss';
@@ -40,6 +41,7 @@ export const ReserveModal = (props: { className?: string }) => {
     disabled,
     setDisabledButton,
   } = useContext(ButtonContext);
+  // BURN DATA
   const services = [
     {
       workId: 1,
@@ -119,7 +121,6 @@ export const ReserveModal = (props: { className?: string }) => {
   const reserveActions = new ReserveActions();
 
   const createReserve = async () => {
-    const totalCost = 0;
     const startDateFormatted = `${
       moment(reserveDate).format().split('T')[0]
     }T${reserveHour}:00`;
@@ -136,7 +137,14 @@ export const ReserveModal = (props: { className?: string }) => {
 
     setDisabledButton(true);
     const response: any = await reserveActions.add(newReserve);
+
     if (response) {
+      //* Post & Put Firebase.
+      await createReserveTimeOnFirebase(
+        selectedBarber.name,
+        startDateFormatted
+      );
+
       setWizard(4);
       setTimeout(() => {
         // restart all steps of reserve_modal
@@ -151,12 +159,131 @@ export const ReserveModal = (props: { className?: string }) => {
     setDisabledButton(false);
   };
 
+  //* Post & Put Firebase.
+  const createReserveTimeOnFirebase = async (barberName, reserveTime) => {
+    try {
+      let updateReserve;
+      let selectedReserveDate;
+
+      //? Create new Times Array and add the reserve time.
+      let newTimes = [];
+      let reserveTime_Create = moment(reserveTime)
+        .format()
+        .toString()
+        .split('T')[1]
+        .substr(0, 5);
+      newTimes.push(reserveTime_Create);
+
+      // Flag to validate when is an update or when is a create.
+      let isUpdated = false;
+
+      // Validate if already exist reserves in the current date.
+      const resultDocs = await getReservesFirebase(barberName);
+
+      if (!resultDocs) {
+        console.error('No existen resultados. . .');
+      }
+
+      // Solo para checkear si la fecha es igual a la de actual
+      selectedReserveDate = moment(reserveDate.toUTCString())
+        .format()
+        .toString()
+        .split('T')[0];
+
+      // nuevo arreglo de sdocuments formateado en fecha.
+      const fullParsedResultData = resultDocs.map((data) => {
+        return {
+          id: data.id,
+          date: moment(data.date.toDate().toUTCString())
+            .format()
+            .toString()
+            .split('T')[0],
+          times: data.times,
+        };
+      });
+
+      //! Function to update document reserves if [] is not empty.
+      for (const res of fullParsedResultData) {
+        if (res.id) {
+          if (selectedReserveDate === res.date) {
+            //? Estamos colocando en el arreglo de horas a guardar para este dia,
+            //? las horas que existan anteriormente para este dia
+            newTimes.push(...res.times);
+
+            //! Update Obj to PUT on Firebase:
+            updateReserve = {
+              date: reserveDate,
+              times: newTimes,
+            };
+            //? PUT - Actualizar document de reserva dado a que hay reservas para este dia
+            //console.log('IF -> PUT - Update!');
+            await db
+              .collection('reservas')
+              .doc(nameParcerFunction(barberName))
+              .collection('day_reserves')
+              .doc(res.id)
+              .set(updateReserve);
+
+            //? Flag to control when is Update and When is Post
+            isUpdated = true;
+          }
+        }
+      }
+
+      //! Validamos si ya se actualizo o hay que crear un documento nuevo.
+      if (!isUpdated) {
+        // Creating Obj to POST on Firebase:
+        updateReserve = {
+          date: reserveDate,
+          times: newTimes,
+        };
+
+        //? POST - Actualizar document de reserva dado a que hay reservas para este dia
+        //console.log('IF -> POST - Creating . . .');
+        await db
+          .collection('reservas')
+          .doc(nameParcerFunction(barberName))
+          .collection('day_reserves')
+          .doc(selectedReserveDate)
+          .set(updateReserve);
+      }
+      //}
+    } catch (error) {
+      console.error(
+        `Error: Creando o Actualizando Firebase Reserve. -> ${error}`
+      );
+    }
+  };
+
+  //* Parce Method - Name convention for firestore docs.
+  const nameParcerFunction = (name: string) => {
+    let parsedName = name.toLowerCase().replace(' ', '.');
+    return parsedName;
+  };
+
+  //* Query Method - GET Firestore Reserves
+  const getReservesFirebase = async (barberName) => {
+    const resRef = await db
+      .collection('reservas')
+      .doc(nameParcerFunction(barberName))
+      .collection('day_reserves');
+
+    const result = await resRef
+      .get()
+      .then((snapshot) => {
+        return snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+      })
+      .catch((err) => console.error(err));
+
+    return result;
+  };
+
   const checkStep = () => {
     switch (wizard) {
       case 0:
-        return selectedService.name ? true : false;
-      case 1:
         return selectedBarber.name ? true : false;
+      case 1:
+        return selectedService.name ? true : false;
       case 2:
         return reserveDate && reserveHour ? true : false;
       case 3:
@@ -182,18 +309,31 @@ export const ReserveModal = (props: { className?: string }) => {
           }}
         />
       </div>
+
       {!showDialog ? null : (
         <DialogModal
           title="Reservacion - ArtExperience"
-          className="dialog_modal"
-          width="65vw"
-          height="65vh"
+          className="dialog_modalx"
           onClose={() => {
             setShowDialog(false);
           }}
           hideCloseButton={wizard == 4}
         >
           <Stepper className="reserve-stepper" wizard={wizard}>
+            {/* BARBERS STEP  */}
+            <div className="reserve-step">
+              <div className="step-title">
+                <p className={`step-subtitle text text-${getTheme()}`}>
+                  Seleccione el Barbero
+                </p>
+              </div>
+              <BarbersList
+                value={selectedBarber}
+                setBarber={setSelectedBarber}
+              />
+            </div>
+
+            {/* SERVICES STEP  */}
             <div className="reserve-step">
               <div className="step-title">
                 <p className={`step-subtitle text text-${getTheme()}`}>
@@ -206,17 +346,8 @@ export const ReserveModal = (props: { className?: string }) => {
                 setService={setSelectedService}
               />
             </div>
-            <div className="reserve-step">
-              <div className="step-title">
-                <p className={`step-subtitle text text-${getTheme()}`}>
-                  Seleccione el Barbero
-                </p>
-              </div>
-              <BarbersList
-                value={selectedBarber}
-                setBarber={setSelectedBarber}
-              />
-            </div>
+
+            {/* RESERVE_TIME STEP  */}
             <div className="reserve-step">
               <div className="step-title">
                 <p className={`step-subtitle text text-${getTheme()}`}>
@@ -227,10 +358,13 @@ export const ReserveModal = (props: { className?: string }) => {
                 reserveDate={reserveDate}
                 reserveHour={reserveHour}
                 barberId={selectedBarber.barberId || -1}
+                selectedBarber={selectedBarber || {}}
                 onSelctDate={setReserveDate}
                 onSelctHour={setReserveHour}
               />
             </div>
+
+            {/* CONFIRMATION STEP  */}
             <div className="reserve-step">
               <div className="step-title">
                 <p className={`step-subtitle text text-${getTheme()}`}>
@@ -244,7 +378,8 @@ export const ReserveModal = (props: { className?: string }) => {
                 date={moment(reserveDate).format('DD/MM/YYYY')}
               />
             </div>
-            {/* Success reservation message  */}
+
+            {/* SUCCESS STEP  */}
             <div className="reserve-step">
               <div className="step-title">
                 <p className={`step-subtitle text text-${getTheme()}`}>
