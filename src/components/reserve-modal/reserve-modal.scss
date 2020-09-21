@@ -1,11 +1,12 @@
 @import '../../styles/theme.scss';
 
 .dialog_modalx {
-  // min-width: 500px;
-
   .reserve-stepper {
+    .reserve-step {
+      height: 100%;
+    }
 
-    /* refactor steps content in mobile */
+    /* MOBILE HOURS STYLE */
     @media only screen and (max-height: 860px) {
 
       /* Scrollbar style */
@@ -30,24 +31,19 @@
           overflow-y: scroll;
         }
 
-        .time-box {
-          .hours-box {
-            height: 55px;
-            overflow-x: scroll;
-            overflow-y: hidden;
-
-            // border-style: none;
-            .container {
-              width: max-content;
-              margin: auto;
-            }
-          }
-        }
+        /* linear style */
+        // .time-box {
+        //   .hours-box {
+        //     height: 55px;
+        //     overflow-x: scroll;
+        //     overflow-y: hidden;
+        //     .container {
+        //       width: max-content;
+        //       margin: auto;
+        //     }
+        //   }
+        // }
       }
-    }
-
-    .reserve-step {
-      height: 100%;
     }
   }
 }
