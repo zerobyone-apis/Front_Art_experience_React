@@ -5,9 +5,6 @@ import './loader-page.scss';
 export const LoaderPage = (props: {
     show: boolean
 }) => {
-    useEffect(() => {
-        console.log('loader ', props.show)
-    }, [])
     const showLoader = () => {
         if (props.show) {
             return (

@@ -34,14 +34,12 @@
 
     // barbers items
     .barbers-items {
-        // margin: auto;
         width: max-content;
         height: max-content;
         text-align: center;
         border-right-style: solid;
         border-color: $warm-color;
         border-width: 1px;
-        // background-color: green;
 
         .help-action {
             position: absolute;
@@ -51,6 +49,19 @@
             writing-mode: vertical-lr;
             left: 150px;
             top: 40%;
+        }
+
+        .selected {
+            .barber-item {
+                .barber-img {
+                    filter: grayscale(0);
+                    transition: all 1s ease-out;
+                }
+
+                .barber-name {
+                    color: $cool-color;
+                }
+            }
         }
 
         .barber-item {
@@ -84,17 +95,6 @@
             .barber-img {
                 filter: grayscale(0);
                 transition: all 500ms ease-out;
-            }
-
-            .barber-name {
-                color: $cool-color;
-            }
-        }
-
-        .selected {
-            .barber-img {
-                filter: grayscale(0);
-                transition: all 1s ease-out;
             }
 
             .barber-name {

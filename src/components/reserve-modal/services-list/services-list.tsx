@@ -49,16 +49,17 @@ export const ServicesList = (props: {
             <div className="list_services-box effect-slide-left">
                 {props.services.sort((a, b) => { return a.cost - b.cost }).map((service, i) => {
                     return (
-                        <ServiceItem
-                            className={`service ${props.value.name === service.name ? 'selected-service' : null}`}
-                            onSelect={() => {
-                                props.setService(service);
-                            }}
-                            key={i}
-                            name={service.name}
-                            cost={`$${service.cost}`}
-                            selected={props.value.name === service.name ? true : false}
-                        />
+                        <div key={i}>
+                            <ServiceItem
+                                className={`service ${props.value.name === service.name ? 'selected-service' : null}`}
+                                onSelect={() => {
+                                    props.setService(service);
+                                }}
+                                name={service.name}
+                                cost={`$${service.cost}`}
+                                selected={props.value.name === service.name ? true : false}
+                            />
+                        </div>
                     );
                 })}
             </div>

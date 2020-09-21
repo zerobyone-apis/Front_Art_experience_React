@@ -55,12 +55,14 @@ export const BarbersList = (props: {
             <div className="list_barbers-box effect-slide-left">
                 {
                     barbers.map((barber: any, i: number) => {
-                        return (<BarberItem name={barber.name}
-                            img={barber.urlProfileImage}
-                            selected={props.value.name === barber.name ? true : false}
-                            onSelect={() => { props.setBarber(barber) }}
-                            key={i}
-                        />
+                        return (
+                            <div key={i}>
+                                <BarberItem name={barber.name}
+                                    img={barber.urlProfileImage}
+                                    selected={props.value.name === barber.name ? true : false}
+                                    onSelect={() => { props.setBarber(barber) }}
+                                />
+                            </div>
                         )
                     })
                 }

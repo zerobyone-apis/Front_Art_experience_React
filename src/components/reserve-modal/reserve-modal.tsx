@@ -171,7 +171,7 @@ export const ReserveModal = (props: { className?: string }) => {
     <div className="reserve-modal">
       <div className="dialog_activator-box">
         <Button className={`activator-btn reserve-btn theme-button`}
-          label='Reservar'
+          label="Reservar"
           icon={false}
           onClick={() => {
             userIsLogged() ? setShowDialog(true) : setShowLoginDialog(true);

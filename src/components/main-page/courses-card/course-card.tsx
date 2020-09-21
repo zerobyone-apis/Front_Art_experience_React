@@ -22,7 +22,6 @@ export const CoursesCard = (props: {
         getTheme,
     } = useContext(ThemeContext);
 
-
     const CourseItem = (props: {
         img: any,
         name: string,
@@ -35,7 +34,7 @@ export const CoursesCard = (props: {
             getTheme,
         } = useContext(ThemeContext);
         return (
-            <div className={`course-item`} key={props.key || 1}>
+            <div className={`course-item`} key={props.key}>
                 <img
                     onMouseEnter={() => {
                         setEffects(screenSize.size.width > 1100 ? 'effect-slide-left' : 'effect-slide-top');
@@ -49,15 +48,19 @@ export const CoursesCard = (props: {
     }
 
     const getCourses = () => {
-        return props.courses.map((course, i) => <div
-            className={`${course === selectedCourse ? 'selected' : null}`}>
-            <CourseItem key={i}
-                name={course.name}
-                info={course.info}
-                img={course.img}
-                course={course}
-            />
-        </div>
+        return props.courses.map((course, i) =>
+            <div
+                key={i}
+                className={`${course === selectedCourse ? 'selected' : null}`}>
+
+                <CourseItem
+                    name={course.name}
+                    info={course.info}
+                    img={course.img}
+                    course={course}
+                />
+
+            </div>
         )
     }
 
@@ -74,7 +77,7 @@ export const CoursesCard = (props: {
                     containerClassName={`${effects}`}
                     leftContent={
                         <div className="courses-items">
-                            <p className="help-action">Barberos</p>
+                            <p className="help-action">Cursos</p>
                             {getCourses()}
                         </div>
                     }

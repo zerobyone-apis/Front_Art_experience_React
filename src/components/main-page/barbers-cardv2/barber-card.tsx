@@ -51,8 +51,8 @@ export const BarbersCard = (props: {
 
     const getBarbers = () => {
         return props.barbers.map((barber, i) =>
-            <div className={`${barber === selectedBarber ? 'selected' : null}`}>
-                <BarberItem key={i}
+            <div key={i} className={`${barber === selectedBarber ? 'selected' : null}`}>
+                <BarberItem
                     barber={barber}
                     name={barber.name}
                     info={barber.info}

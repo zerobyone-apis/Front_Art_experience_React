@@ -2,7 +2,6 @@
 
 .confirm_data-box {
     position: relative;
-    // background-color: green;
     width: 100%;
     margin: auto;
     height: max-content;
@@ -14,8 +13,6 @@
         position: relative;
         width: 60%;
         margin: auto;
-        // margin: auto;
-        // background-color: red;
     }
 
     .box-item {
@@ -31,5 +28,23 @@
         width: 80px;
         height: 80px;
         color: rgb(199, 194, 109);
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .confirm_data-box {
+        .services-box {
+            width: 100%;
+            overflow-y: hidden !important;
+        }
+    }
+
+}
+
+@media only screen and (max-width: $mobile-screen) {
+    .confirm_data-box {
+        .services-box {
+            overflow-y: hidden !important;
+        }
     }
 }

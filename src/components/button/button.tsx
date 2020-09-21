@@ -50,23 +50,12 @@ export const Button = (props: {
             onClick={props.onClick}
           >
             <div className="button-content">
-              {props.icon ? (
-                <div className="icon-box">
-                  {props.icon}
-                </div>
-              ) : null}
-
-              {!props.label ? null : (
-                <p className={getLabelClasses()}>
-                  {props.label}
-                </p>
-              )
-              }
+              {props.icon ? <div className="icon-box">{props.icon}</div> : null}
+              {props.label ? <p className={getLabelClasses()}>{props.label}</p> : null}
             </div>
           </button>
         </a>
       </div>
     </div>
-
   );
 };

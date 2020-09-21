@@ -24,13 +24,11 @@ export const BarberListProvider = (props: {
     }, [barbers])
 
     const setBarbersList = (barbersData: IBarber[]) => {
-        console.log('setBarbersList', barbersData)
         storex.set(BARBERLIST_DATA_STORAGE, barbersData);
         setBarbers(barbersData);
     }
 
     const getBarbersList = () => {
-        console.log('getBarbersList', barbers)
         return barbers;
     }
 

@@ -37,7 +37,7 @@ export const Toolbar = () => {
                             key={i}
                             href={button.href}
                             className="theme-button-text toolbar-btn"
-                            label={button.label}
+                            label={`${button.label}`}
                         />
                     )
                 })
