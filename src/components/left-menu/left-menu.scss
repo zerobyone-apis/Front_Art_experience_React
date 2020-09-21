@@ -44,12 +44,23 @@ $menu_size: 200px;
       top: 0 !important;
     }
 
-    .logox {
-      width: 100%;
+    .logo {
+      position: absolute;
+      width: 100vw;
+      height: 100vh;
+      top: -60px;
       text-align: center;
+      opacity: .1;
+      display: flex;
+      align-items: center;
 
       .logo-img {
-        width: 40%;
+        width: 100vw;
+        max-width: 600px;
+        max-height: 750px;
+        min-width: 300px;
+        min-height: 375px;
+        height: 70vh;
         visibility: visible;
         margin: auto;
       }
