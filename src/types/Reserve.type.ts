@@ -4,6 +4,7 @@ export interface IReserve {
   barberOrHairdresserId: number; // ID Barbero que haga la reserva o Peluquera/o.
   clientId: number;
   nameClient: string;
+  barberName?: string;
   mailClient: string;
   celClient: string;
 

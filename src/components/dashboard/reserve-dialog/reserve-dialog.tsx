@@ -36,6 +36,16 @@ export const ReserveDialog = (props: {
 
   const reserveActions: ReserveActions = new ReserveActions();
   const [showDialog, setShowDialog] = useState(false);
+
+  // confirm dialog data
+  const [showConfirmDialog, setShowConfirmDialog] = useState(false);
+  const [confirmDialogData, setConfirmDialogData] = useState({
+    title: '',
+    message: '',
+    onAccept: () => undefined,
+    onCancel: () => undefined
+  })
+
   const [reserve, setReserve] = useState(props.reserve || baseReserve);
   const [updated, setUpdated] = useState(false);
 
@@ -45,6 +55,8 @@ export const ReserveDialog = (props: {
     setReserve({ ...reserve, [fieldName]: value });
   };
 
+
+  /* UPDATE RESERVE */
   const onUpdate = async () => {
     setDisabledButton(true);
     let formatDate = moment(reserve.startTime).format('YYYY-MM-DDTHH:mm:ss');
@@ -68,6 +80,8 @@ export const ReserveDialog = (props: {
     // }
   };
 
+
+  /* FINALIZE RESERVE */
   const finalizeReserve = async () => {
     setDisabledButton(true);
     let response = await reserveActions.doneReserve(reserve.barberOrHairdresserId, reserve.reserveId);
@@ -82,7 +96,53 @@ export const ReserveDialog = (props: {
     }
   }
 
-  const onCancel = () => { };
+
+  /* CANCEL RESERVE */
+  const cancelReserve = async () => {
+    setDisabledButton(true);
+    let response = await reserveActions.cancel(reserve.barberOrHairdresserId, reserve.reserveId);
+    console.log('cancel')
+    if (response) {
+      console.log('success cancel')
+      props.onCancelled();
+      props.onClose();
+      setDisabledButton(false);
+    } else {
+      console.log('error', response)
+    }
+  }
+
+  const ConfirmDialog = (props: {
+    onAccept: () => undefined,
+    onCancel: () => voif,
+    title: string,
+    message: string
+  }) => {
+    return <DialogModal
+      className="confirm-dialog"
+      title={props.title}
+      showModal={showConfirmDialog}
+      onClose={() => { props.onCancel() }}
+    >
+      <div className="reserve-modal">
+        <div className="reserve_data-box">
+          <p className="reserve_info effect-slide_left">{props.message}</p>
+          <Button
+            className="footer-button theme-button-outlined"
+            label="Realizar Accion"
+            onClick={() => { props.onAccept }}
+          />
+          <Button
+            className="footer-button theme-button-outlined"
+            label="Cancelar"
+            onClick={() => { props.onCancel }}
+          />
+        </div>
+      </div>
+    </DialogModal>
+  }
+
+
 
   return (
     <DialogModal
@@ -139,10 +199,11 @@ export const ReserveDialog = (props: {
               onChange={onChangeReserve}
             />
             <TextField
-              value={reserve.barberOrHairdresserId}
+              value={reserve.barberName}
               name="barberOrHairdresserId"
               type="allow"
               required={true}
+              disabled={true}
               label="Barbero"
               className="theme-text_field--dark"
               onChange={onChangeReserve}
@@ -173,16 +234,29 @@ export const ReserveDialog = (props: {
         <div className="footer_right-box">
           <Button
             className="footer-button theme-button-outlined"
-            label="Finalizar"
-            onClick={() => { finalizeReserve() }}
+            label="Finalizar Reserva"
+            onClick={() => {
+              setShowConfirmDialog(true);
+            }}
           />
           <Button
             className="footer-button theme-button-outlined"
-            label="Cancelar"
-            onClick={() => { }}
+            label="Cancelar Reserva"
+            onClick={() => { cancelReserve() }}
           />
         </div>
       </div>
+
+      {
+        showConfirmDialog ? (
+          <ConfirmDialog
+            title={confirmDialogData.title}
+            message={confirmDialogData.message}
+            onAccept={confirmDialogData.onAccept()}
+            onCancel={() => { setShowConfirmDialog(false) }}
+          />
+        ) : null
+      }
     </DialogModal>
   );
 };
