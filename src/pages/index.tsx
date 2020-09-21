@@ -54,7 +54,7 @@ const IndexPage = () => {
 
   const pageInfo = {
     name: 'Art Experience',
-    slogan: 'Space for Men',
+    slogan: '',
     openTimeLV: '11 a 19hs',
     openTimeSBD: '10 a 18hs',
     number: '22913056',
