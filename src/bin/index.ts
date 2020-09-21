@@ -26,5 +26,5 @@ export const main = async () => {
     return handle(req, res);
   });
   await expressApp.listen(port);
-  console.log(`Server running at port ${port}`);
+  //console.log(`Server running at port ${port}`);
 };

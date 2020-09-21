@@ -107,9 +107,21 @@
     @media only screen and (max-width: 400px) {
         .courses-items {
             position: relative;
-            width: 100% !important;
-            overflow-x: scroll !important;
+            width: max-content;
+            margin: auto;
+            // overflow-x: scroll !important;
             margin-bottom: 20px !important;
+
+            .course-item {
+                margin: 40px 10px 0 10px;
+
+                .course-img {
+                    width: 80px;
+                    height: 80px;
+                    border-radius: 50%;
+                    filter: grayscale(1);
+                }
+            }
         }
     }
 

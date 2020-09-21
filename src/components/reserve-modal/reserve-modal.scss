@@ -1,8 +1,7 @@
 @import '../../styles/theme.scss';
 
-.dialog_modal {
-  min-width: 500px;
-  //
+.dialog_modalx {
+  // min-width: 500px;
 
   .reserve-stepper {
     /* refactor steps content in mobile */
@@ -73,9 +72,19 @@
   }
 }
 
+@media only screen and (min-width: $mobile-screen) {
+  .dialog_modalx {
+    .dialog-modal {
+      min-width: 500px !important;
+    }
+  }
+}
+
 @media only screen and (max-width: $mobile-screen) {
-  .dialog_modal {
-    min-width: auto;
+  .dialog_modalx {
+    .dialog-modal {
+      min-width: auto;
+    }
   }
 
   .reserve-modal {

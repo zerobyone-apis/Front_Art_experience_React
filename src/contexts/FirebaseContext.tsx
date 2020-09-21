@@ -8,11 +8,11 @@ import React, { ReactElement, createContext, useState, useEffect } from 'react';
 //export const FirebaseProvider = (props: { children: ReactElement }) => {
 //  const timeActions: TimeActions = new TimeActions();
 //
-//  // Get Query -> Naming Convention -> getAvailableTimes
+//  Get Query -> Naming Convention -> getAvailableTimes
 //  const query = (queryText: string) => {
-//    //   let response = timeActions.getReservatesHoursByReserves(queryText);
-//    //   return response);
-//    //   console.log('Objeto response', response);
+//       let response = timeActions.getReservatesHoursByReserves(queryText);
+//       return response);
+//       console.log('Objeto response', response);
 //  };
 //
 //  const context = { query };

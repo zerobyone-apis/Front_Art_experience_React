@@ -40,7 +40,7 @@ export const ReserveDialog = (props: { reserve: IReserve; onClose: any }) => {
   const onUpdate = async () => {
     setDisabledButton(true);
     let formatDate = moment(reserve.startTime).format('YYYY-MM-DDTHH:mm:ss');
-    console.log('Format date -> to Update', formatDate);
+    //console.log('Format date -> to Update', formatDate);
     let reserveUpdate: IReserve = {
       reserveId: reserve.reserveId,
       nameClient: reserve.nameClient,

@@ -181,7 +181,7 @@ export const ReserveModal = (props: { className?: string }) => {
       const resultDocs = await getReservesFirebase(barberName);
 
       if (!resultDocs) {
-        console.log('No existen resultados. . .');
+        console.error('No existen resultados. . .');
       }
 
       // Solo para checkear si la fecha es igual a la de actual
@@ -216,7 +216,7 @@ export const ReserveModal = (props: { className?: string }) => {
               times: newTimes,
             };
             //? PUT - Actualizar document de reserva dado a que hay reservas para este dia
-            console.log('IF -> PUT - Update!');
+            //console.log('IF -> PUT - Update!');
             await db
               .collection('reservas')
               .doc(nameParcerFunction(barberName))
@@ -239,7 +239,7 @@ export const ReserveModal = (props: { className?: string }) => {
         };
 
         //? POST - Actualizar document de reserva dado a que hay reservas para este dia
-        console.log('IF -> POST - Creating . . .');
+        //console.log('IF -> POST - Creating . . .');
         await db
           .collection('reservas')
           .doc(nameParcerFunction(barberName))
@@ -313,9 +313,7 @@ export const ReserveModal = (props: { className?: string }) => {
       {!showDialog ? null : (
         <DialogModal
           title="Reservacion - ArtExperience"
-          className="dialog_modal"
-          width="65vw"
-          height="65vh"
+          className="dialog_modalx"
           onClose={() => {
             setShowDialog(false);
           }}

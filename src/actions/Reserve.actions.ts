@@ -14,7 +14,7 @@ export default class ReserveActions {
   private backend: IntegrationBackend = new IntegrationBackend();
 
   public async add(reserve: IReserve) {
-    console.log('Accede Reserve Actions', reserve);
+    //console.log('Accede Reserve Actions', reserve);
     try {
       const response: any = await this.backend.send(
         POST_ENDPOIT,
@@ -22,7 +22,7 @@ export default class ReserveActions {
         `${RESERVE_ROUTE}/${reserve.clientId}`
       );
       if (response.status !== 201) {
-        console.log(response.message);
+        //console.log(response.message);
         throw Error(response.message);
       }
       //console.log('Reserve success \n', response.data);
@@ -70,10 +70,10 @@ export default class ReserveActions {
         `${RESERVE_ROUTE}/update`
       );
       if (response.status !== 201) {
-        console.log(response.message);
+        //console.log(response.message);
         throw Error(response.message);
       }
-      console.log('Update reserve successfully: \n', response.data);
+      //console.log('Update reserve successfully: \n', response.data);
       return response.data;
     } catch (error) {
       console.error('Error Reserve.actions method update -> ', error.message);
@@ -92,10 +92,10 @@ export default class ReserveActions {
         `${RESERVE_ROUTE}/barber/${barberId}/isDone/${reserveId}`
       );
       if (response.status !== 201) {
-        console.log(response.message);
+        //console.log(response.message);
         throw Error(response.message);
       }
-      console.log('Completed reserve successfully: \n', response.data);
+      //console.log('Completed reserve successfully: \n', response.data);
       return response.data;
     } catch (error) {
       console.error(
@@ -119,10 +119,10 @@ export default class ReserveActions {
         `${RESERVE_ROUTE}/client/${clientId}/cancel/${reserveId}`
       );
       if (response.status !== 201) {
-        console.log(response.message);
+        //console.log(response.message);
         throw Error(response.message);
       }
-      console.log('Canceled reserve successfully: \n', response.data);
+      //console.log('Canceled reserve successfully: \n', response.data);
       return response.data;
     } catch (error) {
       console.error('Error Reserve.actions method cancel -> ', error.message);
