@@ -20,6 +20,7 @@ export const TextField = (props: {
   iconColor?: string;
   required?: boolean;
   className?: string;
+  disabled?: boolean;
 }) => {
   const {
     // @ts-ignore
@@ -53,13 +54,14 @@ export const TextField = (props: {
   return (
     <div className={`${props.className || ''} text-field_${getTheme()} text-field`}>
       <label className="label art_experience-text-dark">{props.label}</label>
-      <div className="input-box">
+      <div className={`input-box ${props.disabled ? 'disabled' : ''}`}>
         <label className="hint-label art_experience-text-dark">{props.hint}</label>
         <input
           tabIndex={props.tabIndex}
           name={props.name}
           type={props.type || 'string'}
           required={props.required}
+          disabled={props.disabled}
           value={value}
           autoFocus
           onChange={changeValue}

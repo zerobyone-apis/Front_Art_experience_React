@@ -89,7 +89,7 @@ export default class ReserveActions {
       const response: any = await this.backend.send(
         PATCH_ENDPOIT,
         null,
-        `${RESERVE_ROUTE}/barber/${barberId}/isDone/${reserveId}`
+        `${RESERVE_ROUTE}/barber/${barberId}/isdone/${reserveId}`
       );
       if (response.status !== 201) {
         //console.log(response.message);
@@ -108,9 +108,7 @@ export default class ReserveActions {
 
   public async cancel(clientId: number, reserveId: number) {
     /*
-       
         URL TO CANCEL:  /reserve/client/${clientId}/cancel/${reserveId}
-    
     */
     try {
       const response: any = await this.backend.send(
