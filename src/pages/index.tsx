@@ -33,36 +33,39 @@ const IndexPage = () => {
     facebook: 'https://www.facebook.com/artexperiencee/?epa=SEARCH_BOX',
     aboutUsTitle: 'Acerca de Nosotros',
     aboutUs: `En Art Experience nos enfocamos en el cliente 
-    \n..No es solo un corte de Pelo..
-    \n Es una experiencia completa desde que el cliente 
-    \ningrese al local hasta que se retire.
-    \n Creemos que cada aspecto es ¡importante!. 
-    \n \"... El Ambiente, La Música y nuestra Atención ...\"
-    \n Seran algunos de los aspectos que experimentaras en nuestro local.
-    \n Queremos que cada cliente encuentre su lugar,  
-    \n el confort de adecuarse al ambiente y sentirse cómodo y en buena compañía.
-    \n Nuestro equipo esta constantemente intentando superarse y mejorar cada día para brindar una mejor experiencia al cliente.
-    \n Ese es el valor agregado de nuestro servicios 
-    \n .. Queremos que marcar la diferencia ..
-    \n \n Disfrute de los nuevos servicios`,
+     ..No es solo un corte de Pelo..
+     Es una experiencia completa desde que el cliente 
+     ingrese al local hasta que se retire.
+     Creemos que cada aspecto es ¡importante!. 
+     \"... El ambiente, la Música y nuestra atención ...\"
+     Seran algunos de los aspectos que experimentaras en nuestro local.
+     Queremos que cada cliente encuentre su lugar, el confort de adecuarse al ambiente, 
+     se sienta cómodo y en buena compañía.
+     Nuestro equipo se supera de manera constante, cada dia para asi brindar 
+     una experiencia de calidad y calize al cliente
+     .. Queremos marcar la diferencia ..
+     \n ... Disfrute de los nuevos servicios ...`,
     servicesTitle: 'Nuestros Servicios',
     services: 'Brindamos Servicios de Calidad y Asesoramiento Personalizado',
     coursesTitle: 'Nuestros Cursos',
     courses: 'Ofrecemos Cursos para Aumentaran su Experiencia',
     contactUsTitle: 'Contactenos',
-    contactUs: 'Contactenos para mas informacion',
+    contactUs: `Por cualquier tipo de informacion por cursos o productos busquenos en nuestras redes sociales or dejenos un mail.
+                Recuerda que nuestro horario de atencion es de 10:00 hr am - 19:00 hr pm 
+                \nPuedes dejarnos un correo electronico o si lo prefieres un mensaje en algunas de nuestras redes sociales.
+                A la brevedad alguien del equipo de Art lo atenderá.`,
   };
   const services = [
     {
       icon: <GiBeard className="service-icon" />,
       name: 'Barberia',
       info:
-        'La mejor calidad de Cortes Modernos y Clasicos,\n Barbas, Cejas, Black Mask',
+        'La mejor calidad en Cortes Modernos y Clasicos,\n Barba - Cejas - Black Mask',
       url: 'Read More',
     },
     {
       icon: <FiUserPlus className="service-icon" />,
-      name: 'Peluqueria',
+      name: 'Peluquería',
       info:
         'Incorporamos la mejor calidad en \nCortes, Colores y Peinados para Damas',
       url: 'Read More',
@@ -71,14 +74,14 @@ const IndexPage = () => {
       icon: <GiCoffeeCup className="service-icon" />,
       name: 'CoffeShop',
       info:
-        'El nuevo servicio de cafeteria \nTragos y un Menu para que puedas disfrutar',
+        'El nuevo servicio de Cafetería \nTragos y un menu para que puedas disfrutar',
       url: 'Read More',
     },
     {
       icon: <FaCartArrowDown className="service-icon" />,
       name: 'Productos',
       info:
-        'La mejor calidad en todos los productos \n para que tu cuidado personal',
+        'La mejor calidad en todos los productos \n para tu cuidado personal',
       url: 'Read More',
     },
     {
@@ -97,12 +100,12 @@ const IndexPage = () => {
       El curso incluye los materiales a utilizar en el mismo.
       Conoceras y entenderas las diferentes tecnicas y conceptos claves 
       \nQue te harán ser un barbero capaz de Manejar, Utilizar y Perfeccionar. 
-      \n 🏆 Estilos de las últimas tendencias 🏆
+      \n🏆 Estilos de las últimas tendencias 🏆
       \n ➬ Freestyle      
       \n ➫ Fade (Degradé) 
       \n ➬ Peinados       
       \n ➫ Marketing      
-      \n ➬ Fotografia     
+      \n ➬ Fotografía     
       \n ➬ Particiones y secciones de la cabeza 
       \n..🕒 Duración 4 meses ..
       \n... 🗓️ Fecha a coordinar ...`,
@@ -117,7 +120,7 @@ const IndexPage = () => {
       url: 'Read More',
     },
     {
-      name: 'COLOMETRIA',
+      name: 'COLORIMETRIA',
       info: `
       Materiales incluidos.
       \nSe realizaran los siguientes trabajos en cada uno de los modelos
