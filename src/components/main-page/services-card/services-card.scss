@@ -1,39 +1,40 @@
 @import '../../../styles/theme.scss';
 
 .service-divider {
-    background-color: rgb(12, 12, 12);
+  background-color: rgb(12, 12, 12);
 
-    .services-card {
-        text-align: center;
-        top: 60px;
-        z-index: 1;
+  .services-card {
+    text-align: center;
+    top: 60px;
+    z-index: 1;
 
-        .service-item {
-            position: relative;
-            width: 250px;
-            margin: 40px 0 0 0;
-            display: inline-table;
-            text-align: center;
+    .service-item {
+      position: relative;
+      width: 250px;
+      margin: 40px 0 0 0;
+      display: inline-table;
+      text-align: center;
+      //align-content: space-between;
 
-            .service-icon {
-                font-size: 40px;
-                color: $cool-color;
-            }
+      .service-icon {
+        font-size: 40px;
+        color: $cool-color;
+      }
 
-            .service-name {
-                margin-bottom: 20px;
-                color: white;
-            }
+      .service-name {
+        margin-bottom: 20px;
+        color: white;
+      }
 
-            .service-info {
-                color: white;
-            }
+      .service-info {
+        color: white;
+      }
 
-            .service-url {
-                position: absolute;
-                bottom: 0px;
-                margin-left: 40%;
-            }
-        }
+      .service-url {
+        position: absolute;
+        bottom: 0px;
+        margin-left: 40%;
+      }
     }
+  }
 }

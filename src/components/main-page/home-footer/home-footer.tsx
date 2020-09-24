@@ -7,6 +7,7 @@ import '../../../styles/theme.scss';
 
 export const HomeFooter = (props: {
   email: string;
+  number: string;
   title: string;
   subtitle: string;
   instagram: string;
@@ -27,6 +28,7 @@ export const HomeFooter = (props: {
           alt=""
         />
         <p className={`footer-email text text-dark`}>{props.email}</p>
+        <p className={`footer-email text text-dark`}>{props.number}</p>
         <div className="footer-social">
           <a href={props.instagram}>
             <i className="fa fa-instagram" aria-hidden="true"></i>

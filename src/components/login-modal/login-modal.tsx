@@ -96,7 +96,7 @@ export const LoginModal = (props: {
       ) : null}
       {!showDialog ? null : (
         <DialogModal
-          title="Inicio de Sesion - ArtExperience"
+          title="Inicio de Sesion - Art Experience"
           className="login-dialog"
           width="65vw"
           height="65vh"
