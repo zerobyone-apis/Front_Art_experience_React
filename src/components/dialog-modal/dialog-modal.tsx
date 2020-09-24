@@ -10,7 +10,7 @@ import '../../styles/effects.scss';
 export const DialogModal = (props: {
   title?: string,
   header?: any,
-  children?: React.ReactChild[],
+  children?: React.ReactChild | React.ReactChild[],
   width?: string,
   height?: string,
   onClose: () => void,
