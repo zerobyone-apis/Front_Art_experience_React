@@ -10,7 +10,7 @@ import '../../styles/effects.scss';
 export const DialogModal = (props: {
   title?: string,
   header?: any,
-  children?: any,
+  children?: React.ReactChild[],
   width?: string,
   height?: string,
   onClose: () => void,
@@ -45,15 +45,17 @@ export const DialogModal = (props: {
               />
             ) : null}
 
-
           </div>
           <div className="header-title">
             {props.header || <p className={`title text-${getTheme()}`}>{props.title}</p>}
           </div>
         </div>
-        <div className={`content `}>
-          {props.children}
-        </div>
+
+        {
+          props.children.map((child, i) => {
+            return <div key={i}>{child}</div>
+          })
+        }
       </div>
     </div>
   );
