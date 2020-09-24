@@ -2,8 +2,10 @@
 
 .dialog_modalx {
   .reserve-stepper {
+
     /* refactor steps content in mobile */
     @media only screen and (max-height: 860px) {
+
       /* Scrollbar style */
       ::-webkit-scrollbar {
         width: 5px;
