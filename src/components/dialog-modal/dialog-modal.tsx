@@ -8,16 +8,16 @@ import '../../styles/theme-buttons.scss';
 import '../../styles/effects.scss';
 
 export const DialogModal = (props: {
-  title?: string,
-  header?: any,
-  children?: any,
-  width?: string,
-  height?: string,
-  onClose: () => void,
-  hideCloseButton?: boolean,
-  showModal?: boolean,
-  className?: string,
-  buttonClassName?: string
+  title?: string;
+  header?: any;
+  children?: any;
+  width?: string;
+  height?: string;
+  onClose: () => void;
+  hideCloseButton?: boolean;
+  showModal?: boolean;
+  className?: string;
+  buttonClassName?: string;
 }) => {
   const {
     // @ts-ignore
@@ -27,34 +27,39 @@ export const DialogModal = (props: {
   const [visible, setVisible] = useState<boolean>(true);
 
   const onClose = () => {
-    setVisible(false)
+    setVisible(false);
     props.onClose();
-  }
+  };
 
   return (
-    <div className={`${props.className} dialog-box ${visible ? ' effect-opacity ' : ' effect-hide'}`}>
+    <div
+      className={`${props.className} dialog-box ${
+        visible ? ' effect-opacity ' : ' effect-hide'
+      }`}
+    >
       <div className={`dialog-modal effect-opacity ${getTheme()}`}>
         <div className="header">
           <div
-            onClick={() => { onClose() }}
-            className="close_btn-box">
-
+            onClick={() => {
+              onClose();
+            }}
+            className="close_btn-box"
+          >
             {!props.hideCloseButton ? (
-              <Button className="close_btn theme-button-text"
+              <Button
+                className="close_btn theme-button-text"
                 icon={<AiOutlineClose className="theme-icon" />}
               />
             ) : null}
-
-
           </div>
           <div className="header-title">
-            {props.header || <p className={`title text-${getTheme()}`}>{props.title}</p>}
+            {props.header || (
+              <p className={`title text-${getTheme()}`}>{props.title}</p>
+            )}
           </div>
         </div>
-        <div className={`content `}>
-          {props.children}
-        </div>
+        <div className={`content `}>{props.children}</div>
       </div>
     </div>
   );
-}
+};

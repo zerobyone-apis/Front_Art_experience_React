@@ -312,7 +312,7 @@ export const ReserveModal = (props: { className?: string }) => {
 
       {!showDialog ? null : (
         <DialogModal
-          title="Reservacion - ArtExperience"
+          title="Reservación - Art Experience"
           className="dialog_modalx"
           onClose={() => {
             setShowDialog(false);
@@ -337,7 +337,7 @@ export const ReserveModal = (props: { className?: string }) => {
             <div className="reserve-step">
               <div className="step-title">
                 <p className={`step-subtitle text text-${getTheme()}`}>
-                  Seleccione el servicio que se desea realizar
+                  Seleccione el Servicio que usted desee
                 </p>
               </div>
               <ServicesList
@@ -351,7 +351,7 @@ export const ReserveModal = (props: { className?: string }) => {
             <div className="reserve-step">
               <div className="step-title">
                 <p className={`step-subtitle text text-${getTheme()}`}>
-                  Seleccione la fecha y hora
+                  Seleccione la Fecha y Hora
                 </p>
               </div>
               <ReserveTime
@@ -368,7 +368,7 @@ export const ReserveModal = (props: { className?: string }) => {
             <div className="reserve-step">
               <div className="step-title">
                 <p className={`step-subtitle text text-${getTheme()}`}>
-                  Confirmacion de reserva
+                  Confirmación de Reserva
                 </p>
               </div>
               <ConfirmBox
@@ -383,12 +383,12 @@ export const ReserveModal = (props: { className?: string }) => {
             <div className="reserve-step">
               <div className="step-title">
                 <p className={`step-subtitle text text-${getTheme()}`}>
-                  Reservacion - ArtExperience
+                  Reservación - Art Experience
                 </p>
               </div>
               <div className="confirm_data-box">
                 <p className={`confirm_info text text-${getTheme()}`}>
-                  Se ha realizado la reserva de forma exitosa!
+                  Su Reserva se completo ¡Exitosamente!
                 </p>
                 <FaRegCalendarCheck className="success-icon effect-slide_top" />
               </div>

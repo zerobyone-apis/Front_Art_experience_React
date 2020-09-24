@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 import BarberAction from '../actions/Barber.actions';
 import moment from 'moment';
-import { FaCut, FaGift } from 'react-icons/fa';
-import { GiPaintedPottery } from 'react-icons/gi';
+import { FaGift, FaCartArrowDown } from 'react-icons/fa';
+import { FiUserPlus } from 'react-icons/fi';
+import { GiCoffeeCup, GiBeard, GiPaintedPottery } from 'react-icons/gi';
 import { ButtonContext } from '../contexts/ButtonsContext';
 import { ThemeContext } from '../contexts/ThemeContext';
 import { BarberListContext } from '../contexts/BarberListContext';
@@ -31,34 +32,60 @@ const IndexPage = () => {
     instagram: 'https://www.instagram.com/artexperiencee/',
     facebook: 'https://www.facebook.com/artexperiencee/?epa=SEARCH_BOX',
     aboutUsTitle: 'Acerca de Nosotros',
-    aboutUs: `En Art Experience nos enfocamos en el cliente, no es solo un corte de pelo, sino que es una experiencia competa desde que el cliente ingresa al local hasta que se retira, cada aspecto es importante. El ambiente la música, la atención, etc. 
-    Intentando superarnos y mejorar cada día para obtener una mejor experiencia del cliente. Eso nos diferencia del resto. Gracias por elegirnos.`,
+    aboutUs: `En Art Experience nos enfocamos en el cliente 
+    \n..No es solo un corte de Pelo..
+    \n Es una experiencia completa desde que el cliente 
+    \ningrese al local hasta que se retire.
+    \n Creemos que cada aspecto es ¡importante!. 
+    \n \"... El Ambiente, La Música y nuestra Atención ...\"
+    \n Seran algunos de los aspectos que experimentaras en nuestro local.
+    \n Queremos que cada cliente encuentre su lugar,  
+    \n el confort de adecuarse al ambiente y sentirse cómodo y en buena compañía.
+    \n Nuestro equipo esta constantemente intentando superarse y mejorar cada día para brindar una mejor experiencia al cliente.
+    \n Ese es el valor agregado de nuestro servicios 
+    \n .. Queremos que marcar la diferencia ..
+    \n \n Disfrute de los nuevos servicios`,
     servicesTitle: 'Nuestros Servicios',
-    services: 'Brindamos servicios de calidad y asesoramiento personalizado',
+    services: 'Brindamos Servicios de Calidad y Asesoramiento Personalizado',
     coursesTitle: 'Nuestros Cursos',
-    courses: 'Ofrecemos cursos para aumentaran su experiencia',
+    courses: 'Ofrecemos Cursos para Aumentaran su Experiencia',
     contactUsTitle: 'Contactenos',
-    contactUs: 'Comuniquese con nosotros para mas informacion',
+    contactUs: 'Contactenos para mas informacion',
   };
   const services = [
     {
-      icon: <FaCut className="service-icon" />,
-      name: 'Cortes',
-      info: 'La mejor calidad de cortes modernos y clasicos',
+      icon: <GiBeard className="service-icon" />,
+      name: 'Barberia',
+      info:
+        'La mejor calidad de Cortes Modernos y Clasicos,\n Barbas, Cejas, Black Mask',
       url: 'Read More',
     },
     {
-      icon: <GiPaintedPottery className="service-icon" />,
-      name: 'Colores',
+      icon: <FiUserPlus className="service-icon" />,
+      name: 'Peluqueria',
       info:
-        'Toda la gama de colores y el mejor proceso de tintado, protegiendo la salud del cabello',
+        'Incorporamos la mejor calidad en \nCortes, Colores y Peinados para Damas',
+      url: 'Read More',
+    },
+    {
+      icon: <GiCoffeeCup className="service-icon" />,
+      name: 'CoffeShop',
+      info:
+        'El nuevo servicio de cafeteria \nTragos y un Menu para que puedas disfrutar',
+      url: 'Read More',
+    },
+    {
+      icon: <FaCartArrowDown className="service-icon" />,
+      name: 'Productos',
+      info:
+        'La mejor calidad en todos los productos \n para que tu cuidado personal',
       url: 'Read More',
     },
     {
       icon: <FaGift className="service-icon" />,
-      name: 'Promos',
+      name: 'Beneficios',
       info:
-        'Beneficios en seleccion de servicios especiales, tales como combos y productos',
+        'Beneficios y descuentos en todos nuestros servicios \npara usuarios de la barberia',
       url: 'Read More',
     },
   ];
@@ -67,15 +94,23 @@ const IndexPage = () => {
       name: 'INTENSIVO',
       duration: '4 meses', //  / 1 clase por semana a partir de las 13:30hrs
       info: `
-      El curso incluye los materialez a utilizar en el mismo.
-      Conoceras y entenderas las diferentes tecnicas y conceptos que \nte harán ser un barbero
-      capaz de Manejar, Utilizar y Perfeccionar estilos de las ultimas tendendias.
-      \nFreestyle \nFade (Degradé) \nPeinados \nMarketing \nFotografia \nParticiones y secciones de la cabeza\n`,
-      cost: `
-      Contamos con  2 posibilidades de pago:
-         - Contado :   $ 13.000\n 
-         - Financiado: $ 4.000 (hasta en 4 cuotas)\n\n
-      Posibilidad de reservar un lugar con una seña de $1500
+      El curso incluye los materiales a utilizar en el mismo.
+      Conoceras y entenderas las diferentes tecnicas y conceptos claves 
+      \nQue te harán ser un barbero capaz de Manejar, Utilizar y Perfeccionar. 
+      \n 🏆 Estilos de las últimas tendencias 🏆
+      \n ➬ Freestyle      
+      \n ➫ Fade (Degradé) 
+      \n ➬ Peinados       
+      \n ➫ Marketing      
+      \n ➬ Fotografia     
+      \n ➬ Particiones y secciones de la cabeza 
+      \n..🕒 Duración 4 meses ..
+      \n... 🗓️ Fecha a coordinar ...`,
+      cost: ` \n💈 Formas de Pago 💈  \n
+         \n Contamos con 2 posibilidades de pago 🙌
+         \n 👉 Contado:   💲 13.000 
+         \n 👉 Financiado: 💲 4.000 (hasta en 4 cuotas) 
+         \n \nPosibilidad de reservar un lugar con una seña de 💲 1.500 
       `,
       icon: 'event',
       img: 'https://i.ibb.co/WPb2qQJ/modelo-10.jpg',
@@ -84,20 +119,26 @@ const IndexPage = () => {
     {
       name: 'COLOMETRIA',
       info: `
-      Tiene los materiales incluidos.\n
-      Se realizaran los siguientes trabajos en cada uno de los modelos\n
-      dando lugar a poder conocer las diferentes tecnicas aplicadas para cada una de los colores aplicados.
+      Materiales incluidos.
+      \nSe realizaran los siguientes trabajos en cada uno de los modelos
+      \nDando lugar a poder conocer las diferentes técnicas 
+      \nutilizadas en cada color que apliquemos en el curso.
       
-      \nEn la clase trabajamos con 3 modelos.\n
-      1 - Modelo: Platinado\n
-      2 - Modelo: Fantasia\n
-      3 - Modelo: Mechitas\n
+      \n🏆 En la clase trabajamos con 3 modelos 🏆
+      \n ➬ 👦 Platinado
+      \n ➫ 👧 Fantasia
+      \n ➬ 👩 Mechitas
 
       Este curso le otorgará un certificado de concurrencia
-      Fecha a coordinar 
+      \n..🕒 Duración 6 Horas ..
+      ... 🗓️ Fecha a coordinar ... 
       `,
       duration: '6 Horas',
-      cost: 'El curso tiene un costo de $8.000',
+      cost: `\n💈 Formas de Pago 💈  \n
+           \n Contamos con 1 posibilidad de pago 🙌
+           \n 👉 Contado:   💲 8.000 
+      \n \nPosibilidad de reservar un lugar con una seña de 💲 1.000 
+   `,
       icon: 'event',
       img:
         'https://instagram.fmvd4-1.fna.fbcdn.net/v/t51.2885-15/e35/58409183_137399877418737_8950341037487835391_n.jpg?_nc_ht=instagram.fmvd4-1.fna.fbcdn.net&_nc_cat=109&_nc_ohc=ghmBqUjlw2cAX_cKRlu&_nc_tp=18&oh=db69053f9623d99bbe45100e522a76e6&oe=5F7B92FC',
@@ -106,12 +147,26 @@ const IndexPage = () => {
     {
       name: 'AVANZADO',
       info: `
-        En este perfeccionamientoTrabajamos con 4 modelos,
-        En los cuales haremos 3 estilos diferentes:\n 
-         1 - FrenchCrop.\n 2 - Pompadour.\n 3 - Classic Cuts\n
+          En este perfeccionamiento Trabajaremos con 4 modelos
+        \nEn los cuales se realizaran 3 estilos diferentes.
+        \nTendras la oportunidad de expandir tus conocimientos. 
+        \nRealizando tres de los estilos mas demandados 🚀
+        \nLa modalidad sera, escojeras uno de los estilos que mas te guste.
+        \nUna vez que escojas ese estilo, Lo applicarás en dos de tus modelos.
+        \nmientras que los otros dos modelos, se les hará los demas estilos.
+       
+        \n 🏆 Estos son los estilos que aprenderas a realizar 🏆  
+        \n ➬ 👦 FrenchCrop 
+        \n ➫ 👦 Pompadour
+        \n ➬ 👦 Classic Cuts
+        \n..🕒 Duración 6 Horas ..
+        \n ... 🗓️ Fecha a coordinar ... 
       `,
       duration: '2 dias', //  / 2 cortes diarios
-      cost: 'El curso tiene un costo de $6.000',
+      cost: `\n💈 Formas de Pago 💈  \n
+             \n Contamos con 1 posibilidad de pago 🙌
+             \n 👉 Contado:   💲 6.000 
+             \n \nPosibilidad de reservar un lugar con una seña de 💲 1.000`,
       icon: 'event',
       img: 'https://i.ibb.co/S3yctcs/modelo-13.jpg',
       url: 'Read More',
@@ -178,7 +233,6 @@ const IndexPage = () => {
         barber.startDate = moment(barber.startDate)
           .format('DD/MM/YYYY hh:mm:ss')
           .substr(0, 16);
-        barber.job = 'Professional Barber';
       });
       return response;
     }
@@ -226,6 +280,7 @@ const IndexPage = () => {
             title={pageInfo.contactUsTitle}
             subtitle={pageInfo.contactUs}
             email={pageInfo.email}
+            number={pageInfo.number}
             instagram={pageInfo.instagram}
             facebook={pageInfo.facebook}
             theme="light"
