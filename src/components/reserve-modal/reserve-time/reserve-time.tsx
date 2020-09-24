@@ -100,7 +100,7 @@ export const ReserveTime = (props: {
   const filterTimesAndSetAvailables = (resultData: any) => {
     if (resultData) {
       //! Remove this console.log
-      console.log('Result data: ', resultData);
+      //console.log('Result data: ', resultData);
 
       //* Nueva lista con fecha formateada
       let formattedDates: { date: string; times: string[] }[] = [];
