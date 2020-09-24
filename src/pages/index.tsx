@@ -36,8 +36,8 @@ const IndexPage = () => {
      ..No es solo un corte de Pelo..
      Es una experiencia completa desde que el cliente 
      ingrese al local hasta que se retire.
-     Creemos que cada aspecto es ¡importante!. 
-     \"... El ambiente, la Música y nuestra atención ...\"
+     Creemos que cada aspecto es importante. 
+     \"... El ambiente, la música y nuestra atención ...\"
      Seran algunos de los aspectos que experimentaras en nuestro local.
      Queremos que cada cliente encuentre su lugar, el confort de adecuarse al ambiente, 
      se sienta cómodo y en buena compañía.
@@ -51,7 +51,7 @@ const IndexPage = () => {
     courses: 'Ofrecemos Cursos para Aumentaran su Experiencia',
     contactUsTitle: 'Contactenos',
     contactUs: `Por cualquier tipo de informacion por cursos o productos busquenos en nuestras redes sociales or dejenos un mail.
-                Recuerda que nuestro horario de atencion es de 10:00 hr am - 19:00 hr pm 
+                Recuerda que nuestro horario de atencion es de L a S de 10:00 hr am - 19:00 hr pm 
                 \nPuedes dejarnos un correo electronico o si lo prefieres un mensaje en algunas de nuestras redes sociales.
                 A la brevedad alguien del equipo de Art lo atenderá.`,
   };
