@@ -70,7 +70,6 @@ export const ReserveDialog = (props: {
     console.log('finalized')
     if (response) {
       console.log('success finalize')
-      props.onFinalized();
       props.onClose();
       setDisabledButton(false);
     } else {
@@ -85,11 +84,10 @@ export const ReserveDialog = (props: {
     console.log('cancel')
     if (response) {
       console.log('success cancel')
-      props.onCancelled();
       props.onClose();
       setDisabledButton(false);
     } else {
-      console.log('error', response)
+      console.log('error cancel :', response)
     }
   }
 
