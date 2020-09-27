@@ -34,7 +34,7 @@ export const DialogModal = (props: {
   return (
     <div className={`${props.className} dialog-box ${visible ? ' effect-opacity ' : ' effect-hide'}`}>
       <div className={`dialog-modal effect-opacity ${getTheme()}`}>
-        <div className="header">
+        <div className={`header ${getTheme()}`}>
           <div
             onClick={() => { onClose() }}
             className="close_btn-box">
@@ -44,15 +44,13 @@ export const DialogModal = (props: {
                 icon={<AiOutlineClose className="theme-icon" />}
               />
             ) : null}
-
           </div>
           <div className="header-title">
             {props.header || <p className={`title text-${getTheme()}`}>{props.title}</p>}
           </div>
         </div>
-
         {
-          props.children.map((child, i) => {
+          ([props.children]).map((child, i) => {
             return <div key={i}>{child}</div>
           })
         }

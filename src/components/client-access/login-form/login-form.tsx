@@ -9,7 +9,8 @@ import './login-form.scss';
 import '../../../styles/theme-buttons.scss';
 
 export const LoginForm = (props: {
-  onClientLogged: (response: any) => void;
+  onClientLogged: (response: any) => void,
+  onCompeteFields: any
 }) => {
   const defaultLoginFields = {
     email: '',
@@ -66,6 +67,7 @@ export const LoginForm = (props: {
     <div className="login-box">
       <ValidationForm
         objectTest={loginFields}
+        hideButton={true}
         buttonLabel="Acceder"
         buttonClassName="access_btn theme-button-outlined"
         onClick={() => {
@@ -94,8 +96,8 @@ export const LoginForm = (props: {
       {message.isError ? (
         <p className="error_message">{message.value}</p>
       ) : (
-        <p className="success_message">{message.value}</p>
-      )}
+          <p className="success_message">{message.value}</p>
+        )}
     </div>
   );
 };

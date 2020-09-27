@@ -8,6 +8,7 @@ export const ValidationForm = (props: {
     children: React.ReactChild[],
     buttonClassName?: string,
     buttonLabel: string,
+    hideButton?: boolean,
     onClick: () => void,
     onValidationChange?: () => undefined,
     onChangeErrors?: () => undefined
@@ -21,8 +22,8 @@ export const ValidationForm = (props: {
     }, [])
 
     useEffect(() => {
-        setErrors([])
-        loadFields()
+        setErrors([]);
+        loadFields();
     }, [props.objectTest])
 
     const loadFields = () => {
@@ -142,13 +143,14 @@ export const ValidationForm = (props: {
     return (
         <div>
             {getChidrens()}
-            {/* {props.children} */}
-            <Button
-                onClick={() => {
-                    onClickValidate()
-                }}
-                className={`${props.buttonClassName} validate-button`}
-                label={props.buttonLabel} />
+            {!props.hideButton ? (
+                <Button
+                    onClick={() => {
+                        onClickValidate()
+                    }}
+                    className={`${props.buttonClassName} validate-button`}
+                    label={props.buttonLabel} />
+            ) : null}
         </div>
     );
 }

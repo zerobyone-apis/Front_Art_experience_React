@@ -46,7 +46,9 @@ export const LeftMenu = () => {
                 />
               );
             })}
+            {/* dialog footer  */}
           </div>
+          <div />
         </DialogModal>
       )}
     </div>

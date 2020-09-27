@@ -1,5 +1,4 @@
 import React, { useState, useContext } from 'react';
-
 import { Button } from '../button/button';
 import { LoginForm } from './login-form/login-form';
 import { RegisterForm } from './register-form/register-form';
@@ -7,8 +6,10 @@ import { ThemeContext } from '../../contexts/ThemeContext';
 import './client-access.scss';
 import '../../styles/theme-buttons.scss';
 import '../../styles/effects.scss';
+
 export const ClientAccess = (props: {
-    onClientLogged: any
+    onClientLogged: any,
+    onCompleteFields: any
 }) => {
     const {
         // @ts-ignore
@@ -22,28 +23,30 @@ export const ClientAccess = (props: {
             {accessMode == 0 ?
                 (
                     <div className='form effect-slide_top'>
-                        <LoginForm onClientLogged={props.onClientLogged} />
-                        <p className={`text text-${getTheme()}`}>Si no estas registrado, ingresa AQUI</p>
-                        <Button
+                        {/* <LoginForm onClientLogged={props.onClientLogged} /> */}
+
+                        {/* <p className={`text text-${getTheme()}`}>Si no estas registrado, ingresa AQUI</p> */}
+                        {/* <Button
                             onClick={() => {
                                 setAccessMode(1);
                             }}
                             className="access_btn theme-button-outlined"
                             label="Registrate Aqui"
-                        />
+                        /> */}
                     </div>
                 ) :
                 (
                     <div className='form'>
-                        <RegisterForm onClientRegister={props.onClientLogged} />
-                        <p className={`text text-${getTheme()}`}>Si ya estas registrado accede AQUI</p>
-                        <Button
+                        {/* <RegisterForm onClientRegister={props.onClientLogged} /> */}
+
+                        {/* <p className={`text text-${getTheme()}`}>Si ya estas registrado accede AQUI</p> */}
+                        {/* <Button
                             onClick={() => {
                                 setAccessMode(0);
                             }}
                             className="access_btn theme-button-outlined"
                             label="Accede Aqui"
-                        />
+                        /> */}
                     </div>
                 )
             }

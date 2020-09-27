@@ -9,7 +9,8 @@ import './register-form.scss';
 import '../../../styles/theme-buttons.scss';
 
 export const RegisterForm = (props: {
-    onClientRegister: (response: any) => void
+    onClientRegister: (response: any) => void,
+    onCompeteFields: any
 }) => {
     const defaultRegisterFields = {
         name: '',

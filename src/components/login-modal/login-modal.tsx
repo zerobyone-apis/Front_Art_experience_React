@@ -15,21 +15,33 @@ import { ButtonContext } from '../../contexts/ButtonsContext';
 import { getPageName } from '../../utils/utils';
 import { INDEX_PAGE, DASHBOARD_PAGE } from '../../types/Pages.type';
 import { ThemeContext } from '../../contexts/ThemeContext';
-
+import { StepperFooter } from '../reserve-modal/stepper-footer';
 import './login-modal.scss';
 import '../../styles/effects.scss';
 import '../../styles/theme.scss';
 import '../../styles/theme-buttons.scss';
+import { LoginForm } from '../client-access/login-form/login-form';
+import { RegisterForm } from '../client-access/register-form/register-form';
+
 
 export const LoginModal = (props: {
   show?: boolean;
   onClose?: Dispatch<SetStateAction<boolean>>;
   onSuccessLogin?: any;
 }) => {
+
+
   const [showDialog, setShowDialog] = useState(props.show || false);
   const [showAccountMenu, setShowAccountMenu] = useState(false);
+  const [accessMode, setAccessMode] = useState(1);  /* 0: login 1: register */
+  const [validData, setValidData] = useState(false);
 
-  // context
+
+  const wrapperRef = useRef(null);
+  useOutsideAlerter(wrapperRef, setShowAccountMenu);
+
+
+  /* CONTEXTS */
   const {
     // @ts-ignore
     getTheme,
@@ -46,9 +58,14 @@ export const LoginModal = (props: {
     setDisabledButton,
   } = useContext(ButtonContext);
 
-  // control account menu
-  const wrapperRef = useRef(null);
-  useOutsideAlerter(wrapperRef, setShowAccountMenu);
+
+  const launchModal = () => {
+    if (userIsLogged()) {
+      setShowAccountMenu(true);
+    } else {
+      setShowDialog(true);
+    }
+  };
 
   const onClientLogged = (clientData: any) => {
     if (props.onSuccessLogin) {
@@ -59,14 +76,6 @@ export const LoginModal = (props: {
     }, 500);
   };
 
-  const launchModal = () => {
-    if (userIsLogged()) {
-      setShowAccountMenu(true);
-    } else {
-      setShowDialog(true);
-    }
-  };
-
   const logOut = () => {
     setDisabledButton(true);
     setUserData(null);
@@ -74,8 +83,12 @@ export const LoginModal = (props: {
     document.location.href = '/';
   };
 
+
   return (
     <div className="login-modal">
+
+
+      {/* ACTIVATOR DIALOG */}
       {!props.show ? (
         <div className="dialog_activator-box">
           <Button
@@ -94,6 +107,15 @@ export const LoginModal = (props: {
           />
         </div>
       ) : null}
+
+
+
+
+
+
+
+
+      {/* LOGIN MODAL */}
       {!showDialog ? null : (
         <DialogModal
           title="Inicio de Sesion - ArtExperience"
@@ -107,12 +129,36 @@ export const LoginModal = (props: {
             }
           }}
         >
-          <p className={`text text-${getTheme()}`}>
-            Acceda para poder reservar y disfrutar de nuestros servicios
-          </p>
-          <ClientAccess onClientLogged={onClientLogged} />
+          <div className="info-box effect-slide-top">
+            <p className={`text text-${getTheme()} info-message`}>
+              Acceda para poder reservar y disfrutar de nuestros servicios
+            </p>
+          </div>
+
+          {/* <ClientAccess
+            onClientLogged={onClientLogged}
+            onCompleteFields={setValidData}
+          /> */}
+
+          {accessMode ?
+            (<LoginForm onCompeteFields={setValidData} onClientLogged={props.onClientLogged} />) :
+            (<RegisterForm onCompeteFields={setValidData} onClientRegister={props.onClientLogged} />)}
+
+          <StepperFooter
+            nextButtonLabel={accessMode ? 'Acceder' : 'Registrarse'}
+            prevButtonLabel={accessMode ? 'Registrarse Aqui' : 'Ingresar Aqui'}
+            onNextButtonClick={() => validData ? true : null}
+            onPrevButtonClick={() => { }}
+          />
         </DialogModal>
       )}
+
+
+
+
+
+
+      {/* ACCOUNT MENU */}
       {showAccountMenu && userIsLogged() ? (
         <div
           className={`account-menu effect-opacity ${getTheme()}`}
