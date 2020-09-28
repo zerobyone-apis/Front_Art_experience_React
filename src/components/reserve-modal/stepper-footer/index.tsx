@@ -12,6 +12,7 @@ export const StepperFooter = (props: {
     prevButtonLabel?: string,
     nextButtonStyle?: string,
     prevButtonStyle?: string,
+    typeNextButton?: 'button' | 'submit' | 'reset',
     onNextButtonClick: () => void,
     onPrevButtonClick: () => void,
 }) => {
@@ -31,6 +32,7 @@ export const StepperFooter = (props: {
 
     const NextButton = () => {
         return <Button
+            type={props.typeNextButton}
             className={`${props.nextButtonStyle ? props.nextButtonStyle : 'theme-button'} footer-button confirm`}
             label={props.nextButtonLabel || 'finalize'}
             onClick={() => props.onNextButtonClick()}

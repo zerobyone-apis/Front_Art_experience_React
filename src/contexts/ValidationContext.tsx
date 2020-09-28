@@ -1,24 +1,23 @@
-import React, { useState, useEffect, ReactElement } from 'react';
-import { Button } from '../button/button';
-import { StepperFooter } from '../reserve-modal/stepper-footer';
-import './validation-form.scss';
+import React, {
+    createContext,
+    useState,
+    ReactElement,
+    useEffect,
+} from 'react';
 
-export const ValidationForm = (props: {
-    objectTest?: object,
+export const ValidationContext = createContext({
+    validate: () => undefined
+    // getBarbersList: () => undefined,
+    // setBarbersList: (barbersData: IBarber[]) => undefined,
+});
+
+export const ValidationProvider = (props: {
+    objectTest: object,
     equalFields?: { field1: string, field2: string, error: string }[],
-    children: React.ReactChild | React.ReactChild[],
-    buttonClassName?: string,
-    // buttonLabel: string,
-    hideButton?: boolean,
-    lastFieldUpdate?: string,
-    onValidationChange?: any,
-    //StepperFooter
-    prevButtonLabel: string,
-    nextButtonLabel: string,
-    onPrevButtonClick: any
-    onClick: () => void,
-    onChangeErrors?: () => undefined
+    formRef: string,
+    children: ReactElement | ReactElement[];
 }) => {
+
     const [fields, setFields] = useState([]);
     const [errors, setErrors] = useState([]);
     const [showErrors, setShowErrors] = useState(true);
@@ -27,14 +26,14 @@ export const ValidationForm = (props: {
         loadFields();
     }, [])
 
-    // useEffect(() => {
-    //     // props.onValidationChange(validate());
-    // }, [props.lastFieldUpdate])
-
     useEffect(() => {
         setErrors([]);
         loadFields();
     }, [props.objectTest])
+
+
+
+
 
     const loadFields = () => {
         let requiredFields = [];
@@ -45,6 +44,10 @@ export const ValidationForm = (props: {
         })
         setFields(requiredFields)
     }
+
+
+
+
 
     const ErrorLabel = (props: {
         value: string[],
@@ -64,7 +67,17 @@ export const ValidationForm = (props: {
         }
     };
 
+
+    const validateString = (value: string) => {
+        if (value === '') {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     const validate = () => {
+        console.log('validation start')
         let success: boolean = true;
         let errorsList = [];
         fields.forEach((field: { name: string, type: string }) => {
@@ -110,20 +123,14 @@ export const ValidationForm = (props: {
             });
         }
         setErrors(errorsList)
+        console.log(success)
         return success;
     }
 
-    const validateString = (value: string) => {
-        if (value === '') {
-            return false;
-        } else {
-            return true;
-        }
-    }
 
     const onClickValidate: any = () => {
         if (validate()) {
-            props.onClick();
+            // props.onClick();
         }
     }
 
@@ -150,26 +157,12 @@ export const ValidationForm = (props: {
         })
     }
 
-    return (
-        <div>
-            <div style={{ marginBottom: '20px' }}>
-                {getChidrens()}
-            </div>
-            {!props.hideButton ? (
-                // <Button
-                //     onClick={() => {
-                //         onClickValidate()
-                //     }}
-                //     className={`${props.buttonClassName} validate-button`}
-                //     label={props.buttonLabel} />
 
-                <StepperFooter
-                    nextButtonLabel={props.nextButtonLabel}
-                    prevButtonLabel={props.prevButtonLabel}
-                    onNextButtonClick={() => { onClickValidate() }}
-                    onPrevButtonClick={props.onPrevButtonClick}
-                />
-            ) : null}
-        </div>
+    const context = { /*methods*/ validate };
+
+    return (
+        <ValidationContext.Provider value={context}>
+            {props.children}
+        </ValidationContext.Provider>
     );
-}
+};

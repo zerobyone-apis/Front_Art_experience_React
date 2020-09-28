@@ -75,6 +75,7 @@
     "react-date-picker": "^8.0.1",
     "react-dom": "^16.13.1",
     "react-icons": "^3.10.0",
+    "react-inputs-validation": "^4.5.2",
     "react-screen-size": "^2.0.1",
     "store": "^2.0.12",
     "styled-components": "^5.1.1",

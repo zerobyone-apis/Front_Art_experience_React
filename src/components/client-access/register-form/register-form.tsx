@@ -9,8 +9,8 @@ import './register-form.scss';
 import '../../../styles/theme-buttons.scss';
 
 export const RegisterForm = (props: {
-    onClientRegister: (response: any) => void,
-    onCompeteFields: any
+    // onClientRegister: (response: any) => void,
+    // onCompeteFields: any
 }) => {
     const defaultRegisterFields = {
         name: '',
@@ -59,7 +59,7 @@ export const RegisterForm = (props: {
         const response = await clientActions.add(fields);
         if (response) {
             if (response.status == 201) {
-                props.onClientRegister(response);
+                // props.onClientRegister(response);
                 setUserData(response);
                 setMessage({ value: 'Registro realizado con exito', isError: false });
             } else {

@@ -1,17 +1,19 @@
-import React, { useContext, useState } from 'react';
+import React, { Dispatch, SetStateAction, useContext, useState } from 'react';
 
 import { ButtonContext } from '../../../contexts/ButtonsContext';
 import ClientActions from '../../../actions/Client.actions';
 import { TextField } from '../../text-field/text-field';
 import { UserContext } from '../../../contexts/UserContext';
 import { ValidationForm } from '../../validation-form/validation-form';
+import { StepperFooter } from '../../reserve-modal/stepper-footer';
 import './login-form.scss';
 import '../../../styles/theme-buttons.scss';
 
 export const LoginForm = (props: {
-  onClientLogged: (response: any) => void,
-  onCompeteFields: any
 }) => {
+
+  const [lastFieldUpdate, setLastFieldUpdate] = useState('');
+
   const defaultLoginFields = {
     email: '',
     password: '',
@@ -26,6 +28,8 @@ export const LoginForm = (props: {
   const [message, setMessage] = useState(baseMessage);
 
   const onChangeLoginField = (value: string, fieldName: string) => {
+    // validation on change field
+    setLastFieldUpdate(`${fieldName}:${value}`);
     setLoginFields({ ...loginFields, [fieldName]: value });
   };
 
@@ -51,7 +55,7 @@ export const LoginForm = (props: {
     setDisabledButton(true);
     const response = await clientActions.login(fields);
     if (response) {
-      props.onClientLogged(response);
+      // props.onClientLogged(response);
       setUserData({ ...response.data.user, ...response.data.client });
       setMessage({ value: 'Has iniciado sesion con exito', isError: false });
     } else {
@@ -65,10 +69,15 @@ export const LoginForm = (props: {
 
   return (
     <div className="login-box">
+      {message.isError ? (
+        <p className="error_message">{message.value}</p>
+      ) : (
+          <p className="success_message">{message.value}</p>
+        )}
       <ValidationForm
         objectTest={loginFields}
-        hideButton={true}
         buttonLabel="Acceder"
+        lastFieldUpdate={lastFieldUpdate}
         buttonClassName="access_btn theme-button-outlined"
         onClick={() => {
           login();
@@ -93,11 +102,6 @@ export const LoginForm = (props: {
           onChange={onChangeLoginField}
         />
       </ValidationForm>
-      {message.isError ? (
-        <p className="error_message">{message.value}</p>
-      ) : (
-          <p className="success_message">{message.value}</p>
-        )}
     </div>
   );
 };

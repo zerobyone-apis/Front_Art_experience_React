@@ -15,14 +15,10 @@ import { ButtonContext } from '../../contexts/ButtonsContext';
 import { getPageName } from '../../utils/utils';
 import { INDEX_PAGE, DASHBOARD_PAGE } from '../../types/Pages.type';
 import { ThemeContext } from '../../contexts/ThemeContext';
-import { StepperFooter } from '../reserve-modal/stepper-footer';
 import './login-modal.scss';
 import '../../styles/effects.scss';
 import '../../styles/theme.scss';
 import '../../styles/theme-buttons.scss';
-import { LoginForm } from '../client-access/login-form/login-form';
-import { RegisterForm } from '../client-access/register-form/register-form';
-
 
 export const LoginModal = (props: {
   show?: boolean;
@@ -33,9 +29,6 @@ export const LoginModal = (props: {
 
   const [showDialog, setShowDialog] = useState(props.show || false);
   const [showAccountMenu, setShowAccountMenu] = useState(false);
-  const [accessMode, setAccessMode] = useState(1);  /* 0: login 1: register */
-  const [validData, setValidData] = useState(false);
-
 
   const wrapperRef = useRef(null);
   useOutsideAlerter(wrapperRef, setShowAccountMenu);
@@ -118,7 +111,7 @@ export const LoginModal = (props: {
       {/* LOGIN MODAL */}
       {!showDialog ? null : (
         <DialogModal
-          title="Inicio de Sesion - ArtExperience"
+          title="Inicio de Sesion"
           className="login-dialog"
           width="65vw"
           height="65vh"
@@ -135,28 +128,10 @@ export const LoginModal = (props: {
             </p>
           </div>
 
-          {/* <ClientAccess
-            onClientLogged={onClientLogged}
-            onCompleteFields={setValidData}
-          /> */}
+          <ClientAccess onClientLogged={onClientLogged} />
 
-          {accessMode ?
-            (<LoginForm onCompeteFields={setValidData} onClientLogged={props.onClientLogged} />) :
-            (<RegisterForm onCompeteFields={setValidData} onClientRegister={props.onClientLogged} />)}
-
-          <StepperFooter
-            nextButtonLabel={accessMode ? 'Acceder' : 'Registrarse'}
-            prevButtonLabel={accessMode ? 'Registrarse Aqui' : 'Ingresar Aqui'}
-            onNextButtonClick={() => validData ? true : null}
-            onPrevButtonClick={() => { }}
-          />
         </DialogModal>
       )}
-
-
-
-
-
 
       {/* ACCOUNT MENU */}
       {showAccountMenu && userIsLogged() ? (

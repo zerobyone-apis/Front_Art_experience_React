@@ -1,3 +1,17 @@
+.login-box {
+  position: relative;
+  width: 100%;
+  height: max-content;
+
+  .success_message {
+    color: rgb(129, 235, 129);
+  }
+
+  .error_message {
+    color: rgb(235, 129, 129);
+  }
+}
+
 .client_info-box {
   position: relative;
   width: 100%;

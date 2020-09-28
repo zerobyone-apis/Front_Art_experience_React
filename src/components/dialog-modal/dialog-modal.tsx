@@ -34,7 +34,7 @@ export const DialogModal = (props: {
   return (
     <div className={`${props.className} dialog-box ${visible ? ' effect-opacity ' : ' effect-hide'}`}>
       <div className={`dialog-modal effect-opacity ${getTheme()}`}>
-        <div className={`header ${getTheme()}`}>
+        <div className={`header`}>
           <div
             onClick={() => { onClose() }}
             className="close_btn-box">
