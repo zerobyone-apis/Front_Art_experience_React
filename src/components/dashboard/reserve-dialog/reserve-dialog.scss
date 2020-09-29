@@ -1,17 +1,11 @@
-.reserve-dialog {
-    width: 100%;
+.reserve-modal {
+    display: flex;
+    align-items: center;
 
-    .reserve-modal {
-        position: relative;
-        margin: auto;
-        width: 600px;
-
+    .dialog-modal {
         .reserve_data-box {
             position: relative;
-            width: 80%;
             margin: auto;
-            height: max-content;
-            margin-top: 40px;
             text-align: center;
 
             .reserve_info {

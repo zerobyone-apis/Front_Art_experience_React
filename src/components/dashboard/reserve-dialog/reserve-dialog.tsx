@@ -93,7 +93,7 @@ export const ReserveDialog = (props: {
 
   return (
     <DialogModal
-      className="reserve-dialog"
+      className="reserve-modal"
       title="Control de Reserva"
       onClose={props.onClose}
     >
@@ -102,11 +102,10 @@ export const ReserveDialog = (props: {
           <p className="reserve_info effect-slide_left">Datos del Cliente</p>
           <ValidationForm
             objectTest={reserve}
-            buttonClassName="access_btn theme-button-outlined"
-            onClick={onUpdate}
-            nextButtonLabel='Acceder'
-            prevButtonLabel='Si no esta registrado, Acceda aqui'
-            onPrevButtonClick={'cancelar'}
+            onClick={() => setFinalizeDialog(true)}
+            onPrevButtonClick={() => setCancelDialog(true)}
+            nextButtonLabel='Finalizar Reserva'
+            prevButtonLabel='Cancelar Reserva'
           >
             <TextField
               value={reserve.nameClient}
@@ -178,13 +177,13 @@ export const ReserveDialog = (props: {
         </div>
       </div>
 
-      <StepperFooter
+      {/* <StepperFooter
         nextButtonLabel="Finalizar Reserva"
         prevButtonLabel="Cancelar Reserva"
         nextButtonStyle="theme-button-outlined"
         onNextButtonClick={() => setFinalizeDialog(true)}
         onPrevButtonClick={() => setCancelDialog(true)}
-      />
+      /> */}
 
       {
         showFinalizeDialog ? (
