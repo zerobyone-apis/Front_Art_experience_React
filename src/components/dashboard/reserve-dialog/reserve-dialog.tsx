@@ -7,10 +7,10 @@ import { TextField } from '../../text-field/text-field';
 import { ButtonContext } from '../../../contexts/ButtonsContext';
 import moment from 'moment';
 import { StepperFooter } from '../../reserve-modal/stepper-footer';
+import { ConfirmDialog } from '../../confirm-dialog';
 import './reserve-dialog.scss';
 import '../../../styles/theme-buttons.scss';
 import '../../../styles/effects.scss';
-import { ConfirmDialog } from '../../confirm-dialog';
 
 export const ReserveDialog = (props: {
   reserve: IReserve,
@@ -102,9 +102,11 @@ export const ReserveDialog = (props: {
           <p className="reserve_info effect-slide_left">Datos del Cliente</p>
           <ValidationForm
             objectTest={reserve}
-            buttonLabel="Guardar Cambios"
             buttonClassName="access_btn theme-button-outlined"
             onClick={onUpdate}
+            nextButtonLabel='Acceder'
+            prevButtonLabel='Si no esta registrado, Acceda aqui'
+            onPrevButtonClick={'cancelar'}
           >
             <TextField
               value={reserve.nameClient}
