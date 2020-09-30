@@ -1,82 +1,95 @@
 // eslint-disable-next-line no-unused-vars
 import React, { ChangeEvent, useState, useEffect, useContext } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { ThemeContext } from '../../contexts/ThemeContext';
 import * as Icons from '@fortawesome/free-solid-svg-icons';
+import { createStyles, FormControl, InputLabel, makeStyles, TextField, withStyles } from '@material-ui/core';
+import { fade, Theme } from '@material-ui/core/styles';
+import { customTheme } from '../../theme';
+import InputBase from '@material-ui/core/InputBase';
+import { ThemeContext } from '../../contexts/ThemeContext';
 import './text-field.scss';
 
-export const TextField = (props: {
-  value?: any;
-  onChange?: (value: string, name: string | undefined) => void;
-  name: string;
-  type?: string;
-  label?: string;
-  hint?: string;
-  error?: string;
-  defaultValue?: string;
-  result?: string;
-  icon?: string;
-  tabIndex?: number;
-  iconColor?: string;
-  required?: boolean;
-  className?: string;
-  disabled?: boolean;
-  tabindex?: number;
+export const Textfield = (props: {
+  label: string,
+  value: string,
+  name: string,
+  onChange: any
 }) => {
+
+  const [value, setValue] = useState(props.value || '');
+
+  /* STYLE */
+
   const {
     // @ts-ignore
     getTheme,
   } = useContext(ThemeContext);
 
-  const [value, setValue] = useState(props.value || '');
-  const [error, setError] = useState(props.error);
-  useEffect(() => {
-    setError(props.error);
-  }, [props.error])
+  const CustomTextField = withStyles((theme: Theme) =>
+    createStyles({
+      input: {
+        borderRadius: customTheme.borderRadius,
+        position: 'relative',
+        backgroundColor: customTheme.pallette[getTheme()],
+        border: `1px solid ${customTheme.pallette.secondary}`,
+        fontSize: customTheme.text.fontSize.text,
+        width: 'auto',
+        padding: '5px 12px',
+        transition: theme.transitions.create(['border-color', 'box-shadow']),
+        color: customTheme.text.color[getTheme()],
+        fontFamily: customTheme.text.fontFamily.join(','),
+        '&:focus': {
+          boxShadow: `${fade(customTheme.pallette.primary, 0.25)} 0 0 0 0.2rem`,
+          borderColor: customTheme.pallette.primary,
+        },
+      },
+    }),
+  )(InputBase);
 
-  const changeValue = ({ target: { value, name } }: ChangeEvent<HTMLInputElement>) => {
+  const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+      margin: {
+        margin: theme.spacing(2),
+        paddingTop: theme.spacing(3)
+      },
+      root: {
+        '& label': {
+          color: customTheme.text.color.dark
+        },
+        '& label.Mui-focused': {
+          color: customTheme.pallette.secondary,
+        },
+      }
+    }),
+  );
+
+  const classes = useStyles();
+
+
+
+
+
+  /* FUNCTIONS */
+
+  const onChangeValue = ({ target: { value, name } }: ChangeEvent<HTMLInputElement>) => {
     setValue(value);
     props.onChange(value, name);
   }
 
-  const ErrorLabel = (props: {
-    value: string;
-  }) => {
-    if (props.value) {
-      return (
-        <div>
-          <label className="error-label">{props.value}</label>;
-        </div>
-      )
-    } else {
-      return null;
-    }
-  };
+
+
+
   return (
-    <div className={`${props.className || ''} text-field_${getTheme()} text-field`}>
-      <label className="label art_experience-text-dark">{props.label}</label>
-      <div className={`input-box ${props.disabled ? 'disabled' : ''}`}>
-        <label className="hint-label art_experience-text-dark">{props.hint}</label>
-        <input
-          tabIndex={props.tabIndex}
+    <form className={classes.root} noValidate>
+      <FormControl className={classes.margin}>
+        <InputLabel shrink htmlFor="input">
+          {props.label}
+        </InputLabel>
+        <CustomTextField
+          id="input"
           name={props.name}
-          type={props.type || 'string'}
-          required={props.required}
-          disabled={props.disabled}
-          value={value}
-          autoFocus
-          onChange={changeValue}
-        />
-        {
-          props.icon && !value ? (
-            <FontAwesomeIcon
-              color={props.iconColor || 'grey'}
-              icon={Icons[props.icon]}
-              className="text_field-icon" />
-          ) : null
-        }
-      </div>
-      <ErrorLabel value={props.error} />
-    </div>
-  );
-};
+          value={props.value}
+          onChange={onChangeValue} />
+      </FormControl>
+    </form>
+  )
+}

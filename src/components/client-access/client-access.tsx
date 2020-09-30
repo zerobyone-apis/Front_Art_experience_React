@@ -1,17 +1,16 @@
 import React, { useState, useContext, Fragment } from 'react';
 import { ThemeContext } from '../../contexts/ThemeContext';
-import { TextField } from '../text-field/text-field';
 import { ButtonContext } from '../../contexts/ButtonsContext';
 import { UserContext } from '../../contexts/UserContext';
 import { ValidationForm } from '../validation-form/validation-form';
 import { IClient } from '../../types/Client.type';
 import ClientActions from '../../actions/Client.actions';
-import Checkbox from '@material-ui/core/Checkbox';
+import { Checkbox } from '@material-ui/core';
+import { Textfield } from '../text-field/text-field';
+import { FormControlLabel } from '@material-ui/core';
 import './client-access.scss';
 import '../../styles/theme-buttons.scss';
 import '../../styles/effects.scss';
-import { FormControlLabel } from '@material-ui/core';
-import { stringify } from 'querystring';
 
 export const ClientAccess = (props: {
     onClientLogged: any
@@ -23,7 +22,7 @@ export const ClientAccess = (props: {
     const defaultRegisterFields = {
         name: '',
         email: '',
-        socialNumer: '',
+        socialNumber: '',
         password: '',
         password2: '',
         cel: '',
@@ -134,12 +133,14 @@ export const ClientAccess = (props: {
                     className="social-form-control-label"
                 />
                 {socialChecked ? (
-                    <TextField
-                        value={registerFields.socialNumer}
-                        name="socialNumber"
-                        required={true}
-                        label="Numero Social"
-                        onChange={onChangeRegisterField} />
+                    <div>
+                        <Textfield
+                            label={`Numero Social`}
+                            name="socialNumber"
+                            value={registerFields.socialNumber}
+                            onChange={onChangeRegisterField}
+                        />
+                    </div>
                 ) : null}
             </div>
         )
@@ -159,7 +160,7 @@ export const ClientAccess = (props: {
                 prevButtonLabel='Si no esta registrado, Acceda aqui'
                 onPrevButtonClick={() => setAccessMode(0)}
             >
-                <TextField
+                {/* <TextField
                     tabindex={1}
                     value={loginFields.email}
                     name="email"
@@ -178,7 +179,8 @@ export const ClientAccess = (props: {
                     label="Contraseña"
                     className="theme-text_field--dark"
                     onChange={onChangeLoginField}
-                />
+                /> */}
+                <div></div>
             </ValidationForm>
         )
     }
@@ -195,7 +197,7 @@ export const ClientAccess = (props: {
         return (
             <Fragment>
                 <SocialBox />
-                <ValidationForm
+                {/* <ValidationForm
                     objectTest={registerFields}
                     buttonClassName="access_btn theme-button-outlined"
                     equalFields={[
@@ -249,7 +251,7 @@ export const ClientAccess = (props: {
                         label="Repita Contraseña"
                         className="theme-text_field--dark"
                         onChange={onChangeRegisterField} />
-                </ ValidationForm>
+                </ ValidationForm> */}
             </Fragment>
         )
     }
