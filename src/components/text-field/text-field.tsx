@@ -21,6 +21,7 @@ export const TextField = (props: {
   required?: boolean;
   className?: string;
   disabled?: boolean;
+  tabindex?: number;
 }) => {
   const {
     // @ts-ignore
