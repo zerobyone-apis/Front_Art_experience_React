@@ -50,9 +50,9 @@ const IndexPage = () => {
     coursesTitle: 'Nuestros Cursos',
     courses: 'Ofrecemos Cursos para Aumentaran su Experiencia',
     contactUsTitle: 'Contactenos',
-    contactUs: `Por cualquier tipo de informacion por cursos o productos busquenos en nuestras redes sociales or dejenos un mail.
-                Recuerda que nuestro horario de atencion es de L a S de 10:00 hr am - 19:00 hr pm 
-                \nPuedes dejarnos un correo electronico o si lo prefieres un mensaje en algunas de nuestras redes sociales.
+    contactUs: ` Por cualquier tipo de informacion sobre cursos o productos, busquenos en nuestras redes sociales o dejenos un email.
+                Recuerda que nuestro horario de atención es de Lunes a Sabados a partir de 10:00 hrs - 19:00 hrs 
+                Puedes dejarnos un correo electronico o si lo prefieres un mensaje en algunas de nuestras redes sociales 
                 A la brevedad alguien del equipo de Art lo atenderá.`,
   };
   const services = [
@@ -279,6 +279,7 @@ const IndexPage = () => {
             subTitle={pageInfo.contactUs}
           />
           <div id="contact" />
+
           <HomeFooter
             title={pageInfo.contactUsTitle}
             subtitle={pageInfo.contactUs}

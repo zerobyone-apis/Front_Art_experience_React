@@ -13,6 +13,7 @@ import { IReserve } from '../types/Reserve.type';
 export default class ReserveActions {
   private backend: IntegrationBackend = new IntegrationBackend();
 
+  //* Add reserve method
   public async add(reserve: IReserve) {
     //console.log('Accede Reserve Actions', reserve);
     try {
@@ -32,7 +33,7 @@ export default class ReserveActions {
       return new ResultObject(404, error.message, {});
     }
   }
-
+  //* Get reserve method
   public async getAll() {
     try {
       const response: any = await this.backend.send(
@@ -40,14 +41,17 @@ export default class ReserveActions {
         undefined,
         `${RESERVE_ROUTE}`
       );
-      //console.log(response.data);
-      return response.data; //[...response.data, ...response.data];
+      if (response.status !== 200) {
+        //console.log(response.message);
+        throw Error(response.message);
+      }
+      return response.data;
     } catch (error) {
-      console.error('Error Reserve.actions method add -> ', error.message);
+      console.error('Error Reserve.actions method get all -> ', error.message);
       return null;
     }
   }
-
+  //* Update reserve method
   public async update(reserve: IReserve) {
     /*
     Example of Reserve OBJ TO UPDATE:
@@ -80,7 +84,7 @@ export default class ReserveActions {
       return new ResultObject(404, error.message, {});
     }
   }
-
+  //* Complete reserve method
   public async doneReserve(barberId: number, reserveId: number) {
     /**
      * URL TO DONE RESERVE: /barber/{id_barber}/isdone/{id_reserve}
@@ -105,7 +109,7 @@ export default class ReserveActions {
       return new ResultObject(404, error.message, {});
     }
   }
-
+  //* Cancel reserve method
   public async cancel(clientId: number, reserveId: number) {
     /*
         URL TO CANCEL:  /reserve/client/${clientId}/cancel/${reserveId}

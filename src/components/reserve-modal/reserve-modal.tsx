@@ -127,6 +127,7 @@ export const ReserveModal = (props: { className?: string }) => {
     const newReserve: IReserve = {
       barberOrHairdresserId: selectedBarber.barberId,
       clientId: getUserData().clientId,
+      socialNumber: getUserData().socialNumber,
       nameClient: getUserData().username,
       mailClient: getUserData().email,
       celClient: getUserData().cel || '0000',

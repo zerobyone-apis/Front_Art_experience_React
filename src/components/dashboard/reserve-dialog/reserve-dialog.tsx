@@ -12,11 +12,11 @@ import '../../../styles/theme-buttons.scss';
 import '../../../styles/effects.scss';
 
 export const ReserveDialog = (props: {
-  reserve: IReserve,
-  onClose: any,
-  onFinalized?: () => undefined,
-  onCancelled?: () => undefined,
-  onUpdated?: () => undefined,
+  reserve: IReserve;
+  onClose: any;
+  onFinalized?: () => undefined;
+  onCancelled?: () => undefined;
+  onUpdated?: () => undefined;
 }) => {
   const baseReserve: IReserve = {
     barberOrHairdresserId: -1,
@@ -27,6 +27,7 @@ export const ReserveDialog = (props: {
     priceWork: 0,
     startTime: '',
     additionalCost: 0,
+    socialNumber: 0,
   };
   const {
     // @ts-ignore
@@ -43,106 +44,53 @@ export const ReserveDialog = (props: {
     title: '',
     message: '',
     onAccept: () => undefined,
-    onCancel: () => undefined
-  })
+    onCancel: () => undefined,
+  });
 
   const [reserve, setReserve] = useState(props.reserve || baseReserve);
   const [updated, setUpdated] = useState(false);
-
-  // const response = await reserveActions.update(reserveUpdate);
 
   const onChangeReserve = (value: string, fieldName: string) => {
     setReserve({ ...reserve, [fieldName]: value });
   };
 
-
-  /* UPDATE RESERVE */
-  const onUpdate = async () => {
-    setDisabledButton(true);
-    let formatDate = moment(reserve.startTime).format('YYYY-MM-DDTHH:mm:ss');
-    //console.log('Format date -> to Update', formatDate);
-    let reserveUpdate: IReserve = {
-      reserveId: reserve.reserveId,
-      nameClient: reserve.nameClient,
-      barberOrHairdresserId: reserve.barberOrHairdresserId,
-      clientId: reserve.clientId,
-      celClient: reserve.celClient,
-      mailClient: reserve.mailClient,
-      workToDo: reserve.workToDo,
-      priceWork: reserve.priceWork,
-      additionalCost: reserve.additionalCost,
-      startTime: formatDate,
-    };
-
-    // if (response) {
-    //   setUpdated(true);
-    //   setDisabledButton(false);
-    // }
-  };
-
-
-  /* FINALIZE RESERVE */
-  const finalizeReserve = async () => {
-    setDisabledButton(true);
-    let response = await reserveActions.doneReserve(reserve.barberOrHairdresserId, reserve.reserveId);
-    console.log('finalized')
-    if (response) {
-      console.log('success finalize')
-      props.onFinalized();
-      props.onClose();
-      setDisabledButton(false);
-    } else {
-      console.log('error', response)
-    }
-  }
-
-
-  /* CANCEL RESERVE */
-  const cancelReserve = async () => {
-    setDisabledButton(true);
-    let response = await reserveActions.cancel(reserve.barberOrHairdresserId, reserve.reserveId);
-    console.log('cancel')
-    if (response) {
-      console.log('success cancel')
-      props.onCancelled();
-      props.onClose();
-      setDisabledButton(false);
-    } else {
-      console.log('error', response)
-    }
-  }
-
   const ConfirmDialog = (props: {
-    onAccept: () => undefined,
-    onCancel: () => void,
-    title: string,
-    message: string
+    onAccept: () => undefined;
+    onCancel: () => void;
+    title: string;
+    message: string;
   }) => {
-    return <DialogModal
-      className="confirm-dialog"
-      title={props.title}
-      showModal={showConfirmDialog}
-      onClose={() => { props.onCancel() }}
-    >
-      <div className="reserve-modal">
-        <div className="reserve_data-box">
-          <p className="reserve_info effect-slide_left">{props.message}</p>
-          <Button
-            className="footer-button theme-button-outlined"
-            label="Realizar Accion"
-            onClick={() => { props.onAccept }}
-          />
-          <Button
-            className="footer-button theme-button-outlined"
-            label="Cancelar"
-            onClick={() => { props.onCancel }}
-          />
+    return (
+      <DialogModal
+        className="confirm-dialog"
+        title={props.title}
+        showModal={showConfirmDialog}
+        onClose={() => {
+          props.onCancel();
+        }}
+      >
+        <div className="reserve-modal">
+          <div className="reserve_data-box">
+            <p className="reserve_info effect-slide_left">{props.message}</p>
+            <Button
+              className="footer-button theme-button-outlined"
+              label="Realizar Accion"
+              onClick={() => {
+                props.onAccept;
+              }}
+            />
+            <Button
+              className="footer-button theme-button-outlined"
+              label="Cancelar"
+              onClick={() => {
+                props.onCancel;
+              }}
+            />
+          </div>
         </div>
-      </div>
-    </DialogModal>
-  }
-
-
+      </DialogModal>
+    );
+  };
 
   return (
     <DialogModal
@@ -242,21 +190,23 @@ export const ReserveDialog = (props: {
           <Button
             className="footer-button theme-button-outlined"
             label="Cancelar Reserva"
-            onClick={() => { cancelReserve() }}
+            onClick={() => {
+              setShowConfirmDialog(true);
+            }}
           />
         </div>
       </div>
 
-      {
-        showConfirmDialog ? (
-          <ConfirmDialog
-            title={confirmDialogData.title}
-            message={confirmDialogData.message}
-            onAccept={confirmDialogData.onAccept()}
-            onCancel={() => { setShowConfirmDialog(false) }}
-          />
-        ) : null
-      }
+      {showConfirmDialog ? (
+        <ConfirmDialog
+          title={confirmDialogData.title}
+          message={confirmDialogData.message}
+          onAccept={confirmDialogData.onAccept()}
+          onCancel={() => {
+            setShowConfirmDialog(false);
+          }}
+        />
+      ) : null}
     </DialogModal>
   );
 };
