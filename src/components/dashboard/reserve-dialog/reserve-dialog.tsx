@@ -16,7 +16,7 @@ export const ReserveDialog = (props: {
   onClose: any;
   onFinalized?: () => undefined;
   onCancelled?: () => undefined;
-  onUpdated?: () => undefined;
+  updated?: () => undefined;
 }) => {
   const baseReserve: IReserve = {
     barberOrHairdresserId: -1,
@@ -106,7 +106,7 @@ export const ReserveDialog = (props: {
             objectTest={reserve}
             buttonLabel="Guardar Cambios"
             buttonClassName="access_btn theme-button-outlined"
-            onClick={onUpdate}
+            onClick={props.updated}
           >
             <TextField
               value={reserve.nameClient}

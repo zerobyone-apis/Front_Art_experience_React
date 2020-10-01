@@ -6,7 +6,7 @@ export interface IClient {
   username: string;
   password: string;
   password2?: string;
-  socailNumber: number;
+  socailNumber?: number;
   email: string;
   cel: string;
 

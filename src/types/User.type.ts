@@ -8,7 +8,7 @@ export interface IUser {
   createOn: string;
   admin: boolean;
   userId: number;
-  socialNumber: number;
+  socialNumber?: number;
   barberId: number;
   status: boolean;
 }

@@ -7,7 +7,7 @@ export interface IReserve {
   barberName?: string;
   mailClient: string;
   celClient: string;
-  socialNumber: number;
+  socialNumber?: number;
 
   startTime: string; //Reserve Time dd/mm/yyyy HH:MM:SS - Java Instant time
   startTimeFront?: string;

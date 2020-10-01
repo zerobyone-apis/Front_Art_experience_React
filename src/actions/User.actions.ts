@@ -44,7 +44,7 @@ export default class UserActions {
         barberId: user.barberId,
         createOn: user.createOn,
         fullName: user.fullName,
-        socialNumber: user.socialNumber ? user.socialNumber : null,
+        socialNumber: user.socialNumber ? user.socialNumber : undefined,
         status: user.status,
         userId: user.userId,
       };
