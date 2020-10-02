@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import React, { ChangeEvent, useState, useEffect, useContext } from 'react';
+import React, { ChangeEvent, useState, useEffect, useContext, RefObject, ReactElement } from 'react';
 import * as Icons from '@fortawesome/free-solid-svg-icons';
 import { createStyles, FormControl, InputLabel, makeStyles, TextField, withStyles } from '@material-ui/core';
 import { fade, Theme } from '@material-ui/core/styles';
@@ -7,15 +7,17 @@ import { customTheme } from '../../theme';
 import InputBase from '@material-ui/core/InputBase';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import './text-field.scss';
+import { FieldElement } from 'react-hook-form';
 
 export const Textfield = (props: {
+  id: string,
   label: string,
-  value: string,
   name: string,
-  onChange: any
+  inputRef: any,
+  children?: ReactElement
 }) => {
 
-  const [value, setValue] = useState(props.value || '');
+  // const [value, setValue] = useState(props.value || '');
 
   /* STYLE */
 
@@ -48,10 +50,11 @@ export const Textfield = (props: {
   const useStyles = makeStyles((theme: Theme) =>
     createStyles({
       margin: {
-        margin: theme.spacing(2),
+        // margin: theme.spacing(2),
         paddingTop: theme.spacing(3)
       },
       root: {
+        margin: 'auto',
         '& label': {
           color: customTheme.text.color.dark
         },
@@ -64,32 +67,18 @@ export const Textfield = (props: {
 
   const classes = useStyles();
 
-
-
-
-
-  /* FUNCTIONS */
-
-  const onChangeValue = ({ target: { value, name } }: ChangeEvent<HTMLInputElement>) => {
-    setValue(value);
-    props.onChange(value, name);
-  }
-
-
-
-
   return (
-    <form className={classes.root} noValidate>
-      <FormControl className={classes.margin}>
-        <InputLabel shrink htmlFor="input">
+    <FormControl className={classes.margin}>
+      <div className={classes.root}>
+        <InputLabel shrink htmlFor={props.id}>
           {props.label}
         </InputLabel>
-        <CustomTextField
-          id="input"
-          name={props.name}
-          value={props.value}
-          onChange={onChangeValue} />
-      </FormControl>
-    </form>
+      </div>
+      <CustomTextField
+        id={props.id}
+        name={props.name}
+        inputRef={props.inputRef}
+      />
+    </FormControl>
   )
 }

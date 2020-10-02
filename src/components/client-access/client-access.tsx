@@ -6,11 +6,17 @@ import { ValidationForm } from '../validation-form/validation-form';
 import { IClient } from '../../types/Client.type';
 import ClientActions from '../../actions/Client.actions';
 import { Checkbox } from '@material-ui/core';
-import { Textfield } from '../text-field/text-field';
 import { FormControlLabel } from '@material-ui/core';
+import { useForm } from 'react-hook-form';
+import { Textfield } from '../text-field/text-field';
 import './client-access.scss';
 import '../../styles/theme-buttons.scss';
 import '../../styles/effects.scss';
+import { StepperFooter } from '../reserve-modal/stepper-footer';
+
+
+
+
 
 export const ClientAccess = (props: {
     onClientLogged: any
@@ -86,7 +92,7 @@ export const ClientAccess = (props: {
     };
 
     /* REGISTER */
-    const register = async () => {
+    const signUp = async () => {
         setMessage({ value: '', isError: false }); //clear
         const fields: IClient = {
             username: registerFields.name,
@@ -117,38 +123,52 @@ export const ClientAccess = (props: {
 
 
 
+
+    /////////////////////////////////////////////////////
+    const { register, handleSubmit, control, errors } = useForm();
+    const onSubmit = values => console.log(values)
+
     const SocialBox = () => {
         const [socialChecked, setSocialChecked] = useState(false);
         return (
             <div className="social-box">
-                <FormControlLabel
-                    control={
-                        <Checkbox
-                            onChange={
-                                (e: React.ChangeEvent<HTMLInputElement>) => {
-                                    setSocialChecked(e.target.checked)
-                                }}
-                        />}
-                    label="Soy Socio de ArtExperience"
-                    className="social-form-control-label"
-                />
-                {socialChecked ? (
-                    <div>
-                        <Textfield
-                            label={`Numero Social`}
-                            name="socialNumber"
-                            value={registerFields.socialNumber}
-                            onChange={onChangeRegisterField}
+                <li>
+                    <ul>
+                        <FormControlLabel
+                            label="Soy Socio de ArtExperience"
+                            className="social-form-control-label"
+                            control={
+                                <Checkbox
+                                    onChange={
+                                        (e: React.ChangeEvent<HTMLInputElement>) => {
+                                            setSocialChecked(e.target.checked)
+                                        }}
+                                />}
                         />
-                    </div>
-                ) : null}
+                    </ul>
+                    <ul>
+                        <SocialForm show={socialChecked} />
+                    </ul>
+                </li>
             </div>
         )
     }
 
 
-
-
+    const SocialForm = (props: { show: boolean }) => {
+        return (
+            <>
+                {props.show && (
+                    <Textfield
+                        id="socialNumber"
+                        name="socialNumber"
+                        label="Numero Social"
+                        inputRef={register({ required: true })}
+                    />
+                )}
+            </>
+        );
+    }
 
     const LoginForm = () => {
         return (
@@ -186,83 +206,78 @@ export const ClientAccess = (props: {
     }
 
 
-
-
-
-
-
-
-
     const RegisterForm = () => {
         return (
             <Fragment>
-                <SocialBox />
-                {/* <ValidationForm
-                    objectTest={registerFields}
-                    buttonClassName="access_btn theme-button-outlined"
-                    equalFields={[
-                        { field1: 'password', field2: 'password2', error: 'Las contraseñas no coinciden' }]}
-                    onClick={() => register()}
-                    nextButtonLabel='Registrarse'
-                    prevButtonLabel='Si ya estas registrado, Acceda aqui'
-                    onPrevButtonClick={() => setAccessMode(1)}
-                >
-                    <TextField
-                        tabindex={1}
-                        value={registerFields.name}
-                        name="name"
-                        required={true}
-                        label="Nombre"
-                        className="theme-text_field--dark"
-                        onChange={onChangeRegisterField} />
-                    <TextField
-                        tabindex={2}
-                        value={registerFields.email}
-                        name="email"
-                        type="email"
-                        required={true}
-                        label="Email"
-                        className="theme-text_field--dark"
-                        onChange={onChangeRegisterField} />
-                    <TextField
-                        tabindex={3}
-                        value={registerFields.cel}
-                        name="cel"
-                        type="number"
-                        required={true}
-                        label="Celular / Telefono"
-                        className="theme-text_field--dark"
-                        onChange={onChangeRegisterField} />
-                    <TextField
-                        tabindex={4}
-                        value={registerFields.password}
-                        name="password"
-                        type="password"
-                        required={true}
-                        label="Contraseña"
-                        className="theme-text_field--dark"
-                        onChange={onChangeRegisterField} />
-                    <TextField
-                        tabindex={5}
-                        value={registerFields.password2}
-                        name="password2"
-                        type="password"
-                        required={true}
-                        label="Repita Contraseña"
-                        className="theme-text_field--dark"
-                        onChange={onChangeRegisterField} />
-                </ ValidationForm> */}
+                <form onSubmit={handleSubmit(onSubmit)} >
+                    <li style={{ listStyle: 'none' }}>
+                        <ul>
+                            <SocialBox />
+                        </ul>
+                        <ul>
+                            <Textfield
+                                id="name"
+                                name="name"
+                                label="Nombre"
+                                inputRef={register({ required: true })}
+                            />
+                        </ul>
+                        <ul>
+                            <Textfield
+                                id="email"
+                                name="email"
+                                label="Email"
+                                inputRef={register({
+                                    required: true,
+                                    pattern: {
+                                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                                        message: "El email no es valido"
+                                    }
+                                })}
+                            />
+                        </ul>
+                        <ul>
+                            <Textfield
+                                id="cel"
+                                name="cel"
+                                label="Celular / Telefono"
+                                inputRef={register({ required: true })}
+                            />
+                        </ul>
+                        <ul>
+                            <Textfield
+                                id="password"
+                                name="password"
+                                label="Contraseña"
+                                inputRef={register({ required: true })}
+                            />
+                        </ul>
+                        <ul>
+                            <Textfield
+                                id="repitPassword"
+                                name="repitPassword"
+                                label="Repita Contraseña"
+                                inputRef={register({ required: true })}
+                            />
+                        </ul>
+                    </li>
+                    <StepperFooter
+                        nextButtonLabel="Registrarse"
+                        prevButtonLabel="Si ya esta registrado, inicie aqui"
+                        onNextButtonClick={() => { }}
+                        onPrevButtonClick={() => { }}
+                    />
+                </form>
             </Fragment>
         )
     }
 
     return (
         <div className="login-box">
-            {message.isError ? (
-                <p className="error_message">{message.value}</p>
-            ) : (
-                    <p className="success_message">{message.value}</p>
-                )}
+            {
+                message.isError ? (<p className="error_message">{message.value}</p>) :
+                    (<p className="success_message">{message.value}</p>)
+            }
             {accessMode ? (<LoginForm />) : (<RegisterForm />)}
         </div>
     );
