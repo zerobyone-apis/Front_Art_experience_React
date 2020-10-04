@@ -5,9 +5,11 @@ export interface IClient {
     name: string;
     username: string;
     password: string;
-    password2?: string;
+    repeatPassword?: string;
     email: string;
     cel: string;
+
+    socialNumber: string;
 
     startDate?: string; // dd/mm/yyyy HH:MM:SS - Java Instant time
     endDate?: string; // dd/mm/yyyy HH:MM:SS - Java Instant time

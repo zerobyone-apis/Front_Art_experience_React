@@ -4,21 +4,16 @@ import { ButtonContext } from '../../contexts/ButtonsContext';
 import { UserContext } from '../../contexts/UserContext';
 import { ValidationForm } from '../validation-form/validation-form';
 import { IClient } from '../../types/Client.type';
-import ClientActions from '../../actions/Client.actions';
-import { Button, Checkbox } from '@material-ui/core';
+import { Checkbox } from '@material-ui/core';
 import { FormControlLabel } from '@material-ui/core';
 import { useForm } from 'react-hook-form';
 import { Textfield } from '../text-field/text-field';
+import { StepperFooter } from '../reserve-modal/stepper-footer';
+import { FormContext, FormProvider } from '../../contexts/FormContext';
+import ClientActions from '../../actions/Client.actions';
 import './client-access.scss';
 import '../../styles/theme-buttons.scss';
 import '../../styles/effects.scss';
-import { StepperFooter } from '../reserve-modal/stepper-footer';
-import { FormContext, FormProvider } from '../../contexts/FormContext';
-
-import { ConfirmDialog } from '../confirm-dialog'
-
-
-
 
 export const ClientAccess = (props: {
     onClientLogged: any
@@ -41,16 +36,15 @@ export const ClientAccess = (props: {
     };
 
     const [accessMode, setAccessMode] = useState(1); // 1 - Login / 0 - register
-    const [loginFields, setLoginFields] = useState(defaultLoginFields);
-    const [registerFields, setRegisterFields] = useState(defaultRegisterFields);
     const [message, setMessage] = useState(baseMessage);
-    const [showErrorDialog, setShowErrorDialog] = useState(false);
-    // const [fieldsErrors, setFieldsErrors] = useState({});
+
+    useEffect(() => {
+        setMessage({ value: '', isError: false })
+    }, [accessMode])
 
     const clientActions: ClientActions = new ClientActions();
 
     /* CONTEXTS */
-
     const {
         // @ts-ignore
         getTheme,
@@ -65,22 +59,12 @@ export const ClientAccess = (props: {
         setUserData,
     } = useContext(UserContext);
 
-
-    const onChangeLoginField = (value: string, fieldName: string) => {
-        setLoginFields({ ...loginFields, [fieldName]: value });
-    };
-
-    const handleChangeRegisterForm = (name, value) => {
-        setRegisterFields({ ...registerFields, [name]: value });
-    }
-
-
     /* LOGIN */
-    const login = async () => {
+    const login = async (loginFields?: any) => {
         setMessage({ value: '', isError: false }); //clear
         const fields = {
-            email: loginFields.email,
-            password: loginFields.password,
+            email: loginFields.email.value,
+            password: loginFields.password.value,
         };
         setDisabledButton(true);
         const response = await clientActions.login(fields);
@@ -98,15 +82,17 @@ export const ClientAccess = (props: {
     };
 
     /* REGISTER */
-    const signUp = async () => {
+    const signUp = async (regFelds: any) => {
         setMessage({ value: '', isError: false }); //clear
         const fields: IClient = {
-            username: registerFields.name,
-            cel: registerFields.cel,
-            email: registerFields.email,
-            name: registerFields.name,
-            password: registerFields.password,
-            password2: registerFields.repeatPassword
+            username: regFelds.name.value,
+            cel: regFelds.cel.value,
+            email: regFelds.email.value,
+            name: regFelds.name.value,
+            password: regFelds.password.value,
+            repeatPassword: regFelds.repeatPassword.value,
+            // ADD socialNumber
+            socialNumber: (regFelds.socialNumber ? regFelds.socialNumber.value : undefined),
         }
         setDisabledButton(true);
         const response = await clientActions.add(fields);
@@ -125,14 +111,6 @@ export const ClientAccess = (props: {
         setDisabledButton(false);
     }
 
-
-
-
-
-
-    /////////////////////////////////////////////////////
-    const { register, handleSubmit, control, errors } = useForm();
-    const onSubmit = values => console.log(values)
 
     const SocialBox = () => {
         const [socialChecked, setSocialChecked] = useState(false);
@@ -178,69 +156,66 @@ export const ClientAccess = (props: {
 
     const LoginForm = () => {
         return (
-            <ValidationForm
-                objectTest={loginFields}
-                buttonClassName="access_btn theme-button-outlined"
-                onClick={() => login()}
-                nextButtonLabel='Acceder'
-                prevButtonLabel='Si no esta registrado, Acceda aqui'
-                onPrevButtonClick={() => setAccessMode(0)}
-            >
-                {/* <TextField
-                    tabindex={1}
-                    value={loginFields.email}
-                    name="email"
-                    type="email"
-                    required={true}
-                    label="Email o Numero Social"
-                    className="theme-text_field--dark"
-                    onChange={onChangeLoginField}
-                />
-                <TextField
-                    tabindex={2}
-                    value={loginFields.password}
-                    name="password"
-                    type="password"
-                    required={true}
-                    label="Contraseña"
-                    className="theme-text_field--dark"
-                    onChange={onChangeLoginField}
-                /> */}
-                <div></div>
-            </ValidationForm>
+            <FormProvider>
+                <>
+                    <li style={{ listStyle: 'none' }}>
+                        <ul>
+                            <Textfield
+                                id="email"
+                                name="email"
+                                label="Email o Numero Social"
+                                type="text"
+                            />
+                        </ul>
+                        <ul>
+                            <Textfield
+                                id="password"
+                                name="password"
+                                label="Contraseña"
+                                type="password"
+                            />
+                        </ul>
+                    </li>
+                    <SubmitButton
+                        onNext={login}
+                        onPrev={() => { setAccessMode(0) }}
+                        nextButtonLabel={"Acceder"}
+                        prevButtonLabel={"Registrese aqui!"}
+                    />
+                </>
+            </FormProvider>
         )
     }
 
-
-    const SubmitButton = () => {
+    const SubmitButton = (props: {
+        nextButtonLabel: string,
+        prevButtonLabel: string,
+        onNext: any,
+        onPrev: any
+    }) => {
         const {
             // @ts-ignore
             validateFields,
-            setValidationFlag,
             getFields
         } = useContext(FormContext);
         return <StepperFooter
-            nextButtonLabel="Registrarse"
-            prevButtonLabel="Si ya esta registrado, inicie aqui"
+            nextButtonLabel={props.nextButtonLabel}
+            prevButtonLabel={props.prevButtonLabel}
             typeNextButton="button"
             onNextButtonClick={() => {
-                setValidationFlag(true);
                 if (validateFields()) {
-                    console.log('success!!')
-                    // register();
-                } else {
-                    console.log('Fail!!')
+                    props.onNext(getFields());
                 }
             }}
             onPrevButtonClick={() => {
-                setAccessMode(1);
+                props.onPrev();
             }}
         />
     }
 
     const RegisterForm = () => {
         return (
-            <FormProvider value={registerFields}>
+            <FormProvider>
                 <>
                     <li style={{ listStyle: 'none' }}>
                         <ul>
@@ -288,7 +263,12 @@ export const ClientAccess = (props: {
                             />
                         </ul>
                     </li>
-                    <SubmitButton />
+                    <SubmitButton
+                        onNext={signUp}
+                        onPrev={() => { setAccessMode(1) }}
+                        nextButtonLabel={"Registrarse"}
+                        prevButtonLabel={"Si ya esta registrado, inicie aqui"}
+                    />
                 </>
             </FormProvider>
         )
@@ -301,17 +281,6 @@ export const ClientAccess = (props: {
                     (<p className="success_message">{message.value}</p>)
             }
             {accessMode ? (<LoginForm />) : (<RegisterForm />)}
-
-            {/* {showErrorDialog && (
-                <ConfirmDialog
-                    message="Debe completar los datos para continuar"
-                    onAccept={() => { setShowErrorDialog(false) }}
-                    onCancel={() => { setShowErrorDialog(false) }}
-                    title="Error"
-                    acceptLabel="Aceptar"
-                    cancelLabel="Volver"
-                />
-            )} */}
         </div>
     );
 }

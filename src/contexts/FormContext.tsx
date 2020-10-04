@@ -6,7 +6,6 @@ import React, {
     useEffect,
     useState,
 } from 'react';
-import { validate } from '../components/validation-form/ValidatorForm';
 
 export const FormContext = createContext({
     getFields: () => undefined,
@@ -18,7 +17,6 @@ export const FormContext = createContext({
 });
 
 export const FormProvider = (props: {
-    value: any,
     children: ReactElement;
 }) => {
 
@@ -26,12 +24,7 @@ export const FormProvider = (props: {
     const [errors, setErrors] = useState({});
     const [flagValidation, setFlagValidation] = useState(true);
 
-    useEffect(() => {
-        // console.log('change fields', fields)
-    }, [fields])
-
     const getFields = () => {
-        // console.log('get fields', fields)
         return fields;
     }
 
@@ -54,7 +47,6 @@ export const FormProvider = (props: {
     }
 
     const getErrorByField = (fieldName: string) => {
-        // console.log('accede get errors', errors)
         return errors[fieldName];
     }
 
@@ -63,7 +55,6 @@ export const FormProvider = (props: {
         setErrors({});
         let errorsCopy = {};
         let fieldsCopy = fields;
-        /* for the moment */
         Object.keys(fields).map(fieldName => {
             if (!fields[fieldName].value) {
                 success = false;
