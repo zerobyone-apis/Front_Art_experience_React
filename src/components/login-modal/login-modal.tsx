@@ -15,7 +15,6 @@ import { ButtonContext } from '../../contexts/ButtonsContext';
 import { getPageName } from '../../utils/utils';
 import { INDEX_PAGE, DASHBOARD_PAGE } from '../../types/Pages.type';
 import { ThemeContext } from '../../contexts/ThemeContext';
-
 import './login-modal.scss';
 import '../../styles/effects.scss';
 import '../../styles/theme.scss';
@@ -29,7 +28,10 @@ export const LoginModal = (props: {
   const [showDialog, setShowDialog] = useState(props.show || false);
   const [showAccountMenu, setShowAccountMenu] = useState(false);
 
-  // context
+  const wrapperRef = useRef(null);
+  useOutsideAlerter(wrapperRef, setShowAccountMenu);
+
+  /* CONTEXTS */
   const {
     // @ts-ignore
     getTheme,
@@ -46,25 +48,27 @@ export const LoginModal = (props: {
     setDisabledButton,
   } = useContext(ButtonContext);
 
-  // control account menu
-  const wrapperRef = useRef(null);
-  useOutsideAlerter(wrapperRef, setShowAccountMenu);
-
-  const onClientLogged = (clientData: any) => {
-    if (props.onSuccessLogin) {
-      props.onSuccessLogin(true);
-    }
-    setTimeout(() => {
-      setShowDialog(false);
-    }, 500);
-  };
-
   const launchModal = () => {
     if (userIsLogged()) {
       setShowAccountMenu(true);
     } else {
       setShowDialog(true);
     }
+  };
+
+  const onClose = () => {
+    setShowDialog(false);
+    props.onClose(false);
+  };
+
+  const onClientLogged = (clientData: any) => {
+    if (clientData.status === 200) {
+      console.log('True -> client logged', clientData.status);
+      //props.onSuccessLogin(true);
+    }
+    setTimeout(() => {
+      setShowDialog(false);
+    }, 500);
   };
 
   const logOut = () => {
@@ -76,6 +80,7 @@ export const LoginModal = (props: {
 
   return (
     <div className="login-modal">
+      {/* ACTIVATOR DIALOG */}
       {!props.show ? (
         <div className="dialog_activator-box">
           <Button
@@ -94,9 +99,11 @@ export const LoginModal = (props: {
           />
         </div>
       ) : null}
+
+      {/* LOGIN MODAL */}
       {!showDialog ? null : (
         <DialogModal
-          title="Inicio de Sesion - Art Experience"
+          title="Inicio de Sesion"
           className="login-dialog"
           width="65vw"
           height="65vh"
@@ -107,12 +114,20 @@ export const LoginModal = (props: {
             }
           }}
         >
-          <p className={`text text-${getTheme()}`}>
-            Acceda para poder reservar y disfrutar de nuestros servicios
-          </p>
-          <ClientAccess onClientLogged={onClientLogged} />
+          <div className="info-box effect-slide-top">
+            <p className={`text text-${getTheme()} info-message`}>
+              Acceda para poder reservar y disfrutar de nuestros servicios
+            </p>
+          </div>
+
+          <ClientAccess
+            onClientLogged={onClientLogged}
+            onClose={props.onClose}
+          />
         </DialogModal>
       )}
+
+      {/* ACCOUNT MENU */}
       {showAccountMenu && userIsLogged() ? (
         <div
           className={`account-menu effect-opacity ${getTheme()}`}

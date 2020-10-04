@@ -19,6 +19,7 @@ export default class ClientActions {
         email: newClient.email,
         cel: newClient.cel,
         clientType: 'Nuevo',
+        socialNumber: newClient?.socialNumber,
       };
       const response: any = await this.backend.send(
         POST_ENDPOIT,

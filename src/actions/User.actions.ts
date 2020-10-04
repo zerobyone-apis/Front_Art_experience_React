@@ -9,7 +9,8 @@ import { IUser } from '../types/User.type';
 export default class UserActions {
   private backend: IntegrationBackend = new IntegrationBackend();
 
-  login = async (client: { email: string; password: string }) => {
+  //! Nosotros utilizamos el endpoint de clients login para loaguear un nuevo cliente, este mismo crea un usuario.
+  /* login = async (client: { email: string; password: string }) => {
     try {
       let data = {
         email: client.email,
@@ -27,7 +28,9 @@ export default class UserActions {
       return null;
     }
   };
-
+*/
+  //! Nosotros utilizamos el endpoint de clients Add para añadir un nuevo cliente, este mismo crea un usuario.
+  /* Deprecated 
   register = async (user: IUser) => {
     try {
       const data: IUser = {
@@ -57,4 +60,5 @@ export default class UserActions {
       return 'Ocurrio un error! Vuelva a intentarlo';
     }
   };
+  */
 }

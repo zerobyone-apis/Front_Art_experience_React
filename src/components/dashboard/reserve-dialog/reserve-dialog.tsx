@@ -1,12 +1,13 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import { DialogModal } from '../../dialog-modal/dialog-modal';
 import ReserveActions from '../../../actions/Reserve.actions';
 import { IReserve } from '../../../types/Reserve.type';
 import { ValidationForm } from '../../validation-form/validation-form';
-import { Button } from '../../button/button';
 import { TextField } from '../../text-field/text-field';
 import { ButtonContext } from '../../../contexts/ButtonsContext';
 import moment from 'moment';
+import { StepperFooter } from '../../reserve-modal/stepper-footer';
+import { ConfirmDialog } from '../../confirm-dialog';
 import './reserve-dialog.scss';
 import '../../../styles/theme-buttons.scss';
 import '../../../styles/effects.scss';
@@ -35,32 +36,19 @@ export const ReserveDialog = (props: {
   } = useContext(ButtonContext);
 
   const reserveActions: ReserveActions = new ReserveActions();
-  const [showDialog, setShowDialog] = useState(false);
-
-  // confirm dialog data
-  const [showConfirmDialog, setShowConfirmDialog] = useState(false);
-  const [confirmDialogData, setConfirmDialogData] = useState({
-    title: '',
-    message: '',
-    onAccept: () => undefined,
-    onCancel: () => undefined
-  })
-
+  // const [showDialog, setShowDialog] = useState(false);
   const [reserve, setReserve] = useState(props.reserve || baseReserve);
-  const [updated, setUpdated] = useState(false);
-
-  // const response = await reserveActions.update(reserveUpdate);
+  const [showFinalizeDialog, setFinalizeDialog] = useState(false);
+  const [showCancelDialog, setCancelDialog] = useState(false);
 
   const onChangeReserve = (value: string, fieldName: string) => {
     setReserve({ ...reserve, [fieldName]: value });
   };
 
-
   /* UPDATE RESERVE */
   const onUpdate = async () => {
     setDisabledButton(true);
     let formatDate = moment(reserve.startTime).format('YYYY-MM-DDTHH:mm:ss');
-    //console.log('Format date -> to Update', formatDate);
     let reserveUpdate: IReserve = {
       reserveId: reserve.reserveId,
       nameClient: reserve.nameClient,
@@ -72,14 +60,8 @@ export const ReserveDialog = (props: {
       priceWork: reserve.priceWork,
       additionalCost: reserve.additionalCost,
       startTime: formatDate,
-    };
-
-    // if (response) {
-    //   setUpdated(true);
-    //   setDisabledButton(false);
-    // }
-  };
-
+    }
+  }
 
   /* FINALIZE RESERVE */
   const finalizeReserve = async () => {
@@ -88,14 +70,12 @@ export const ReserveDialog = (props: {
     console.log('finalized')
     if (response) {
       console.log('success finalize')
-      props.onFinalized();
       props.onClose();
       setDisabledButton(false);
     } else {
       console.log('error', response)
     }
   }
-
 
   /* CANCEL RESERVE */
   const cancelReserve = async () => {
@@ -104,51 +84,17 @@ export const ReserveDialog = (props: {
     console.log('cancel')
     if (response) {
       console.log('success cancel')
-      props.onCancelled();
       props.onClose();
       setDisabledButton(false);
     } else {
-      console.log('error', response)
+      console.log('error cancel :', response)
     }
   }
 
-  const ConfirmDialog = (props: {
-    onAccept: () => undefined,
-    onCancel: () => void,
-    title: string,
-    message: string
-  }) => {
-    return <DialogModal
-      className="confirm-dialog"
-      title={props.title}
-      showModal={showConfirmDialog}
-      onClose={() => { props.onCancel() }}
-    >
-      <div className="reserve-modal">
-        <div className="reserve_data-box">
-          <p className="reserve_info effect-slide_left">{props.message}</p>
-          <Button
-            className="footer-button theme-button-outlined"
-            label="Realizar Accion"
-            onClick={() => { props.onAccept }}
-          />
-          <Button
-            className="footer-button theme-button-outlined"
-            label="Cancelar"
-            onClick={() => { props.onCancel }}
-          />
-        </div>
-      </div>
-    </DialogModal>
-  }
-
-
-
   return (
     <DialogModal
-      className="reserve-dialog"
+      className="reserve-modal"
       title="Control de Reserva"
-      showModal={showDialog}
       onClose={props.onClose}
     >
       <div className="reserve-modal">
@@ -156,9 +102,10 @@ export const ReserveDialog = (props: {
           <p className="reserve_info effect-slide_left">Datos del Cliente</p>
           <ValidationForm
             objectTest={reserve}
-            buttonLabel="Guardar Cambios"
-            buttonClassName="access_btn theme-button-outlined"
-            onClick={onUpdate}
+            onClick={() => setFinalizeDialog(true)}
+            onPrevButtonClick={() => setCancelDialog(true)}
+            nextButtonLabel='Finalizar Reserva'
+            prevButtonLabel='Cancelar Reserva'
           >
             <TextField
               value={reserve.nameClient}
@@ -230,30 +177,35 @@ export const ReserveDialog = (props: {
         </div>
       </div>
 
-      <div className="footer">
-        <div className="footer_right-box">
-          <Button
-            className="footer-button theme-button-outlined"
-            label="Finalizar Reserva"
-            onClick={() => {
-              setShowConfirmDialog(true);
-            }}
-          />
-          <Button
-            className="footer-button theme-button-outlined"
-            label="Cancelar Reserva"
-            onClick={() => { cancelReserve() }}
-          />
-        </div>
-      </div>
+      {/* <StepperFooter
+        nextButtonLabel="Finalizar Reserva"
+        prevButtonLabel="Cancelar Reserva"
+        nextButtonStyle="theme-button-outlined"
+        onNextButtonClick={() => setFinalizeDialog(true)}
+        onPrevButtonClick={() => setCancelDialog(true)}
+      /> */}
 
       {
-        showConfirmDialog ? (
+        showFinalizeDialog ? (
           <ConfirmDialog
-            title={confirmDialogData.title}
-            message={confirmDialogData.message}
-            onAccept={confirmDialogData.onAccept()}
-            onCancel={() => { setShowConfirmDialog(false) }}
+            title="Finalizacion de reserva"
+            message="Esta seguro de que desea finalizar la reserva?"
+            acceptLabel="Finalizar"
+            cancelLabel="Volver"
+            onAccept={() => finalizeReserve()}
+            onCancel={() => setFinalizeDialog(false)}
+          />
+        ) : null
+      }
+      {
+        showCancelDialog ? (
+          <ConfirmDialog
+            title="Cancelacion de reserva"
+            message="Esta seguro de que desea cancelar la reserva?"
+            acceptLabel="Cancelar"
+            cancelLabel="Volver"
+            onAccept={() => cancelReserve()}
+            onCancel={() => setCancelDialog(false)}
           />
         ) : null
       }

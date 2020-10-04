@@ -1,28 +1,40 @@
+@import '../../styles/theme.scss';
+
 .login-modal {
     display: flex;
     align-items: center;
 
     .dialog-modal {
-        width: 40%;
-        height: 80%;
+        padding: 0;
         text-align: center;
 
-        .content {
-            padding: 20px;
+        .info-box {
+            margin: 20px;
+            text-align: center;
 
-            .course-info {
-                position: relative;
+            p {
                 padding: 0;
                 margin: 0;
             }
+        }
+    }
 
-            .divider {
-                position: relative;
-                width: 20px;
-                height: 20px;
+
+    /* SOCIAL BOX */
+    .social-box {
+        position: relative;
+        width: max-content;
+        height: max-content;
+        margin: auto;
+
+        .social-form-control-label {
+            span {
+                color: $light-text;
+                font-size: 14px;
             }
         }
     }
+
 
     .account-menu {
         position: absolute;
