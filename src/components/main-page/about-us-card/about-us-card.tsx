@@ -22,7 +22,11 @@ export const AboutUsCard = (props: {
   return (
     <div className="about-us-card">
       <ContainerPage className={`container-about-us`}>
-        <SubContainerInfo title={props.title} info={props.info} cost={''} />
+        <SubContainerInfo
+          className="sub-container-info"
+          title={props.title}
+          info={props.info}
+          cost={''} />
         <SubContainerImage img={props.picture} />
       </ContainerPage>
     </div>

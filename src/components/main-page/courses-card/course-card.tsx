@@ -94,6 +94,7 @@ export const CoursesCard = (props: {
           }
         >
           <SubContainerInfo
+            className="sub-container-info"
             title={selectedCourse.name}
             info={selectedCourse.info}
             cost={selectedCourse.cost}

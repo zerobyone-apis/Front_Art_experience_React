@@ -4,8 +4,18 @@
     background-color: rgb(12, 12, 12);
 }
 
+
+.sub-container-info {
+    margin-right: 50px;
+}
+
 // IPHONE5/SE
 @media only screen and (max-width: $mobile-screen) {
+
+
+    .sub-container-info {
+        margin-right: 0px;
+    }
 
     .about-us-card {
         position: relative;
