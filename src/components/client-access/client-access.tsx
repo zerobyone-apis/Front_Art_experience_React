@@ -1,11 +1,11 @@
-import React, { useState, useContext, Fragment } from 'react';
+import React, { useState, useContext, Fragment, useEffect } from 'react';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import { ButtonContext } from '../../contexts/ButtonsContext';
 import { UserContext } from '../../contexts/UserContext';
 import { ValidationForm } from '../validation-form/validation-form';
 import { IClient } from '../../types/Client.type';
 import ClientActions from '../../actions/Client.actions';
-import { Checkbox } from '@material-ui/core';
+import { Button, Checkbox } from '@material-ui/core';
 import { FormControlLabel } from '@material-ui/core';
 import { useForm } from 'react-hook-form';
 import { Textfield } from '../text-field/text-field';
@@ -13,7 +13,9 @@ import './client-access.scss';
 import '../../styles/theme-buttons.scss';
 import '../../styles/effects.scss';
 import { StepperFooter } from '../reserve-modal/stepper-footer';
+import { FormContext, FormProvider } from '../../contexts/FormContext';
 
+import { ConfirmDialog } from '../confirm-dialog'
 
 
 
@@ -28,10 +30,10 @@ export const ClientAccess = (props: {
     const defaultRegisterFields = {
         name: '',
         email: '',
+        cel: '',
         socialNumber: '',
         password: '',
-        password2: '',
-        cel: '',
+        repeatPassword: '',
     };
     const baseMessage = {
         value: '',
@@ -42,10 +44,13 @@ export const ClientAccess = (props: {
     const [loginFields, setLoginFields] = useState(defaultLoginFields);
     const [registerFields, setRegisterFields] = useState(defaultRegisterFields);
     const [message, setMessage] = useState(baseMessage);
+    const [showErrorDialog, setShowErrorDialog] = useState(false);
+    // const [fieldsErrors, setFieldsErrors] = useState({});
 
     const clientActions: ClientActions = new ClientActions();
 
     /* CONTEXTS */
+
     const {
         // @ts-ignore
         getTheme,
@@ -64,8 +69,9 @@ export const ClientAccess = (props: {
     const onChangeLoginField = (value: string, fieldName: string) => {
         setLoginFields({ ...loginFields, [fieldName]: value });
     };
-    const onChangeRegisterField = (value: string, fieldName: string) => {
-        setRegisterFields({ ...registerFields, [fieldName]: value })
+
+    const handleChangeRegisterForm = (name, value) => {
+        setRegisterFields({ ...registerFields, [name]: value });
     }
 
 
@@ -100,7 +106,7 @@ export const ClientAccess = (props: {
             email: registerFields.email,
             name: registerFields.name,
             password: registerFields.password,
-            password2: registerFields.password2
+            password2: registerFields.repeatPassword
         }
         setDisabledButton(true);
         const response = await clientActions.add(fields);
@@ -162,8 +168,8 @@ export const ClientAccess = (props: {
                     <Textfield
                         id="socialNumber"
                         name="socialNumber"
+                        type="number"
                         label="Numero Social"
-                        inputRef={register({ required: true })}
                     />
                 )}
             </>
@@ -206,10 +212,36 @@ export const ClientAccess = (props: {
     }
 
 
+    const SubmitButton = () => {
+        const {
+            // @ts-ignore
+            validateFields,
+            setValidationFlag,
+            getFields
+        } = useContext(FormContext);
+        return <StepperFooter
+            nextButtonLabel="Registrarse"
+            prevButtonLabel="Si ya esta registrado, inicie aqui"
+            typeNextButton="button"
+            onNextButtonClick={() => {
+                setValidationFlag(true);
+                if (validateFields()) {
+                    console.log('success!!')
+                    // register();
+                } else {
+                    console.log('Fail!!')
+                }
+            }}
+            onPrevButtonClick={() => {
+                setAccessMode(1);
+            }}
+        />
+    }
+
     const RegisterForm = () => {
         return (
-            <Fragment>
-                <form onSubmit={handleSubmit(onSubmit)} >
+            <FormProvider value={registerFields}>
+                <>
                     <li style={{ listStyle: 'none' }}>
                         <ul>
                             <SocialBox />
@@ -218,8 +250,8 @@ export const ClientAccess = (props: {
                             <Textfield
                                 id="name"
                                 name="name"
-                                label="Nombre"
-                                inputRef={register({ required: true })}
+                                label="Nombre de usuario"
+                                type="text"
                             />
                         </ul>
                         <ul>
@@ -227,13 +259,7 @@ export const ClientAccess = (props: {
                                 id="email"
                                 name="email"
                                 label="Email"
-                                inputRef={register({
-                                    required: true,
-                                    pattern: {
-                                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                                        message: "El email no es valido"
-                                    }
-                                })}
+                                type="email"
                             />
                         </ul>
                         <ul>
@@ -241,7 +267,7 @@ export const ClientAccess = (props: {
                                 id="cel"
                                 name="cel"
                                 label="Celular / Telefono"
-                                inputRef={register({ required: true })}
+                                type="number"
                             />
                         </ul>
                         <ul>
@@ -249,26 +275,22 @@ export const ClientAccess = (props: {
                                 id="password"
                                 name="password"
                                 label="Contraseña"
-                                inputRef={register({ required: true })}
+                                type="password"
                             />
                         </ul>
                         <ul>
                             <Textfield
-                                id="repitPassword"
-                                name="repitPassword"
+                                id="repeatPassword"
+                                name="repeatPassword"
                                 label="Repita Contraseña"
-                                inputRef={register({ required: true })}
+                                type="password"
+                                equalField="password"
                             />
                         </ul>
                     </li>
-                    <StepperFooter
-                        nextButtonLabel="Registrarse"
-                        prevButtonLabel="Si ya esta registrado, inicie aqui"
-                        onNextButtonClick={() => { }}
-                        onPrevButtonClick={() => { }}
-                    />
-                </form>
-            </Fragment>
+                    <SubmitButton />
+                </>
+            </FormProvider>
         )
     }
 
@@ -279,6 +301,17 @@ export const ClientAccess = (props: {
                     (<p className="success_message">{message.value}</p>)
             }
             {accessMode ? (<LoginForm />) : (<RegisterForm />)}
+
+            {/* {showErrorDialog && (
+                <ConfirmDialog
+                    message="Debe completar los datos para continuar"
+                    onAccept={() => { setShowErrorDialog(false) }}
+                    onCancel={() => { setShowErrorDialog(false) }}
+                    title="Error"
+                    acceptLabel="Aceptar"
+                    cancelLabel="Volver"
+                />
+            )} */}
         </div>
     );
 }
