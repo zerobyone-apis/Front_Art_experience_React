@@ -17,7 +17,7 @@ export const StepperFooter = (props: {
   typeNextButton?: 'button' | 'submit' | 'reset';
   onNextButtonClick: () => void;
   onPrevButtonClick: () => void;
-  onUpdateButtonClick: () => void;
+  onUpdateButtonClick?: () => void;
 }) => {
   const {
     // @ts-ignore
