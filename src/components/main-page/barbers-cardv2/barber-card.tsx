@@ -110,13 +110,14 @@ export const BarbersCard = (props: {
             </div>
           }
         >
-          <SubContainerInfo
+          {/* <SubContainerInfo
             title={selectedBarber.name}
             info={selectedBarber.barberDescription}
             cost={''}
-          />
+          /> */}
           <SubContainerImage
             img={selectedBarber.urlProfileImage}
+            title={selectedBarber.name}
             imgFooter={
               <BarberImage
                 facebook={selectedBarber.facebook}
