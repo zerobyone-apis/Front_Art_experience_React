@@ -5,16 +5,20 @@
     width: 100%;
     height: max-content;
 
+    .containers {
+        min-height: 875px;
+    }
+
+    .sub-container-info {
+        margin-right: 50px;
+    }
 
     .employee-social {
-        // position: absolute;
         width: 100%;
-        // height: 60px;
         bottom: 0px;
         border-bottom-left-radius: 8px;
         border-bottom-right-radius: 8px;
         text-align: center;
-        // background-color: rgba(0, 0, 0, 0.8);
         padding: 10px 0;
 
         .employee-social-logo {
@@ -34,14 +38,12 @@
 
     // courses items
     .courses-items {
-        // margin: auto;
         width: max-content;
         height: max-content;
         text-align: center;
         border-right-style: solid;
         border-color: $warm-color;
         border-width: 1px;
-        // background-color: green;
 
         .help-action {
             position: absolute;
@@ -105,6 +107,10 @@
 
     // CASIO Calculator LFMAO
     @media only screen and (max-width: 400px) {
+        .sub-container-info {
+            margin-right: 0;
+        }
+
         .courses-items {
             position: relative;
             width: max-content;
@@ -146,6 +152,10 @@
 
 // IPHONE5/SE
 @media only screen and (max-width: $mobile-screen) {
+    .sub-container-info {
+        margin-right: 0;
+    }
+
     .course-card {
         // background-color: red;
 

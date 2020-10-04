@@ -9,9 +9,10 @@ export const SubContainerInfo = (props: {
   title: string;
   info: string;
   cost: string | undefined;
+  className?: string
 }) => {
   return (
-    <div className="info-box">
+    <div className={`info-box ${props.className}`}>
       <p className={`title`}>{props.title}</p>
       <p></p>
       {props.info.split('\n').map((line, i) => {
