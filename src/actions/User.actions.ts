@@ -21,7 +21,12 @@ export default class UserActions {
         data,
         USER_SIGN_IN_ROUTE
       );
-      //console.log('response ', response)
+      if (response.status !== 200) {
+        //console.log('response ', response)
+        throw Error(`Error al ingresar estos datos, 
+                      \npor favor verifique ( Email ) o (Social Number, si es Socio) 
+                      \nO por ultimo su password. `);
+      }
       return response.data;
     } catch (error) {
       console.error('error: ', JSON.stringify(error));
@@ -42,6 +47,7 @@ export default class UserActions {
         barberId: user.barberId,
         createOn: user.createOn,
         fullName: user.fullName,
+        socialNumber: user.socialNumber ? user.socialNumber : undefined,
         status: user.status,
         userId: user.userId,
       };
@@ -52,7 +58,9 @@ export default class UserActions {
       );
       if (response.status !== 201) {
         //console.log('Error on create client', response.message);
-        return Error('Error on create client');
+        return Error(
+          'Error al crear usuario, Usuario o Email ya estan ocupados.. \nPruebe loguearse con este usuario & email. '
+        );
       }
       //console.log('success post client');
       return response.data;

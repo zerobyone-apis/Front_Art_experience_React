@@ -3,7 +3,7 @@ import { DialogModal } from '../../dialog-modal/dialog-modal';
 import ReserveActions from '../../../actions/Reserve.actions';
 import { IReserve } from '../../../types/Reserve.type';
 import { ValidationForm } from '../../validation-form/validation-form';
-import { TextField } from '../../text-field/text-field';
+import { Textfield } from '../../text-field/text-field';
 import { ButtonContext } from '../../../contexts/ButtonsContext';
 import moment from 'moment';
 import { StepperFooter } from '../../reserve-modal/stepper-footer';
@@ -13,11 +13,11 @@ import '../../../styles/theme-buttons.scss';
 import '../../../styles/effects.scss';
 
 export const ReserveDialog = (props: {
-  reserve: IReserve,
-  onClose: any,
-  onFinalized?: () => undefined,
-  onCancelled?: () => undefined,
-  onUpdated?: () => undefined,
+  reserve: IReserve;
+  onClose: any;
+  onFinalized?: () => undefined;
+  onCancelled?: () => undefined;
+  updated?: () => undefined;
 }) => {
   const baseReserve: IReserve = {
     barberOrHairdresserId: -1,
@@ -28,6 +28,7 @@ export const ReserveDialog = (props: {
     priceWork: 0,
     startTime: '',
     additionalCost: 0,
+    socialNumber: 0,
   };
   const {
     // @ts-ignore
@@ -40,13 +41,14 @@ export const ReserveDialog = (props: {
   const [reserve, setReserve] = useState(props.reserve || baseReserve);
   const [showFinalizeDialog, setFinalizeDialog] = useState(false);
   const [showCancelDialog, setCancelDialog] = useState(false);
+  const [showUpdateDialog, setUpdateDialog] = useState(false);
 
   const onChangeReserve = (value: string, fieldName: string) => {
     setReserve({ ...reserve, [fieldName]: value });
   };
 
   /* UPDATE RESERVE */
-  const onUpdate = async () => {
+  const updateReserve = async () => {
     setDisabledButton(true);
     let formatDate = moment(reserve.startTime).format('YYYY-MM-DDTHH:mm:ss');
     let reserveUpdate: IReserve = {
@@ -60,36 +62,52 @@ export const ReserveDialog = (props: {
       priceWork: reserve.priceWork,
       additionalCost: reserve.additionalCost,
       startTime: formatDate,
+      socialNumber: reserve.socialNumber,
+    };
+    let response = await reserveActions.update(reserveUpdate);
+    console.log('Update reserve');
+    if (response) {
+      console.log('Success updated');
+      props.onClose();
+      setDisabledButton(false);
+    } else {
+      console.log('Error updating:', response);
     }
-  }
+  };
 
   /* FINALIZE RESERVE */
   const finalizeReserve = async () => {
     setDisabledButton(true);
-    let response = await reserveActions.doneReserve(reserve.barberOrHairdresserId, reserve.reserveId);
-    console.log('finalized')
+    let response = await reserveActions.doneReserve(
+      reserve.barberOrHairdresserId,
+      reserve.reserveId
+    );
+    console.log('finalized');
     if (response) {
-      console.log('success finalize')
+      console.log('success finalize');
       props.onClose();
       setDisabledButton(false);
     } else {
-      console.log('error', response)
+      console.log('error', response);
     }
-  }
+  };
 
   /* CANCEL RESERVE */
   const cancelReserve = async () => {
     setDisabledButton(true);
-    let response = await reserveActions.cancel(reserve.barberOrHairdresserId, reserve.reserveId);
-    console.log('cancel')
+    let response = await reserveActions.cancel(
+      reserve.clientId,
+      reserve.reserveId
+    );
+    console.log('cancel');
     if (response) {
-      console.log('success cancel')
+      console.log('success cancel');
       props.onClose();
       setDisabledButton(false);
     } else {
-      console.log('error cancel :', response)
+      console.log('error cancel :', response);
     }
-  }
+  };
 
   return (
     <DialogModal
@@ -104,111 +122,85 @@ export const ReserveDialog = (props: {
             objectTest={reserve}
             onClick={() => setFinalizeDialog(true)}
             onPrevButtonClick={() => setCancelDialog(true)}
-            nextButtonLabel='Finalizar Reserva'
-            prevButtonLabel='Cancelar Reserva'
+            onUpdateButtonClick={() => setUpdateDialog(true)}
+            nextButtonLabel="Finalizar Reserva"
+            prevButtonLabel="Cancelar Reserva"
+            updaButtonLabel="Actualizar Reserva"
           >
-            <TextField
-              value={reserve.nameClient}
-              disabled={true}
+            <Textfield
+              id={'1'}
               name="nameClient"
+              label="Nombre del cliente"
               type="string"
-              required={false}
-              label="Nombre"
-              className="theme-text_field--dark"
-              onChange={onChangeReserve}
+              value={reserve.nameClient}
             />
-            <TextField
-              value={reserve.mailClient}
+            <Textfield
+              id={'2'}
               name="mailClient"
-              type="email"
-              required={true}
-              label="Email"
-              className="theme-text_field--dark"
-              onChange={onChangeReserve}
+              label="Email del cliente"
+              type="string"
+              value={reserve.mailClient}
             />
-            <TextField
-              value={reserve.celClient}
+            <Textfield
+              id={'3'}
+              label="Cel del cliente"
               name="celClient"
-              type="number"
-              required={true}
-              label="Celular"
-              className="theme-text_field--dark"
-              onChange={onChangeReserve}
+              type="string"
+              value={reserve.celClient}
             />
             <p className="reserve_info">Datos de la Reserva</p>
-            <TextField
-              value={reserve.startTimeFront}
+            <Textfield
+              id={'3'}
               name="startTimeFront"
-              type="allow"
-              required={true}
-              label="Fecha y hora"
-              className="theme-text_field--dark"
-              onChange={onChangeReserve}
+              label="Fecha y Hora de Reserva"
+              type="string"
+              value={reserve.startTimeFront}
             />
-            <TextField
+            <Textfield
+              id={'4'}
+              name="barberName"
+              label="Nombre Barbero"
+              type="string"
               value={reserve.barberName}
-              name="barberOrHairdresserId"
-              type="allow"
-              required={true}
-              disabled={true}
-              label="Barbero"
-              className="theme-text_field--dark"
-              onChange={onChangeReserve}
             />
-            <TextField
-              value={reserve.workToDo}
+            <Textfield
+              id={'5'}
               name="workToDo"
-              type="allow"
-              required={true}
-              label="Servicio"
-              className="theme-text_field--dark"
-              onChange={onChangeReserve}
+              label="Servicio Seleccionado"
+              type="string"
+              value={reserve.workToDo}
             />
-            <TextField
-              value={reserve.totalCost}
+            <Textfield
+              id={'6'}
               name="totalCost"
-              type="number"
-              required={true}
               label="Costo Total"
-              className="theme-text_field--dark"
-              onChange={onChangeReserve}
+              type="number"
+              value={reserve.totalCost}
             />
           </ValidationForm>
         </div>
       </div>
 
-      {/* <StepperFooter
-        nextButtonLabel="Finalizar Reserva"
-        prevButtonLabel="Cancelar Reserva"
-        nextButtonStyle="theme-button-outlined"
-        onNextButtonClick={() => setFinalizeDialog(true)}
-        onPrevButtonClick={() => setCancelDialog(true)}
-      /> */}
-
-      {
-        showFinalizeDialog ? (
-          <ConfirmDialog
-            title="Finalizacion de reserva"
-            message="Esta seguro de que desea finalizar la reserva?"
-            acceptLabel="Finalizar"
-            cancelLabel="Volver"
-            onAccept={() => finalizeReserve()}
-            onCancel={() => setFinalizeDialog(false)}
-          />
-        ) : null
-      }
-      {
-        showCancelDialog ? (
-          <ConfirmDialog
-            title="Cancelacion de reserva"
-            message="Esta seguro de que desea cancelar la reserva?"
-            acceptLabel="Cancelar"
-            cancelLabel="Volver"
-            onAccept={() => cancelReserve()}
-            onCancel={() => setCancelDialog(false)}
-          />
-        ) : null
-      }
+      {showFinalizeDialog ? (
+        <ConfirmDialog
+          title="Finalizacion de reserva"
+          message="Esta seguro de que desea finalizar la reserva?"
+          acceptLabel="Finalizar"
+          cancelLabel="Volver"
+          onAccept={() => finalizeReserve()}
+          onCancel={() => setFinalizeDialog(false)}
+        />
+      ) : null}
+      {showCancelDialog ? (
+        <ConfirmDialog
+          title="Cancelacion de reserva"
+          message="Esta seguro de que desea cancelar la reserva?"
+          acceptLabel="Cancelar"
+          cancelLabel="Volver"
+          onAccept={() => cancelReserve()}
+          onCancel={() => setCancelDialog(false)}
+        />
+      ) : null}
     </DialogModal>
   );
 };

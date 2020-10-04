@@ -7,6 +7,7 @@ export interface IReserve {
   barberName?: string;
   mailClient: string;
   celClient: string;
+  socialNumber?: number;
 
   startTime: string; //Reserve Time dd/mm/yyyy HH:MM:SS - Java Instant time
   startTimeFront?: string;
@@ -38,4 +39,5 @@ export const defaultReserve: IReserve = {
   nameClient: '',
   priceWork: 0,
   startTime: '',
+  socialNumber: undefined,
 };

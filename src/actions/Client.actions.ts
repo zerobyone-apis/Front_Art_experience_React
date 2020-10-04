@@ -34,10 +34,25 @@ export default class ClientActions {
     }
   };
 
-  login = async (client: { email: string; password: string }) => {
+  login = async (client: {
+    //socialNumber: number;
+    email: any;
+    password: string;
+  }) => {
     try {
+      let email = '';
+      let socialNumber = 0;
+      if (isNaN(client.email)) {
+        //console.log('IF Este es el valor de nan -> ', isNaN(client.email));
+        email = client.email;
+      } else {
+        //console.log('ELSE Este es el valor de nan -> ', isNaN(client.email));
+        socialNumber = client.email;
+      }
+
       let data = {
-        email: client.email,
+        socialNumber: socialNumber != 0 ? socialNumber : '',
+        email: email,
         password: client.password,
       };
       const response: any = await this.backend.send(

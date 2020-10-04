@@ -54,7 +54,8 @@ export const ServicesCard = (props: {
   return (
     <Divider
       title="Brindamos Servicios de Calidad y Asesoramiento Personalizado"
-      img=""
+      //img=""
+      img="https://i.ibb.co/DfFncm2/Whats-App-Image-2020-09-26-at-17-38-45-1.jpg"
       align="left"
       className="service-divider"
     >

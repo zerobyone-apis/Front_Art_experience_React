@@ -60,6 +60,7 @@ export const ClientAccess = (props: { onClose: any; onClientLogged: any }) => {
   /* LOGIN */
   const login = async (loginFields?: any) => {
     setMessage({ value: '', isError: false }); //clear
+
     const fields = {
       email: loginFields.email.value,
       password: loginFields.password.value,

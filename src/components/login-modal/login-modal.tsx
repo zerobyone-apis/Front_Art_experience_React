@@ -63,7 +63,7 @@ export const LoginModal = (props: {
 
   const onClientLogged = (clientData: any) => {
     if (clientData.status === 200) {
-      console.log('True -> client logged', clientData.status);
+      //console.log('True -> client logged', clientData.status);
       //props.onSuccessLogin(true);
     }
     setTimeout(() => {
@@ -103,7 +103,7 @@ export const LoginModal = (props: {
       {/* LOGIN MODAL */}
       {!showDialog ? null : (
         <DialogModal
-          title="Inicio de Sesion"
+          title="Inicio de Session"
           className="login-dialog"
           width="65vw"
           height="65vh"
@@ -158,7 +158,7 @@ export const LoginModal = (props: {
             />
           ) : null}
           <Button
-            label="Cerrar Seion"
+            label="Cerrar Session"
             className="item-list_btn theme-button-outlined"
             onClick={() => {
               logOut();
