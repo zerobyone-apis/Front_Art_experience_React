@@ -50,9 +50,9 @@ const IndexPage = () => {
     coursesTitle: 'Nuestros Cursos',
     courses: 'Ofrecemos Cursos para Aumentaran su Experiencia',
     contactUsTitle: 'Contactenos',
-    contactUs: `Por cualquier tipo de informacion por cursos o productos busquenos en nuestras redes sociales or dejenos un mail.
-                Recuerda que nuestro horario de atencion es de L a S de 10:00 hr am - 19:00 hr pm 
-                \nPuedes dejarnos un correo electronico o si lo prefieres un mensaje en algunas de nuestras redes sociales.
+    contactUs: ` Por cualquier tipo de informacion sobre cursos o productos, busquenos en nuestras redes sociales o dejenos un email.
+                Recuerda que nuestro horario de atención es de Lunes a Sabados a partir de 10:00 hrs - 19:00 hrs 
+                Puedes dejarnos un correo electronico o si lo prefieres un mensaje en algunas de nuestras redes sociales 
                 A la brevedad alguien del equipo de Art lo atenderá.`,
   };
   const services = [
@@ -95,7 +95,7 @@ const IndexPage = () => {
   const courses = [
     {
       name: 'INTENSIVO',
-      duration: '4 meses', //  / 1 clase por semana a partir de las 13:30hrs
+      duration: '4 meses', //  1 clase por semana a partir de las 13:30hrs
       info: `
       El curso incluye los materiales a utilizar en el mismo.
       Conoceras y entenderas las diferentes tecnicas y conceptos claves 
@@ -116,7 +116,7 @@ const IndexPage = () => {
          \n \nPosibilidad de reservar un lugar con una seña de 💲 1.500 
       `,
       icon: 'event',
-      img: 'https://i.ibb.co/WPb2qQJ/modelo-10.jpg',
+      img: 'https://i.ibb.co/xgD16sC/Modelo-3.jpg',
       url: 'Read More',
     },
     {
@@ -143,8 +143,7 @@ const IndexPage = () => {
       \n \nPosibilidad de reservar un lugar con una seña de 💲 1.000 
    `,
       icon: 'event',
-      img:
-        'https://instagram.fmvd4-1.fna.fbcdn.net/v/t51.2885-15/e35/58409183_137399877418737_8950341037487835391_n.jpg?_nc_ht=instagram.fmvd4-1.fna.fbcdn.net&_nc_cat=109&_nc_ohc=ghmBqUjlw2cAX_cKRlu&_nc_tp=18&oh=db69053f9623d99bbe45100e522a76e6&oe=5F7B92FC',
+      img: 'https://i.ibb.co/HnG4W5H/modelo-5.jpg',
       url: 'Read More',
     },
     {
@@ -171,7 +170,7 @@ const IndexPage = () => {
              \n 👉 Contado:   💲 6.000 
              \n \nPosibilidad de reservar un lugar con una seña de 💲 1.000`,
       icon: 'event',
-      img: 'https://i.ibb.co/S3yctcs/modelo-13.jpg',
+      img: 'https://i.ibb.co/0Y6jz8s/modelo-4.jpg',
       url: 'Read More',
     },
   ];
@@ -279,6 +278,7 @@ const IndexPage = () => {
             subTitle={pageInfo.contactUs}
           />
           <div id="contact" />
+
           <HomeFooter
             title={pageInfo.contactUsTitle}
             subtitle={pageInfo.contactUs}

@@ -4,6 +4,7 @@ import { ThemeContext } from '../../../contexts/ThemeContext';
 import { Card } from '../../card/card';
 import './home-footer.scss';
 import '../../../styles/theme.scss';
+import Maps from '../google_maps/google-maps';
 
 export const HomeFooter = (props: {
   email: string;
@@ -20,14 +21,16 @@ export const HomeFooter = (props: {
   } = useContext(ThemeContext);
   return (
     // ${props.theme ? props.theme : getTheme()}
-    <Card className="footer-card" title={props.title} subtitle={props.subtitle}>
+    <Card className="footer-card" title={props.title} subtitle={''}>
       <div className={`home-footer`}>
+        <Maps className="footer-map" subtitle={props.subtitle} />
         <img
           className="footer_logo-img effect-opacity"
           src="https://i.ibb.co/hfX81DT/art-experience-500.png"
           alt=""
         />
         <p className={`footer-email text text-dark`}>{props.email}</p>
+        <p className={`footer-email text text-dark`}>{'  ' + props.number}</p>
         <div className="footer-social">
           <a href={props.instagram}>
             <i className="fa fa-instagram" aria-hidden="true"></i>

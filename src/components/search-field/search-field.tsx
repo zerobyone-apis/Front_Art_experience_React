@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect } from 'react';
-import { TextField } from '../text-field/text-field';
+import { Textfield } from '../text-field/text-field';
 import { Button } from '../button/button';
 import './search-field.scss';
 import '../../styles/theme.scss';
@@ -43,14 +43,17 @@ export const SearchField = (props: {
   };
   return (
     <div className={`search-field ${props.className}`}>
-      <TextField
-        name="searchField"
-        onChange={setFieldValue}
-        label=""
-        hint={!fieldValue && props.fieldLabel ? props.fieldLabel : ''} // TODO fix problems of click and insert text
-        className="search-text_field theme-text_field--dark"
-        icon="faSearch"
-        iconColor="grey"
+      <Textfield
+        id="1"
+        value={fieldValue}
+        type={'string'}
+        label={props.fieldLabel}
+        name="Field Name"
+        // onChange={setFieldValue}
+        //hint={!fieldValue && props.fieldLabel ? props.fieldLabel : ''} // TODO fix problems of click and insert text
+        //className="search-text_field theme-text_field--dark"
+        //icon="faSearch"
+        //iconColor="grey"
       />
       {props.showButton ? (
         <Button

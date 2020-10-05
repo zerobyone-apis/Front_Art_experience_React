@@ -6,27 +6,27 @@
 $backgroun-page: #000000;
 
 /* dark theme colors */
-$primary-dark: #252525b6;
+$primary-dark: #2c2c2cb6;
 $secondary-dark: #1a1a1ab6;
-$tertiary-dark: black;
+$tertiary-dark: rgba(14, 14, 14, 0.95);
 
 /* light theme colors */
-$primary-light: rgb(216, 215, 215);
+$primary-light: #d8d7d7;
 $secondary-light: rgb(167, 167, 167);
 $tertiary-light: rgb(105, 105, 105);
 
 /* details */
-$warm-color: rgb(165, 162, 98);
-$cool-color: rgb(195, 191, 111);
+$warm-color: #a5a262;
+$cool-color: #c3bf6f;
 
 /* shadows */
-$shadow-color: rgb(41, 41, 41);
-$shadow-dark: rgba(0, 0, 0, 0.9);
+$shadow-color: #292929;
+$shadow-dark: #000000;
 $shadow-light: rgba(238, 238, 238, 0.9);
 
 /* fonts colors */
-$dark-text: #303030d5; //#303030d5
-$light-text: #bebebeef; //#bebebeef
+$dark-text: #303030; //#303030d5
+$light-text: #bebebe; //#bebebeef
 
 /* Fonts size */
 $big-title-size: 30px;
@@ -39,6 +39,14 @@ $mobile-screen: 1100px;
 /* 
   Adjusts in default styles HTML 
 */
+
+* {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 
 /* body style */
 body {

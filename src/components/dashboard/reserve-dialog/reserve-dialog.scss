@@ -1,17 +1,11 @@
-.reserve-dialog {
-    width: 100%;
+.reserve-modal {
+    display: flex;
+    align-items: center;
 
-    .reserve-modal {
-        position: relative;
-        margin: auto;
-        width: 600px;
-
+    .dialog-modal {
         .reserve_data-box {
             position: relative;
-            width: 80%;
             margin: auto;
-            height: max-content;
-            margin-top: 40px;
             text-align: center;
 
             .reserve_info {
@@ -24,26 +18,6 @@
     @media only screen and (max-width: 750px) {
         .reserve-modal {
             width: 300px;
-        }
-    }
-
-    .footer {
-        position: absolute;
-        width: 100%;
-        height: 100px;
-        padding-top: 4px;
-        bottom: 0px !important;
-        border-color: rgba(128, 128, 128, 0.198);
-
-        .footer_right-box {
-            position: absolute;
-            display: flex;
-            right: 0;
-            padding-right: 20px;
-
-            .footer-button {
-                margin-left: 10px;
-            }
         }
     }
 }

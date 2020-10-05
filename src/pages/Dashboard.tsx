@@ -6,15 +6,7 @@ import { Toolbar } from '../components/dashboard/toolbar/toolbar';
 import { LoaderPage } from '../components/loader-page/loader-page';
 import { IReserve } from '../types/Reserve.type';
 import ReserveActions from '../actions/Reserve.actions';
-import {
-  AiOutlineSend,
-  AiFillInstagram,
-  AiFillFacebook,
-  AiFillPhone,
-} from 'react-icons/ai';
-import { GiWorld } from 'react-icons/gi';
-import { GrCaretNext, GrCaretPrevious } from 'react-icons/gr';
-import { TiLocation } from 'react-icons/ti';
+import { AiOutlineSend } from 'react-icons/ai';
 
 import moment from 'moment';
 import './Dashboard.scss';
@@ -83,6 +75,66 @@ const DashboardPage = () => {
           .substr(0, 16);
       });
       setReserve(reserves);
+    }
+  };
+
+  /* UPDATE RESERVE */
+  const onUpdate = async (reserve) => {
+    setDisabledButton(true);
+    let formatDate = moment(reserve.startTime).format('YYYY-MM-DDTHH:mm:ss');
+    let reserveUpdate: IReserve = {
+      reserveId: reserve.reservesId,
+      nameClient: reserve.nameClient,
+      barberOrHairdresserId: reserve.barberOrHairdresserId,
+      clientId: reserve.clientId,
+      celClient: reserve.celClient,
+      mailClient: reserve.mailClient,
+      workToDo: reserve.workToDo,
+      priceWork: reserve.priceWork,
+      additionalCost: reserve.additionalCost,
+      socialNumber: reserve.socialNumber,
+      startTime: formatDate,
+    };
+
+    let response = await reserveActions.update(reserveUpdate);
+
+    if (response) {
+      console.log('Successfully Updated. . . ');
+      setDisabledButton(false);
+    } else {
+      console.log('Error actualizando: ', response);
+    }
+  };
+
+  /* FINALIZE RESERVE */
+  const finalizeReserve = async (reserve) => {
+    setDisabledButton(true);
+    let response = await reserveActions.doneReserve(
+      reserve.barberOrHairdresserId,
+      reserve.reserveId
+    );
+    console.log('Finalize Method');
+    if (response) {
+      console.log('Success finalize');
+      setDisabledButton(false);
+    } else {
+      console.log('Error completando reserva: ', response);
+    }
+  };
+
+  /* CANCEL RESERVE */
+  const cancelReserve = async (reserve) => {
+    setDisabledButton(true);
+    let response = await reserveActions.cancel(
+      reserve.barberOrHairdresserId,
+      reserve.reserveId
+    );
+    console.log('Cancel method ');
+    if (response) {
+      console.log('Success cancel');
+      setDisabledButton(false);
+    } else {
+      console.log('Ocurrio un error Cancelando la reserva: ', response);
     }
   };
 

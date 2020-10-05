@@ -6,7 +6,7 @@ import { ButtonContext } from '../../contexts/ButtonsContext';
 import { DialogModal } from '../dialog-modal/dialog-modal';
 import { IReserve } from '../../types/Reserve.type';
 import { LoginModal } from '../login-modal/login-modal';
-import { ReserveFooter } from './reserve-footer/reserve-footer';
+import { StepperFooter } from './stepper-footer';
 import { ReserveTime } from './reserve-time/reserve-time';
 import { ServicesList } from './services-list/services-list';
 import { Stepper } from '../stepper/stepper';
@@ -116,7 +116,9 @@ export const ReserveModal = (props: { className?: string }) => {
   const [reserveDate, setReserveDate] = useState(null);
   const [selectedBarber, setSelectedBarber] = useState(defaultBarber);
   const [selectedService, setSelectedService] = useState(defaultService);
+
   const [wizard, setWizard] = useState(0);
+  const totalWizard: number = 3;
 
   const reserveActions = new ReserveActions();
 
@@ -127,6 +129,7 @@ export const ReserveModal = (props: { className?: string }) => {
     const newReserve: IReserve = {
       barberOrHairdresserId: selectedBarber.barberId,
       clientId: getUserData().clientId,
+      socialNumber: getUserData().socialNumber,
       nameClient: getUserData().username,
       mailClient: getUserData().email,
       celClient: getUserData().cel || '0000',
@@ -278,7 +281,7 @@ export const ReserveModal = (props: { className?: string }) => {
     return result;
   };
 
-  const checkStep = () => {
+  const checkStepByWizard = () => {
     switch (wizard) {
       case 0:
         return selectedBarber.name ? true : false;
@@ -293,6 +296,7 @@ export const ReserveModal = (props: { className?: string }) => {
   };
 
   const goToReserve = () => {
+    console.log('GoToReserve -> ');
     setShowLoginDialog(false);
     setShowDialog(true);
   };
@@ -395,11 +399,24 @@ export const ReserveModal = (props: { className?: string }) => {
             </div>
           </Stepper>
           {wizard != 4 ? (
-            <ReserveFooter
+            <StepperFooter
               wizard={wizard}
-              checkStep={checkStep}
-              onChangeWizard={setWizard}
-              finalize={createReserve}
+              checkStepByWizard={checkStepByWizard}
+              nextButtonLabel={wizard < totalWizard ? 'siguiente' : 'Reservar'}
+              prevButtonLabel="VOLVER"
+              onNextButtonClick={
+                wizard < totalWizard
+                  ? () => {
+                      setWizard(wizard + 1);
+                    }
+                  : () => {
+                      createReserve();
+                    }
+              }
+              onPrevButtonClick={() => {
+                setWizard(wizard - 1);
+              }}
+              onUpdateButtonClick={() => setWizard(wizard - 1)}
             />
           ) : null}
         </DialogModal>

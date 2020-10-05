@@ -10,7 +10,7 @@ import '../../styles/effects.scss';
 export const DialogModal = (props: {
   title?: string;
   header?: any;
-  children?: any;
+  children?: React.ReactChild | React.ReactChild[];
   width?: string;
   height?: string;
   onClose: () => void;
@@ -38,7 +38,7 @@ export const DialogModal = (props: {
       }`}
     >
       <div className={`dialog-modal effect-opacity ${getTheme()}`}>
-        <div className="header">
+        <div className={`header`}>
           <div
             onClick={() => {
               onClose();
@@ -58,7 +58,9 @@ export const DialogModal = (props: {
             )}
           </div>
         </div>
-        <div className={`content `}>{props.children}</div>
+        {[props.children].map((child, i) => {
+          return <div key={i}>{child}</div>;
+        })}
       </div>
     </div>
   );

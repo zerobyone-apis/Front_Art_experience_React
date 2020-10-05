@@ -35,7 +35,7 @@ $font-size-button: 12px;
     }
 
     button:hover {
-        background: rgb(0, 0, 0) !important;
+        background: $primary-dark !important;
         transition: all ease 0.9s;
         border-color: $cool-color;
 

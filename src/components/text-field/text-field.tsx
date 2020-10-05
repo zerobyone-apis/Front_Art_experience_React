@@ -1,81 +1,171 @@
 // eslint-disable-next-line no-unused-vars
-import React, { ChangeEvent, useState, useEffect, useContext } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, {
+  ChangeEvent,
+  useState,
+  useEffect,
+  useContext,
+  RefObject,
+  ReactElement,
+} from 'react';
+import {
+  createStyles,
+  FormControl,
+  InputLabel,
+  makeStyles,
+  TextField,
+  withStyles,
+} from '@material-ui/core';
+import {
+  createMuiTheme,
+  fade,
+  MuiThemeProvider,
+  Theme,
+} from '@material-ui/core/styles';
+import { customTheme } from '../../theme';
+import InputBase from '@material-ui/core/InputBase';
 import { ThemeContext } from '../../contexts/ThemeContext';
-import * as Icons from '@fortawesome/free-solid-svg-icons';
 import './text-field.scss';
+import { FormContext } from '../../contexts/FormContext';
+import { stringify } from 'querystring';
 
-export const TextField = (props: {
-  value?: any;
-  onChange?: (value: string, name: string | undefined) => void;
+export const Textfield = (props: {
+  id: string;
+  label: string;
   name: string;
-  type?: string;
-  label?: string;
-  hint?: string;
-  error?: string;
-  defaultValue?: string;
-  result?: string;
-  icon?: string;
-  tabIndex?: number;
-  iconColor?: string;
-  required?: boolean;
-  className?: string;
-  disabled?: boolean;
+  children?: ReactElement;
+  type: 'string' | 'text' | 'email' | 'password' | 'number';
+  equalField?: string;
+  value?: string | number;
 }) => {
+  const { setField, getErrorByField, validationIsActive } = useContext(
+    FormContext
+  );
   const {
     // @ts-ignore
     getTheme,
   } = useContext(ThemeContext);
 
-  const [value, setValue] = useState(props.value || '');
-  const [error, setError] = useState(props.error);
+  // const CustomTextField = withStyles((theme: Theme) =>
+  //   createStyles({
+  //     input: {
+  //       borderRadius: customTheme.borderRadius,
+  //       position: 'relative',
+  //       backgroundColor: customTheme.pallette[getTheme()],
+  //       border: `1px solid ${customTheme.pallette.secondary}`,
+  //       fontSize: customTheme.text.fontSize.text,
+  //       width: 'auto',
+  //       padding: '5px 12px',
+  //       transition: theme.transitions.create(['border-color', 'box-shadow']),
+  //       color: customTheme.text.color[getTheme()],
+  //       fontFamily: customTheme.text.fontFamily.join(','),
+  //       '&:focus': {
+  //         boxShadow: `${fade(customTheme.pallette.primary, 0.25)} 0 0 0 0.2rem`,
+  //         borderColor: customTheme.pallette.primary,
+  //       },
+  //     },
+  //   }),
+  // )(InputBase);
+
+  const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+      margin: {
+        paddingTop: theme.spacing(3),
+      },
+      root: {
+        '& input': {
+          color: 'white',
+        },
+        margin: 'auto',
+        '& label': {
+          color: customTheme.text.color.dark,
+        },
+      },
+    })
+  );
+
+  const theme = createMuiTheme({
+    palette: {
+      primary: {
+        main: customTheme.pallette.primary,
+      },
+      secondary: {
+        main: customTheme.pallette.secondary,
+      },
+    },
+  });
+
+  const classes = useStyles();
+
+  const [value, setValue] = useState('');
+  const [error, setError] = useState('');
+
   useEffect(() => {
-    setError(props.error);
-  }, [props.error])
+    setField(props.name, props.type, error, value, props.equalField);
+  }, [value]);
 
-  const changeValue = ({ target: { value, name } }: ChangeEvent<HTMLInputElement>) => {
-    setValue(value);
-    props.onChange(value, name);
-  }
-
-  const ErrorLabel = (props: {
-    value: string;
-  }) => {
+  useEffect(() => {
     if (props.value) {
-      return (
-        <div>
-          <label className="error-label">{props.value}</label>;
-        </div>
-      )
+      setValueOnReserveTextfield('');
+    }
+  }, [value]);
+
+  const handleChange = (e) => {
+    setValue(e.target.value);
+  };
+
+  const setValueOnReserveTextfield = (e) => {
+    if (props.value) {
+      setValue(String(props.value));
     } else {
-      return null;
+      handleChange(e);
     }
   };
+
+  const customLabels = [
+    'nameClient',
+    'mailClient',
+    'celClient',
+    'startTimeFront',
+    'barberName',
+    'workToDo',
+    'totalCost',
+  ];
   return (
-    <div className={`${props.className || ''} text-field_${getTheme()} text-field`}>
-      <label className="label art_experience-text-dark">{props.label}</label>
-      <div className={`input-box ${props.disabled ? 'disabled' : ''}`}>
-        <label className="hint-label art_experience-text-dark">{props.hint}</label>
-        <input
-          tabIndex={props.tabIndex}
-          name={props.name}
-          type={props.type || 'string'}
-          required={props.required}
-          disabled={props.disabled}
-          value={value}
-          autoFocus
-          onChange={changeValue}
-        />
-        {
-          props.icon && !value ? (
-            <FontAwesomeIcon
-              color={props.iconColor || 'grey'}
-              icon={Icons[props.icon]}
-              className="text_field-icon" />
-          ) : null
-        }
-      </div>
-      <ErrorLabel value={props.error} />
-    </div>
+    <MuiThemeProvider theme={theme}>
+      <FormControl className={classes.margin}>
+        <div className={classes.root}>
+          <InputLabel shrink htmlFor={props.id}>
+            {props.label}
+          </InputLabel>
+        </div>
+        {props.name in customLabels ? (
+          <TextField
+            className={classes.root}
+            value={value}
+            type={props.type}
+            onChange={handleChange}
+            color="primary"
+            error={
+              validationIsActive() &&
+              (getErrorByField(props.name) ? true : false)
+            }
+            helperText={getErrorByField(props.name)}
+          />
+        ) : (
+          <TextField
+            className={classes.root}
+            value={value}
+            type={props.type}
+            color="primary"
+            onChange={handleChange}
+            error={
+              validationIsActive() &&
+              (getErrorByField(props.name) ? true : false)
+            }
+            helperText={getErrorByField(props.name)}
+          />
+        )}
+      </FormControl>
+    </MuiThemeProvider>
   );
 };
