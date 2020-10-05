@@ -45,27 +45,6 @@ export const Textfield = (props: {
     getTheme,
   } = useContext(ThemeContext);
 
-  // const CustomTextField = withStyles((theme: Theme) =>
-  //   createStyles({
-  //     input: {
-  //       borderRadius: customTheme.borderRadius,
-  //       position: 'relative',
-  //       backgroundColor: customTheme.pallette[getTheme()],
-  //       border: `1px solid ${customTheme.pallette.secondary}`,
-  //       fontSize: customTheme.text.fontSize.text,
-  //       width: 'auto',
-  //       padding: '5px 12px',
-  //       transition: theme.transitions.create(['border-color', 'box-shadow']),
-  //       color: customTheme.text.color[getTheme()],
-  //       fontFamily: customTheme.text.fontFamily.join(','),
-  //       '&:focus': {
-  //         boxShadow: `${fade(customTheme.pallette.primary, 0.25)} 0 0 0 0.2rem`,
-  //         borderColor: customTheme.pallette.primary,
-  //       },
-  //     },
-  //   }),
-  // )(InputBase);
-
   const useStyles = makeStyles((theme: Theme) =>
     createStyles({
       margin: {
@@ -130,6 +109,8 @@ export const Textfield = (props: {
     'workToDo',
     'totalCost',
   ];
+
+
   return (
     <MuiThemeProvider theme={theme}>
       <FormControl className={classes.margin}>
@@ -138,7 +119,7 @@ export const Textfield = (props: {
             {props.label}
           </InputLabel>
         </div>
-        {props.name in customLabels ? (
+        {/* {props.name in customLabels ? (
           <TextField
             className={classes.root}
             value={value}
@@ -151,20 +132,21 @@ export const Textfield = (props: {
             }
             helperText={getErrorByField(props.name)}
           />
-        ) : (
-          <TextField
-            className={classes.root}
-            value={value}
-            type={props.type}
-            color="primary"
-            onChange={handleChange}
-            error={
-              validationIsActive() &&
-              (getErrorByField(props.name) ? true : false)
-            }
-            helperText={getErrorByField(props.name)}
-          />
-        )}
+        ) : ( */}
+        <TextField
+          className={classes.root}
+          value={value}
+          type={props.type}
+          color="primary"
+          onChange={handleChange}
+          error={
+            validationIsActive() &&
+            (getErrorByField(props.name) ? true : false)
+          }
+          helperText={getErrorByField(props.name)}
+        />
+          )
+          {/* } */}
       </FormControl>
     </MuiThemeProvider>
   );
