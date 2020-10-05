@@ -19,7 +19,6 @@ export const SearchField = (props: {
   const [filtredItems, setFiltredItems] = useState(props.items || []);
 
   useEffect(() => {
-    //console.log('Item filter', props.itemFilter)
     setFieldValue('');
     filterItems();
   }, [props.itemFilter]);
@@ -45,15 +44,15 @@ export const SearchField = (props: {
     <div className={`search-field ${props.className}`}>
       <Textfield
         id="1"
-        value={fieldValue}
+        // value={fieldValue}
         type={'string'}
         label={props.fieldLabel}
         name="Field Name"
-        // onChange={setFieldValue}
-        //hint={!fieldValue && props.fieldLabel ? props.fieldLabel : ''} // TODO fix problems of click and insert text
-        //className="search-text_field theme-text_field--dark"
-        //icon="faSearch"
-        //iconColor="grey"
+      // onChange={setFieldValue}
+      //hint={!fieldValue && props.fieldLabel ? props.fieldLabel : ''} // TODO fix problems of click and insert text
+      //className="search-text_field theme-text_field--dark"
+      //icon="faSearch"
+      //iconColor="grey"
       />
       {props.showButton ? (
         <Button

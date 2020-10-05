@@ -48,11 +48,11 @@ export const Textfield = (props: {
       },
       root: {
         '& input': {
-          color: 'white',
+          color: (!props.disabled) ? customTheme.text.color.dark : '#b0bec5',
         },
         margin: 'auto',
         '& label': {
-          color: customTheme.text.color.dark,
+          color: (!props.disabled) ? customTheme.text.color.dark : '#b0bec5',
         },
       },
     })
@@ -71,7 +71,7 @@ export const Textfield = (props: {
 
   const classes = useStyles();
 
-  const [value, setValue] = useState(String(props.defaultvalue) || '');
+  const [value, setValue] = useState(props.defaultvalue || '');
   const [error, setError] = useState('');
 
   useEffect(() => {

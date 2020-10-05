@@ -11,6 +11,7 @@ import { FormContext, FormProvider } from '../../../contexts/FormContext';
 import './reserve-dialog.scss';
 import '../../../styles/theme-buttons.scss';
 import '../../../styles/effects.scss';
+import { ThemeContext } from '../../../contexts/ThemeContext';
 
 export const ReserveDialog = (props: {
   reserve: IReserve,
@@ -35,6 +36,10 @@ export const ReserveDialog = (props: {
     disabled,
     setDisabledButton,
   } = useContext(ButtonContext);
+  const {
+    // @ts-ignore
+    getTheme,
+  } = useContext(ThemeContext);
 
   const reserveActions: ReserveActions = new ReserveActions();
   const [reserve, setReserve] = useState(props.reserve || baseReserve);
@@ -113,7 +118,6 @@ export const ReserveDialog = (props: {
     }
   };
 
-
   /* TEMPORAL this most exists in ClientAccess */
   const SubmitButton = (props: {
     nextButtonLabel: string;
@@ -129,7 +133,6 @@ export const ReserveDialog = (props: {
     } = useContext(FormContext);
     return (
       <StepperFooter
-        // className={`${props.hidePrevButton && 'hide-prev-button'}`}
         nextButtonLabel={props.nextButtonLabel}
         prevButtonLabel={props.prevButtonLabel}
         typeNextButton="button"
@@ -154,7 +157,7 @@ export const ReserveDialog = (props: {
     >
       <div className="reserve-modal">
         <div className="reserve_data-box">
-          <p className="reserve_info effect-slide_left">Datos del Cliente</p>
+          <p className={`reserve_info effect-slide_left text-${getTheme()}`}>Datos del Cliente</p>
 
           {/* New validation implements */}
           <FormProvider>
@@ -182,7 +185,7 @@ export const ReserveDialog = (props: {
                 </ul>
                 <ul>
                   <Textfield
-                    disabled={true}
+                    // disabled={true}
                     id="celClient"
                     label="Cel del cliente"
                     name="celClient"
@@ -191,7 +194,7 @@ export const ReserveDialog = (props: {
                   />
                 </ul>
                 <ul>
-                  <p className="reserve_info">Datos de la Reserva</p>
+                  <p className={`reserve_info text-${getTheme()}`}>Datos de la Reserva</p>
                   <Textfield
                     id="startTimeFront"
                     name="startTimeFront"
