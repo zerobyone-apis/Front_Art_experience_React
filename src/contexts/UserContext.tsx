@@ -39,7 +39,11 @@ export const UserProvider = (props: {
     }
 
     const userIsAdmin = () => {
-        return user.admin ? true : false;
+        if (user) {
+            return user.admin ? true : false;
+        } else {
+            return false;
+        }
     }
 
     const context = { userIsLogged, userIsAdmin, getUserData, setUserData };

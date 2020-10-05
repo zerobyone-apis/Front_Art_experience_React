@@ -60,6 +60,7 @@ export const ReserveDialog = (props: {
       /* Fields of form */
       workToDo: fields.workToDo.value,
       priceWork: fields.totalCost.value, /* <-- Are not the same but is necesary */
+      celClient: fields.celClient.value,
 
       /* Not updated fields (disabled or not specify) */
       reserveId: reserve.reserveId,
@@ -67,7 +68,6 @@ export const ReserveDialog = (props: {
       socialNumber: reserve.socialNumber,
       nameClient: reserve.nameClient,
       barberOrHairdresserId: reserve.barberOrHairdresserId,
-      celClient: reserve.celClient,
       mailClient: reserve.mailClient,
       additionalCost: reserve.additionalCost,
     };
