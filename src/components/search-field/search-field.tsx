@@ -43,16 +43,10 @@ export const SearchField = (props: {
   return (
     <div className={`search-field ${props.className}`}>
       <Textfield
-        id="1"
-        // value={fieldValue}
-        type={'string'}
+        id="searchField"
+        name="searchField"
+        type="text"
         label={props.fieldLabel}
-        name="Field Name"
-      // onChange={setFieldValue}
-      //hint={!fieldValue && props.fieldLabel ? props.fieldLabel : ''} // TODO fix problems of click and insert text
-      //className="search-text_field theme-text_field--dark"
-      //icon="faSearch"
-      //iconColor="grey"
       />
       {props.showButton ? (
         <Button

@@ -32,6 +32,7 @@ export const Textfield = (props: {
   equalField?: string;
   defaultvalue?: string | number;
   disabled?: boolean;
+  variant?: 'filled' | 'standard' | 'outlined'
 }) => {
   const { setField, getErrorByField, validationIsActive } = useContext(
     FormContext
@@ -48,11 +49,15 @@ export const Textfield = (props: {
       },
       root: {
         '& input': {
-          color: (!props.disabled) ? customTheme.text.color.dark : '#b0bec5',
+          paddingLeft: '20px',
+          // borderRadius: '8px',
+          borderStyle: 'none',
+          color: customTheme.text.color.dark,
+          backgroundColor: (!props.disabled) ? '#30303052' : 'black',
         },
         margin: 'auto',
         '& label': {
-          color: (!props.disabled) ? customTheme.text.color.dark : '#b0bec5',
+          color: customTheme.text.color.dark,
         },
       },
     })
@@ -95,6 +100,7 @@ export const Textfield = (props: {
           </InputLabel>
         </div>
         <TextField
+          variant={props.variant}
           className={classes.root}
           value={value}
           type={props.type}
