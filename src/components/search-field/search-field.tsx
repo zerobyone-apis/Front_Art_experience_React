@@ -15,23 +15,13 @@ export const SearchField = (props: {
   buttonLabel?: string;
   fieldLabel?: string;
 }) => {
-  const [fieldValue, setFieldValue] = useState('');
   const [filtredItems, setFiltredItems] = useState(props.items || []);
-
-  useEffect(() => {
-    setFieldValue('');
-    filterItems();
-  }, [props.itemFilter]);
-
-  useEffect(() => {
-    filterItems();
-  }, [fieldValue]);
 
   useEffect(() => {
     props.onChangeResults(filtredItems);
   }, [filtredItems]);
 
-  const filterItems = () => {
+  const filterItems = (fieldValue: string) => {
     let items = filtredItems.filter((item) => {
       let formattedText = (
         String(item[props.itemFilter.value]) || ''
@@ -40,6 +30,7 @@ export const SearchField = (props: {
     });
     props.onChangeResults(items);
   };
+
   return (
     <div className={`search-field ${props.className}`}>
       <Textfield
@@ -47,11 +38,13 @@ export const SearchField = (props: {
         name="searchField"
         type="text"
         label={props.fieldLabel}
+        onChange={(fieldValue) => filterItems(fieldValue)}
       />
       {props.showButton ? (
         <Button
           onClick={() => {
-            filterItems();
+            /* warning this, require test */
+            filterItems(props.defaultValue);
           }}
           label={props.buttonLabel || 'Search'}
           className="search-btn"

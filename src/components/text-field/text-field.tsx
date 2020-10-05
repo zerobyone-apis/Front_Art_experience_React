@@ -33,6 +33,7 @@ export const Textfield = (props: {
   defaultvalue?: string | number;
   disabled?: boolean;
   variant?: 'filled' | 'standard' | 'outlined'
+  onChange?: any,
 }) => {
   const { setField, getErrorByField, validationIsActive } = useContext(
     FormContext
@@ -81,6 +82,7 @@ export const Textfield = (props: {
 
   useEffect(() => {
     setField(props.name, props.type, error, value, props.equalField);
+    props.onChange && props.onChange(value);
   }, [value]);
 
   const handleChange = (e) => {

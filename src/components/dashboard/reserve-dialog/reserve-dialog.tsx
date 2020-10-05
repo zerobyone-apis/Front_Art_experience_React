@@ -8,10 +8,10 @@ import moment from 'moment';
 import { StepperFooter } from '../../reserve-modal/stepper-footer';
 import { ConfirmDialog } from '../../confirm-dialog';
 import { FormContext, FormProvider } from '../../../contexts/FormContext';
+import { ThemeContext } from '../../../contexts/ThemeContext';
 import './reserve-dialog.scss';
 import '../../../styles/theme-buttons.scss';
 import '../../../styles/effects.scss';
-import { ThemeContext } from '../../../contexts/ThemeContext';
 
 export const ReserveDialog = (props: {
   reserve: IReserve,
@@ -125,6 +125,7 @@ export const ReserveDialog = (props: {
     onNext: any;
     onPrev?: any;
     hidePrevButton?: boolean;
+    className?: string;
   }) => {
     const {
       // @ts-ignore
@@ -133,6 +134,7 @@ export const ReserveDialog = (props: {
     } = useContext(FormContext);
     return (
       <StepperFooter
+        className={props.className}
         nextButtonLabel={props.nextButtonLabel}
         prevButtonLabel={props.prevButtonLabel}
         typeNextButton="button"
@@ -235,6 +237,7 @@ export const ReserveDialog = (props: {
                 onNext={updateReserve}
                 nextButtonLabel={'Guardar Cambios'}
                 hidePrevButton={true}
+                className="submit-button-update"
               />
               <SubmitButton
                 onNext={(data) => setFinalizeDialog(true)}
