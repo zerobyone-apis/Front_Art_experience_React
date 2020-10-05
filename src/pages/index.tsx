@@ -95,7 +95,7 @@ const IndexPage = () => {
   const courses = [
     {
       name: 'INTENSIVO',
-      duration: '4 meses', //  / 1 clase por semana a partir de las 13:30hrs
+      duration: '4 meses', //  1 clase por semana a partir de las 13:30hrs
       info: `
       El curso incluye los materiales a utilizar en el mismo.
       Conoceras y entenderas las diferentes tecnicas y conceptos claves 
