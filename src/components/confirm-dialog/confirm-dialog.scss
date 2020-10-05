@@ -2,7 +2,8 @@
 
 .confirm-dialog {
     .dialog-modal {
-        width: max-content;
+        width: max-content !important;
+        min-width: max-content !important;
         height: max-content;
         text-align: center;
 

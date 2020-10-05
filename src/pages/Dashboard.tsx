@@ -169,6 +169,17 @@ const DashboardPage = () => {
       {selectedReserve && showReserveDialog ? (
         <ReserveDialog
           reserve={selectedReserve}
+          onUpdated={((updated) => {
+            let reservesCopy = reserves;
+            let index = reserves.indexOf(selectedReserve);
+            console.log('selected reserve', selectedReserve)
+            reservesCopy[index] = updated;
+            console.log('updated', updated);
+            console.log('index', index);
+
+            // setReserve(reservesCopy);
+            setShowReserveDialog(false);
+          })}
           onClose={setShowReserveDialog}
         />
       ) : null}

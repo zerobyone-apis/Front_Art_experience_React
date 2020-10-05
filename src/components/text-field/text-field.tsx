@@ -1,10 +1,8 @@
 // eslint-disable-next-line no-unused-vars
 import React, {
-  ChangeEvent,
   useState,
   useEffect,
   useContext,
-  RefObject,
   ReactElement,
 } from 'react';
 import {
@@ -17,16 +15,13 @@ import {
 } from '@material-ui/core';
 import {
   createMuiTheme,
-  fade,
   MuiThemeProvider,
   Theme,
 } from '@material-ui/core/styles';
 import { customTheme } from '../../theme';
-import InputBase from '@material-ui/core/InputBase';
 import { ThemeContext } from '../../contexts/ThemeContext';
-import './text-field.scss';
 import { FormContext } from '../../contexts/FormContext';
-import { stringify } from 'querystring';
+import './text-field.scss';
 
 export const Textfield = (props: {
   id: string;
@@ -35,7 +30,8 @@ export const Textfield = (props: {
   children?: ReactElement;
   type: 'string' | 'text' | 'email' | 'password' | 'number';
   equalField?: string;
-  value?: string | number;
+  defaultvalue?: string | number;
+  disabled?: boolean;
 }) => {
   const { setField, getErrorByField, validationIsActive } = useContext(
     FormContext
@@ -75,17 +71,11 @@ export const Textfield = (props: {
 
   const classes = useStyles();
 
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState(String(props.defaultvalue) || '');
   const [error, setError] = useState('');
 
   useEffect(() => {
     setField(props.name, props.type, error, value, props.equalField);
-  }, [value]);
-
-  useEffect(() => {
-    if (props.value) {
-      setValueOnReserveTextfield('');
-    }
   }, [value]);
 
   const handleChange = (e) => {
@@ -93,23 +83,8 @@ export const Textfield = (props: {
   };
 
   const setValueOnReserveTextfield = (e) => {
-    if (props.value) {
-      setValue(String(props.value));
-    } else {
-      handleChange(e);
-    }
+    handleChange(e);
   };
-
-  const customLabels = [
-    'nameClient',
-    'mailClient',
-    'celClient',
-    'startTimeFront',
-    'barberName',
-    'workToDo',
-    'totalCost',
-  ];
-
 
   return (
     <MuiThemeProvider theme={theme}>
@@ -119,25 +94,12 @@ export const Textfield = (props: {
             {props.label}
           </InputLabel>
         </div>
-        {/* {props.name in customLabels ? (
-          <TextField
-            className={classes.root}
-            value={value}
-            type={props.type}
-            onChange={handleChange}
-            color="primary"
-            error={
-              validationIsActive() &&
-              (getErrorByField(props.name) ? true : false)
-            }
-            helperText={getErrorByField(props.name)}
-          />
-        ) : ( */}
         <TextField
           className={classes.root}
           value={value}
           type={props.type}
           color="primary"
+          disabled={props.disabled}
           onChange={handleChange}
           error={
             validationIsActive() &&
@@ -145,8 +107,6 @@ export const Textfield = (props: {
           }
           helperText={getErrorByField(props.name)}
         />
-          )
-          {/* } */}
       </FormControl>
     </MuiThemeProvider>
   );

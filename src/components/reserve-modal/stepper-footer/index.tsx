@@ -15,6 +15,8 @@ export const StepperFooter = (props: {
   prevButtonStyle?: string;
   updateButtonStyle?: string;
   typeNextButton?: 'button' | 'submit' | 'reset';
+  className?: string,
+  hidePrevButton?: boolean,
   onNextButtonClick: () => void;
   onPrevButtonClick: () => void;
   onUpdateButtonClick?: () => void;
@@ -27,11 +29,10 @@ export const StepperFooter = (props: {
   const PrevButton = () => {
     return (
       <Button
-        className={`${
-          props.prevButtonStyle
-            ? props.prevButtonStyle
-            : 'theme-button-outlined'
-        } footer-button`}
+        className={`${props.prevButtonStyle
+          ? props.prevButtonStyle
+          : 'theme-button-outlined'
+          } footer-button`}
         label={props.prevButtonLabel || 'back'}
         onClick={() => props.onPrevButtonClick()}
       />
@@ -42,9 +43,8 @@ export const StepperFooter = (props: {
     return (
       <Button
         type={props.typeNextButton}
-        className={`${
-          props.nextButtonStyle ? props.nextButtonStyle : 'theme-button'
-        } footer-button confirm`}
+        className={`${props.nextButtonStyle ? props.nextButtonStyle : 'theme-button'
+          } footer-button confirm`}
         label={props.nextButtonLabel || 'finalize'}
         onClick={() => props.onNextButtonClick()}
       />
@@ -55,9 +55,8 @@ export const StepperFooter = (props: {
     return (
       <Button
         type={props.typeNextButton}
-        className={`${
-          props.updateButtonStyle ? props.updateButtonStyle : 'theme-button'
-        } footer-button confirm`}
+        className={`${props.updateButtonStyle ? props.updateButtonStyle : 'theme-button'
+          } footer-button confirm`}
         label={props.updateButtonLabel || 'Update'}
         onClick={() => props.onUpdateButtonClick()}
       />
@@ -65,25 +64,20 @@ export const StepperFooter = (props: {
   };
 
   return (
-    <div className={`footer ${getTheme()}`}>
+    <div className={`footer ${props.className} ${getTheme()}`}>
       <div className="footer_right-box">
-        {props.checkStepByWizard
-          ? props.wizard
-            ? PrevButton()
-            : null
-          : PrevButton()}
-
+        {!props.hidePrevButton && (
+          props.checkStepByWizard
+            ? props.wizard
+              ? PrevButton()
+              : null
+            : PrevButton()
+        )}
         {props.checkStepByWizard
           ? props.checkStepByWizard()
             ? NextButton()
             : null
           : NextButton()}
-
-        {/*props.checkStepByWizard
-          ? props.checkStepByWizard()
-            ? UpdateButton()
-            : null
-        : UpdateButton()*/}
       </div>
     </div>
   );
