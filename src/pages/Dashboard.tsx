@@ -53,7 +53,7 @@ const DashboardPage = () => {
     /* check user level for goto administration 
       true: start validation / false: skip and enter😎
     */
-    startValidationUser(false);
+    startValidationUser(true);
   }, []);
 
 
