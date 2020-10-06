@@ -50,10 +50,7 @@ const DashboardPage = () => {
   /* validation of access into Dashboard page */
   /* Is necesary be a admin */
   useEffect(() => {
-    /* check user level for goto administration 
-      true: start validation / false: skip and enter😎
-    */
-    startValidationUser(true);
+    !userIsAdmin() ? document.location.href = '/' : null;
   }, []);
 
 
@@ -102,24 +99,6 @@ const DashboardPage = () => {
     setSelectedReserve(reserve);
     setShowReserveDialog(true);
   };
-
-
-
-  const startValidationUser = (checkAdmin: boolean) => {
-    let lok = document.location.href;
-    const hash = '/dashboard/users/base?1';
-    const x = ['h4<k3r', '0f',
-      '+ry', 'pr0y3<+', 'n1c3',
-      'https://www.youtube.com/watch?v=dQw4w9WgXcQ', lok]; const goto = (
-      ) => window.location.replace(
-        x[5]); !checkAdmin ? (alert(
-          `${x[4]} ${x[2]} ${x[3]} ${x[1]} ${x[0]}`), goto()) :
-          (!userIsAdmin() ? (document.location.href = `/${String(
-            hash.split('/')[0]).replace('3', '')}`) : null)
-  }
-
-
-
 
   return (
     <div className="dashboard_page">
