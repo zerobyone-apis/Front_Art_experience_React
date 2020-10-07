@@ -72,7 +72,7 @@ const DashboardPage = () => {
   ];
   const courses = ['Intensivo', 'Colorimetría', 'Avanzado'];
 
-  const mobileHeaders = [headerOrder[1], headerOrder[2], headerOrder[3]];
+  const mobileHeaders = [headerOrder[2], headerOrder[4], headerOrder[5]];
   useEffect(() => {
     const fetchData = async () => {
       await getReserves();
