@@ -123,9 +123,8 @@ export const ReserveModal = (props: { className?: string }) => {
   const reserveActions = new ReserveActions();
 
   const createReserve = async () => {
-    const startDateFormatted = `${
-      moment(reserveDate).format().split('T')[0]
-    }T${reserveHour}:00`;
+    const startDateFormatted = `${moment(reserveDate).format().split('T')[0]
+      }T${reserveHour}:00`;
     const newReserve: IReserve = {
       barberOrHairdresserId: selectedBarber.barberId,
       clientId: getUserData().clientId,
@@ -407,11 +406,11 @@ export const ReserveModal = (props: { className?: string }) => {
               onNextButtonClick={
                 wizard < totalWizard
                   ? () => {
-                      setWizard(wizard + 1);
-                    }
+                    setWizard(wizard + 1);
+                  }
                   : () => {
-                      createReserve();
-                    }
+                    createReserve();
+                  }
               }
               onPrevButtonClick={() => {
                 setWizard(wizard - 1);
