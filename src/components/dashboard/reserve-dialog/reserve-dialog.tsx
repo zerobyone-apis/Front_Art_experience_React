@@ -49,13 +49,14 @@ export const ReserveDialog = (props: {
   /* UPDATE RESERVE */
   const updateReserve = async (fields: any) => {
     setDisabledButton(true);
-    let formatDate = moment(reserve.startTime).format('YYYY-MM-DDTHH:mm:ss');
+    //let formatDateOld = moment(reserve.startTime).format('YYYY-MM-DDTHH:mm:ss');
+    let formatDateFront = moment(fields.startTimeFront.value).format('YYYY-MM-DDTHH:mm:ss');
     let reserveUpdate: IReserve = {
 
       /* Check the start time: need pass the startTimeFront formatted? 
         add a callendar?
       */
-      startTime: formatDate,
+      startTime: formatDateFront,
 
       /* Fields of form */
       workToDo: fields.workToDo.value,
