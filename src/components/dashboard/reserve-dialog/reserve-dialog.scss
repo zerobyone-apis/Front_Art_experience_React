@@ -1,12 +1,14 @@
 .reserve-modal {
     display: flex;
     align-items: center;
+    z-index: 999;
 
     .dialog-modal {
         .reserve_data-box {
             position: relative;
             margin: auto;
             text-align: center;
+            // background-color: green;
 
             .reserve_info {
                 font-size: 18px;
@@ -20,14 +22,15 @@
 
         .footer {
             background-color: none !important;
-
         }
-
     }
 
     @media only screen and (max-width: 750px) {
-        // .reserve-modal {
-        //     width: 300px;
-        // }
+        .dialog-modal {
+            .fields-box {
+                height: 335px;
+                overflow-y: scroll;
+            }
+        }
     }
 }

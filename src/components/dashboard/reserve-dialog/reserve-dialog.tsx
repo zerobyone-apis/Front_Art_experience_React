@@ -165,75 +165,77 @@ export const ReserveDialog = (props: {
           {/* New validation implements */}
           <FormProvider>
             <>
-              <li style={{ listStyle: 'none' }}>
-                <ul>
-                  <Textfield
-                    disabled={true}
-                    id="nameClient"
-                    name="nameClient"
-                    label="Nombre del cliente"
-                    type="text"
-                    defaultvalue={reserve.nameClient}
-                  />
-                </ul>
-                <ul>
-                  <Textfield
-                    disabled={true}
-                    id="mailClient"
-                    name="mailClient"
-                    label="Email del cliente"
-                    type="email"
-                    defaultvalue={reserve.mailClient}
-                  />
-                </ul>
-                <ul>
-                  <Textfield
-                    // disabled={true}
-                    id="celClient"
-                    label="Cel del cliente"
-                    name="celClient"
-                    type="number"
-                    defaultvalue={reserve.celClient}
-                  />
-                </ul>
-                <ul>
-                  <p className={`reserve_info text-${getTheme()}`}>Datos de la Reserva</p>
-                  <Textfield
-                    id="startTimeFront"
-                    name="startTimeFront"
-                    label="Fecha y Hora de Reserva"
-                    type="text"
-                    defaultvalue={reserve.startTimeFront}
-                  />
-                </ul>
-                <ul>
-                  <Textfield
-                    id="barberName"
-                    name="barberName"
-                    label="Nombre Barbero"
-                    type="string"
-                    defaultvalue={reserve.barberName}
-                  />
-                </ul>
-                <ul>
-                  <Textfield
-                    id="workToDo"
-                    name="workToDo"
-                    label="Servicio Seleccionado"
-                    type="text"
-                    defaultvalue={reserve.workToDo}
-                  />
-                </ul>
-                <ul>
-                  <Textfield
-                    id="totalCost"
-                    name="totalCost"
-                    label="Costo Total"
-                    type="number"
-                    defaultvalue={reserve.totalCost}
-                  />
-                </ul>
-              </li>
+              <div className="fields-box">
+                <li style={{ listStyle: 'none' }}>
+                  <ul>
+                    <Textfield
+                      disabled={true}
+                      id="nameClient"
+                      name="nameClient"
+                      label="Nombre del cliente"
+                      type="text"
+                      defaultvalue={reserve.nameClient}
+                    />
+                  </ul>
+                  <ul>
+                    <Textfield
+                      disabled={true}
+                      id="mailClient"
+                      name="mailClient"
+                      label="Email del cliente"
+                      type="email"
+                      defaultvalue={reserve.mailClient}
+                    />
+                  </ul>
+                  <ul>
+                    <Textfield
+                      // disabled={true}
+                      id="celClient"
+                      label="Cel del cliente"
+                      name="celClient"
+                      type="number"
+                      defaultvalue={reserve.celClient}
+                    />
+                  </ul>
+                  <ul>
+                    <p className={`reserve_info text-${getTheme()}`}>Datos de la Reserva</p>
+                    <Textfield
+                      id="startTimeFront"
+                      name="startTimeFront"
+                      label="Fecha y Hora de Reserva"
+                      type="text"
+                      defaultvalue={reserve.startTimeFront}
+                    />
+                  </ul>
+                  <ul>
+                    <Textfield
+                      id="barberName"
+                      name="barberName"
+                      label="Nombre Barbero"
+                      type="string"
+                      defaultvalue={reserve.barberName}
+                    />
+                  </ul>
+                  <ul>
+                    <Textfield
+                      id="workToDo"
+                      name="workToDo"
+                      label="Servicio Seleccionado"
+                      type="text"
+                      defaultvalue={reserve.workToDo}
+                    />
+                  </ul>
+                  <ul>
+                    <Textfield
+                      id="totalCost"
+                      name="totalCost"
+                      label="Costo Total"
+                      type="number"
+                      defaultvalue={reserve.totalCost}
+                    />
+                  </ul>
+                </li>
+              </div>
               <SubmitButton
                 onNext={updateReserve}
                 nextButtonLabel={'Guardar Cambios'}
