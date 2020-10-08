@@ -26,18 +26,23 @@ section {
       height: 100%;
       object-fit: cover;
     }
-
   }
 
   section p {
     position: relative;
     color: #fff;
-    padding: 15px;
+    margin-top: 15px;
+    margin-bottom: 15px;
     text-align: left;
+  }
+  .p-text {
+    // margin-top: 15px;
+    //margin-bottom: 15px;
+    padding-top: 1.5%;
   }
 
   .container__text {
-    padding-top: 2.5%;
+    padding-top: 3%;
 
     img {
       align-items: initial;
@@ -56,6 +61,8 @@ section {
 
     .circle-box {
       margin: auto;
+      margin-left: -28px;
+      margin-top: 10px;
 
       iframe {
         position: relative;
@@ -64,17 +71,14 @@ section {
     }
 
     .container__text {
+      margin-top: 20px;
       display: inline-block;
       // visibility: hidden;
     }
   }
 }
 
-
-
 ///
-
-
 .home-footer {
   position: relative;
   width: 80%;

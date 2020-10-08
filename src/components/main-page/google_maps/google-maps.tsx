@@ -15,19 +15,16 @@ function Maps(props: { className: string; subtitle: string }) {
         />
       </div>
 
-
       <div className="container__text">
         {props.subtitle.split('\n').map((line, i) => {
           return (
-            <p key={i}>
+            <p className="p-text" key={i}>
               <img src="https://img.icons8.com/fluent/15/000000/chevron-right.png" />
               {line}
             </p>
           );
         })}
       </div>
-
-
     </section>
   );
 }

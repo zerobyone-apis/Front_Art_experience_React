@@ -4,15 +4,17 @@
   background-color: rgb(12, 12, 12) !important;
 
   .card_title {
+    font-size: 34px;
     color: $cool-color;
   }
 
   .home-footer {
     position: relative;
     width: 80%;
+    text-align: left;
     height: max-content;
     margin: auto;
-    padding: 20px;
+    padding-bottom: 10px;
 
     // .footer_logo-img {
     //   position: relative;
@@ -91,8 +93,6 @@
   // }
 }
 
-
-
 .content-info {
   width: 100%;
   // margin-top: 100px;
@@ -100,7 +100,6 @@
   // position: absolute;
 
   // background-color: green;
-
 
   .logo {
     text-align: center;
@@ -123,7 +122,6 @@
       // background-color: red;
       filter: drop-shadow(40px 40px 40px rgb(0, 0, 0));
     }
-
 
     .footer-social-logo {
       position: relative;
