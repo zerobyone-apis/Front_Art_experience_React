@@ -52,7 +52,7 @@ section {
 @media only screen and (max-width: $mobile-screen) {
   section {
     width: 100%;
-    background-color: green;
+    // background-color: green;
 
     .circle-box {
       margin: auto;
@@ -64,7 +64,69 @@ section {
     }
 
     .container__text {
-      visibility: hidden;
+      display: inline-block;
+      // visibility: hidden;
     }
+  }
+}
+
+
+
+///
+
+
+.home-footer {
+  position: relative;
+  width: 80%;
+  height: max-content;
+  margin: auto;
+  padding: 20px;
+
+  .footer_logo-img {
+    position: relative;
+    width: 15vw;
+    height: auto;
+    min-width: 170px;
+    min-height: auto;
+    filter: drop-shadow(40px 40px 40px rgb(0, 0, 0));
+  }
+
+  .logo {
+    text-align: center;
+    font-size: 30px;
+  }
+
+  .footer-social {
+    position: relative;
+    width: 100%;
+    text-align: center;
+
+    .footer-social-logo {
+      position: relative;
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      margin: 0 20px 0 20px;
+      color: rgb(146, 144, 108);
+      border-radius: 50%;
+    }
+
+    .footer-social-logo:hover {
+      box-shadow: 0px 0px 30px 0px rgb(58, 57, 44);
+    }
+  }
+
+  .footer-email {
+    font-size: 12px !important;
+    margin: auto;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    // color: white;
+  }
+
+  .footer-bussiness {
+    position: relative;
+    top: 10px;
+    text-align: center;
   }
 }
