@@ -1,7 +1,6 @@
 import React, { ReactChild, Fragment, ReactElement } from 'react';
 import { useWindowSize } from '../../../hooks/useWindowSize';
 import './container-page.scss';
-import { Grid } from '@material-ui/core';
 
 // compoents used into ContainerPage component
 
@@ -23,7 +22,7 @@ export const SubContainerInfo = (props: {
         );
       })}
       {props.cost ? (
-        <p className={`cost__info`}>
+        <div className={`cost__info`}>
           {props.cost.split('\n').map((line, i) => {
             return (
               <p key={i} className={`text info`}>
@@ -31,7 +30,7 @@ export const SubContainerInfo = (props: {
               </p>
             );
           })}
-        </p>
+        </div>
       ) : (
           ''
         )}

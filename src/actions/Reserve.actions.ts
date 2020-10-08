@@ -39,10 +39,9 @@ export default class ReserveActions {
       const response: any = await this.backend.send(
         GET_ENDPOIT,
         undefined,
-        `${RESERVE_ROUTE}`
+        `${RESERVE_ROUTE}/active`
       );
       if (response.status !== 200) {
-        //console.log(response.message);
         throw Error(response.message);
       }
       return response.data;

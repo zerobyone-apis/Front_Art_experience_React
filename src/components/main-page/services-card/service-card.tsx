@@ -1,10 +1,8 @@
-import React, { Fragment, useContext } from 'react';
-import { Card } from '../../card/card';
+import React, { useContext } from 'react';
 import { ThemeContext } from '../../../contexts/ThemeContext';
 import { Divider } from '../../divider/divider';
 import './services-card.scss';
 import '../../../styles/theme.scss';
-import { ContainerPage } from '../../test/container-page/container-page';
 
 export const ServiceItem = (props: {
   key?: number;
@@ -20,11 +18,14 @@ export const ServiceItem = (props: {
     <div className={`service-item`} key={props.key}>
       {props.icon}
       <p className={`service-name text text-light`}>{props.name}</p>
-      <p className={`service-info text text-light`}>
+
+      <div className={`service-info text text-light`}>
         {props.info.split('\n').map((line, i) => {
           return <p key={i}>{line}</p>;
         })}
-      </p>
+      </div>
+
+
     </div>
   );
 };

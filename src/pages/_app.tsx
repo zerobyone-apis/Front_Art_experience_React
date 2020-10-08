@@ -23,9 +23,7 @@ const App: FC<{ Component: any; pageProps: any }> = ({
     <div>
       <ButtonProvider disabled={true}>
         <UserProvider value={store.get(USER_DATA_STORAGE) || null}>
-          <BarberListProvider
-            value={store.get(BARBERLIST_DATA_STORAGE) || null}
-          >
+          <BarberListProvider value={store.get(BARBERLIST_DATA_STORAGE) || null}>
             <ThemeProvider value={THEME_DARK}>
               <Component {...pageProps} />
             </ThemeProvider>

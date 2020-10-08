@@ -15,24 +15,13 @@ export const SearchField = (props: {
   buttonLabel?: string;
   fieldLabel?: string;
 }) => {
-  const [fieldValue, setFieldValue] = useState('');
   const [filtredItems, setFiltredItems] = useState(props.items || []);
-
-  useEffect(() => {
-    //console.log('Item filter', props.itemFilter)
-    setFieldValue('');
-    filterItems();
-  }, [props.itemFilter]);
-
-  useEffect(() => {
-    filterItems();
-  }, [fieldValue]);
 
   useEffect(() => {
     props.onChangeResults(filtredItems);
   }, [filtredItems]);
 
-  const filterItems = () => {
+  const filterItems = (fieldValue: string) => {
     let items = filtredItems.filter((item) => {
       let formattedText = (
         String(item[props.itemFilter.value]) || ''
@@ -41,24 +30,21 @@ export const SearchField = (props: {
     });
     props.onChangeResults(items);
   };
+
   return (
     <div className={`search-field ${props.className}`}>
       <Textfield
-        id="1"
-        value={fieldValue}
-        type={'string'}
+        id="searchField"
+        name="searchField"
+        type="text"
         label={props.fieldLabel}
-        name="Field Name"
-        // onChange={setFieldValue}
-        //hint={!fieldValue && props.fieldLabel ? props.fieldLabel : ''} // TODO fix problems of click and insert text
-        //className="search-text_field theme-text_field--dark"
-        //icon="faSearch"
-        //iconColor="grey"
+        onChange={(fieldValue) => filterItems(fieldValue)}
       />
       {props.showButton ? (
         <Button
           onClick={() => {
-            filterItems();
+            /* warning this, require test */
+            filterItems(props.defaultValue);
           }}
           label={props.buttonLabel || 'Search'}
           className="search-btn"

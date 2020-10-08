@@ -10,14 +10,24 @@
 
             .reserve_info {
                 font-size: 18px;
-                color: rgb(170, 170, 170);
+                // color: rgb(170, 170, 170);
             }
         }
     }
 
-    @media only screen and (max-width: 750px) {
-        .reserve-modal {
-            width: 300px;
+    .submit-button-update {
+        background-color: none !important;
+
+        .footer {
+            background-color: none !important;
+
         }
+
+    }
+
+    @media only screen and (max-width: 750px) {
+        // .reserve-modal {
+        //     width: 300px;
+        // }
     }
 }

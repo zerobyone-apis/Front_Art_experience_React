@@ -212,19 +212,17 @@ const IndexPage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      setDisabledButton(true);
       let resultBarbers = null;
       do {
         resultBarbers = await getBarbers();
       } while (!resultBarbers);
-
       setBarbersList(resultBarbers); // save in store
       setBarbers(resultBarbers);
+      setDisabledButton(false);
     };
-
     // execute the async function
-    setDisabledButton(true);
     fetchData();
-    setDisabledButton(false);
   }, []);
 
   const getBarbers = async () => {
