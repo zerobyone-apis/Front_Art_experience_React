@@ -131,7 +131,7 @@ export const ClientAccess = (props: { onClose: any; onClientLogged: any }) => {
         <li>
           <ul>
             <FormControlLabel
-              label="Soy Socio de ArtExperience"
+              label="Soy Socio de Art Experience"
               className="social-form-control-label"
               control={
                 <Checkbox
@@ -297,7 +297,7 @@ export const ClientAccess = (props: { onClose: any; onClientLogged: any }) => {
       )}
       {userIsLogged && (
         <SuccessBox
-          title="Acceso A ArtExperience"
+          title="Acceso a Art Experience"
           message={accessMode ? 'Ha iniciado con exito!' : 'Se ha registrado con exito!'}
         />
       )}
