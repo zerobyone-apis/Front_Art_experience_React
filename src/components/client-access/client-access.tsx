@@ -240,7 +240,7 @@ export const ClientAccess = (props: { onClose: any; onClientLogged: any }) => {
               <Textfield
                 id="name"
                 name="name"
-                label="Nombre de usuario"
+                label="Username"
                 type="text"
               />
             </ul>
