@@ -279,7 +279,7 @@ export const ClientAccess = (props: { onClose: any; onClientLogged: any }) => {
               setAccessMode(1);
             }}
             nextButtonLabel={'Registrarse'}
-            prevButtonLabel={'Si ya esta registrado, inicie aqui'}
+            prevButtonLabel={'Iniciar Sesion'}
           />
         </>
       </FormProvider>
