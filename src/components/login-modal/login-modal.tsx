@@ -91,7 +91,7 @@ export const LoginModal = (props: {
             }
             icon={<RiAccountCircleLine />}
             label={
-              userIsLogged() ? getUserData().username : 'Acceder para Reservar'
+              userIsLogged() ? getUserData().username : 'Reservar'
             }
           />
         </div>
