@@ -176,6 +176,7 @@ export const ClientAccess = (props: { onClose: any; onClientLogged: any }) => {
                 name="email"
                 label="Email o Numero Social"
                 type="text"
+                lowerCase={true}
               />
             </ul>
             <ul>
@@ -184,6 +185,7 @@ export const ClientAccess = (props: { onClose: any; onClientLogged: any }) => {
                 name="password"
                 label="Contraseña"
                 type="password"
+                lowerCase={true}
               />
             </ul>
           </li>
@@ -245,7 +247,13 @@ export const ClientAccess = (props: { onClose: any; onClientLogged: any }) => {
               />
             </ul>
             <ul>
-              <Textfield id="email" name="email" label="Email" type="email" />
+              <Textfield
+                id="email"
+                name="email"
+                label="Email"
+                type="email"
+                lowerCase={true}
+              />
             </ul>
             <ul>
               <Textfield
@@ -261,6 +269,7 @@ export const ClientAccess = (props: { onClose: any; onClientLogged: any }) => {
                 name="password"
                 label="Contraseña"
                 type="password"
+                lowerCase={true}
               />
             </ul>
             <ul>
@@ -270,6 +279,7 @@ export const ClientAccess = (props: { onClose: any; onClientLogged: any }) => {
                 label="Repita Contraseña"
                 type="password"
                 equalField="password"
+                lowerCase={true}
               />
             </ul>
           </li>
