@@ -421,27 +421,11 @@ export const ReserveModal = (props: { className?: string }) => {
               />
             </div>
 
-
             {/* SUCCESS STEP */}
             <SuccessBox
               title="Reservación - Art Experience"
               message="Su Reserva se completo ¡Exitosamente!"
             />
-            {/*             
-            <div className="reserve-step">
-              <div className="step-title">
-                <p className={`step-subtitle text text-${getTheme()}`}>
-                  
-                </p>
-              </div>
-              <div className="confirm_data-box">
-                <p className={`confirm_info text text-${getTheme()}`}>
-                  
-                </p>
-                <FaRegCalendarCheck className="success-icon effect-slide_top" />
-              </div>
-            </div> */}
-
 
           </Stepper>
           {wizard != 4 ? (
