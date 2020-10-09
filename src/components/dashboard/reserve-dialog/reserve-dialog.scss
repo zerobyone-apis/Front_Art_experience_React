@@ -1,6 +1,7 @@
 .reserve-modal {
     display: flex;
     align-items: center;
+    z-index: 999;
 
     .dialog-modal {
         .reserve_data-box {
@@ -22,7 +23,6 @@
             background-color: none !important;
 
         }
-
     }
 
     @media only screen and (max-width: 750px) {
