@@ -14,6 +14,8 @@ import ClientActions from '../../actions/Client.actions';
 import './client-access.scss';
 import '../../styles/theme-buttons.scss';
 import '../../styles/effects.scss';
+import { FaRegCalendarCheck } from 'react-icons/fa';
+import { SuccessBox } from '../reserve-modal/reserve-modal';
 
 export const ClientAccess = (props: { onClose: any; onClientLogged: any }) => {
   const defaultLoginFields = {
@@ -34,6 +36,8 @@ export const ClientAccess = (props: { onClose: any; onClientLogged: any }) => {
   };
 
   const [accessMode, setAccessMode] = useState(1); // 1 - Login / 0 - register
+  const [successDialog, showSuccessDialog] = useState(false);
+  const [userIsLogged, setUserIsLogged] = useState(false);
   const [message, setMessage] = useState(baseMessage);
 
   useEffect(() => {
@@ -71,6 +75,7 @@ export const ClientAccess = (props: { onClose: any; onClientLogged: any }) => {
       props.onClientLogged(response);
       setUserData({ ...response.data.user, ...response.data.client });
       setMessage({ value: 'Has iniciado sesion con exito', isError: false });
+      setUserIsLogged(true);
     } else {
       setMessage({
         value: 'No se pudo iniciar sesion, verifique email y contaseña',
@@ -97,20 +102,22 @@ export const ClientAccess = (props: { onClose: any; onClientLogged: any }) => {
     };
     setDisabledButton(true);
     const response = await clientActions.add(fields);
+
     console.log('Este es el result singup -> ', response);
     if (response) {
-      if (response.status == 201) {
+      if (response.status) {
         // props.onClientRegister(response);
         setMessage({ value: 'Registro realizado con exito', isError: false });
         setUserData(response);
         //props.onClose(true);
         props.onClientLogged(response);
+        setUserIsLogged(true);
       } else {
         setMessage({ value: response.statusText, isError: true });
       }
     } else {
       setMessage({
-        value: 'Ocurrio un error!, vuelva a intentarlo',
+        value: 'Error, Es posible que el nombre de usario o el email ya esten registrados!',
         isError: true,
       });
     }
@@ -124,7 +131,7 @@ export const ClientAccess = (props: { onClose: any; onClientLogged: any }) => {
         <li>
           <ul>
             <FormControlLabel
-              label="Soy Socio de ArtExperience"
+              label="Soy Socio de Art Experience"
               className="social-form-control-label"
               control={
                 <Checkbox
@@ -169,6 +176,7 @@ export const ClientAccess = (props: { onClose: any; onClientLogged: any }) => {
                 name="email"
                 label="Email o Numero Social"
                 type="text"
+                lowerCase={true}
               />
             </ul>
             <ul>
@@ -177,6 +185,7 @@ export const ClientAccess = (props: { onClose: any; onClientLogged: any }) => {
                 name="password"
                 label="Contraseña"
                 type="password"
+                lowerCase={true}
               />
             </ul>
           </li>
@@ -233,12 +242,18 @@ export const ClientAccess = (props: { onClose: any; onClientLogged: any }) => {
               <Textfield
                 id="name"
                 name="name"
-                label="Nombre de usuario"
+                label="Username"
                 type="text"
               />
             </ul>
             <ul>
-              <Textfield id="email" name="email" label="Email" type="email" />
+              <Textfield
+                id="email"
+                name="email"
+                label="Email"
+                type="email"
+                lowerCase={true}
+              />
             </ul>
             <ul>
               <Textfield
@@ -254,6 +269,7 @@ export const ClientAccess = (props: { onClose: any; onClientLogged: any }) => {
                 name="password"
                 label="Contraseña"
                 type="password"
+                lowerCase={true}
               />
             </ul>
             <ul>
@@ -263,6 +279,7 @@ export const ClientAccess = (props: { onClose: any; onClientLogged: any }) => {
                 label="Repita Contraseña"
                 type="password"
                 equalField="password"
+                lowerCase={true}
               />
             </ul>
           </li>
@@ -272,21 +289,29 @@ export const ClientAccess = (props: { onClose: any; onClientLogged: any }) => {
               setAccessMode(1);
             }}
             nextButtonLabel={'Registrarse'}
-            prevButtonLabel={'Si ya esta registrado, inicie aqui'}
+            prevButtonLabel={'Iniciar Sesion'}
           />
         </>
       </FormProvider>
     );
   };
 
+
+
+
+
   return (
     <div className="login-box">
-      {message.isError ? (
+      {message.isError && (
         <p className="error_message">{message.value}</p>
-      ) : (
-        <p className="success_message">{message.value}</p>
       )}
-      {accessMode ? <LoginForm /> : <RegisterForm />}
+      {userIsLogged && (
+        <SuccessBox
+          title="Acceso a Art Experience"
+          message={accessMode ? 'Ha iniciado con exito!' : 'Se ha registrado con exito!'}
+        />
+      )}
+      {!userIsLogged && (accessMode ? <LoginForm /> : <RegisterForm />)}
     </div>
   );
 };

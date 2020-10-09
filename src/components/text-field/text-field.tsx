@@ -34,6 +34,7 @@ export const Textfield = (props: {
   disabled?: boolean;
   variant?: 'filled' | 'standard' | 'outlined'
   onChange?: any,
+  lowerCase?: boolean,
 }) => {
   const { setField, getErrorByField, validationIsActive } = useContext(
     FormContext
@@ -86,7 +87,12 @@ export const Textfield = (props: {
   }, [value]);
 
   const handleChange = (e) => {
-    setValue(e.target.value);
+    if (props.lowerCase) {
+      setValue((String(e.target.value).toLowerCase()));
+    } else {
+      setValue(e.target.value);
+    }
+
   };
 
   const setValueOnReserveTextfield = (e) => {
