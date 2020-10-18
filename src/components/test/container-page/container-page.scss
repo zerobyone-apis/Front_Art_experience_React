@@ -55,6 +55,7 @@
 li {
   content: '👉';
 }
+
 // SubContainerImage
 .img-box {
   position: relative;
@@ -81,7 +82,7 @@ li {
 
   .image-footer {
     position: relative;
-    z-index: 1;
+    // z-index: 1;
     width: 100%;
     height: max-content;
   }
