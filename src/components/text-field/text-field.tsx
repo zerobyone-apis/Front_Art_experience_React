@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
 import React, {
   useState,
   useEffect,
@@ -18,7 +17,7 @@ import {
   MuiThemeProvider,
   Theme,
 } from '@material-ui/core/styles';
-import { customTheme } from '../../theme';
+// import { customTheme } from '../../theme';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import { FormContext } from '../../contexts/FormContext';
 import './text-field.scss';
@@ -54,26 +53,26 @@ export const Textfield = (props: {
           paddingLeft: '20px',
           // borderRadius: '8px',
           borderStyle: 'none',
-          color: customTheme.text.color.dark,
+          // color: customTheme.text.color.dark,
           backgroundColor: (!props.disabled) ? '#30303052' : 'black',
         },
         margin: 'auto',
         '& label': {
-          color: customTheme.text.color.dark,
+          // color: customTheme.text.color.dark,
         },
       },
     })
   );
 
   const theme = createMuiTheme({
-    palette: {
-      primary: {
-        main: customTheme.pallette.primary,
-      },
-      secondary: {
-        main: customTheme.pallette.secondary,
-      },
-    },
+    // palette: {
+    //   primary: {
+    //     // main: customTheme.pallette.primary,
+    //   },
+    //   secondary: {
+    //     // main: customTheme.pallette.secondary,
+    //   },
+    // },
   });
 
   const classes = useStyles();
@@ -92,7 +91,6 @@ export const Textfield = (props: {
     } else {
       setValue(e.target.value);
     }
-
   };
 
   const setValueOnReserveTextfield = (e) => {

@@ -55,13 +55,14 @@ export const FormProvider = (props: {
         setErrors({});
         let errorsCopy = {};
         let fieldsCopy = fields;
-        Object.keys(fields).map(fieldName => {
-            if (!fields[fieldName].value) {
+        Object.assign(fieldsCopy, fields)
+        Object.keys(fieldsCopy).map(fieldName => {
+            if (!fieldsCopy[fieldName].value) {
                 success = false;
                 Object.assign(errorsCopy, { [fieldName]: 'El campo es requerido' })
             } else {
-                let fieldValue = fields[fieldName].value;
-                switch (fields[fieldName].type) {
+                let fieldValue = fieldsCopy[fieldName].value;
+                switch (fieldsCopy[fieldName].type) {
                     case 'string':
                         if (!/^[A-Za-z\s]+$/.test(fieldValue)) {
                             Object.assign(errorsCopy, { [fieldName]: 'Debe ingresar solo letras' })
@@ -85,7 +86,7 @@ export const FormProvider = (props: {
                         break;
                 }
                 // check equal field
-                let equalField = fields[fieldName].equalField;
+                let equalField = fieldsCopy[fieldName].equalField;
                 if (equalField) {
                     if (fields[fieldName].value !== fields[equalField].value) {
                         Object.assign(errorsCopy, { [fieldName]: 'Los campos no coinciden' })

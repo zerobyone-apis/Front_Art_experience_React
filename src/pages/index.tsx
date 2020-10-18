@@ -10,7 +10,7 @@ import { BarberListContext } from '../contexts/BarberListContext';
 import { IBarber } from '../types/Barber.type';
 import { LoaderPage } from '../components/loader-page/loader-page';
 import { Toolbar } from '../components/toolbar/toolbar';
-import { BarbersCard } from '../components/main-page/barbers-cardv2/barber-card';
+import { BarbersCard } from '../components/main-page/barbers-card/barber-card';
 import { AboutUsCard } from '../components/main-page/about-us-card/about-us-card';
 import { HomeFooter } from '../components/main-page/home-footer/home-footer';
 import { CoursesCard } from '../components/main-page/courses-card/course-card';
