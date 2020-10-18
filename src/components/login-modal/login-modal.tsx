@@ -19,6 +19,7 @@ import './login-modal.scss';
 import '../../styles/effects.scss';
 import '../../styles/theme.scss';
 import '../../styles/theme-buttons.scss';
+import { FaRegCalendarCheck } from 'react-icons/fa';
 
 export const LoginModal = (props: {
   show?: boolean;
@@ -62,13 +63,9 @@ export const LoginModal = (props: {
   };
 
   const onClientLogged = (clientData: any) => {
-    if (clientData.status === 200) {
-      //console.log('True -> client logged', clientData.status);
-      //props.onSuccessLogin(true);
-    }
     setTimeout(() => {
       setShowDialog(false);
-    }, 500);
+    }, 2000);
   };
 
   const logOut = () => {
@@ -94,7 +91,7 @@ export const LoginModal = (props: {
             }
             icon={<RiAccountCircleLine />}
             label={
-              userIsLogged() ? getUserData().username : 'Acceder para Reservar'
+              userIsLogged() ? getUserData().username : 'Reservar'
             }
           />
         </div>
@@ -103,7 +100,7 @@ export const LoginModal = (props: {
       {/* LOGIN MODAL */}
       {!showDialog ? null : (
         <DialogModal
-          title="Inicio de Session"
+          title="Inicio de Sesion"
           className="login-dialog"
           width="65vw"
           height="65vh"
@@ -114,16 +111,12 @@ export const LoginModal = (props: {
             }
           }}
         >
-          <div className="info-box effect-slide-top">
-            <p className={`text text-${getTheme()} info-message`}>
-              Acceda para poder reservar y disfrutar de nuestros servicios
-            </p>
-          </div>
 
           <ClientAccess
             onClientLogged={onClientLogged}
             onClose={props.onClose}
           />
+
         </DialogModal>
       )}
 

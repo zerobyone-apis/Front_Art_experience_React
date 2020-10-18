@@ -26,6 +26,33 @@ import '../../styles/theme.scss';
 import '../../styles/theme-buttons.scss';
 import '../../styles/effects.scss';
 
+
+export const SuccessBox = (props: {
+  title: string,
+  message: string
+}) => {
+  const {
+    // @ts-ignore
+    getTheme,
+  } = useContext(ThemeContext);
+  return (
+    <div className="reserve-step">
+      <div className="step-title">
+        <p className={`step-subtitle text text-${getTheme()}`}>
+          {props.title}
+        </p>
+      </div>
+      <div className="confirm_data-box">
+        <p className={`confirm_info text text-${getTheme()}`}>
+          {props.message}
+        </p>
+        <FaRegCalendarCheck className="success-icon effect-slide_top" />
+      </div>
+    </div>
+  );
+}
+
+
 export const ReserveModal = (props: { className?: string }) => {
   const {
     // @ts-ignore
@@ -394,20 +421,12 @@ export const ReserveModal = (props: { className?: string }) => {
               />
             </div>
 
-            {/* SUCCESS STEP  */}
-            <div className="reserve-step">
-              <div className="step-title">
-                <p className={`step-subtitle text text-${getTheme()}`}>
-                  Reservación - Art Experience
-                </p>
-              </div>
-              <div className="confirm_data-box">
-                <p className={`confirm_info text text-${getTheme()}`}>
-                  Su Reserva se completo ¡Exitosamente!
-                </p>
-                <FaRegCalendarCheck className="success-icon effect-slide_top" />
-              </div>
-            </div>
+            {/* SUCCESS STEP */}
+            <SuccessBox
+              title="Reservación - Art Experience"
+              message="Su Reserva se completo ¡Exitosamente!"
+            />
+
           </Stepper>
           {wizard != 4 ? (
             <StepperFooter

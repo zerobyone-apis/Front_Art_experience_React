@@ -154,7 +154,7 @@ export const ReserveDialog = (props: {
 
   return (
     <DialogModal
-      className="reserve-modal"
+      className="reserve-modal-dashboard"
       title="Control de Reserva"
       onClose={props.onClose}
     >
