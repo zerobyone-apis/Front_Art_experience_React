@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Button } from '../../button/button';
+import { Button } from '../../button';
 import './stepper-footer.scss';
 import '../../../styles/theme-buttons.scss';
 import { ThemeContext } from '../../../contexts/ThemeContext';

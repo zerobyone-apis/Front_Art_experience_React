@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button } from '../button/button';
+import { Button } from '../button';
 import { FiMenu } from 'react-icons/fi';
 import { DialogModal } from '../dialog-modal/dialog-modal';
 import { toolbarButtons } from '../../utils/toolbarButtons';

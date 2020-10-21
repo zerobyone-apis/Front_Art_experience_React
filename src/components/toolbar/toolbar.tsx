@@ -1,4 +1,4 @@
-import { Button } from '../button/button';
+import { Button } from '../button';
 import { LeftMenu } from '../left-menu/left-menu';
 import { LoginModal } from '../login-modal/login-modal';
 import React, { useContext } from 'react';

@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 
 import { BarbersList } from './barbers-list/barber-list';
-import { Button } from '../button/button';
+import { Button } from '../button';
 import { ButtonContext } from '../../contexts/ButtonsContext';
 import { DialogModal } from '../dialog-modal/dialog-modal';
 import { IReserve } from '../../types/Reserve.type';

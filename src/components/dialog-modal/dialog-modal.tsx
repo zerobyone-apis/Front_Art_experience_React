@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState, Fragment, useEffect, useContext } from 'react';
-import { Button } from '../button/button';
+import { Button } from '../button';
 import { AiOutlineClose } from 'react-icons/ai';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import './dialog-modal.scss';

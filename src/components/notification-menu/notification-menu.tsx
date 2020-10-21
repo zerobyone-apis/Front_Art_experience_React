@@ -5,7 +5,7 @@ import '../../styles/ArtExperienceFonts.scss';
 
 import React, { useState, Fragment } from 'react';
 // import { useOutsideAlerter } from '../../hooks/useOutsideAlerter';
-import { Button } from '../button/button';
+import { Button } from '../button';
 import './notification-menu.scss';
 
 export const USER_ACTIONS = {

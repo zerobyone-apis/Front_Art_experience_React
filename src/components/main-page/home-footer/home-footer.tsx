@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { FaInstagram, FaFacebook } from 'react-icons/fa';
 import { ThemeContext } from '../../../contexts/ThemeContext';
-import { Card } from '../../card/card';
+import { Card } from '../../card';
 import './home-footer.scss';
 import '../../../styles/theme.scss';
 import Maps from '../google_maps/google-maps';

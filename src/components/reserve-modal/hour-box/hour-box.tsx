@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button } from '../../button/button';
+import { Button } from '../../button';
 import './hour-box.scss';
 import '../../styles/theme-buttons.scss';
 

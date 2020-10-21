@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import { Button } from '../../button/button';
+import { Button } from '../../button';
 import { SearchField } from '../../search-field/search-field';
 import { useWindowSize } from '../../../hooks/useWindowSize';
 import { Grid } from '@material-ui/core';

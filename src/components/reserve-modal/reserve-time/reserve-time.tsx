@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { Button } from '../../button/button';
+import { Button } from '../../button';
 import { CalendarBox } from '../calendar-box/calendar-box';
 import { ThemeContext } from '../../../contexts/ThemeContext';
 //import { FirebaseContext } from '../../../contexts/FirebaseContext';
@@ -187,9 +187,8 @@ export const ReserveTime = (props: {
               <Button
                 className={`theme-button-outlined 
                                  hour-item 
-                                ${
-                                  reserveHour === hour ? 'selected-hour' : null
-                                }`}
+                                ${reserveHour === hour ? 'selected-hour' : null
+                  }`}
                 key={i}
                 label={hour}
                 onClick={() => {
@@ -200,10 +199,10 @@ export const ReserveTime = (props: {
           </div>
         </div>
       ) : (
-        <p className={`no-hours text text-${getTheme()}`}>
-          No hay horarios disponibles para esta fecha
-        </p>
-      )}
+          <p className={`no-hours text text-${getTheme()}`}>
+            No hay horarios disponibles para esta fecha
+          </p>
+        )}
     </div>
   );
 };
