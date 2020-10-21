@@ -201,6 +201,9 @@ export const ClientAccess = (props: { onClose: any; onClientLogged: any }) => {
     );
   };
 
+
+
+
   const SubmitButton = (props: {
     nextButtonLabel: string;
     prevButtonLabel: string;
@@ -228,6 +231,10 @@ export const ClientAccess = (props: { onClose: any; onClientLogged: any }) => {
       />
     );
   };
+
+
+
+
 
   const RegisterForm = () => {
     return (
