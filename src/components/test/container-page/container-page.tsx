@@ -3,7 +3,6 @@ import { useWindowSize } from '../../../hooks/useWindowSize';
 import './container-page.scss';
 
 // compoents used into ContainerPage component
-
 export const SubContainerInfo = (props: {
   title: string;
   info: string;
@@ -13,15 +12,18 @@ export const SubContainerInfo = (props: {
   return (
     <div className={`info-box ${props.className}`}>
       <p className={`title`}>{props.title}</p>
-      <p></p>
-      {props.info.split('\n').map((line, i) => {
-        return (
-          <p key={i} className={`text info`}>
-            {line}
-          </p>
-        );
-      })}
-      {props.cost ? (
+
+      {
+        props.info.split('\n').map((line, i) => {
+          return (
+            <p key={i} className={`text info`}>
+              {line}
+            </p>
+          );
+        })
+      }
+      {
+        props.cost &&
         <div className={`cost__info`}>
           {props.cost.split('\n').map((line, i) => {
             return (
@@ -31,12 +33,12 @@ export const SubContainerInfo = (props: {
             );
           })}
         </div>
-      ) : (
-          ''
-        )}
+      }
     </div>
   );
 };
+
+
 
 export const SubContainerImage = (props: {
   imgClassName?: string,
