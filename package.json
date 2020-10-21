@@ -10,7 +10,8 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "deploy": "vercel"
+    "deploy": "vercel",
+    "deploy prd": "vercel --prod"
   },
   "repository": {
     "type": "git",
