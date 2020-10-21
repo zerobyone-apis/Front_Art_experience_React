@@ -6,7 +6,7 @@ import React, {
   Dispatch,
 } from 'react';
 import { DialogModal } from '../dialog-modal/dialog-modal';
-import { Button } from '../button/button';
+import { Button } from '../button';
 import { ClientAccess } from '../client-access/client-access';
 import { RiAccountCircleLine } from 'react-icons/ri';
 import { useOutsideAlerter } from '../../hooks/useOutsideAlerter';

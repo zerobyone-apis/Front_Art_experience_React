@@ -1,5 +1,5 @@
 import React, { useState, useEffect, ReactElement } from 'react';
-import { Button } from '../button/button';
+import { Button } from '../button';
 import { StepperFooter } from '../reserve-modal/stepper-footer';
 import './validation-form.scss';
 

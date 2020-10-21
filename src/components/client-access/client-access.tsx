@@ -127,26 +127,26 @@ export const ClientAccess = (props: { onClose: any; onClientLogged: any }) => {
   const SocialBox = () => {
     const [socialChecked, setSocialChecked] = useState(false);
     return (
-      <div className="social-box">
-        <li>
-          <ul>
-            <FormControlLabel
-              label="Soy Socio de Art Experience"
-              className="social-form-control-label"
-              control={
-                <Checkbox
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                    setSocialChecked(e.target.checked);
-                  }}
-                />
-              }
-            />
-          </ul>
-          <ul>
-            <SocialForm show={socialChecked} />
-          </ul>
-        </li>
-      </div>
+      <>
+        <div className="social-box">
+          <li>
+            <ul>
+              <FormControlLabel
+                label="Soy Socio de Art Experience"
+                className="social-form-control-label"
+                control={
+                  <Checkbox
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                      setSocialChecked(e.target.checked);
+                    }}
+                  />
+                }
+              />
+            </ul>
+          </li>
+        </div>
+        <SocialForm show={socialChecked} />
+      </>
     );
   };
 

@@ -1,141 +1,73 @@
-/* Change Autocomplete styles in Chrome*/
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-textarea:-webkit-autofill,
-textarea:-webkit-autofill:hover,
-textarea:-webkit-autofill:focus,
-select:-webkit-autofill,
-select:-webkit-autofill:hover,
-select:-webkit-autofill:focus {
-  -webkit-text-fill-color: white;
-  box-shadow: 0 0 0px 1000px rgb(99, 99, 99) inset !important;
-  transition: background-color 5000s ease-in-out 0s;
-}
+@import '../../theme/colors.scss';
+@import '../../theme/fonts.scss';
 
+.textfield-box {
+  padding-top: 16px;
+  margin: 0 20px;
+  height: 50px;
 
+  .internal-label {
+    position: absolute;
+    color: $p_light;
+    margin-top: 16px;
+    margin-left: 14px;
+    font-size: $font_size_medium;
+  }
 
-/* Material UI TextField */
-.textfield {
-  /**/
-  // background-color: #30303052;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-.text-field {
-  position: relative !important;
-  margin-top: 5px;
-
-  .label {
-    position: relative;
+  .external-label {
+    position: absolute;
+    color: $p_light;
+    margin-top: -18px;
+    margin-left: 12px;
     font-size: 12px;
-    margin: 0;
-    left: 0px;
-    margin-bottom: 2px;
-    font-family: Arial, Helvetica, sans-serif;
   }
 
   .error-label {
-    font-size: 13px;
+    font-size: 12px;
+    color: $text_error;
     margin-left: 5px;
     margin-top: 2px;
-    font-family: Arial, Helvetica, sans-serif;
   }
 
-  .input-box {
-    .hint-label {
-      position: absolute;
-      top: 6px;
-      left: 10px;
-      font-size: 14px;
-      font-style: normal;
-    }
-
-    input {
-      position: relative;
-      height: 18px;
-      outline: none;
-      // border-width: 1px;
-      padding: 5px;
-      padding-left: 10px;
-      font-style: normal;
-      opacity: 0.8;
-    }
-
-    .text_field-icon {
-      position: absolute;
-      top: 6px;
-      right: 5px;
-      opacity: 0.4;
-    }
+  input {
+    font-size: $font_size_medium;
+    height: 30px;
+    width: calc(100% - 20px);
+    padding-left: 12px;
+    border-style: solid;
+    border-color: rgba(128, 128, 128, 0.336);
+    border-width: 2px;
+    border-radius: 4px;
   }
 
-  .disabled {
-    input {
-      background-color: black !important;
-    }
+  .error {
+    border-style: solid;
+    border-color: $text_error;
   }
 }
 
-// THEMES
-// LIGHT
-.text-field_light {
-  margin-top: 5px;
+// custom input types
+.type-checkbox {
+  margin-top: -2px;
 
-  .label {
-    color: #303030d5;
+  .internal-label {
+    margin-left: 30px;
   }
 
-  .error-label {
-    color: rgb(231, 131, 131);
-  }
-
-  .input-box {
-    input {
-      color: #303030d5;
-    }
-
-    .text_field-icon {
-      opacity: 0.4;
-    }
+  input {
+    width: 20px;
+    left: 40px;
   }
 }
 
-// DARK
-.text-field_dark {
-  margin-top: 5px;
-
-  .label {
-    color: rgb(214, 214, 214);
-  }
-
-  .error-label {
-    color: rgb(231, 131, 131);
-  }
-
-  .input-box {
-    .hint-label {
-      color: rgb(214, 214, 214);
-    }
-
-    input {
-      border-style: none;
-      color: rgb(255, 255, 255);
-      background-color: rgb(99, 99, 99);
-    }
-
-    .text_field-icon {
-      opacity: 0.4;
-    }
-  }
+.select-box {
+  font-size: $font_size_medium;
+  height: 50px;
+  width: 100%;
+  padding: 0 6px;
+  padding-top: 0;
+  border-style: solid;
+  border-color: rgba(128, 128, 128, 0.336);
+  border-width: 2px;
+  border-radius: 4px;
 }

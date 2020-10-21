@@ -1,125 +1,100 @@
-import React, {
-  useState,
-  useEffect,
-  useContext,
-  ReactElement,
-} from 'react';
-import {
-  createStyles,
-  FormControl,
-  InputLabel,
-  makeStyles,
-  TextField,
-  withStyles,
-} from '@material-ui/core';
-import {
-  createMuiTheme,
-  MuiThemeProvider,
-  Theme,
-} from '@material-ui/core/styles';
-// import { customTheme } from '../../theme';
-import { ThemeContext } from '../../contexts/ThemeContext';
+import React, { useState, useEffect, useContext, } from 'react';
+import { ProgressPlugin } from 'webpack';
 import { FormContext } from '../../contexts/FormContext';
 import './text-field.scss';
 
 export const Textfield = (props: {
-  id: string;
-  label: string;
-  name: string;
-  children?: ReactElement;
-  type: 'string' | 'text' | 'email' | 'password' | 'number';
-  equalField?: string;
-  defaultvalue?: string | number;
-  disabled?: boolean;
-  variant?: 'filled' | 'standard' | 'outlined'
-  onChange?: any,
-  lowerCase?: boolean,
+  id,
+  label,
+  name,
+  type,
+  equalField,
+  defaultvalue,
+  className,
+  items,
+  tabIndex,
+  required,
+  onChange,
+  lowerCase
 }) => {
-  const { setField, getErrorByField, validationIsActive } = useContext(
-    FormContext
-  );
-  const {
-    // @ts-ignore
-    getTheme,
-  } = useContext(ThemeContext);
-
-  const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-      margin: {
-        paddingTop: theme.spacing(3),
-      },
-      root: {
-        '& input': {
-          paddingLeft: '20px',
-          // borderRadius: '8px',
-          borderStyle: 'none',
-          // color: customTheme.text.color.dark,
-          backgroundColor: (!props.disabled) ? '#30303052' : 'black',
-        },
-        margin: 'auto',
-        '& label': {
-          // color: customTheme.text.color.dark,
-        },
-      },
-    })
-  );
-
-  const theme = createMuiTheme({
-    // palette: {
-    //   primary: {
-    //     // main: customTheme.pallette.primary,
-    //   },
-    //   secondary: {
-    //     // main: customTheme.pallette.secondary,
-    //   },
-    // },
-  });
-
-  const classes = useStyles();
 
   const [value, setValue] = useState(props.defaultvalue || '');
-  const [error, setError] = useState('');
+  const [checked, setCheck] = useState(true);
+
+  const {
+    setField, getErrorByField, removeErrorByField, validationIsActive
+  } = useContext(FormContext);
 
   useEffect(() => {
-    setField(props.name, props.type, error, value, props.equalField);
+    setField(props.name, props.type, value, props.equalField, props.label);
     props.onChange && props.onChange(value);
   }, [value]);
 
   const handleChange = (e) => {
-    if (props.lowerCase) {
-      setValue((String(e.target.value).toLowerCase()));
+    if (props.type === 'checkbox') {
+      setValue(checked)
+      setCheck(value => !value)
     } else {
       setValue(e.target.value);
     }
   };
 
-  const setValueOnReserveTextfield = (e) => {
-    handleChange(e);
+  const ErrorLabel = ({ value }) => {
+    if (value) {
+      return (
+        <div>
+          <label className="error-label theme-text">{value}</label>
+        </div>
+      )
+    } else {
+      return null;
+    }
   };
 
   return (
-    <MuiThemeProvider theme={theme}>
-      <FormControl className={classes.margin}>
-        <div className={classes.root}>
-          <InputLabel shrink htmlFor={props.id}>
-            {props.label}
-          </InputLabel>
-        </div>
-        <TextField
-          variant={props.variant}
-          className={classes.root}
-          value={value}
-          type={props.type}
-          color="primary"
-          disabled={props.disabled}
+    <div className={`textfield-box type-${props.type} ${props.className}`}>
+
+      {/* top placeholder */}
+      {/* {!value && (type !== 'select' && type !== 'checkbox') && < label className="internal-label">{label}</label>} */}
+
+      {/* center placeholder */}
+      { (props.type !== 'checkbox') && <label className="external-label">{props.label}</label>}
+
+      {/* checkbox placeholder */}
+      {(props.type === 'checkbox') && < label className="internal-label">{props.label}</label>}
+
+      {props.type === "select" ? (
+        <select
+          id={props.id}
+          name={props.name}
+          onClick={(() => { removeErrorByField(props.name) })}
           onChange={handleChange}
-          error={
-            validationIsActive() &&
-            (getErrorByField(props.name) ? true : false)
-          }
-          helperText={getErrorByField(props.name)}
-        />
-      </FormControl>
-    </MuiThemeProvider>
-  );
-};
+          className={`select-box ${validationIsActive() && getErrorByField(props.name) && 'error'}`}
+        >
+          <option value={props.label}>{props.label}</option>
+          {props.items.map((item, i) => {
+            return <option key={i} value={item}>{item}</option>
+          })}
+        </select>
+      ) : (
+          <input
+            id={props.id}
+            onClick={(() => { removeErrorByField(props.name) })}
+            className={`input-box ${validationIsActive() && getErrorByField(props.name) && 'error'}`}
+            tabIndex={props.tabIndex}
+            name={props.name}
+            type={props.type || 'string'}
+            required={props.required}
+            value={value}
+            autoFocus={false}
+            onChange={handleChange}
+          />
+        )
+      }
+
+      {/* Error message  */}
+      {validationIsActive() && getErrorByField(props.name) &&
+        <ErrorLabel value={getErrorByField(props.name)} />}
+    </div >
+  )
+}
