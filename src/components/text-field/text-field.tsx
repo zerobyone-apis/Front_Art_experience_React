@@ -4,18 +4,19 @@ import { FormContext } from '../../contexts/FormContext';
 import './text-field.scss';
 
 export const Textfield = (props: {
-  id,
-  label,
-  name,
-  type,
-  equalField,
-  defaultvalue,
-  className,
-  items,
-  tabIndex,
-  required,
-  onChange,
-  lowerCase
+  id: string,
+  label: string,
+  name: string,
+  type: string,
+  disabled?: boolean,
+  equalField?: string,
+  defaultvalue?: any,
+  className?: string,
+  items?: any[],
+  tabIndex?: number,
+  required?: boolean,
+  onChange?: any,
+  lowerCase?: boolean
 }) => {
 
   const [value, setValue] = useState(props.defaultvalue || '');
@@ -79,6 +80,7 @@ export const Textfield = (props: {
       ) : (
           <input
             id={props.id}
+            disabled={props.disabled}
             onClick={(() => { removeErrorByField(props.name) })}
             className={`input-box ${validationIsActive() && getErrorByField(props.name) && 'error'}`}
             tabIndex={props.tabIndex}

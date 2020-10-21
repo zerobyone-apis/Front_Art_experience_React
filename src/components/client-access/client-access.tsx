@@ -6,7 +6,6 @@ import { ValidationForm } from '../validation-form/validation-form';
 import { IClient } from '../../types/Client.type';
 import { Checkbox } from '@material-ui/core';
 import { FormControlLabel } from '@material-ui/core';
-import { useForm } from 'react-hook-form';
 import { Textfield } from '../text-field/text-field';
 import { StepperFooter } from '../reserve-modal/stepper-footer';
 import { FormContext, FormProvider } from '../../contexts/FormContext';
