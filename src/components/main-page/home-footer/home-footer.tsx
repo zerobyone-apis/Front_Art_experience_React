@@ -2,9 +2,9 @@ import React, { useContext } from 'react';
 import { FaInstagram, FaFacebook } from 'react-icons/fa';
 import { ThemeContext } from '../../../contexts/ThemeContext';
 import { Card } from '../../card';
+import Maps from '../google_maps/google-maps';
 import './home-footer.scss';
 import '../../../styles/theme.scss';
-import Maps from '../google_maps/google-maps';
 
 export const HomeFooter = (props: {
   email: string;
@@ -19,7 +19,6 @@ export const HomeFooter = (props: {
     // @ts-ignore
     getTheme,
   } = useContext(ThemeContext);
-
 
   const test = () => {
     return (
@@ -56,11 +55,14 @@ export const HomeFooter = (props: {
   }
 
   return (
-    // ${props.theme ? props.theme : getTheme()}
     <>
       <Card className="footer-card" title={props.title} subtitle={''}>
         <div className={`home-footer`}>
+
+
           <Maps className="footer-map" subtitle={props.subtitle} />
+
+
         </div>
       </Card>
       {test()}
