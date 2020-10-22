@@ -14,11 +14,11 @@ import '../../../styles/theme-buttons.scss';
 import '../../../styles/effects.scss';
 
 export const ReserveDialog = (props: {
-  reserve: IReserve,
-  onClose: any,
-  onFinalized?: () => undefined,
-  onCancelled?: () => undefined,
-  onUpdated?: (updated) => any,
+  reserve: IReserve;
+  onClose: any;
+  onFinalized?: () => undefined;
+  onCancelled?: () => undefined;
+  onUpdated?: (updated) => any;
 }) => {
   const baseReserve: IReserve = {
     barberOrHairdresserId: -1,
@@ -49,19 +49,25 @@ export const ReserveDialog = (props: {
   /* UPDATE RESERVE */
   const updateReserve = async (fields: any) => {
     setDisabledButton(true);
-    //let formatDateOld = moment(reserve.startTime).format('YYYY-MM-DDTHH:mm:ss');
-    let formatDateFront = moment(fields.startTimeFront.value).format('YYYY-MM-DDTHH:mm:ss');
+    let formatDateOld = moment(reserve.startTime).format('YYYY-MM-DDTHH:mm:ss');
+    //let formatDateFront = moment(fields.startTimeFront.value).format(
+    //  'YYYY-MM-DDTHH:mm:ss'
+    //);
     let reserveUpdate: IReserve = {
-
       /* Check the start time: need pass the startTimeFront formatted? 
         add a callendar?
       */
-      startTime: formatDateFront,
+      //startTime: formatDateFront,
+      startTime: formatDateOld,
 
       /* Fields of form */
       workToDo: fields.workToDo.value,
-      priceWork: fields.totalCost.value, /* <-- Are not the same but is necesary */
-      celClient: fields.celClient.value,
+      priceWork:
+        fields.totalCost.value /* <-- Are not the same but is necesary */,
+      celClient:
+        fields.celClient.value === ''
+          ? reserve.celClient
+          : fields.celClient.value,
 
       /* Not updated fields (disabled or not specify) */
       reserveId: reserve.reserveId,
@@ -72,7 +78,7 @@ export const ReserveDialog = (props: {
       mailClient: reserve.mailClient,
       additionalCost: reserve.additionalCost,
     };
-    console.log('RESERVE', reserveUpdate)
+    console.log('RESERVE', reserveUpdate);
     let response = await reserveActions.update(reserveUpdate);
     console.log('Update reserve');
     if (response) {
@@ -160,7 +166,9 @@ export const ReserveDialog = (props: {
     >
       <div className="reserve-modal">
         <div className="reserve_data-box">
-          <p className={`reserve_info effect-slide_left text-${getTheme()}`}>Datos del Cliente</p>
+          <p className={`reserve_info effect-slide_left text-${getTheme()}`}>
+            Datos del Cliente
+          </p>
 
           {/* New validation implements */}
           <FormProvider>
@@ -197,7 +205,9 @@ export const ReserveDialog = (props: {
                   />
                 </ul>
                 <ul>
-                  <p className={`reserve_info text-${getTheme()}`}>Datos de la Reserva</p>
+                  <p className={`reserve_info text-${getTheme()}`}>
+                    Datos de la Reserva
+                  </p>
                   <Textfield
                     id="startTimeFront"
                     name="startTimeFront"
