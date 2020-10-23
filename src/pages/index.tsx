@@ -87,6 +87,7 @@ const IndexPage = () => {
       url: 'Read More',
     },
   ];
+
   const courses = [
     {
       name: 'INTENSIVO',
@@ -94,21 +95,21 @@ const IndexPage = () => {
       info: `
       El curso incluye los materiales a utilizar en el mismo.
       Conoceras y entenderas las diferentes tecnicas y conceptos claves 
-      \nQue te harán ser un barbero capaz de Manejar, Utilizar y Perfeccionar. 
-      \n🏆 Estilos de las últimas tendencias 🏆
-      \n ➬ Freestyle      
-      \n ➫ Fade (Degradé) 
-      \n ➬ Peinados       
-      \n ➫ Marketing      
-      \n ➬ Fotografía     
-      \n ➬ Particiones y secciones de la cabeza 
-      \n..🕒 Duración 4 meses ..
-      \n... 🗓️ Fecha a coordinar ...`,
-      cost: ` \n💈 Formas de Pago 💈  \n
-         \n Contamos con 2 posibilidades de pago 🙌
-         \n 👉 Contado:   💲 13.000 
-         \n 👉 Financiado: 💲 4.000 (hasta en 4 cuotas) 
-         \n \nPosibilidad de reservar un lugar con una seña de 💲 1.500 
+      Que te harán ser un barbero capaz de Manejar, Utilizar y Perfeccionar. 
+      🏆 Estilos de las últimas tendencias 🏆
+      ➬ Freestyle      
+      ➫ Fade (Degradé) 
+      ➬ Peinados       
+      ➫ Marketing      
+      ➬ Fotografía     
+      ➬ Particiones y secciones de la cabeza 
+      ..🕒 Duración 4 meses ..
+      ... 🗓️ Fecha a coordinar ...`,
+      cost: `💈 Formas de Pago 💈
+         Contamos con 2 posibilidades de pago 🙌
+         👉 Contado:   💲 13.000 
+         👉 Financiado: 💲 4.000 (hasta en 4 cuotas) 
+         Posibilidad de reservar un lugar con una seña de 💲 1.500 
       `,
       icon: 'event',
       img: 'https://i.ibb.co/xgD16sC/Modelo-3.jpg',
@@ -118,24 +119,23 @@ const IndexPage = () => {
       name: 'COLORIMETRIA',
       info: `
       Materiales incluidos.
-      \nSe realizaran los siguientes trabajos en cada uno de los modelos
-      \nDando lugar a poder conocer las diferentes técnicas 
-      \nutilizadas en cada color que apliquemos en el curso.
-      
-      \n🏆 En la clase trabajamos con 3 modelos 🏆
-      \n ➬ 👦 Platinado
-      \n ➫ 👧 Fantasia
-      \n ➬ 👩 Mechitas
+      Se realizaran los siguientes trabajos en cada uno de los modelos
+      Dando lugar a poder conocer las diferentes técnicas 
+      utilizadas en cada color que apliquemos en el curso.
+      🏆 En la clase trabajamos con 3 modelos 🏆
+      ➬ 👦 Platinado
+      ➫ 👧 Fantasia
+      ➬ 👩 Mechitas
 
       Este curso le otorgará un certificado de concurrencia
-      \n..🕒 Duración 6 Horas ..
+      ..🕒 Duración 6 Horas ..
       ... 🗓️ Fecha a coordinar ... 
       `,
       duration: '6 Horas',
-      cost: `\n💈 Formas de Pago 💈  \n
-           \n Contamos con 1 posibilidad de pago 🙌
-           \n 👉 Contado:   💲 8.000 
-      \n \nPosibilidad de reservar un lugar con una seña de 💲 1.000 
+      cost: `💈 Formas de Pago 💈
+           Contamos con 1 posibilidad de pago 🙌
+           👉 Contado:   💲 8.000 
+      Posibilidad de reservar un lugar con una seña de 💲 1.000 
    `,
       icon: 'event',
       img: 'https://i.ibb.co/HnG4W5H/modelo-5.jpg',
@@ -145,25 +145,24 @@ const IndexPage = () => {
       name: 'AVANZADO',
       info: `
           En este perfeccionamiento Trabajaremos con 4 modelos
-        \nEn los cuales se realizaran 3 estilos diferentes.
-        \nTendras la oportunidad de expandir tus conocimientos. 
-        \nRealizando tres de los estilos mas demandados 🚀
-        \nLa modalidad sera, escojeras uno de los estilos que mas te guste.
-        \nUna vez que escojas ese estilo, Lo applicarás en dos de tus modelos.
-        \nmientras que los otros dos modelos, se les hará los demas estilos.
-       
-        \n 🏆 Estos son los estilos que aprenderas a realizar 🏆  
-        \n ➬ 👦 FrenchCrop 
-        \n ➫ 👦 Pompadour
-        \n ➬ 👦 Classic Cuts
-        \n..🕒 Duración 6 Horas ..
-        \n ... 🗓️ Fecha a coordinar ... 
+        En los cuales se realizaran 3 estilos diferentes.
+        Tendras la oportunidad de expandir tus conocimientos. 
+        Realizando tres de los estilos mas demandados 🚀
+        La modalidad sera, escojeras uno de los estilos que mas te guste.
+        Una vez que escojas ese estilo, Lo applicarás en dos de tus modelos.
+        mientras que los otros dos modelos, se les hará los demas estilos.
+        🏆 Estos son los estilos que aprenderas a realizar 🏆  
+        ➬ 👦 FrenchCrop 
+        ➫ 👦 Pompadour
+        ➬ 👦 Classic Cuts
+        ..🕒 Duración 6 Horas ..
+        ... 🗓️ Fecha a coordinar ... 
       `,
       duration: '2 dias', //  / 2 cortes diarios
-      cost: `\n💈 Formas de Pago 💈  \n
-             \n Contamos con 1 posibilidad de pago 🙌
-             \n 👉 Contado:   💲 6.000 
-             \n \nPosibilidad de reservar un lugar con una seña de 💲 1.000`,
+      cost: `💈 Formas de Pago 💈
+             Contamos con 1 posibilidad de pago 🙌
+             👉 Contado:   💲 6.000 
+             Posibilidad de reservar un lugar con una seña de 💲 1.000`,
       icon: 'event',
       img: 'https://i.ibb.co/0Y6jz8s/modelo-4.jpg',
       url: 'Read More',
