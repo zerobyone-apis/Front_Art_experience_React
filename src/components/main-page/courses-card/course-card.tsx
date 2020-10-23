@@ -81,7 +81,7 @@ export const CoursesCard = (props: {
             imgClassName="course-img"
             img={course.img}
             imgFooter={
-              <div>
+              <div className="payform-container-style">
                 {course.cost.split('\n').map((line, i) => {
                   return (
                     <div key={i}>

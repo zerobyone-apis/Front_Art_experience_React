@@ -253,7 +253,7 @@ const IndexPage = () => {
           {barbers.length ? (
             <BarbersCard
               barbers={barbers}
-              title="Nuestros Barberos"
+              title="Nuestros Equipo"
               subTitle={''}
             />
           ) : null}

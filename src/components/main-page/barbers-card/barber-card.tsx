@@ -4,6 +4,7 @@ import { Text } from '../../text';
 import { Card } from '../../card';
 import { Slider } from '../../slider';
 import './barbers-card.scss';
+import './barbers-card-mobile.scss';
 import '../../../styles/theme.scss';
 import '../../../styles/effects.scss';
 
@@ -22,7 +23,7 @@ export const BarbersCard = (props: {
   }) => {
     return (
       <div className={`barber-item`} key={props.key}>
-        <Text type="text" className="barber-name">{props.name}</Text>
+        <Text type="subtitle" className="barber-name">{props.name}</Text>
         <img
           className="barber-img"
           src={props.img}
@@ -68,7 +69,7 @@ export const BarbersCard = (props: {
   }
   return (
     <Card
-      title="Nuestros Barberos"
+      title="Nuestros Equipo"
       background="https://i.ibb.co/R0Lxwsz/Whats-App-Image-2020-09-26-at-17-38-44.jpg"
       className="barber-card"
     >
