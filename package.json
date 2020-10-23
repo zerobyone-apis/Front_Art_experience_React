@@ -1,7 +1,7 @@
 {
   "name": "art_experience",
   "version": "1.0.1",
-  "description": "Este es el proyecto",
+  "description": "Art Experience Poryect",
   "main": "dist/index.js",
   "engines": {
     "node": "12.x"
