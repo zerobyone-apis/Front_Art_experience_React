@@ -1,4 +1,5 @@
 @import '../../styles/theme.scss';
+@import '../../theme/colors.scss';
 
 $toolbar_height: 60px;
 
@@ -12,9 +13,10 @@ $toolbar_height: 60px;
 
 .toolbar {
   position: fixed;
-  z-index: 1;
+  z-index: 999;
   width: 100%;
   height: $toolbar_height;
+  background-color: $shadow-dark;
 
   .left-box {
     position: relative;
