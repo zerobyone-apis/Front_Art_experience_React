@@ -2,6 +2,10 @@
 
 @media only screen and (max-width: $size-sm) {
     .course-card {
+        .sub-container-info {
+            margin-right: 0;
+        }
+
         .course-img {
             img {
                 margin: 20px 0;
