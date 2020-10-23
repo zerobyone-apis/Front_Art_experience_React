@@ -1,3 +1,5 @@
+@import '../../theme/fonts.scss';
+
 .card {
   position: relative;
   min-height: max-content;
@@ -9,19 +11,20 @@
 
   .card_title {
     position: relative;
+    font-size: $font-size-extra_big;
     margin: 0;
     color: rgb(146, 144, 108);
   }
 
   .card_subtitle {
     position: relative;
-    margin: 0;
-    margin-top: 20px;
+    margin: 20px 0;
   }
 
-  .card_items {
+  .card_content {
     position: relative;
     width: 100%;
-    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
   }
 }
