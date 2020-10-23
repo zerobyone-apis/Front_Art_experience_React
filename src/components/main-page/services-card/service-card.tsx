@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { ThemeContext } from '../../../contexts/ThemeContext';
-import { Divider } from '../../divider/divider';
+import { Card } from '../../card';
+import { Text } from '../../text';
 import './services-card.scss';
 import '../../../styles/theme.scss';
 
@@ -10,18 +11,20 @@ export const ServiceItem = (props: {
   name: string;
   info: string;
 }) => {
-  const {
-    // @ts-ignore
-    getTheme,
-  } = useContext(ThemeContext);
   return (
     <div className={`service-item`} key={props.key}>
+      <br />
       {props.icon}
-      <p className={`service-name text text-light`}>{props.name}</p>
+      {/* <p className={` text text-light`}>{props.name}</p> */}
+      <Text className="service-name" type="text">{props.name}</Text>
 
       <div className={`service-info text text-light`}>
         {props.info.split('\n').map((line, i) => {
-          return <p key={i}>{line}</p>;
+          return (
+            <div key={i}>
+              <Text type="text">{line}</Text>
+            </div>
+          )
         })}
       </div>
 
@@ -53,16 +56,15 @@ export const ServicesCard = (props: {
   };
 
   return (
-    <Divider
-      title="Brindamos Servicios de Calidad y Asesoramiento Personalizado"
-      //img=""
-      img="https://i.ibb.co/DfFncm2/Whats-App-Image-2020-09-26-at-17-38-45-1.jpg"
-      align="left"
+    <Card
+      title="Servicios / Promos"
+      subtitle="Brindamos Servicios de Calidad y Asesoramiento Personalizado"
+      background="https://i.ibb.co/DfFncm2/Whats-App-Image-2020-09-26-at-17-38-45-1.jpg"
       className="service-divider"
     >
       <div className="divider-content">
         <div className="services-card">{getServices()}</div>
       </div>
-    </Divider>
+    </Card>
   );
 };

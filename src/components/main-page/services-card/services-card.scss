@@ -1,7 +1,6 @@
 @import '../../../styles/theme.scss';
 
 .service-divider {
-  background-color: rgb(12, 12, 12);
 
   .services-card {
     text-align: center;
@@ -11,10 +10,9 @@
     .service-item {
       position: relative;
       width: 250px;
-      margin: 40px 0 0 0;
+      margin: 0;
       display: inline-table;
       text-align: center;
-      //align-content: space-between;
 
       .service-icon {
         font-size: 40px;
