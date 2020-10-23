@@ -7,6 +7,7 @@ import { toolbarButtons } from '../../utils/toolbarButtons';
 import { UserContext } from '../../contexts/UserContext';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import './toolbar.scss';
+import './toolbar-mobile.scss';
 import '../../styles/theme-buttons.scss';
 
 export const Toolbar = () => {
@@ -15,13 +16,8 @@ export const Toolbar = () => {
     userIsLogged,
     getUserData,
   } = useContext(UserContext);
-  const {
-    // @ts-ignore
-    getTheme,
-  } = useContext(ThemeContext);
 
   return (
-    // ${getTheme()}
     <div className={`toolbar effect-slide_bottom shadow-dark`}>
       <div id="start_page" />
       <div className="left-box">

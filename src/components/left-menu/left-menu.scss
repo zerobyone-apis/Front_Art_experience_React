@@ -16,11 +16,11 @@ $menu_size: 200px;
     align-items: center;
   }
 
-  @media only screen and (min-width: $size-sm) {
-    .left_menu-dialog {
-      visibility: hidden;
-    }
-  }
+  // @media only screen and (min-width: $size-sm) {
+  //   .left_menu-dialog {
+  //     visibility: hidden;
+  //   }
+  // }
 
   @media only screen and (max-width: $size-sm) {
     .activator_btn {
@@ -36,7 +36,6 @@ $menu_size: 200px;
     .left-menu-box {
       position: relative;
       width: 100% !important;
-      // background-color: red;
     }
 
     a {

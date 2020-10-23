@@ -21,6 +21,7 @@ export const BarbersCard = (props: {
     key?: number;
     barber?: any;
   }) => {
+
     return (
       <div className={`barber-item`} key={props.key}>
         <Text type="subtitle" className="barber-name">{props.name}</Text>
@@ -67,6 +68,7 @@ export const BarbersCard = (props: {
       )
     })
   }
+
   return (
     <Card
       title="Nuestros Equipo"
