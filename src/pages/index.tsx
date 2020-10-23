@@ -32,19 +32,14 @@ const IndexPage = () => {
     instagram: 'https://www.instagram.com/artexperiencee/',
     facebook: 'https://www.facebook.com/artexperiencee/?epa=SEARCH_BOX',
     aboutUsTitle: 'Acerca de Nosotros',
-    aboutUs: `En Art Experience nos enfocamos en el cliente 
-     ..No es solo un corte de Pelo..
-     Es una experiencia completa desde que el cliente 
-     ingrese al local hasta que se retire.
-     Creemos que cada aspecto es importante. 
-     \"... El ambiente, la música y nuestra atención ...\"
-     Seran algunos de los aspectos que experimentaras en nuestro local.
-     Queremos que cada cliente encuentre su lugar, el confort de adecuarse al ambiente, 
-     se sienta cómodo y en buena compañía.
-     Nuestro equipo se supera de manera constante, cada dia para asi brindar 
-     una experiencia de calidad y calize al cliente
-     .. Queremos marcar la diferencia ..
-     \n ... Disfrute de los nuevos servicios ...`,
+
+    aboutUs: `
+    En Art Experience nos enfocamos en brindar un servicio de calidad y atención en cada detalle.\n
+     El ambiente, la música y nuestra atención serán algunos de los muchos aspectos que podrás experimentar en nuestro local.\n
+     Nuestro equipo se supera de manera constante para asi brindar una experiencia de calidad y mantenerse en lo último en tendencia.\n
+     ... Marcamos la diferencia ...\n
+     Bienvenid@ a Art Experience`,
+
     servicesTitle: 'Nuestros Servicios',
     services: 'Brindamos Servicios de Calidad y Asesoramiento Personalizado',
     coursesTitle: 'Nuestros Cursos',

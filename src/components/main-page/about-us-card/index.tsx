@@ -4,11 +4,11 @@ import {
   SubContainerInfo,
   ContainerPage,
 } from '../../test/container-page/container-page';
+import { Card } from '../../card';
 
 import './about-us-card.scss';
 import './about-us-card-mobile.scss';
 import '../../../styles/theme.scss';
-
 
 export const AboutUsCard = (props: {
   title: string;
@@ -16,18 +16,15 @@ export const AboutUsCard = (props: {
   picture: string;
 }) => {
   return (
-    <div className="about-us-card">
+    <Card className="about-us-card" title={props.title}>
       <ContainerPage className={`container-about-us`}>
-
         <SubContainerInfo
           className="sub-container-info"
-          title={props.title}
           info={props.info}
+          title={""}
           cost={''} />
-
         <SubContainerImage img={props.picture} />
-
       </ContainerPage>
-    </div>
+    </Card>
   );
 };

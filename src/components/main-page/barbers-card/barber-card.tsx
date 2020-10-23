@@ -1,14 +1,13 @@
-import React, { useContext, useState, useEffect, Fragment } from 'react';
+import React, { useContext, useState, Fragment } from 'react';
 import { ThemeContext } from '../../../contexts/ThemeContext';
 import { Divider } from '../../divider/divider';
-// import { ContainerPage } from '../container-page/container-page';
 import {
   ContainerPage as Container,
-  SubContainerInfo,
   SubContainerImage,
 } from '../../test/container-page/container-page';
 import { useWindowSize } from '../../../hooks/useWindowSize';
 import { FaInstagram, FaFacebook } from 'react-icons/fa';
+import { Text } from '../../text';
 import './barbers-card.scss';
 import '../../../styles/theme.scss';
 import '../../../styles/effects.scss';
@@ -55,7 +54,7 @@ export const BarbersCard = (props: {
           src={props.img}
           alt=""
         />
-        <p className={`barber-name text text-light`}>{props.name || ''}</p>
+        <Text type="small" className="barber-name">{props.name}</Text>
       </div>
     );
   };
@@ -105,20 +104,11 @@ export const BarbersCard = (props: {
           containerClassName={`${effects}`}
           leftContent={
             <div className="barbers-items">
-              <p className="help-action">Barberos</p>
+              <Text type="small" className="help-action">Barberos</Text>
               {getBarbers()}
             </div>
           }
         >
-
-
-          {/* <SubContainerInfo
-            title={selectedBarber.name}
-            info={selectedBarber.barberDescription}
-            cost={''}
-          /> */}
-
-
           <SubContainerImage
             img={selectedBarber.urlProfileImage}
             title={selectedBarber.name}

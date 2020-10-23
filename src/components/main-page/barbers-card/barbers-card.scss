@@ -39,7 +39,6 @@
 
         .help-action {
             position: absolute;
-            // z-index: 1;
             text-transform: uppercase;
             color: $cool-color;
             writing-mode: vertical-lr;
@@ -141,10 +140,7 @@
                     display: flex;
                     margin: auto;
                     border-style: none;
-                    // overflow-x: scroll;
                     width: max-content;
-
-                    // background-color: green;
 
                     .barber-item {
                         margin-left: 0px;
@@ -154,8 +150,6 @@
                             width: 60px;
                             height: 60px;
                         }
-
-                        // background-color: green;
                     }
                 }
             }
