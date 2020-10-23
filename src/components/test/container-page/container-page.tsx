@@ -13,7 +13,7 @@ export const SubContainerInfo = (props: {
 }) => {
   return (
     <div className={`info-box ${props.className}`}>
-      <Text type="title" className="title">{props.title}</Text>
+      <Text type="subtitle" className="title">{props.title}</Text>
       {
         props.info.split('\n').map((line, i) => {
           return (
