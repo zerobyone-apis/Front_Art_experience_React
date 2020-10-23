@@ -1,4 +1,6 @@
 @import '../../styles/effects.scss';
+@import '../../theme/screen-size.scss';
+
 $menu_size: 200px;
 
 .left_menu {
@@ -14,13 +16,13 @@ $menu_size: 200px;
     align-items: center;
   }
 
-  @media only screen and (min-width: $mobile-screen) {
+  @media only screen and (min-width: $size-sm) {
     .left_menu-dialog {
       visibility: hidden;
     }
   }
 
-  @media only screen and (max-width: $mobile-screen) {
+  @media only screen and (max-width: $size-sm) {
     .activator_btn {
       visibility: visible;
       position: relative;
@@ -95,10 +97,6 @@ $menu_size: 200px;
         position: relative;
         margin-bottom: 60px;
         width: 100%;
-
-        p {
-          font-size: $title-size;
-        }
 
         a {
           width: 90%;
