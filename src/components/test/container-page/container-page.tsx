@@ -1,6 +1,8 @@
 import React, { ReactChild, Fragment, ReactElement } from 'react';
+import { Text } from '../../text';
 import { useWindowSize } from '../../../hooks/useWindowSize';
 import './container-page.scss';
+import './container-page-mobile.scss';
 
 // compoents used into ContainerPage component
 export const SubContainerInfo = (props: {
@@ -11,14 +13,14 @@ export const SubContainerInfo = (props: {
 }) => {
   return (
     <div className={`info-box ${props.className}`}>
-      <p className={`title`}>{props.title}</p>
-
+      <Text type="title" className="title">{props.title}</Text>
       {
         props.info.split('\n').map((line, i) => {
           return (
-            <p key={i} className={`text info`}>
-              {line}
-            </p>
+            <div key={i}>
+              <Text type="text" className="info">{line}</Text>
+              <br />
+            </div>
           );
         })
       }
@@ -73,7 +75,6 @@ export const SubContainerImage = (props: {
   );
 };
 
-
 export const ContainerPage = (props: {
   children: ReactChild | ReactChild[];
   leftContent?: any;
@@ -94,21 +95,30 @@ export const ContainerPage = (props: {
 
   return (
     <div key={props.key} className={`container-page ${props.className}`}>
-      <div className="left-box">{props.leftContent}</div>
+
+      {/* left box */}
+      <div className="left-box">
+        {props.leftContent}
+      </div>
+
+      {/* center containers */}
       <div className={`containers ${props.containerClassName}`}>
         {React.Children.map(props.children, (child: ReactElement, i: number) => {
           return (
-            <div
+            <div className="sub-container"
               style={{ width: `${100 / getTotalChilds()}%`, margin: `${getTotalChilds() != 1 ? 'auto' : 'none'}` }}
               key={i}
-              className="sub-container"
             >
               {child}
             </div>
           );
         })}
       </div>
-      <div className="right-box">{props.RightContent}</div>
+
+      {/* right box */}
+      <div className="right-box">
+        {props.RightContent}
+      </div>
     </div>
   );
 };

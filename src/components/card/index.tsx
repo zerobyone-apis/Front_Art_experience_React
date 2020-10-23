@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
 import { ThemeContext } from '../../contexts/ThemeContext';
+import { Text } from '../text';
 import './card.scss';
-import '../../styles/theme.scss';
+import '../../theme/theme.scss';
 
 export const Card = (props: {
   title?: string;
@@ -11,34 +12,21 @@ export const Card = (props: {
   id?: string;
   theme?: 'dark' | 'light';
 }) => {
-  const {
-    // @ts-ignore
-    getTheme,
-  } = useContext(ThemeContext);
 
   return (
     <div
       id={props.id}
-      className={`card ${props.className} ${props.theme || getTheme()}`}
+      className={`card ${props.className}`}
     >
-      <div className="anchor" id="about_us" />
       {
         props.title &&
-        <p className={`text-${props.theme || getTheme()} card_title title`}>
-          {props.title}
-        </p>
+        <Text type="title" className="card_title">{props.title}</Text>
       }
       {
         props.subtitle &&
-        <p className={`card_subtitle text text-${props.theme ? props.theme : getTheme()}`}>
-          {
-            props.subtitle.split('\n').map((line, i) => {
-              return <p key={i}>{line}</p>;
-            })
-          }
-        </p>
+        <Text type="subtitle" className="card_subtitle">{props.subtitle}</Text>
       }
-      <div className="card_items">
+      <div className="card_content">
         {props.children}
       </div>
     </div>

@@ -1,10 +1,11 @@
-import React, { useContext } from 'react';
-import { FaInstagram, FaFacebook } from 'react-icons/fa';
-import { ThemeContext } from '../../../contexts/ThemeContext';
+import React from 'react';
 import { Card } from '../../card';
-import Maps from '../google_maps/google-maps';
+import { ContainerPage } from '../../test/container-page/container-page';
+import { Maps } from '../google_maps/google-maps';
+import { Text } from '../../text';
+import { FaInstagram, FaFacebook } from 'react-icons/fa';
 import './home-footer.scss';
-import '../../../styles/theme.scss';
+import './home-footer-mobile.scss';
 
 export const HomeFooter = (props: {
   email: string;
@@ -15,24 +16,20 @@ export const HomeFooter = (props: {
   facebook: string;
   theme?: 'dark' | 'light';
 }) => {
-  const {
-    // @ts-ignore
-    getTheme,
-  } = useContext(ThemeContext);
 
-  const test = () => {
+  const getFooterInfo = () => {
     return (
-      <div className="content-info">
-
+      <div className="footer-info">
         <div className="footer-social">
-
           <img
             className="footer_logo-img effect-opacity"
             src="https://i.ibb.co/hfX81DT/art-experience-500.png"
             alt=""
           />
-          <p className={`footer-email text text-dark`}>{props.email}</p>
-          <p className={`footer-email text text-dark`}>{'  ' + props.number}</p>
+          <Text type="text">{props.email}</Text>
+          <br />
+          <Text type="text">{props.number}</Text>
+          <br />
           <a href={props.instagram}>
             <i className="fa fa-instagram" aria-hidden="true"></i>
             <FaInstagram className="footer-social-logo social-logo" />
@@ -45,27 +42,32 @@ export const HomeFooter = (props: {
           className="footer-bussiness-link"
           href="https://www.instagram.com/zerobyone_/"
         >
-          <p className={`text text-${getTheme()}`}>
-            © 2020 Art Experience - Desarrollado por ZeroByOne
-          </p>
+          <Text type="small">© 2020 Art Experience - Desarrollado por ZeroByOne</Text>
         </a>
-
       </div>
     )
   }
 
   return (
-    <>
-      <Card className="footer-card" title={props.title} subtitle={''}>
-        <div className={`home-footer`}>
+    <Card className="footer-card" title={props.title}>
+      <ContainerPage className={`footer-container`}>
+        <div className="map-info">
+          {props.subtitle.split('\n').map((line, i) => {
+            return (
+              <div key={i}>
+                <div className="info-item">
+                  <img src="https://img.icons8.com/fluent/15/000000/chevron-right.png" alt="" />
+                  <Text type="text">{line}</Text>
+                </div>
+                <br />
 
-
-          <Maps className="footer-map" subtitle={props.subtitle} />
-
-
+              </div>
+            )
+          })}
         </div>
-      </Card>
-      {test()}
-    </>
+        <Maps className="footer-map" subtitle={props.subtitle} />
+      </ContainerPage>
+      {getFooterInfo()}
+    </Card>
   );
 };
