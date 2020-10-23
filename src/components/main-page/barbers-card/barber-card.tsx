@@ -1,6 +1,5 @@
 import React, { useContext, useState, Fragment } from 'react';
 import { ThemeContext } from '../../../contexts/ThemeContext';
-import { Divider } from '../../divider/divider';
 import {
   ContainerPage as Container,
   SubContainerImage,
@@ -8,6 +7,7 @@ import {
 import { useWindowSize } from '../../../hooks/useWindowSize';
 import { FaInstagram, FaFacebook } from 'react-icons/fa';
 import { Text } from '../../text';
+import { Card } from '../../card'
 import './barbers-card.scss';
 import '../../../styles/theme.scss';
 import '../../../styles/effects.scss';
@@ -92,35 +92,40 @@ export const BarbersCard = (props: {
   };
 
   return (
-    <Divider
+    <Card
       title="Nuestros Barberos"
-      img="https://i.ibb.co/R0Lxwsz/Whats-App-Image-2020-09-26-at-17-38-44.jpg"
-      align="left"
-      className="divider"
+      background="https://i.ibb.co/R0Lxwsz/Whats-App-Image-2020-09-26-at-17-38-44.jpg"
+      className="barber-card"
     >
-      <div className="barber-card">
-        <Container
-          className={`container-barber`}
-          containerClassName={`${effects}`}
-          leftContent={
-            <div className="barbers-items">
-              <Text type="small" className="help-action">Barberos</Text>
-              {getBarbers()}
-            </div>
+      <Container
+        className={`container-barber`}
+        containerClassName={`${effects}`}
+        leftContent={
+          <div className="barbers-items">
+            <Text type="small" className="help-action">Barberos</Text>
+            {getBarbers()}
+          </div>
+        }
+      >
+        <SubContainerImage
+          img={selectedBarber.urlProfileImage}
+          title={selectedBarber.name}
+          imgFooter={
+            <BarberImage
+              facebook={selectedBarber.facebook}
+              instagram={selectedBarber.instagram}
+            />
           }
-        >
-          <SubContainerImage
-            img={selectedBarber.urlProfileImage}
-            title={selectedBarber.name}
-            imgFooter={
-              <BarberImage
-                facebook={selectedBarber.facebook}
-                instagram={selectedBarber.instagram}
-              />
-            }
-          />
-        </Container>
-      </div>
-    </Divider>
+        />
+      </Container>
+    </Card>
+
+    // <Divider
+    //   title="Nuestros Barberos"
+    //   img="https://i.ibb.co/R0Lxwsz/Whats-App-Image-2020-09-26-at-17-38-44.jpg"
+    //   align="left"
+    //   className="divider"
+    // >
+    // </Divider>
   );
 };

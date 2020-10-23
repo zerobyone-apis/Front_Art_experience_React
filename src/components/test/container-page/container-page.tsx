@@ -29,10 +29,11 @@ export const SubContainerInfo = (props: {
         <div className={`cost__info`}>
           {props.cost.split('\n').map((line, i) => {
             return (
-              <p key={i} className={`text info`}>
-                {line}
-              </p>
-            );
+              <div key={i}>
+                <Text type="text" className="info">{line}</Text>
+                <br />
+              </div>
+            )
           })}
         </div>
       }
@@ -52,7 +53,7 @@ export const SubContainerImage = (props: {
   return (
     <div className={`img-box ${props.imgClassName}`}>
       <div className="image">
-        <p className={`title`}>{props.title}</p>
+        <Text type="subtitle" className="title">{props.title}</Text>
         {typeof props.img === 'string' ? (
           <Fragment>
             <img

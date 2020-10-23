@@ -12,6 +12,16 @@
     letter-spacing: .03em;
 }
 
+.theme-title {
+    font-size: calc(#{$f1} + .1vw);
+    color: $secondary;
+}
+
+.theme-subtitle {
+    font-size: calc(#{$f3} + .1vw);
+    color: $secondary;
+}
+
 .theme-text {
     font-size: calc(#{$f5} + .4vw);
 }
@@ -28,9 +38,4 @@
 .theme-text.light,
 .theme-small.light {
     color: $text_dark;
-}
-
-.theme-title {
-    font-size: calc(#{$f1} + .1vw);
-    color: $secondary;
 }

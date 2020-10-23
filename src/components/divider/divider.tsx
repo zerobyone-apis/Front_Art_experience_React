@@ -13,8 +13,7 @@ export const Divider = (props: {
     return (
         <div id={props.id} className={`divider-box ${props.className}`}>
             <div className={`divider_left`}>
-                <div
-                    className="back_img"
+                <div className="back_img"
                     style={{ backgroundImage: `url(${props.img})` }} />
                 <div className="divider_items">
                     {props.title ? <p className="big-title divider-title">{props.title}</p> : null}

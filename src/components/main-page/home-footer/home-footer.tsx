@@ -49,7 +49,10 @@ export const HomeFooter = (props: {
   }
 
   return (
-    <Card className="footer-card" title={props.title}>
+    <Card
+      className="footer-card"
+      title={props.title}
+    >
       <ContainerPage className={`footer-container`}>
         <div className="map-info">
           {props.subtitle.split('\n').map((line, i) => {
