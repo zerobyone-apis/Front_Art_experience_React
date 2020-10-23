@@ -13,12 +13,21 @@
         margin-right: 50px;
     }
 
+
+    .course-img {
+        img {
+            width: calc(250px + 4vw);
+            height: calc(250px + 4vw);
+        }
+    }
+
+
     .employee-social {
         width: 100%;
         bottom: 0px;
         border-bottom-left-radius: 8px;
         border-bottom-right-radius: 8px;
-        text-align: center;
+        // text-align: center;
         padding: 10px 0;
 
         .employee-social-logo {
@@ -40,7 +49,7 @@
     .courses-items {
         width: max-content;
         height: max-content;
-        text-align: center;
+        // text-align: center;
         border-right-style: solid;
         border-color: $warm-color;
         border-width: 1px;
@@ -60,7 +69,7 @@
             width: 30%;
             margin: 40px 20px 0 20px;
             display: inline-table;
-            text-align: center;
+            // text-align: center;
 
             .course-img {
                 position: relative;
@@ -142,7 +151,7 @@
     .course-info {
         width: 100%;
         height: max-content;
-        text-align: center;
+        // text-align: center;
 
         .selected-img {
             max-width: 250px;
@@ -208,7 +217,7 @@
                     }
 
                     .title {
-                        text-align: center;
+                        // text-align: center;
                     }
                 }
             }
