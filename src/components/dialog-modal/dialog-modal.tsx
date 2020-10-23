@@ -3,7 +3,9 @@ import React, { useState, Fragment, useEffect, useContext } from 'react';
 import { Button } from '../button';
 import { AiOutlineClose } from 'react-icons/ai';
 import { ThemeContext } from '../../contexts/ThemeContext';
+import { Text } from '../text';
 import './dialog-modal.scss';
+import './dialog-modal-mobile.scss';
 import '../../styles/theme-buttons.scss';
 import '../../styles/effects.scss';
 
@@ -19,11 +21,6 @@ export const DialogModal = (props: {
   className?: string;
   buttonClassName?: string;
 }) => {
-  const {
-    // @ts-ignore
-    getTheme,
-  } = useContext(ThemeContext);
-
   const [visible, setVisible] = useState<boolean>(true);
 
   const onClose = () => {
@@ -32,11 +29,8 @@ export const DialogModal = (props: {
   };
 
   return (
-    <div
-      className={`${props.className} dialog-box ${visible ? ' effect-opacity ' : ' effect-hide'
-        }`}
-    >
-      <div className={`dialog-modal effect-opacity ${getTheme()}`}>
+    <div className={`${props.className} dialog-box ${visible ? ' effect-opacity ' : ' effect-hide'}`}>
+      <div className={`dialog-modal effect-opacity`}>
         <div className={`header`}>
           <div
             onClick={() => {
@@ -53,7 +47,7 @@ export const DialogModal = (props: {
           </div>
           <div className="header-title">
             {props.header || (
-              <p className={`title text-${getTheme()}`}>{props.title}</p>
+              <Text type="text">{props.title}</Text>
             )}
           </div>
         </div>
