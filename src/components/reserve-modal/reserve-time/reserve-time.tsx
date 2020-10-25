@@ -43,7 +43,7 @@ export const ReserveTime = (props: {
   };
 
   const nameParcerFunction = (name: string) => {
-    return name.toLowerCase().replace(' ', '.');
+    return name.toLowerCase().replaceAll(' ', '.');
   };
 
   useEffect(() => {

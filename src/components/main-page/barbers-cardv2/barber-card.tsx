@@ -94,7 +94,7 @@ export const BarbersCard = (props: {
 
   return (
     <Divider
-      title="Nuestros Barberos"
+      title="Nuestro Equipo"
       img="https://i.ibb.co/R0Lxwsz/Whats-App-Image-2020-09-26-at-17-38-44.jpg"
       align="left"
       className="divider"

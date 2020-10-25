@@ -26,11 +26,7 @@ import '../../styles/theme.scss';
 import '../../styles/theme-buttons.scss';
 import '../../styles/effects.scss';
 
-
-export const SuccessBox = (props: {
-  title: string,
-  message: string
-}) => {
+export const SuccessBox = (props: { title: string; message: string }) => {
   const {
     // @ts-ignore
     getTheme,
@@ -38,9 +34,7 @@ export const SuccessBox = (props: {
   return (
     <div className="reserve-step">
       <div className="step-title">
-        <p className={`step-subtitle text text-${getTheme()}`}>
-          {props.title}
-        </p>
+        <p className={`step-subtitle text text-${getTheme()}`}>{props.title}</p>
       </div>
       <div className="confirm_data-box">
         <p className={`confirm_info text text-${getTheme()}`}>
@@ -50,8 +44,7 @@ export const SuccessBox = (props: {
       </div>
     </div>
   );
-}
-
+};
 
 export const ReserveModal = (props: { className?: string }) => {
   const {
@@ -162,8 +155,9 @@ export const ReserveModal = (props: { className?: string }) => {
   const reserveActions = new ReserveActions();
 
   const createReserve = async () => {
-    const startDateFormatted = `${moment(reserveDate).format().split('T')[0]
-      }T${reserveHour}:00`;
+    const startDateFormatted = `${
+      moment(reserveDate).format().split('T')[0]
+    }T${reserveHour}:00`;
     const newReserve: IReserve = {
       barberOrHairdresserId: selectedBarber.barberId,
       clientId: getUserData().clientId,
@@ -298,7 +292,7 @@ export const ReserveModal = (props: { className?: string }) => {
 
   //* Parce Method - Name convention for firestore docs.
   const nameParcerFunction = (name: string) => {
-    let parsedName = name.toLowerCase().replace(' ', '.');
+    let parsedName = name.toLowerCase().replaceAll(' ', '.');
     return parsedName;
   };
 
@@ -426,7 +420,6 @@ export const ReserveModal = (props: { className?: string }) => {
               title="Reservación - Art Experience"
               message="Su Reserva se completo ¡Exitosamente!"
             />
-
           </Stepper>
           {wizard != 4 ? (
             <StepperFooter
@@ -437,11 +430,11 @@ export const ReserveModal = (props: { className?: string }) => {
               onNextButtonClick={
                 wizard < totalWizard
                   ? () => {
-                    setWizard(wizard + 1);
-                  }
+                      setWizard(wizard + 1);
+                    }
                   : () => {
-                    createReserve();
-                  }
+                      createReserve();
+                    }
               }
               onPrevButtonClick={() => {
                 setWizard(wizard - 1);
