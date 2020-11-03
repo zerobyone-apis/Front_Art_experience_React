@@ -13,14 +13,24 @@ li {
   width: 100%;
   height: max-content;
 
+  .messages-box {
+    position: relative;
+    width: 280px;
+    height: auto;
+    margin: auto;
+    // background-color: green;
+
+    .error_message {
+      color: rgb(235, 129, 129);
+      margin: 0 40px;
+    }
+  }
+
   .success_message {
     color: rgb(129, 235, 129);
   }
 
-  .error_message {
-    color: rgb(235, 129, 129);
-    margin: 0 40px;
-  }
+
 }
 
 .sub-title {

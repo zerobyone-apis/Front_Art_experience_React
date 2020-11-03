@@ -2,7 +2,6 @@ import React, { useState, useContext, Fragment, useEffect } from 'react';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import { ButtonContext } from '../../contexts/ButtonsContext';
 import { UserContext } from '../../contexts/UserContext';
-import { ValidationForm } from '../validation-form/validation-form';
 import { IClient } from '../../types/Client.type';
 import { Checkbox } from '@material-ui/core';
 import { FormControlLabel } from '@material-ui/core';
@@ -10,11 +9,11 @@ import { Textfield } from '../text-field/text-field';
 import { StepperFooter } from '../reserve-modal/stepper-footer';
 import { FormContext, FormProvider } from '../../contexts/FormContext';
 import ClientActions from '../../actions/Client.actions';
+import { SuccessBox } from '../reserve-modal/reserve-modal';
 import './client-access.scss';
 import '../../styles/theme-buttons.scss';
 import '../../styles/effects.scss';
-import { FaRegCalendarCheck } from 'react-icons/fa';
-import { SuccessBox } from '../reserve-modal/reserve-modal';
+import { Text } from '../text';
 
 export const ClientAccess = (props: { onClose: any; onClientLogged: any }) => {
   const defaultLoginFields = {
@@ -201,9 +200,6 @@ export const ClientAccess = (props: { onClose: any; onClientLogged: any }) => {
     );
   };
 
-
-
-
   const SubmitButton = (props: {
     nextButtonLabel: string;
     prevButtonLabel: string;
@@ -231,10 +227,6 @@ export const ClientAccess = (props: { onClose: any; onClientLogged: any }) => {
       />
     );
   };
-
-
-
-
 
   const RegisterForm = () => {
     return (
@@ -302,15 +294,13 @@ export const ClientAccess = (props: { onClose: any; onClientLogged: any }) => {
     );
   };
 
-
-
-
-
   return (
     <div className="login-box">
-      {message.isError && (
-        <p className="error_message">{message.value}</p>
-      )}
+      <div className="messages-box">
+        {message.isError && (
+          <Text type="small" className="error_message">{message.value}</Text>
+        )}
+      </div>
       {userIsLogged && (
         <SuccessBox
           title="Acceso a Art Experience"
