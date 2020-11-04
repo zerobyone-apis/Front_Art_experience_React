@@ -1,8 +1,10 @@
 import React, { useContext } from 'react';
 import { Button } from '../../button';
-import './stepper-footer.scss';
-import '../../../styles/theme-buttons.scss';
 import { ThemeContext } from '../../../contexts/ThemeContext';
+import '../../../styles/theme-buttons.scss';
+import './stepper-footer.scss';
+import './stepper-footer-mobile.scss';
+
 
 export const StepperFooter = (props: {
   wizard?: number;
