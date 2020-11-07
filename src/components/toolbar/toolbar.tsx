@@ -3,19 +3,30 @@ import { LeftMenu } from '../left-menu/left-menu';
 import { LoginModal } from '../login-modal/login-modal';
 import React, { useContext } from 'react';
 import { ReserveModal } from '../reserve-modal/reserve-modal';
-import { toolbarButtons } from '../../utils/toolbarButtons';
 import { UserContext } from '../../contexts/UserContext';
-import { ThemeContext } from '../../contexts/ThemeContext';
 import './toolbar.scss';
 import './toolbar-mobile.scss';
 import '../../styles/theme-buttons.scss';
 
-export const Toolbar = () => {
+
+export interface IToolbarItem {
+  icon?: any,
+  label: string,
+  href?: string
+}
+
+
+export const Toolbar = (props: {
+  items: IToolbarItem[]
+}) => {
+
+
   const {
     // @ts-ignore
     userIsLogged,
     getUserData,
   } = useContext(UserContext);
+
 
   return (
     <div className={`toolbar effect-slide_bottom shadow-dark`}>
@@ -29,16 +40,19 @@ export const Toolbar = () => {
             alt=""
           />
         </a>
-        {toolbarButtons.map((button, i) => {
+
+        {props.items.map((button, i) => {
           return (
             <Button
+              style="text"
               key={i}
               href={button.href}
-              className="theme-button-text toolbar-btn"
+              className="toolbar-btn"
               label={`${button.label}`}
             />
-          );
+          )
         })}
+
       </div>
       <div className="right-box">
         {userIsLogged() && !getUserData().admin ? <ReserveModal /> : null}

@@ -1,7 +1,7 @@
 @import '../../styles/theme.scss';
 @import '../../theme/colors.scss';
+@import '../../theme/screen-size.scss';
 
-$toolbar_height: 60px;
 
 // ANCHORS
 #start_page {
@@ -15,7 +15,7 @@ $toolbar_height: 60px;
   position: fixed;
   z-index: 999;
   width: 100%;
-  height: $toolbar_height;
+  height: $toolbar-height;
   background-color: $shadow-dark;
 
   .left-box {
