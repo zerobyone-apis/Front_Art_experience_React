@@ -5,13 +5,13 @@ import { SearchField } from '../../search-field/search-field';
 import { useWindowSize } from '../../../hooks/useWindowSize';
 import { Grid } from '@material-ui/core';
 import { AiFillCaretDown, AiFillCaretUp } from 'react-icons/ai';
+import { Text } from '../../text';
 import './custom-table.scss';
-import '../../../styles/theme-buttons.scss';
 import '../../../styles/theme.scss';
 
 
 export const CustomTable = (props: {
-  title: string;
+  title?: string;
   items: any[];
   headers: { text: string; value: string }[];
   mobileHeaders?: { text: string; value: string }[];
@@ -114,8 +114,9 @@ export const CustomTable = (props: {
                 >
                   <div className="header-item">
                     <Button
+                      style="text"
                       label={header.text}
-                      className={`${selectedHeader == header ? 'selected' : ''} theme-button-text`}
+                      className={`${selectedHeader == header ? 'selected' : ''}`}
                       onClick={() => {
                         setSelectedHeader(header);
                         setIsSortUp(!isSortUp);
@@ -180,15 +181,16 @@ export const CustomTable = (props: {
                               className={`header_${headerIndex}`}
                             >
                               {header.value != 'status' ? (
-                                <p
-                                  className={`${selectedHeader == header ? 'selected' : ''
-                                    } item_table-text`}
+                                <Text
+                                  type="text"
+                                  className={`${selectedHeader == header ? 'selected' : ''} item_table-text`}
                                 >
                                   {row[header.value]}
-                                </p>
+                                </Text>
                               ) : (
                                   <Button
-                                    className="state-btn theme-button-outlined"
+                                    style="outlined"
+                                    className="state-btn"
                                     label="status"
                                   />
                                 )}
@@ -212,7 +214,9 @@ export const CustomTable = (props: {
     return (
       <div className="table-footer">
         <div className="pagination-box">
-          <p className="text dark-text">{`Total: ${filtredItems.length}`}</p>
+          <Text type="text">
+            {`Total: ${filtredItems.length}`}
+          </Text>
         </div>
       </div>
     );
@@ -220,15 +224,19 @@ export const CustomTable = (props: {
 
   return (
     <div className="custom-table">
-      <h1 className="font-title title text-light">{props.title}</h1>
+      {props.title && <h1 className="font-title title text-light">{props.title}</h1>}
       {!filtredItems && props.noItemsMessage ? (
         <div className="no-orders">
-          <p>{props.noItemsMessage}</p>
+          <Text type="text">
+            {props.noItemsMessage}
+          </Text>
         </div>
       ) : null}
       {!filtredItems && props.noSearchMessage ? (
         <div className="no-orders">
-          <p>{props.noSearchMessage}</p>
+          <Text type="text">
+            {props.noSearchMessage}
+          </Text>
         </div>
       ) : null}
       <div className="table">

@@ -1,13 +1,8 @@
-@import '../../../styles/theme.scss';
+@import '../../../theme/colors.scss';
 
 .custom-table {
   position: relative;
   width: 100%;
-  height: 100vh;
-  top: 60px;
-  text-align: center;
-  overflow-x: hidden;
-  overflow-y: hidden;
 
   .title {
     position: relative;
@@ -24,27 +19,26 @@
   .table {
     position: relative;
     width: 90%;
-    height: 75%;
+    // height: 60vh;
     margin: auto;
+    border-radius: 8px;
     overflow-x: hidden;
     overflow-y: hidden;
+    background-color: $shadow-dark;
 
     .search-field {
       position: relative;
       text-align: left;
-
-      .label {
-        top: 22px;
-        left: 10px;
-        z-index: 1;
-      }
+      padding: 10px 10px;
+      background-color: $p_dark;
     }
 
     .header {
       height: 60px;
       display: flex;
       align-items: center;
-      background-color: rgb(24, 24, 24);
+      background-color: $p_dark;
+      margin-bottom: 10px;
 
       .header-item {
         display: flex;
@@ -70,18 +64,15 @@
     }
 
     // FOOTER
-
     .table-footer {
       position: relative;
       width: 100%;
-      height: 20px;
-      padding-top: 10px;
-      background-color: rgb(24, 24, 24);
-      display: flex;
-      align-items: center;
+      padding: 10px 10px;
+      background-color: $p_dark;
 
       .pagination-box {
         display: flex;
+        align-items: center;
         width: max-content;
         margin-right: 20px;
         margin-left: auto;
@@ -94,17 +85,16 @@
     }
 
     .row-box {
-      height: 60vh;
+      height: 50vh;
       overflow-y: scroll;
       overflow-x: hidden;
-      box-shadow: inset 0px 0px 2px 2px rgb(24, 24, 24);
 
       .row {
         position: relative;
         margin: auto;
         width: 100%;
         height: max-content;
-        display: flex;
+
 
         .selected {
           color: rgb(146, 144, 108);
@@ -171,11 +161,11 @@
       }
 
       .selected-row {
-        background-color: rgb(39, 39, 39);
+        background-color: $shadow-dark;
       }
 
       .row:hover {
-        background-color: rgba(117, 117, 117, 0.63);
+        background-color: $shadow-dark;
         cursor: pointer;
       }
     }
