@@ -1,4 +1,4 @@
-@import '../../styles/theme.scss';
+@import '../../theme/colors.scss';
 
 .login-modal {
     display: flex;
@@ -38,28 +38,18 @@
 
     .account-menu {
         position: absolute;
-        right: -20px;
+        right: -19px;
         top: 60px;
         width: 200px;
         padding: 10px 0 10px 0;
         z-index: 9999;
         text-align: center;
+        background-color: $p_dark;
+        border-radius: 0 0 8px 8px;
+        box-shadow: 2px 1px 4px $shadow-color;
 
         p {
-            color: white;
-            margin: 0;
             margin-top: 10px;
-            padding: 0;
-        }
-
-        .item-text {
-            position: relative;
-            font-size: 12px;
-        }
-
-        .user-name {
-            font-weight: bold;
-            font-size: 14px;
         }
 
         .item-list_btn {

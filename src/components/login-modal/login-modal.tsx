@@ -15,11 +15,9 @@ import { ButtonContext } from '../../contexts/ButtonsContext';
 import { getPageName } from '../../utils/utils';
 import { INDEX_PAGE, DASHBOARD_PAGE } from '../../types/Pages.type';
 import { ThemeContext } from '../../contexts/ThemeContext';
+import { Text } from '../text';
 import './login-modal.scss';
 import '../../styles/effects.scss';
-import '../../styles/theme.scss';
-import '../../styles/theme-buttons.scss';
-import { FaRegCalendarCheck } from 'react-icons/fa';
 
 export const LoginModal = (props: {
   show?: boolean;
@@ -126,33 +124,44 @@ export const LoginModal = (props: {
           className={`account-menu effect-opacity ${getTheme()}`}
           ref={wrapperRef}
         >
-          <p className={`item-text user-name text text-${getTheme()}`}>
+          <Text type="text">
             {getUserData().username}
-          </p>
-          <p className={`item-text user-email text text-${getTheme()}`}>
+          </Text>
+          <Text type="text">
             {getUserData().email}
-          </p>
-          {getPageName() === INDEX_PAGE && getUserData().admin ? (
+          </Text>
+
+          {/* <p className={`item-text user-name text text-${getTheme()}`}>
+            {getUserData().username}
+          </p> */}
+          {/* <p className={`item-text user-email text text-${getTheme()}`}>
+            {getUserData().email}
+          </p> */}
+
+          {getPageName() === INDEX_PAGE && getUserData().admin && (
             <Button
+              style="outlined"
               label="Gestion de Reservas"
-              className="item-list_btn theme-button-outlined"
+              className="item-list_btn"
               onClick={() => {
                 document.location.href = '/Dashboard';
               }}
             />
-          ) : null}
+          )}
           {getPageName() === DASHBOARD_PAGE ? (
             <Button
+              style="outlined"
               label="Pagina Principal"
-              className="item-list_btn theme-button-outlined"
+              className="item-list_btn"
               onClick={() => {
                 document.location.href = '/';
               }}
             />
           ) : null}
           <Button
+            style="outlined"
             label="Cerrar Session"
-            className="item-list_btn theme-button-outlined"
+            className="item-list_btn"
             onClick={() => {
               logOut();
             }}
