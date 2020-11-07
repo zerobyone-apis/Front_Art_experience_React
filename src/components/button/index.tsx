@@ -1,5 +1,6 @@
-import React, { useContext, Fragment } from 'react';
+import React, { useContext } from 'react';
 import { ButtonContext } from '../../contexts/ButtonsContext';
+import { Text } from '../text';
 import './button.scss';
 
 export const Button = (props: {
@@ -15,6 +16,7 @@ export const Button = (props: {
   className?: string;
   labelClassName?: string;
   href?: string;
+  style?: 'normal' | 'outlined' | 'text';
   type?: 'button' | 'submit' | 'reset';
 }) => {
   // CONTEXTS
@@ -25,7 +27,6 @@ export const Button = (props: {
 
   const getLabelClasses = () => {
     let classes = 'label_button text-light text';
-
     if (props.labelClassName) {
       classes = ` ${props.labelClassName}`
     }
@@ -36,7 +37,7 @@ export const Button = (props: {
   }
 
   return (
-    <div className="button">
+    <div className={`button ${props.style || 'normal'}`}>
       <div className={`button-holder ${props.className} ${disabled ? 'disabled' : ''}`}>
         <a href={props.href}>
           <button
@@ -50,8 +51,8 @@ export const Button = (props: {
             onClick={props.onClick}
           >
             <div className="button-content">
-              {props.icon ? <div className="icon-box">{props.icon}</div> : null}
-              {props.label ? <p className={getLabelClasses()}>{props.label}</p> : null}
+              {props.icon && <div className="icon-box">{props.icon}</div>}
+              {props.label && <Text className={getLabelClasses()} type="small">{props.label}</Text>}
             </div>
           </button>
         </a>
