@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { ButtonContext } from "../contexts/ButtonsContext";
-import { Toolbar } from "../components/dashboard/toolbar/toolbar";
+import { Toolbar } from "../components/toolbar";
 import { LoaderPage } from "../components/loader-page/loader-page";
 import { UserContext } from "../contexts/UserContext";
 import { BiCalendarEvent } from 'react-icons/bi';
@@ -8,6 +8,7 @@ import { DiGoogleAnalytics } from 'react-icons/di';
 import { IVerticalToolbarItem, VerticalToolbar } from "../components/dashboard/vertical-toolbar";
 import { ReserveManager } from "../components/dashboard/reserves-manager";
 import "./Dashboard.scss";
+import { LoginModal } from "../components/login-modal/login-modal";
 
 const DashboardPage = () => {
   // Wizard is used for set the actual tool
@@ -53,7 +54,7 @@ const DashboardPage = () => {
 
   return (
     <div className="dashboard-page">
-      <Toolbar />
+      <Toolbar rightItems={[<LoginModal />]} />
       <div className="container">
         <VerticalToolbar
           items={verticalToolbarItems}
@@ -66,6 +67,4 @@ const DashboardPage = () => {
   );
 };
 
-
-// DashboardPage.displayName = "Dashboard Page";
 export default DashboardPage;
