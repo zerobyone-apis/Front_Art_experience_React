@@ -1,9 +1,7 @@
-import React, { useContext } from 'react';
-import { ThemeContext } from '../../contexts/ThemeContext';
+import React from 'react';
 import { Text } from '../text';
-import './card.scss';
-import '../../theme/theme.scss';
 import { Divider } from '../divider/divider'
+import './card.scss';
 
 export const Card = (props: {
   title?: string;

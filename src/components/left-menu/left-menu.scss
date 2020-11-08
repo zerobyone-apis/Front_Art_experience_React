@@ -1,4 +1,4 @@
-@import '../../styles/effects.scss';
+@import '../../theme/effects.scss';
 @import '../../theme/screen-size.scss';
 
 $menu_size: 200px;
@@ -15,12 +15,6 @@ $menu_size: 200px;
     display: flex;
     align-items: center;
   }
-
-  // @media only screen and (min-width: $size-sm) {
-  //   .left_menu-dialog {
-  //     visibility: hidden;
-  //   }
-  // }
 
   @media only screen and (max-width: $size-sm) {
     .activator_btn {
@@ -76,10 +70,10 @@ $menu_size: 200px;
 
     .dialog-modal {
       height: 100%;
+      border-radius: 0;
 
       .header {
         height: 60px;
-        border-radius: 0;
 
         .close_btn-box {
           text-align: left;

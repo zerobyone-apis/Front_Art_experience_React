@@ -7,13 +7,11 @@ import {
   SubContainerImage,
 } from '../../test/container-page/container-page';
 import { useWindowSize } from '../../../hooks/useWindowSize';
-import './courses-card.scss';
-import './courses-card-mobile.scss';
-
-import '../../../styles/theme-buttons.scss';
-import '../../../styles/effects.scss';
 import { Slider } from '../../slider';
 import { Text } from '../../text';
+import './courses-card.scss';
+import './courses-card-mobile.scss';
+import '../../../theme/effects.scss';
 
 export const CoursesCard = (props: {
   courses: any[];
@@ -23,11 +21,6 @@ export const CoursesCard = (props: {
   const [selectedCourse, setSelectedCourse] = useState(props.courses[0]);
   const [effects, setEffects] = useState('');
   const screenSize = useWindowSize();
-
-  const {
-    // @ts-ignore
-    getTheme,
-  } = useContext(ThemeContext);
 
 
   const CourseItem = (props: {

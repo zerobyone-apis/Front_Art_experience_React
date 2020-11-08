@@ -1,4 +1,5 @@
-@import '../../../styles/theme.scss';
+@import '../../../theme/colors.scss';
+@import '../../../theme/screen-size.scss';
 
 .confirm_data-box {
     position: relative;
@@ -41,7 +42,7 @@
 
 }
 
-@media only screen and (max-width: $mobile-screen) {
+@media only screen and (max-width: $size-xs) {
     .confirm_data-box {
         .services-box {
             overflow-y: hidden !important;

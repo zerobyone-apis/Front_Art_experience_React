@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { BarberListContext } from '../../../contexts/BarberListContext';
-import { IBarber } from '../../../types/Barber.type';
 import { ThemeContext } from '../../../contexts/ThemeContext';
 import './barbers-list.scss';
-import '../../../styles/theme.scss';
+
 
 export const BarberItem = (props: {
   name: string;

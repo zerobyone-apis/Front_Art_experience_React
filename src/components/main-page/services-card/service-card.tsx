@@ -1,9 +1,7 @@
-import React, { useContext } from 'react';
-import { ThemeContext } from '../../../contexts/ThemeContext';
+import React from 'react';
 import { Card } from '../../card';
 import { Text } from '../../text';
 import './services-card.scss';
-import '../../../styles/theme.scss';
 
 export const ServiceItem = (props: {
   key?: number;
@@ -15,7 +13,6 @@ export const ServiceItem = (props: {
     <div className={`service-item`} key={props.key}>
       <br />
       {props.icon}
-      {/* <p className={` text text-light`}>{props.name}</p> */}
       <Text className="service-name" type="text">{props.name}</Text>
 
       <div className={`service-info text text-light`}>
@@ -38,10 +35,6 @@ export const ServicesCard = (props: {
   title: string;
   subTitle: string;
 }) => {
-  const {
-    // @ts-ignore
-    getTheme,
-  } = useContext(ThemeContext);
 
   const getServices = () => {
     return props.services.map((service, i) => (

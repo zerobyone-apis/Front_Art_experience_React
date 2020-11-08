@@ -17,7 +17,7 @@ import { INDEX_PAGE, DASHBOARD_PAGE } from '../../types/Pages.type';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import { Text } from '../text';
 import './login-modal.scss';
-import '../../styles/effects.scss';
+import '../../theme/effects.scss';
 
 export const LoginModal = (props: {
   show?: boolean;

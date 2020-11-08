@@ -1,6 +1,5 @@
 import React, { ReactChild } from 'react';
 import './divider.scss';
-import '../../styles/theme.scss';
 
 export const Divider = (props: {
     children?: ReactChild,

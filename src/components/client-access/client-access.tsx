@@ -11,8 +11,7 @@ import { FormContext, FormProvider } from '../../contexts/FormContext';
 import ClientActions from '../../actions/Client.actions';
 import { SuccessBox } from '../reserve-modal/reserve-modal';
 import './client-access.scss';
-import '../../styles/theme-buttons.scss';
-import '../../styles/effects.scss';
+import '../../theme/effects.scss';
 import { Text } from '../text';
 
 export const ClientAccess = (props: { onClose: any; onClientLogged: any }) => {

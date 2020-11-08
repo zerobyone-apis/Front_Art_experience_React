@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { Button } from '../../button';
 import { ThemeContext } from '../../../contexts/ThemeContext';
-import '../../../styles/theme-buttons.scss';
 import './stepper-footer.scss';
 import './stepper-footer-mobile.scss';
 

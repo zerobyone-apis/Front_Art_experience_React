@@ -1,5 +1,5 @@
 import { Button } from '../button';
-import { LeftMenu } from '../left-menu/left-menu';
+import { LeftMenu } from '../left-menu';
 import React from 'react';
 import './toolbar.scss';
 import './toolbar-mobile.scss';

@@ -1,9 +1,7 @@
-// eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect } from 'react';
 import { Textfield } from '../text-field/text-field';
 import { Button } from '../button';
 import './search-field.scss';
-import '../../styles/theme.scss';
 
 export const SearchField = (props: {
   defaultValue?: string;

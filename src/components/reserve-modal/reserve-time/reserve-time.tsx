@@ -2,13 +2,11 @@ import React, { useEffect, useState, useContext } from 'react';
 import { Button } from '../../button';
 import { CalendarBox } from '../calendar-box/calendar-box';
 import { ThemeContext } from '../../../contexts/ThemeContext';
-//import { FirebaseContext } from '../../../contexts/FirebaseContext';
 import AvailableTimeActions from '../../../actions/AvailableTime.actions';
 import moment from 'moment';
-import './reserve-time.scss';
-import '../../../styles/effects.scss';
-import '../../../styles/theme-buttons.scss';
 import db from '../../../config/firebase';
+import './reserve-time.scss';
+import '../../../theme/effects.scss';
 
 export const ReserveTime = (props: {
   reserveDate: Date;

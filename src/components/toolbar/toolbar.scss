@@ -1,4 +1,3 @@
-@import '../../styles/theme.scss';
 @import '../../theme/colors.scss';
 @import '../../theme/screen-size.scss';
 
@@ -31,12 +30,12 @@
       margin-left: 20px;
     }
 
-    .title-btn {
-      p {
-        color: rgb(146, 144, 108);
-        font-size: $text-size !important;
-      }
-    }
+    // .title-btn {
+    //   p {
+    //     color: rgb(146, 144, 108);
+    //     font-size: $text-size !important;
+    //   }
+    // }
 
     .toolbar-btn {
       position: relative;

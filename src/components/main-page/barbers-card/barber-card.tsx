@@ -5,8 +5,7 @@ import { Card } from '../../card';
 import { Slider } from '../../slider';
 import './barbers-card.scss';
 import './barbers-card-mobile.scss';
-import '../../../styles/theme.scss';
-import '../../../styles/effects.scss';
+import '../../../theme/effects.scss';
 
 export const BarbersCard = (props: {
   barbers: any[];

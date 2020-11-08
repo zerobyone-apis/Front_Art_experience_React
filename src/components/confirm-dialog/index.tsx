@@ -2,8 +2,7 @@ import React from 'react';
 import { DialogModal } from '../dialog-modal/dialog-modal';
 import { StepperFooter } from '../reserve-modal/stepper-footer';
 import './confirm-dialog.scss';
-import '../../styles/effects.scss';
-import '../../styles/theme.scss';
+import '../../theme/effects.scss';
 
 export const ConfirmDialog = (props: {
     onAccept: () => void,

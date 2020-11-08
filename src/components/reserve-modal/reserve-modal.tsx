@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 
 import { BarbersList } from './barbers-list/barber-list';
 import { Button } from '../button';
@@ -20,14 +20,12 @@ import { ConfirmBox } from './confirm-box/confirm-box';
 import { services } from '../../data/reserve';
 
 import ReserveActions from '../../actions/Reserve.actions';
-import moment, { now } from 'moment';
+import moment from 'moment';
 import db from '../../config/firebase';
 
 import 'date-fns';
 import './reserve-modal.scss';
-import '../../styles/theme.scss';
-import '../../styles/theme-buttons.scss';
-import '../../styles/effects.scss';
+import '../../theme/effects.scss';
 
 
 export const SuccessBox = (props: {

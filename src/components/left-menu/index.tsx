@@ -4,15 +4,15 @@ import { FiMenu } from 'react-icons/fi';
 import { DialogModal } from '../dialog-modal/dialog-modal';
 import { toolbarButtons } from '../../utils/toolbarButtons';
 import './left-menu.scss';
-import '../../styles/theme-buttons.scss';
-import '../../styles/effects.scss';
+import '../../theme/effects.scss';
 
 export const LeftMenu = () => {
   const [showDialog, setShowDialog] = useState(false);
   return (
     <div className="left_menu">
       <Button
-        className="theme-button-text activator_btn"
+        style="text"
+        className="activator_btn"
         icon={<FiMenu className="theme-icon icon_button" />}
         onClick={() => {
           setShowDialog(true);
@@ -36,17 +36,17 @@ export const LeftMenu = () => {
             {toolbarButtons.map((button, i) => {
               return (
                 <Button
+                  style="text"
                   key={i}
                   href={button.href}
                   onClick={() => {
                     setShowDialog(false);
                   }}
-                  className="theme-button-text left_menu-btn"
+                  className="left_menu-btn"
                   label={button.label}
                 />
               );
             })}
-            {/* dialog footer  */}
           </div>
           <div />
         </DialogModal>

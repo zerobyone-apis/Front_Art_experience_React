@@ -1,13 +1,10 @@
-// eslint-disable-next-line no-unused-vars
-import React, { useState, Fragment, useEffect, useContext } from 'react';
+import React, { useState } from 'react';
 import { Button } from '../button';
 import { AiOutlineClose } from 'react-icons/ai';
-import { ThemeContext } from '../../contexts/ThemeContext';
 import { Text } from '../text';
 import './dialog-modal.scss';
 import './dialog-modal-mobile.scss';
-import '../../styles/theme-buttons.scss';
-import '../../styles/effects.scss';
+import '../../theme/effects.scss';
 
 export const DialogModal = (props: {
   title?: string;
@@ -38,8 +35,6 @@ export const DialogModal = (props: {
             }}
             className="close_btn-box"
           >
-
-
             {
               !props.hideCloseButton &&
               <Button
@@ -48,9 +43,6 @@ export const DialogModal = (props: {
                 icon={<AiOutlineClose />}
               />
             }
-
-
-
           </div>
           <div className="header-title">
             {props.header || (

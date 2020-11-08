@@ -11,7 +11,7 @@ import { FormContext, FormProvider } from '../../../../contexts/FormContext';
 import { ThemeContext } from '../../../../contexts/ThemeContext';
 import { Text } from '../../../text';
 import './reserve-dialog.scss';
-import '../../../../styles/effects.scss';
+import '../../../../theme/effects.scss';
 
 export const ReserveDialog = (props: {
   reserve: IReserve,

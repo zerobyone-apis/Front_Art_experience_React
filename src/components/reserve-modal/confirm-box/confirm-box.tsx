@@ -1,10 +1,8 @@
-import React, { useContext } from 'react';
-import { ThemeContext } from '../../../contexts/ThemeContext';
-import './confirm-box.scss';
-import '../../../styles/theme.scss';
-import '../../../styles/effects.scss';
-import { BarberItem } from '../barbers-list/barber-list';
+import React from 'react';
 import { ServiceItem } from '../services-list/services-list';
+import './confirm-box.scss';
+import '../../../theme/effects.scss';
+
 
 export const ConfirmBox = (props: {
     hour: string,
@@ -12,10 +10,6 @@ export const ConfirmBox = (props: {
     service: any,
     barber: any,
 }) => {
-    const {
-        // @ts-ignore
-        getTheme,
-    } = useContext(ThemeContext);
     return (
         <div className="confirm_data-box effect-slide-top">
             <div className="services-box">

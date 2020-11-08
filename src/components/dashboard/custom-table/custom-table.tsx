@@ -7,7 +7,6 @@ import { Grid } from '@material-ui/core';
 import { AiFillCaretDown, AiFillCaretUp } from 'react-icons/ai';
 import { Text } from '../../text';
 import './custom-table.scss';
-import '../../../styles/theme.scss';
 
 
 export const CustomTable = (props: {
