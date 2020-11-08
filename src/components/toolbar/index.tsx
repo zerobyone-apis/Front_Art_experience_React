@@ -1,12 +1,8 @@
 import { Button } from '../button';
 import { LeftMenu } from '../left-menu/left-menu';
-import { LoginModal } from '../login-modal/login-modal';
-import React, { useContext } from 'react';
-import { ReserveModal } from '../reserve-modal/reserve-modal';
-import { UserContext } from '../../contexts/UserContext';
+import React from 'react';
 import './toolbar.scss';
 import './toolbar-mobile.scss';
-import '../../styles/theme-buttons.scss';
 
 
 export interface IToolbarItem {
@@ -17,15 +13,9 @@ export interface IToolbarItem {
 
 
 export const Toolbar = (props: {
-  items: IToolbarItem[]
+  items?: IToolbarItem[]
+  rightItems?: any[]
 }) => {
-
-
-  const {
-    // @ts-ignore
-    userIsLogged,
-    getUserData,
-  } = useContext(UserContext);
 
 
   return (
@@ -41,7 +31,7 @@ export const Toolbar = (props: {
           />
         </a>
 
-        {props.items.map((button, i) => {
+        {props.items && props.items.map((button, i) => {
           return (
             <Button
               style="text"
@@ -52,12 +42,18 @@ export const Toolbar = (props: {
             />
           )
         })}
+      </div>
 
-      </div>
       <div className="right-box">
-        {userIsLogged() && !getUserData().admin ? <ReserveModal /> : null}
-        <LoginModal />
+        {props.rightItems && props.rightItems.map((item, i) => {
+          return (
+            <div key={i}>
+              {item}
+            </div>
+          )
+        })}
       </div>
+
     </div>
   );
 };
