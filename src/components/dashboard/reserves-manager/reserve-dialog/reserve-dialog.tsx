@@ -1,17 +1,17 @@
 import React, { useContext, useState } from 'react';
-import { DialogModal } from '../../dialog-modal/dialog-modal';
-import ReserveActions from '../../../actions/Reserve.actions';
-import { IReserve } from '../../../types/Reserve.type';
-import { Textfield } from '../../text-field/text-field';
-import { ButtonContext } from '../../../contexts/ButtonsContext';
+import { DialogModal } from '../../../dialog-modal/dialog-modal';
+import ReserveActions from '../../../../actions/Reserve.actions';
+import { IReserve } from '../../../../types/Reserve.type';
+import { Textfield } from '../../../text-field/text-field';
+import { ButtonContext } from '../../../../contexts/ButtonsContext';
 import moment from 'moment';
-import { StepperFooter } from '../../reserve-modal/stepper-footer';
-import { ConfirmDialog } from '../../confirm-dialog';
-import { FormContext, FormProvider } from '../../../contexts/FormContext';
-import { ThemeContext } from '../../../contexts/ThemeContext';
+import { StepperFooter } from '../../../reserve-modal/stepper-footer';
+import { ConfirmDialog } from '../../../confirm-dialog';
+import { FormContext, FormProvider } from '../../../../contexts/FormContext';
+import { ThemeContext } from '../../../../contexts/ThemeContext';
+import { Text } from '../../../text';
 import './reserve-dialog.scss';
-import '../../../styles/theme-buttons.scss';
-import '../../../styles/effects.scss';
+import '../../../../styles/effects.scss';
 
 export const ReserveDialog = (props: {
   reserve: IReserve,
@@ -160,7 +160,10 @@ export const ReserveDialog = (props: {
     >
       <div className="reserve-modal">
         <div className="reserve_data-box">
-          <p className={`reserve_info effect-slide_left text-${getTheme()}`}>Datos del Cliente</p>
+          <Text type="text">
+            Datos del Cliente
+          </Text>
+          {/* <p className={`reserve_info effect-slide_left text-${getTheme()}`}>Datos del Cliente</p> */}
 
           {/* New validation implements */}
           <FormProvider>
@@ -197,7 +200,9 @@ export const ReserveDialog = (props: {
                   />
                 </ul>
                 <ul>
-                  <p className={`reserve_info text-${getTheme()}`}>Datos de la Reserva</p>
+                  <Text type="text">
+                    Datos de la Reserva
+                  </Text>
                   <Textfield
                     id="startTimeFront"
                     name="startTimeFront"
