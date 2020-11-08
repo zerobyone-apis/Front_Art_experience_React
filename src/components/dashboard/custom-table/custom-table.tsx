@@ -152,7 +152,6 @@ export const CustomTable = (props: {
                   {/* ROWS */}
                   <div className={`row ${selectedRow == row ? 'selected-row' : ''}`}
                     onClick={() => {
-                      // setSelectedRow(row);
                       onSelectRow(row);
                     }}
                   >

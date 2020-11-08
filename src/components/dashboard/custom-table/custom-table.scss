@@ -46,9 +46,10 @@
       }
 
       .header_button-content {
+        position: relative;
         width: max-content;
-        height: max-content;
         display: flex;
+        align-items: center;
 
         .icon {
           width: 15px;
