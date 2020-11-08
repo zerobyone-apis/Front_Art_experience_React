@@ -38,12 +38,19 @@ export const DialogModal = (props: {
             }}
             className="close_btn-box"
           >
-            {!props.hideCloseButton ? (
+
+
+            {
+              !props.hideCloseButton &&
               <Button
-                className="close_btn theme-button-text"
-                icon={<AiOutlineClose className="theme-icon" />}
+                style="text"
+                className="close_btn"
+                icon={<AiOutlineClose />}
               />
-            ) : null}
+            }
+
+
+
           </div>
           <div className="header-title">
             {props.header || (
