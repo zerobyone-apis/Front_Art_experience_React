@@ -5,6 +5,7 @@ import { ThemeContext } from '../../../contexts/ThemeContext';
 import AvailableTimeActions from '../../../actions/AvailableTime.actions';
 import moment from 'moment';
 import db from '../../../config/firebase';
+import { Text } from '../../text';
 import './reserve-time.scss';
 import '../../../theme/effects.scss';
 
@@ -197,9 +198,9 @@ export const ReserveTime = (props: {
           </div>
         </div>
       ) : (
-          <p className={`no-hours text text-${getTheme()}`}>
+          <Text type="text" className="no-hours">
             No hay horarios disponibles para esta fecha
-          </p>
+          </Text>
         )}
     </div>
   );

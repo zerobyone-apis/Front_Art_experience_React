@@ -8,7 +8,6 @@ import { Card } from '../../card';
 
 import './about-us-card.scss';
 import './about-us-card-mobile.scss';
-import '../../../styles/theme.scss';
 
 export const AboutUsCard = (props: {
   title: string;

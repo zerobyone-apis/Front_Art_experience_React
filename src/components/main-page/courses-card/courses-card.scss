@@ -1,5 +1,6 @@
 @import '../../../theme/effects.scss';
 @import '../../../theme/colors.scss';
+@import '../../../theme/screen-size.scss';
 
 .course-card {
     width: 100%;
@@ -160,7 +161,7 @@
 }
 
 // IPHONE5/SE
-@media only screen and (max-width: $mobile-screen) {
+@media only screen and (max-width: $size-xs) {
     .sub-container-info {
         margin-right: 0;
     }
@@ -214,10 +215,6 @@
                                 width: 100%;
                             }
                         }
-                    }
-
-                    .title {
-                        // text-align: center;
                     }
                 }
             }

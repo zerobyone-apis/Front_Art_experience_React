@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { ThemeContext } from '../../../contexts/ThemeContext';
+import { Text } from '../../text';
 import './services-list.scss';
 
 export const ServiceItem = (props: {
@@ -22,14 +23,14 @@ export const ServiceItem = (props: {
             key={props.key}
         >
             <div className="name-box">
-                <p className={`text text-${getTheme()}`}>
+                <Text type="text">
                     {props.name}
-                </p>
+                </Text>
             </div>
             <div className={`price-box text text-${getTheme()}`}>
-                <p>
+                <Text type="text">
                     {props.cost}
-                </p>
+                </Text>
             </div>
         </div>
     )

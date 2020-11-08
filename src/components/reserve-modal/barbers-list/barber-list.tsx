@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { BarberListContext } from '../../../contexts/BarberListContext';
 import { ThemeContext } from '../../../contexts/ThemeContext';
+import { Text } from '../../text';
 import './barbers-list.scss';
 
 
@@ -24,7 +25,9 @@ export const BarberItem = (props: {
       }}
     >
       <img src={props.img} className="img" />
-      <p className={`text text-${getTheme()} barber-name`}>{props.name}</p>
+      <Text type="text" className="barber-name">
+        {props.name}
+      </Text>
     </div>
   );
 };

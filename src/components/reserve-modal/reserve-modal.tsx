@@ -16,6 +16,7 @@ import { defaultService } from '../../types/Service.type';
 import { FaRegCalendarCheck } from 'react-icons/fa';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import { ConfirmBox } from './confirm-box/confirm-box';
+import { Text } from '../text';
 
 import { services } from '../../data/reserve';
 
@@ -39,14 +40,14 @@ export const SuccessBox = (props: {
   return (
     <div className="reserve-step">
       <div className="step-title">
-        <p className={`step-subtitle text text-${getTheme()}`}>
+        <Text type="text" className="step-subtitle">
           {props.title}
-        </p>
+        </Text>
       </div>
       <div className="confirm_data-box">
-        <p className={`confirm_info text text-${getTheme()}`}>
+        <Text type="text" className="confirm_info">
           {props.message}
-        </p>
+        </Text>
         <FaRegCalendarCheck className="success-icon effect-slide_top" />
       </div>
     </div>
@@ -256,7 +257,6 @@ export const ReserveModal = (props: { className?: string }) => {
   };
 
   const goToReserve = () => {
-    console.log('GoToReserve -> ');
     setShowLoginDialog(false);
     setShowDialog(true);
   };
@@ -265,7 +265,7 @@ export const ReserveModal = (props: { className?: string }) => {
     <div className="reserve-modal">
       <div className="dialog_activator-box">
         <Button
-          className={`activator-btn reserve-btn theme-button`}
+          className={`activator-btn reserve-btn`}
           label="Reservar"
           icon={false}
           onClick={() => {
@@ -287,9 +287,9 @@ export const ReserveModal = (props: { className?: string }) => {
             {/* BARBERS STEP  */}
             <div className="reserve-step">
               <div className="step-title">
-                <p className={`step-subtitle text text-${getTheme()}`}>
+                <Text type="text" className="step-subtitle">
                   Seleccione el Barbero
-                </p>
+                </Text>
               </div>
               <BarbersList
                 value={selectedBarber}
@@ -300,9 +300,9 @@ export const ReserveModal = (props: { className?: string }) => {
             {/* SERVICES STEP  */}
             <div className="reserve-step">
               <div className="step-title">
-                <p className={`step-subtitle text text-${getTheme()}`}>
+                <Text type="text" className="step-subtitle">
                   Seleccione el Servicio que usted desee
-                </p>
+                </Text>
               </div>
               <ServicesList
                 services={services}
@@ -314,9 +314,9 @@ export const ReserveModal = (props: { className?: string }) => {
             {/* RESERVE_TIME STEP  */}
             <div className="reserve-step">
               <div className="step-title">
-                <p className={`step-subtitle text text-${getTheme()}`}>
+                <Text type="text" className="step-subtitle">
                   Seleccione la Fecha y Hora
-                </p>
+                </Text>
               </div>
               <ReserveTime
                 reserveDate={reserveDate}
@@ -331,9 +331,9 @@ export const ReserveModal = (props: { className?: string }) => {
             {/* CONFIRMATION STEP  */}
             <div className="reserve-step">
               <div className="step-title">
-                <p className={`step-subtitle text text-${getTheme()}`}>
+                <Text type="text" className="step-subtitle">
                   Confirmación de Reserva
-                </p>
+                </Text>
               </div>
               <ConfirmBox
                 barber={selectedBarber}

@@ -1,4 +1,4 @@
-@import '../styles/theme.scss';
+@import '../theme/colors.scss';
 
 .index_page {
   position: absolute;
@@ -63,19 +63,19 @@
       }
 
       .services-card.dark {
-        background-color: $secondary-dark;
+        background-color: $s_dark;
       }
 
       .services-card.light {
-        background-color: $secondary-light;
+        background-color: $s_light;
       }
 
       .courses-card.dark {
-        background-color: $secondary-dark;
+        background-color: $s_dark;
       }
 
       .courses-card.light {
-        background-color: $secondary-light;
+        background-color: $s_light;
       }
     }
   }
@@ -84,7 +84,7 @@
 .divider-content {
 
   h1 {
-    color: $light-text !important;
+    color: $text-light !important;
   }
 }
 
