@@ -4,7 +4,7 @@ import { ThemeContext } from '../contexts/ThemeContext';
 import { BarberListContext } from '../contexts/BarberListContext';
 import { IBarber } from '../types/Barber.type';
 import { LoaderPage } from '../components/loader-page/loader-page';
-import { Toolbar } from '../components/toolbar/toolbar';
+import { Toolbar } from '../components/toolbar';
 import { BarbersCard } from '../components/main-page/barbers-card/barber-card';
 import { AboutUsCard } from '../components/main-page/about-us-card';
 import { HomeFooter } from '../components/main-page/home-footer/home-footer';
@@ -12,9 +12,12 @@ import { CoursesCard } from '../components/main-page/courses-card/course-card';
 import { Banner } from '../components/main-page/banner/banner';
 import { ServicesCard } from '../components/main-page/services-card/service-card';
 import { pageInfo, services, dividers, courses, aboutusPictures } from '../data/index';
+import { toolbarButtons } from '../utils/toolbarButtons';
 import BarberAction from '../actions/Barber.actions';
 import moment from 'moment';
 import './index.scss';
+import { ReserveModal } from '../components/reserve-modal/reserve-modal';
+import { LoginModal } from '../components/login-modal/login-modal';
 
 const IndexPage = () => {
   const [barbers, setBarbers] = useState([]);
@@ -71,7 +74,9 @@ const IndexPage = () => {
   return (
     <div className="index_page">
       <div className="toolbar-box">
-        <Toolbar />
+        <Toolbar
+          items={toolbarButtons}
+          rightItems={[<ReserveModal />, <LoginModal />]} />
       </div>
       <div className="page-box">
         <div className="dashboard">
