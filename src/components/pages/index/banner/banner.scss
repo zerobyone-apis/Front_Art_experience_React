@@ -1,3 +1,5 @@
+@import '../../../../theme/effects.scss';
+
 .banner {
   position: relative;
   width: 100%;
@@ -12,6 +14,7 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    @include effect-appear(4s);
   }
 
   @media only screen and (max-width: 400px) {
@@ -34,7 +37,8 @@
       width: 100vw;
       min-width: 100px !important;
       max-width: 800px;
-      filter: drop-shadow(10px 10px 10px rgb(17, 16, 16));
+      filter: drop-shadow(4px 5px 2px rgb(0, 0, 0));
+      @include effect-appear(4s)
     }
 
     @media only screen and (max-width: 750px) {
