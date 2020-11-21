@@ -1,15 +1,16 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { Button } from '../../button';
-import { CalendarBox } from '../calendar-box/calendar-box';
-import { ThemeContext } from '../../../contexts/ThemeContext';
-import AvailableTimeActions from '../../../actions/AvailableTime.actions';
+import { Button } from '../../../inputs/button';
+import { CalendarBox } from './calendar-box/calendar-box';
+import { ThemeContext } from '../../../../contexts/ThemeContext';
+import AvailableTimeActions from '../../../../actions/AvailableTime.actions';
 import moment from 'moment';
-import db from '../../../config/firebase';
-import { Text } from '../../text';
-import './reserve-time.scss';
-import '../../../theme/effects.scss';
+import db from '../../../../config/firebase';
+import { Text } from '../../../decorators/text';
+import { Step } from '../../../containers/stepper/step';
+import './time-step.scss';
 
-export const ReserveTime = (props: {
+
+export const TimeStep = (props: {
   reserveDate: Date;
   reserveHour: string;
   selectedBarber: any;
@@ -177,31 +178,38 @@ export const ReserveTime = (props: {
   };
 
   return (
-    <div className="time-box effect-slide-top">
-      <CalendarBox value={reserveDate} onSelectDate={onSelectDate} />
-      {availableHours.length ? (
-        <div className="hours-box effect-slide-top">
-          <div className="container">
-            {availableHours.map((hour, i) => (
-              <Button
-                className={`theme-button-outlined 
+    <Step
+      title="Fecha de Reservacion"
+      subtitle="Seleccione la Fecha y Hora">
+
+      <div className="time-box effect-slide-top">
+        <CalendarBox value={reserveDate} onSelectDate={onSelectDate} />
+        {availableHours.length ? (
+          <div className="hours-box effect-slide-top">
+            <div className="container">
+              {availableHours.map((hour, i) => (
+                <Button
+                  className={`theme-button-outlined 
                                  hour-item 
                                 ${reserveHour === hour ? 'selected-hour' : null
-                  }`}
-                key={i}
-                label={hour}
-                onClick={() => {
-                  onSelectHour(hour);
-                }}
-              />
-            ))}
+                    }`}
+                  key={i}
+                  label={hour}
+                  onClick={() => {
+                    onSelectHour(hour);
+                  }}
+                />
+              ))}
+            </div>
           </div>
-        </div>
-      ) : (
-          <Text type="text" className="no-hours">
-            No hay horarios disponibles para esta fecha
-          </Text>
-        )}
-    </div>
+        ) : (
+            <Text type="text" className="no-hours">
+              No hay horarios disponibles para esta fecha
+            </Text>
+          )}
+      </div>
+    </Step>
+
+
   );
 };

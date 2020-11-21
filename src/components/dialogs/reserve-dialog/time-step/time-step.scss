@@ -29,7 +29,7 @@
         position: relative;
         display: flex;
         text-align: center;
-        width: 75px;
+        // width: 75px;
         height: max-content;
         margin: auto;
         margin-bottom: 5px !important;
@@ -57,7 +57,7 @@
 
       .selected-hour {
         button {
-          background-color: rgb(146, 144, 108) !important;
+          background-color: black !important;
 
           p {
             color: white !important;
