@@ -1,5 +1,5 @@
-@import '../../theme/colors.scss';
-@import '../../theme/fonts.scss';
+@import '../../../theme/colors.scss';
+@import '../../../theme/fonts.scss';
 
 .dmz-text {
     padding: 0;
@@ -13,7 +13,7 @@
 }
 
 .theme-title {
-    font-size: calc(#{$f1} + .1vw);
+    font-size: calc(#{$f2} + .1vw);
     color: $secondary;
 }
 
@@ -23,11 +23,11 @@
 }
 
 .theme-text {
-    font-size: calc(#{$f5} + .4vw);
+    font-size: calc(#{$f5} + .2vw);
 }
 
 .theme-small {
-    font-size: calc(#{$f6} + .4vw);
+    font-size: calc(#{$f6} + .2vw);
 }
 
 .theme-text.dark,
@@ -38,4 +38,12 @@
 .theme-text.light,
 .theme-small.light {
     color: $text_dark;
+}
+
+.primary {
+    color: $cool-color !important;
+}
+
+.secondary {
+    color: $warm-color !important;
 }
