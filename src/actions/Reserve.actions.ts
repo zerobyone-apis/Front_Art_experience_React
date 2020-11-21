@@ -10,12 +10,17 @@ import {
 // eslint-disable-next-line no-unused-vars
 import { IReserve } from '../types/Reserve.type';
 
+
+
 export default class ReserveActions {
+
+
   private backend: IntegrationBackend = new IntegrationBackend();
+
+
 
   //* Add reserve method
   public async add(reserve: IReserve) {
-    //console.log('Accede Reserve Actions', reserve);
     try {
       const response: any = await this.backend.send(
         POST_ENDPOIT,
@@ -23,16 +28,18 @@ export default class ReserveActions {
         `${RESERVE_ROUTE}/${reserve.clientId}`
       );
       if (response.status !== 201) {
-        //console.log(response.message);
         throw Error(response.message);
       }
-      //console.log('Reserve success \n', response.data);
       return response.data;
     } catch (error) {
       console.error('Error Reserve.actions method add -> ', error.message);
-      return new ResultObject(404, error.message, {});
+      // return new ResultObject(404, error.message, {});
+      return null // TODO FIX THIS
     }
   }
+
+
+
   //* Get reserve method
   public async getAll() {
     try {
@@ -50,6 +57,9 @@ export default class ReserveActions {
       return null;
     }
   }
+
+
+
   //* Update reserve method
   public async update(reserve: IReserve) {
     /*
@@ -83,6 +93,10 @@ export default class ReserveActions {
       return new ResultObject(404, error.message, {});
     }
   }
+
+
+
+
   //* Complete reserve method
   public async doneReserve(barberId: number, reserveId: number) {
     /**
@@ -108,6 +122,9 @@ export default class ReserveActions {
       return new ResultObject(404, error.message, {});
     }
   }
+
+
+
   //* Cancel reserve method
   public async cancel(clientId: number, reserveId: number) {
     /*
