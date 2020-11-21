@@ -1,17 +1,17 @@
 import React, { useContext, useState } from 'react';
-import { DialogModal } from '../../../dialog-modal/dialog-modal';
-import ReserveActions from '../../../../actions/Reserve.actions';
-import { IReserve } from '../../../../types/Reserve.type';
-import { Textfield } from '../../../text-field/text-field';
-import { ButtonContext } from '../../../../contexts/ButtonsContext';
+import { DialogModal } from '../../../../dialogs/dialog-modal/dialog-modal';
+import ReserveActions from '../../../../../actions/Reserve.actions';
+import { IReserve } from '../../../../../types/Reserve.type';
+import { Textfield } from '../../../../inputs/text-field/text-field';
+import { ButtonContext } from '../../../../../contexts/ButtonsContext';
 import moment from 'moment';
-import { StepperFooter } from '../../../reserve-modal/stepper-footer';
-import { ConfirmDialog } from '../../../confirm-dialog';
-import { FormContext, FormProvider } from '../../../../contexts/FormContext';
-import { ThemeContext } from '../../../../contexts/ThemeContext';
-import { Text } from '../../../text';
+import { StepperFooter } from '../../../../containers/stepper/stepper-footer';
+import { ConfirmDialog } from '../../../../dialogs/confirm-dialog';
+import { FormContext, FormProvider } from '../../../../../contexts/FormContext';
+import { ThemeContext } from '../../../../../contexts/ThemeContext';
+import { Text } from '../../../../decorators/text';
 import './reserve-dialog.scss';
-import '../../../../theme/effects.scss';
+
 
 export const ReserveDialog = (props: {
   reserve: IReserve,
@@ -136,8 +136,8 @@ export const ReserveDialog = (props: {
     return (
       <StepperFooter
         className={props.className}
-        nextButtonLabel={props.nextButtonLabel}
-        prevButtonLabel={props.prevButtonLabel}
+        nextLabel={props.nextButtonLabel}
+        prevLabel={props.prevButtonLabel}
         typeNextButton="button"
         hidePrevButton={props.hidePrevButton}
         onNextButtonClick={() => {
@@ -157,16 +157,15 @@ export const ReserveDialog = (props: {
       className="reserve-modal-dashboard"
       title="Control de Reserva"
       onClose={props.onClose}
+      width="400px"
+      fullscreenOnMobile={true}
     >
       <div className="reserve-modal">
         <div className="reserve_data-box">
           <Text type="text">
             Datos del Cliente
           </Text>
-          {/* <p className={`reserve_info effect-slide_left text-${getTheme()}`}>Datos del Cliente</p> */}
-
-          {/* New validation implements */}
-          <FormProvider>
+          <FormProvider currentForm={{}}>
             <>
               <li style={{ listStyle: 'none' }}>
                 <ul>
