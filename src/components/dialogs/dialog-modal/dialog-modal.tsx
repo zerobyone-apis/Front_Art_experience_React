@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { Button } from '../button';
+import { Button } from '../../inputs/button';
 import { AiOutlineClose } from 'react-icons/ai';
-import { Text } from '../text';
+import { Text } from '../../decorators/text';
 import './dialog-modal.scss';
 import './dialog-modal-mobile.scss';
-import '../../theme/effects.scss';
+
 
 export const DialogModal = (props: {
   title?: string;
@@ -17,17 +17,26 @@ export const DialogModal = (props: {
   showModal?: boolean;
   className?: string;
   buttonClassName?: string;
+  fullscreen?: boolean;
+  fullscreenOnMobile?: boolean;
 }) => {
+
+
   const [visible, setVisible] = useState<boolean>(true);
+
 
   const onClose = () => {
     setVisible(false);
     props.onClose();
   };
 
-  return (
+
+  // TODO create effect hide and show by visible
+  return visible && (
     <div className={`${props.className} dialog-box ${visible ? ' effect-opacity ' : ' effect-hide'}`}>
-      <div className={`dialog-modal effect-opacity`}>
+      <div
+        style={{ width: props.width, height: props.height }}
+        className={`dialog-modal effect-opacity ${props.fullscreen && 'fullscreen'} ${props.fullscreenOnMobile && 'fullscreen-mobile'}`}>
         <div className={`header`}>
           <div
             onClick={() => {
@@ -46,14 +55,14 @@ export const DialogModal = (props: {
           </div>
           <div className="header-title">
             {props.header || (
-              <Text type="text">{props.title}</Text>
+              <Text type="text" color="primary">{props.title}</Text>
             )}
           </div>
         </div>
         {[props.children].map((child, i) => {
-          return <div key={i}>{child}</div>;
+          return <div className={`dialog-content-${i}`} key={i}>{child}</div>;
         })}
       </div>
     </div>
-  );
+  )
 };
