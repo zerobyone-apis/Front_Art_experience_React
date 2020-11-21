@@ -1,7 +1,6 @@
 import React, { useContext, Fragment, ReactElement, ReactChild } from 'react';
-import { ThemeContext } from '../../../contexts/ThemeContext';
-import { useWindowSize } from '../../../hooks/useWindowSize';
-import '../../../styles/theme.scss';
+import { ThemeContext } from '../../../../contexts/ThemeContext';
+import { useWindowSize } from '../../../../hooks/useWindowSize';
 import './container-page.scss';
 
 export const ContainerPage = (props: {
