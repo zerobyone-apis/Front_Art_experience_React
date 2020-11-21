@@ -1,0 +1,36 @@
+@import '../../../theme/screen-size.scss';
+@import '../../../theme/effects.scss';
+
+
+@media only screen and (min-width: $size-sm) {
+
+  .left-menu,
+  .left-menu-activator-btn,
+  .left-menu-dialog {
+    position: absolute;
+    visibility: hidden;
+  }
+}
+
+.left-menu-dialog {
+  text-align: center;
+
+  .dialog-modal {
+    background-color: rgba(0, 0, 0, 0.700);
+    @include effect-slide(left, 100vw, .6s);
+
+    .left-menu-box {
+      width: 100%;
+      @include effect-appear(2s);
+    }
+
+    .logo {
+      width: 100%;
+      @include effect-appear(2s);
+
+      img {
+        opacity: .2;
+      }
+    }
+  }
+}
