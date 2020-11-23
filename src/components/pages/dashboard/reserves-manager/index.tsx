@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import ReserveActions from '../../../../actions/Reserve.actions';
 import { ButtonContext } from '../../../../contexts/ButtonsContext';
-import { CustomTable } from '../custom-table/custom-table';
+import { CustomTable } from '../../../custom-table/custom-table';
 import { headerOrder } from '../../../../data/dashboard';
 import { IReserve } from '../../../../types/Reserve.type';
-import { ReserveDialog } from './reserve-dialog/reserve-dialog';
+import { ManagerDialog } from './manager-dialog';
 import { Card } from '../../../containers/card';
 import moment from "moment";
 
@@ -66,6 +66,7 @@ export const ReserveManager = () => {
             title="Administracion de Reservas"
             className="tool-card"
         >
+
             {reserves.length && (
                 <CustomTable
                     noItemsMessage="No tiene reservas creadas"
@@ -80,8 +81,9 @@ export const ReserveManager = () => {
                     onSelectRow={showSelectedReserve}
                 />
             )}
+
             {selectedReserve && showReserveDialog && (
-                <ReserveDialog
+                <ManagerDialog
                     reserve={selectedReserve}
                     onUpdated={async (updated) => {
                         /* Forma no recomendada pero para salir del paso */
@@ -92,6 +94,7 @@ export const ReserveManager = () => {
                     onClose={setShowReserveDialog}
                 />
             )}
+
         </Card>
     )
 }

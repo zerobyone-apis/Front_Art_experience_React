@@ -65,7 +65,7 @@ const DashboardPage = () => {
       </div>
       <LoaderPage show={disabled} />
     </div>
-  );
-};
+  )
+}
 
 export default DashboardPage;
