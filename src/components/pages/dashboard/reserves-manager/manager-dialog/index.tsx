@@ -10,10 +10,10 @@ import { ConfirmDialog } from '../../../../dialogs/confirm-dialog';
 import { FormContext, FormProvider } from '../../../../../contexts/FormContext';
 import { ThemeContext } from '../../../../../contexts/ThemeContext';
 import { Text } from '../../../../decorators/text';
-import './reserve-dialog.scss';
+import './manager-dialog.scss';
 
 
-export const ReserveDialog = (props: {
+export const ManagerDialog = (props: {
   reserve: IReserve,
   onClose: any,
   onFinalized?: () => undefined,
@@ -41,10 +41,12 @@ export const ReserveDialog = (props: {
     getTheme,
   } = useContext(ThemeContext);
 
+
   const reserveActions: ReserveActions = new ReserveActions();
   const [reserve, setReserve] = useState(props.reserve || baseReserve);
   const [showFinalizeDialog, setFinalizeDialog] = useState(false);
   const [showCancelDialog, setCancelDialog] = useState(false);
+
 
   /* UPDATE RESERVE */
   const updateReserve = async (fields: any) => {
@@ -83,7 +85,8 @@ export const ReserveDialog = (props: {
     } else {
       console.log('Error updating:', response);
     }
-  };
+  }
+
 
   /* FINALIZE RESERVE */
   const finalizeReserve = async () => {
@@ -100,7 +103,8 @@ export const ReserveDialog = (props: {
     } else {
       console.log('error', response);
     }
-  };
+  }
+
 
   /* CANCEL RESERVE */
   const cancelReserve = async () => {
@@ -118,6 +122,7 @@ export const ReserveDialog = (props: {
       console.log('error cancel :', response);
     }
   };
+
 
   /* TEMPORAL this most exists in ClientAccess */
   const SubmitButton = (props: {
@@ -152,6 +157,7 @@ export const ReserveDialog = (props: {
     );
   };
 
+
   return (
     <DialogModal
       className="reserve-modal-dashboard"
@@ -160,6 +166,7 @@ export const ReserveDialog = (props: {
       width="400px"
       fullscreenOnMobile={true}
     >
+
       <div className="reserve-modal">
         <div className="reserve_data-box">
           <Text type="text">
@@ -255,7 +262,7 @@ export const ReserveDialog = (props: {
         </div>
       </div>
 
-      {showFinalizeDialog ? (
+      {showFinalizeDialog && (
         <ConfirmDialog
           title="Finalizacion de reserva"
           message="Esta seguro de que desea finalizar la reserva?"
@@ -264,8 +271,9 @@ export const ReserveDialog = (props: {
           onAccept={() => finalizeReserve()}
           onCancel={() => setFinalizeDialog(false)}
         />
-      ) : null}
-      {showCancelDialog ? (
+      )}
+
+      {showCancelDialog && (
         <ConfirmDialog
           title="Cancelacion de reserva"
           message="Esta seguro de que desea cancelar la reserva?"
@@ -274,7 +282,8 @@ export const ReserveDialog = (props: {
           onAccept={() => cancelReserve()}
           onCancel={() => setCancelDialog(false)}
         />
-      ) : null}
+      )}
+
     </DialogModal>
   );
 };

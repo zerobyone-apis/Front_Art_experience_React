@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import { Button } from '../../../inputs/button';
-import { SearchField } from '../../../inputs/search-field/search-field';
-import { useWindowSize } from '../../../../hooks/useWindowSize';
+import { Button } from '../inputs/button';
+import { SearchField } from '../inputs/search-field/search-field';
+import { useWindowSize } from '../../hooks/useWindowSize';
 import { Grid } from '@material-ui/core';
 import { AiFillCaretDown, AiFillCaretUp } from 'react-icons/ai';
-import { Text } from '../../../decorators/text';
+import { Text } from '../decorators/text';
 import './custom-table.scss';
 
 
@@ -71,7 +71,8 @@ export const CustomTable = (props: {
     // sort by date
     if (selectedHeader.value === 'startTimeFront') {
       const moment = require('moment');
-      const sortedArrayByDates = filtredItems.sort((a: { startTime: string }, b: { startTime: string }) => new moment(a.startTime).format('YYYYMMDD') - new moment(b.startTime).format('YYYYMMDD'))
+      const sortedArrayByDates = filtredItems.sort((a: { startTime: string }, b: { startTime: string }) =>
+        new moment(a.startTime).format('YYYYMMDD') - new moment(b.startTime).format('YYYYMMDD'))
       if (isSortUp) {
         sortedArrayByDates.reverse();
       }
@@ -193,7 +194,7 @@ export const CustomTable = (props: {
                                   />
                                 )}
                             </Grid>
-                          );
+                          )
                         }
                       )}
                     </Grid>
@@ -202,11 +203,11 @@ export const CustomTable = (props: {
               </div>
               <div className="right-box"></div>
             </div>
-          );
+          )
         })}
       </div>
-    );
-  };
+    )
+  }
 
   const Footer = () => {
     return (
@@ -217,26 +218,32 @@ export const CustomTable = (props: {
           </Text>
         </div>
       </div>
-    );
+    )
   }
 
   return (
     <div className="custom-table">
-      {props.title && <h1 className="font-title title text-light">{props.title}</h1>}
-      {!filtredItems && props.noItemsMessage ? (
+      {props.title &&
+        <h1 className="font-title title text-light">
+          {props.title}
+        </h1>}
+
+      {!filtredItems && props.noItemsMessage && (
         <div className="no-orders">
           <Text type="text">
             {props.noItemsMessage}
           </Text>
         </div>
-      ) : null}
-      {!filtredItems && props.noSearchMessage ? (
+      )}
+
+      {!filtredItems && props.noSearchMessage && (
         <div className="no-orders">
           <Text type="text">
             {props.noSearchMessage}
           </Text>
         </div>
-      ) : null}
+      )}
+
       <div className="table">
         <div className="search-field">
           <SearchField

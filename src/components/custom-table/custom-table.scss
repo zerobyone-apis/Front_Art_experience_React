@@ -1,4 +1,4 @@
-@import '../../../../theme/colors.scss';
+@import '../../theme/colors.scss';
 
 .custom-table {
   position: relative;
@@ -19,7 +19,6 @@
   .table {
     position: relative;
     width: 90%;
-    // height: 60vh;
     margin: auto;
     border-radius: 8px;
     overflow-x: hidden;
