@@ -15,15 +15,19 @@ export interface IToolbarItem {
 export const Toolbar = (props: {
   items?: IToolbarItem[]
   rightItems?: any[]
+  showLeftMenu?: boolean
 }) => {
 
 
   return (
     <div className={`toolbar effect-slide_bottom shadow-dark`}>
       <div id="start_page" />
+
       <div className="left-box">
-        <LeftMenu />
-        <a href="#banner">
+
+        {props.showLeftMenu && <LeftMenu />}
+
+        <a href="/">
           <img
             className="logo-img effect-opacity"
             src="https://i.ibb.co/hfX81DT/art-experience-500.png"
