@@ -2,15 +2,15 @@ import React, { useContext, useState } from 'react';
 import { DialogModal } from '../../../../dialogs/dialog-modal/dialog-modal';
 import ReserveActions from '../../../../../actions/Reserve.actions';
 import { IReserve } from '../../../../../types/Reserve.type';
-import { Textfield } from '../../../../inputs/text-field/text-field';
 import { ButtonContext } from '../../../../../contexts/ButtonsContext';
-import moment from 'moment';
 import { StepperFooter } from '../../../../containers/stepper/stepper-footer';
 import { ConfirmDialog } from '../../../../dialogs/confirm-dialog';
-import { FormContext, FormProvider } from '../../../../../contexts/FormContext';
-import { ThemeContext } from '../../../../../contexts/ThemeContext';
-import { Text } from '../../../../decorators/text';
+import { ManagerForm, MANAGER_FIELDLS } from './manager-form';
+import { Button } from '../../../../inputs/button';
+import moment from 'moment';
 import './manager-dialog.scss';
+import { FormProvider } from '../../../../../contexts/FormContext';
+import { BiSave } from 'react-icons/bi';
 
 
 export const ManagerDialog = (props: {
@@ -20,6 +20,7 @@ export const ManagerDialog = (props: {
   onCancelled?: () => undefined,
   onUpdated?: (updated) => any,
 }) => {
+
   const baseReserve: IReserve = {
     barberOrHairdresserId: -1,
     celClient: '',
@@ -31,16 +32,12 @@ export const ManagerDialog = (props: {
     additionalCost: 0,
     socialNumber: 0,
   };
+
   const {
     // @ts-ignore
     disabled,
     setDisabledButton,
   } = useContext(ButtonContext);
-  const {
-    // @ts-ignore
-    getTheme,
-  } = useContext(ThemeContext);
-
 
   const reserveActions: ReserveActions = new ReserveActions();
   const [reserve, setReserve] = useState(props.reserve || baseReserve);
@@ -49,7 +46,7 @@ export const ManagerDialog = (props: {
 
 
   /* UPDATE RESERVE */
-  const updateReserve = async (fields: any) => {
+  const save = async (fields: any) => {
     setDisabledButton(true);
     //let formatDateOld = moment(reserve.startTime).format('YYYY-MM-DDTHH:mm:ss');
     let formatDateFront = moment(fields.startTimeFront.value).format('YYYY-MM-DDTHH:mm:ss');
@@ -73,7 +70,7 @@ export const ManagerDialog = (props: {
       barberOrHairdresserId: reserve.barberOrHairdresserId,
       mailClient: reserve.mailClient,
       additionalCost: reserve.additionalCost,
-    };
+    }
     console.log('RESERVE', reserveUpdate)
     let response = await reserveActions.update(reserveUpdate);
     console.log('Update reserve');
@@ -89,7 +86,7 @@ export const ManagerDialog = (props: {
 
 
   /* FINALIZE RESERVE */
-  const finalizeReserve = async () => {
+  const finalize = async () => {
     setDisabledButton(true);
     let response = await reserveActions.doneReserve(
       reserve.barberOrHairdresserId,
@@ -106,8 +103,9 @@ export const ManagerDialog = (props: {
   }
 
 
+
   /* CANCEL RESERVE */
-  const cancelReserve = async () => {
+  const cancel = async () => {
     setDisabledButton(true);
     let response = await reserveActions.cancel(
       reserve.clientId,
@@ -121,154 +119,45 @@ export const ManagerDialog = (props: {
     } else {
       console.log('error cancel :', response);
     }
-  };
+  }
 
-
-  /* TEMPORAL this most exists in ClientAccess */
-  const SubmitButton = (props: {
-    nextButtonLabel: string;
-    prevButtonLabel?: string;
-    onNext: any;
-    onPrev?: any;
-    hidePrevButton?: boolean;
-    className?: string;
-  }) => {
-    const {
-      // @ts-ignore
-      validateFields,
-      getFields,
-    } = useContext(FormContext);
-    return (
-      <StepperFooter
-        className={props.className}
-        nextLabel={props.nextButtonLabel}
-        prevLabel={props.prevButtonLabel}
-        typeNextButton="button"
-        hidePrevButton={props.hidePrevButton}
-        onNextButtonClick={() => {
-          if (validateFields()) {
-            props.onNext(getFields());
-          }
-        }}
-        onPrevButtonClick={() => {
-          props.onPrev();
-        }}
-      />
-    );
-  };
-
+  const confirmAction = () => {
+  }
 
   return (
     <DialogModal
-      className="reserve-modal-dashboard"
       title="Control de Reserva"
       onClose={props.onClose}
       width="400px"
       fullscreenOnMobile={true}
     >
 
-      <div className="reserve-modal">
-        <div className="reserve_data-box">
-          <Text type="text">
-            Datos del Cliente
-          </Text>
-          <FormProvider currentForm={{}}>
-            <>
-              <li style={{ listStyle: 'none' }}>
-                <ul>
-                  <Textfield
-                    disabled={true}
-                    id="nameClient"
-                    name="nameClient"
-                    label="Nombre del cliente"
-                    type="text"
-                    defaultvalue={reserve.nameClient}
-                  />
-                </ul>
-                <ul>
-                  <Textfield
-                    disabled={true}
-                    id="mailClient"
-                    name="mailClient"
-                    label="Email del cliente"
-                    type="email"
-                    defaultvalue={reserve.mailClient}
-                  />
-                </ul>
-                <ul>
-                  <Textfield
-                    // disabled={true}
-                    id="celClient"
-                    label="Cel del cliente"
-                    name="celClient"
-                    type="number"
-                    defaultvalue={reserve.celClient}
-                  />
-                </ul>
-                <ul>
-                  <Text type="text">
-                    Datos de la Reserva
-                  </Text>
-                  <Textfield
-                    id="startTimeFront"
-                    name="startTimeFront"
-                    label="Fecha y Hora de Reserva"
-                    type="text"
-                    defaultvalue={reserve.startTimeFront}
-                  />
-                </ul>
-                <ul>
-                  <Textfield
-                    id="barberName"
-                    name="barberName"
-                    label="Nombre Barbero"
-                    type="string"
-                    defaultvalue={reserve.barberName}
-                  />
-                </ul>
-                <ul>
-                  <Textfield
-                    id="workToDo"
-                    name="workToDo"
-                    label="Servicio Seleccionado"
-                    type="text"
-                    defaultvalue={reserve.workToDo}
-                  />
-                </ul>
-                <ul>
-                  <Textfield
-                    id="totalCost"
-                    name="totalCost"
-                    label="Costo Total"
-                    type="number"
-                    defaultvalue={reserve.totalCost}
-                  />
-                </ul>
-              </li>
-              <SubmitButton
-                onNext={updateReserve}
-                nextButtonLabel={'Guardar Cambios'}
-                hidePrevButton={true}
-                className="submit-button-update"
-              />
-              <SubmitButton
-                onNext={(data) => setFinalizeDialog(true)}
-                onPrev={(data) => setCancelDialog(true)}
-                nextButtonLabel={'Finalizar Reserva'}
-                prevButtonLabel={'Cancelar Reserva'}
-              />
-            </>
-          </FormProvider>
-        </div>
-      </div>
+      <FormProvider currentForm={MANAGER_FIELDLS}>
+        <ManagerForm reserve={reserve} />
+        <StepperFooter
+          noUseWizard={true}
+          validate={true}
+          nextLabel="Guardar"
+          prevLabel="Finalizar"
+          onNextButtonClick={(fields) => save(fields)}
+          onPrevButtonClick={() => setFinalizeDialog(true)}
+          prevButtonStyle="outlined"
+        >
+          <Button
+            label="Cancelar"
+            style="outlined"
+            onClick={() => setCancelDialog(true)}
+          />
+        </StepperFooter>
+      </FormProvider>
 
       {showFinalizeDialog && (
         <ConfirmDialog
           title="Finalizacion de reserva"
           message="Esta seguro de que desea finalizar la reserva?"
-          acceptLabel="Finalizar"
+          acceptLabel="Confirmar Accion"
           cancelLabel="Volver"
-          onAccept={() => finalizeReserve()}
+          onAccept={() => finalize()}
           onCancel={() => setFinalizeDialog(false)}
         />
       )}
@@ -277,13 +166,13 @@ export const ManagerDialog = (props: {
         <ConfirmDialog
           title="Cancelacion de reserva"
           message="Esta seguro de que desea cancelar la reserva?"
-          acceptLabel="Cancelar"
+          acceptLabel="Confirmar Accion"
           cancelLabel="Volver"
-          onAccept={() => cancelReserve()}
+          onAccept={() => cancel()}
           onCancel={() => setCancelDialog(false)}
         />
       )}
 
     </DialogModal>
-  );
-};
+  )
+}

@@ -7,6 +7,8 @@ import { IReserve } from '../../../../types/Reserve.type';
 import { ManagerDialog } from './manager-dialog';
 import { Card } from '../../../containers/card';
 import moment from "moment";
+import { Text } from '../../../decorators/text';
+import './reserve-manager.scss';
 
 
 export const ReserveManager = () => {
@@ -35,8 +37,8 @@ export const ReserveManager = () => {
         false ? (document.location.href = "/") : (
             // get reserves
             fetchData()
-        );
-    }, []);
+        )
+    }, [])
 
 
     const getReserves = async () => {
@@ -49,16 +51,16 @@ export const ReserveManager = () => {
                 reserve.startTimeFront = moment(reserve.startTime)
                     .format("DD/MM/YYYY hh:mm:ss")
                     .substr(0, 16);
-            });
+            })
             setReserve(reserves);
         }
-    };
+    }
 
 
     const showSelectedReserve = (reserve: any) => {
         setSelectedReserve(reserve);
         setShowReserveDialog(true);
-    };
+    }
 
 
     return (
@@ -67,7 +69,7 @@ export const ReserveManager = () => {
             className="tool-card"
         >
 
-            {reserves.length && (
+            {reserves.length !== 0 ? (
                 <CustomTable
                     noItemsMessage="No tiene reservas creadas"
                     noSearchMessage="No se encontraron coincidencias"
@@ -80,7 +82,7 @@ export const ReserveManager = () => {
                     }}
                     onSelectRow={showSelectedReserve}
                 />
-            )}
+            ) : <Text type="text" className="no-reserves">No hay reservas creadas</Text>}
 
             {selectedReserve && showReserveDialog && (
                 <ManagerDialog

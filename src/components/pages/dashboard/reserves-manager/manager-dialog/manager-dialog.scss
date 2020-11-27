@@ -1,34 +1,13 @@
-.reserve-modal-dashboard {
-    display: flex;
-    align-items: center;
-    z-index: 999;
+.manager-form {
+    margin: auto;
+    text-align: center;
 
-    .dialog-modal {
+    ul {
+        margin: 0;
+        padding: 0;
 
-        .reserve_data-box {
-            position: relative;
-            margin: auto;
-            text-align: center;
-
-            .reserve_info {
-                font-size: 18px;
-            }
-        }
-    }
-
-    .submit-button-update {
-        background-color: none !important;
-
-        .footer {
-            background-color: none !important;
-
-        }
-    }
-
-    @media only screen and (max-width: 750px) {
-        .reserve-modal {
-            height: 500px;
-            overflow-y: scroll;
-        }
+        // .form-title {
+    //     margin-bottom: 40px 0;
+    // }
     }
 }
