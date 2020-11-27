@@ -14,7 +14,7 @@
   left: 0;
   top: 0;
   background-color: $shadow-dark;
-  z-index: 998;
+  z-index: 999;
   display: flex;
   align-items: center;
   @include effect-appear(.5s);
