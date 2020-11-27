@@ -9,6 +9,8 @@ import { IVerticalToolbarItem, VerticalToolbar } from "../components/pages/dashb
 import { ReserveManager } from "../components/pages/dashboard/reserves-manager";
 import { LoginDialog } from "../components/dialogs/login-dialog";
 import "./Dashboard.scss";
+import { PageBase } from "../components/pages/page-base";
+import { ReserveDialog } from "../components/dialogs/reserve-dialog";
 
 
 const DashboardPage = () => {
@@ -22,11 +24,11 @@ const DashboardPage = () => {
       tool: <ReserveManager />,
       label: 'Administracion de Reservas',
     },
-    {
-      icon: <DiGoogleAnalytics />,
-      tool: <div />,
-      label: 'Estadisticas'
-    }
+    // {
+    //   icon: <DiGoogleAnalytics />,
+    //   tool: <div />,
+    //   label: 'Estadisticas'
+    // }
   ];
 
 
@@ -54,17 +56,15 @@ const DashboardPage = () => {
 
 
   return (
-    <div className="dashboard-page">
-      <Toolbar rightItems={[<LoginDialog />]} />
-      <div className="container">
-        <VerticalToolbar
-          items={verticalToolbarItems}
-          onSelectItem={setWizard}
-        />
-        {getToolByWizard(wizard)}
-      </div>
-      <LoaderPage show={disabled} />
-    </div>
+    <PageBase toolbar={
+      <Toolbar rightItems={[<ReserveDialog />, <LoginDialog />]} />
+    }>
+      <VerticalToolbar
+        items={verticalToolbarItems}
+        onSelectItem={setWizard}
+      />
+      {getToolByWizard(wizard)}
+    </PageBase>
   )
 }
 

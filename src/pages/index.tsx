@@ -1,9 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { ButtonContext } from '../contexts/ButtonsContext';
-import { ThemeContext } from '../contexts/ThemeContext';
 import { BarberListContext } from '../contexts/BarberListContext';
 import { IBarber } from '../types/Barber.type';
-import { LoaderPage } from '../components/decorators/loader-page/loader-page';
 import { Toolbar } from '../components/containers/toolbar';
 import { BarbersCard } from '../components/pages/index/barbers-card/barber-card';
 import { AboutUsCard } from '../components/pages/index/about-us-card';
@@ -14,20 +12,15 @@ import { ServicesCard } from '../components/pages/index/services-card/service-ca
 import { pageInfo, services, courses, aboutusPictures } from '../data/index';
 import { toolbarButtons } from '../utils/toolbarButtons';
 import BarberAction from '../actions/Barber.actions';
-import moment from 'moment';
 import { LoginDialog as LoginX } from '../components/dialogs/login-dialog';
 import { ReserveDialog as ReserveX } from '../components/dialogs/reserve-dialog'
-import './index.scss';
+import { PageBase } from '../components/pages/page-base';
+import moment from 'moment';
 
 
 const IndexPage = () => {
+
   const [barbers, setBarbers] = useState([]);
-
-
-  const {
-    // @ts-ignore
-    getTheme,
-  } = useContext(ThemeContext);
 
 
   const {
@@ -73,63 +66,62 @@ const IndexPage = () => {
       return response;
     }
     return undefined;
-  };
+  }
 
 
   return (
-    <div className="index_page">
-      <div className="toolbar-box">
-        <Toolbar
-          items={toolbarButtons}
-          // <ReserveModal /> <LoginModal /> <LoginX />
-          rightItems={[<ReserveX />, <LoginX />]} />
-      </div>
-      <div className="page-box">
-        <div className="dashboard">
-          <div id="banner" />
-          <Banner />
-          <div id="about_us" />
-          <AboutUsCard
-            title={pageInfo.aboutUsTitle}
-            info={pageInfo.aboutUs}
-            picture={aboutusPictures[0].url}
-          />
-          <div id="barbers" />
-          {barbers.length ? (
-            <BarbersCard
-              barbers={barbers}
-              title="Nuestros Equipo"
-              subTitle={''}
-            />
-          ) : null}
-          <div id="services" />
-          <ServicesCard
-            services={services}
-            title={pageInfo.servicesTitle}
-            subTitle={pageInfo.contactUs}
-          />
-          <div id="courses" />
-          <CoursesCard
-            courses={courses}
-            title={pageInfo.coursesTitle}
-            subTitle={pageInfo.contactUs}
-          />
-          <div id="contact" />
-          <HomeFooter
-            title={pageInfo.contactUsTitle}
-            subtitle={pageInfo.contactUs}
-            email={pageInfo.email}
-            number={pageInfo.number}
-            instagram={pageInfo.instagram}
-            facebook={pageInfo.facebook}
-            theme="light"
-          />
-        </div>
-      </div>
-      <LoaderPage show={disabled} />
-    </div>
-  );
-};
+    <PageBase toolbar={
+      <Toolbar
+        showLeftMenu={true}
+        items={toolbarButtons}
+        rightItems={[<ReserveX />, <LoginX />]} />
+    }>
 
-IndexPage.displayName = 'Index Page';
+      <div id="banner" />
+      <Banner />
+
+      <div id="about_us" />
+      <AboutUsCard
+        title={pageInfo.aboutUsTitle}
+        info={pageInfo.aboutUs}
+        picture={aboutusPictures[0].url}
+      />
+
+      <div id="barbers" />
+      {barbers.length && (
+        <BarbersCard
+          barbers={barbers}
+          title="Nuestros Equipo"
+          subTitle={''}
+        />
+      )}
+
+      <div id="services" />
+      <ServicesCard
+        services={services}
+        title={pageInfo.servicesTitle}
+        subTitle={pageInfo.contactUs}
+      />
+
+      <div id="courses" />
+      <CoursesCard
+        courses={courses}
+        title={pageInfo.coursesTitle}
+        subTitle={pageInfo.contactUs}
+      />
+
+      <div id="contact" />
+      <HomeFooter
+        title={pageInfo.contactUsTitle}
+        subtitle={pageInfo.contactUs}
+        email={pageInfo.email}
+        number={pageInfo.number}
+        instagram={pageInfo.instagram}
+        facebook={pageInfo.facebook}
+        theme="light"
+      />
+    </PageBase>
+  )
+}
+
 export default IndexPage;
