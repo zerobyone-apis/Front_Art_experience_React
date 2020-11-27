@@ -9,6 +9,7 @@ export const StepperFooter = (props: {
   wizard?: number;
   checkStepByWizard?: any;
   totalSteps?: number;
+  children?: any;
 
   nextLabel?: string;
   prevLabel?: string;
@@ -75,13 +76,15 @@ export const StepperFooter = (props: {
         label={props.updateButtonLabel || 'Update'}
         onClick={() => props.onUpdateButtonClick()}
       />
-    );
-  };
+    )
+  }
 
 
   return (
     <div className={`footer ${props.className}`}>
       <div className="footer_right-box">
+
+        {props.children}
 
         {/* SHOW PREV BUTTON */}
         {
@@ -103,5 +106,5 @@ export const StepperFooter = (props: {
 
       </div>
     </div>
-  );
-};
+  )
+}
