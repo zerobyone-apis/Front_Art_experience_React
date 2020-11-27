@@ -1,26 +1,14 @@
-@import '../styles/theme.scss';
+@import '../theme/colors.scss';
 
 html {
     background-color: #0c0c0c;
 }
 
-/* 
-  Adjusts in default styles HTML 
-*/
-
-* {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-
 /* body style */
 body {
     margin: 0;
     padding: 0;
-    background-color: $background-page;
+    background-color: $p_dark;
     overflow-x: hidden;
     overflow-y: hidden;
     font-family: 'Open Sans', sans-serif;

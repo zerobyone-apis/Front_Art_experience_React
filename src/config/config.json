@@ -1,13 +1,3 @@
 {
-  "server": {
-    "port": 3000
-  },
-  "security": {
-    "expiresIn": "7d",
-    "secretKey": "ihvijasiuhfvi"
-  },
-  "api": {
-    "uri": "http://localhost:5000",
-    "credentials": true
-  }
+  // configurations vars here
 }

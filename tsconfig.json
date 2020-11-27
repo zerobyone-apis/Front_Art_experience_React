@@ -25,6 +25,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "src/types/anchor.type.js"
+    "src/types/anchor.type.js",
+    "src/pages/_document.js"
   ]
 }
