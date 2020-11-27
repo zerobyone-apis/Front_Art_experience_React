@@ -4,6 +4,18 @@ html {
     background-color: #0c0c0c;
 }
 
+/* 
+  Adjusts in default styles HTML 
+*/
+
+/** {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+*/
+
 /* body style */
 body {
     margin: 0;
