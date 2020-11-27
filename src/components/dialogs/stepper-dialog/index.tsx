@@ -1,7 +1,6 @@
 import React from 'react';
 import { Stepper } from '../../containers/stepper';
 import { DialogModal } from '../dialog-modal/dialog-modal';
-import './stepper-dialog.scss';
 
 
 export interface IStepperFooter {
