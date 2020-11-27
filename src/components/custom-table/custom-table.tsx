@@ -21,14 +21,19 @@ export const CustomTable = (props: {
   showSearchField?: boolean;
   onSelectRow: any;
 }) => {
+
+
   const [filtredItems, setFiltredItems] = useState(props.items || []);
   const [selectedHeader, setSelectedHeader] = useState(props.mobileHeaders[0]);
   const [isSortUp, setIsSortUp] = useState(true);
   const [selectedRow, setSelectedRow] = useState(undefined);
 
+
   const windowSize = useWindowSize();
   const gridHeaders: any = 12 / props.headers.length || 2;
   const gridsMobileHeaders: any = 12 / props.mobileHeaders.length || 6;
+
+
   const useStyles = makeStyles((theme: Theme) =>
     createStyles({
       root: {
@@ -40,13 +45,17 @@ export const CustomTable = (props: {
         color: theme.palette.text.secondary,
       },
     })
-  );
+  )
+
+
   const classes = useStyles();
+
 
   const onSelectRow = (row: any) => {
     setSelectedRow(row);
     props.onSelectRow(row);
   }
+
 
   const compare = (a: any, b: any) => {
     let headerValue = selectedHeader.value;
@@ -64,7 +73,7 @@ export const CustomTable = (props: {
       return 1;
     }
     return 0;
-  };
+  }
 
 
   useEffect(() => {
@@ -87,6 +96,7 @@ export const CustomTable = (props: {
     }
   }, [isSortUp]);
 
+
   const getDataByScreenSize = (screenSize: string) => {
     switch (screenSize) {
       case 'xs':
@@ -96,6 +106,7 @@ export const CustomTable = (props: {
     }
     return { headers: props.headers, grid: gridHeaders };
   };
+
 
   const Header = (props: {}) => {
     return (
@@ -138,8 +149,9 @@ export const CustomTable = (props: {
           )}
         </Grid>
       </div>
-    );
-  };
+    )
+  }
+
 
   const TableContent = (props: {}) => {
     return (
@@ -209,6 +221,7 @@ export const CustomTable = (props: {
     )
   }
 
+
   const Footer = () => {
     return (
       <div className="table-footer">
@@ -220,6 +233,7 @@ export const CustomTable = (props: {
       </div>
     )
   }
+
 
   return (
     <div className="custom-table">
