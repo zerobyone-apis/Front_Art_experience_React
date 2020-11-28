@@ -43,7 +43,7 @@ export const StepperFooter = (props: {
     return (
       <Button
         className="footer-button"
-        style={props.prevButtonStyle}
+        style={props.prevButtonStyle || 'outlined'}
         label={props.prevLabel || 'back'}
         onClick={() => props.onPrevButtonClick()}
       />

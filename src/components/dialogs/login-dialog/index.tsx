@@ -135,7 +135,7 @@ export const LoginDialog = () => {
             <div className="dialog_activator-box">
                 <Button
                     onClick={() => launchModal()}
-                    style={!userIsLogged() && 'normal' || 'outlined'}
+                    style={userIsLogged() ? 'outlined' : 'normal'}
                     className="activator-btn login-btn"
                     icon={<RiAccountCircleLine />}
                     label={userIsLogged() ? getUserData().username : 'Reservar'}
@@ -170,7 +170,10 @@ export const LoginDialog = () => {
                             validate={true}
                             noUseWizard={true}
                             prevButtonStyle="outlined"
-                            onNextButtonClick={(fields) => { wizard === 0 ? startLogin(fields) : startRegister(fields) }}
+                            onNextButtonClick={(fields) => {
+                                wizard === 0 ?
+                                    startLogin(fields) : startRegister(fields)
+                            }}
                             onPrevButtonClick={() => { setWizard(wizard === 0 ? 1 : 0) }}
                         />
                     </FormProvider>
