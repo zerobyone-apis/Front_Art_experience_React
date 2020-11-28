@@ -16,7 +16,7 @@
   width: 100%;
   height: $toolbar-height;
   background-color: $shadow-dark;
-  @include effect-slide(top, $toolbar-height, 3S);
+  // @include effect-slide(top, $toolbar-height, 3S);
 
   .left-box {
     position: relative;

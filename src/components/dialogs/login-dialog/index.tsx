@@ -15,6 +15,7 @@ import ClientActions from '../../../actions/Client.actions';
 import { IClient } from '../../../types/Client.type';
 import { FormProvider } from '../../../contexts/FormContext';
 import './login-dialog.scss';
+import { Text } from '../../decorators/text';
 
 
 export const LoginDialog = () => {
@@ -135,13 +136,12 @@ export const LoginDialog = () => {
             <div className="dialog_activator-box">
                 <Button
                     onClick={() => launchModal()}
-                    style={userIsLogged() ? 'outlined' : 'normal'}
+                    style="outlined"
                     className="activator-btn login-btn"
                     icon={<RiAccountCircleLine />}
-                    label={userIsLogged() ? getUserData().username : 'Reservar'}
+                    label={userIsLogged() ? getUserData().username : 'Acceda para Reservar'}
                 />
             </div>
-
 
             {/* ACCOUNT MENU */}
             {showAccountMenu && (
