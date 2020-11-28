@@ -32,7 +32,7 @@ export const createReserveTimeOnFirebase = async (barberName, reserveTime, reser
         const resultDocs = await getReservesFirebase(barberName)
 
         if (!resultDocs) {
-            console.error('No existen resultados. . .')
+            // console.error('No existen resultados. . .')
         }
 
         // Solo para checkear si la fecha es igual a la de actual
@@ -100,9 +100,9 @@ export const createReserveTimeOnFirebase = async (barberName, reserveTime, reser
         }
         //}
     } catch (error) {
-        console.error(
-            `Error: Creando o Actualizando Firebase Reserve. -> ${error}`
-        )
+        // console.error(
+        //     `Error: Creando o Actualizando Firebase Reserve. -> ${error}`
+        // )
     }
 }
 
@@ -148,7 +148,7 @@ export const getReservesFirebase = async (barberName) => {
 }
 */
 export const createReserve = async (barber, service, date, hour, userData) => {
-    console.log('accede create reserve')
+    // console.log('accede create reserve')
 
     let reserveActions: ReserveActions = new ReserveActions()
 
@@ -168,7 +168,7 @@ export const createReserve = async (barber, service, date, hour, userData) => {
     }
 
     const response: any = await reserveActions.add(newReserve)
-    console.log(response)
+    // console.log(response)
     if (response) {
         //* Post & Put Firebase.
         await createReserveTimeOnFirebase(

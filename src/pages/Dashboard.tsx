@@ -48,10 +48,13 @@ const DashboardPage = () => {
   } = useContext(UserContext);
 
 
+
+  // TODO refix the control access - use router or API GATEWAY
   useEffect(() => {
     // check user is admin
-    // !userIsAdmin() ? (document.location.href = "/") : (
-    false && (document.location.href = "/")
+    if (!userIsAdmin()) {
+      document.location.href = "/";
+    }
   }, []);
 
 

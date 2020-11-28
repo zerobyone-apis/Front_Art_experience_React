@@ -16,8 +16,8 @@ import { BiSave } from 'react-icons/bi';
 export const ManagerDialog = (props: {
   reserve: IReserve,
   onClose: any,
-  onFinalized?: () => undefined,
-  onCancelled?: () => undefined,
+  onFinalized?: () => any,
+  onCancelled?: () => any,
   onUpdated?: (updated) => any,
 }) => {
 
@@ -45,11 +45,15 @@ export const ManagerDialog = (props: {
   const [showCancelDialog, setCancelDialog] = useState(false);
 
 
+
+
+
+
   /* UPDATE RESERVE */
   const save = async (fields: any) => {
     setDisabledButton(true);
     //let formatDateOld = moment(reserve.startTime).format('YYYY-MM-DDTHH:mm:ss');
-    let formatDateFront = moment(fields.startTimeFront.value).format('YYYY-MM-DDTHH:mm:ss');
+    let formatDateFront = moment(fields[MANAGER_FIELDLS.startTimeFront].value).format('YYYY-MM-DDTHH:mm:ss');
     let reserveUpdate: IReserve = {
 
       /* Check the start time: need pass the startTimeFront formatted? 
@@ -58,9 +62,9 @@ export const ManagerDialog = (props: {
       startTime: formatDateFront,
 
       /* Fields of form */
-      workToDo: fields.workToDo.value,
-      priceWork: fields.totalCost.value, /* <-- Are not the same but is necesary */
-      celClient: fields.celClient.value,
+      workToDo: fields[MANAGER_FIELDLS.workToDo].value,
+      priceWork: fields[MANAGER_FIELDLS.totalCost].value, /* <-- Are not the same but is necesary */
+      celClient: fields[MANAGER_FIELDLS.celClient].value,
 
       /* Not updated fields (disabled or not specify) */
       reserveId: reserve.reserveId,
@@ -78,10 +82,10 @@ export const ManagerDialog = (props: {
       console.log('Success updated');
       props.onUpdated(reserveUpdate);
       props.onClose();
-      setDisabledButton(false);
     } else {
       console.log('Error updating:', response);
     }
+    setDisabledButton(false);
   }
 
 
@@ -92,14 +96,15 @@ export const ManagerDialog = (props: {
       reserve.barberOrHairdresserId,
       reserve.reserveId
     );
-    console.log('finalized');
+    // console.log('finalized');
     if (response) {
-      console.log('success finalize');
+      // console.log('success finalize');
+      props.onFinalized();
       props.onClose();
-      setDisabledButton(false);
     } else {
-      console.log('error', response);
+      // console.log('error', response);
     }
+    setDisabledButton(false);
   }
 
 
@@ -110,18 +115,16 @@ export const ManagerDialog = (props: {
     let response = await reserveActions.cancel(
       reserve.clientId,
       reserve.reserveId
-    );
-    console.log('cancel');
+    )
+    // console.log('cancel response: ', response);
     if (response) {
-      console.log('success cancel');
+      // console.log('success cancel');
+      props.onCancelled();
       props.onClose();
-      setDisabledButton(false);
     } else {
-      console.log('error cancel :', response);
+      // console.log('error cancel :', response);
     }
-  }
-
-  const confirmAction = () => {
+    setDisabledButton(false);
   }
 
   return (
@@ -136,18 +139,24 @@ export const ManagerDialog = (props: {
         <ManagerForm reserve={reserve} />
         <StepperFooter
           noUseWizard={true}
-          validate={true}
-          nextLabel="Guardar"
-          prevLabel="Finalizar"
-          onNextButtonClick={(fields) => save(fields)}
-          onPrevButtonClick={() => setFinalizeDialog(true)}
+          // TODO create save function
+
+          // nextLabel="Guardar"
+          // prevLabel="Finalizar"
+          // onNextButtonClick={(fields) => save(fields)}
+          // validate={true}
+
+          nextLabel="Finalizar"
+          prevLabel="Cancelar"
+          onNextButtonClick={() => setFinalizeDialog(true)}
+          onPrevButtonClick={() => setCancelDialog(true)}
           prevButtonStyle="outlined"
         >
-          <Button
+          {/* <Button
             label="Cancelar"
             style="outlined"
             onClick={() => setCancelDialog(true)}
-          />
+          /> */}
         </StepperFooter>
       </FormProvider>
 

@@ -63,6 +63,26 @@ export const ReserveManager = () => {
     }
 
 
+    const onCancelled = () => {
+        // remove reserve
+        reserves.splice(reserves.indexOf(selectedReserve), 1);
+    }
+
+    const onFinalized = () => {
+        // remove reserve
+        reserves.splice(reserves.indexOf(selectedReserve), 1);
+    }
+
+    const onUpdated = (updated) => {
+        async (updated) => {
+            /* Forma no recomendada pero para salir del paso */
+            setReserve([]);
+            await getReserves();
+            setShowReserveDialog(false);
+        }
+    }
+
+
     return (
         <Card
             title="Administracion de Reservas"
@@ -87,12 +107,9 @@ export const ReserveManager = () => {
             {selectedReserve && showReserveDialog && (
                 <ManagerDialog
                     reserve={selectedReserve}
-                    onUpdated={async (updated) => {
-                        /* Forma no recomendada pero para salir del paso */
-                        setReserve([]);
-                        await getReserves();
-                        setShowReserveDialog(false);
-                    }}
+                    onUpdated={((updated) => onUpdated(updated))}
+                    onCancelled={() => onCancelled()}
+                    onFinalized={() => onFinalized()}
                     onClose={setShowReserveDialog}
                 />
             )}
