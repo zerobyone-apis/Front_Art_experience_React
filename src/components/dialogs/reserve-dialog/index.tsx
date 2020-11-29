@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { defaultBarber } from '../../../types/Barber.type';
 import { defaultService } from '../../../types/Service.type';
 import { BarberStep } from './barber-step';
@@ -32,6 +32,18 @@ export const ReserveDialog = () => {
     const [showDialog, setShowDialog] = useState(false);
     const [showMessage, setShowMessage] = useState(false);
     const [message, setMessage] = useState(defaultMessage);
+    const [userLogged, setUserLogged] = useState(false);
+
+    const {
+        userIsLogged,
+        getUserData,
+    } = useContext(UserContext)
+
+
+
+    useEffect(() => {
+        setUserLogged(userIsLogged());
+    }, [])
 
 
     const footerConfig: IStepperFooter = {
@@ -42,10 +54,7 @@ export const ReserveDialog = () => {
 
     }
 
-    const {
-        userIsLogged,
-        getUserData,
-    } = useContext(UserContext)
+
     const {
         // @ts-ignore
         setDisabledButton,
@@ -115,7 +124,7 @@ export const ReserveDialog = () => {
     return (
         <div className="reserve-dialog">
             {/* BUTTON ACTIVATOR */}
-            {userIsLogged() && (
+            {userLogged && (
                 <div className="dialog-activator">
                     <Button
                         className="activator-btn"

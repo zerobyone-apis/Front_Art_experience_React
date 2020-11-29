@@ -3,28 +3,35 @@ import { ButtonContext } from '../../../contexts/ButtonsContext';
 import { Text } from '../../decorators/text';
 import './button.scss';
 
-export const Button = (props: {
-  label?: string;
-  onClick?: any;
-  formRef?: string;
-  width?: string;
-  children?: React.ReactChild;
-  color?: string;
-  disabled?: boolean;
-  fontColor?: string;
+
+interface propTypes {
+  label?: string,
+  onClick?: any,
+  formRef?: string,
+  width?: string,
+  children?: React.ReactChild,
+  color?: string,
+  disabled?: boolean,
+  fontColor?: string,
   icon?: any,
-  className?: string;
-  labelClassName?: string;
-  href?: string;
-  style?: 'normal' | 'outlined' | 'text';
+  className?: string,
+  labelClassName?: string,
+  href?: string,
+  style?: 'normal' | 'outlined' | 'text',
   textStyle?: 'title' | 'subtitle' | 'text' | 'small',
-  type?: 'button' | 'submit' | 'reset';
-}) => {
+  type?: 'button' | 'submit' | 'reset',
+}
+
+
+export const Button = (props: propTypes) => {
   // CONTEXTS
+
+
   const {
     // @ts-ignore
     disabled
   } = useContext(ButtonContext);
+
 
   const getLabelClasses = () => {
     let classes = 'label_button text-light text';

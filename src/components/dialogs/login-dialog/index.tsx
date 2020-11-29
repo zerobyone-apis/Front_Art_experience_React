@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { BiUserCheck, BiUserX } from 'react-icons/bi';
 import { RiAccountCircleLine } from 'react-icons/ri';
 import { ButtonContext } from '../../../contexts/ButtonsContext';
@@ -15,7 +15,6 @@ import ClientActions from '../../../actions/Client.actions';
 import { IClient } from '../../../types/Client.type';
 import { FormProvider } from '../../../contexts/FormContext';
 import './login-dialog.scss';
-import { Text } from '../../decorators/text';
 
 
 export const LoginDialog = () => {
@@ -27,13 +26,22 @@ export const LoginDialog = () => {
     const [message, setMessage] = useState(defaultMessage);
     const [wizard, setWizard] = useState(0);
 
-    const clientActions: ClientActions = new ClientActions();
+
+    const [userLogged, setUserLogged] = useState(false);
 
     const {
         userIsLogged,
         getUserData,
         setUserData
     } = useContext(UserContext)
+
+    useEffect(() => {
+        setUserLogged(userIsLogged());
+    }, [])
+
+
+    const clientActions: ClientActions = new ClientActions();
+
     const {
         // @ts-ignore
         setDisabledButton,
@@ -132,6 +140,8 @@ export const LoginDialog = () => {
 
     return (
         <div className="reserve-dialog">
+
+
             {/* BUTTON ACTIVATOR */}
             <div className="dialog_activator-box">
                 <Button
@@ -139,9 +149,10 @@ export const LoginDialog = () => {
                     style="outlined"
                     className="activator-btn login-btn"
                     icon={<RiAccountCircleLine />}
-                    label={userIsLogged() ? getUserData().username : 'Acceda para Reservar'}
+                    label={userLogged ? getUserData().username : 'Acceda para Reservar'}
                 />
             </div>
+
 
             {/* ACCOUNT MENU */}
             {showAccountMenu && (
