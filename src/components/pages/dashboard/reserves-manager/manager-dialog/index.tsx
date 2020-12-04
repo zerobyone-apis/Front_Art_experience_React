@@ -11,6 +11,8 @@ import moment from 'moment';
 import './manager-dialog.scss';
 import { FormProvider } from '../../../../../contexts/FormContext';
 import { BiSave } from 'react-icons/bi';
+import { FaCalendarCheck, FaCross } from 'react-icons/fa';
+import { AiOutlineClose } from 'react-icons/ai';
 
 
 export const ManagerDialog = (props: {
@@ -148,6 +150,9 @@ export const ManagerDialog = (props: {
 
           nextLabel="Finalizar"
           prevLabel="Cancelar"
+          prevIcon={<AiOutlineClose />}
+          nextIcon={<FaCalendarCheck />}
+
           onNextButtonClick={() => setFinalizeDialog(true)}
           onPrevButtonClick={() => setCancelDialog(true)}
           prevButtonStyle="outlined"
