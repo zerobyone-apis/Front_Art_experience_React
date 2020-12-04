@@ -139,7 +139,7 @@ export const LoginDialog = (props: {
             {/* BUTTON ACTIVATOR */}
             <Button
                 onClick={() => launchModal()}
-                style="text"
+                style="outlined"
                 className="activator-btn login-btn"
                 icon={<RiAccountCircleLine />}
                 label={getUserData().username || 'Acceda para Reservar'}
