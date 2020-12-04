@@ -30,25 +30,27 @@ export const LeftMenu = () => {
           fullscreen={true}
           fullscreenOnMobile={true}>
 
-          <div className="logo">
-            <img src="https://i.ibb.co/8g4h8sk/A-art-experiecnce.png" alt="" />
+          <div className="left-menu-box">
+            <div className="list-buttons">
+              {toolbarButtons.map((button, i) => {
+                return (
+                  <Button
+                    style="text"
+                    textStyle="title"
+                    key={i}
+                    href={button.href}
+                    onClick={() => setShowDialog(false)}
+                    className="left-menu-btn"
+                    label={button.label}
+                  />
+                )
+              })}
+            </div>
           </div>
 
-          <div className="left-menu-box">
-            {toolbarButtons.map((button, i) => {
-              return (
-                <Button
-                  style="text"
-                  textStyle="title"
-                  key={i}
-                  href={button.href}
-                  onClick={() => setShowDialog(false)}
-                  className="left-menu-btn"
-                  label={button.label}
-                />
-              )
-            })}
-          </div>
+          {/* <div className="logo">
+            <img src="https://i.ibb.co/8g4h8sk/A-art-experiecnce.png" alt="" />
+          </div> */}
 
           <div />
         </DialogModal>
