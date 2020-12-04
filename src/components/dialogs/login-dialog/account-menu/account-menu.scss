@@ -1,26 +1,43 @@
 @import '../../../../theme/colors.scss';
+@import '../../../../theme/effects.scss';
+
+$space: 10px;
 
 .account-menu {
     position: absolute;
-    right: -10px;
+    right: 0px;
     top: 60px;
-    width: 200px;
-    padding: 10px 0 10px 0;
-    z-index: 9999;
-    text-align: center;
+    width: max-content;
+    min-width: 200px;
+    max-width: 250px;
+    padding: $space 0;
+    z-index: 999;
     background-color: $shadow-dark;
-    border-radius: 0 0 8px 8px;
+    border-style: solid;
+    border-top-style: none;
+    border-width: 1px;
+    border-color: rgba(53, 53, 53, 0.74);
+    // @include effect-appear(.5s);
 
-    p {
-        margin-top: 10px;
+    .account-info {
+        display: flex;
+        padding: $space;
+
+        svg {
+            width: 30px;
+            height: 30px;
+            color: rgb(87, 87, 87);
+            margin: 0 $space;
+        }
     }
 
-    .item-list_btn {
-        padding: 20px;
-        text-align: center;
+    .line {
+        border-width: 1px;
+        border-color: rgba(53, 53, 53, 0.74);
 
-        p {
-            margin: 0;
-        }
+    }
+
+    .buttons-box {
+        text-align: center;
     }
 }
