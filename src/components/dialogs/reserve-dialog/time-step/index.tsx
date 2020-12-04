@@ -58,7 +58,7 @@ export const TimeStep = (props: {
         setBarberShopTime(response);
       });
     };
-    
+
     //! Chritmas time init()
     const chritmasTimes = async () => {
      return await getChritmasTImeShop().then((response: any) => {
@@ -92,7 +92,7 @@ export const TimeStep = (props: {
       const resultDocs = await getQuery(barberName);
 
       if (resultDocs) {
-        console.table("Response docs -> ", resultDocs);
+        // console.table("Response docs -> ", resultDocs);
         await filterTimesAndSetAvailables(resultDocs);
       }
     } catch (error) {

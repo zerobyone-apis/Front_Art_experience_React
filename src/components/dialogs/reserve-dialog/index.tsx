@@ -134,7 +134,7 @@ export const ReserveDialog = () => {
                     className="reserve-stepper"
                     fullscreenMobile={true}
                 >
-                    <IntroStep />
+                    {/*<IntroStep />*/}
 
                     <BarberStep
                         value={selectedBarber}

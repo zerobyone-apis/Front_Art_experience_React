@@ -141,7 +141,7 @@ export const FormProvider = (props: {
             }
         })
         setErrors(errorsCopy);
-        console.log(errorsCopy)
+        // console.log(errorsCopy)
         return success;
     }
 
