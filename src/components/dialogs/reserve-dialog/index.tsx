@@ -52,15 +52,15 @@ export const ReserveDialog = () => {
 
     const checkStep = (wizard: number) => {
         switch (wizard) {
+            // case 0:
+            //     return true;
             case 0:
-                return true;
-            case 1:
                 return selectedBarber.name ? true : false;
-            case 2:
+            case 1:
                 return selectedService.name ? true : false;
-            case 3:
+            case 2:
                 return (reserveDate && reserveHour) ? true : false;
-            case 4:
+            case 3:
                 return true
         }
         return false;
