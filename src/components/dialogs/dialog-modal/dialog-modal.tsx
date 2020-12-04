@@ -38,21 +38,23 @@ export const DialogModal = (props: {
         style={{ width: props.width, height: props.height }}
         className={`dialog-modal effect-opacity ${props.fullscreen && 'fullscreen'} ${props.fullscreenOnMobile && 'fullscreen-mobile'}`}>
         <div className={`header`}>
-          <div
-            onClick={() => {
-              onClose();
-            }}
-            className="close_btn-box"
-          >
-            {
-              !props.hideCloseButton &&
-              <Button
-                style="text"
-                className="close_btn"
-                icon={<AiOutlineClose />}
-              />
-            }
-          </div>
+
+
+
+          {
+            !props.hideCloseButton &&
+            <Button
+              onClick={() => {
+                onClose()
+              }}
+              style="text"
+              className="close-btn"
+              icon={<AiOutlineClose />}
+            />
+          }
+
+
+
           <div className="header-title">
             {props.header || (
               <Text type="text" color="primary">{props.title}</Text>

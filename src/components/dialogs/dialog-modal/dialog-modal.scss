@@ -17,7 +17,6 @@
   z-index: 999;
   display: flex;
   align-items: center;
-  @include effect-appear(.5s);
 
   .dialog-modal {
     position: relative;
@@ -26,6 +25,7 @@
     width: max-content;
     border-radius: 8px;
     background-color: $shadow-color;
+    @include effect-appear(.5s);
 
     .header {
       position: relative;
@@ -46,22 +46,12 @@
         }
       }
 
-      .close_btn-box {
+      .close-btn {
         position: absolute;
-        width: max-content;
-        height: 50%;
-        top: 0;
-        right: 0;
-        display: flex;
-        text-align: center;
-        align-items: center;
-        text-align: right;
-
-        .close_btn {
-          position: relative;
-          z-index: 1;
-          border-radius: 50%;
-        }
+        right: 0px;
+        top: 5px;
+        z-index: 1;
+        border-radius: 50%;
       }
     }
 
