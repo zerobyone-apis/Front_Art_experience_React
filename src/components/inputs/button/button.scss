@@ -1,23 +1,47 @@
 @import '../../../theme/colors.scss';
 @import '../../../theme/fonts.scss';
 
+$time-effect: .5s;
+
 .button {
+  margin: 0 5px;
+
   .button-holder {
     text-align: center;
     display: inline-flex;
 
     button {
       outline: none;
-      // font-size: 12px;
       padding: 8px 10px;
+      height: 33px;
+      display: flex;
+      align-items: center;
       transition: box-shadow .3s;
       border-radius: 4px;
       border-style: none;
-      display: flex !important;
 
       .button-content {
         width: 100%;
         display: flex;
+
+        .icon-box {
+          display: flex;
+          align-items: center;
+
+          svg {
+            width: 20px;
+            height: 20px;
+          }
+        }
+
+        .space-box {
+          width: 4px;
+        }
+
+        p {
+          display: flex;
+          align-items: center;
+        }
       }
     }
 
@@ -34,66 +58,44 @@
     opacity: 0.2;
 
     button:hover {
-      cursor: initial !important;
+      cursor: initial;
     }
   }
 }
 
-// styles
-
-
+// NORMAL STYLE
 .button.normal {
   button {
-    height: 33px;
-    border-style: solid !important;
-    border-width: 1px;
-    background: $warm-color;
-    display: flex;
-    align-items: center;
+    background: $s_dark;
 
-    .label_button {
-      text-transform: uppercase;
-      // font-size: $font-size-button;
-    }
-
-    .icon-box {
-      svg {
-        width: 20px;
-        height: 20px;
-        margin-right: 10px;
-        color: rgb(255, 255, 255);
-      }
+    svg {
+      color: rgb(255, 255, 255);
     }
 
     p {
-      display: flex;
-      align-items: center;
       color: white;
     }
   }
 
   button:hover {
-    background: $p_dark !important;
-    transition: all ease 0.9s;
+    background: $p_dark;
+    transition: all ease $time-effect;
     border-color: $cool-color;
 
     p {
       color: $cool-color;
     }
 
-    .icon {
-      color: white;
+    svg {
+      color: $cool-color;
     }
   }
 }
 
+// TEXT STYLE
 .button.text {
   button {
-    background: rgba(0, 0, 0, 0) !important;
-
-    p {
-      color: rgb(165, 165, 165);
-    }
+    background: rgba(0, 0, 0, 0);
 
     svg {
       color: $warm-color;
@@ -109,67 +111,36 @@
       color: $cool-color;
     }
   }
-
-  .theme-icon {
-    color: white;
-  }
 }
 
-.button.text:hover {
-  .theme-icon {
-    color: $cool-color;
-  }
-}
-
+// OUTLINED STYLE
 .button.outlined {
   button {
-    height: 33px;
-    border-style: solid !important;
+    border-style: solid;
     border-width: 1px;
-    border-color: $cool-color !important;
-    background: rgba(0, 0, 0, 0) !important;
-    display: flex;
-    align-items: center;
+    border-color: $warm-color;
+    background: rgba(0, 0, 0, 0);
 
-    .icon-box {
-      svg {
-        width: 20px;
-        height: 20px;
-        margin-right: 10px;
-        color: $warm-color;
-      }
+    svg {
+      color: $warm-color;
     }
 
     p {
-      display: flex;
-      align-items: center;
       color: rgb(165, 165, 165);
-      // font-size: $font-size-button;
     }
   }
 
   button:hover {
-    background: rgb(146, 144, 108) !important;
-    transition: all ease 0.9s;
+    background: $s_dark;
+    border-color: $cool-color;
+    transition: all ease $time-effect;
 
     p {
       color: white;
     }
 
-    .icon {
-      color: white !important;
-    }
-  }
-}
-
-.button.outlined:hover {
-  .icon-box {
     svg {
       color: white;
     }
-  }
-
-  .theme-icon {
-    color: white;
   }
 }

@@ -24,9 +24,6 @@ interface propTypes {
 
 
 export const Button = (props: propTypes) => {
-  // CONTEXTS
-
-
   const {
     // @ts-ignore
     disabled
@@ -60,7 +57,15 @@ export const Button = (props: propTypes) => {
           >
             <div className="button-content">
               {props.icon && <div className="icon-box">{props.icon}</div>}
-              {props.label && <Text className={getLabelClasses()} type={props.textStyle || 'small'}>{props.label}</Text>}
+
+              {props.icon && props.label && <div className="space-box" />}
+
+              {props.label &&
+                <Text
+                  className={getLabelClasses()}
+                  type={props.textStyle || 'small'}>
+                  {`${props.label}`}
+                </Text>}
             </div>
           </button>
         </a>
