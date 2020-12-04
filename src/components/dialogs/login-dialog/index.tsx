@@ -14,10 +14,10 @@ import { StepperFooter } from '../../containers/stepper/stepper-footer';
 import ClientActions from '../../../actions/Client.actions';
 import { IClient } from '../../../types/Client.type';
 import { FormProvider } from '../../../contexts/FormContext';
-import './login-dialog.scss';
 
-
-export const LoginDialog = () => {
+export const LoginDialog = (props: {
+    pageRef: string
+}) => {
 
     //dialogs states
     const [showAccountMenu, setShowAccountMenu] = useState(false);
@@ -25,8 +25,6 @@ export const LoginDialog = () => {
     const [showMessage, setShowMessage] = useState(false);
     const [message, setMessage] = useState(defaultMessage);
     const [wizard, setWizard] = useState(0);
-
-
     const [userLogged, setUserLogged] = useState(false);
 
     const {
@@ -39,14 +37,12 @@ export const LoginDialog = () => {
         setUserLogged(userIsLogged());
     }, [])
 
-
     const clientActions: ClientActions = new ClientActions();
 
     const {
         // @ts-ignore
         setDisabledButton,
     } = useContext(ButtonContext);
-
 
     const startLogin = async (loginFields) => {
         const fields = {
@@ -119,6 +115,7 @@ export const LoginDialog = () => {
         setMessage(copyMessage);
         setShowMessage(true);
     }
+
     const showErrorMessage = (msg?) => {
         let copyMessage = message;
         copyMessage.error = true;
@@ -128,40 +125,34 @@ export const LoginDialog = () => {
         setShowMessage(true);
     }
 
-
     const launchModal = () => {
         if (userIsLogged()) {
             setShowAccountMenu(true);
         } else {
             setShowDialog(true);
         }
-    };
-
+    }
 
     return (
         <div className="reserve-dialog">
 
-
             {/* BUTTON ACTIVATOR */}
-            <div className="dialog_activator-box">
-                <Button
-                    onClick={() => launchModal()}
-                    style="outlined"
-                    className="activator-btn login-btn"
-                    icon={<RiAccountCircleLine />}
-                    label={userLogged ? getUserData().username : 'Acceda para Reservar'}
-                />
-            </div>
-
+            <Button
+                onClick={() => launchModal()}
+                style="text"
+                className="activator-btn login-btn"
+                icon={<RiAccountCircleLine />}
+                label={getUserData().username || 'Acceda para Reservar'}
+            />
 
             {/* ACCOUNT MENU */}
             {showAccountMenu && (
                 <AccountMenu
                     reff={wrapperRef}
+                    pageName={props.pageRef}
                     onCloseSession={() => { logOut() }}
                 />
             )}
-
 
             {/* STEPPER DIALOG */}
             {showDialog && (
@@ -190,7 +181,6 @@ export const LoginDialog = () => {
                     </FormProvider>
                 </DialogModal>
             )}
-
 
             {/* MESSAGE DIALOG */}
             {showMessage && (
