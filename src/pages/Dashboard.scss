@@ -4,14 +4,12 @@
 .dashboard-page {
   position: relative;
   background-color: $shadow-color;
-  // background-color: green;
   width: 100%;
   height: 100vh;
 
   .container {
     padding-top: $toolbar-height;
     display: flex;
-    // background-color: green;
 
     .tool-box {
       position: relative;

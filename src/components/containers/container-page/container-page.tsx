@@ -38,8 +38,8 @@ export const SubContainerInfo = (props: {
         </div>
       }
     </div>
-  );
-};
+  )
+}
 
 
 

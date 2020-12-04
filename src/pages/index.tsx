@@ -12,10 +12,14 @@ import { ServicesCard } from '../components/pages/index/services-card/service-ca
 import { pageInfo, services, courses, aboutusPictures } from '../data/index';
 import { toolbarButtons } from '../utils/toolbarButtons';
 import BarberAction from '../actions/Barber.actions';
-import { LoginDialog as LoginX } from '../components/dialogs/login-dialog';
-import { ReserveDialog as ReserveX } from '../components/dialogs/reserve-dialog'
+import { LoginDialog } from '../components/dialogs/login-dialog';
+import { ReserveDialog } from '../components/dialogs/reserve-dialog'
 import { PageBase } from '../components/pages/page-base';
 import moment from 'moment';
+import { UserContext } from '../contexts/UserContext';
+import './index.scss';
+import { INDEX_PAGE } from '../types/Pages.type';
+
 
 
 const IndexPage = () => {
@@ -28,6 +32,10 @@ const IndexPage = () => {
     setDisabledButton,
     disabled,
   } = useContext(ButtonContext);
+
+  const {
+    userIsLogged
+  } = useContext(UserContext);
 
 
   const {
@@ -68,26 +76,28 @@ const IndexPage = () => {
     return undefined;
   }
 
-
   return (
     <PageBase toolbar={
       <Toolbar
         showLeftMenu={true}
         items={toolbarButtons}
-        rightItems={[<ReserveX />, <LoginX />]} />
+        rightItems={[
+          userIsLogged() && <ReserveDialog />,
+          <LoginDialog pageRef={INDEX_PAGE} />
+        ]} />
     }>
 
-      <div id="banner" />
+      <div id="banner" className="ref-box" />
       <Banner />
 
-      <div id="about_us" />
+      <div id="about_us" className="ref-box" />
       <AboutUsCard
         title={pageInfo.aboutUsTitle}
         info={pageInfo.aboutUs}
         picture={aboutusPictures[0].url}
       />
 
-      <div id="barbers" />
+      <div id="barbers" className="ref-box" />
       {barbers.length && (
         <BarbersCard
           barbers={barbers}
@@ -96,21 +106,21 @@ const IndexPage = () => {
         />
       )}
 
-      <div id="services" />
+      <div id="services" className="ref-box" />
       <ServicesCard
         services={services}
         title={pageInfo.servicesTitle}
         subTitle={pageInfo.contactUs}
       />
 
-      <div id="courses" />
+      <div id="courses" className="ref-box" />
       <CoursesCard
         courses={courses}
         title={pageInfo.coursesTitle}
         subTitle={pageInfo.contactUs}
       />
 
-      <div id="contact" />
+      <div id="contact" className="ref-box" />
       <HomeFooter
         title={pageInfo.contactUsTitle}
         subtitle={pageInfo.contactUs}

@@ -11,7 +11,8 @@ export interface IVerticalToolbarItem {
 
 export const VerticalToolbar = (props: {
     items: IVerticalToolbarItem[],
-    onSelectItem: any
+    onSelectItem: any,
+    sizeIcons?: 'small' | 'normal' | 'large'
 }) => {
     return (
         <div className="vertical-toolbar">

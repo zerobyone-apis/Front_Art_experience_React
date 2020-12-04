@@ -85,7 +85,10 @@
     }
 
     .row-box {
-      height: 50vh;
+      // height: 50vh;
+      height: max-content;
+      min-height: 200px;
+      max-height: 40vh;
       overflow-y: scroll;
       overflow-x: hidden;
 

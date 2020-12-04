@@ -11,12 +11,15 @@ import { LoginDialog } from "../components/dialogs/login-dialog";
 import "./Dashboard.scss";
 import { PageBase } from "../components/pages/page-base";
 import { ReserveDialog } from "../components/dialogs/reserve-dialog";
+import { Button } from "../components/inputs/button";
+import { FaAccessibleIcon } from "react-icons/fa";
+import { IconX } from '../components/decorators/icon'
+import { DASHBOARD_PAGE } from "../types/Pages.type";
 
 
 const DashboardPage = () => {
   // Wizard is used for set the actual tool
   const [wizard, setWizard] = useState(0);
-
 
   const verticalToolbarItems: IVerticalToolbarItem[] = [
     {
@@ -52,19 +55,20 @@ const DashboardPage = () => {
   // TODO refix the control access - use router or API GATEWAY
   useEffect(() => {
     // check user is admin
-    if (!userIsAdmin()) {
-      document.location.href = "/";
-    }
+    // if (!userIsAdmin()) {
+    //   document.location.href = "/";
+    // }
   }, []);
 
 
   return (
     <PageBase toolbar={
-      <Toolbar rightItems={[<ReserveDialog />, <LoginDialog />]} />
+      <Toolbar rightItems={[<LoginDialog pageRef={DASHBOARD_PAGE} />]} />
     }>
       <VerticalToolbar
         items={verticalToolbarItems}
         onSelectItem={setWizard}
+        sizeIcons="large"
       />
       {getToolByWizard(wizard)}
     </PageBase>

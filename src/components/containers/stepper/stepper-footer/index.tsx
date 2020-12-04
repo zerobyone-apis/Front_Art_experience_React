@@ -15,6 +15,9 @@ export const StepperFooter = (props: {
   prevLabel?: string;
   updateButtonLabel?: string;
 
+  nextIcon?: any;
+  prevIcon?: any;
+
   nextButtonStyle?: 'text' | 'normal' | 'outlined';
   prevButtonStyle?: 'text' | 'normal' | 'outlined';
   updateButtonStyle?: 'text' | 'normal' | 'outlined';
@@ -43,6 +46,7 @@ export const StepperFooter = (props: {
     return (
       <Button
         className="footer-button"
+        icon={props.prevIcon}
         style={props.prevButtonStyle || 'outlined'}
         label={props.prevLabel || 'back'}
         onClick={() => props.onPrevButtonClick()}
@@ -54,6 +58,7 @@ export const StepperFooter = (props: {
   const NextButton = () => {
     return (
       <Button
+        icon={props.nextIcon}
         type={props.typeNextButton}
         style={props.nextButtonStyle}
         className="footer-button confirm"

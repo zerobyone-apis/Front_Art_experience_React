@@ -11,7 +11,6 @@ export const IntroStep = () => {
             <div className="success-box">
                 <div className="logo">
                     <img
-                        className="logo-img"
                         src="https://i.ibb.co/8g4h8sk/A-art-experiecnce.png"
                         alt=""
                     />
