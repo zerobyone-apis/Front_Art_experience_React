@@ -2,7 +2,7 @@
  * Used in Toolbar & LeftMenu
  */
 export const toolbarButtons = [
-    { href: "#about_us", label: 'Acerca de Nosotros' },
+    { href: "#about_us", label: 'Sobre Nosotros' },
     { href: "#barbers", label: 'Barberos' },
     { href: "#services", label: 'Servicios' },
     { href: "#courses", label: 'Cursos' },

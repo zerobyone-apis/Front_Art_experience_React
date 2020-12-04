@@ -6,8 +6,40 @@ import db from '../../../config/firebase';
 
 /*
 {
+ METHOD Parce Method - Name convention for firestore docs.
+}
+*/ 
+export const nameParcerFunction = (name: string) => {
+    let parsedName = name.toLowerCase().replace("/' '/g", '.');
+    return parsedName;
+};
+
+
+/*
+{
+Query Method - GET Firestore Reserves.
+}
+*/
+export const getReservesFirebase = async (barberName) => {
+    const resRef = await db
+        .collection('reservas')
+        .doc(nameParcerFunction(barberName))
+        .collection('day_reserves');
+
+    const result = await resRef
+        .get()
+        .then((snapshot) => {
+            return snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+        })
+        .catch((err) => console.error(err));
+
+    return result;
+};
+
+/*
+{
  METHOD  Post & Put Firebase.
- PROPS: barberName, reserveTime
+ PROPS: barberName, reserveTime.
 }
 */
 export const createReserveTimeOnFirebase = async (barberName, reserveTime, reserveDate) => {
@@ -109,42 +141,8 @@ export const createReserveTimeOnFirebase = async (barberName, reserveTime, reser
 
 /*
 {
- METHOD  Parce Method - Name convention for firestore docs.
-}
-*/
-//* 
-export const nameParcerFunction = (name: string) => {
-    let parsedName = name.toLowerCase().replace(' ', '.');
-    return parsedName;
-};
-
-
-/*
-{
-Query Method - GET Firestore Reserves
-}
-*/
-export const getReservesFirebase = async (barberName) => {
-    const resRef = await db
-        .collection('reservas')
-        .doc(nameParcerFunction(barberName))
-        .collection('day_reserves');
-
-    const result = await resRef
-        .get()
-        .then((snapshot) => {
-            return snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-        })
-        .catch((err) => console.error(err));
-
-    return result;
-};
-
-
-/*
-{
     METHOD CREATE RESERVE
-    PROPS: barber, service, date, hour
+    PROPS: barber, service, date, hour.
 }
 */
 export const createReserve = async (barber, service, date, hour, userData) => {

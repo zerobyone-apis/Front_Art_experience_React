@@ -51,7 +51,7 @@ export const LoginDialog = (props: {
         }
         setDisabledButton(true);
         const response = await clientActions.login(fields);
-        console.log('response', response)
+        // console.log('response', response)
         if (response) {
             setUserData({ ...response.data.user, ...response.data.client });
             setShowDialog(false);
