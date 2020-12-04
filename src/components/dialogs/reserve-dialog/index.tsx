@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { defaultBarber } from '../../../types/Barber.type';
 import { defaultService } from '../../../types/Service.type';
 import { BarberStep } from './barber-step';
@@ -20,7 +20,6 @@ import './reserve-dialog.scss';
 
 export const ReserveDialog = () => {
 
-
     // steps states
     const [selectedBarber, setSelectedBarber] = useState(defaultBarber);
     const [selectedService, setSelectedService] = useState(defaultService);
@@ -32,18 +31,15 @@ export const ReserveDialog = () => {
     const [showDialog, setShowDialog] = useState(false);
     const [showMessage, setShowMessage] = useState(false);
     const [message, setMessage] = useState(defaultMessage);
-    const [userLogged, setUserLogged] = useState(false);
 
     const {
-        userIsLogged,
         getUserData,
     } = useContext(UserContext)
 
-
-
-    useEffect(() => {
-        setUserLogged(userIsLogged());
-    }, [])
+    const {
+        // @ts-ignore
+        setDisabledButton,
+    } = useContext(ButtonContext);
 
 
     const footerConfig: IStepperFooter = {
@@ -51,14 +47,7 @@ export const ReserveDialog = () => {
         prevLabel: 'volver',
         finishLabel: 'reservar',
         showPrev: false
-
     }
-
-
-    const {
-        // @ts-ignore
-        setDisabledButton,
-    } = useContext(ButtonContext);
 
 
     const checkStep = (wizard: number) => {
@@ -75,7 +64,7 @@ export const ReserveDialog = () => {
                 return true
         }
         return false;
-    };
+    }
 
 
     const startReservation = async () => {
@@ -100,7 +89,6 @@ export const ReserveDialog = () => {
         setDisabledButton(false);
     }
 
-
     const showErrorMessage = (msg: string) => {
         let copyMessage = message;
         copyMessage.error = true;
@@ -109,7 +97,6 @@ export const ReserveDialog = () => {
         setMessage(copyMessage);
         setShowMessage(true);
     }
-
 
     const showSuccessMessage = () => {
         let copyMessage = message;
@@ -120,21 +107,17 @@ export const ReserveDialog = () => {
         setShowMessage(true);
     }
 
-
     return (
         <div className="reserve-dialog">
             {/* BUTTON ACTIVATOR */}
-            {userLogged && (
-                <div className="dialog-activator">
-                    <Button
-                        className="activator-btn"
-                        label="Reservar"
-                        icon={false}
-                        onClick={() => { setShowDialog(true) }}
-                    />
-                </div>
-            )}
-
+            <div className="dialog-activator">
+                <Button
+                    className="activator-btn"
+                    label="Reservar"
+                    icon={false}
+                    onClick={() => { setShowDialog(true) }}
+                />
+            </div>
 
             {/* STEPPER DIALOG */}
             {showDialog && (
