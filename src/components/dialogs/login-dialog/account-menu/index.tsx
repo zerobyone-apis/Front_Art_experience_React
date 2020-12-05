@@ -35,7 +35,7 @@ export const AccountMenu = (props: {
                     <Button
                         style="text"
                         icon={<MdDashboard />}
-                        label="Gestion de Reservas"
+                        label="Administración"
                         className="item-list_btn"
                         onClick={() => {
                             document.location.href = '/Dashboard';
