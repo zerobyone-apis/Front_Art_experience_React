@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { BiUserCheck, BiUserX } from 'react-icons/bi';
-import { RiAccountCircleLine } from 'react-icons/ri';
+import { RiAccountCircleLine, RiArrowDownLine } from 'react-icons/ri';
 import { ButtonContext } from '../../../contexts/ButtonsContext';
 import { UserContext } from '../../../contexts/UserContext';
 import { Button } from '../../inputs/button';
@@ -14,6 +14,8 @@ import { StepperFooter } from '../../containers/stepper/stepper-footer';
 import ClientActions from '../../../actions/Client.actions';
 import { IClient } from '../../../types/Client.type';
 import { FormProvider } from '../../../contexts/FormContext';
+import { AiFillCaretDown } from 'react-icons/ai';
+
 
 export const LoginDialog = (props: {
     pageRef: string
@@ -134,15 +136,15 @@ export const LoginDialog = (props: {
     }
 
     return (
-        <div className="reserve-dialog">
+        <div className="login-dialog">
 
             {/* BUTTON ACTIVATOR */}
             <Button
                 onClick={() => launchModal()}
                 style="text"
                 className="activator-btn login-btn"
-                icon={<RiAccountCircleLine />}
-                label={getUserData().username || 'Acceda para Reservar'}
+                icon={<><RiAccountCircleLine /><AiFillCaretDown style={{ width: '14px' }} /></>}
+                label={!getUserData().username ? 'Acceda para Reservar' : ''}
             />
 
             {/* ACCOUNT MENU */}
