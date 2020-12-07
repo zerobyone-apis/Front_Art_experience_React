@@ -16,6 +16,7 @@ import { Button } from '../../inputs/button';
 import { createReserve } from './logic';
 import moment from 'moment';
 import './reserve-dialog.scss';
+import { EffectBox } from '../../decorators/effect-box';
 
 
 export const ReserveDialog = () => {
@@ -26,8 +27,7 @@ export const ReserveDialog = () => {
     const [reserveHour, setReserveHour] = useState('');
     const [reserveDate, setReserveDate] = useState(null);
 
-
-    //dialogs states
+    // dialogs states
     const [showDialog, setShowDialog] = useState(false);
     const [showMessage, setShowMessage] = useState(false);
     const [message, setMessage] = useState(defaultMessage);
@@ -109,26 +109,20 @@ export const ReserveDialog = () => {
 
     return (
         <div className="reserve-dialog">
-            {/* BUTTON ACTIVATOR */}
-            <div className="dialog-activator">
-                <Button
-                    className="activator-btn"
-                    label="Reservar"
-                    icon={false}
-                    onClick={() => { setShowDialog(true) }}
-                />
-            </div>
+            <Button
+                className="activator-btn"
+                label="Reservar"
+                icon={false}
+                onClick={() => { setShowDialog(true) }}
+            />
 
-            {/* STEPPER DIALOG */}
             {showDialog && (
                 <StepperDialog
                     title="Reservacion Art Experience"
                     stepRules={checkStep}
                     footerConfig={footerConfig}
-
                     onSuccess={() => { startReservation() }}
-                    onClose={() => { setShowDialog(false) }}
-
+                    onClose={() => setShowDialog(false)}
                     width="500px"
                     height="640px"
                     className="reserve-stepper"
@@ -163,20 +157,23 @@ export const ReserveDialog = () => {
                         date={moment(reserveDate).format('DD/MM/YYYY')}
                     />
                 </StepperDialog >
-            )}
+            )
+            }
             {/* MESSAGE DIALOG */}
-            {showMessage && (
-                <MessageDialog
-                    message={message.message}
-                    label={message.label}
-                    error={message.error}
-                    icon={message.icon}
-                    width={message.width}
-                    height={message.height}
-                    onClick={() => { setShowMessage(false) }}
-                    onClose={() => { setShowMessage(false) }}
-                />
-            )}
-        </div>
+            {
+                showMessage && (
+                    <MessageDialog
+                        message={message.message}
+                        label={message.label}
+                        error={message.error}
+                        icon={message.icon}
+                        width={message.width}
+                        height={message.height}
+                        onClick={() => { setShowMessage(false) }}
+                        onClose={() => { setShowMessage(false) }}
+                    />
+                )
+            }
+        </div >
     )
 }
