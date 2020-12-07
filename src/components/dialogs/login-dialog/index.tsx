@@ -143,8 +143,13 @@ export const LoginDialog = (props: {
                 onClick={() => launchModal()}
                 style="text"
                 className="activator-btn login-btn"
-                icon={<><RiAccountCircleLine /><AiFillCaretDown style={{ width: '14px' }} /></>}
-                label={!getUserData().username ? 'Acceda para Reservar' : ''}
+                label={!getUserData().username && 'Acceda para Reservar'}
+                icon={
+                    <>
+                        <RiAccountCircleLine />
+                        {getUserData().username && <AiFillCaretDown style={{ width: '14px' }} />}
+                    </>
+                }
             />
 
             {/* ACCOUNT MENU */}
