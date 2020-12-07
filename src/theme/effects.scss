@@ -30,6 +30,21 @@
     animation-duration: $seconds;
 }
 
+@mixin effect-hide($seconds) {
+    @keyframes hide {
+        from {
+            opacity: 1;
+        }
+
+        to {
+            opacity: 0;
+        }
+    }
+
+    animation-name: hide;
+    animation-duration: $seconds;
+}
+
 
 @mixin effect-rotate($seconds, $loop_count, $delay) {
 
