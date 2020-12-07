@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Stepper } from '../../containers/stepper';
+import { EffectBox } from '../../decorators/effect-box';
 import { DialogModal } from '../dialog-modal/dialog-modal';
-
 
 export interface IStepperFooter {
     nextLabel: string,
@@ -11,12 +11,11 @@ export interface IStepperFooter {
     labelSteps?: { prev: string, next: string }[]
 }
 
-
 export const StepperDialog = (props: {
     title?: string,
     stepRules?: any, // TODO create interface here
     onSuccess: () => void, // TODO fix type
-    onClose: () => void,
+    onClose?: () => void,
     children: any[],
     //stepper footer
     footerConfig: IStepperFooter,
@@ -27,12 +26,29 @@ export const StepperDialog = (props: {
     fullscreenMobile?: boolean,
 }) => {
 
+    // halt and catch fire
+
+    const [activeEffect, setActiveEffect] = useState(false);
+
+    const onClose = () => {
+        setActiveEffect(true)
+        setTimeout(() => {
+            props.onClose()
+            setActiveEffect(false)
+        }, 400);
+    }
 
     return (
-        <div className="stepper-dialog">
+        <EffectBox
+            initialEffect="show"
+            active={activeEffect}
+            effectOnActive="hide">
+
             <DialogModal
                 title={props.title}
-                onClose={() => props.onClose()}
+                onClose={() => {
+                    onClose()
+                }}
                 width={props.width}
                 height={props.height}
                 className={props.className}
@@ -49,6 +65,6 @@ export const StepperDialog = (props: {
                     })}
                 </Stepper>
             </DialogModal>
-        </div>
+        </EffectBox>
     )
 }
