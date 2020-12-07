@@ -1,48 +1,45 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Button } from '../../inputs/button';
 import { AiOutlineClose } from 'react-icons/ai';
 import { Text } from '../../decorators/text';
 import './dialog-modal.scss';
 import './dialog-modal-mobile.scss';
 
-
 export const DialogModal = (props: {
   title?: string;
   header?: any;
   children?: React.ReactChild | React.ReactChild[];
+
   width?: string;
   height?: string;
+
   onClose: () => void;
+  waitingOnClose?: number // milliseconds
   hideCloseButton?: boolean;
   showModal?: boolean;
+
   className?: string;
   buttonClassName?: string;
+
   fullscreen?: boolean;
   fullscreenOnMobile?: boolean;
 }) => {
 
-
-  const [visible, setVisible] = useState<boolean>(true);
-
-
   const onClose = () => {
-    setVisible(false);
-    props.onClose();
-  };
-
+    setTimeout(() => {
+      props.onClose();
+    }, props.waitingOnClose);
+  }
 
   // TODO create effect hide and show by visible
-  return visible && (
-    <div className={`${props.className} dialog-box ${visible ? ' effect-opacity ' : ' effect-hide'}`}>
+  return (
+    <div className={`${props.className} dialog-box`}>
       <div
         style={{ width: props.width, height: props.height }}
-        className={`dialog-modal effect-opacity ${props.fullscreen && 'fullscreen'} ${props.fullscreenOnMobile && 'fullscreen-mobile'}`}>
+        className={`dialog-modal ${props.fullscreen && 'fullscreen'} ${props.fullscreenOnMobile && 'fullscreen-mobile'}`}>
         <div className={`header`}>
 
-
-
-          {
-            !props.hideCloseButton &&
+          {!props.hideCloseButton &&
             <Button
               onClick={() => {
                 onClose()
@@ -50,10 +47,7 @@ export const DialogModal = (props: {
               style="text"
               className="close-btn"
               icon={<AiOutlineClose />}
-            />
-          }
-
-
+            />}
 
           <div className="header-title">
             {props.header || (
@@ -67,4 +61,4 @@ export const DialogModal = (props: {
       </div>
     </div>
   )
-};
+}

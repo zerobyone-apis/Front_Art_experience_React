@@ -25,7 +25,7 @@
     width: max-content;
     border-radius: 8px;
     background-color: $shadow-color;
-    @include effect-appear(.5s);
+    // @include effect-appear(.5s);
 
     .header {
       position: relative;
