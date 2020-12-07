@@ -12,6 +12,13 @@
   }
 }
 
+.left-menu {
+  .left-menu-activator-btn {
+    position: relative;
+    @include effect-slide(left, 60px, .5s);
+  }
+}
+
 .left-menu-dialog {
   text-align: center;
 
