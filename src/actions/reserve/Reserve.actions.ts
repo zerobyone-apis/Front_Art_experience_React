@@ -1,14 +1,14 @@
-import IntegrationBackend from '../utils/IntegrationBackend';
-import ResultObject from '../utils/ResultObject';
+import IntegrationBackend from '../../utils/IntegrationBackend';
+import ResultObject from '../../utils/ResultObject';
 import {
   RESERVE_ROUTE,
   POST_ENDPOIT,
   GET_ENDPOIT,
   PUT_ENDPOIT,
   PATCH_ENDPOIT,
-} from '../types/Routes.type';
+} from '../../types/Routes.type';
 // eslint-disable-next-line no-unused-vars
-import { IReserve } from '../types/Reserve.type';
+import { IReserve } from '../../types/Reserve.type';
 
 
 

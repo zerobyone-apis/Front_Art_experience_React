@@ -1,7 +1,7 @@
-import IntegrationBackend from '../utils/IntegrationBackend';
-import { RESERVE_DATES_ROUTE, GET_ENDPOIT } from '../types/Routes.type';
+import IntegrationBackend from '../../utils/IntegrationBackend';
+import { RESERVE_DATES_ROUTE, GET_ENDPOIT } from '../../types/Routes.type';
 
-export default class AvailableTime {
+export default class CompanyHours {
   private backend: IntegrationBackend = new IntegrationBackend();
 
   /* Burn data */
@@ -23,7 +23,7 @@ export default class AvailableTime {
       '18:40',
     ];
   }
-  
+
   /* Chritmas update times */
   async getChritmasTime() {
     return [
@@ -56,26 +56,6 @@ export default class AvailableTime {
       '21:00',
     ];
   }
-
-  /* Firebase query */
-  //getReservatesHoursByReserves(barberName: string) {
-  //  let reserves: any[] = [];
-  //  try {
-  //    db.collection('reservas')
-  //      .doc(barberName)
-  //      .collection('day_reserves')
-  //      .orderBy('date', 'asc')
-  //      .onSnapshot((snapshot) => {
-  //        snapshot.docs.map((doc) => {
-  //          reserves.push(doc.data());
-  //        });
-  //      });
-  //    return reserves;
-  //  } catch (error) {
-  //    console.error(`Error: Obteniendo las reservas -> ${error}}`);
-  //    return [];
-  //  }
-  //}
 
   /* Deprecated */
   async getDatesByReserves(barberId: number) {
