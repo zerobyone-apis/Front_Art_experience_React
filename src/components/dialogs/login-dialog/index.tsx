@@ -11,7 +11,7 @@ import { AccountMenu } from './account-menu';
 import { useOutsideAlerter } from '../../../hooks/useOutsideAlerter';
 import { DialogModal } from '../dialog-modal/dialog-modal';
 import { StepperFooter } from '../../containers/stepper/stepper-footer';
-import ClientActions from '../../../actions/Client.actions';
+import ClientActions from '../../../actions/client/Client.actions';
 import { IClient } from '../../../types/Client.type';
 import { FormProvider } from '../../../contexts/FormContext';
 import { AiFillCaretDown } from 'react-icons/ai';

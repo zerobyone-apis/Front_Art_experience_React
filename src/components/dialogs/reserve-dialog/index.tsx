@@ -16,7 +16,6 @@ import { Button } from '../../inputs/button';
 import { createReserve } from './logic';
 import moment from 'moment';
 import './reserve-dialog.scss';
-import { EffectBox } from '../../decorators/effect-box';
 
 
 export const ReserveDialog = () => {
@@ -43,9 +42,9 @@ export const ReserveDialog = () => {
 
 
     const footerConfig: IStepperFooter = {
-        nextLabel: 'siguiente',
-        prevLabel: 'volver',
-        finishLabel: 'reservar',
+        nextLabel: 'Siguiente',
+        prevLabel: 'Volver',
+        finishLabel: 'Reservar',
         showPrev: false
     }
 
@@ -142,10 +141,10 @@ export const ReserveDialog = () => {
                     />
 
                     <TimeStep
-                        reserveDate={reserveDate}
-                        reserveHour={reserveHour}
-                        barberId={selectedBarber.barberId || -1}
-                        selectedBarber={selectedBarber || {}}
+                        date={reserveDate}
+                        hour={reserveHour}
+                        barberId={selectedBarber.barberId}
+                        selectedBarber={selectedBarber}
                         onSelctDate={setReserveDate}
                         onSelctHour={setReserveHour}
                     />
