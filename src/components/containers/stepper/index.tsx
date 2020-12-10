@@ -25,7 +25,6 @@ export const Stepper = (props: {
                 wizard={wizard}
                 checkStepByWizard={props.stepsRules}
                 hidePrevButton={!props.footerConfig.showPrev}
-
                 // button label
                 prevLabel={
                     !props.footerConfig.labelSteps
@@ -39,7 +38,6 @@ export const Stepper = (props: {
                         : (props.footerConfig.finishLabel || 'finish'))
                     || props.footerConfig.labelSteps[wizard].next
                 }
-
                 // onclick
                 onPrevButtonClick={() => { setWizard(wizard - 1) }}
                 onNextButtonClick={
