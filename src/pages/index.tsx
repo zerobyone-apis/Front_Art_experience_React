@@ -11,7 +11,7 @@ import { Banner } from '../components/pages/index/banner/banner';
 import { ServicesCard } from '../components/pages/index/services-card/service-card';
 import { pageInfo, services, courses, aboutusPictures } from '../data/index';
 import { toolbarButtons } from '../utils/toolbarButtons';
-import BarberAction from '../actions/Barber.actions';
+import BarberAction from '../actions/employee/Barber.actions';
 import { LoginDialog } from '../components/dialogs/login-dialog';
 import { ReserveDialog } from '../components/dialogs/reserve-dialog'
 import { PageBase } from '../components/pages/page-base';
