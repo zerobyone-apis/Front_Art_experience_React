@@ -5,7 +5,7 @@ export default class CompanyHours {
   private backend: IntegrationBackend = new IntegrationBackend();
 
   /* Burn data */
-  async getBarberShopTime() {
+  async getCompanyTimes() {
     return [
       '10:00',
       '10:40',
@@ -25,7 +25,7 @@ export default class CompanyHours {
   }
 
   /* Chritmas update times */
-  async getChritmasTime() {
+  async getExceptionTimes() {
     return [
       '08:00',
       '08:30',
@@ -58,7 +58,7 @@ export default class CompanyHours {
   }
 
   /* Deprecated */
-  async getDatesByReserves(barberId: number) {
+  async getReserveTimes(barberId: number) {
     try {
       const responseDates: any = await this.backend.send(
         GET_ENDPOIT,
@@ -81,7 +81,7 @@ export default class CompanyHours {
   }
 
   /* For tests */
-  async getDatesByReservesTest(barberId: number) {
+  async getReserveTimesTest(barberId: number) {
     return [
       { date: '2020-08-26', hours: ['16:00', '16:30', '17:00'] },
       { date: '2020-08-27', hours: ['14:30', '15:00', '15:30', '17:00'] },
