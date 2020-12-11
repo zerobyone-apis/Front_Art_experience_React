@@ -32,7 +32,6 @@ export const TimeStep = (props: {
   // fecha de reserva (props.date)
   const [reserveDate, setReserveDate] = useState(undefined)
 
-
   // onMount component
   useEffect(() => {
     //define async function
@@ -58,16 +57,6 @@ export const TimeStep = (props: {
     setReserveDate(props.date);
   }, []);
 
-
-  // @Watcher onChange reserveDate
-  useEffect(() => {
-    const getReserveTimes = async () => {
-      await getReservationTimes();
-    }
-    getReserveTimes();
-  }, [reserveDate]);
-
-
   const getReservationTimes = async () => {
     try {
       const resultDocs = await firebaseActions
@@ -85,31 +74,21 @@ export const TimeStep = (props: {
     return props.selectedBarber.name.toLowerCase().replace("/' '/g", ".");
   }
 
+  const filterTimes = async (resultData: any) => {
+    let formattedDates: { date: string; times: string[] }[] = [];
 
-  const filterTimes = (resultData: any) => {
-    if (resultData) {
-
-      let formattedDates: { date: string; times: string[] }[] = [];
-
-      resultData.map((item) => {
-        formattedDates.push({
-          date: moment(new Date(item.date.toDate()).toUTCString())
-            .format()
-            .toString()
-            .split("T")[0],
-          times: item.times,
-        });
+    resultData.map((item) => {
+      formattedDates.push({
+        date: moment(new Date(item.date.toDate()).toUTCString())
+          .format()
+          .toString()
+          .split("T")[0],
+        times: item.times,
       });
+    });
 
-      setReservesList(formattedDates);
-
-      if (reserveDate) {
-        let filterHours = onSelectDate(reserveDate);
-        setAvailableHours(filterHours);
-      }
-    }
+    setReservesList(formattedDates);
   }
-
 
   {/*
       Methods used into onSelectDate
@@ -128,12 +107,12 @@ export const TimeStep = (props: {
     return listBusyHours;
   }
 
-
-  const onSelectDate = (selectedDate: Date) => {
+  const onSelectDate = async (selectedDate: Date) => {
     let formatSelectedDate = moment(selectedDate).format("YYYY-MM-DD");
 
     // reset values
     setReserveDate(selectedDate);
+    await getReservationTimes()
     props.onSelctHour(undefined);
     props.onSelctDate(selectedDate);
 
@@ -147,7 +126,6 @@ export const TimeStep = (props: {
 
     // Lista de horas habilitadas por dia
     companyHours.map((barberShopHour) => {
-
       if (listBusyHours.indexOf(barberShopHour) === -1) { // (1)
         if (actualDate === formatSelectedDate) {// (2)
           let formatBarberShopHour = moment(`${barberShopHour}:00`, "HH:mm:ss");
@@ -158,8 +136,10 @@ export const TimeStep = (props: {
           availables.push(barberShopHour); // (5)
         }
       }
-
     });
+
+    setAvailableHours(availables);
+
     return availables;
     {/*
       1: Validar si la hora habilitada esta dentro de las horas reservadas.
@@ -171,16 +151,16 @@ export const TimeStep = (props: {
     */}
   }
 
-
   const onSelectHour = (selectedHour: string) => {
     props.onSelctHour(selectedHour);
   }
 
-
   return (
     <Step title="Fecha de Reservacion" subtitle="Seleccione la Fecha y Hora">
       <div className="time-box effect-slide-top">
-        <Calendar value={reserveDate} onSelectDate={onSelectDate} />
+        <Calendar
+          value={reserveDate}
+          onSelectDate={onSelectDate} />
         {
           availableHours.length ? (
             <HoursBox
