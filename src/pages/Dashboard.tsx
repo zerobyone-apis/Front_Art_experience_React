@@ -62,9 +62,17 @@ const DashboardPage = () => {
 
 
   return (
-    <PageBase toolbar={
-      <Toolbar rightItems={[<LoginDialog pageRef={DASHBOARD_PAGE} />]} />
-    }>
+    <PageBase
+      className="dashboard-page"
+      toolbar={
+        <Toolbar
+          theme="light"
+          rightItems={
+            [
+              <LoginDialog theme="light" pageRef={DASHBOARD_PAGE} />
+            ]
+          } />
+      }>
       <VerticalToolbar
         items={verticalToolbarItems}
         onSelectItem={setWizard}
