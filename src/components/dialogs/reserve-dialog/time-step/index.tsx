@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Calendar } from "./calendar";
 import { HoursBox } from "./hours-box";
 import { Text } from "../../../decorators/text";
@@ -7,6 +7,7 @@ import CompanyTimeActions from "../../../../actions/company/CompanyTime.actions"
 import FirebaseActions from "../../../../actions/firebase/Firebase.actions";
 import moment from "moment";
 import "./time-step.scss";
+import { ButtonContext } from "../../../../contexts/ButtonsContext";
 
 export const TimeStep = (props: {
   // default values
@@ -31,6 +32,12 @@ export const TimeStep = (props: {
   const [companyHours, setCompanyHours] = useState([])
   // fecha de reserva (props.date)
   const [reserveDate, setReserveDate] = useState(undefined)
+
+  const {
+    disabled,
+    setDisabledButton
+  } = useContext(ButtonContext);
+
 
   // onMount component
   useEffect(() => {
@@ -108,6 +115,7 @@ export const TimeStep = (props: {
   }
 
   const onSelectDate = async (selectedDate: Date) => {
+    setDisabledButton(true)
     let formatSelectedDate = moment(selectedDate).format("YYYY-MM-DD");
 
     // reset values
@@ -139,7 +147,7 @@ export const TimeStep = (props: {
     });
 
     setAvailableHours(availables);
-
+    setDisabledButton(false)
     return availables;
     {/*
       1: Validar si la hora habilitada esta dentro de las horas reservadas.
@@ -155,24 +163,25 @@ export const TimeStep = (props: {
     props.onSelctHour(selectedHour);
   }
 
+  const getHoursBox = () => {
+    if (!disabled && reserveDate) {
+      return (
+        <HoursBox
+          hours={availableHours}
+          onSelectItem={onSelectHour}
+        />
+      )
+    }
+  }
+
   return (
     <Step title="Fecha de Reservacion" subtitle="Seleccione la Fecha y Hora">
       <div className="time-box effect-slide-top">
         <Calendar
           value={reserveDate}
-          onSelectDate={onSelectDate} />
-        {
-          availableHours.length ? (
-            <HoursBox
-              hours={availableHours}
-              onSelectItem={onSelectHour}
-            />
-          ) : (
-              <Text type="text" className="no-hours">
-                No hay horarios disponibles para esta fecha
-              </Text>
-            )
-        }
+          onSelectDate={onSelectDate}
+        />
+        {getHoursBox()}
       </div>
     </Step>
   )
