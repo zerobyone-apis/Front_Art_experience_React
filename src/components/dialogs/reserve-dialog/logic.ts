@@ -1,6 +1,6 @@
 import moment from 'moment'
 import { IReserve } from '../../../types/Reserve.type'
-import ReserveActions from '../../../actions/Reserve.actions'
+import ReserveActions from '../../../actions/reserve/Reserve.actions'
 import db from '../../../config/firebase';
 
 
@@ -8,7 +8,7 @@ import db from '../../../config/firebase';
 {
  METHOD Parce Method - Name convention for firestore docs.
 }
-*/ 
+*/
 export const nameParcerFunction = (name: string) => {
     let parsedName = name.toLowerCase().replace("/' '/g", '.');
     return parsedName;

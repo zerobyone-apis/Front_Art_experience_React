@@ -1,10 +1,10 @@
 // eslint-disable-next-line no-unused-vars
-import { IBarber } from '../types/Barber.type';
-import IntegrationBackend from '../utils/IntegrationBackend';
+import { IBarber } from '../../types/Barber.type';
+import IntegrationBackend from '../../utils/IntegrationBackend';
 import {
     BARBER_ROUTE,
     GET_ENDPOIT,
-} from '../types/Routes.type';
+} from '../../types/Routes.type';
 
 export default class BarberActions {
     private backend: IntegrationBackend = new IntegrationBackend();
@@ -15,7 +15,7 @@ export default class BarberActions {
                 undefined,
                 BARBER_ROUTE
             );
-            if(responseBarbers.status != 200){
+            if (responseBarbers.status != 200) {
                 throw Error(`Error Status code: , ${responseBarbers.status}`)
             }
             return responseBarbers.data;

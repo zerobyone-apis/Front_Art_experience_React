@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import Calendar from 'react-calendar';
+import CalendarX from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import './calendar-box.scss';
+import './calendar.scss';
 
-export const CalendarBox = (props: {
+export const Calendar = (props: {
     value: Date,
     onSelectDate: any
 }) => {
@@ -16,7 +16,7 @@ export const CalendarBox = (props: {
 
     return (
         <div className="calendar-box">
-            <Calendar
+            <CalendarX
                 minDate={new Date()}
                 onChange={props.onSelectDate}
                 value={value}

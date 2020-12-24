@@ -3,7 +3,6 @@ import { StepperFooter } from './stepper-footer';
 import { IStepperFooter } from '../../dialogs/stepper-dialog';
 import './stepper.scss';
 
-
 export const Stepper = (props: {
     children: ReactChild[],
     className?: string,
@@ -13,9 +12,7 @@ export const Stepper = (props: {
     stepsRules?: (wizard: number) => boolean
 }) => {
 
-
     const [wizard, setWizard] = useState(0);
-
 
     return (
         <div className={`stepper ${props.className || ''}`}>
@@ -25,7 +22,6 @@ export const Stepper = (props: {
                 wizard={wizard}
                 checkStepByWizard={props.stepsRules}
                 hidePrevButton={!props.footerConfig.showPrev}
-
                 // button label
                 prevLabel={
                     !props.footerConfig.labelSteps
@@ -39,7 +35,6 @@ export const Stepper = (props: {
                         : (props.footerConfig.finishLabel || 'finish'))
                     || props.footerConfig.labelSteps[wizard].next
                 }
-
                 // onclick
                 onPrevButtonClick={() => { setWizard(wizard - 1) }}
                 onNextButtonClick={

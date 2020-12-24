@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { DialogModal } from '../../../../dialogs/dialog-modal/dialog-modal';
-import ReserveActions from '../../../../../actions/Reserve.actions';
+import ReserveActions from '../../../../../actions/reserve/Reserve.actions';
 import { IReserve } from '../../../../../types/Reserve.type';
 import { ButtonContext } from '../../../../../contexts/ButtonsContext';
 import { StepperFooter } from '../../../../containers/stepper/stepper-footer';

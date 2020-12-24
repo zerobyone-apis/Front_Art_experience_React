@@ -7,7 +7,6 @@ import { TimeStep } from './time-step';
 import { ServiceStep } from './service-step';
 import { IStepperFooter, StepperDialog } from '../stepper-dialog';
 import { services } from '../../../data/reserve';
-import { IntroStep } from './intro-step';
 import { ButtonContext } from '../../../contexts/ButtonsContext';
 import { UserContext } from '../../../contexts/UserContext';
 import { BiTask, BiTaskX } from 'react-icons/bi';
@@ -16,8 +15,6 @@ import { Button } from '../../inputs/button';
 import { createReserve } from './logic';
 import moment from 'moment';
 import './reserve-dialog.scss';
-import { EffectBox } from '../../decorators/effect-box';
-
 
 export const ReserveDialog = () => {
 
@@ -43,17 +40,14 @@ export const ReserveDialog = () => {
 
 
     const footerConfig: IStepperFooter = {
-        nextLabel: 'siguiente',
-        prevLabel: 'volver',
-        finishLabel: 'reservar',
+        nextLabel: 'Siguiente',
+        prevLabel: 'Volver',
+        finishLabel: 'Reservar',
         showPrev: false
     }
 
-
     const checkStep = (wizard: number) => {
         switch (wizard) {
-            // case 0:
-            //     return true;
             case 0:
                 return selectedBarber.name ? true : false;
             case 1:
@@ -65,7 +59,6 @@ export const ReserveDialog = () => {
         }
         return false;
     }
-
 
     const startReservation = async () => {
         setDisabledButton(true);
@@ -128,8 +121,6 @@ export const ReserveDialog = () => {
                     className="reserve-stepper"
                     fullscreenMobile={true}
                 >
-                    {/*<IntroStep />*/}
-
                     <BarberStep
                         value={selectedBarber}
                         setBarber={setSelectedBarber}
@@ -142,10 +133,10 @@ export const ReserveDialog = () => {
                     />
 
                     <TimeStep
-                        reserveDate={reserveDate}
-                        reserveHour={reserveHour}
-                        barberId={selectedBarber.barberId || -1}
-                        selectedBarber={selectedBarber || {}}
+                        date={reserveDate}
+                        hour={reserveHour}
+                        barberId={selectedBarber.barberId}
+                        selectedBarber={selectedBarber}
                         onSelctDate={setReserveDate}
                         onSelctHour={setReserveHour}
                     />

@@ -1,12 +1,12 @@
-import IntegrationBackend from '../utils/IntegrationBackend';
-import { IClient } from '../types/Client.type';
+import IntegrationBackend from '../../utils/IntegrationBackend';
+import { IClient } from '../../types/Client.type';
 import {
   GET_ENDPOIT,
   USER_SIGN_IN_ROUTE,
   POST_ENDPOIT,
   CLIENT_ROUTE,
   CLIENT_EXISTS_ROUTE,
-} from '../types/Routes.type';
+} from '../../types/Routes.type';
 export default class ClientActions {
   private backend: IntegrationBackend = new IntegrationBackend();
 

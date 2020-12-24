@@ -1,31 +1,30 @@
 import React, { useContext } from 'react';
 import { Button } from '../../../inputs/button';
+import { FormContext } from '../../../../contexts/FormContext';
 import './stepper-footer.scss';
 import './stepper-footer-mobile.scss';
-import { FormContext } from '../../../../contexts/FormContext';
-
 
 export const StepperFooter = (props: {
-  wizard?: number;
-  checkStepByWizard?: any;
-  totalSteps?: number;
-  children?: any;
+  wizard?: number
+  checkStepByWizard?: (wizard: number) => boolean
+  totalSteps?: number
+  children?: any
 
-  nextLabel?: string;
-  prevLabel?: string;
-  updateButtonLabel?: string;
+  nextLabel?: string
+  prevLabel?: string
+  updateButtonLabel?: string
 
-  nextIcon?: any;
-  prevIcon?: any;
+  nextIcon?: any
+  prevIcon?: any
 
-  nextButtonStyle?: 'text' | 'normal' | 'outlined';
-  prevButtonStyle?: 'text' | 'normal' | 'outlined';
-  updateButtonStyle?: 'text' | 'normal' | 'outlined';
+  nextButtonStyle?: 'text' | 'normal' | 'outlined'
+  prevButtonStyle?: 'text' | 'normal' | 'outlined'
+  updateButtonStyle?: 'text' | 'normal' | 'outlined'
 
-  typeNextButton?: 'button' | 'submit' | 'reset';
+  typeNextButton?: 'button' | 'submit' | 'reset'
 
-  className?: string,
-  hidePrevButton?: boolean, // TODO remove this
+  className?: string
+  hidePrevButton?: boolean
   noUseWizard?: boolean
 
   // implements validation form
@@ -41,7 +40,6 @@ export const StepperFooter = (props: {
     getFields
   } = useContext(FormContext);
 
-
   const PrevButton = () => {
     return (
       <Button
@@ -53,7 +51,6 @@ export const StepperFooter = (props: {
       />
     );
   };
-
 
   const NextButton = () => {
     return (
@@ -70,21 +67,6 @@ export const StepperFooter = (props: {
     );
   };
 
-
-  // DEPRECATED
-  const UpdateButton = () => {
-    return (
-      <Button
-        type={props.typeNextButton}
-        style={props.updateButtonStyle}
-        className="footer-button confirm"
-        label={props.updateButtonLabel || 'Update'}
-        onClick={() => props.onUpdateButtonClick()}
-      />
-    )
-  }
-
-
   return (
     <div className={`footer ${props.className}`}>
       <div className="footer_right-box">
@@ -100,15 +82,14 @@ export const StepperFooter = (props: {
 
         {/* SHOW NEXT BUTTON */}
         {
-          !props.noUseWizard &&
-          (
-            props.checkStepByWizard &&
-            props.checkStepByWizard(props.wizard)
-            && NextButton()
-          )
-          || NextButton()
+          !props.noUseWizard ?
+            (
+              props.checkStepByWizard &&
+              props.checkStepByWizard(props.wizard)
+              && NextButton()
+            )
+            : NextButton()
         }
-
       </div>
     </div>
   )
