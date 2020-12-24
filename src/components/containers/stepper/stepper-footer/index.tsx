@@ -32,7 +32,7 @@ export const StepperFooter = (props: {
   validate?: boolean
 
   onNextButtonClick: (fields?) => void;
-  onPrevButtonClick: () => void;
+  onPrevButtonClick?: () => void;
   onUpdateButtonClick?: () => void;
 }) => {
 
@@ -84,7 +84,6 @@ export const StepperFooter = (props: {
     )
   }
 
-
   return (
     <div className={`footer ${props.className}`}>
       <div className="footer_right-box">
@@ -100,8 +99,7 @@ export const StepperFooter = (props: {
 
         {/* SHOW NEXT BUTTON */}
         {
-          !props.noUseWizard &&
-          (
+          !props.noUseWizard && (
             props.checkStepByWizard &&
             props.checkStepByWizard(props.wizard)
             && NextButton()

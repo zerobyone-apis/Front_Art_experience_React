@@ -3,7 +3,6 @@ import { StepperFooter } from './stepper-footer';
 import { IStepperFooter } from '../../dialogs/stepper-dialog';
 import './stepper.scss';
 
-
 export const Stepper = (props: {
     children: ReactChild[],
     className?: string,
@@ -13,9 +12,7 @@ export const Stepper = (props: {
     stepsRules?: (wizard: number) => boolean
 }) => {
 
-
     const [wizard, setWizard] = useState(0);
-
 
     return (
         <div className={`stepper ${props.className || ''}`}>
