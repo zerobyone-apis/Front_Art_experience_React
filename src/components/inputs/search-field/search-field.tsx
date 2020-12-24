@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Textfield } from '../text-field/text-field';
 import { Button } from '../button';
 import './search-field.scss';
+import { MdSearch } from 'react-icons/md';
 
 export const SearchField = (props: {
   defaultValue?: string;
@@ -31,13 +32,18 @@ export const SearchField = (props: {
 
   return (
     <div className={`search-field ${props.className}`}>
-      <Textfield
-        id="searchField"
-        name="searchField"
-        type="text"
-        label={props.fieldLabel}
-        onChange={(fieldValue) => filterItems(fieldValue)}
-      />
+      <div className="box">
+        <Textfield
+          id="searchField"
+          name="searchField"
+          type="text"
+          label={props.fieldLabel}
+          onChange={(fieldValue) => filterItems(fieldValue)}
+        />
+        <MdSearch />
+      </div>
+
+      {/* deprecated  */}
       {props.showButton ? (
         <Button
           onClick={() => {
