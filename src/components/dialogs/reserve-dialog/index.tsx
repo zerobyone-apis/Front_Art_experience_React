@@ -7,7 +7,6 @@ import { TimeStep } from './time-step';
 import { ServiceStep } from './service-step';
 import { IStepperFooter, StepperDialog } from '../stepper-dialog';
 import { services } from '../../../data/reserve';
-import { IntroStep } from './intro-step';
 import { ButtonContext } from '../../../contexts/ButtonsContext';
 import { UserContext } from '../../../contexts/UserContext';
 import { BiTask, BiTaskX } from 'react-icons/bi';
@@ -16,7 +15,6 @@ import { Button } from '../../inputs/button';
 import { createReserve } from './logic';
 import moment from 'moment';
 import './reserve-dialog.scss';
-
 
 export const ReserveDialog = () => {
 
@@ -48,11 +46,8 @@ export const ReserveDialog = () => {
         showPrev: false
     }
 
-
     const checkStep = (wizard: number) => {
         switch (wizard) {
-            // case 0:
-            //     return true;
             case 0:
                 return selectedBarber.name ? true : false;
             case 1:
@@ -64,7 +59,6 @@ export const ReserveDialog = () => {
         }
         return false;
     }
-
 
     const startReservation = async () => {
         setDisabledButton(true);
@@ -127,8 +121,6 @@ export const ReserveDialog = () => {
                     className="reserve-stepper"
                     fullscreenMobile={true}
                 >
-                    {/*<IntroStep />*/}
-
                     <BarberStep
                         value={selectedBarber}
                         setBarber={setSelectedBarber}

@@ -17,16 +17,14 @@ export const StepperDialog = (props: {
     onSuccess: () => void, // TODO fix type
     onClose?: () => void,
     children: any[],
-    //stepper footer
+
     footerConfig: IStepperFooter,
-    //style
+
     width?: string,
     height?: string,
     className?: string,
     fullscreenMobile?: boolean,
 }) => {
-
-    // halt and catch fire
 
     const [activeEffect, setActiveEffect] = useState(false);
 
