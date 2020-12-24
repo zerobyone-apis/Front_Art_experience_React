@@ -1,0 +1,21 @@
+@import '../../../theme/colors.scss';
+
+.header-item-box {
+    cursor: pointer;
+
+    .header_button-content {
+        .icon {
+            margin-left: 0px;
+        }
+    }
+
+    &:hover {
+        .header-item {
+            background-color: rgba(61, 61, 61, 0.301);
+
+            p {
+                color: $warm-color;
+            }
+        }
+    }
+}
