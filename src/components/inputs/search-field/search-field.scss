@@ -1,9 +1,18 @@
+@import '../../../theme/colors.scss';
+@import '../../../theme/fonts.scss';
+
+
 .search-field {
   .box {
     width: max-content;
     height: max-content;
     display: flex;
     align-items: center;
+
+    .MuiFormLabel-root {
+      color: $warm-color !important;
+      @include noselect;
+    }
 
     svg {
       position: absolute;
