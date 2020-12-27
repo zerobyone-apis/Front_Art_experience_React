@@ -13,6 +13,7 @@ import { FormProvider } from '../../../../../contexts/FormContext';
 import { BiSave } from 'react-icons/bi';
 import { FaCalendarCheck, FaCross } from 'react-icons/fa';
 import { AiOutlineClose } from 'react-icons/ai';
+import { MdSave } from 'react-icons/md';
 
 
 export const ManagerDialog = (props: {
@@ -35,20 +36,18 @@ export const ManagerDialog = (props: {
     socialNumber: 0,
   };
 
+
   const {
     // @ts-ignore
     disabled,
     setDisabledButton,
   } = useContext(ButtonContext);
 
+
   const reserveActions: ReserveActions = new ReserveActions();
   const [reserve, setReserve] = useState(props.reserve || baseReserve);
   const [showFinalizeDialog, setFinalizeDialog] = useState(false);
   const [showCancelDialog, setCancelDialog] = useState(false);
-
-
-
-
 
 
   /* UPDATE RESERVE */
@@ -91,101 +90,22 @@ export const ManagerDialog = (props: {
   }
 
 
-  /* FINALIZE RESERVE */
-  const finalize = async () => {
-    setDisabledButton(true);
-    let response = await reserveActions.doneReserve(
-      reserve.barberOrHairdresserId,
-      reserve.reserveId
-    );
-    // console.log('finalized');
-    if (response) {
-      // console.log('success finalize');
-      props.onFinalized();
-      props.onClose();
-    } else {
-      // console.log('error', response);
-    }
-    setDisabledButton(false);
-  }
-
-
-
-  /* CANCEL RESERVE */
-  const cancel = async () => {
-    setDisabledButton(true);
-    let response = await reserveActions.cancel(
-      reserve.clientId,
-      reserve.reserveId
-    )
-    // console.log('cancel response: ', response);
-    if (response) {
-      // console.log('success cancel');
-      props.onCancelled();
-      props.onClose();
-    } else {
-      // console.log('error cancel :', response);
-    }
-    setDisabledButton(false);
-  }
-
   return (
     <DialogModal
-      title="Control de Reserva"
+      title="Edición de Reserva"
       onClose={props.onClose}
       width="400px"
       fullscreenOnMobile={true}
     >
-
       <FormProvider currentForm={MANAGER_FIELDLS}>
         <ManagerForm reserve={reserve} />
         <StepperFooter
-          noUseWizard={true}
-          // TODO create save function
-
-          // nextLabel="Guardar"
-          // prevLabel="Finalizar"
-          // onNextButtonClick={(fields) => save(fields)}
-          // validate={true}
-
-          nextLabel="Finalizar"
-          prevLabel="Cancelar"
-          prevIcon={<AiOutlineClose />}
+          validate={true}
+          nextLabel="Guardar"
           nextIcon={<FaCalendarCheck />}
-
-          onNextButtonClick={() => setFinalizeDialog(true)}
-          onPrevButtonClick={() => setCancelDialog(true)}
-          prevButtonStyle="outlined"
-        >
-          {/* <Button
-            label="Cancelar"
-            style="outlined"
-            onClick={() => setCancelDialog(true)}
-          /> */}
-        </StepperFooter>
+          onNextButtonClick={(fields) => save(fields)}
+        />
       </FormProvider>
-
-      {showFinalizeDialog && (
-        <ConfirmDialog
-          title="Finalizacion de reserva"
-          message="Esta seguro de que desea finalizar la reserva?"
-          acceptLabel="Confirmar Accion"
-          cancelLabel="Volver"
-          onAccept={() => finalize()}
-          onCancel={() => setFinalizeDialog(false)}
-        />
-      )}
-
-      {showCancelDialog && (
-        <ConfirmDialog
-          title="Cancelacion de reserva"
-          message="Esta seguro de que desea cancelar la reserva?"
-          acceptLabel="Confirmar Accion"
-          cancelLabel="Volver"
-          onAccept={() => cancel()}
-          onCancel={() => setCancelDialog(false)}
-        />
-      )}
 
     </DialogModal>
   )
