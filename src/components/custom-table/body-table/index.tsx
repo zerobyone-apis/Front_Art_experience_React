@@ -1,11 +1,13 @@
 import { createStyles, makeStyles, Theme } from '@material-ui/core';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { RowTable } from '../row-table';
 import { HEADER } from '../table.type';
+
 
 export const BodyTable = (props: {
   items: any[]
   headers: HEADER[]
+  selectedHeader: HEADER
   onSelectRow: () => void
   onEditRow: () => void
 }) => {
@@ -28,10 +30,18 @@ export const BodyTable = (props: {
 
   const classes = useStyles();
 
+  useEffect(() => {
+    getRows()
+  }, [props.items]);
+
+  const getRows = () => {
+    return props.items
+  }
+
   return (
     <div className="table-content">
       <div className="row-box">
-        {props.items.length && props.items.map((row, i) => {
+        {props.items.length && getRows().map((row, i) => {
           return (
             <div className="table-box" key={i}>
               <div className="content-box">
@@ -40,8 +50,9 @@ export const BodyTable = (props: {
                     item={row}
                     headers={props.headers}
                     selected={selectedRow == row}
+                    selectedHeader={props.selectedHeader}
                     onSelect={() => { setSelectedRow(row) }}
-                    onEdit={() => { props.onEditRow }}
+                    onEdit={props.onEditRow}
                   />
                 </div>
               </div>
