@@ -4,11 +4,14 @@ import { MdEdit } from 'react-icons/md';
 import { Text } from '../../decorators/text';
 import { Button } from '../../inputs/button';
 import { HEADER } from '../table.type';
+import './row-table.scss';
+
 
 export const RowTable = (props: {
     item: any
     selected: boolean
     headers: HEADER[]
+    selectedHeader: HEADER
     onSelect: () => void
     onEdit: () => void
 }) => {
@@ -45,7 +48,7 @@ export const RowTable = (props: {
             <Grid container xl={12} spacing={3}>
                 {props.headers.map((header, i) => {
                     return (
-                        <Grid item xs key={i} className={`header_${i}`}>
+                        <Grid item xs key={i} className={`header_${i} ${props.selectedHeader == header && 'selected'}`}>
                             {getColumnValue(header.value)}
                         </Grid>
                     )
