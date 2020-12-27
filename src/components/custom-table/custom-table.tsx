@@ -1,6 +1,5 @@
 import React from 'react';
 import { HeaderTable } from './header-table';
-import { FooterTable } from './footer-table';
 import './custom-table.scss';
 
 export const CustomTable = (props: {
@@ -20,13 +19,12 @@ export const CustomTable = (props: {
     <div className="custom-table">
       <div className="table">
         {props.items.length && (
-          <>
-            <HeaderTable
-              rowsToFilter={props.items}
-              headers={props.headers}
-              sortColumnByHeader={props.sortColumnByHeader}
-            />
-          </>
+          <HeaderTable
+            rowsToFilter={props.items}
+            headers={props.headers}
+            sortColumnByHeader={props.sortColumnByHeader}
+            onEditItem={() => props.onEditItem()}
+          />
         )}
       </div>
     </div>
