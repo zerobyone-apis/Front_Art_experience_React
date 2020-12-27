@@ -1,5 +1,5 @@
 import { Grid } from '@material-ui/core';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { AiFillCaretDown, AiFillCaretUp } from 'react-icons/ai';
 import { Button } from '../../inputs/button';
 import { SearchField } from '../../inputs/search-field/search-field';
@@ -12,22 +12,19 @@ export const HeaderTable = (props: {
     rowsToFilter: any[]
     sortColumnByHeader: any
     headers: HEADER[]
+    onEditItem: () => any
 }) => {
 
     const [selectedHeader, setSelectedHeader] = useState(props.headers[0]);
     const [arrowUp, setArrowUp] = useState(true);
     const [filtredRows, setFiltredRows] = useState(props.rowsToFilter);
 
-    useEffect(() => {
-        sortRows()
-    }, [arrowUp]);
 
-    const onSelectHeader = (selected: HEADER) => {
-        setSelectedHeader(selected);
-        setArrowUp(res => !res)
-    }
+    const sortRows = (header) => {
 
-    const sortRows = () => {
+        setArrowUp(res => !res);
+        setSelectedHeader(header);
+
         let copyRows = props.rowsToFilter;
         if (selectedHeader.value === 'startTimeFront') {
             const moment = require('moment');
@@ -44,6 +41,8 @@ export const HeaderTable = (props: {
         setFiltredRows(copyRows);
     }
 
+
+
     const compare = (a: any, b: any) => {
         let headerValue = selectedHeader.value;
         /* sort column by another header */
@@ -52,24 +51,31 @@ export const HeaderTable = (props: {
                 headerValue = props.sortColumnByHeader.headerToSort;
             }
         }
-        /* default sort by key */
-        if (a[headerValue] < b[headerValue]) {
+        /* classic sorting */
+        let fA: string = a[headerValue].toString().toLowerCase()
+        let fB: string = b[headerValue].toString().toLowerCase()
+
+        if (fA < fB) {
             return -1;
-        }
-        if (a[headerValue] > b[headerValue]) {
+        } else {
             return 1;
         }
-        return 0;
     }
 
     const HeaderItem = (props: {
         label: string
         selected: boolean
         sortUp: boolean
+        disabled?: boolean
         onSelect: () => void
     }) => {
         return (
-            <Grid item xs onClick={() => { props.onSelect() }} className="header-item-box">
+            <Grid
+                item
+                xs
+                onClick={() => { !props.disabled && props.onSelect() }}
+                className={`header-item-box ${props.disabled && 'disabled'}`}
+            >
                 <div className="header-item">
                     <Button
                         style="text"
@@ -109,9 +115,10 @@ export const HeaderTable = (props: {
                             <HeaderItem
                                 key={i}
                                 label={header.text}
+                                disabled={header.value === 'actions'}
                                 selected={selectedHeader == header}
                                 sortUp={arrowUp}
-                                onSelect={() => { onSelectHeader(header) }}
+                                onSelect={() => { sortRows(header) }}
                             />
                         )
                     })
@@ -122,8 +129,9 @@ export const HeaderTable = (props: {
             <BodyTable
                 items={filtredRows}
                 headers={props.headers}
+                selectedHeader={selectedHeader}
                 onSelectRow={() => { }}
-                onEditRow={() => { }}
+                onEditRow={props.onEditItem}
             />
             {/* FOOTER */}
             <FooterTable totalRows={filtredRows.length} />
