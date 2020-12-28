@@ -23,7 +23,8 @@ export const CustomTable = (props: {
             rowsToFilter={props.items}
             headers={props.headers}
             sortColumnByHeader={props.sortColumnByHeader}
-            onEditItem={() => props.onEditItem()}
+            onEditItem={props.onEditItem}
+            onSelectRow={props.onSelectRow}
           />
         )}
       </div>
