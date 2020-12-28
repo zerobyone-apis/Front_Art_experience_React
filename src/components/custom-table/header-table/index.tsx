@@ -12,13 +12,13 @@ export const HeaderTable = (props: {
     rowsToFilter: any[]
     sortColumnByHeader: any
     headers: HEADER[]
+    onSelectRow: () => any
     onEditItem: () => any
 }) => {
 
     const [selectedHeader, setSelectedHeader] = useState(props.headers[0]);
     const [arrowUp, setArrowUp] = useState(true);
     const [filtredRows, setFiltredRows] = useState(props.rowsToFilter);
-
 
     const sortRows = (header) => {
 
@@ -40,8 +40,6 @@ export const HeaderTable = (props: {
         }
         setFiltredRows(copyRows);
     }
-
-
 
     const compare = (a: any, b: any) => {
         let headerValue = selectedHeader.value;
@@ -130,7 +128,7 @@ export const HeaderTable = (props: {
                 items={filtredRows}
                 headers={props.headers}
                 selectedHeader={selectedHeader}
-                onSelectRow={() => { }}
+                onSelectRow={props.onSelectRow}
                 onEditRow={props.onEditItem}
             />
             {/* FOOTER */}
