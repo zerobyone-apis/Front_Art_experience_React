@@ -4,7 +4,7 @@
 
 .header-item-box {
     cursor: pointer;
-    @include noselect;
+    //@include noselect;
 
     .header_button-content {
         .icon {

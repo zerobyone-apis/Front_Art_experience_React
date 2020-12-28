@@ -11,7 +11,7 @@
 
     .MuiFormLabel-root {
       color: $warm-color !important;
-      @include noselect;
+      //@include noselect;
     }
 
     svg {
