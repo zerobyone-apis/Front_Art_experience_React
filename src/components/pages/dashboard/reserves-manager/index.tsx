@@ -6,28 +6,19 @@ import { headerMobileOrder, headerOrder } from '../../../../data/dashboard';
 import { IReserve } from '../../../../types/Reserve.type';
 import moment from "moment";
 import './reserve-manager.scss';
+import { ManagerDialog } from './manager-dialog';
+import { ManagerActions } from './manager-actions';
+import { ConfirmDialog } from '../../../dialogs/confirm-dialog';
 
 
 export const ReserveManager = () => {
 
+    const reserveActions: ReserveActions = new ReserveActions();
     const [reserves, setReserves] = useState([]);
-
     const [selectedReserve, setSelectedReserve] = useState(undefined);
-    const [showReserveDialog, setShowReserveDialog] = useState(false);
+    const [showManagerDialog, setShowManagerDialog] = useState(false);
     const [showFinalizeDialog, setFinalizeDialog] = useState(false);
     const [showCancelDialog, setCancelDialog] = useState(false);
-
-    const reserveActions: ReserveActions = new ReserveActions();
-
-    // Mobile headers
-    const mobileHeaders = headerMobileOrder;
-
-    const {
-        // @ts-ignore
-        disabled,
-        setDisabledButton,
-    } = useContext(ButtonContext);
-
 
     useEffect(() => {
         const fetchGetReserves = async () => {
@@ -38,6 +29,16 @@ export const ReserveManager = () => {
         */
         fetchGetReserves()
     }, [])
+
+
+    // Mobile headers
+    const mobileHeaders = headerMobileOrder;
+
+    const {
+        // @ts-ignore
+        disabled,
+        setDisabledButton,
+    } = useContext(ButtonContext);
 
     const getReserves = async () => {
         setDisabledButton(true);
@@ -56,26 +57,102 @@ export const ReserveManager = () => {
 
     const showEditReserve = (reserve: any) => {
         setSelectedReserve(reserve);
-        setShowReserveDialog(true);
+        setShowManagerDialog(true);
     }
-    const showActionsReserve = (reserve: any) => {
-        setSelectedReserve(reserve);
-        // setShowReserveDialog(true);
+
+    /* FINALIZE RESERVE */
+    const finalize = async () => {
+        setDisabledButton(true);
+        let response = await reserveActions.doneReserve(
+            selectedReserve.barberOrHairdresserId,
+            selectedReserve.reserveId
+        );
+        if (response) {
+            console.log('success finalize');
+        } else {
+            console.log('error', response);
+        }
+        setDisabledButton(false);
+    }
+
+    /* CANCEL RESERVE */
+    const cancel = async () => {
+        setDisabledButton(true);
+        let response = await reserveActions.cancel(
+            selectedReserve.clientId,
+            selectedReserve.reserveId
+        )
+        if (response) {
+            console.log('success cancel');
+        } else {
+            console.log('error cancel :', response);
+        }
+        setDisabledButton(false);
     }
 
     return (
-        <div>
+        <>
             <CustomTable
                 items={reserves}
                 headers={headerOrder}
-                onSelectRow={showActionsReserve}
-                onEditItem={showEditReserve}
+                onSelectRow={(reserve) => {
+                    setSelectedReserve(reserve)
+                }}
+                onEditItem={(reserve) => {
+                    showEditReserve(reserve)
+                }}
                 sortColumnByHeader={{
                     headerToAction: "startTimeFront",
                     headerToSort: "reserveId",
                 }}
                 footerItems={[]}
             />
-        </div>
+
+            {
+                selectedReserve && (
+                    <ManagerActions
+                        header={headerOrder[0]}
+                        item={selectedReserve}
+                        onFinalize={() => setFinalizeDialog(true)}
+                        onCancelled={() => setCancelDialog(true)}
+                    />
+                )
+            }
+
+            {
+                showManagerDialog && (
+                    <ManagerDialog
+                        reserve={selectedReserve}
+                        onClose={() => setShowManagerDialog(false)}
+                        onFinalized={() => { }}
+                        onUpdated={() => { }}
+                        onCancelled={() => { }}
+                    />
+                )
+            }
+
+
+            {showFinalizeDialog && (
+                <ConfirmDialog
+                    title="Finalizacion de reserva"
+                    message="Esta seguro de que desea finalizar la reserva?"
+                    acceptLabel="Confirmar Accion"
+                    cancelLabel="Volver"
+                    onAccept={() => finalize()}
+                    onCancel={() => setFinalizeDialog(false)}
+                />
+            )}
+
+            {showCancelDialog && (
+                <ConfirmDialog
+                    title="Cancelacion de reserva"
+                    message="Esta seguro de que desea cancelar la reserva?"
+                    acceptLabel="Confirmar Accion"
+                    cancelLabel="Volver"
+                    onAccept={() => cancel()}
+                    onCancel={() => setCancelDialog(false)}
+                />
+            )}
+        </>
     )
 }
