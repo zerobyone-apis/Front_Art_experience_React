@@ -31,7 +31,7 @@ export const RowTable = (props: {
                     <Button
                         style="text"
                         icon={<MdEdit />}
-                        onClick={() => { props.onEdit() }}
+                        onClick={() => props.onEdit()}
                     />
                 )
             default:
