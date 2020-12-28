@@ -8,7 +8,7 @@ export const BodyTable = (props: {
   items: any[]
   headers: HEADER[]
   selectedHeader: HEADER
-  onSelectRow: () => void
+  onSelectRow: (row) => void
   onEditRow: () => void
 }) => {
 
@@ -51,8 +51,11 @@ export const BodyTable = (props: {
                     headers={props.headers}
                     selected={selectedRow == row}
                     selectedHeader={props.selectedHeader}
-                    onSelect={() => { setSelectedRow(row) }}
-                    onEdit={props.onEditRow}
+                    onSelect={() => {
+                      setSelectedRow(row)
+                      props.onSelectRow(row)
+                    }}
+                    onEdit={() => props.onEditRow()}
                   />
                 </div>
               </div>
