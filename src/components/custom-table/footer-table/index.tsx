@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Text } from '../../decorators/text';
-import { TableContext } from '../TableContext';
+import './footer-table.scss';
 
 export const FooterTable = (props: {
     leftItems?: any[]
@@ -15,9 +15,8 @@ export const FooterTable = (props: {
                 })}
             </div>
             <div className="pagination-box">
-                <Text type="text">
-                    {`Total: ${props.totalRows}`}
-                </Text>
+                <Text type="text">Total:</Text>
+                <Text type="text" color="primary" className="value">{`${props.totalRows}`}</Text>
             </div>
         </div>
     )
