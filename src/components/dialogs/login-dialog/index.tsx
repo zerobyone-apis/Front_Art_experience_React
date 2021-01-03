@@ -19,6 +19,7 @@ import { AiFillCaretDown } from 'react-icons/ai';
 
 export const LoginDialog = (props: {
     pageRef: string
+    theme?: string
 }) => {
 
     //dialogs states

@@ -6,6 +6,7 @@ import './page.scss';
 export const PageBase = (props: {
     children?: any[]
     toolbar?: any
+    className?: string
 }) => {
 
     const {
@@ -15,7 +16,7 @@ export const PageBase = (props: {
 
     return (
         <>
-            <div className={`page-base`}>
+            <div className={`page-base ${props.className}`}>
                 {props.toolbar && (
                     <div className="toolbar-box">
                         {props.toolbar}
