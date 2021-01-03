@@ -1,20 +1,15 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
+import moment from 'moment';
 import { DialogModal } from '../../../../dialogs/dialog-modal/dialog-modal';
 import ReserveActions from '../../../../../actions/Reserve.actions';
 import { IReserve } from '../../../../../types/Reserve.type';
 import { ButtonContext } from '../../../../../contexts/ButtonsContext';
 import { StepperFooter } from '../../../../containers/stepper/stepper-footer';
-import { ConfirmDialog } from '../../../../dialogs/confirm-dialog';
 import { ManagerForm, MANAGER_FIELDLS } from './manager-form';
-import { Button } from '../../../../inputs/button';
-import moment from 'moment';
-import './manager-dialog.scss';
 import { FormProvider } from '../../../../../contexts/FormContext';
-import { BiSave } from 'react-icons/bi';
 import { FaCalendarCheck, FaCross } from 'react-icons/fa';
-import { AiOutlineClose } from 'react-icons/ai';
-import { MdSave } from 'react-icons/md';
-
+import { MdArrowBack } from 'react-icons/md';
+import './manager-dialog.scss';
 
 export const ManagerDialog = (props: {
   reserve: IReserve,
@@ -24,63 +19,51 @@ export const ManagerDialog = (props: {
   onUpdated?: (updated) => any,
 }) => {
 
-  const baseReserve: IReserve = {
-    barberOrHairdresserId: -1,
-    celClient: '',
-    clientId: -1,
-    mailClient: '',
-    nameClient: '',
-    priceWork: 0,
-    startTime: '',
-    additionalCost: 0,
-    socialNumber: 0,
-  };
-
-
   const {
-    // @ts-ignore
-    disabled,
     setDisabledButton,
   } = useContext(ButtonContext);
 
-
   const reserveActions: ReserveActions = new ReserveActions();
-  const [reserve, setReserve] = useState(props.reserve || baseReserve);
-  const [showFinalizeDialog, setFinalizeDialog] = useState(false);
-  const [showCancelDialog, setCancelDialog] = useState(false);
 
 
-  /* UPDATE RESERVE */
+
+
+
+
+
+
+
+
+
+
+
   const save = async (fields: any) => {
     setDisabledButton(true);
-    //let formatDateOld = moment(reserve.startTime).format('YYYY-MM-DDTHH:mm:ss');
-    let formatDateFront = moment(fields[MANAGER_FIELDLS.startTimeFront].value).format('YYYY-MM-DDTHH:mm:ss');
-    let reserveUpdate: IReserve = {
+    let formatDateFront = moment().format('YYYY-MM-DDTHH:mm:ss');
 
+    console.log(fields)
+    console.log(fields[MANAGER_FIELDLS.celClient].value)
+
+    let reserveUpdate: IReserve = {
       /* Check the start time: need pass the startTimeFront formatted? 
         add a callendar?
       */
       startTime: formatDateFront,
-
       /* Fields of form */
       workToDo: fields[MANAGER_FIELDLS.workToDo].value,
       priceWork: fields[MANAGER_FIELDLS.totalCost].value, /* <-- Are not the same but is necesary */
       celClient: fields[MANAGER_FIELDLS.celClient].value,
-
       /* Not updated fields (disabled or not specify) */
-      reserveId: reserve.reserveId,
-      clientId: reserve.clientId,
-      socialNumber: reserve.socialNumber,
-      nameClient: reserve.nameClient,
-      barberOrHairdresserId: reserve.barberOrHairdresserId,
-      mailClient: reserve.mailClient,
-      additionalCost: reserve.additionalCost,
+      reserveId: props.reserve.reserveId,
+      clientId: props.reserve.clientId,
+      socialNumber: props.reserve.socialNumber,
+      nameClient: props.reserve.nameClient,
+      barberOrHairdresserId: props.reserve.barberOrHairdresserId,
+      mailClient: props.reserve.mailClient,
+      additionalCost: props.reserve.additionalCost,
     }
-    console.log('RESERVE', reserveUpdate)
     let response = await reserveActions.update(reserveUpdate);
-    console.log('Update reserve');
     if (response) {
-      console.log('Success updated');
       props.onUpdated(reserveUpdate);
       props.onClose();
     } else {
@@ -88,6 +71,9 @@ export const ManagerDialog = (props: {
     }
     setDisabledButton(false);
   }
+
+
+
 
 
   return (
@@ -98,15 +84,18 @@ export const ManagerDialog = (props: {
       fullscreenOnMobile={true}
     >
       <FormProvider currentForm={MANAGER_FIELDLS}>
-        <ManagerForm reserve={reserve} />
+        <ManagerForm reserve={props.reserve} />
         <StepperFooter
           validate={true}
+          noUseWizard={true}
+          prevLabel="Volver"
           nextLabel="Guardar"
           nextIcon={<FaCalendarCheck />}
+          prevIcon={<MdArrowBack />}
           onNextButtonClick={(fields) => save(fields)}
+          onPrevButtonClick={() => props.onClose()}
         />
       </FormProvider>
-
     </DialogModal>
   )
 }
