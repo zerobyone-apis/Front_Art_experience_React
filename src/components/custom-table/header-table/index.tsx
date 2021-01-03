@@ -104,7 +104,7 @@ export const HeaderTable = (props: {
                         items={props.rowsToFilter}
                         onChangeResults={res => { setFiltredRows(res) }}
                         itemFilter={selectedHeader}
-                        fieldLabel={`Buscar: ${selectedHeader.text}`}
+                        fieldLabel={`Buscar por ${selectedHeader.text}`}
                     />
                 </div>
                 <Grid container xl={12} spacing={3}>
