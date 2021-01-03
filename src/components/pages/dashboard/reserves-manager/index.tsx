@@ -4,11 +4,11 @@ import { ButtonContext } from '../../../../contexts/ButtonsContext';
 import { CustomTable } from '../../../custom-table/custom-table';
 import { headerMobileOrder, headerOrder } from '../../../../data/dashboard';
 import { IReserve } from '../../../../types/Reserve.type';
-import moment from "moment";
-import './reserve-manager.scss';
 import { ManagerDialog } from './manager-dialog';
 import { ManagerActions } from './manager-actions';
 import { ConfirmDialog } from '../../../dialogs/confirm-dialog';
+import moment from "moment";
+import './reserve-manager.scss';
 
 
 export const ReserveManager = () => {
@@ -29,7 +29,6 @@ export const ReserveManager = () => {
         */
         fetchGetReserves()
     }, [])
-
 
     // Mobile headers
     const mobileHeaders = headerMobileOrder;
@@ -60,6 +59,12 @@ export const ReserveManager = () => {
         setShowManagerDialog(true);
     }
 
+    const removeSelectedReserve = () => {
+        let removeReserve = reserves.splice(reserves.indexOf(selectedReserve), 1);
+        setReserves(removeReserve);
+        setSelectedReserve(null)
+    }
+
     /* FINALIZE RESERVE */
     const finalize = async () => {
         setDisabledButton(true);
@@ -68,7 +73,8 @@ export const ReserveManager = () => {
             selectedReserve.reserveId
         );
         if (response) {
-            console.log('success finalize');
+            removeSelectedReserve();
+            setFinalizeDialog(false);
         } else {
             console.log('error', response);
         }
@@ -83,7 +89,8 @@ export const ReserveManager = () => {
             selectedReserve.reserveId
         )
         if (response) {
-            console.log('success cancel');
+            removeSelectedReserve();
+            setCancelDialog(false);
         } else {
             console.log('error cancel :', response);
         }
