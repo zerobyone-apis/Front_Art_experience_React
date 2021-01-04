@@ -19,16 +19,18 @@ export const ReserveManager = () => {
     const [showManagerDialog, setShowManagerDialog] = useState(false);
     const [showFinalizeDialog, setFinalizeDialog] = useState(false);
     const [showCancelDialog, setCancelDialog] = useState(false);
+    const [reserveUpdated, setReserveUpdated] = useState(false);
 
     useEffect(() => {
         const fetchGetReserves = async () => {
             await getReserves();
+            reserveUpdated ? setReserveUpdated(false) : null;
         };
         /* check user is admin
             // !userIsAdmin() ? (document.location.href = "/") : (
         */
         fetchGetReserves()
-    }, [])
+    }, [reserveUpdated])
 
     // Mobile headers
     const mobileHeaders = headerMobileOrder;
@@ -96,29 +98,48 @@ export const ReserveManager = () => {
         }
         setDisabledButton(false);
     }
+    
+    /* REFRESH TABLE METHOD */
+    const isUpdated = () => {
+        console.log('Is updated.. 😎')
+        setReserveUpdated(true);
+    }
+
+    // Este metodo es para probar y no repetir el codigo de la tabla, se que se puede hacer el render condicional de mejor forma
+    // Pero de una u otra manera no me estuvo funcando bro.
+    const showTable = () => {
+        return (
+            <CustomTable
+                        items={reserves}
+                        headers={headerOrder}
+                        onSelectRow={(reserve) => {
+                            setSelectedReserve(reserve)
+                        }}
+                        onEditItem={(reserve) => {
+                            showEditReserve(reserve)
+                        }}
+                        sortColumnByHeader={{
+                            headerToAction: "startTimeFront",
+                            headerToSort: "reserveId",
+                        }}
+                        footerItems={[]}
+                    />
+        )
+    }
 
     return (
         <>
-            <CustomTable
-                items={reserves}
-                headers={headerOrder}
-                onSelectRow={(reserve) => {
-                    setSelectedReserve(reserve)
-                }}
-                onEditItem={(reserve) => {
-                    showEditReserve(reserve)
-                }}
-                sortColumnByHeader={{
-                    headerToAction: "startTimeFront",
-                    headerToSort: "reserveId",
-                }}
-                footerItems={[]}
-            />
-
+           { /** Rancio pero la movida era para que funque, una vez de con que es lo que no deja hacer el render lo aprolijo. */
+                reserveUpdated ? (
+                    showTable()
+                ) : (
+                    showTable()
+                )
+           } 
             {
                 selectedReserve && (
                     <ManagerActions
-                        header={headerOrder[0]}
+                        header={headerOrder[0]} //! TODO: -> Estamos quemando el valor de ordenamiento que le indicamos? (1 - fecha, 2 - ID )
                         item={selectedReserve}
                         onFinalize={() => setFinalizeDialog(true)}
                         onCancelled={() => setCancelDialog(true)}
@@ -131,9 +152,12 @@ export const ReserveManager = () => {
                     <ManagerDialog
                         reserve={selectedReserve}
                         onClose={() => setShowManagerDialog(false)}
-                        onFinalized={() => { }}
-                        onUpdated={() => { }}
-                        onCancelled={() => { }}
+                        onSaveRefresh={() => isUpdated()}
+                        
+                        //* Deprecated..
+                        //? onFinalized={() => { }}
+                        //? onUpdated={() => { }}
+                        //? onCancelled={() => { }}
                     />
                 )
             }

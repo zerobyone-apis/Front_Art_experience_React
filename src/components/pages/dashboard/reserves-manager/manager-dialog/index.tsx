@@ -14,35 +14,31 @@ import './manager-dialog.scss';
 export const ManagerDialog = (props: {
   reserve: IReserve,
   onClose: any,
-  onFinalized?: () => any,
-  onCancelled?: () => any,
-  onUpdated?: (updated) => any,
+  onSaveRefresh: () => any
+
+  //* Deprecated:
+  //? onFinalized?: () => any,
+  //? onCancelled?: () => any,
+  //? onUpdated?: (updated) => any,
 }) => {
 
   const {
     setDisabledButton,
   } = useContext(ButtonContext);
 
+  // New instance actions 
+  //TODO: En un futuro por mas control de instancias deberiamos de tener nuestro archivo de instancias 
+  //TODO: para darle vida a una unica instancia y poder utilizarla donde sea necesario. -> Singleton Pattern
   const reserveActions: ReserveActions = new ReserveActions();
-
-
-
-
-
-
-
-
-
-
-
 
 
   const save = async (fields: any) => {
     setDisabledButton(true);
     let formatDateFront = moment().format('YYYY-MM-DDTHH:mm:ss');
 
-    console.log(fields)
-    console.log(fields[MANAGER_FIELDLS.celClient].value)
+    //* This works
+    // console.log(`Estos son mis fields de reserva -> ${fields}`);
+    // console.log(`Este es el cel -> ${fields[MANAGER_FIELDLS.celClient].value}`);
 
     let reserveUpdate: IReserve = {
       /* Check the start time: need pass the startTimeFront formatted? 
@@ -64,17 +60,16 @@ export const ManagerDialog = (props: {
     }
     let response = await reserveActions.update(reserveUpdate);
     if (response) {
-      props.onUpdated(reserveUpdate);
-      props.onClose();
+      console.log('Update Successfully 😎');
+      await props.onSaveRefresh()
+      //! Estos metodos realmente no estaba haciendo nada, debido a que no se le envia ningun update como prop.
+      // props.onUpdated(reserveUpdate);
+      // props.onClose();
     } else {
       console.log('Error updating:', response);
     }
     setDisabledButton(false);
   }
-
-
-
-
 
   return (
     <DialogModal
