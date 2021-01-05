@@ -9,9 +9,6 @@ import {
 } from '../types/Routes.type';
 // eslint-disable-next-line no-unused-vars
 import { IReserve } from '../types/Reserve.type';
-
-
-
 export default class ReserveActions {
 
 
@@ -39,7 +36,6 @@ export default class ReserveActions {
   }
 
 
-
   //* Get reserve method
   public async getAll() {
     try {
@@ -57,7 +53,6 @@ export default class ReserveActions {
       return null;
     }
   }
-
 
 
   //* Update reserve method

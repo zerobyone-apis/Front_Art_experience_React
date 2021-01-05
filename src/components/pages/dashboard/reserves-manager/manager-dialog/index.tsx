@@ -14,12 +14,12 @@ import './manager-dialog.scss';
 export const ManagerDialog = (props: {
   reserve: IReserve,
   onClose: any,
-  onSaveRefresh: () => any
+  // onSaveRefresh: () => any
 
   //* Deprecated:
   //? onFinalized?: () => any,
   //? onCancelled?: () => any,
-  //? onUpdated?: (updated) => any,
+  onUpdated?: (updated) => any,
 }) => {
 
   const {
@@ -61,9 +61,10 @@ export const ManagerDialog = (props: {
     let response = await reserveActions.update(reserveUpdate);
     if (response) {
       console.log('Update Successfully 😎');
-      await props.onSaveRefresh()
+      // await props.onSaveRefresh()
+
       //! Estos metodos realmente no estaba haciendo nada, debido a que no se le envia ningun update como prop.
-      // props.onUpdated(reserveUpdate);
+       props.onUpdated(reserveUpdate);
       // props.onClose();
     } else {
       console.log('Error updating:', response);
