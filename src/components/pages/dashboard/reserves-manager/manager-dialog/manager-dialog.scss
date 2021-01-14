@@ -9,4 +9,18 @@
             margin: 0 40px;
         }
     }
+
+    .manager-select {
+        p {
+            display: flex;
+            align-items: center;
+        }
+
+        display: flex;
+    }
+
+    .services-box {
+        height: 400px;
+        overflow-y: scroll;
+    }
 }

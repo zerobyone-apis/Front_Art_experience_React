@@ -208,6 +208,16 @@ export const ReserveManager = () => {
           onReserveAllDay={() => forHollidaysReservesDate()}
         />
       )}
+            {showFinalizeDialog && (
+                <ConfirmDialog
+                    title="Finalizacion de reserva"
+                    message="Esta seguro de que desea finalizar la reserva?"
+                    acceptLabel="Confirmar Accion"
+                    cancelLabel="Volver"
+                    onAccept={() => finalize()}
+                    onCancel={() => setFinalizeDialog(false)}
+                />
+            )}
 
       {showManagerDialog && (
         <ManagerDialog

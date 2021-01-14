@@ -6,28 +6,25 @@ import { StepperFooter } from '../../../../containers/stepper/stepper-footer';
 import { MANAGER_FIELDLS } from './manager-form';
 import { FormProvider } from '../../../../../contexts/FormContext';
 import { FaCalendarCheck } from 'react-icons/fa';
-import { MdArrowBack, MdSearch } from 'react-icons/md';
+import { MdArrowBack, MdCheck, MdSearch } from 'react-icons/md';
 import { Step } from '../../../../containers/stepper/step';
 import { FormBox } from '../../../../containers/form-box';
 import { Textfield } from '../../../../inputs/text-field/text-field';
-import { SelectField } from '../../../../inputs/select-field/select-field';
-import { TimeStep } from '../../../../dialogs/reserve-dialog/time-step';
 import ReserveActions from '../../../../../actions/Reserve.actions';
 import moment from 'moment';
 import './manager-dialog.scss';
-import { IBarber } from '../../../../../types/Barber.type';
 import { BarberListContext } from '../../../../../contexts/BarberListContext';
 import { Button } from '../../../../inputs/button';
 import { ServiceStep } from '../../../../dialogs/reserve-dialog/service-step';
 import { services } from '../../../../../data/reserve';
 import { IService } from '../../../../../types/Service.type';
 import { Text } from '../../../../decorators/text';
-
+import { BarberStep } from '../../../../dialogs/reserve-dialog/barber-step';
+import { TimeStep } from '../../../../dialogs/reserve-dialog/time-step';
 
 export const ManagerDialog = (props: {
   reserve: IReserve,
   onClose: any,
-  // onSaveRefresh: () => any
 
   //* Deprecated:
   //? onFinalized?: () => any,
@@ -36,17 +33,28 @@ export const ManagerDialog = (props: {
 }) => {
 
   const [showServiceDialog, setShowServiceDialog] = useState(false);
-  const [selectedService, setSelectedService] = useState({ name: '', cost: 0 });
-  // const [showTimeDialog, setShowTimeDialog] = useState(false);
-  // const [reserve, setReserve] = useState(props.reserve);
-  // const [barber, setBarber] = useState(props.barber);
+  const [showBarberDialog, setShowBarberDialog] = useState(false);
+  const [showTimeDialog, setShowTimeDialog] = useState(false);
+
+  const [selectedService, setSelectedService] = useState({
+    name: props.reserve.workToDo,
+    cost: props.reserve.totalCost
+  });
+  const [selectedBarber, setSelectedBarber] = useState({
+    name: props.reserve.barberName,
+    barberId: -1
+  });
+
+  const [reserveDate, setReserveDate] = useState(undefined)
+  const [reserveHour, setReserveHour] = useState(undefined)
+
+
+
 
   // New instance actions 
   //TODO: En un futuro por mas control de instancias deberiamos de tener nuestro archivo de instancias 
   //TODO: para darle vida a una unica instancia y poder utilizarla donde sea necesario. -> Singleton Pattern
   const reserveActions: ReserveActions = new ReserveActions();
-
-
 
   const {
     setDisabledButton,
@@ -125,23 +133,23 @@ export const ManagerDialog = (props: {
 
   const ServiceForm = () => {
     return (
-      <FormBox>
-        <SelectField
-          name={MANAGER_FIELDLS.workToDo}
-          defaultvalue={selectedService.name || props.reserve.workToDo}
-          label="Servicio"
-          type="text"
-          items={services}
-          onChange={(res) => setSelectedService(res)}
-          selectBy="name"
-        />
-        <Textfield
-          name={MANAGER_FIELDLS.totalCost}
-          defaultvalue={selectedService.cost || props.reserve.totalCost}
-          label="Costo Total"
-          type="number"
-        />
-      </FormBox>
+      <>
+        <div className="manager-select">
+          <Text type="small">Servicio</Text>
+          <Button
+            style="text"
+            icon={<MdSearch />}
+            onClick={() => { setShowServiceDialog(true) }}
+          />
+        </div>
+        <Text type="text" color="primary">
+          {
+            selectedService.name ?
+              `${selectedService.name}`
+              : 'Seleccione servicio'}
+        </Text>
+        <Text type="text" color="primary">{`Costo: $${selectedService.cost || 0}`}</Text>
+      </>
     )
   }
 
@@ -160,20 +168,37 @@ export const ManagerDialog = (props: {
 
   const ReserveForm = () => {
     return (
-      <FormBox>
-        <Textfield
-          name={MANAGER_FIELDLS.barberName}
-          defaultvalue={props.reserve.barberName}
-          label="Barbero"
-          type="string"
-        />
-        <Textfield
-          name={MANAGER_FIELDLS.startTimeFront}
-          defaultvalue={props.reserve.startTimeFront}
-          label="Fecha y Hora"
-          type="text"
-        />
-      </FormBox>
+      <>
+        <div className="manager-select">
+          <Text type="small">Barbero</Text>
+          <Button
+            style="text"
+            icon={<MdSearch />}
+            onClick={() => { setShowBarberDialog(true) }}
+          />
+        </div>
+        <Text type="text" color="primary">
+          {
+            selectedBarber.name ?
+              `${selectedBarber.name}`
+              : 'Seleccione barbero'}
+        </Text>
+
+        <div className="manager-select">
+          <Text type="small">Fecha y hora</Text>
+          <Button
+            style="text"
+            icon={<MdSearch />}
+            onClick={() => { setShowTimeDialog(true) }}
+          />
+        </div>
+        <Text type="text" color="primary">
+          {
+            reserveDate && reserveHour ?
+              `${reserveDate} ${reserveHour}`
+              : 'Seleccione fecha y hora'}
+        </Text>
+      </>
     )
   }
 
@@ -189,12 +214,14 @@ export const ManagerDialog = (props: {
             <Step subtitle="Datos del cliente">
               {ClientForm()}
             </Step>
-            <Step subtitle="Datos del servicio">
-              {ServiceForm()}
-            </Step>
-            <Step subtitle="Datos de la reserva">
-              {ReserveForm()}
-            </Step>
+            <div>
+              <Step subtitle="Datos del servicio">
+                {ServiceForm()}
+              </Step>
+              <Step subtitle="Datos de la reserva">
+                {ReserveForm()}
+              </Step>
+            </div>
           </div>
           <StepperFooter
             validate={true}
@@ -227,29 +254,45 @@ export const ManagerDialog = (props: {
             }} />
         </DialogModal>
       }
-
-
-
-
-      {/* {
-        true &&
+      {
+        showBarberDialog &&
         <DialogModal
-          title="Seleccion de fecha"
-          onClose={() => setShowServiceDialog(false)}
+          width="500px"
+          height="640px"
+          title="Seleccion de barbero"
+          onClose={() => setShowBarberDialog(false)}
+          className="manager-dialog"
+        >
+          <BarberStep
+            value={setSelectedBarber}
+            setBarber={(res) => {
+              setSelectedBarber(res);
+              setShowBarberDialog(false);
+            }}
+          />
+
+        </DialogModal>
+      }
+      {
+        showTimeDialog &&
+        <DialogModal
+          width="500px"
+          height="640px"
+          title="Seleccion de fecha y hora"
+          onClose={() => setShowTimeDialog(false)}
           className="manager-dialog"
         >
           <TimeStep
-            selectedBarber={props.barber}
-            barberId={reserve.barberOrHairdresserId} // TODO CHANGE THE NAME OF THIS
-
-            onSelctDate={() => { }}
-            onSelctHour={() => { }}
-            reserveDate={moment(reserve.startTime).toDate()}
-            reserveHour={moment(reserve.startTime).format('HH:mm:ss')}
-
+            reserveDate={reserveDate}
+            reserveHour={reserveHour}
+            barberId={selectedBarber.barberId || -1}
+            selectedBarber={selectedBarber || {}}
+            onSelctDate={(res) => setReserveDate(moment(res).format('DD/MM/YYYY'))}
+            onSelctHour={setReserveHour}
           />
+
         </DialogModal>
-      } */}
+      }
     </>
   )
 }
