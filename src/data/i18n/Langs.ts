@@ -1,3 +1,17 @@
+/** For all Devs.
+ *! Message To Remind
+ ** Esta bien tener un sector de Dialectos en los cuales tengamos las difererentes traducciones de nuestros
+ ** Sectores de la web, dicha  informacion debe de estar tal cual se plantea aqui abajo, aunque la diferencia de como puede hacerce 
+ ** de manera escalable es generar una carpeta de *Estandarizacion de lenguajes* en la cual podamos
+ ** separar nuestros diferentes lenguajes en archivos separados, esto te permitira controlar la escalabilidad del producto y evitar
+ ** lectura inadecuada de otros idiomas.
+ *
+ *? Por otro lado entiendo que este archivo es una copia de tu Curriculum digital el cual lo hiciste bilingue y me parece fantastico
+ *? aunque deberia de o eliminar la informacion para que sea data generica o colocar cada traduccion de cada uno de los participantes del proyecto.
+
+ *? Eventualmente doy por hecho que esto fue un copy and paste pero lo dejo para que no se suba a PROD 😉
+ */
+
 export const EN_DICTIONARY = {
     // TOOLBAR 
     'toolbar.lang': 'Choose a language',

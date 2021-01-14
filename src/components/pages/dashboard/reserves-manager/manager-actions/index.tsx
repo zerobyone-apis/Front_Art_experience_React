@@ -12,6 +12,7 @@ export const ManagerActions = (props: {
     header: HEADER
     onFinalize: () => void
     onCancelled: () => void
+    onReserveAllDay: () => void
 }) => {
 
     return (
@@ -37,6 +38,16 @@ export const ManagerActions = (props: {
                     style="outlined"
                     onClick={() => props.onCancelled()}
                 />
+
+                
+                {/** Boton para Anular los dias festivos o que se necesiten.
+                 <Button
+                    label="Anular dia"
+                    icon={<MdCancel />}
+                    style="outlined"
+                    onClick={() => props.onReserveAllDay()}
+                />
+                 */}
             </div>
         </div>
     )

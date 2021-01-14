@@ -13,7 +13,7 @@ import { UserContext } from '../../../contexts/UserContext';
 import { BiTask, BiTaskX } from 'react-icons/bi';
 import { defaultMessage, MessageDialog } from '../message-dialog';
 import { Button } from '../../inputs/button';
-import { createReserve } from './logic';
+import { createReserve } from './firebaseQueries';
 import moment from 'moment';
 import './reserve-dialog.scss';
 import { EffectBox } from '../../decorators/effect-box';

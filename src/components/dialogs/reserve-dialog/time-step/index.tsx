@@ -1,13 +1,13 @@
-import React, { useEffect, useState, useContext } from "react";
-import { Button } from "../../../inputs/button";
-import { CalendarBox } from "./calendar-box/calendar-box";
-import { ThemeContext } from "../../../../contexts/ThemeContext";
-import AvailableTimeActions from "../../../../actions/AvailableTime.actions";
-import moment from "moment";
-import db from "../../../../config/firebase";
-import { Text } from "../../../decorators/text";
-import { Step } from "../../../containers/stepper/step";
-import "./time-step.scss";
+import React, { useEffect, useState, useContext } from 'react';
+import { Button } from '../../../inputs/button';
+import { CalendarBox } from './calendar-box/calendar-box';
+import { ThemeContext } from '../../../../contexts/ThemeContext';
+import AvailableTimeActions from '../../../../actions/AvailableTime.actions';
+import moment from 'moment';
+import db from '../../../../config/firebase';
+import { Text } from '../../../decorators/text';
+import { Step } from '../../../containers/stepper/step';
+import './time-step.scss';
 
 export const TimeStep = (props: {
   reserveDate: Date;
@@ -18,7 +18,7 @@ export const TimeStep = (props: {
   onSelctHour: any;
 }) => {
   // fecha actual para obtener la data si no hay fecha seleccionada
-  const currentDate = moment(new Date()).format().toString().split("T")[0];
+  const currentDate = moment(new Date()).format().toString().split('T')[0];
 
   // list of all reserves: [ date: string, hours: string[] ]
   const [reservesList, setReservesList] = useState([]);
@@ -49,7 +49,7 @@ export const TimeStep = (props: {
   };
 
   const nameParcerFunction = (name: string) => {
-    return name.toLowerCase().replace("/' '/g", ".");
+    return name.toLowerCase().replaceAll(' ', '.');
   };
 
   useEffect(() => {
@@ -61,7 +61,7 @@ export const TimeStep = (props: {
 
     //! Chritmas time init()
     const chritmasTimes = async () => {
-     return await getChritmasTImeShop().then((response: any) => {
+      return await getChritmasTImeShop().then((response: any) => {
         setChritmasTimes(response);
       });
     };
@@ -92,7 +92,7 @@ export const TimeStep = (props: {
       const resultDocs = await getQuery(barberName);
 
       if (resultDocs) {
-        // console.table("Response docs -> ", resultDocs);
+      //? console.table('Response docs -> ', resultDocs);
         await filterTimesAndSetAvailables(resultDocs);
       }
     } catch (error) {
@@ -103,9 +103,9 @@ export const TimeStep = (props: {
   //? GET - Reserves Documents from Reserves - Firestore
   const getQuery = async (barberName) => {
     const resRef = await db
-      .collection("reservas")
+      .collection('reservas')
       .doc(nameParcerFunction(barberName))
-      .collection("day_reserves");
+      .collection('day_reserves');
 
     const result = await resRef
       .get()
@@ -127,10 +127,10 @@ export const TimeStep = (props: {
 
       resultData.map((item) => {
         formattedDates.push({
-          date: moment(new Date(item.date.toDate()).toUTCString())
+          date: moment(new Date(item.date).toUTCString())
             .format()
             .toString()
-            .split("T")[0],
+            .split('T')[0],
           times: item.times,
         });
       });
@@ -146,7 +146,7 @@ export const TimeStep = (props: {
   };
 
   const onSelectDate = (selectedDate: Date) => {
-    let formatSelectedDate = moment(selectedDate).format("YYYY-MM-DD");
+    let formatSelectedDate = moment(selectedDate).format('YYYY-MM-DD');
     setReserveDate(selectedDate);
     setReserveHour(undefined);
     props.onSelctHour(undefined);
@@ -167,8 +167,8 @@ export const TimeStep = (props: {
 
     //? filter available hours by barberShop hours
     let availables = [];
-    let actualHour = moment(new Date(), "HH:mm:ss");
-    let actualDate = moment(new Date()).format("YYYY-MM-DD");
+    let actualHour = moment(new Date(), 'HH:mm:ss');
+    let actualDate = moment(new Date()).format('YYYY-MM-DD');
 
     //! Lista de horas habilitadas por dia
     barberShopTime.map((barberShopHour) => {
@@ -177,7 +177,7 @@ export const TimeStep = (props: {
       if (listBusyHours.indexOf(barberShopHour) === -1) {
         //? Validar si la fecha actual es igual a la fecha seleccionada
         if (actualDate === formatSelectedDate) {
-          let formatBarberShopHour = moment(`${barberShopHour}:00`, "HH:mm:ss");
+          let formatBarberShopHour = moment(`${barberShopHour}:00`, 'HH:mm:ss');
           //? Validar si la hora habilitada es mayor o despues de la hora actual.
           if (formatBarberShopHour.isAfter(actualHour)) {
             //? Creamos la nueva lista de horas habilitadas.
@@ -198,18 +198,18 @@ export const TimeStep = (props: {
   };
 
   return (
-    <Step title="Fecha de Reservacion" subtitle="Seleccione la Fecha y Hora">
-      <div className="time-box effect-slide-top">
+    <Step title='Fecha de Reservacion' subtitle='Seleccione la Fecha y Hora'>
+      <div className='time-box effect-slide-top'>
         <CalendarBox value={reserveDate} onSelectDate={onSelectDate} />
         {availableHours.length ? (
-          <div className="hours-box effect-slide-top">
-            <div className="container">
+          <div className='hours-box effect-slide-top'>
+            <div className='container'>
               {availableHours.map((hour, i) => (
                 <Button
                   className={`theme-button-outlined 
                                  hour-item 
                                 ${
-                                  reserveHour === hour ? "selected-hour" : null
+                                  reserveHour === hour ? 'selected-hour' : null
                                 }`}
                   key={i}
                   label={hour}
@@ -221,7 +221,7 @@ export const TimeStep = (props: {
             </div>
           </div>
         ) : (
-          <Text type="text" className="no-hours">
+          <Text type='text' className='no-hours'>
             No hay horarios disponibles para esta fecha
           </Text>
         )}

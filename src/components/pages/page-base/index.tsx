@@ -4,7 +4,6 @@ import { LoaderPage } from '../../decorators/loader-page/loader-page';
 import './page.scss';
 
 export const PageBase = (props: {
-    className?: any,
     children?: any[]
     toolbar?: any
     className?: string
