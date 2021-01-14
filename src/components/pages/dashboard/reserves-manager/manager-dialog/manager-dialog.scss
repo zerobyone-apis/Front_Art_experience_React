@@ -1,9 +1,12 @@
-.manager-form {
-    margin: auto;
-    text-align: center;
+.manager-dialog {
+    .content-manager {
+        width: max-content;
+        display: flex;
+        margin: auto;
 
-    ul {
-        margin: 0;
-        padding: 0;
+        // background-color: green;
+        .step {
+            margin: 0 40px;
+        }
     }
 }
