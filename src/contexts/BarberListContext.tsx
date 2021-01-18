@@ -10,11 +10,11 @@ import { barbers as BarbersData } from '../data/reserve';
 
 export const BarberListContext = createContext({
     getBarbersList: () => undefined,
-    setBarbersList: (barbersData: IBarber[]) => undefined,
+    setBarbersList: (barbersData) => undefined,
 });
 
 export const BarberListProvider = (props: {
-    value?: IBarber[],
+    value?: any[],
     children: ReactElement;
 }) => {
     const storex = require('store'); // store :3
@@ -24,9 +24,9 @@ export const BarberListProvider = (props: {
         storex.set(BARBERLIST_DATA_STORAGE, barbers);
     }, [barbers])
 
-    const setBarbersList = (barbersData: IBarber[]) => {
-        storex.set(BARBERLIST_DATA_STORAGE, barbersData);
-        setBarbers(barbersData);
+    const setBarbersList = (newBarbers: any) => {
+        storex.set(BARBERLIST_DATA_STORAGE, newBarbers);
+        setBarbers(newBarbers);
     }
 
     const getBarbersList = () => {
