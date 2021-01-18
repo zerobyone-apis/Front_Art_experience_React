@@ -15,7 +15,7 @@ const App: FC<{ Component: any; pageProps: any }> = ({
   const store = require('store'); // store :3
   return (
     <div>
-      <ButtonProvider disabled={true}>
+      <ButtonProvider disabled={false}>
         <UserProvider value={store.get(USER_DATA_STORAGE) || null}>
           <BarberListProvider value={store.get(BARBERLIST_DATA_STORAGE) || null}>
             <ThemeProvider value={THEME_DARK}>

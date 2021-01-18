@@ -19,24 +19,24 @@ import moment from 'moment';
 import { UserContext } from '../contexts/UserContext';
 import './index.scss';
 import { INDEX_PAGE } from '../types/Pages.type';
+import { barbers as BARBERS } from '../data/reserve'
 
 
 
 const IndexPage = () => {
 
-  const [barbers, setBarbers] = useState([]);
+  const [barbers, setBarbers] = useState(BARBERS);
 
 
-  const {
-    // @ts-ignore
-    setDisabledButton,
-    disabled,
-  } = useContext(ButtonContext);
+  // const {
+  //   // @ts-ignore
+  //   setDisabledButton,
+  //   disabled,
+  // } = useContext(ButtonContext);
 
   const {
     userIsLogged
   } = useContext(UserContext);
-
 
   const {
     // @ts-ignore
@@ -45,36 +45,37 @@ const IndexPage = () => {
   } = useContext(BarberListContext);
   const barberActions = new BarberAction();
 
-
   useEffect(() => {
-    const fetchData = async () => {
-      setDisabledButton(true);
-      let resultBarbers = null;
-      do {
-        resultBarbers = await getBarbers();
-      } while (!resultBarbers);
-      setBarbersList(resultBarbers); // save in store
-      setBarbers(resultBarbers);
-      setDisabledButton(false);
-    };
-    // execute the async function
-    fetchData();
+    /* REMOVE THIS BY USE BURN DATA
+        const fetchData = async () => {
+          setDisabledButton(true);
+          let resultBarbers = null;
+          do {
+            resultBarbers = await getBarbers();
+          } while (!resultBarbers);
+          setBarbersList(resultBarbers); // save in store
+          setBarbers(resultBarbers);
+          setDisabledButton(false);
+        };
+        // execute the async function
+        fetchData();
+    */
   }, []);
 
 
-  const getBarbers = async () => {
-    const response: IBarber[] = await barberActions.getAll();
-    if (response) {
-      barbers.map((barber: IBarber) => {
-        // formatting data
-        barber.startDate = moment(barber.startDate)
-          .format('DD/MM/YYYY hh:mm:ss')
-          .substr(0, 16);
-      });
-      return response;
-    }
-    return undefined;
-  }
+  // const getBarbers = async () => {
+  //   const response: IBarber[] = await barberActions.getAll();
+  //   if (response) {
+  //     barbers.map((barber: IBarber) => {
+  //       // formatting data
+  //       barber.startDate = moment(barber.startDate)
+  //         .format('DD/MM/YYYY hh:mm:ss')
+  //         .substr(0, 16);
+  //     });
+  //     return response;
+  //   }
+  //   return undefined;
+  // }
 
   return (
     <PageBase toolbar={

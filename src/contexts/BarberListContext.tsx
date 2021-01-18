@@ -6,6 +6,7 @@ import React, {
 } from 'react';
 import { IBarber } from '../types/Barber.type';
 import { BARBERLIST_DATA_STORAGE } from '../types/StorageData.type';
+import { barbers as BarbersData } from '../data/reserve';
 
 export const BarberListContext = createContext({
     getBarbersList: () => undefined,
@@ -17,7 +18,7 @@ export const BarberListProvider = (props: {
     children: ReactElement;
 }) => {
     const storex = require('store'); // store :3
-    const [barbers, setBarbers] = useState([]);
+    const [barbers, setBarbers] = useState(BarbersData);
 
     useEffect(() => {
         storex.set(BARBERLIST_DATA_STORAGE, barbers);
