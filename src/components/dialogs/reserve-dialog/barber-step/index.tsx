@@ -1,6 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react';
-// import { BarberListContext } from '../../../../contexts/BarberListContext';
-import { barbers as BARBERS } from '../../../../data/reserve'
+import React, { useState } from 'react';
+// import { barbers as BARBERS } from '../../../../data/reserve'
 import { Step } from '../../../containers/stepper/step';
 import { Text } from '../../../decorators/text';
 import './barber-step.scss';
@@ -34,17 +33,7 @@ export const BarberStep = (props: {
   setBarber: any
 }) => {
 
-  const [barbers, setBarbers] = useState(BARBERS);
-
-  // const {
-  //   // @ts-ignore
-  //   getBarbersList,
-  // } = useContext(BarberListContext);
-
-  // useEffect(() => {
-  //   let barbersx = getBarbersList();
-  //   setBarbers(barbersx);
-  // }, []);
+  const [barbers, setBarbers] = useState([]);
 
   return (
     <Step

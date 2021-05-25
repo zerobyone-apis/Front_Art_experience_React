@@ -26,6 +26,7 @@
     "**/*.ts",
     "**/*.tsx",
     "src/types/anchor.type.js",
-    "src/pages/_document.js"
+    "src/pages/_document.js",
+    "src/data/dashboard.js"  
   ]
 }
