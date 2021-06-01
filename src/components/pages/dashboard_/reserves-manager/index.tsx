@@ -16,7 +16,6 @@ export const ReserveManager = () => {
     const [selectedReserve, setSelectedReserve] = useState(undefined);
     const [showReserveDialog, setShowReserveDialog] = useState(false);
 
-
     const reserveActions: ReserveActions = new ReserveActions();
     const mobileHeaders = [headerOrder[1], headerOrder[2], headerOrder[3]];
 

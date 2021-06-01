@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import ReserveActions from '../../../../actions/Reserve.actions';
+import ReserveActions from '../../../../actions/reserve/Reserve.actions';
 import { ButtonContext } from '../../../../contexts/ButtonsContext';
 import { CustomTable } from '../../../custom-table/custom-table';
 import { headerMobileOrder, headerOrder } from '../../../../data/dashboard';
