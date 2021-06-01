@@ -5,8 +5,8 @@ import { LoaderPage } from "../components/decorators/loader-page/loader-page";
 import { UserContext } from "../contexts/UserContext";
 import { BiCalendarEvent } from 'react-icons/bi';
 import { DiGoogleAnalytics } from 'react-icons/di';
-import { IVerticalToolbarItem, VerticalToolbar } from "../components/pages/dashboard_/vertical-toolbar";
-import { ReserveManager } from "../components/pages/dashboard_/reserves-manager";
+import { IVerticalToolbarItem, VerticalToolbar } from "../components/pages/dashboard_deprecated/vertical-toolbar";
+import { ReserveManager } from "../components/pages/dashboard_deprecated/reserves-manager";
 import { LoginDialog } from "../components/dialogs/login-dialog";
 import "./Dashboard.scss";
 import { PageBase } from "../components/pages/page-base";
@@ -25,7 +25,7 @@ const DashboardPage = () => {
     {
       icon: <BiCalendarEvent />,
       tool: <ReserveManager />,
-      label: 'Administracion de Reservas',
+      label: '',
     },
     // {
     //   icon: <DiGoogleAnalytics />,
@@ -62,16 +62,17 @@ const DashboardPage = () => {
 
 
   return (
-    <PageBase toolbar={
-      <Toolbar rightItems={[<LoginDialog pageRef={DASHBOARD_PAGE} />]} />
-    }>
-      <VerticalToolbar
-        items={verticalToolbarItems}
-        onSelectItem={setWizard}
-        sizeIcons="large"
-      />
-      {getToolByWizard(wizard)}
-    </PageBase>
+    <div></div>
+    // <PageBase toolbar={
+    //   <Toolbar rightItems={[<LoginDialog pageRef={DASHBOARD_PAGE} />]} />
+    // }>
+    //   <VerticalToolbar
+    //     items={verticalToolbarItems}
+    //     onSelectItem={setWizard}
+    //     sizeIcons="large"
+    //   />
+    //   {/* {getToolByWizard(wizard)} */}
+    // </PageBase>
   )
 }
 

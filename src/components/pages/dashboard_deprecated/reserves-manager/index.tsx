@@ -84,7 +84,7 @@ export const ReserveManager = () => {
 
     return (
         <Card
-            title="Administracion de Reservas"
+            title=""
             className="tool-card"
         >
 

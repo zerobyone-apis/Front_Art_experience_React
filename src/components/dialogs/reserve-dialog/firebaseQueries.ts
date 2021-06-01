@@ -1,6 +1,6 @@
 import moment from 'moment';
 import { IReserve } from '../../../types/Reserve.type';
-import ReserveActions from '../../../actions/Reserve.actions';
+import ReserveActions from '../../../actions/reserve/Reserve.actions';
 import db from '../../../config/firebase';
 
 /*

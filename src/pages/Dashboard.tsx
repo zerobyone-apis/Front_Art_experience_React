@@ -3,8 +3,8 @@ import { ButtonContext } from "../contexts/ButtonsContext";
 import { Toolbar } from "../components/containers/toolbar";
 import { UserContext } from "../contexts/UserContext";
 import { BiCalendarEvent } from 'react-icons/bi';
-import { IVerticalToolbarItem, VerticalToolbar } from "../components/pages/dashboard_/vertical-toolbar";
-import { ReserveManager } from "../components/pages/dashboard_/reserves-manager";
+import { IVerticalToolbarItem, VerticalToolbar } from "../components/pages/dashboard/vertical-toolbar";
+import { ReserveManager } from "../components/pages/dashboard/reserves-manager";
 import { LoginDialog } from "../components/dialogs/login-dialog";
 import { PageBase } from "../components/pages/page-base";
 import { DASHBOARD_PAGE } from "../types/Pages.type";
@@ -19,7 +19,7 @@ const DashboardPage = () => {
     {
       icon: <BiCalendarEvent />,
       tool: <ReserveManager />,
-      label: 'Administracion de Reservas',
+      label: '',
     },
     // {
     //   icon: <DiGoogleAnalytics />,
@@ -67,11 +67,13 @@ const DashboardPage = () => {
             ]
           } />
       }>
-      <VerticalToolbar
+      {/* <VerticalToolbar
         items={verticalToolbarItems}
         onSelectItem={setWizard}
         sizeIcons="large"
-      />
+      /> */}
+      <div>
+      </div>
       {getToolByWizard(wizard)}
     </PageBase>
   )
