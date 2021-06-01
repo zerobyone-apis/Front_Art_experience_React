@@ -5,7 +5,6 @@ import { Step } from '../../../../containers/stepper/step';
 import { Text } from '../../../../decorators/text';
 import { Textfield } from '../../../../inputs/text-field/text-field';
 
-
 const FORM = 'manager';
 export const MANAGER_FIELDLS = {
     nameClient: `${FORM}.nameClient`,
@@ -17,12 +16,9 @@ export const MANAGER_FIELDLS = {
     totalCost: `${FORM}.totalCost`,
 }
 
-
 export const ManagerForm = (props: {
     reserve: IReserve
 }) => {
-
-
     return (
         <Step title="Datos de la Reserva">
             <FormBox>
