@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { MdCancel, MdEventAvailable } from 'react-icons/md';
-import ReserveActions from '../../../../../actions/Reserve.actions';
+import ReserveActions from '../../../../../actions/reserve/Reserve.actions';
 import { ButtonContext } from '../../../../../contexts/ButtonsContext';
 import { HEADER } from '../../../../custom-table/table.type';
 import { Text } from '../../../../decorators/text';
