@@ -15,3 +15,10 @@ export const headerOrder = [
     { text: "Barbero", value: "barberName" },
     { text: "Servicio", value: "workToDo" },
 ];
+
+export const headerMobileOrder = [
+    { text: "N°Social", value: "socialNumber" },
+    { text: "Cliente", value: "nameClient" },
+    { text: "Fecha", value: "startTimeFront" },
+    { text: "", value: "actions" }
+];
