@@ -4,29 +4,24 @@ import React from 'react';
 import './toolbar.scss';
 import './toolbar-mobile.scss';
 
-
 export interface IToolbarItem {
   icon?: any,
   label: string,
   href?: string
 }
 
-
 export const Toolbar = (props: {
   items?: IToolbarItem[]
   rightItems?: any[]
   showLeftMenu?: boolean
+  theme?: "light" | "dark"
 }) => {
 
-
   return (
-    <div className={`toolbar effect-slide_bottom shadow-dark`}>
+    <div className={`toolbar ${props.theme}`}>
       <div id="start_page" />
-
       <div className="left-box">
-
         {props.showLeftMenu && <LeftMenu />}
-
         <a href="/">
           <img
             className="logo-img effect-opacity"
@@ -34,7 +29,6 @@ export const Toolbar = (props: {
             alt=""
           />
         </a>
-
         {props.items && props.items.map((button, i) => {
           return (
             <Button
@@ -47,7 +41,6 @@ export const Toolbar = (props: {
           )
         })}
       </div>
-
       <div className="right-box">
         {props.rightItems && props.rightItems.map((item, i) => {
           return (
@@ -57,7 +50,6 @@ export const Toolbar = (props: {
           )
         })}
       </div>
-
     </div>
   );
 };
