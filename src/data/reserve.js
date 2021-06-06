@@ -166,4 +166,3 @@ export const barbers = [
         username: "Nicolas Piñeiro"
     },   
 ];
-];
