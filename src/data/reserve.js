@@ -145,9 +145,25 @@ export const barbers = [
         instagram: "https://www.instagram.com/ramiro_deleon1/",
         localName: "Art Experience",
         name: "Ramiro de León",
-        prestige: 4,
+        prestige: 5,
         urlProfileImage: "https://i.ibb.co/pP8Ct9g/Ramiro-Pereira.jpg",
         userId: 3,
         username: "Ramiro de León"
+    },
+    {
+        admin: true,
+        barber: true,
+        barberDescription: "",
+        barberId: 4,
+        email: "nicopineiro123@gmail.com",
+        facebook: "https://www.instagram.com/nicolasp.1899/",
+        instagram: "https://www.instagram.com/nicolasp.1899/",
+        localName: "Art Experience",
+        name: "Nicolas Piñeiro",
+        prestige: 5,
+        urlProfileImage: "https://i.ibb.co/h1L0TgG/Nicolas-Pi-eiro.jpg",
+        userId: 4,
+        username: "Nicolas Piñeiro"
     },   
+];
 ];
