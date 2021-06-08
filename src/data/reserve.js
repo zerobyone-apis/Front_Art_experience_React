@@ -102,7 +102,7 @@ export const barbers = [
 `,
         barberId: 2,
         email: "pepito@gmail.com",
-        facebook: "https://www.facebook.com/TheUniqueDesign",
+        facebook: "https://facebook.com/pablo.mernislapalma",
         instagram: "https://www.instagram.com/mernis.01/",
         localName: "Art Experience",
         name: "Pablo Mernis",
