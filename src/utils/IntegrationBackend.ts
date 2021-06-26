@@ -1,5 +1,6 @@
 export default class IntegrationBackend {
-  private baseUrl = 'https://backend-art-experience.herokuapp.com';
+  //private baseUrl = 'https://backend-art-experience.herokuapp.com';
+  private baseUrl = 'http://artexperienceproductioninstance-env.eba-iimpqhxr.us-east-2.elasticbeanstalk.com';
   private axios = require('axios');
 
   async send(method: string, data?: any, route?: string) {
