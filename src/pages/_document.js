@@ -15,6 +15,7 @@ class MyDocument extends Document {
                     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
                 </Head>
                 <body>
+                    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
                     <Main />
                     <NextScript />
                 </body>
