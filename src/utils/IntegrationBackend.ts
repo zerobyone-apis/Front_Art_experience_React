@@ -1,6 +1,10 @@
 export default class IntegrationBackend {
   //private baseUrl = 'https://backend-art-experience.herokuapp.com';
-  private baseUrl = 'http://artexperienceproductioninstance-env.eba-iimpqhxr.us-east-2.elasticbeanstalk.com';
+  //private baseUrl = 'http://artexperienceproductioninstance-env.eba-iimpqhxr.us-east-2.elasticbeanstalk.com';
+  
+  /* With SSL Certificate Domain to router new Backend on AWS ELB */
+  private baseUrl = 'https://back-artexperience.xyz';
+  
   private axios = require('axios');
 
   async send(method: string, data?: any, route?: string) {
