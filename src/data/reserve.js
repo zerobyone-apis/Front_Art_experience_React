@@ -1,7 +1,7 @@
 export const services = [
     {
         workId: 1,
-        name: 'Degradé',
+        name: 'Corte',
         img: '',
         cost: 290,
     },
@@ -16,12 +16,6 @@ export const services = [
         name: 'Degrade & cejas',
         img: '',
         cost: 350,
-    },
-    {
-        workId: 4,
-        name: 'Clasico',
-        img: '',
-        cost: 280,
     },
     {
         workId: 5,
