@@ -15,6 +15,7 @@ import { Button } from '../../inputs/button';
 import { createReserve } from './logic';
 import moment from 'moment';
 import './reserve-dialog.scss';
+import useTimeSelector from './time-step/hooks/useTimeSelector';
 
 export const ReserveDialog = () => {
 
@@ -32,6 +33,10 @@ export const ReserveDialog = () => {
     const {
         getUserData,
     } = useContext(UserContext)
+
+    const {
+        loadReserveTimes
+    } = useTimeSelector()
 
     const {
         // @ts-ignore
@@ -106,7 +111,10 @@ export const ReserveDialog = () => {
                 className="activator-btn"
                 label="Reservar"
                 icon={false}
-                onClick={() => { setShowDialog(true) }}
+                onClick={() => { 
+                    loadReserveTimes("mariano moreno")
+                    setShowDialog(true) 
+                }}
             />
 
             {showDialog && (
