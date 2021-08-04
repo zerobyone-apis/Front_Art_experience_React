@@ -35,10 +35,6 @@ export const ReserveDialog = () => {
     } = useContext(UserContext)
 
     const {
-        loadReserveTimes
-    } = useTimeSelector()
-
-    const {
         // @ts-ignore
         setDisabledButton,
     } = useContext(ButtonContext);
@@ -111,8 +107,7 @@ export const ReserveDialog = () => {
                 className="activator-btn"
                 label="Reservar"
                 icon={false}
-                onClick={() => { 
-                    loadReserveTimes("mariano moreno")
+                onClick={() => {
                     setShowDialog(true) 
                 }}
             />
@@ -141,8 +136,6 @@ export const ReserveDialog = () => {
                     />
 
                     <TimeStep
-                        date={reserveDate}
-                        hour={reserveHour}
                         barberId={selectedBarber.barberId}
                         selectedBarber={selectedBarber}
                         onSelctDate={setReserveDate}
