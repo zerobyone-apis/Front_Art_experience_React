@@ -1,16 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Calendar } from "./calendar";
+import Calendar from "./calendar";
 import { HoursBox } from "./hours-box";
 import { Step } from "../../../containers/stepper/step";
-import CompanyTimeActions from "../../../../actions/company/CompanyTime.actions";
 import moment from "moment";
 import { ButtonContext } from "../../../../contexts/ButtonsContext";
 import useTimeSelector from "./hooks/useTimeSelector";
 import "./time-step.scss";
+import { COMPANY_TIMES } from "../../../../actions/company/CompanyTime.actions";
 
 export const TimeStep = (props: {
-  date: Date;
-  hour: string;
   barberId: number;
   selectedBarber: { name: string };
   onSelctDate: any;
@@ -18,63 +16,40 @@ export const TimeStep = (props: {
 }) => {
   
   const [availableHours, setAvailableHours] = useState([])
-  const [companyHours, setCompanyHours] = useState([])
-  const [reserveDate, setReserveDate] = useState(undefined)
-  const companyTimeActions: CompanyTimeActions = new CompanyTimeActions();
+  const [reserveDate, setReserveDate] = useState(new Date())
 
   const {
-    disabled,
     setDisabledButton
   } = useContext(ButtonContext);
 
   const {
-    reservesList,
-    loadReserveTimes 
+    loadReserveTimes,
+    getBusyHours 
   } = useTimeSelector()
-
-  useEffect(() => {
-    const getCompanyHours = async () => {
-      return await companyTimeActions
-        .getCompanyTimes()
-        .then((response: any) => {
-          setCompanyHours(response);
-        })
-    }
-    const getExceptionTimes = async () => {
-      return await companyTimeActions
-        .getExceptionTimes()
-    }
-    onSelectDate(new Date())
-    getCompanyHours();
-    getExceptionTimes();
-    setReserveDate(props.date);
-  }, []);
-
-  const getBusyHours = (selectedDate) => {
-    let listBusyHours = [];
-    // Por cada reserva encontrada mapeamos la lista de horas reservadas.
-    reservesList.map((reserve: { date: string; times: string[] }) => {
-      if (reserve.date === selectedDate) {
-        reserve.times.map((reserveHour: string) => {
-          listBusyHours.push(reserveHour.substr(0, 5));
-        });
-      }
-    });
-    return listBusyHours;
-  }
 
   const onSelectDate = async (selectedDate: Date) => {
     setDisabledButton(true)
     let formatSelectedDate = moment(selectedDate).format("YYYY-MM-DD");
     setReserveDate(selectedDate);
-    await loadReserveTimes(props.selectedBarber.name)  
+    let responseReserves = await loadReserveTimes(props.selectedBarber.name) 
     props.onSelctHour(undefined);
     props.onSelctDate(selectedDate);
-
-    let listBusyHours = getBusyHours(formatSelectedDate);
+    let listBusyHours = getBusyHours(responseReserves, formatSelectedDate);
     let availables = [];
     let actualHour = moment(new Date(), "HH:mm:ss");
     let actualDate = moment(new Date()).format("YYYY-MM-DD");
+    COMPANY_TIMES.map((barberShopHour) => {
+      if (listBusyHours.indexOf(barberShopHour) === -1) { // (1)
+        if (actualDate === formatSelectedDate) {          // (2)
+          let formatBarberShopHour = moment(`${barberShopHour}:00`, "HH:mm:ss");
+          if (formatBarberShopHour.isAfter(actualHour)) { // (3)
+            availables.push(barberShopHour);              // (4)
+          }
+        } else {
+          availables.push(barberShopHour);                // (5)
+        }
+      }
+    });
     {/*
       1: Validar si la hora habilitada esta dentro de las horas reservadas.
         Si esta dentro de la hora reservada y el dia seleccionado, filtramos.
@@ -83,19 +58,6 @@ export const TimeStep = (props: {
       4: Creamos la nueva lista de horas habilitadas.
       5: Sino esta dentro del dia actual, simplemento lo añadimos a la nueva lista de horas habilitadas de ese dia..
     */}
-    companyHours.map((barberShopHour) => {
-      if (listBusyHours.indexOf(barberShopHour) === -1) { // (1)
-        if (actualDate === formatSelectedDate) {// (2)
-          let formatBarberShopHour = moment(`${barberShopHour}:00`, "HH:mm:ss");
-          if (formatBarberShopHour.isAfter(actualHour)) { // (3)
-            availables.push(barberShopHour); // (4)
-          }
-        } else {
-          availables.push(barberShopHour); // (5)
-        }
-      }
-    });
-
     setAvailableHours(availables);
     setDisabledButton(false)
     return availables;
@@ -105,37 +67,20 @@ export const TimeStep = (props: {
     props.onSelctHour(selectedHour);
   }
 
-  // const getHoursBox = () => {
-  //   console.log("get hour box")
-  //   if (!disabled && reserveDate) {
-  //     return (
-  //       <HoursBox
-  //         hours={availableHours}
-  //         onSelectItem={onSelectHour}
-  //       />
-  //     )
-  //   }
-  // }
-
   return (
     <Step title="Fecha de Reservacion" subtitle="Seleccione la Fecha y Hora">
       <div className="time-box effect-slide-top">
-        <Calendar
-          value={reserveDate}
-          onSelectDate={onSelectDate}
-        />
-        <HoursBox
-          hours={availableHours}
-          onSelectItem={onSelectHour}
-        />
-        {/* {
-          (!disabled && reserveDate) &&
-            <HoursBox
-              hours={availableHours}
-              onSelectItem={onSelectHour}
-            />
-        } */}
-        {/* {getHoursBox()} */}
+              <Calendar
+                value={reserveDate}
+                onSelectDate={onSelectDate}
+              />
+              {
+                availableHours &&
+                  <HoursBox
+                    hours={availableHours}
+                    onSelectItem={onSelectHour}
+                  />
+              }
       </div>
     </Step>
   )
