@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import CalendarX from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import './calendar.scss';
@@ -7,11 +7,14 @@ export const Calendar = (props: {
     value: Date,
     onSelectDate: any
 }) => {
-
-    const [value, setValue] = useState(new Date())
+    const [value, setValue] = useState(null)
+    
+    useEffect(() => {
+        props.onSelectDate(new Date())
+    }, [])
 
     useEffect(() => {
-        setValue(props.value || new Date())
+        setValue(props.value)
     }, [props.value])
 
     return (
@@ -24,3 +27,5 @@ export const Calendar = (props: {
         </div>
     );
 }
+
+export default React.memo(Calendar)

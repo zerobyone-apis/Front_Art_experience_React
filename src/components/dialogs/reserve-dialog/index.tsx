@@ -15,6 +15,7 @@ import { Button } from '../../inputs/button';
 import { createReserve } from './logic';
 import moment from 'moment';
 import './reserve-dialog.scss';
+import useTimeSelector from './time-step/hooks/useTimeSelector';
 
 export const ReserveDialog = () => {
 
@@ -106,7 +107,9 @@ export const ReserveDialog = () => {
                 className="activator-btn"
                 label="Reservar"
                 icon={false}
-                onClick={() => { setShowDialog(true) }}
+                onClick={() => {
+                    setShowDialog(true) 
+                }}
             />
 
             {showDialog && (
@@ -133,8 +136,6 @@ export const ReserveDialog = () => {
                     />
 
                     <TimeStep
-                        date={reserveDate}
-                        hour={reserveHour}
                         barberId={selectedBarber.barberId}
                         selectedBarber={selectedBarber}
                         onSelctDate={setReserveDate}
