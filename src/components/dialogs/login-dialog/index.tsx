@@ -73,7 +73,7 @@ export const LoginDialog = (props: {
             name: regFields[REGISTER_FIELDLS.username].value,
             password: regFields[REGISTER_FIELDLS.password].value,
             repeatPassword: regFields[REGISTER_FIELDLS.repeatPassword].value,
-            socialNumber: regFields[REGISTER_FIELDLS.socialNumber] || undefined
+            socialNumber: regFields[REGISTER_FIELDLS.socialNumber].value || undefined
         };
 
 
