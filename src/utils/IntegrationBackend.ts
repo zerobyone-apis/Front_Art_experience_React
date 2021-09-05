@@ -18,7 +18,8 @@ export default class IntegrationBackend {
         Plan B, Pagar el servicio de heroku mensual para que nos hostee la app mientras resolvemos o entendemos mejor lo de AWS.
         Plan de 7 USD por mes
   */
-  private baseUrl = 'https://back-artexperience-aws-rds.herokuapp.com';
+  //private baseUrl = 'https://back-artexperience-aws-rds.herokuapp.com';
+  private baseUrl = 'http://localhost:8080';
   
   private axios = require('axios');
 

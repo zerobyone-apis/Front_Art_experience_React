@@ -1,7 +1,7 @@
 {
   "name": "art_experience",
   "version": "1.0.1",
-  "description": "Art Experience Poryect",
+  "description": "Art Experience Porject",
   "main": "dist/index.js",
   "engines": {
     "node": "12.x"
@@ -17,7 +17,7 @@
     "type": "git",
     "url": "git+https://github.com/zerobyone-apis/Front_Art_experience_React.git"
   },
-  "author": "ZeroByOne - Damian Rodriguez",
+  "author": "ZeroByOne - Team",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/zerobyone-apis/Front_Art_experience_React/issues"
@@ -58,6 +58,7 @@
     "husky": "^4.2.5",
     "i18next": "^19.8.4",
     "i18next-browser-languagedetector": "^6.0.1",
+    "material-ui": "^0.20.2",
     "moment": "^2.27.0",
     "next": "^9.5.5",
     "node-sass": "^4.14.1",

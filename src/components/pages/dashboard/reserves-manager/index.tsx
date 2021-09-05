@@ -48,9 +48,11 @@ export const ReserveManager = () => {
         if (reserves) {
             // formatting date
             reserves.map((reserve: IReserve) => {
-                reserve.startTimeFront = moment(reserve.startTime)
-                    .format("DD/MM/YYYY hh:mm:ss")
+                const formattedDateTime = moment(reserve.startTime)
+                    .format("DD/MM/yyyy HH:mm:ss")
                     .substr(0, 16);
+                const offSet = formattedDateTime.split(" ")[1] > "12:00" ? " PM": " AM"
+                reserve.startTimeFront = formattedDateTime + offSet
             })
             setReserve(reserves);
         }
@@ -63,6 +65,7 @@ export const ReserveManager = () => {
     }
 
 
+    // Exist a logic in other side where we are saving the update and calling again the methods, not just remove it from the list.. wtf
     const onCancelled = () => {
         // remove reserve
         reserves.splice(reserves.indexOf(selectedReserve), 1);

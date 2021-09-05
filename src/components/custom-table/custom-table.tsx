@@ -7,6 +7,8 @@ import { Grid } from '@material-ui/core';
 import { AiFillCaretDown, AiFillCaretUp } from 'react-icons/ai';
 import { Text } from '../decorators/text';
 import './custom-table.scss';
+import { lightBlue } from '@material-ui/core/colors';
+import { BiFontColor } from 'react-icons/bi';
 
 
 export const CustomTable = (props: {
@@ -27,6 +29,8 @@ export const CustomTable = (props: {
   const [selectedHeader, setSelectedHeader] = useState(props.mobileHeaders[0]);
   const [isSortUp, setIsSortUp] = useState(true);
   const [selectedRow, setSelectedRow] = useState(undefined);
+  const [barberColor, setBarberColor] = useState("0");
+  const [barberTextColor, setBarberTextColor] = useState("#fff");
 
 
   const windowSize = useWindowSize();
@@ -38,11 +42,14 @@ export const CustomTable = (props: {
     createStyles({
       root: {
         flexGrow: 1,
+        backgroundColor: barberColor,
+        color: barberTextColor
       },
       paper: {
         padding: theme.spacing(2),
         textAlign: 'center',
         color: theme.palette.text.secondary,
+        WebkitColumnRuleColor: "500"
       },
     })
   )
@@ -152,15 +159,43 @@ export const CustomTable = (props: {
     )
   }
 
+  const identifyBarberByName = (name: String) => { 
+    switch (name) {
+      case 'Mariano Moreno':
+            setBarberColor("#c7e6ff");      
+            setBarberTextColor("#333333");  
+            return 1;
+        break;
+      case 'Pablo Mernis':
+        setBarberColor("#dfd852");     
+        setBarberTextColor("#3dbe9e");
+        return 2  
+        break;
+      case 'Ramiro de Leon':
+        setBarberColor("#8f0da9");     
+        setBarberTextColor("#1da381");
+        return 3;  
+        break;
+      case 'Nicolas Piñeiro':
+        setBarberColor("#9e0c0c");    
+        setBarberTextColor("#1da381");  
+        return 4;
+        break;
+      default:
+            return "#fffff"
+        break;
+    }
+  }
 
   const TableContent = (props: {}) => {
     return (
       <div className="row-box">
         {filtredItems.map((row, i) => {
+          console.log('Num '+ i + ' Estos son los rows -> '+ row.barberName)
           return (
             <div className="table-box" key={i}>
               <div className="content-box">
-                <div className={classes.root}>
+                <div className={`${classes.root} barb_name_${identifyBarberByName(row.barberName)}`}>
                   {/* ROWS */}
                   <div className={`row ${selectedRow == row ? 'selected-row' : ''}`}
                     onClick={() => {
