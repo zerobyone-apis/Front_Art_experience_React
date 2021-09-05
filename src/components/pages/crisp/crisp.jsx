@@ -4,7 +4,7 @@ export const Chat = () => {
 
   useEffect(() => {
       // Include the Crisp code here, without the <script></script> tags
-      window.$crisp = [];
+      window.$crisp = []; //todo: se pueden agregar configuraciones y usuarios desde este array
       window.CRISP_WEBSITE_ID = "59439b21-06ff-4ccc-ad28-e8414c643a74";
   
       (function() {
