@@ -45,8 +45,14 @@ export const ConfirmStep = (props: {
                     />
                     <ServiceItem
                         className="box-item"
+                        name={`Tipo de Servicio`}
+                        cost={`${props.service.type}`}
+                        selected={true}
+                    />
+                      <ServiceItem
+                        className="box-item"
                         name={`Costo`}
-                        cost={`$${props.service.cost}`}
+                        cost={`$${props.service.cost == 'incluido' ? 990 : props.service.cost}`}
                         selected={true}
                     />
 
