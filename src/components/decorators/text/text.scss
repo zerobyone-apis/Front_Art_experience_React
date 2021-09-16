@@ -23,12 +23,25 @@
 }
 
 .theme-text {
-    font-size: calc(#{$f5} + .2vw);
+    font-size: calc(#{$f5} + .12vw);
 }
 
 .theme-small {
     font-size: calc(#{$f6} + .2vw);
 }
+
+.position-left {
+    text-align: left;
+}
+
+.position-right {
+  text-align: right;
+}
+
+.position-center{
+    text-align: center;
+}
+
 
 .theme-text.dark,
 .theme-small.dark {

@@ -15,7 +15,6 @@ import { Button } from '../../inputs/button';
 import { createReserve } from './logic';
 import moment from 'moment';
 import './reserve-dialog.scss';
-import useTimeSelector from './time-step/hooks/useTimeSelector';
 
 export const ReserveDialog = () => {
 
