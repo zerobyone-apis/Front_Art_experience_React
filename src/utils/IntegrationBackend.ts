@@ -1,5 +1,8 @@
 export default class IntegrationBackend {
-  //private baseUrl = 'https://backend-art-experience.herokuapp.com';
+  // Production - Mensual free, 500hrs 
+  // TODO: necesiamos cambiar a un plan pago para mas horas
+  private baseUrl = 'https://backend-art-experience.herokuapp.com';
+ 
   //private baseUrl = 'http://artexperienceproductioninstance-env.eba-iimpqhxr.us-east-2.elasticbeanstalk.com';
   
   /* With SSL Certificate Domain to router new Backend on AWS ELB */
@@ -18,7 +21,9 @@ export default class IntegrationBackend {
         Plan B, Pagar el servicio de heroku mensual para que nos hostee la app mientras resolvemos o entendemos mejor lo de AWS.
         Plan de 7 USD por mes
   */
-  private baseUrl = 'https://back-artexperience-aws-rds.herokuapp.com';
+  
+  // Se volvio a heroku ya que teniamos problemas de dns por el ssl
+  //private baseUrl = 'https://back-artexperience-aws-rds.herokuapp.com';
   
   private axios = require('axios');
 
